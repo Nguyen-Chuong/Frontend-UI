@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idReview;
+    private Integer id;
     @Column(name = "service")
     private float service;
     @Column(name = "value_money")

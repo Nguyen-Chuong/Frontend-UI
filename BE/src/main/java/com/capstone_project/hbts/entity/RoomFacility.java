@@ -14,7 +14,7 @@ public class RoomFacility {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idFacility;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;

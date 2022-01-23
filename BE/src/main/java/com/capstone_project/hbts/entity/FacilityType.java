@@ -16,9 +16,9 @@ public class FacilityType {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idFacility;
+    private Integer id;
 
-    @Column(name = "name_facility_type", unique = true)
+    @Column(name = "name_facility_type")
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")

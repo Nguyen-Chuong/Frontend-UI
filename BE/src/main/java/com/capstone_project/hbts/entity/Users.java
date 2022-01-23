@@ -18,9 +18,9 @@ import java.util.Set;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idV;
+    private Integer id;
 
-    @Column(name = "username" , unique = true)
+    @Column(name = "username")
     @Size(max = 30)
     private String username;
 
@@ -33,7 +33,7 @@ public class Users {
     @Column(name = "lastname")
     private String lastname;
 
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     @Email
     @Size(min = 5, max = 50, message = "{casa.nomatch.size}")
     private String email;

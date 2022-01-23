@@ -16,7 +16,7 @@ public class Vip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(name = "name_vip", unique = true)
+    @Column(name = "name_vip")
     private String nameVip;
     @Column(name = "range_start")
     private BigDecimal rangeStart;

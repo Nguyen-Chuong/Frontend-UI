@@ -16,7 +16,7 @@ public class Facility {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idFacility;
+    private Integer id;
 
     @Column(name = "name_facility")
     private String name;

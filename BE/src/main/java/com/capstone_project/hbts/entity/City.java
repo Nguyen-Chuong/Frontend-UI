@@ -16,9 +16,9 @@ public class City {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idCity;
+    private Integer id;
 
-    @Column(name = "name",unique = true)
+    @Column(name = "name")
     @NotNull
     private String nameCity;
 

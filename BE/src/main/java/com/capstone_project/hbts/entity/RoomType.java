@@ -18,7 +18,7 @@ public class RoomType {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idRoomType;
+    private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "price")

@@ -16,9 +16,9 @@ public class District {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idDistrict;
+    private Integer id;
 
-    @Column(name = "name_district",unique = true)
+    @Column(name = "name_district")
     @NotNull
     private String nameDistrict;
 
