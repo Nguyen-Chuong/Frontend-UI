@@ -60,5 +60,6 @@ public class Users {
     private Vip idVip;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    private Set<UserBooking> listUserBooking = new HashSet<UserBooking>() ;
+    private Set<UserBooking> listUserBooking = new HashSet<UserBooking>();
+
 }

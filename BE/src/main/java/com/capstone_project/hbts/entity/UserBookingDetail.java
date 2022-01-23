@@ -14,11 +14,14 @@ public class UserBookingDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "paid")
     private BigDecimal paid;
+
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private UserBooking userBooking;
+
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;

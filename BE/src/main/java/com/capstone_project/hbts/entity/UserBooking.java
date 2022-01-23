@@ -16,10 +16,13 @@ public class UserBooking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "bookDate")
     private Timestamp bookDate;
+
     @Column(name = "status")
     private int status;
+
     @Column(name = "review_status")
     private int reviewStatus;
 
@@ -36,4 +39,5 @@ public class UserBooking {
     @ManyToOne
     @JoinColumn(name = "hotelId")
     private Hotel hotel;
+
 }

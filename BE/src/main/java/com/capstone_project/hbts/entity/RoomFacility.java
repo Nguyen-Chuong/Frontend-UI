@@ -15,10 +15,13 @@ public class RoomFacility {
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;
+
     @ManyToOne
     @JoinColumn(name = "facility_id")
     private Facility facility;
+
 }

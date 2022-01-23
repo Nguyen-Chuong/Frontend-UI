@@ -1,6 +1,8 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.entity.Users;
+import com.capstone_project.hbts.request.UserRequest;
+import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.JwtResponse;
 import com.capstone_project.hbts.security.CustomUserDetailsService;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
@@ -31,15 +33,13 @@ public class JwtAuthenticationResource {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<?> createJsonWebTokenKey(@RequestBody Users user) throws Exception {
+    public ResponseEntity<?> createJsonWebTokenKey(@RequestBody UserRequest userRequest) throws Exception {
 
-        String username = user.getUsername();
-        String password = user.getPassword();
+        String username = userRequest.getUsername();
+        String password = userRequest.getPassword();
 
         try{
-            System.out.println("call func authenticate start...");
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
-            System.out.println("call func authenticate end....");
         } catch (BadCredentialsException e){
             throw new Exception("Incorrect username or password", e);
         }
@@ -51,4 +51,10 @@ public class JwtAuthenticationResource {
         return ResponseEntity.ok(new JwtResponse(jwt));
 
     }
+
+    @PostMapping("/register")
+    public ApiResponse<?> register(@RequestBody UserRequest userRequest){
+        return customUserDetailsService.register(userRequest);
+    }
+
 }

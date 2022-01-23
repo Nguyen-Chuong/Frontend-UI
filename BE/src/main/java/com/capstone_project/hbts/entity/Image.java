@@ -15,9 +15,12 @@ public class Image {
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "src")
     private String src;
+
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;
+
 }
