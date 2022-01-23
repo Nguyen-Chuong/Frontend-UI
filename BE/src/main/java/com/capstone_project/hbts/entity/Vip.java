@@ -8,7 +8,6 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Data
 @NoArgsConstructor
 @Entity
@@ -16,7 +15,7 @@ import java.util.Set;
 public class Vip {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVip;
+    private Integer id;
     @Column(name = "name_vip", unique = true)
     private String nameVip;
     @Column(name = "range_start")
@@ -27,4 +26,5 @@ public class Vip {
     private int discount;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idVip")
     private Set<Users> listUsers = new HashSet<Users>();
+
 }

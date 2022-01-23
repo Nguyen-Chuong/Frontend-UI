@@ -14,11 +14,11 @@ import java.util.Set;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "Vip")
+@Table(name = "Users")
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idU;
+    private Integer idV;
 
     @Column(name = "username" , unique = true)
     @Size(max = 30)

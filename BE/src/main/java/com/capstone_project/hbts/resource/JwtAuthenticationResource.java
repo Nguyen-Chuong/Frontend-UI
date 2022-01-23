@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.resource;
 
-import com.capstone_project.hbts.entity.User;
+import com.capstone_project.hbts.entity.Users;
 import com.capstone_project.hbts.response.JwtResponse;
 import com.capstone_project.hbts.security.CustomUserDetailsService;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
@@ -31,7 +31,7 @@ public class JwtAuthenticationResource {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<?> createJsonWebTokenKey(@RequestBody User user) throws Exception {
+    public ResponseEntity<?> createJsonWebTokenKey(@RequestBody Users user) throws Exception {
 
         String username = user.getUsername();
         String password = user.getPassword();
