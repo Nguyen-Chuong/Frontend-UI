@@ -2,11 +2,10 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.entity.Users;
 import com.capstone_project.hbts.request.UserRequest;
-import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.JwtResponse;
-import com.capstone_project.hbts.security.CustomUserDetailsService;
+import com.capstone_project.hbts.service.impl.CustomUserDetailsService;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
-import org.springframework.http.ResponseEntity;
+import com.capstone_project.hbts.service.impl.UserServicesImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -26,35 +25,37 @@ public class JwtAuthenticationResource {
 
     private final CustomUserDetailsService customUserDetailsService;
 
-    public JwtAuthenticationResource(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, CustomUserDetailsService customUserDetailsService) {
+    private final UserServicesImpl userServices;
+
+    public JwtAuthenticationResource(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, CustomUserDetailsService customUserDetailsService, UserServicesImpl userServices) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.customUserDetailsService = customUserDetailsService;
+        this.userServices = userServices;
     }
 
+    /**
+     * @param
+     */
     @PostMapping("/authenticate")
-    public ResponseEntity<?> createJsonWebTokenKey(@RequestBody UserRequest userRequest) throws Exception {
+    public JwtResponse createJsonWebTokenKey(@RequestBody UserRequest userRequest) {
 
-        String username = userRequest.getUsername();
+        String email = userRequest.getEmail();
         String password = userRequest.getPassword();
+        Users users = userServices.loadUserByEmail(email);
 
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(users.getUsername(), password));
         } catch (BadCredentialsException e){
-            throw new Exception("Incorrect username or password", e);
+            e.printStackTrace();
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(users.getUsername());
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-        return ResponseEntity.ok(new JwtResponse(jwt));
+        return new JwtResponse(jwt, users.getUsername(), users.getAvatar());
 
-    }
-
-    @PostMapping("/register")
-    public ApiResponse<?> register(@RequestBody UserRequest userRequest){
-        return customUserDetailsService.register(userRequest);
     }
 
 }
