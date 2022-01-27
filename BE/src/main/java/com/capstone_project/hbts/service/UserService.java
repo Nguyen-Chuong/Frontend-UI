@@ -23,4 +23,18 @@ public interface UserService {
      * @param username
      */
     UserDTO getUserProfile(String username);
+
+    /**
+     * Change password
+     * @param username
+     * @param newPass
+     */
+    void changePassword(String username, String newPass);
+
+    /**
+     * Get old password
+     * @param username
+     */
+    String getOldPassword(String username);
+
 }

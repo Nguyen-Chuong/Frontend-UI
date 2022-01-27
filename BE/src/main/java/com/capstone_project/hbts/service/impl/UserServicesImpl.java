@@ -8,6 +8,7 @@ import com.capstone_project.hbts.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserServicesImpl implements UserService {
@@ -39,6 +40,17 @@ public class UserServicesImpl implements UserService {
         Users users = userRepository.getUsersByUsername(username);
         UserDTO userDTO = modelMapper.map(users, UserDTO.class);
         return userDTO;
+    }
+
+    @Override
+    @Transactional
+    public void changePassword(String username, String newPass) {
+        userRepository.changePass(username, newPass);
+    }
+
+    @Override
+    public String getOldPassword(String username) {
+        return userRepository.getOldPassword(username);
     }
 
 }
