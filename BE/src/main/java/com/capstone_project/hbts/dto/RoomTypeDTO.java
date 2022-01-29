@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,10 +26,6 @@ public class RoomTypeDTO {
 
     private Timestamp dealExpire;
 
-    private List<UserBookingDetailDTO> listUserBookingDetail;
-
-    private List<ImageDTO> listImage;
-
-    private List<RoomFacilityDTO> listRoomFacility;
+    private int hotel;
 
 }

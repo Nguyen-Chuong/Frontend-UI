@@ -13,4 +13,8 @@ public class UserBookingDetailDTO {
 
     private BigDecimal paid;
 
+    private int userBooking;
+
+    private int roomType;
+
 }

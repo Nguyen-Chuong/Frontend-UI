@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -18,8 +17,8 @@ public class UserBookingDTO {
 
     private int reviewStatus;
 
-    private List<ReviewDTO> listReview;
+    private int users;
 
-    private List<UserBookingDetailDTO> listUserBookingDetail;
+    private int hotel;
 
 }

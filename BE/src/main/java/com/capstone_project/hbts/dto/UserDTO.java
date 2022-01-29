@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -30,6 +29,6 @@ public class UserDTO {
 
     private BigDecimal spend;
 
-    private Set<UserBookingDTO> listUserBooking;
+    private int idVip;
 
 }

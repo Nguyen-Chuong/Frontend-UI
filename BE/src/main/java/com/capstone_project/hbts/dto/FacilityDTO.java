@@ -3,8 +3,6 @@ package com.capstone_project.hbts.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 public class FacilityDTO {
@@ -13,6 +11,6 @@ public class FacilityDTO {
 
     private String name;
 
-    private List<RoomFacilityDTO> listRoomFacility;
+    private int facility;
 
 }

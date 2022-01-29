@@ -23,4 +23,6 @@ public class ReviewDTO {
 
     private float facilities;
 
+    private int review;
+
 }

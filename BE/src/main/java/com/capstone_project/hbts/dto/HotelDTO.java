@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,8 +23,6 @@ public class HotelDTO {
 
     private int status;
 
-    private List<UserBookingDTO> listUserBooking;
-
-    private List<RoomTypeDTO> listRoomType;
+    private int district;
 
 }
