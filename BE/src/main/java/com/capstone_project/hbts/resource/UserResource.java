@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.resource;
 
+import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.UserDTO;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
@@ -59,7 +60,7 @@ public class UserResource {
         String userPassword = userService.getOldPassword(username);
 
         if(!bCryptPasswordEncoder.matches(oldPass, userPassword)){
-            return new ApiResponse<>(400, null, null);
+            return new ApiResponse<>(400, ErrorConstant.ERR_USER_001, ErrorConstant.ERR_USER_001_LABEL);
         }else {
             userService.changePassword(username, newPasswordEncoded);
             return new ApiResponse<>(200, null, null);

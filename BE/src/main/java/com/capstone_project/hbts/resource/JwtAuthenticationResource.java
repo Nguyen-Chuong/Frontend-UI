@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.resource;
 
+import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.entity.Users;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.JwtResponse;
@@ -44,10 +45,15 @@ public class JwtAuthenticationResource {
         String password = userRequest.getPassword();
         Users users = userServices.loadUserByEmail(email);
 
+        if(users == null){
+            return new JwtResponse(ErrorConstant.ERR_USER_003_LABEL, null, null);
+        }
+
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(users.getUsername(), password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
+            return new JwtResponse(ErrorConstant.ERR_USER_002_LABEL, null, null);
         }
 
         final UserDetails userDetails = customUserDetailsService.loadUserByUsername(users.getUsername());
