@@ -17,8 +17,8 @@ public class UserBookingDTO {
 
     private int reviewStatus;
 
-    private int users;
+    private UserDTO users;
 
-    private int hotel;
+    private HotelDTO hotel;
 
 }
