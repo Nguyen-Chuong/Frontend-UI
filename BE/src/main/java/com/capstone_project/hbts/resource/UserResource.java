@@ -28,9 +28,10 @@ public class UserResource {
     public ApiResponse<?> register(@RequestBody UserRequest userRequest){
         try {
             userService.register(userRequest);
+            // check duplicate email, username
             return new ApiResponse(200, null, null);
         } catch (Exception e){
-            return new ApiResponse(400, null, null);
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -39,9 +40,14 @@ public class UserResource {
      */
     @GetMapping("/profile")
     public ApiResponse<?> getUserProfile(@RequestHeader("Authorization") String jwttoken){
-        String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
-        UserDTO userDTO = userService.getUserProfile(username);
-        return new ApiResponse(200, userDTO, null, null);
+        try {
+            String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
+            UserDTO userDTO = userService.getUserProfile(username);
+            return new ApiResponse(200, userDTO, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
     }
 
     /**

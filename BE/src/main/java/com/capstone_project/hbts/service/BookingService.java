@@ -8,8 +8,14 @@ public interface BookingService {
 
     /**
      * get all bookings
-     * @param
+     * @param userId
      */
     List<UserBookingDTO> getAllBookings(int userId);
+
+    /**
+     * get all bookings need to review or done
+     * @param reviewStatus
+     */
+    List<UserBookingDTO> getAllBookingsReview(int reviewStatus);
 
 }

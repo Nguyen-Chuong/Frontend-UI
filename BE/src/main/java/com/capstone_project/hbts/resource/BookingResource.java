@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.resource;
 
+import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.UserBookingDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.BookingService;
@@ -24,7 +25,27 @@ public class BookingResource {
      */
     @GetMapping("/user-bookings")
     public ApiResponse<?> getUserBooking(@RequestParam int userId){
-        List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
-        return new ApiResponse(200, userBookingDTOList, null, null);
+        try{
+            List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
+            return new ApiResponse(200, userBookingDTOList, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
+
+    /**
+     * @param reviewStatus
+     * return
+     */
+    @GetMapping("/bookings-review")
+    public ApiResponse<?> getUserBookingReview(@RequestParam int reviewStatus){
+        try{
+            List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsReview(reviewStatus);
+            return new ApiResponse(200, userBookingDTOList, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
     }
 }

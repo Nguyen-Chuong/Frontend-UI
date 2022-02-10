@@ -3,6 +3,12 @@ package com.capstone_project.hbts.constants;
 public class ErrorConstant {
 
     /**
+     * Có lỗi xảy ra trong quá trình xử lý
+     */
+    public static final String ERR_000 = "ERR_000";
+    public static final String ERR_000_LABEL = "An error has occurred";
+
+    /**
      * Mật khẩu cũ không tồn tại
      */
     public static final String ERR_USER_001 = "ERR_USER_001";
