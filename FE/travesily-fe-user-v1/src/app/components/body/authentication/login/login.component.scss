@@ -1,0 +1,28 @@
+@import "src/app/shared/scss/main";
+
+*{
+  font-style: inherit;
+  font-size: 1.5rem;
+}
+
+.form-body{
+  display: grid;
+  grid-row-gap: 2rem;
+}
+
+.btn-login{
+  width: 100%;
+}
+
+.form-redirection{
+  display: flex;
+  justify-content: space-between;
+}
+
+a{
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+

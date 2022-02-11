@@ -1,0 +1,26 @@
+<div class="field">
+  <div class="control">
+    <input [type]="type"
+           [formControl]="control"
+           class="input item-fullwidth"
+           [placeholder]="placeholder??''"
+           [ngClass]="{'is-invalid': control.errors}"
+
+    >
+  </div>
+  <ng-container *ngIf="control.dirty&&control.touched">
+    <div class="text-danger" *ngIf="control.errors?.required">
+      is required
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.email">
+      Email must be a valid email address
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.minlength">
+      must be at least {{control.errors?.minlength.requiredLength}}
+    </div>
+    <div class="text-danger" *ngIf="control.errors?.notMatch">
+      Confirm Password not match
+    </div>
+
+  </ng-container>
+</div>

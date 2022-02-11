@@ -1,0 +1,26 @@
+<div class="dropdown">
+  <button class="dropdown__btn btn-login" (click)="toggleContent()">{{btnContent}}</button>
+  <div class="dropdown__content" id="content">
+    <div class="dropdown__content__item">
+      <label class="lbl-md dropdown__content__item--title">Adult</label>
+      <button class="btn-guest-modifier" (click)="toggleNumberMinus('adult')">-</button>
+      <label class="lbl-md dropdown__content__item--number">{{guest.adult}}</label>
+      <button class="btn-guest-modifier" (click)="toggleNumberPlus('adult')">+</button>
+    </div>
+    <div class="dropdown__content__item">
+      <label class="lbl-md dropdown__content__item--title">Children</label>
+      <button class="btn-guest-modifier" (click)="toggleNumberMinus('children')">-</button>
+      <label class="lbl-md dropdown__content__item--number">{{guest.children}}</label>
+      <button class="btn-guest-modifier" (click)="toggleNumberPlus('children')">+</button>
+    </div>
+    <div class="dropdown__content__item">
+      <label class="lbl-md dropdown__content__item--title">Rooms</label>
+      <button class="btn-guest-modifier" (click)="toggleNumberMinus('room')">-</button>
+      <label class="lbl-md dropdown__content__item--number">{{guest.roomNumber}}</label>
+      <button class="btn-guest-modifier" (click)="toggleNumberPlus('room')">+</button>
+    </div>
+    <div class="dropdown__content__item">
+      <button class="btn-done">Done</button>
+    </div>
+  </div>
+</div>
