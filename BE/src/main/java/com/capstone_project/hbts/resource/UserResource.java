@@ -9,6 +9,7 @@ import com.capstone_project.hbts.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 public class UserResource {
 
@@ -72,4 +73,5 @@ public class UserResource {
             return new ApiResponse<>(200, null, null);
         }
     }
+
 }
