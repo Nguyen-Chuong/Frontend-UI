@@ -1,0 +1,11 @@
+<div class="header">
+  <a href="/home"><img src="../../../../assets/img/logo.png" alt="Web logo" class="header__logo"></a>
+
+  <ul class="header__nav" >
+    <li *ngFor="let item of navItems" class="header__nav--item"><a
+      class="header__nav--link" [routerLink]="['/home/',item.id]">{{item.name}}</a></li>
+  </ul>
+  <div class="header__user">
+    <app-user-login></app-user-login>
+  </div>
+</div>

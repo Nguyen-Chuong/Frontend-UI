@@ -1,0 +1,26 @@
+<h2 class="form-header">Sign up</h2>
+<form class="form-body" [formGroup]="form" (ngSubmit)="submit()">
+  <div class="form-control">
+    <label>First Name</label>
+    <app-authentication-input type="text" placeholder="First Name" [control]="form?.controls['firstname']"></app-authentication-input>
+  </div>
+  <div class="form-control">
+    <label>Last Name</label>
+    <app-authentication-input type="text" placeholder="Last Name" [control]="form?.controls['lastname']"></app-authentication-input>
+  </div>
+  <div class="form-control">
+    <label>Email</label>
+    <app-authentication-input type="text" placeholder="Email" [control]="form?.controls['email']"></app-authentication-input>
+  </div>
+  <div class="form-control">
+    <label>Password</label>
+    <app-authentication-input type="password" placeholder="Password" [control]="form?.controls['password']"></app-authentication-input>
+  </div>
+  <div class="form-control">
+    <label>Confirm Password</label>
+    <app-authentication-input type="password" placeholder="Confirm Password" [control]="form?.controls['confirmPassword']"></app-authentication-input>
+  </div>
+  <div class="form-submit">
+    <button class="btn-login" [disabled]="form.invalid">Sign up</button>
+  </div>
+</form>

@@ -43,7 +43,6 @@ export class AuthService {
   }
 
   register(account: Account) {
-    console.log(account)
     return this.http.post(`${this.baseUrl}/register`, {...account})
   }
 
