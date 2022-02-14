@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Setter
@@ -57,6 +58,8 @@ public class Users {
     @Column(name = "spend")
     private BigDecimal spend;
 
+    @Column(name = "otp")
+    private int otp;
     @ManyToOne
     @JoinColumn(name = "id_vip")
     private Vip idVip;

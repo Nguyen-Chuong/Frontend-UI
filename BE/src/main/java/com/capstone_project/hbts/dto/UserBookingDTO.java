@@ -11,7 +11,9 @@ public class UserBookingDTO {
 
     private Integer id;
 
-    private Timestamp bookDate;
+    private Timestamp checkIn;
+
+    private Timestamp checkOut;
 
     private int status;
 

@@ -19,8 +19,11 @@ public class UserBooking {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "bookDate")
-    private Timestamp bookDate;
+    @Column(name = "checkIn")
+    private Timestamp checkIn;
+
+    @Column(name = "checkOut")
+    private Timestamp checkOut;
 
     @Column(name = "status")
     private int status;

@@ -26,5 +26,19 @@ public class ErrorConstant {
     public static final String ERR_USER_003 = "ERR_USER_003";
     public static final String ERR_USER_003_LABEL = "Incorrect Email";
 
-
+    /**
+     * Không tìm thấy Otp
+     */
+    public static final String ERR_OTP_001 = "ERR_OTP_001";
+    public static final String ERR_OTP_001_LABEL = "OTP Not Found";
+    /**
+     * OTP hết hạn
+     */
+    public static final String ERR_OTP_002 = "ERR_OTP_002";
+    public static final String ERR_OTP_002_LABEL = "Mã xác minh hết hạn";
+    /**
+     * OTP hết hạn
+     */
+    public static final String ERR_OTP_003 = "ERR_OTP_003";
+    public static final String ERR_OTP_003_LABEL = "Mã xác minh OTP sai";
 }
