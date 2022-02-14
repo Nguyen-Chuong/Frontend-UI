@@ -27,18 +27,33 @@ public class ErrorConstant {
     public static final String ERR_USER_003_LABEL = "Incorrect Email";
 
     /**
+     * Email đã tồn tại
+     */
+    public static final String ERR_USER_004 = "ERR_USER_004";
+    public static final String ERR_USER_004_LABEL = "This email is already taken";
+
+    /**
+     * Username đã tồn tại
+     */
+    public static final String ERR_USER_005 = "ERR_USER_005";
+    public static final String ERR_USER_005_LABEL = "This username is already taken";
+
+    /**
      * Không tìm thấy Otp
      */
     public static final String ERR_OTP_001 = "ERR_OTP_001";
     public static final String ERR_OTP_001_LABEL = "OTP Not Found";
+
     /**
      * OTP hết hạn
      */
     public static final String ERR_OTP_002 = "ERR_OTP_002";
-    public static final String ERR_OTP_002_LABEL = "Mã xác minh hết hạn";
+    public static final String ERR_OTP_002_LABEL = "OTP is expired";
+
     /**
-     * OTP hết hạn
+     * Mã xác minh OTP sai
      */
     public static final String ERR_OTP_003 = "ERR_OTP_003";
-    public static final String ERR_OTP_003_LABEL = "Mã xác minh OTP sai";
+    public static final String ERR_OTP_003_LABEL = "OTP is incorrect";
+
 }

@@ -16,7 +16,7 @@ public interface UserService {
      * Load detail user by email
      * @param email
      */
-    Users loadUserByEmail(String email);
+    UserDTO loadUserByEmail(String email);
 
     /**
      * Get detail user by username

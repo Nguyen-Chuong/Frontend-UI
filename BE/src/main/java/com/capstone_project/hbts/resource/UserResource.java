@@ -27,9 +27,14 @@ public class UserResource {
      */
     @PostMapping("/register")
     public ApiResponse<?> register(@RequestBody UserRequest userRequest){
+        if(userService.loadUserByEmail(userRequest.getEmail()) != null){
+            return new ApiResponse(400, ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL);
+        }
+        if(userService.getUserProfile(userRequest.getUsername()) != null){
+            return new ApiResponse(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
+        }
         try {
             userService.register(userRequest);
-            // check duplicate email, username
             return new ApiResponse(200, null, null);
         } catch (Exception e){
             return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);

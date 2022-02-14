@@ -20,6 +20,7 @@ public class EmailServiceImpl implements EmailService {
         this.emailRepository = emailRepository;
         this.sender = sender;
     }
+
     @Override
     public void send(String to, String subject, String content) {
         SimpleMailMessage mail = new SimpleMailMessage();

@@ -31,15 +31,23 @@ public class UserServicesImpl implements UserService {
     }
 
     @Override
-    public Users loadUserByEmail(String email) {
-        return userRepository.getUsersByEmail(email);
+    public UserDTO loadUserByEmail(String email) {
+        Users users = userRepository.getUsersByEmail(email);
+        if(users == null){
+            return null;
+        }else {
+            return modelMapper.map(users, UserDTO.class);
+        }
     }
 
     @Override
     public UserDTO getUserProfile(String username) {
         Users users = userRepository.getUsersByUsername(username);
-        UserDTO userDTO = modelMapper.map(users, UserDTO.class);
-        return userDTO;
+        if(users == null){
+            return null;
+        }else {
+            return modelMapper.map(users, UserDTO.class);
+        }
     }
 
     @Override

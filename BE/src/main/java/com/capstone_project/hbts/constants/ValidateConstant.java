@@ -6,7 +6,8 @@ public class ValidateConstant {
 
     public static final String PER_PAGE = "10";
     // constants config otp
-    public static final String OTP_MESSAGE = "Verification code :";
+    public static final String OTP_MESSAGE = "Verification code:";
     // constants email
     public static final String EMAIL_SUBJECT = "[Verify] Please verify your email";
+
 }

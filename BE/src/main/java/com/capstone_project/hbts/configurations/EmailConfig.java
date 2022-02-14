@@ -9,6 +9,7 @@ import java.util.Properties;
 
 @Configuration
 public class EmailConfig {
+
     @Bean
     public JavaMailSender getJavaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -26,4 +27,5 @@ public class EmailConfig {
 
         return mailSender;
     }
+
 }

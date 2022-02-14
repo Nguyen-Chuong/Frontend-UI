@@ -60,6 +60,7 @@ public class Users {
 
     @Column(name = "otp")
     private int otp;
+
     @ManyToOne
     @JoinColumn(name = "id_vip")
     private Vip idVip;

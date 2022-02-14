@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @CrossOrigin
 public class EmailResource {
+
     private final EmailService emailService;
 
     private final OTPService otpService;
@@ -27,7 +28,7 @@ public class EmailResource {
             emailService.send(user.getEmail(), ValidateConstant.EMAIL_SUBJECT, ValidateConstant.OTP_MESSAGE + otp);
             return new ApiResponse(200, null, null);
         }catch (Exception e){
-            return new ApiResponse(400,ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -38,19 +39,19 @@ public class EmailResource {
             int otpVerify = Integer.parseInt(Otp);
             int serverOtp = otpService.getOtp("otpServer");
             if(otpVerify <= 0){
-                return new ApiResponse(400,ErrorConstant.ERR_OTP_001,ErrorConstant.ERR_OTP_001_LABEL);
+                return new ApiResponse(400, ErrorConstant.ERR_OTP_001, ErrorConstant.ERR_OTP_001_LABEL);
             }
             if(serverOtp <= 0){
-                return new ApiResponse(400,ErrorConstant.ERR_OTP_002,ErrorConstant.ERR_OTP_002_LABEL);
+                return new ApiResponse(400, ErrorConstant.ERR_OTP_002, ErrorConstant.ERR_OTP_002_LABEL);
             }
             if(otpVerify == serverOtp){
                 otpService.clearOtp("otpServer");
                 return new ApiResponse(200, null, null);
             }else {
-                return new ApiResponse(400,ErrorConstant.ERR_OTP_003,ErrorConstant.ERR_OTP_003_LABEL);
+                return new ApiResponse(400, ErrorConstant.ERR_OTP_003, ErrorConstant.ERR_OTP_003_LABEL);
             }
         }catch (Exception e){
-            return new ApiResponse(400,ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.dto.UserDTO;
 import com.capstone_project.hbts.entity.Users;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.JwtResponse;
@@ -43,24 +44,24 @@ public class JwtAuthenticationResource {
 
         String email = userRequest.getEmail();
         String password = userRequest.getPassword();
-        Users users = userServices.loadUserByEmail(email);
+        UserDTO user = userServices.loadUserByEmail(email);
 
-        if(users == null){
+        if(user == null){
             return new JwtResponse(ErrorConstant.ERR_USER_003_LABEL, null, null);
         }
 
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(users.getUsername(), password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
             return new JwtResponse(ErrorConstant.ERR_USER_002_LABEL, null, null);
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(users.getUsername());
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getUsername());
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-        return new JwtResponse(jwt, users.getUsername(), users.getAvatar());
+        return new JwtResponse(jwt, user.getUsername(), user.getAvatar());
 
     }
 

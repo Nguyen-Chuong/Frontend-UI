@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.service;
 
 public interface OTPService {
+
     /**
      * generate otp
      */
@@ -15,4 +16,5 @@ public interface OTPService {
      * clear otp
      */
     void clearOtp(String key);
+
 }
