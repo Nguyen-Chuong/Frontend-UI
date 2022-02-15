@@ -9,6 +9,8 @@ import com.capstone_project.hbts.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
+
 @CrossOrigin
 @RestController
 public class UserResource {
@@ -79,5 +81,19 @@ public class UserResource {
         }
     }
 
+    /**
+     * @param userDTO
+     * return
+     */
+    @PatchMapping("/update-profile")
+    public ApiResponse<?> updateUserProfile(@RequestBody UserDTO userDTO){
+        try{
+            userService.updateUserProfile(userDTO);
+            return new ApiResponse<>(200, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
 
 }

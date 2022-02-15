@@ -61,4 +61,11 @@ public class UserServicesImpl implements UserService {
         return userRepository.getOldPassword(username);
     }
 
+    @Override
+    @Transactional
+    public void updateUserProfile(UserDTO userDTO) {
+        userRepository.updateUserProfile(userDTO.getFirstname(), userDTO.getLastname(), userDTO.getPhone(),
+                userDTO.getAddress(), userDTO.getAvatar(), userDTO.getSpend(), userDTO.getId());
+    }
+
 }

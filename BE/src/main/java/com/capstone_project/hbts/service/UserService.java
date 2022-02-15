@@ -37,4 +37,10 @@ public interface UserService {
      */
     String getOldPassword(String username);
 
+    /**
+     * Update user profile
+     * @param userDTO
+     */
+    void updateUserProfile(UserDTO userDTO);
+
 }
