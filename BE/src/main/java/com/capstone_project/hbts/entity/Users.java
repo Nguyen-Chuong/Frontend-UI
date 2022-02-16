@@ -58,9 +58,6 @@ public class Users {
     @Column(name = "spend")
     private BigDecimal spend;
 
-    @Column(name = "otp")
-    private int otp;
-
     @ManyToOne
     @JoinColumn(name = "id_vip")
     private Vip idVip;
