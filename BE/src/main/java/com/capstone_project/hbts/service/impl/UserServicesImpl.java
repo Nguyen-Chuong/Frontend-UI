@@ -68,4 +68,10 @@ public class UserServicesImpl implements UserService {
                 userDTO.getAddress(), userDTO.getAvatar(), userDTO.getSpend(), userDTO.getId());
     }
 
+    @Override
+    public boolean isUsernameExist(String username) {
+        String usernameFromDB = userRepository.getUsername(username);
+        return usernameFromDB != null;
+    }
+
 }

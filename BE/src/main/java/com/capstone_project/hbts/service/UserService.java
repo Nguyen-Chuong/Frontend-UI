@@ -43,4 +43,10 @@ public interface UserService {
      */
     void updateUserProfile(UserDTO userDTO);
 
+    /**
+     * Check duplicate username
+     * @param username
+     */
+    boolean isUsernameExist(String username);
+
 }

@@ -9,8 +9,6 @@ import com.capstone_project.hbts.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.math.BigDecimal;
-
 @CrossOrigin
 @RestController
 public class UserResource {
@@ -90,6 +88,21 @@ public class UserResource {
         try{
             userService.updateUserProfile(userDTO);
             return new ApiResponse<>(200, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
+
+    /**
+     * @Param username
+     * return
+     */
+    @GetMapping("/check-username")
+    public ApiResponse<?> isUsernameExist(@RequestParam String username){
+        try {
+            boolean isUsernameExist = userService.isUsernameExist(username);
+            return new ApiResponse(200, isUsernameExist, null, null);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);

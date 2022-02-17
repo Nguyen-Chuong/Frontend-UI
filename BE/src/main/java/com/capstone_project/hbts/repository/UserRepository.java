@@ -40,4 +40,8 @@ public interface UserRepository extends JpaRepository<Users, String> {
             @Param("spend") BigDecimal spend,
             @Param("id") Integer id);
 
+    @Query(value = "select username from capstone.users where username = :username",
+            nativeQuery = true)
+    String getUsername(@Param("username") String username);
+
 }
