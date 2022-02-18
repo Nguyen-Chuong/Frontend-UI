@@ -1,0 +1,36 @@
+@import "main";
+
+.container {
+  display: flex;
+  background-color: #fff;
+  height: 100vh;
+}
+
+.nav-column {
+  width: 25%;
+
+  &__item {
+    font-style: inherit;
+    font-size: 2rem;
+    cursor: pointer;
+    color: $color-black-1;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    font-weight: 400;
+    padding: 1rem;
+
+    &:hover {
+      background-color: $color-tertiary;
+      color: #fff;
+    }
+  }
+}
+.user-detail{
+  width: 100%;
+  margin: 2rem;
+}
+
+
+
+

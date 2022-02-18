@@ -1,7 +1,7 @@
-<ng-container *ngIf="username">
+<ng-container *ngIf="account">
   <app-user></app-user>
 </ng-container>
-<ng-container *ngIf="!username">
+<ng-container *ngIf="!account">
   <a class="btn-login" [routerLink]="['authentication','login']">Sign in</a>
   <a class="btn-login" [routerLink]="['authentication','register']">Sign up</a>
 </ng-container>

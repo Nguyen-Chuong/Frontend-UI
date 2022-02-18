@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginInfo} from "../../../../_models/login-info";
 import {AuthService} from "../../../../_services/auth.service";
+import {first} from "rxjs";
+import {Account} from "../../../../_models/account";
 
 @Component({
   selector: 'app-user-login',
@@ -8,15 +10,16 @@ import {AuthService} from "../../../../_services/auth.service";
   styleUrls: ['./user-login.component.scss']
 })
 export class UserLoginComponent implements OnInit {
-  username
-  avatar
+  account: Account
 
   constructor(private authService: AuthService) {
-
+    this.authService.getProfile()
+      .pipe(first())
+      .subscribe(account => {
+        this.account = account['data']
+      })
   }
 
   ngOnInit(): void {
-    this.username = this.authService?.username
-    this.avatar = this.authService?.avatar
   }
 }

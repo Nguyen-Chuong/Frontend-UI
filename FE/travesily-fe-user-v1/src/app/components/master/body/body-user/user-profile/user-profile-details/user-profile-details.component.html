@@ -1,0 +1,35 @@
+<div class="container">
+  <app-user-profile-details-info [account]="account" title="Name" [avatar]="account.avatar"
+                                 [detail]="account.firstname + ' ' + account.lastname"
+                                 [isAdd]="false" editType="name"></app-user-profile-details-info>
+
+  <app-user-profile-details-info [account]="account" title="Email" [detail]="account.email"
+                                 [isAdd]="false"></app-user-profile-details-info>
+  <ng-container *ngIf="account.phone">
+    <app-user-profile-details-info [account]="account" title="Phone" [detail]="account.phone"
+                                   [isAdd]="false" editType="edit-phone"></app-user-profile-details-info>
+  </ng-container>
+  <ng-container *ngIf="!account.phone">
+    <app-user-profile-details-info [account]="account" title="Phone" [detail]="account.phone"
+                                   [isAdd]="true" editType="add-phone"></app-user-profile-details-info>
+  </ng-container>
+  <app-user-profile-details-info [account]="account" title="Password"
+                                 [detail]="'********'"
+                                 [isAdd]="false" editType="password"></app-user-profile-details-info>
+
+  <!--  <div class="user-info">-->
+  <!--    <h4>Phone</h4>-->
+  <!--    {{account.phone}}-->
+  <!--    <ng-container *ngIf="account.phone">-->
+  <!--      <button class="btn btn-edit">Edit</button>-->
+  <!--    </ng-container>-->
+  <!--    <ng-container *ngIf="!account.phone">-->
+  <!--      <button class="btn btn-edit">Add</button>-->
+  <!--    </ng-container>-->
+
+
+  <!--  </div>-->
+  <!--  <div class="user-info">-->
+  <!--    <h4>Password</h4>-->
+  <!--  </div>-->
+</div>

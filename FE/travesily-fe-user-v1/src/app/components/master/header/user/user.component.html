@@ -1,5 +1,11 @@
 <div class="user">
-  <img src="#" alt="User Avatar" class="user__avatar">
-  <p class="user__name">{{username}}</p>
-  <button (click)="logout()" class="btn-login">Logout</button>
+  <button class="btn-dropdown" (click)="dropdown()">
+    <img src="../../../assets/img/ha.JPG" alt="H" class="user-avatar">
+    <p class="user__name">{{account.username}}</p>
+    <i class="arrow down"></i>
+  </button>
+  <div id="user-dropdown" class="dropdown-content">
+    <a (click)="logout()" class="dropdown-button">Logout</a>
+    <a [routerLink]="['/user']" class="dropdown-button">User Info</a>
+  </div>
 </div>

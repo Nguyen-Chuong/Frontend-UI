@@ -1,30 +1,39 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {catchError, Observable, throwError} from 'rxjs';
+import {AuthService} from "../_services/auth.service";
+import {Router} from "@angular/router";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const idToken = localStorage.getItem("id_token");
+    const token = this.authService.authToken
 
-    if (idToken) {
-      const cloned = request.clone({
-        headers: request.headers.set("Authorization",
-          "Bearer " + idToken)
+    if (token) {
+
+      request = request.clone({setHeaders:{
+        Authorization:`Bearer ${token}`
+        }
       });
-
-      return next.handle(cloned);
     }
-    else {
-      return next.handle(request);
-    }
+    return next.handle(request).pipe(
+      catchError((err) => {
+        if (err instanceof HttpErrorResponse) {
+          if (err.status === 401) {
+            // redirect user to the logout page
+            // this.router.navigateByUrl('/home')
+          }
+        }
+        return throwError(err);
+      }))
   }
 }
