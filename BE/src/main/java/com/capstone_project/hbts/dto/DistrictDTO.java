@@ -11,6 +11,6 @@ public class DistrictDTO {
 
     private String nameDistrict;
 
-    private int cityFK;
+    private CityDTO cityFK;
 
 }
