@@ -7,7 +7,15 @@ import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.UserService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
@@ -37,6 +45,7 @@ public class UserResource {
             userService.register(userRequest);
             return new ApiResponse(200, null, null);
         } catch (Exception e){
+            e.printStackTrace();
             return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
@@ -74,8 +83,13 @@ public class UserResource {
         if(!bCryptPasswordEncoder.matches(oldPass, userPassword)){
             return new ApiResponse<>(400, ErrorConstant.ERR_USER_001, ErrorConstant.ERR_USER_001_LABEL);
         }else {
-            userService.changePassword(username, newPasswordEncoded);
-            return new ApiResponse<>(200, null, null);
+            try {
+                userService.changePassword(username, newPasswordEncoded);
+                return new ApiResponse<>(200, null, null);
+            }catch (Exception e){
+                e.printStackTrace();
+                return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            }
         }
     }
 
@@ -98,8 +112,8 @@ public class UserResource {
      * @Param username
      * return
      */
-    @GetMapping("/check-username")
-    public ApiResponse<?> isUsernameExist(@RequestParam String username){
+    @GetMapping("/check-username/{username}")
+    public ApiResponse<?> isUsernameExist(@PathVariable String username){
         try {
             boolean isUsernameExist = userService.isUsernameExist(username);
             return new ApiResponse(200, isUsernameExist, null, null);

@@ -28,7 +28,7 @@ public class HotelServicesImpl implements HotelService {
 
     @Override
     public Page<HotelDTO> searchHotel(int districtId, Date dateIn, Date dateOut, int numberOfPeople, int numberOfRoom, Pageable pageable) {
-        Page<Hotel> hotelPage = hotelRepository.searchHotel(districtId, dateIn, dateOut, numberOfPeople, numberOfRoom, pageable);
+        Page<Hotel> hotelPage = hotelRepository.searchHotelByDistrict(districtId, pageable);
 
         List<Hotel> hotelList = hotelPage.getContent();
 

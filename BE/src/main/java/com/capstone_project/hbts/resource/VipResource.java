@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.resource;
 
+import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.VipDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.VipService;
@@ -24,8 +25,13 @@ public class VipResource {
      */
     @GetMapping("/vip-info")
     public ApiResponse<?> getVipStatus(){
-        List<VipDTO> vipDTOList = vipService.getVipStatus();
-        return new ApiResponse(200, vipDTOList, null, null);
+        try {
+            List<VipDTO> vipDTOList = vipService.getVipStatus();
+            return new ApiResponse(200, vipDTOList, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
     }
 
 }

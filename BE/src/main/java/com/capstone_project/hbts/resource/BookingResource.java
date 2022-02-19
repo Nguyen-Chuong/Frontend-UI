@@ -6,7 +6,7 @@ import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.BookingService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -25,8 +25,8 @@ public class BookingResource {
      * @param userId
      * return
      */
-    @GetMapping("/user-bookings")
-    public ApiResponse<?> getUserBooking(@RequestParam int userId){
+    @GetMapping("/user-bookings/{userId}")
+    public ApiResponse<?> getUserBooking(@PathVariable int userId){
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
             return new ApiResponse(200, userBookingDTOList, null, null);
@@ -40,8 +40,8 @@ public class BookingResource {
      * @param reviewStatus
      * return
      */
-    @GetMapping("/bookings-review")
-    public ApiResponse<?> getUserBookingReview(@RequestParam int reviewStatus){
+    @GetMapping("/bookings-review/{reviewStatus}")
+    public ApiResponse<?> getUserBookingReview(@PathVariable int reviewStatus){
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsReview(reviewStatus);
             return new ApiResponse(200, userBookingDTOList, null, null);

@@ -6,7 +6,11 @@ import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.EmailService;
 import com.capstone_project.hbts.service.OTPService;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
@@ -28,6 +32,7 @@ public class EmailResource {
             emailService.send(user.getEmail(), ValidateConstant.EMAIL_SUBJECT, ValidateConstant.OTP_MESSAGE + otp);
             return new ApiResponse(200, null, null);
         }catch (Exception e){
+            e.printStackTrace();
             return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
@@ -51,6 +56,7 @@ public class EmailResource {
                 return new ApiResponse(400, ErrorConstant.ERR_OTP_003, ErrorConstant.ERR_OTP_003_LABEL);
             }
         }catch (Exception e){
+            e.printStackTrace();
             return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
