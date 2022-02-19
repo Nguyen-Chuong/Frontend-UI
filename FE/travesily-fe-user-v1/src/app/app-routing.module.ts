@@ -6,6 +6,10 @@ import {AuthenticationComponent} from "./components/master/body/authentication/a
 import {LoginComponent} from "./components/master/body/authentication/login/login.component";
 import {RegisterComponent} from "./components/master/body/authentication/register/register.component";
 import {MasterComponent} from "./components/master/master.component";
+import {BodyUserComponent} from "./components/master/body/body-user/body-user.component";
+import {UserProfileComponent} from "./components/master/body/body-user/user-profile/user-profile.component";
+import {UserBookingsComponent} from "./components/master/body/body-user/user-bookings/user-bookings.component";
+import {UserReviewsComponent} from "./components/master/body/body-user/user-reviews/user-reviews.component";
 
 const routes: Routes = [
   {
@@ -24,6 +28,13 @@ const routes: Routes = [
           {path: 'hotelAndHome', component: HotelHomeComponent},
         ]
       },
+      {
+        path: 'user', component: BodyUserComponent, children: [
+          {path: 'profile', component: UserProfileComponent},
+          {path: 'bookings', component: UserBookingsComponent},
+          {path: 'reviews', component: UserReviewsComponent},
+        ]
+      }
     ]
   }
 

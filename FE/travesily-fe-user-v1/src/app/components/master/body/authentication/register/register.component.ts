@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
     this.form = fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
+      username: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.matchValidator('confirmPassword', true)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],
@@ -48,6 +49,7 @@ export class RegisterComponent implements OnInit {
     account.lastname = val.lastname
     account.email = val.email
     account.password = val.password
+    account.username = val.username
 
     this.authService.register(account)
       .pipe(first())

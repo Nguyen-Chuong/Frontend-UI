@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-import {map, tap} from "rxjs";
+import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
+import {first, map, tap} from "rxjs";
 import * as moment from "moment";
 import {Account} from "../_models/account";
 
@@ -10,30 +10,36 @@ import {Account} from "../_models/account";
 })
 export class AuthService {
   baseUrl = 'http://localhost:8080'
+  httpSkip
 
-  constructor(private http: HttpClient) {
-
+  constructor(private http: HttpClient, handler: HttpBackend) {
+    this.httpSkip = new HttpClient(handler)
   }
 
   private setSession(loginInfo) {
     const jwtToken = JSON.parse(atob(loginInfo['jwttoken'].split('.')[1]))
     const expiresAt = moment().add(jwtToken.exp, 'second');
-    localStorage.setItem('id_token', jwtToken.sub);
-    localStorage.setItem('avatar', loginInfo.avatar);
+    localStorage.setItem('token', loginInfo['jwttoken'])
+    // localStorage.setItem('id_token', jwtToken.sub);
+    // localStorage.setItem('avatar', loginInfo.avatar);
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
   }
 
-  get username() {
-    return localStorage.getItem('id_token')
-  }
+  // get username() {
+  //   return localStorage.getItem('id_token')
+  // }
+  //
+  // get avatar() {
+  //   return localStorage.getItem('avatar')
+  // }
 
-  get avatar() {
-    return localStorage.getItem('avatar')
+  get authToken() {
+    return localStorage.getItem('token')
   }
 
 
   login(email: string, password: string) {
-    return this.http.post(`${this.baseUrl}/authenticate`, {email, password})
+    return this.httpSkip.post(`${this.baseUrl}/authenticate`, {email, password})
       .pipe(tap(loginInfo => {
           if (loginInfo['username'] === null)
             throw new Error('Login Failed')
@@ -43,13 +49,34 @@ export class AuthService {
   }
 
   register(account: Account) {
-    return this.http.post(`${this.baseUrl}/register`, {...account})
+    return this.httpSkip.post(`${this.baseUrl}/register`, {...account})
+  }
+
+  update(account: Account) {
+    return this.http.patch(`${this.baseUrl}/update-profile`, {...account})
+  }
+
+  getProfile() {
+    return this.http.get<Account>(`${this.baseUrl}/profile`)
+  }
+
+  changePassword(oldPass: string, newPass: string) {
+    const params = new HttpParams().append('oldPass', oldPass).append('newPass', newPass)
+    return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params})
+      .pipe(first(),
+        tap(rs => {
+          if(rs['status'] === 400){
+            throw new Error(rs['error_message'])
+          }
+        }))
+
   }
 
   logout() {
-    localStorage.removeItem("id_token");
+    // localStorage.removeItem("id_token");
+    localStorage.removeItem('token')
     localStorage.removeItem("expires_at");
-    localStorage.removeItem("avatar");
+    // localStorage.removeItem("avatar");
   }
 
   public isLoggedIn() {

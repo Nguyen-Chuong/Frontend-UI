@@ -1,0 +1,12 @@
+<form [formGroup]="form" class="edit-name-form">
+  <div class="form-control">
+    <label>First name</label>
+    <app-authentication-input type="text" placeholder="First name" [control]="form.controls['firstname']"></app-authentication-input>
+  </div>
+  <div class="form-control">
+    <label>Last name</label>
+    <app-authentication-input type="text" placeholder="Last name" [control]="form.controls['lastname']"></app-authentication-input>
+  </div>
+  <button class="btn-cancel btn-login" (click)="onClear()">Cancel</button>
+  <button class="btn-save btn-login" (click)="onSubmit()">Save</button>
+</form>
