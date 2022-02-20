@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.dto.HotelDTO;
 import com.capstone_project.hbts.entity.Hotel;
 import com.capstone_project.hbts.entity.RoomType;
@@ -7,7 +8,6 @@ import com.capstone_project.hbts.repository.HotelRepository;
 import com.capstone_project.hbts.service.HotelService;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -65,6 +65,8 @@ public class HotelServicesImpl implements HotelService {
 
         // check roomType later, no need to get roomType DTO
         // recheck func get total
+        // recheck return DTO type, remove page property
+
 //        for(int i = 0 ; i < result.size(); i ++){
 //            if(getTotalRoom(result.get(i).getListRoomType()) < numberOfRoom
 //                    || getTotalPeople(result.get(i).getListRoomType()) < numberOfPeople){
@@ -77,6 +79,6 @@ public class HotelServicesImpl implements HotelService {
         List<HotelDTO> hotelDTOList = result.stream().map(
                 item -> modelMapper.map(item, HotelDTO.class)).collect(Collectors.toList());
 
-        return new PageImpl<>(hotelDTOList);
+        return new CustomPageImpl<>(hotelDTOList);
     }
 }

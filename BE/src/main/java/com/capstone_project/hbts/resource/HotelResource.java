@@ -4,6 +4,7 @@ import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
 import com.capstone_project.hbts.dto.HotelDTO;
 import com.capstone_project.hbts.response.ApiResponse;
+import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.HotelService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,7 +47,11 @@ public class HotelResource {
         try{
             Page<HotelDTO> hotelDTOPage = hotelService.searchHotel(districtId, dateIn, dateOut, numberOfPeople, numberOfRoom,
                     PageRequest.of(page, pageSize));
-            return new ApiResponse(200, hotelDTOPage, null, null);
+
+            DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(hotelDTOPage.getContent(),
+                    hotelDTOPage.getTotalElements(), hotelDTOPage.getNumber(), hotelDTOPage.getSize());
+
+            return new ApiResponse<>(200, dataPagingResponse, null, null);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
