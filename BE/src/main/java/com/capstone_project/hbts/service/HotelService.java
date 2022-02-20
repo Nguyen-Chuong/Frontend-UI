@@ -17,6 +17,7 @@ public interface HotelService {
      * @param pageable
      * @return
      */
-    Page<HotelDTO> searchHotel(int districtId, Date dateIn, Date dateOut, int numberOfPeople, int numberOfRoom,Pageable pageable);
+    Page<HotelDTO> searchHotel(int districtId, Date dateIn, Date dateOut,
+                               int numberOfPeople, int numberOfRoom, Pageable pageable);
 
 }

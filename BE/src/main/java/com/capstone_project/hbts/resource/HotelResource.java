@@ -45,16 +45,16 @@ public class HotelResource {
                                       @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
 
         try{
-            Page<HotelDTO> hotelDTOPage = hotelService.searchHotel(districtId, dateIn, dateOut, numberOfPeople, numberOfRoom,
-                    PageRequest.of(page, pageSize));
+            Page<HotelDTO> hotelDTOPage = hotelService.searchHotel(districtId, dateIn, dateOut,
+                    numberOfPeople, numberOfRoom, PageRequest.of(page, pageSize));
 
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(hotelDTOPage.getContent(),
-                    hotelDTOPage.getTotalElements(), hotelDTOPage.getNumber(), hotelDTOPage.getSize());
+                    hotelDTOPage.getTotalElements(), page, hotelDTOPage.getSize());
 
             return new ApiResponse<>(200, dataPagingResponse, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 

@@ -68,7 +68,7 @@ public class HotelServicesImpl implements HotelService {
         for(int i = result.size() - 1 ; i >= 0; i --){
             if(getTotalRoom(result.get(i).getListRoomType()) < numberOfRoom
                     || getTotalPeople(result.get(i).getListRoomType()) < numberOfPeople){
-                result.remove(result.get(i));
+                //result.remove(result.get(i));
             }
         }
 
