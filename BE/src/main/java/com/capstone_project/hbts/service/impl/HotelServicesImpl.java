@@ -53,22 +53,15 @@ public class HotelServicesImpl implements HotelService {
         // get all hotel in this district
         Page<Hotel> hotelPage = hotelRepository.searchHotelByDistrict(districtId, pageable);
 
-        // call booking repo, date in, date out
+        // call booking repo, date in, date out to check
 
         // convert page to list to process
-        List<Hotel> hotelList = hotelPage.getContent();
-
-        // get content() return a fixed length
-        List<Hotel> result = new ArrayList<>();
-
-        result.addAll(hotelList);
-
-        // check roomType later, no need to get roomType DTO
+        List<Hotel> result = new ArrayList<>(hotelPage.getContent());
 
         for(int i = result.size() - 1 ; i >= 0; i --){
             if(getTotalRoom(result.get(i).getListRoomType()) < numberOfRoom
                     || getTotalPeople(result.get(i).getListRoomType()) < numberOfPeople){
-                //result.remove(result.get(i));
+                result.remove(result.get(i));
             }
         }
 
