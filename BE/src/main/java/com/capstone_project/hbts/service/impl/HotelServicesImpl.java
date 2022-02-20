@@ -53,27 +53,24 @@ public class HotelServicesImpl implements HotelService {
         // get all hotel in this district
         Page<Hotel> hotelPage = hotelRepository.searchHotelByDistrict(districtId, pageable);
 
-        // call room type repo, business logic
-        // num ppl, num room call room type repo
         // call booking repo, date in, date out
 
+        // convert page to list to process
         List<Hotel> hotelList = hotelPage.getContent();
 
+        // get content() return a fixed length
         List<Hotel> result = new ArrayList<>();
+
         result.addAll(hotelList);
-        System.out.println(result);
 
         // check roomType later, no need to get roomType DTO
-        // recheck func get total
-        // recheck return DTO type, remove page property
 
-//        for(int i = 0 ; i < result.size(); i ++){
-//            if(getTotalRoom(result.get(i).getListRoomType()) < numberOfRoom
-//                    || getTotalPeople(result.get(i).getListRoomType()) < numberOfPeople){
-//                System.out.println(result.get(i));
-//                result.remove(result.get(i));
-//            }
-//        }
+        for(int i = result.size() - 1 ; i >= 0; i --){
+            if(getTotalRoom(result.get(i).getListRoomType()) < numberOfRoom
+                    || getTotalPeople(result.get(i).getListRoomType()) < numberOfPeople){
+                result.remove(result.get(i));
+            }
+        }
 
         // final result in hotelList
         List<HotelDTO> hotelDTOList = result.stream().map(
@@ -81,4 +78,5 @@ public class HotelServicesImpl implements HotelService {
 
         return new CustomPageImpl<>(hotelDTOList);
     }
+
 }
