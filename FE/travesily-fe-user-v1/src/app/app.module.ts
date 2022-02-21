@@ -31,6 +31,9 @@ import { EditDropdownNameComponent } from './components/master/body/body-user/us
 import { EditDropdownPasswordComponent } from './components/master/body/body-user/user-profile/user-profile-details/edit-dropdown-password/edit-dropdown-password.component';
 import { EditDropdownAddPhoneComponent } from './components/master/body/body-user/user-profile/user-profile-details/edit-dropdown-add-phone/edit-dropdown-add-phone.component';
 import { EditDropdownEditPhoneComponent } from './components/master/body/body-user/user-profile/user-profile-details/edit-dropdown-edit-phone/edit-dropdown-edit-phone.component';
+import { UserProfilePaymentComponent } from './components/master/body/body-user/user-profile/user-profile-payment/user-profile-payment.component';
+import { CreditCardComponent } from './components/master/body/body-user/user-profile/user-profile-payment/credit-card/credit-card.component';
+import {UsernameValidatorDirective} from "./_validators/username.validator";
 
 @NgModule({
   declarations: [
@@ -60,12 +63,15 @@ import { EditDropdownEditPhoneComponent } from './components/master/body/body-us
     EditDropdownPasswordComponent,
     EditDropdownAddPhoneComponent,
     EditDropdownEditPhoneComponent,
+    UserProfilePaymentComponent,
+    CreditCardComponent,
+    UsernameValidatorDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,

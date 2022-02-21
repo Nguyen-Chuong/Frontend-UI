@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
-import {first, map, tap} from "rxjs";
+import {first, map, Observable, tap} from "rxjs";
 import * as moment from "moment";
 import {Account} from "../_models/account";
 
@@ -25,18 +25,9 @@ export class AuthService {
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
   }
 
-  // get username() {
-  //   return localStorage.getItem('id_token')
-  // }
-  //
-  // get avatar() {
-  //   return localStorage.getItem('avatar')
-  // }
-
   get authToken() {
     return localStorage.getItem('token')
   }
-
 
   login(email: string, password: string) {
     return this.httpSkip.post(`${this.baseUrl}/authenticate`, {email, password})
@@ -65,11 +56,15 @@ export class AuthService {
     return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params})
       .pipe(first(),
         tap(rs => {
-          if(rs['status'] === 400){
+          if(rs['status'] !== 200){
             throw new Error(rs['error_message'])
           }
         }))
 
+  }
+
+  checkUsernameDuplicated(username: string){
+    return this.httpSkip.get(`${this.baseUrl}/check-username/${username}`)
   }
 
   logout() {
@@ -78,6 +73,10 @@ export class AuthService {
     localStorage.removeItem("expires_at");
     // localStorage.removeItem("avatar");
   }
+
+  // checkDuplicateUsername(username: string): Observable<any>{
+  //   return this.http.get(`${this.baseUrl}/check-username/${username}`)
+  // }
 
   public isLoggedIn() {
     return moment().isBefore(this.getExpiration());

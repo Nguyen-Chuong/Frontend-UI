@@ -11,7 +11,7 @@ import {first} from "rxjs";
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
-  account: Account
+  account: Account = new Account()
 
   constructor(private authService: AuthService) {
     authService.getProfile().pipe(first()).subscribe(account => {

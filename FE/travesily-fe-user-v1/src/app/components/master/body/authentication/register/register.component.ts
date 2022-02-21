@@ -13,6 +13,7 @@ import {AuthService} from "../../../../../_services/auth.service";
 import {Account} from "../../../../../_models/account";
 import {concatMap, first} from "rxjs";
 import {AlertService} from "../../../../../_services/alert.service";
+import {UsernameValidator} from "../../../../../_validators/username.validator";
 
 @Component({
   selector: 'app-register',
@@ -32,7 +33,7 @@ export class RegisterComponent implements OnInit {
     this.form = fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required],[UsernameValidator(this.authService)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, this.matchValidator('confirmPassword', true)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],

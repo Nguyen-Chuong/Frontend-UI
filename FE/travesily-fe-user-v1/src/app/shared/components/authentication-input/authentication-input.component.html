@@ -21,6 +21,9 @@
     <div class="text-danger" *ngIf="control.errors?.matching">
       Confirm Password not match
     </div>
+    <div class="text-danger" *ngIf="control.errors?.duplicateUsername">
+      Username existed
+    </div>
 
   </ng-container>
 </div>
