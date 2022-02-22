@@ -26,6 +26,4 @@ public class RoomTypeDTO {
 
     private Timestamp dealExpire;
 
-    private int hotel;
-
 }

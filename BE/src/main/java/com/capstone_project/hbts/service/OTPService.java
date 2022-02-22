@@ -5,7 +5,7 @@ public interface OTPService {
     /**
      * generate otp
      */
-    int generateOtp();
+    int generateOtp(String key);
 
     /**
      * get otp
