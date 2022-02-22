@@ -51,7 +51,6 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                 item -> modelMapper.map(item, RoomTypeDTO.class)).collect(Collectors.toList());
     }
 
-
     @Override
     public void deleteRoomType(int id) {
 

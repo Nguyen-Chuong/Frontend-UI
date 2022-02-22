@@ -2,12 +2,11 @@ package com.capstone_project.hbts.service;
 
 import com.capstone_project.hbts.dto.RoomTypeDTO;
 import com.capstone_project.hbts.entity.RoomType;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-
 public interface RoomTypeService {
+
     /**
      * Create room type
      * @param roomType
@@ -26,7 +25,8 @@ public interface RoomTypeService {
     boolean updateRoomType(Integer roomTypeId);
 
     /**
-     * Create room type
+     * Get room type by hotel id
+     * @param hotelId
      */
     List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId);
 
@@ -35,4 +35,5 @@ public interface RoomTypeService {
      * @param roomTypeId
      */
     void deleteRoomType(int roomTypeId);
+
 }

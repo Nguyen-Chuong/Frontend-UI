@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
 
 @Repository
-public interface UserRepository extends JpaRepository<Users, String> {
+public interface UserRepository extends JpaRepository<Users, Integer> {
 
     Users getUsersByUsername(String username);
 

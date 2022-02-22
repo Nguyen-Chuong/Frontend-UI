@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface BookingRepository extends JpaRepository<UserBooking, String> {
+public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
 
     @Query(value = "SELECT * from capstone.user_booking WHERE user_id = :userId", nativeQuery = true)
     List<UserBooking> findAllByUserId(@Param("userId") int userId);
