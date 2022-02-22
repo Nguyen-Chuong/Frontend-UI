@@ -1,0 +1,66 @@
+.hotel-detail {
+  padding-top: 60px;
+  ::ng-deep mwl-gauge {
+    width: 150px;
+    height: 150px;
+    display: block;
+    padding: 10px;
+    padding-top: 50px;
+
+    .dial {
+      stroke-width: 10;
+    }
+
+    .value {
+      stroke-dasharray: none;
+      stroke-width: 13;
+    }
+
+    .value-text {
+      fill: #fff;
+      font-weight: 700;
+      font-size: 24px;
+    }
+  }
+}
+
+.hotel {
+  &-banner {
+    height: 500px;
+    width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+
+    &-image{
+      width: 100%;
+    }
+
+    &-img {
+      width: 100%;
+      filter: blur(5px);
+    }
+  }
+
+  &-content {
+    text-align: center;
+    position: relative;
+    top: -200px;
+  }
+
+  &-header {
+    &-title {
+      font-size: 70px;
+      color: rgba(245, 8, 8, 0.774);
+      font-weight: 700;
+      line-height: 70px;
+      white-space: nowrap;
+    }
+
+    &-price{
+      color: rgb(17, 4, 4);
+      font-weight: 700;
+    }
+  }
+}

@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { ThemePalette } from '@angular/material/core';
+import { AuthServiceService } from './auth-service.service';
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +10,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'travesily-fe-admin-v1';
+
+  constructor(public authService: AuthServiceService,) {}
 }

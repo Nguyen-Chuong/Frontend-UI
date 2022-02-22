@@ -1,0 +1,23 @@
+<div class="hotels-approve">
+  <div class="menu-list">
+    <app-taskbar></app-taskbar>
+  </div>
+  <div class="hotels">
+    <ng-container *ngFor="let hotel of hotels">
+      <div class="hotel" (click)="openHotelDetail()">
+        <div class="hotel-thumb-container">
+          <img
+          src={{hotel.background_image}}
+          alt="background image"
+          class="hotel-thumbnail"/>
+          <p *ngIf="!hotel.background_image">No image</p>
+        </div>
+        <div class="hotel-description">
+          <p class="hotel-name">{{hotel.name}}</p>
+          <p class="hotel-price">Lowest price: {{hotel.lowest_price}}</p>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+

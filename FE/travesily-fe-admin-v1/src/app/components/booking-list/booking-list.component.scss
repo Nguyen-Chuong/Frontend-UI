@@ -1,0 +1,57 @@
+.booking{
+  display: flex;
+
+  &-table{
+    padding: 90px;
+    width: 100%;
+  }
+
+  &-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+
+  &-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+
+  &-row td {
+    border-bottom-width: 0;
+  }
+
+  &-detail {
+    overflow: hidden;
+    display: flex;
+  }
+
+  &-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+
+  &-user {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+
+  &-description {
+    padding: 16px;
+  }
+
+  &-description-attribution {
+    opacity: 0.5;
+  }
+}
+.menu-list{
+  width: 25%;
+  height: 100%;
+}
+
+
+tr.booking-detail-row {
+  height: 0;
+}
