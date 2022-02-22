@@ -44,4 +44,8 @@ public interface UserRepository extends JpaRepository<Users, String> {
             nativeQuery = true)
     String getUsername(@Param("username") String username);
 
+    @Query(value = "select email from capstone.users where email = :email",
+            nativeQuery = true)
+    String getEmail(@Param("email") String email);
+
 }

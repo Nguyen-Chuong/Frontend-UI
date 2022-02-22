@@ -112,11 +112,26 @@ public class UserResource {
      * @Param username
      * return
      */
-    @GetMapping("/check-username/{username}")
+    @GetMapping("/check/username/{username}")
     public ApiResponse<?> isUsernameExist(@PathVariable String username){
         try {
             boolean isUsernameExist = userService.isUsernameExist(username);
             return new ApiResponse(200, isUsernameExist, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
+
+    /**
+     * @Param email
+     * return
+     */
+    @GetMapping("/check/email/{email}")
+    public ApiResponse<?> isEmailExist(@PathVariable String email){
+        try {
+            boolean isEmailExist = userService.isEmailExist(email);
+            return new ApiResponse(200, isEmailExist, null, null);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);

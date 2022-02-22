@@ -74,4 +74,10 @@ public class UserServicesImpl implements UserService {
         return usernameFromDB != null;
     }
 
+    @Override
+    public boolean isEmailExist(String email) {
+        String emailFromDB = userRepository.getEmail(email);
+        return emailFromDB != null;
+    }
+
 }

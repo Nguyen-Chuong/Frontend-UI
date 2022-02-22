@@ -49,4 +49,10 @@ public interface UserService {
      */
     boolean isUsernameExist(String username);
 
+    /**
+     * Check duplicate email
+     * @param email
+     */
+    boolean isEmailExist(String email);
+
 }
