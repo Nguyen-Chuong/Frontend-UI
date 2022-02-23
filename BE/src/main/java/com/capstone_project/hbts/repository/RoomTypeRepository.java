@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface RoomTypeRepository extends JpaRepository<RoomType, Integer> {
 
-    @Query(value = "SELECT * FROM Capstone.room_type where hotel_id =  :hotelId", nativeQuery = true)
+    @Query(value = "SELECT * FROM capstone.room_type where hotel_id =  :hotelId", nativeQuery = true)
     List<RoomType> findRoomTypeByHotelId(@Param("hotelId") int hotelId);
 }

@@ -37,8 +37,8 @@ public class Review {
     private float facilities;
 
     @ManyToOne
-    @JoinColumn(name = "reviewId")
-    private UserBooking review;
+    @JoinColumn(name = "userBooking_Id")
+    private UserBooking userBooking_id;
 
 }
 

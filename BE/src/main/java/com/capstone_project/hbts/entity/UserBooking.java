@@ -31,7 +31,7 @@ public class UserBooking {
     @Column(name = "review_status")
     private int reviewStatus;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "review")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking_id")
     private Set<Review> listReview = new HashSet<Review>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking")
