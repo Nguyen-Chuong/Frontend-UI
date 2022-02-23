@@ -27,10 +27,10 @@ public class VipResource {
     public ApiResponse<?> getVipStatus(){
         try {
             List<VipDTO> vipDTOList = vipService.getVipStatus();
-            return new ApiResponse(200, vipDTOList, null, null);
+            return new ApiResponse<>(200, vipDTOList, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 

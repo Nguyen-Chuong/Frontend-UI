@@ -29,9 +29,11 @@ public class ReviewResource {
                                     @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         try {
             Page<ReviewDTO> pageReview = reviewService.loadReview(hotelId, PageRequest.of(page,pageSize));
+
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(pageReview.getContent(),
                     pageReview.getTotalElements(), page, pageReview.getSize());
-            return new ApiResponse<>(200, dataPagingResponse, null , null);
+
+            return new ApiResponse<>(200, dataPagingResponse, null, null);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);

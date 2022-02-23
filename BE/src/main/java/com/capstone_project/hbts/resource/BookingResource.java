@@ -29,10 +29,10 @@ public class BookingResource {
     public ApiResponse<?> getUserBooking(@PathVariable int userId){
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
-            return new ApiResponse(200, userBookingDTOList, null, null);
+            return new ApiResponse<>(200, userBookingDTOList, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -44,10 +44,10 @@ public class BookingResource {
     public ApiResponse<?> getUserBookingReview(@PathVariable int reviewStatus){
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsReview(reviewStatus);
-            return new ApiResponse(200, userBookingDTOList, null, null);
+            return new ApiResponse<>(200, userBookingDTOList, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 }

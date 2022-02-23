@@ -33,13 +33,16 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Page<ReviewDTO> loadReview(int hotelId, Pageable pageable) {
-            List<UserBooking> list = bookingRepository.findUserBookingByHotelId(hotelId);
-            ArrayList<Integer> listId = new ArrayList<>();
-            list.stream().forEach(item -> listId.add(item.getId()));
-            Page<Review> pageReview = reviewRepository.loadReviewByBookingId(listId, pageable);
-            List<Review> listReview = new ArrayList<>(pageReview.getContent());
-            List<ReviewDTO> reviewDTOList = listReview.stream().map(
-                    item -> modelMapper.map(item, ReviewDTO.class)).collect(Collectors.toList());
-            return new CustomPageImpl<>(reviewDTOList);
+        List<UserBooking> userBookingList = bookingRepository.findUserBookingByHotelId(hotelId);
+        ArrayList<Integer> listBookingId = new ArrayList<>();
+        userBookingList.forEach(item -> listBookingId.add(item.getId()));
+
+        Page<Review> pageReview = reviewRepository.loadReviewByBookingId(listBookingId, pageable);
+        List<Review> listReview = new ArrayList<>(pageReview.getContent());
+
+        List<ReviewDTO> reviewDTOList = listReview.stream().map(
+                item -> modelMapper.map(item, ReviewDTO.class)).collect(Collectors.toList());
+
+        return new CustomPageImpl<>(reviewDTOList);
     }
 }

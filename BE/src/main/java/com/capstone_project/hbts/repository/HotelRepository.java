@@ -13,4 +13,5 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     Page<Hotel> searchHotelByDistrict(
             @Param("districtId") int districtId,
             Pageable pageable);
+
 }

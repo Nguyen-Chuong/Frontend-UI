@@ -131,10 +131,10 @@ public class UserResource {
     public ApiResponse<?> isEmailExist(@PathVariable String email){
         try {
             boolean isEmailExist = userService.isEmailExist(email);
-            return new ApiResponse(200, isEmailExist, null, null);
+            return new ApiResponse<>(200, isEmailExist, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 

@@ -28,10 +28,10 @@ public class EmailResource {
         try {
             int otp = otpService.generateOtp(email);
             emailService.send(email, ValidateConstant.EMAIL_SUBJECT, ValidateConstant.OTP_MESSAGE + otp);
-            return new ApiResponse(200, null, null);
+            return new ApiResponse<>(200, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -42,20 +42,20 @@ public class EmailResource {
             int otpVerify = otp;
             int serverOtp = otpService.getOtp(email);
             if(otpVerify <= 0){
-                return new ApiResponse(400, ErrorConstant.ERR_OTP_001, ErrorConstant.ERR_OTP_001_LABEL);
+                return new ApiResponse<>(400, ErrorConstant.ERR_OTP_001, ErrorConstant.ERR_OTP_001_LABEL);
             }
             if(serverOtp <= 0){
-                return new ApiResponse(400, ErrorConstant.ERR_OTP_002, ErrorConstant.ERR_OTP_002_LABEL);
+                return new ApiResponse<>(400, ErrorConstant.ERR_OTP_002, ErrorConstant.ERR_OTP_002_LABEL);
             }
             if(otpVerify == serverOtp){
                 otpService.clearOtp(email);
-                return new ApiResponse(200, null, null);
+                return new ApiResponse<>(200, null, null);
             }else {
-                return new ApiResponse(400, ErrorConstant.ERR_OTP_003, ErrorConstant.ERR_OTP_003_LABEL);
+                return new ApiResponse<>(400, ErrorConstant.ERR_OTP_003, ErrorConstant.ERR_OTP_003_LABEL);
             }
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 }

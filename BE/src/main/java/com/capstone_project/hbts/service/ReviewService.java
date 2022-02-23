@@ -8,10 +8,12 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface ReviewService {
+
     /**
      * Load Review by hotelId
      * @param hotelId
      * @param pageable
      */
     Page<ReviewDTO> loadReview(int hotelId, Pageable pageable);
+
 }
