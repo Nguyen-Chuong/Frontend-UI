@@ -53,5 +53,21 @@ public class BookingResource {
 
     // api insert a booking into booking table after user booked
     // and modify later when user cancelled or so smth
+    // here
+
+    /**
+     * @param userId
+     * return
+     */
+    @GetMapping("/bookings-completed/{userId}")
+    public ApiResponse<?> getNumberBookingsCompleted(@PathVariable int userId){
+        try{
+            int numberBookingCompleted = bookingService.getNumberBookingsCompleted(userId);
+            return new ApiResponse<>(200, numberBookingCompleted, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
 
 }

@@ -39,4 +39,9 @@ public class BookingServicesImpl implements BookingService {
                 item -> modelMapper.map(item, UserBookingDTO.class)
         ).collect(Collectors.toList());
     }
+
+    @Override
+    public int getNumberBookingsCompleted(int userId) {
+        return bookingRepository.numberBookingCompleted(userId);
+    }
 }
