@@ -1,14 +1,15 @@
+import { NotificationService } from './../../_services/notification.service';
 import { Router } from '@angular/router';
 import { AuthServiceService } from './../../auth-service.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
-import { AlertService } from 'src/app/_services/_services/alert.service';
 
 @Component({
   selector: 'app-login-page',
   templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss']
+  styleUrls: ['./login-page.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LoginPageComponent implements OnInit {
 
@@ -16,7 +17,7 @@ export class LoginPageComponent implements OnInit {
   constructor(
     private authService: AuthServiceService,
     private router: Router,
-    private alertService: AlertService
+    private notificationService: NotificationService
   ) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
@@ -40,7 +41,7 @@ export class LoginPageComponent implements OnInit {
             this.router.navigateByUrl('/taskbar');
           }, error: error => {
             this.formGroup.reset()
-            this.alertService.error('Login Failed')
+            this.notificationService.onError('Email or Password incorrect')
           }
         })
     }

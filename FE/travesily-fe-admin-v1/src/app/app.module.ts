@@ -26,7 +26,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import {MatMenuModule} from '@angular/material/menu';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AuthInterceptor } from './_helper/auth.interceptor';
-import { AlertComponent } from './components/alert/alert.component';
+import { SimpleNotificationsModule } from 'angular2-notifications';
 
 @NgModule({
   declarations: [
@@ -40,9 +40,7 @@ import { AlertComponent } from './components/alert/alert.component';
     RoomDetailComponent,
     LoginPageComponent,
     HeaderComponent,
-    AdminProfileComponent,
-    AlertComponent
-
+    AdminProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +58,8 @@ import { AlertComponent } from './components/alert/alert.component';
     MatIconModule,
     MatTableModule,
     NgbModule,
-    MatMenuModule
+    MatMenuModule,
+    SimpleNotificationsModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
