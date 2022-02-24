@@ -9,8 +9,6 @@ public class JwtResponse {
 
     private String jwttoken;
 
-    private String username;
-
-    private String avatar;
+    private int type;
 
 }

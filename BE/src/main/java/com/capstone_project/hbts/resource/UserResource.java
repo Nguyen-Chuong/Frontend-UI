@@ -42,6 +42,8 @@ public class UserResource {
             return new ApiResponse<>(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
         }
         try {
+            // type 0 is normal user and 1 is admin
+            userRequest.setType(0);
             userService.register(userRequest);
             return new ApiResponse<>(200, null, null);
         } catch (Exception e){
