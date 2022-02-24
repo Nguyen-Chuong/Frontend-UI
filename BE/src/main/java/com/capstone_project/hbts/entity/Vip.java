@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -24,6 +23,7 @@ import java.util.Set;
 @Entity
 @Table(name = "Vip")
 public class Vip {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -41,6 +41,6 @@ public class Vip {
     private int discount;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idVip")
-    private Set<Users> listUsers = new HashSet<Users>();
+    private Set<Users> listUsers;
 
 }

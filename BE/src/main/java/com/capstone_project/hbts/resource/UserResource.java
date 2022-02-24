@@ -33,6 +33,9 @@ public class UserResource {
     /**
      * @param
      */
+    // Consider about add new admin account / assign new account to db
+    // may raw adding but need to think 'bout encrypt password
+    // admin account cannot be registered
     @PostMapping("/register")
     public ApiResponse<?> register(@RequestBody UserRequest userRequest){
         if(userService.loadUserByEmail(userRequest.getEmail()) != null){

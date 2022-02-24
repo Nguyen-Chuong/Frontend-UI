@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -24,6 +23,7 @@ import java.util.Set;
 @Entity
 @Table(name = "city")
 public class City {
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,6 +34,6 @@ public class City {
     private String nameCity;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cityFK")
-    private Set<District> listDistrict = new HashSet<District>();
+    private Set<District> listDistrict;
 
 }

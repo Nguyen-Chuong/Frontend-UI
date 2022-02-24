@@ -12,14 +12,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.math.BigDecimal;
+import javax.validation.constraints.Email;
 import java.util.Set;
 
 @ToString
@@ -28,8 +25,8 @@ import java.util.Set;
 @Setter
 @Getter
 @Entity
-@Table(name = "Users")
-public class Users {
+@Table(name = "Provider")
+public class Provider {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -42,11 +39,8 @@ public class Users {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "firstname")
-    private String firstname;
-
-    @Column(name = "lastname")
-    private String lastname;
+    @Column(name = "providerName")
+    private String providerName;
 
     @Column(name = "email")
     @Email
@@ -61,20 +55,7 @@ public class Users {
     @Column(name = "address")
     private String address;
 
-    @Column(name = "type")
-    private int type;
-
-    @Column(name = "avatar")
-    private String avatar;
-
-    @Column(name = "spend")
-    private BigDecimal spend;
-
-    @ManyToOne
-    @JoinColumn(name = "id_vip")
-    private Vip idVip;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
-    private Set<UserBooking> listUserBooking;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
+    private Set<Hotel> listHotel;
 
 }

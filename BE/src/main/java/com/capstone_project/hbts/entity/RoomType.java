@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -28,6 +27,7 @@ import java.util.Set;
 @Entity
 @Table(name = "RoomType")
 public class RoomType {
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,12 +59,12 @@ public class RoomType {
     private Hotel hotel;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType")
-    private Set<UserBookingDetail> listUserBookingDetail = new HashSet<UserBookingDetail>();
+    private Set<UserBookingDetail> listUserBookingDetail;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType")
-    private Set<Image> listImage = new HashSet<Image>();
+    private Set<Image> listImage;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType")
-    private Set<RoomFacility> listRoomFacility = new HashSet<RoomFacility>();
+    private Set<RoomFacility> listRoomFacility;
 
 }

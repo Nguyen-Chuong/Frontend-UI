@@ -21,6 +21,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "room_facility")
 public class RoomFacility {
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)

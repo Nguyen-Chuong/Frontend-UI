@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.sql.Timestamp;
-import java.util.HashSet;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -26,6 +25,7 @@ import java.util.Set;
 @Entity
 @Table(name = "user_booking")
 public class UserBooking {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -43,10 +43,10 @@ public class UserBooking {
     private int reviewStatus;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking_id")
-    private Set<Review> listReview = new HashSet<Review>();
+    private Set<Review> listReview;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking")
-    private Set<UserBookingDetail> listUserBookingDetail = new HashSet<UserBookingDetail>();
+    private Set<UserBookingDetail> listUserBookingDetail;
 
     @ManyToOne
     @JoinColumn(name = "userId")

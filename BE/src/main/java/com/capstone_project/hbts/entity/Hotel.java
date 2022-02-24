@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -26,6 +25,7 @@ import java.util.Set;
 @Entity
 @Table(name = "hotel")
 public class Hotel {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -53,9 +53,13 @@ public class Hotel {
     private District district;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-    private Set<UserBooking> listUserBooking = new HashSet<UserBooking>();
+    private Set<UserBooking> listUserBooking;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-    private Set<RoomType> listRoomType = new HashSet<RoomType>();
+    private Set<RoomType> listRoomType;
+
+    @ManyToOne
+    @JoinColumn(name = "provider_id", nullable = false)
+    private Provider provider;
 
 }

@@ -19,11 +19,15 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @Table(name="email")
 public class Email {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Column(name = "email_subject")
     private String subject;
+
     @Column(name = "email_message")
     private String message;
+
 }

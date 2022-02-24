@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -24,6 +23,7 @@ import java.util.Set;
 @Entity
 @Table(name = "facility_type")
 public class FacilityType {
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +33,6 @@ public class FacilityType {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")
-    private Set<Facility> listFacility = new HashSet<Facility>();
+    private Set<Facility> listFacility;
 
 }

@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "UserBookingDetail")
 public class UserBookingDetail {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

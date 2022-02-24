@@ -16,7 +16,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -26,6 +25,7 @@ import java.util.Set;
 @Entity
 @Table(name = "district")
 public class District {
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,6 +40,6 @@ public class District {
     private City cityFK;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "district")
-    private Set<Hotel> listHotel = new HashSet<Hotel>();
+    private Set<Hotel> listHotel;
 
 }

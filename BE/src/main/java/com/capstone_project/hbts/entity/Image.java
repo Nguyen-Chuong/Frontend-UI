@@ -22,6 +22,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "image")
 public class Image {
+
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
