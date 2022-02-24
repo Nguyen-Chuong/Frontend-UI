@@ -54,4 +54,10 @@ public interface UserService {
      */
     boolean isEmailExist(String email);
 
+    /**
+     * Update vip status
+     * @param userId
+     */
+    void updateVipStatus(int userId);
+
 }

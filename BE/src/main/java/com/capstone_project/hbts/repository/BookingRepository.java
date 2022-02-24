@@ -20,4 +20,9 @@ public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
     @Query(value = "SELECT * from capstone.user_booking WHERE hotel_id = :hotelId", nativeQuery = true)
     List<UserBooking> findUserBookingByHotelId(@Param("hotelId") int hotelId);
 
+    // status user booking: cancelled, completed, when check vip status, only get number of booking that
+    // have been completed, conditionally status = 1 for completed, may change later
+    @Query(value = "SELECT count(id) from capstone.user_booking WHERE user_id = :userId and status = 1", nativeQuery = true)
+    int numberBookingCompleted(@Param("userId") int userId);
+
 }

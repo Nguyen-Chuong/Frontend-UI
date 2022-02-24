@@ -50,4 +50,8 @@ public class BookingResource {
             return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
+
+    // api insert a booking into booking table after user booked
+    // and modify later when user cancelled or so smth
+
 }

@@ -36,17 +36,17 @@ public class UserResource {
     @PostMapping("/register")
     public ApiResponse<?> register(@RequestBody UserRequest userRequest){
         if(userService.loadUserByEmail(userRequest.getEmail()) != null){
-            return new ApiResponse(400, ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL);
         }
         if(userService.getUserProfile(userRequest.getUsername()) != null){
-            return new ApiResponse(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
         }
         try {
             userService.register(userRequest);
-            return new ApiResponse(200, null, null);
+            return new ApiResponse<>(200, null, null);
         } catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -58,10 +58,10 @@ public class UserResource {
         try {
             String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
             UserDTO userDTO = userService.getUserProfile(username);
-            return new ApiResponse(200, userDTO, null, null);
+            return new ApiResponse<>(200, userDTO, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -88,7 +88,7 @@ public class UserResource {
                 return new ApiResponse<>(200, null, null);
             }catch (Exception e){
                 e.printStackTrace();
-                return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+                return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
             }
         }
     }
@@ -104,7 +104,7 @@ public class UserResource {
             return new ApiResponse<>(200, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -116,10 +116,10 @@ public class UserResource {
     public ApiResponse<?> isUsernameExist(@PathVariable String username){
         try {
             boolean isUsernameExist = userService.isUsernameExist(username);
-            return new ApiResponse(200, isUsernameExist, null, null);
+            return new ApiResponse<>(200, isUsernameExist, null, null);
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
         }
     }
 
@@ -132,6 +132,22 @@ public class UserResource {
         try {
             boolean isEmailExist = userService.isEmailExist(email);
             return new ApiResponse<>(200, isEmailExist, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
+
+    // api update vip status will be called when user complete a booking
+    /**
+     * @param userId
+     * return
+     */
+    @PatchMapping("/update-vip-status/{userId}")
+    public ApiResponse<?> updateVipStatus(@PathVariable int userId){
+        try{
+            userService.updateVipStatus(userId);
+            return new ApiResponse<>(200, null, null);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);

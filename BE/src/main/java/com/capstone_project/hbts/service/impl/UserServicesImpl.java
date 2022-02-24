@@ -2,6 +2,7 @@ package com.capstone_project.hbts.service.impl;
 
 import com.capstone_project.hbts.dto.UserDTO;
 import com.capstone_project.hbts.entity.Users;
+import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.repository.UserRepository;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.service.UserService;
@@ -17,9 +18,12 @@ public class UserServicesImpl implements UserService {
 
     private final ModelMapper modelMapper;
 
-    public UserServicesImpl(UserRepository userRepository, ModelMapper modelMapper) {
+    private final BookingRepository bookingRepository;
+
+    public UserServicesImpl(UserRepository userRepository, ModelMapper modelMapper, BookingRepository bookingRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.bookingRepository = bookingRepository;
     }
 
     @Override
@@ -78,6 +82,27 @@ public class UserServicesImpl implements UserService {
     public boolean isEmailExist(String email) {
         String emailFromDB = userRepository.getEmail(email);
         return emailFromDB != null;
+    }
+
+    @Override
+    @Transactional
+    public void updateVipStatus(int userId) {
+        int numberBookingCompleted = bookingRepository.numberBookingCompleted(userId);
+        int vipId = 0;
+        if(numberBookingCompleted == 0 || numberBookingCompleted == 1){
+            // member class
+            vipId = 1;
+        } else if (numberBookingCompleted >=2 && numberBookingCompleted <= 4){
+            // silver class
+            vipId = 2;
+        } else if (numberBookingCompleted >=5 && numberBookingCompleted <= 9){
+            // gold class
+            vipId = 3;
+        } else if (numberBookingCompleted >= 10){
+            // platinum class
+            vipId = 4;
+        }
+        userRepository.updateVipStatus(vipId, userId);
     }
 
 }

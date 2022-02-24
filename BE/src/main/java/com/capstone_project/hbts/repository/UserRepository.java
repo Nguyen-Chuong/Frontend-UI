@@ -16,7 +16,7 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     Users getUsersByEmail(String email);
 
     @Modifying
-    @Query(value = "UPDATE capstone.users SET password = :newPass  WHERE capstone.users.username = :username",
+    @Query(value = "UPDATE capstone.users SET password = :newPass WHERE capstone.users.username = :username",
             nativeQuery = true)
     void changePass(
             @Param("username") String username,
@@ -46,5 +46,12 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     @Query(value = "select email from capstone.users where email = :email",
             nativeQuery = true)
     String getEmail(@Param("email") String email);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.users SET id_vip = :idVip WHERE capstone.users.id = :userId",
+            nativeQuery = true)
+    void updateVipStatus(
+            @Param("idVip") int idVip,
+            @Param("userId") int userId);
 
 }
