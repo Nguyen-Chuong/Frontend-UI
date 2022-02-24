@@ -10,7 +10,7 @@
     </div>
     <mat-icon class="header-right-notifications">notifications</mat-icon>
     <div class="header-right-avatar" [matMenuTriggerFor]="profile">
-        <img src="\assets\img\logo.png" alt=""  class="header-right-avatar-img">
+        <img src={{account.avatar}} alt=""  class="header-right-avatar-img">
     </div>
 
     <mat-menu #profile="matMenu" class="profile-menu">
@@ -20,8 +20,8 @@
         <span>Profile</span>
       </button>
       <button mat-menu-item>
-        <mat-icon>settings</mat-icon>
-        <span>Setting</span>
+        <mat-icon>add</mat-icon>
+        <span>New Admin</span>
       </button>
       <button mat-menu-item>
         <mat-icon>logout</mat-icon>

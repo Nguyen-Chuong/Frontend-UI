@@ -1,19 +1,22 @@
-
 <div class="container">
-<div fxLayoutAlign="center center" fxFlexFill >
-  <mat-card fxFlex="25" class="login">
-    <div class="login-title"><p>Sign In</p></div>
-    <form fxLayoutAlign = "stretch" fxLayout= "column" class="login-form" [formGroup]="formGroup"
-      (ngSubmit)="loginProcess()">
-      <mat-form-field>
-        <input matInput placeholder="Email" formControlName = "email">
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput type="password" placeholder="Password" formControlName = "password">
-      </mat-form-field>
-      <button mat-raised-button type="submit" class="login-form-button" [disabled]="formGroup.invalid">Login</button>
-    </form>
-    <p>Forgot Password?</p>
-  </mat-card>
-</div>
+  <simple-notifications ></simple-notifications>
+  <div fxLayoutAlign="center center" fxFlexFill>
+    <mat-card fxFlex="25" class="login">
+      <div class="login-title">
+        <p>Sign In</p>
+      </div>
+      <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" [formGroup]="formGroup"
+        (ngSubmit)="loginProcess()">
+        <mat-form-field>
+          <input matInput placeholder="Email" formControlName="email">
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput type="password" placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <button mat-raised-button type="submit" class="login-form-button" [disabled]="formGroup.invalid">Login</button>
+      </form>
+      <p>Forgot Password?</p>
+    </mat-card>
+
+  </div>
 </div>

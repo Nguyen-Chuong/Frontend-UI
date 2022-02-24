@@ -32,6 +32,9 @@ export class AuthServiceService {
     );
   }
 
+  update(account: Account) {
+    return this.http.patch(`${this.baseUrl}/update-profile`, {...account})
+  }
 
 
   logout() {

@@ -25,6 +25,7 @@
     "@ng-bootstrap/ng-bootstrap": "^12.0.0",
     "@popperjs/core": "^2.10.2",
     "@syncfusion/ej2-angular-splitbuttons": "^19.4.52",
+    "angular2-notifications": "^12.0.0",
     "bootstrap": "^5.1.3",
     "moment": "^2.29.1",
     "ng-sidebar": "^9.4.3",
