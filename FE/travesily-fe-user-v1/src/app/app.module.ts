@@ -34,6 +34,8 @@ import { EditDropdownEditPhoneComponent } from './components/master/body/body-us
 import { UserProfilePaymentComponent } from './components/master/body/body-user/user-profile/user-profile-payment/user-profile-payment.component';
 import { CreditCardComponent } from './components/master/body/body-user/user-profile/user-profile-payment/credit-card/credit-card.component';
 import {UsernameValidatorDirective} from "./_validators/username.validator";
+import {EmailValidatorDirective} from "./_validators/email.validator";
+import {UserVipComponent} from "./components/master/body/body-user/user-vip/user-vip.component";
 
 @NgModule({
   declarations: [
@@ -65,7 +67,9 @@ import {UsernameValidatorDirective} from "./_validators/username.validator";
     EditDropdownEditPhoneComponent,
     UserProfilePaymentComponent,
     CreditCardComponent,
-    UsernameValidatorDirective
+    UsernameValidatorDirective,
+    EmailValidatorDirective,
+    UserVipComponent
   ],
   imports: [
     BrowserModule,

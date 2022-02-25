@@ -3,6 +3,7 @@ import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
 import {first, map, Observable, tap} from "rxjs";
 import * as moment from "moment";
 import {Account} from "../_models/account";
+import {Vip} from "../_models/vip";
 
 
 @Injectable({
@@ -64,7 +65,15 @@ export class AuthService {
   }
 
   checkUsernameDuplicated(username: string){
-    return this.httpSkip.get(`${this.baseUrl}/check-username/${username}`)
+    return this.httpSkip.get(`${this.baseUrl}/check/username/${username}`)
+  }
+
+  checkEmailDuplicated(email: string){
+    return this.httpSkip.get(`${this.baseUrl}/check/email/${email}`)
+  }
+
+  getVip(){
+    return this.http.get(`${this.baseUrl}/vip-info`)
   }
 
   logout() {
