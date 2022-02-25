@@ -77,4 +77,10 @@ public class Users {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
     private Set<UserBooking> listUserBooking;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "sender")
+    private Set<Feedback> listSenderFeedback;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "receiver")
+    private Set<Feedback> listResponseFeedback;
+
 }
