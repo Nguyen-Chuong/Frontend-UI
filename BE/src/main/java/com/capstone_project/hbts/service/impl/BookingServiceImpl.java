@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class BookingServicesImpl implements BookingService {
+public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
 
     private final ModelMapper modelMapper;
 
-    public BookingServicesImpl(BookingRepository bookingRepository, ModelMapper modelMapper) {
+    public BookingServiceImpl(BookingRepository bookingRepository, ModelMapper modelMapper) {
         this.bookingRepository = bookingRepository;
         this.modelMapper = modelMapper;
     }

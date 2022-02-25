@@ -2,12 +2,14 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.UserDTO;
+import com.capstone_project.hbts.request.ProviderRequest;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.JwtResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
+import com.capstone_project.hbts.service.ProviderService;
+import com.capstone_project.hbts.service.UserService;
 import com.capstone_project.hbts.service.impl.CustomUserDetailsService;
-import com.capstone_project.hbts.service.impl.UserServicesImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -27,43 +29,78 @@ public class JwtAuthenticationResource {
 
     private final CustomUserDetailsService customUserDetailsService;
 
-    private final UserServicesImpl userServices;
+    private final UserService userService;
 
-    public JwtAuthenticationResource(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil, CustomUserDetailsService customUserDetailsService, UserServicesImpl userServices) {
+    private final ProviderService providerService;
+
+    public JwtAuthenticationResource(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil,
+                                     CustomUserDetailsService customUserDetailsService, UserService userService,
+                                     ProviderService providerService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.customUserDetailsService = customUserDetailsService;
-        this.userServices = userServices;
+        this.userService = userService;
+        this.providerService = providerService;
     }
+
 
     /**
      * @param
      */
-    @PostMapping("/authenticate")
-    public ApiResponse<?> createJsonWebTokenKey(@RequestBody UserRequest userRequest) {
+    @PostMapping("/authenticate/user")
+    public ApiResponse<?> createJsonWebTokenKeyForUser(@RequestBody UserRequest userRequest) {
 
         String email = userRequest.getEmail();
         String password = userRequest.getPassword();
-        UserDTO user = userServices.loadUserByEmail(email);
+        UserDTO user = userService.loadUserByEmail(email);
 
         if(user == null){
             return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL);
         }
-
+        String usernameToCheck = "u-" + user.getUsername();
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usernameToCheck, password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
             return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL);
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getUsername());
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(usernameToCheck);
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
         JwtResponse jwtResponse = new JwtResponse(jwt, user.getType());
 
         return new ApiResponse<>(200, jwtResponse, null, null);
+
+    }
+
+    /**
+     * @param
+     */
+    @PostMapping("/authenticate/provider")
+    public ApiResponse<?> createJsonWebTokenKeyForProvider(@RequestBody ProviderRequest providerRequest) {
+
+        String email = providerRequest.getEmail();
+        String password = providerRequest.getPassword();
+        String providerUserName = providerService.loadProviderUsernameByEmail(email);
+
+        if(providerUserName == null){
+            return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL);
+        }
+        String usernameToCheck = "p-" + providerUserName;
+        try{
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usernameToCheck, password));
+        } catch (BadCredentialsException e){
+            e.printStackTrace();
+            return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL);
+        }
+
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(usernameToCheck);
+
+        final String jwt = jwtTokenUtil.generateToken(userDetails);
+
+        return new ApiResponse<>(200, jwt, null, null);
 
     }
 

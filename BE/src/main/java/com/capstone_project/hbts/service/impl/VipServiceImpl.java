@@ -11,13 +11,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class VipServicesImpl implements VipService {
+public class VipServiceImpl implements VipService {
 
     private final VipRepository vipRepository;
 
     private final ModelMapper modelMapper;
 
-    public VipServicesImpl(VipRepository vipRepository, ModelMapper modelMapper) {
+    public VipServiceImpl(VipRepository vipRepository, ModelMapper modelMapper) {
         this.vipRepository = vipRepository;
         this.modelMapper = modelMapper;
     }

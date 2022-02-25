@@ -19,13 +19,13 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class HotelServicesImpl implements HotelService {
+public class HotelServiceImpl implements HotelService {
 
     private final HotelRepository hotelRepository;
 
     private final ModelMapper modelMapper;
 
-    public HotelServicesImpl(HotelRepository hotelRepository, ModelMapper modelMapper) {
+    public HotelServiceImpl(HotelRepository hotelRepository, ModelMapper modelMapper) {
         this.hotelRepository = hotelRepository;
         this.modelMapper = modelMapper;
     }

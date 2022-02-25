@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class UserServicesImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
 
@@ -20,7 +20,7 @@ public class UserServicesImpl implements UserService {
 
     private final BookingRepository bookingRepository;
 
-    public UserServicesImpl(UserRepository userRepository, ModelMapper modelMapper, BookingRepository bookingRepository) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, BookingRepository bookingRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.bookingRepository = bookingRepository;
