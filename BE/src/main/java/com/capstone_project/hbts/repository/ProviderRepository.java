@@ -15,4 +15,12 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
 
     Provider getProviderByUsername(String username);
 
+    @Query(value = "select username from capstone.provider where username = :username",
+            nativeQuery = true)
+    String getUsername(@Param("username") String username);
+
+    @Query(value = "select email from capstone.provider where email = :email",
+            nativeQuery = true)
+    String getEmail(@Param("email") String email);
+
 }
