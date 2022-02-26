@@ -57,7 +57,15 @@ export class RegisterComponent implements OnInit {
       .pipe(first())
       .subscribe({
           next: () => {
-            this.alertService.success('Register Successful')
+            this.authService.login(account.email, account.password)
+              .pipe(first())
+              .subscribe(() =>{
+                this.router.navigateByUrl('/user/profile').then(() => {
+                  this.alertService.success('Register Successful')
+                  window.location.reload()
+                })
+              })
+
           }, error: error => {
             this.alertService.error('Register Failed')
             this.form.reset()
