@@ -40,7 +40,13 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe({
           next: () => {
-            this.router.navigateByUrl('/home').then(() => window.location.reload());
+            if (this.authService.accountType === 0) {
+              this.form.reset()
+              this.router.navigateByUrl('/home').then(() => window.location.reload());
+            } else if (this.authService.accountType === 1) {
+              this.form.reset()
+              window.location.href = 'http://localhost:4300/taskbar'
+            }
           }, error: error => {
             this.form.reset()
             this.alertService.error('Login Failed')
