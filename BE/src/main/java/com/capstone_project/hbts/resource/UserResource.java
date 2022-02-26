@@ -6,6 +6,7 @@ import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -118,7 +119,7 @@ public class UserResource {
      * @Param username
      * return
      */
-    @GetMapping("/check/username/{username}")
+    @GetMapping("/check/user/username/{username}")
     public ApiResponse<?> isUsernameExist(@PathVariable String username){
         try {
             boolean isUsernameExist = userService.isUsernameExist(username);
@@ -133,7 +134,7 @@ public class UserResource {
      * @Param email
      * return
      */
-    @GetMapping("/check/email/{email}")
+    @GetMapping("/check/user/email/{email}")
     public ApiResponse<?> isEmailExist(@PathVariable String email){
         try {
             boolean isEmailExist = userService.isEmailExist(email);

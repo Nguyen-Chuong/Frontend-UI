@@ -8,6 +8,7 @@ import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.ProviderService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -56,6 +57,21 @@ public class ProviderResource {
             String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
             ProviderDTO providerDTO = providerService.getProviderProfile(username);
             return new ApiResponse<>(200, providerDTO, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
+
+    /**
+     * @Param username
+     * return
+     */
+    @GetMapping("/check/provider/username/{username}")
+    public ApiResponse<?> isUsernameExist(@PathVariable String username){
+        try {
+            boolean isUsernameExist = providerService.isUsernameExist(username);
+            return new ApiResponse<>(200, isUsernameExist, null, null);
         }catch (Exception e){
             e.printStackTrace();
             return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
