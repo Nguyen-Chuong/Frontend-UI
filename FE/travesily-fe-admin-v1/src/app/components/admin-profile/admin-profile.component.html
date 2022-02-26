@@ -18,10 +18,10 @@
         <div class="p-3 py-5">
           <h1>Profile Setting</h1>
           <div class="row mt-2">
-            <div class="col-md-12"><label class="labels">First name</label>
+            <div class="col-md-6"><label class="labels">First name</label>
               <input type="text" class="form-control" value={{account.firstname}} formControlName="firstname">
             </div>
-            <div class="col-md-12"><label class="labels">Last name</label>
+            <div class="col-md-6"><label class="labels">Last name</label>
               <input type="text" class="form-control" value={{account.lastname}} formControlName="lastname">
             </div>
           </div>
@@ -37,6 +37,9 @@
           </div>
         </div>
       </form>
+    </div>
+    <div class="changPassword">
+      <app-change-password></app-change-password>
     </div>
   </div>
 </div>

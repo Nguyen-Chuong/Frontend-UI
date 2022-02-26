@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, first, Observable, tap } from 'rxjs';
 import * as moment from "moment";
 import { Account } from './_models/account';
 
@@ -13,25 +13,6 @@ export class AuthServiceService {
 
   constructor(private http: HttpClient) {}
 
-  private setSession(authResult) {
-    const jwtToken = JSON.parse(atob(authResult['jwttoken'].split('.')[1]))
-    const expiresAt = moment().add(jwtToken.exp, 'second');
-    localStorage.setItem('token', authResult['jwttoken']);
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
-  }
-
-  login(data: any) {
-    return this.http.post(`${this.baseUrl}/authenticate`, data).pipe(
-      tap((response: any) => {
-        if (response.username === null) {
-          throw new Error('Login Failed')
-        }
-        this.isLoggedIn$ = true
-        this.setSession(response)
-      })
-    );
-  }
-
   update(account: Account) {
     return this.http.patch(`${this.baseUrl}/update-profile`, {...account})
   }
@@ -43,16 +24,28 @@ export class AuthServiceService {
 
   }
 
+  changePassword(oldPass: string, newPass: string) {
+    const params = new HttpParams().append('oldPass', oldPass).append('newPass', newPass)
+    return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params})
+      .pipe(first(),
+        tap(rs => {
+          if(rs['status'] !== 200){
+            throw new Error(rs['error_message'])
+          }
+        }))
+
+  }
+
   public isLoggedOut() {
     return !this.isLoggedIn$
   }
 
   get authToken() {
-    return localStorage.getItem('token')
+    return localStorage.getItem('a-token')
   }
 
   getProfile() {
-    return this.http.get<Account>(`${this.baseUrl}/profile`)
+    return this.http.get<Account>(`${this.baseUrl}/profile/user`)
   }
 
   public isLoggedIn() {
