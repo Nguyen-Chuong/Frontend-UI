@@ -13,6 +13,19 @@ import {UserReviewsComponent} from "./components/master/body/body-user/user-revi
 import {
   UserVipComponent
 } from "./components/master/body/body-user/user-vip/user-vip.component";
+import {
+  UserBookingsCompletedComponent
+} from "./components/master/body/body-user/user-bookings/user-bookings-completed/user-bookings-completed.component";
+import {
+  UserBookingsUpcomingComponent
+} from "./components/master/body/body-user/user-bookings/user-bookings-upcoming/user-bookings-upcoming.component";
+import {
+  UserBookingsCancelledComponent
+} from "./components/master/body/body-user/user-bookings/user-bookings-cancelled/user-bookings-cancelled.component";
+import {
+  ForgotPasswordComponent
+} from "./components/master/body/authentication/forgot-password/forgot-password.component";
+import {OtpCheckerComponent} from "./components/master/body/authentication/otp-checker/otp-checker.component";
 
 const routes: Routes = [
   {
@@ -22,6 +35,8 @@ const routes: Routes = [
         children: [
           {path: 'login', component: LoginComponent},
           {path: 'register', component: RegisterComponent},
+          {path: 'forgot-password', component: ForgotPasswordComponent},
+          {path: 'otp-checker', component: OtpCheckerComponent},
         ]
       },
       {
@@ -34,7 +49,12 @@ const routes: Routes = [
       {
         path: 'user', component: BodyUserComponent, children: [
           {path: 'profile', component: UserProfileComponent},
-          {path: 'bookings', component: UserBookingsComponent},
+          {path: 'bookings', component: UserBookingsComponent, children:[
+              {path:'', component: UserBookingsUpcomingComponent},
+              {path:'completed', component: UserBookingsCompletedComponent},
+              {path:'upcoming', component: UserBookingsUpcomingComponent},
+              {path:'cancelled', component: UserBookingsCancelledComponent}
+            ]},
           {path: 'reviews', component: UserReviewsComponent},
           {path: 'vip', component: UserVipComponent}
         ]

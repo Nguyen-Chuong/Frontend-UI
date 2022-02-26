@@ -36,6 +36,12 @@ import { CreditCardComponent } from './components/master/body/body-user/user-pro
 import {UsernameValidatorDirective} from "./_validators/username.validator";
 import {EmailValidatorDirective} from "./_validators/email.validator";
 import {UserVipComponent} from "./components/master/body/body-user/user-vip/user-vip.component";
+import { UserBookingsCompletedComponent } from './components/master/body/body-user/user-bookings/user-bookings-completed/user-bookings-completed.component';
+import { UserBookingsUpcomingComponent } from './components/master/body/body-user/user-bookings/user-bookings-upcoming/user-bookings-upcoming.component';
+import { UserBookingsCancelledComponent } from './components/master/body/body-user/user-bookings/user-bookings-cancelled/user-bookings-cancelled.component';
+import { ForgotPasswordComponent } from './components/master/body/authentication/forgot-password/forgot-password.component';
+import { OtpCheckerComponent } from './components/master/body/authentication/otp-checker/otp-checker.component';
+import {NgOtpInputModule} from "ng-otp-input";
 
 @NgModule({
   declarations: [
@@ -69,13 +75,19 @@ import {UserVipComponent} from "./components/master/body/body-user/user-vip/user
     CreditCardComponent,
     UsernameValidatorDirective,
     EmailValidatorDirective,
-    UserVipComponent
+    UserVipComponent,
+    UserBookingsCompletedComponent,
+    UserBookingsUpcomingComponent,
+    UserBookingsCancelledComponent,
+    ForgotPasswordComponent,
+    OtpCheckerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgOtpInputModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,

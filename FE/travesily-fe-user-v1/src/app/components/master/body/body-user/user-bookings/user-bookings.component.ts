@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-user-bookings',
@@ -7,7 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserBookingsComponent implements OnInit {
 
-  constructor() { }
+  navItems = [
+    {id: 'upcoming', name: 'Upcoming'},
+    {id: 'completed', name: 'Completed'},
+    {id: 'cancelled', name: 'Cancelled'},
+  ]
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

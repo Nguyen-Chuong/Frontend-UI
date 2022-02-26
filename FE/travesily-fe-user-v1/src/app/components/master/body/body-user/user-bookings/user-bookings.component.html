@@ -1,1 +1,6 @@
-<p>user-bookings works!</p>
+<div class="bookings">
+  <div class="bookings__nav">
+      <a *ngFor="let item of navItems" class="bookings__nav--link" [routerLink]="['/user','bookings',item.id]">{{item.name}}</a>
+  </div>
+  <div class="bookings__body"><router-outlet></router-outlet></div>
+</div>
