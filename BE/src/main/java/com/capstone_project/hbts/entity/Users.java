@@ -70,6 +70,9 @@ public class Users {
     @Column(name = "spend")
     private BigDecimal spend;
 
+    @Column(name = "status")
+    private int status;
+
     @ManyToOne
     @JoinColumn(name = "id_vip")
     private Vip idVip;
