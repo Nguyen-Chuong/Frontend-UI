@@ -7,6 +7,7 @@ import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.UserService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin
 @RestController
+@Log4j2
 @RequestMapping("api/v1")
 public class UserResource {
 
@@ -42,6 +44,8 @@ public class UserResource {
     // admin account cannot be registered
     @PostMapping("/register/user")
     public ResponseEntity<?> register(@RequestBody UserRequest userRequest){
+        log.info("REST request to register a new user : {}", userRequest);
+
         if(userService.loadUserByEmail(userRequest.getEmail()) != null){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -78,6 +82,8 @@ public class UserResource {
      */
     @GetMapping("/profile/user")
     public ResponseEntity<?> getUserProfile(@RequestHeader("Authorization") String jwttoken){
+        log.info("REST request to get user profile");
+
         try {
             String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
             UserDTO userDTO = userService.getUserProfile(username);
@@ -101,6 +107,8 @@ public class UserResource {
     public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String jwttoken,
                                          @RequestParam String oldPass,
                                          @RequestParam String newPass){
+        log.info("REST request to change user's password");
+
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String newPasswordEncoded = bCryptPasswordEncoder.encode(newPass);
 
@@ -132,6 +140,8 @@ public class UserResource {
      */
     @PatchMapping("/update-profile")
     public ResponseEntity<?> updateUserProfile(@RequestBody UserDTO userDTO){
+        log.info("REST request to update an user : {}", userDTO);
+
         try{
             userService.updateUserProfile(userDTO);
             return ResponseEntity.ok()
@@ -151,6 +161,8 @@ public class UserResource {
      */
     @GetMapping("/check/user/username/{username}")
     public ResponseEntity<?> isUsernameExist(@PathVariable String username){
+        log.info("REST request to check duplicate user's username");
+
         try {
             boolean isUsernameExist = userService.isUsernameExist(username);
             return ResponseEntity.ok()
@@ -170,6 +182,8 @@ public class UserResource {
      */
     @GetMapping("/check/user/email/{email}")
     public ResponseEntity<?> isEmailExist(@PathVariable String email){
+        log.info("REST request to check duplicate user's email");
+
         try {
             boolean isEmailExist = userService.isEmailExist(email);
             return ResponseEntity.ok()
@@ -190,6 +204,8 @@ public class UserResource {
      */
     @PatchMapping("/update-vip-status/{userId}")
     public ResponseEntity<?> updateVipStatus(@PathVariable int userId){
+        log.info("REST request to update user's vip status");
+
         try{
             userService.updateVipStatus(userId);
             return ResponseEntity.ok()

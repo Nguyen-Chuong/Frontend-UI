@@ -6,6 +6,7 @@ import com.capstone_project.hbts.dto.HotelDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.HotelService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ import java.sql.Date;
 
 @CrossOrigin
 @RestController
+@Log4j2
 @RequestMapping("api/v1")
 public class HotelResource {
 
@@ -46,6 +48,7 @@ public class HotelResource {
                                          @RequestParam int numberOfRoom,
                                          @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                          @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+        log.info("REST request to search hotel via district id and other info");
 
         try{
             Page<HotelDTO> hotelDTOPage = hotelService.searchHotel(districtId, dateIn, dateOut,

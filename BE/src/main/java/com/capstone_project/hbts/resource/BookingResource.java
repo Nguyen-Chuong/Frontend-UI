@@ -32,7 +32,7 @@ public class BookingResource {
      */
     @GetMapping("/user-bookings/{userId}")
     public ResponseEntity<?> getUserBooking(@PathVariable int userId){
-        log.debug("REST request to get list user's booking by ID");
+        log.info("REST request to get list user's booking by ID");
 
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
@@ -55,7 +55,7 @@ public class BookingResource {
     @GetMapping("/bookings-review/{userId}/{reviewStatus}")
     public ResponseEntity<?> getUserBookingReview(@PathVariable int reviewStatus,
                                                   @PathVariable int userId){
-        log.debug("REST request to get list user's booking need to review or not");
+        log.info("REST request to get list user's booking need to review or not");
 
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsReview(reviewStatus, userId);
@@ -80,7 +80,7 @@ public class BookingResource {
      */
     @GetMapping("/bookings-completed/{userId}")
     public ResponseEntity<?> getNumberBookingsCompleted(@PathVariable int userId){
-        log.debug("REST request to get number booking completed by user id");
+        log.info("REST request to get number booking completed by user id");
 
         try{
             int numberBookingCompleted = bookingService.getNumberBookingsCompleted(userId);

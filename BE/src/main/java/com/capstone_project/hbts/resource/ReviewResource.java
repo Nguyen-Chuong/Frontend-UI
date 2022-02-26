@@ -6,6 +6,7 @@ import com.capstone_project.hbts.dto.ReviewDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.ReviewService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
+@Log4j2
 @RequestMapping("api/v1")
 public class ReviewResource {
 
@@ -30,6 +32,8 @@ public class ReviewResource {
     public ResponseEntity<?> getReview(@RequestParam int hotelId,
                                     @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                     @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+        log.info("REST request to get list review by hotel id");
+
         try {
             Page<ReviewDTO> pageReview = reviewService.loadReview(hotelId, PageRequest.of(page,pageSize));
 
@@ -46,4 +50,5 @@ public class ReviewResource {
                             ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
+
 }

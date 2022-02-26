@@ -6,6 +6,7 @@ import com.capstone_project.hbts.request.ProviderRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.ProviderService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
+@Log4j2
 @RequestMapping("api/v1")
 public class ProviderResource {
 
@@ -35,6 +37,8 @@ public class ProviderResource {
      */
     @PostMapping("/register/provider")
     public ResponseEntity<?> register(@RequestBody ProviderRequest providerRequest){
+        log.info("REST request to register a new provider : {}", providerRequest);
+
         if(providerService.isEmailExist(providerRequest.getEmail())){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -64,6 +68,8 @@ public class ProviderResource {
      */
     @GetMapping("/profile/provider")
     public ResponseEntity<?> getProviderProfile(@RequestHeader("Authorization") String jwttoken){
+        log.info("REST request to get provider profile");
+
         try {
             String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
             ProviderDTO providerDTO = providerService.getProviderProfile(username);
@@ -84,6 +90,8 @@ public class ProviderResource {
      */
     @GetMapping("/check/provider/username/{username}")
     public ResponseEntity<?> isUsernameExist(@PathVariable String username){
+        log.info("REST request to check duplicate provider username");
+
         try {
             boolean isUsernameExist = providerService.isUsernameExist(username);
             return ResponseEntity.ok()
@@ -103,6 +111,8 @@ public class ProviderResource {
      */
     @GetMapping("/check/provider/email/{email}")
     public ResponseEntity<?> isEmailExist(@PathVariable String email){
+        log.info("REST request to check duplicate provider email");
+
         try {
             boolean isEmailExist = providerService.isEmailExist(email);
             return ResponseEntity.ok()
