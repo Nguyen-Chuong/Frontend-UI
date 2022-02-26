@@ -27,13 +27,13 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if(username.startsWith("u-")){
-            Users user = userRepository.getUsersByUsername(username.substring(2));
+            Users user = userRepository.getUsersByUsername(username);
             if(user == null){
                 throw new UsernameNotFoundException("can't find account");
             }
             return new User(user.getUsername(), user.getPassword(), new ArrayList<>());
         } else {
-            Provider provider = providerRepository.getProviderByUsername(username.substring(2));
+            Provider provider = providerRepository.getProviderByUsername(username);
             if (provider == null) {
                 throw new UsernameNotFoundException("can't find account");
             }

@@ -57,15 +57,15 @@ public class JwtAuthenticationResource {
         if(user == null){
             return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL);
         }
-        String usernameToCheck = "u-" + user.getUsername();
+
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usernameToCheck, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
             return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL);
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(usernameToCheck);
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getUsername());
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
@@ -88,15 +88,15 @@ public class JwtAuthenticationResource {
         if(providerUserName == null){
             return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL);
         }
-        String usernameToCheck = "p-" + providerUserName;
+
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(usernameToCheck, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(providerUserName, password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
             return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL);
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(usernameToCheck);
+        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(providerUserName);
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 

@@ -31,6 +31,7 @@ public class ProviderResource {
             return new ApiResponse<>(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
         }
         try {
+            providerRequest.setUsername("p-" + providerRequest.getUsername());
             providerService.register(providerRequest);
             return new ApiResponse<>(200, null, null);
         } catch (Exception e){

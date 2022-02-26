@@ -45,8 +45,9 @@ public class UserResource {
             return new ApiResponse<>(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
         }
         try {
-            // type 0 is normal user and 1 is admin
+            // type 0 is normal user and 1 is admin, register is always user
             userRequest.setType(0);
+            userRequest.setUsername("u-" + userRequest.getUsername());
             userService.register(userRequest);
             return new ApiResponse<>(200, null, null);
         } catch (Exception e){
@@ -58,7 +59,7 @@ public class UserResource {
     /**
      * return
      */
-    @GetMapping("/profile")
+    @GetMapping("/profile/user")
     public ApiResponse<?> getUserProfile(@RequestHeader("Authorization") String jwttoken){
         try {
             String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
