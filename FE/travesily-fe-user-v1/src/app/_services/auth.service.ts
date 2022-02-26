@@ -81,11 +81,11 @@ export class AuthService {
   }
 
   checkUsernameDuplicated(username: string) {
-    return this.httpSkip.get(`${this.baseUrl}/check/username/${username}`)
+    return this.httpSkip.get(`${this.baseUrl}/check/user/username/u-${username}`)
   }
 
   checkEmailDuplicated(email: string) {
-    return this.httpSkip.get(`${this.baseUrl}/check/email/${email}`)
+    return this.httpSkip.get(`${this.baseUrl}/check/user/email/${email}`)
   }
 
   getVip() {

@@ -23,7 +23,7 @@ import {EmailValidator} from "../../../../../_validators/email.validator";
 })
 export class RegisterComponent implements OnInit {
 
-  form
+  form: FormGroup
 
   constructor(
     private fb: FormBuilder,

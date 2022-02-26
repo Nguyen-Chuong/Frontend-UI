@@ -16,7 +16,7 @@ export function UsernameValidator(authService: AuthService): AsyncValidatorFn {
     return timer(debounceTime).pipe(switchMap(() => {
       return authService.checkUsernameDuplicated(control.value).pipe(
         map(res => {
-          return {'duplicateUsername': res['data']}
+          return res['data']?{'duplicateUsername': res['data']}:null
         })
       )
     }))
