@@ -26,4 +26,8 @@ public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
     @Query(value = "SELECT count(id) from capstone.user_booking WHERE user_id = :userId and status = 1", nativeQuery = true)
     int numberBookingCompleted(@Param("userId") int userId);
 
+    @Query(value = "SELECT * from capstone.user_booking WHERE status = :status and user_id = :userId", nativeQuery = true)
+    List<UserBooking> findBookingsByStatus(@Param("status") int status,
+                                         @Param("userId") int userId);
+
 }

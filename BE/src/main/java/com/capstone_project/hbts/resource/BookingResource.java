@@ -95,4 +95,27 @@ public class BookingResource {
         }
     }
 
+    /**
+     * @param status
+     * @param userId
+     * return
+     */
+    @GetMapping("/bookings-by-status/{userId}/{status}")
+    public ResponseEntity<?> getUserBookingByStatus(@PathVariable int status,
+                                                  @PathVariable int userId){
+        log.info("REST request to get list user's booking by status");
+
+        try{
+            List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsByStatus(status, userId);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, userBookingDTOList,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }

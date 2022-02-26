@@ -50,4 +50,14 @@ public class BookingServiceImpl implements BookingService {
         return bookingRepository.numberBookingCompleted(userId);
     }
 
+    @Override
+    public List<UserBookingDTO> getAllBookingsByStatus(int status, int userId) {
+        log.info("Request to get all booking by status");
+        List<UserBooking> list = bookingRepository.findBookingsByStatus(status, userId);
+
+        return list.stream().map(
+                item -> modelMapper.map(item, UserBookingDTO.class)
+        ).collect(Collectors.toList());
+    }
+
 }

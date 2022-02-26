@@ -24,4 +24,12 @@ public interface BookingService {
      */
     int getNumberBookingsCompleted(int userId);
 
+    /**
+     * get all bookings by status
+     * @param status
+     * @param userId
+     */
+    List<UserBookingDTO> getAllBookingsByStatus(int status, int userId);
+
+
 }
