@@ -38,22 +38,30 @@ public class UserResource {
     // may raw adding but need to think 'bout encrypt password
     // admin account cannot be registered
     @PostMapping("/register/user")
-    public ApiResponse<?> register(@RequestBody UserRequest userRequest){
+    public ResponseEntity<?> register(@RequestBody UserRequest userRequest){
         if(userService.loadUserByEmail(userRequest.getEmail()) != null){
-            return new ApiResponse<>(400, ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL));
         }
         if(userService.getUserProfile("u-" + userRequest.getUsername()) != null){
-            return new ApiResponse<>(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
         }
         try {
             // type 0 is normal user and 1 is admin, register is always user
             userRequest.setType(0);
             userRequest.setUsername("u-" + userRequest.getUsername());
             userService.register(userRequest);
-            return new ApiResponse<>(200, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
         } catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -61,14 +69,18 @@ public class UserResource {
      * return
      */
     @GetMapping("/profile/user")
-    public ApiResponse<?> getUserProfile(@RequestHeader("Authorization") String jwttoken){
+    public ResponseEntity<?> getUserProfile(@RequestHeader("Authorization") String jwttoken){
         try {
             String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
             UserDTO userDTO = userService.getUserProfile(username);
-            return new ApiResponse<>(200, userDTO, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, userDTO,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -78,7 +90,7 @@ public class UserResource {
      * return
      */
     @PatchMapping("/change-password")
-    public ApiResponse<?> changePassword(@RequestHeader("Authorization") String jwttoken,
+    public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String jwttoken,
                                          @RequestParam String oldPass,
                                          @RequestParam String newPass){
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -88,14 +100,20 @@ public class UserResource {
         String userPassword = userService.getOldPassword(username);
 
         if(!bCryptPasswordEncoder.matches(oldPass, userPassword)){
-            return new ApiResponse<>(400, ErrorConstant.ERR_USER_001, ErrorConstant.ERR_USER_001_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_001, ErrorConstant.ERR_USER_001_LABEL));
         }else {
             try {
                 userService.changePassword(username, newPasswordEncoded);
-                return new ApiResponse<>(200, null, null);
+                return ResponseEntity.ok()
+                        .body(new ApiResponse<>(200, null,
+                                null, null));
             }catch (Exception e){
                 e.printStackTrace();
-                return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponse<>(400, null,
+                                ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
             }
         }
     }
@@ -105,13 +123,17 @@ public class UserResource {
      * return
      */
     @PatchMapping("/update-profile")
-    public ApiResponse<?> updateUserProfile(@RequestBody UserDTO userDTO){
+    public ResponseEntity<?> updateUserProfile(@RequestBody UserDTO userDTO){
         try{
             userService.updateUserProfile(userDTO);
-            return new ApiResponse<>(200, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -120,13 +142,17 @@ public class UserResource {
      * return
      */
     @GetMapping("/check/user/username/{username}")
-    public ApiResponse<?> isUsernameExist(@PathVariable String username){
+    public ResponseEntity<?> isUsernameExist(@PathVariable String username){
         try {
             boolean isUsernameExist = userService.isUsernameExist(username);
-            return new ApiResponse<>(200, isUsernameExist, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, isUsernameExist,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -135,13 +161,17 @@ public class UserResource {
      * return
      */
     @GetMapping("/check/user/email/{email}")
-    public ApiResponse<?> isEmailExist(@PathVariable String email){
+    public ResponseEntity<?> isEmailExist(@PathVariable String email){
         try {
             boolean isEmailExist = userService.isEmailExist(email);
-            return new ApiResponse<>(200, isEmailExist, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, isEmailExist,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -151,13 +181,17 @@ public class UserResource {
      * return
      */
     @PatchMapping("/update-vip-status/{userId}")
-    public ApiResponse<?> updateVipStatus(@PathVariable int userId){
+    public ResponseEntity<?> updateVipStatus(@PathVariable int userId){
         try{
             userService.updateVipStatus(userId);
-            return new ApiResponse<>(200, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 

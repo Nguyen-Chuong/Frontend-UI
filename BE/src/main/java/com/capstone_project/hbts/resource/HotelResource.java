@@ -8,6 +8,7 @@ import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.HotelService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,13 +37,13 @@ public class HotelResource {
      * @return
      */
     @GetMapping("/search-hotel")
-    public ApiResponse<?> searchHotel(@RequestParam int districtId,
-                                      @RequestParam Date dateIn,
-                                      @RequestParam Date dateOut,
-                                      @RequestParam int numberOfPeople,
-                                      @RequestParam int numberOfRoom,
-                                      @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
-                                      @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+    public ResponseEntity<?> searchHotel(@RequestParam int districtId,
+                                         @RequestParam Date dateIn,
+                                         @RequestParam Date dateOut,
+                                         @RequestParam int numberOfPeople,
+                                         @RequestParam int numberOfRoom,
+                                         @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
+                                         @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
 
         try{
             Page<HotelDTO> hotelDTOPage = hotelService.searchHotel(districtId, dateIn, dateOut,
@@ -51,10 +52,15 @@ public class HotelResource {
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(hotelDTOPage.getContent(),
                     hotelDTOPage.getTotalElements(), page, hotelDTOPage.getSize());
 
-            return new ApiResponse<>(200, dataPagingResponse, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
+            // may catch more kinda exception
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 

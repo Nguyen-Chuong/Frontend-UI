@@ -4,6 +4,7 @@ import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.RoomTypeDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.RoomTypeService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,13 +23,17 @@ public class RoomTypeResource {
     }
 
     @GetMapping("/room-type/{hotelId}")
-    public ApiResponse<?> getRoomType(@PathVariable int hotelId){
+    public ResponseEntity<?> getRoomType(@PathVariable int hotelId){
         try {
             List<RoomTypeDTO> list = roomTypeService.loadRoomTypeByHotelId(hotelId);
-            return new ApiResponse<>(200, list, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, list,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 }

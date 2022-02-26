@@ -4,6 +4,7 @@ import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.VipDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.VipService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,13 +25,17 @@ public class VipResource {
      * return
      */
     @GetMapping("/vip-info")
-    public ApiResponse<?> getVipStatus(){
+    public ResponseEntity<?> getVipStatus(){
         try {
             List<VipDTO> vipDTOList = vipService.getVipStatus();
-            return new ApiResponse<>(200, vipDTOList, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, vipDTOList,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 

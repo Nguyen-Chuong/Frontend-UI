@@ -8,6 +8,7 @@ import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.ReviewService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,7 +25,7 @@ public class ReviewResource {
     }
 
     @GetMapping("/reviews")
-    public ApiResponse<?> getReview(@RequestParam int hotelId,
+    public ResponseEntity<?> getReview(@RequestParam int hotelId,
                                     @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                     @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         try {
@@ -33,10 +34,14 @@ public class ReviewResource {
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(pageReview.getContent(),
                     pageReview.getTotalElements(), page, pageReview.getSize());
 
-            return new ApiResponse<>(200, dataPagingResponse, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 }

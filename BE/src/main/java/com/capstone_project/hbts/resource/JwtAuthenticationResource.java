@@ -10,6 +10,7 @@ import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.ProviderService;
 import com.capstone_project.hbts.service.UserService;
 import com.capstone_project.hbts.service.impl.CustomUserDetailsService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -48,21 +49,25 @@ public class JwtAuthenticationResource {
      * @param
      */
     @PostMapping("/authenticate/user")
-    public ApiResponse<?> createJsonWebTokenKeyForUser(@RequestBody UserRequest userRequest) {
+    public ResponseEntity<?> createJsonWebTokenKeyForUser(@RequestBody UserRequest userRequest) {
 
         String email = userRequest.getEmail();
         String password = userRequest.getPassword();
         UserDTO user = userService.loadUserByEmail(email);
 
         if(user == null){
-            return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL));
         }
 
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
-            return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL));
         }
 
         final UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getUsername());
@@ -71,7 +76,9 @@ public class JwtAuthenticationResource {
 
         JwtResponse jwtResponse = new JwtResponse(jwt, user.getType());
 
-        return new ApiResponse<>(200, jwtResponse, null, null);
+        return ResponseEntity.ok()
+                .body(new ApiResponse<>(200, jwtResponse,
+                        null, null));
 
     }
 
@@ -79,28 +86,34 @@ public class JwtAuthenticationResource {
      * @param
      */
     @PostMapping("/authenticate/provider")
-    public ApiResponse<?> createJsonWebTokenKeyForProvider(@RequestBody ProviderRequest providerRequest) {
+    public ResponseEntity<?> createJsonWebTokenKeyForProvider(@RequestBody ProviderRequest providerRequest) {
 
         String email = providerRequest.getEmail();
         String password = providerRequest.getPassword();
         String providerUserName = providerService.loadProviderUsernameByEmail(email);
 
         if(providerUserName == null){
-            return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL));
         }
 
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(providerUserName, password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
-            return new ApiResponse<>(400, null, ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL));
         }
 
         final UserDetails userDetails = customUserDetailsService.loadUserByUsername(providerUserName);
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
-        return new ApiResponse<>(200, jwt, null, null);
+        return ResponseEntity.ok()
+                .body(new ApiResponse<>(200, jwt,
+                        null, null));
 
     }
 

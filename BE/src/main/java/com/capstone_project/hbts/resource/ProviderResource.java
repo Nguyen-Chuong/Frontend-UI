@@ -6,6 +6,7 @@ import com.capstone_project.hbts.request.ProviderRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.ProviderService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,20 +32,28 @@ public class ProviderResource {
      * @param
      */
     @PostMapping("/register/provider")
-    public ApiResponse<?> register(@RequestBody ProviderRequest providerRequest){
+    public ResponseEntity<?> register(@RequestBody ProviderRequest providerRequest){
         if(providerService.isEmailExist(providerRequest.getEmail())){
-            return new ApiResponse<>(400, ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL));
         }
         if(providerService.isUsernameExist("p-" + providerRequest.getUsername())){
-            return new ApiResponse<>(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
         }
         try {
             providerRequest.setUsername("p-" + providerRequest.getUsername());
             providerService.register(providerRequest);
-            return new ApiResponse<>(200, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
         } catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -52,14 +61,18 @@ public class ProviderResource {
      * return
      */
     @GetMapping("/profile/provider")
-    public ApiResponse<?> getProviderProfile(@RequestHeader("Authorization") String jwttoken){
+    public ResponseEntity<?> getProviderProfile(@RequestHeader("Authorization") String jwttoken){
         try {
             String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
             ProviderDTO providerDTO = providerService.getProviderProfile(username);
-            return new ApiResponse<>(200, providerDTO, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, providerDTO,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -68,13 +81,17 @@ public class ProviderResource {
      * return
      */
     @GetMapping("/check/provider/username/{username}")
-    public ApiResponse<?> isUsernameExist(@PathVariable String username){
+    public ResponseEntity<?> isUsernameExist(@PathVariable String username){
         try {
             boolean isUsernameExist = providerService.isUsernameExist(username);
-            return new ApiResponse<>(200, isUsernameExist, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, isUsernameExist,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
@@ -83,13 +100,17 @@ public class ProviderResource {
      * return
      */
     @GetMapping("/check/provider/email/{email}")
-    public ApiResponse<?> isEmailExist(@PathVariable String email){
+    public ResponseEntity<?> isEmailExist(@PathVariable String email){
         try {
             boolean isEmailExist = providerService.isEmailExist(email);
-            return new ApiResponse<>(200, isEmailExist, null, null);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, isEmailExist,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
-            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
     }
 
