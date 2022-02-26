@@ -78,4 +78,19 @@ public class ProviderResource {
         }
     }
 
+    /**
+     * @Param email
+     * return
+     */
+    @GetMapping("/check/provider/email/{email}")
+    public ApiResponse<?> isEmailExist(@PathVariable String email){
+        try {
+            boolean isEmailExist = providerService.isEmailExist(email);
+            return new ApiResponse<>(200, isEmailExist, null, null);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new ApiResponse<>(400, ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL);
+        }
+    }
+
 }
