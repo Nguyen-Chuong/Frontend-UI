@@ -13,7 +13,7 @@ import {BookingService} from "../../../../../_services/booking.service";
 })
 export class UserVipComponent implements OnInit {
   account: Account
-  bookingCount: number
+  bookingCount: number = 0
 
   constructor(private authService: AuthService, private alertService: AlertService, private bookingService: BookingService) {
     authService.getProfile().pipe(first()).subscribe(rs => {

@@ -18,30 +18,41 @@ export class AuthService {
   }
 
   private setSession(loginInfo) {
-    const jwtToken = JSON.parse(atob(loginInfo['jwttoken'].split('.')[1]))
+    const jwtToken = JSON.parse(atob(loginInfo['data']['jwttoken'].split('.')[1]))
     const expiresAt = moment().add(jwtToken.exp, 'second');
-    localStorage.setItem('token', loginInfo['jwttoken'])
-    // localStorage.setItem('id_token', jwtToken.sub);
-    // localStorage.setItem('avatar', loginInfo.avatar);
+    localStorage.setItem('token', loginInfo['data']['jwttoken'])
+    localStorage.setItem('account-type', loginInfo['data']['type'].toString())
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
   }
+
+  private setAdminSession(loginInfo) {
+    const jwtToken = JSON.parse(atob(loginInfo['data']['jwttoken'].split('.')[1]))
+    const expiresAt = moment().add(jwtToken.exp, 'second');
+    localStorage.setItem('a-token', loginInfo['data']['jwttoken'])
+    localStorage.setItem('account-type',loginInfo['data']['type'].toString())
+    localStorage.setItem("a-expires_at", JSON.stringify(expiresAt.valueOf()));
+  }
+
 
   get authToken() {
     return localStorage.getItem('token')
   }
 
   login(email: string, password: string) {
-    return this.httpSkip.post(`${this.baseUrl}/authenticate`, {email, password})
+    return this.httpSkip.post(`${this.baseUrl}/authenticate/user`, {email, password})
       .pipe(tap(loginInfo => {
-          if (loginInfo['username'] === null)
+          if (loginInfo['data'] === null)
             throw new Error('Login Failed')
-          this.setSession(loginInfo)
+          if (loginInfo['data']['type'] === 0)
+            this.setSession(loginInfo)
+          else if (loginInfo['data']['type'] === 1)
+            this.setAdminSession(loginInfo)
         }
       ))
   }
 
   register(account: Account) {
-    return this.httpSkip.post(`${this.baseUrl}/register`, {...account})
+    return this.httpSkip.post(`${this.baseUrl}/register/user`, {...account})
   }
 
   update(account: Account) {
@@ -49,7 +60,11 @@ export class AuthService {
   }
 
   getProfile() {
-    return this.http.get<Account>(`${this.baseUrl}/profile`)
+    return this.http.get<Account>(`${this.baseUrl}/profile/user`)
+  }
+
+  get accountType() {
+    return +localStorage.getItem('account-type')
   }
 
   changePassword(oldPass: string, newPass: string) {
@@ -57,22 +72,22 @@ export class AuthService {
     return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params})
       .pipe(first(),
         tap(rs => {
-          if(rs['status'] !== 200){
+          if (rs['status'] !== 200) {
             throw new Error(rs['error_message'])
           }
         }))
 
   }
 
-  checkUsernameDuplicated(username: string){
+  checkUsernameDuplicated(username: string) {
     return this.httpSkip.get(`${this.baseUrl}/check/username/${username}`)
   }
 
-  checkEmailDuplicated(email: string){
+  checkEmailDuplicated(email: string) {
     return this.httpSkip.get(`${this.baseUrl}/check/email/${email}`)
   }
 
-  getVip(){
+  getVip() {
     return this.http.get(`${this.baseUrl}/vip-info`)
   }
 
@@ -80,6 +95,7 @@ export class AuthService {
     // localStorage.removeItem("id_token");
     localStorage.removeItem('token')
     localStorage.removeItem("expires_at");
+    localStorage.removeItem("account-type");
     // localStorage.removeItem("avatar");
   }
 
