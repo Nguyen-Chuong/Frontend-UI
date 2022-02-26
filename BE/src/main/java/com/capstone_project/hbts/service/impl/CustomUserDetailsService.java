@@ -4,6 +4,7 @@ import com.capstone_project.hbts.entity.Provider;
 import com.capstone_project.hbts.entity.Users;
 import com.capstone_project.hbts.repository.ProviderRepository;
 import com.capstone_project.hbts.repository.UserRepository;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
+@Log4j2
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -26,6 +28,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        log.info("Request to load user by username");
         if(username.startsWith("u-")){
             Users user = userRepository.getUsersByUsername(username);
             if(user == null){

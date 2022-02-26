@@ -5,11 +5,13 @@ import com.capstone_project.hbts.entity.Provider;
 import com.capstone_project.hbts.repository.ProviderRepository;
 import com.capstone_project.hbts.request.ProviderRequest;
 import com.capstone_project.hbts.service.ProviderService;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Log4j2
 public class ProviderServiceImpl implements ProviderService {
 
     private final ProviderRepository providerRepository;
@@ -23,11 +25,13 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public String loadProviderUsernameByEmail(String email) {
+        log.info("Request to get provider username by email");
         return providerRepository.getProviderUsernameByEmail(email);
     }
 
     @Override
     public void register(ProviderRequest providerRequest) {
+        log.info("Request to register a new provider");
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         Provider newProvider = modelMapper.map(providerRequest, Provider.class);
         newProvider.setPassword(bCryptPasswordEncoder.encode(newProvider.getPassword()));
@@ -36,18 +40,21 @@ public class ProviderServiceImpl implements ProviderService {
 
     @Override
     public boolean isUsernameExist(String username) {
+        log.info("Request to check duplicate username");
         String usernameFromDB = providerRepository.getUsername(username);
         return usernameFromDB != null;
     }
 
     @Override
     public boolean isEmailExist(String email) {
+        log.info("Request to check duplicate email");
         String usernameFromDB = providerRepository.getEmail(email);
         return usernameFromDB != null;
     }
 
     @Override
     public ProviderDTO getProviderProfile(String username) {
+        log.info("Request to get provider profile");
         Provider provider = providerRepository.getProviderByUsername(username);
         if(provider == null){
             return null;

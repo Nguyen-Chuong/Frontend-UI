@@ -4,12 +4,14 @@ import com.capstone_project.hbts.dto.RoomTypeDTO;
 import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.RoomTypeRepository;
 import com.capstone_project.hbts.service.RoomTypeService;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Log4j2
 public class RoomTypeServiceImpl implements RoomTypeService {
 
     private final RoomTypeRepository roomTypeRepository;
@@ -23,6 +25,8 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     @Override
     public void createRoomType(RoomType roomType) {
+        log.info("Request to create room type");
+
         if(roomType != null){
             try {
                 roomTypeRepository.save(roomType);
@@ -33,19 +37,15 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     }
 
     @Override
-    public List<RoomTypeDTO> loadRoomType(){
-        List<RoomType> list = roomTypeRepository.findAll();
-        return list.stream().map(
-                item -> modelMapper.map(item, RoomTypeDTO.class)).collect(Collectors.toList());
-    }
-
-    @Override
     public boolean updateRoomType(Integer roomTypeId) {
+        log.info("Request to update room type");
         return false;
     }
 
     @Override
     public List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId) {
+        log.info("Request to load room type by hotel id");
+
         List<RoomType> list = roomTypeRepository.findRoomTypeByHotelId(hotelId);
         return list.stream().map(
                 item -> modelMapper.map(item, RoomTypeDTO.class)).collect(Collectors.toList());
@@ -53,6 +53,8 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     @Override
     public void deleteRoomType(int id) {
+        log.info("Request to delete room type");
 
     }
+
 }

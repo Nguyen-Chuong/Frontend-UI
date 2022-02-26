@@ -14,11 +14,6 @@ public interface RoomTypeService {
     void createRoomType(RoomType roomType);
 
     /**
-     * Load all room type
-     */
-    List<RoomTypeDTO> loadRoomType();
-
-    /**
      * Update room type
      * @param roomTypeId
      */

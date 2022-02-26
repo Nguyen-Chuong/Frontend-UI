@@ -4,6 +4,7 @@ import com.capstone_project.hbts.dto.UserBookingDTO;
 import com.capstone_project.hbts.entity.UserBooking;
 import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.service.BookingService;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Log4j2
 public class BookingServiceImpl implements BookingService {
 
     private final BookingRepository bookingRepository;
@@ -24,6 +26,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<UserBookingDTO> getAllBookings(int userId) {
+        log.info("Request to get all booking by user id");
         List<UserBooking> list = bookingRepository.findAllByUserId(userId);
 
         return list.stream().map(
@@ -33,6 +36,7 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public List<UserBookingDTO> getAllBookingsReview(int reviewStatus, int userId) {
+        log.info("Request to get all booking need to review or not by user id");
         List<UserBooking> list = bookingRepository.findBookingsReview(reviewStatus, userId);
 
         return list.stream().map(
@@ -42,6 +46,8 @@ public class BookingServiceImpl implements BookingService {
 
     @Override
     public int getNumberBookingsCompleted(int userId) {
+        log.info("Request to get number booking completed by user id");
         return bookingRepository.numberBookingCompleted(userId);
     }
+
 }

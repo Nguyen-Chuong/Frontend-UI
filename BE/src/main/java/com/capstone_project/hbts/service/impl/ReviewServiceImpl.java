@@ -7,6 +7,7 @@ import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.repository.ReviewRepository;
 import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.ReviewService;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Log4j2
 public class ReviewServiceImpl implements ReviewService {
 
     private final BookingRepository bookingRepository;
@@ -33,6 +35,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public Page<ReviewDTO> loadReview(int hotelId, Pageable pageable) {
+        log.info("Request to get all review by hotel id");
+
         List<UserBooking> userBookingList = bookingRepository.findUserBookingByHotelId(hotelId);
         ArrayList<Integer> listBookingId = new ArrayList<>();
         userBookingList.forEach(item -> listBookingId.add(item.getId()));
@@ -45,4 +49,5 @@ public class ReviewServiceImpl implements ReviewService {
 
         return new CustomPageImpl<>(reviewDTOList);
     }
+
 }

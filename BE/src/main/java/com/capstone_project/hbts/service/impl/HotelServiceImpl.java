@@ -6,6 +6,7 @@ import com.capstone_project.hbts.entity.Hotel;
 import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.HotelRepository;
 import com.capstone_project.hbts.service.HotelService;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,6 +20,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
+@Log4j2
 public class HotelServiceImpl implements HotelService {
 
     private final HotelRepository hotelRepository;
@@ -50,6 +52,8 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     public Page<HotelDTO> searchHotel(int districtId, Date dateIn, Date dateOut, int numberOfPeople, int numberOfRoom, Pageable pageable) {
+        log.info("Request to get all hotel by district and other info");
+
         // get all hotel in this district
         Page<Hotel> hotelPage = hotelRepository.searchHotelByDistrict(districtId, pageable);
 
