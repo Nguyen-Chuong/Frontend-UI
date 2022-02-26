@@ -2,11 +2,13 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.UserDTO;
+import com.capstone_project.hbts.request.JwtRequest;
 import com.capstone_project.hbts.request.ProviderRequest;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.JwtResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
+import com.capstone_project.hbts.service.JwtService;
 import com.capstone_project.hbts.service.ProviderService;
 import com.capstone_project.hbts.service.UserService;
 import com.capstone_project.hbts.service.impl.CustomUserDetailsService;
@@ -16,6 +18,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -34,14 +37,17 @@ public class JwtAuthenticationResource {
 
     private final ProviderService providerService;
 
+    private final JwtService jwtService;
+
     public JwtAuthenticationResource(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil,
                                      CustomUserDetailsService customUserDetailsService, UserService userService,
-                                     ProviderService providerService) {
+                                     ProviderService providerService, JwtService jwtService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
         this.customUserDetailsService = customUserDetailsService;
         this.userService = userService;
         this.providerService = providerService;
+        this.jwtService = jwtService;
     }
 
 
@@ -76,10 +82,18 @@ public class JwtAuthenticationResource {
 
         JwtResponse jwtResponse = new JwtResponse(jwt, user.getType());
 
+        if(user.getType() == 1){
+            JwtRequest jwtRequest = new JwtRequest(1, jwt);
+            try{
+                jwtService.saveTokenKeyForAdmin(jwtRequest);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+        }
+
         return ResponseEntity.ok()
                 .body(new ApiResponse<>(200, jwtResponse,
                         null, null));
-
     }
 
     /**
@@ -115,6 +129,25 @@ public class JwtAuthenticationResource {
                 .body(new ApiResponse<>(200, jwt,
                         null, null));
 
+    }
+
+    /**
+     * @Param
+     * return
+     */
+    @GetMapping("/authenticate/admin")
+    public ResponseEntity<?> getJsonWebTokenKeyForAdmin(){
+        try {
+            String jwt = jwtService.getTokenKeyForAdmin();
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, jwt,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
     }
 
 }

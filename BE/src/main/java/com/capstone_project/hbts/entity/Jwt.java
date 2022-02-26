@@ -21,7 +21,7 @@ import javax.persistence.Table;
 public class Jwt {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     @Column(name = "jwt_token")
