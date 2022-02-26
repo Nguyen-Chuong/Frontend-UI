@@ -9,7 +9,6 @@ import { BookingListComponent } from './components/booking-list/booking-list.com
 import { TaskbarComponent } from './components/taskbar/taskbar.component';
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -27,6 +26,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { AuthInterceptor } from './_helper/auth.interceptor';
 import { SimpleNotificationsModule } from 'angular2-notifications';
+import { ChangePasswordComponent } from './components/change-password/change-password.component';
+import { NewAdminComponent } from './components/new-admin/new-admin.component';
 
 @NgModule({
   declarations: [
@@ -38,9 +39,10 @@ import { SimpleNotificationsModule } from 'angular2-notifications';
     TaskbarComponent,
     HotelDetailComponent,
     RoomDetailComponent,
-    LoginPageComponent,
     HeaderComponent,
-    AdminProfileComponent
+    AdminProfileComponent,
+    ChangePasswordComponent,
+    NewAdminComponent
   ],
   imports: [
     BrowserModule,

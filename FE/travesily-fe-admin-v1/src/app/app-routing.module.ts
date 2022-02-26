@@ -1,5 +1,4 @@
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
 import { TaskbarComponent } from './components/taskbar/taskbar.component';
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
@@ -35,17 +34,8 @@ const routes: Routes = [
     component: RoomDetailComponent,
   },
   {
-    path: 'login',
-    component: LoginPageComponent,
-  },
-  {
     path: 'admin-profile',
     component: AdminProfileComponent,
-  },
-  {
-    path: '',
-    pathMatch: 'full',
-    redirectTo: 'login',
   },
 ];
 
