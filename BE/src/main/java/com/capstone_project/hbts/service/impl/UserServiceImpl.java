@@ -102,6 +102,7 @@ public class UserServiceImpl implements UserService {
             // platinum class
             vipId = 4;
         }
+        // may need one more class, and select via number of room, not booking
         userRepository.updateVipStatus(vipId, userId);
     }
 

@@ -17,4 +17,6 @@ public class UserBookingDetailDTO {
 
     private int roomType;
 
+    private int quantity;
+
 }
