@@ -32,8 +32,8 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public List<UserBookingDTO> getAllBookingsReview(int reviewStatus) {
-        List<UserBooking> list = bookingRepository.findBookingsReview(reviewStatus);
+    public List<UserBookingDTO> getAllBookingsReview(int reviewStatus, int userId) {
+        List<UserBooking> list = bookingRepository.findBookingsReview(reviewStatus, userId);
 
         return list.stream().map(
                 item -> modelMapper.map(item, UserBookingDTO.class)

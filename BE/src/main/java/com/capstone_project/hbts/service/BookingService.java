@@ -16,7 +16,7 @@ public interface BookingService {
      * get all bookings need to review or done
      * @param reviewStatus
      */
-    List<UserBookingDTO> getAllBookingsReview(int reviewStatus);
+    List<UserBookingDTO> getAllBookingsReview(int reviewStatus, int userId);
 
     /**
      * count number of all bookings completed by user id
