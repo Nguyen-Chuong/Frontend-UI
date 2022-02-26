@@ -109,11 +109,13 @@ public class UserServiceImpl implements UserService {
         } else if (numberBookingCompleted >=5 && numberBookingCompleted <= 9){
             // gold class
             vipId = 3;
-        } else if (numberBookingCompleted >= 10){
+        } else if (numberBookingCompleted >= 10 && numberBookingCompleted <= 19){
             // platinum class
             vipId = 4;
+        } else if (numberBookingCompleted >= 20){
+            // diamond class
+            vipId = 5;
         }
-        // may need one more class, and select via number of room, not booking
         userRepository.updateVipStatus(vipId, userId);
     }
 
