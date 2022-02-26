@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.request;
 
+import com.capstone_project.hbts.dto.VipDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -28,5 +29,7 @@ public class UserRequest {
     private BigDecimal spend;
 
     private int type;
+
+    private VipDTO idVip;
 
 }

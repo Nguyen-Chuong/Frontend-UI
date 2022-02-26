@@ -38,4 +38,7 @@ public class UserBookingDetail {
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;
 
+    @Column(name = "quantity")
+    private int quantity;
+
 }
