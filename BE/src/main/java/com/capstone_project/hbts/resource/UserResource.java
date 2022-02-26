@@ -41,7 +41,7 @@ public class UserResource {
         if(userService.loadUserByEmail(userRequest.getEmail()) != null){
             return new ApiResponse<>(400, ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL);
         }
-        if(userService.getUserProfile(userRequest.getUsername()) != null){
+        if(userService.getUserProfile("u-" + userRequest.getUsername()) != null){
             return new ApiResponse<>(400, ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL);
         }
         try {

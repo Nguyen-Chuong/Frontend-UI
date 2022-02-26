@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.service;
 
+import com.capstone_project.hbts.dto.ProviderDTO;
 import com.capstone_project.hbts.request.ProviderRequest;
 
 public interface ProviderService {
@@ -27,5 +28,11 @@ public interface ProviderService {
      * @param email
      */
     boolean isEmailExist(String email);
+
+    /**
+     * Get detail provider by username
+     * @param username
+     */
+    ProviderDTO getProviderProfile(String username);
 
 }

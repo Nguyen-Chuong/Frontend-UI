@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.ProviderDTO;
 import com.capstone_project.hbts.entity.Provider;
 import com.capstone_project.hbts.repository.ProviderRepository;
 import com.capstone_project.hbts.request.ProviderRequest;
@@ -43,6 +44,16 @@ public class ProviderServiceImpl implements ProviderService {
     public boolean isEmailExist(String email) {
         String usernameFromDB = providerRepository.getEmail(email);
         return usernameFromDB != null;
+    }
+
+    @Override
+    public ProviderDTO getProviderProfile(String username) {
+        Provider provider = providerRepository.getProviderByUsername(username);
+        if(provider == null){
+            return null;
+        }else {
+            return modelMapper.map(provider, ProviderDTO.class);
+        }
     }
 
 }
