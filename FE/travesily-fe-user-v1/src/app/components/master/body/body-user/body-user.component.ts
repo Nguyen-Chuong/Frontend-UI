@@ -10,7 +10,8 @@ export class BodyUserComponent implements OnInit {
   navItems=[
     {id:'bookings', name:'My Bookings'},
     {id:'reviews', name:'My Reviews'},
-    {id: 'profile', name:'Profile'}
+    {id: 'profile', name:'Profile'},
+    {id: 'vip', name: 'Vip Status'}
   ]
   constructor() { }
 

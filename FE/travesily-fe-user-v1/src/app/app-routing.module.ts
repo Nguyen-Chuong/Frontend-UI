@@ -10,6 +10,9 @@ import {BodyUserComponent} from "./components/master/body/body-user/body-user.co
 import {UserProfileComponent} from "./components/master/body/body-user/user-profile/user-profile.component";
 import {UserBookingsComponent} from "./components/master/body/body-user/user-bookings/user-bookings.component";
 import {UserReviewsComponent} from "./components/master/body/body-user/user-reviews/user-reviews.component";
+import {
+  UserVipComponent
+} from "./components/master/body/body-user/user-vip/user-vip.component";
 
 const routes: Routes = [
   {
@@ -33,6 +36,7 @@ const routes: Routes = [
           {path: 'profile', component: UserProfileComponent},
           {path: 'bookings', component: UserBookingsComponent},
           {path: 'reviews', component: UserReviewsComponent},
+          {path: 'vip', component: UserVipComponent}
         ]
       }
     ]
