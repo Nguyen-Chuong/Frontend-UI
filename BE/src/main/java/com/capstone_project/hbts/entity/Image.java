@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +34,7 @@ public class Image {
 
     @ManyToOne
     @JoinColumn(name = "room_type_id")
+    @JsonIgnore
     private RoomType roomType;
 
 }

@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.dto.RoomDetailDTO;
 import com.capstone_project.hbts.dto.RoomTypeDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.RoomTypeService;
@@ -34,6 +35,23 @@ public class RoomTypeResource {
             List<RoomTypeDTO> list = roomTypeService.loadRoomTypeByHotelId(hotelId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, list,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    @GetMapping("/room-detail/{roomTypeId}")
+    public ResponseEntity<?> getRoomDetailByRoomTypeId(@PathVariable int roomTypeId){
+        log.info("REST request to get detail room type by room type id");
+
+        try {
+            RoomDetailDTO roomDetailDTO = roomTypeService.viewRoomDetail(roomTypeId);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, roomDetailDTO,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

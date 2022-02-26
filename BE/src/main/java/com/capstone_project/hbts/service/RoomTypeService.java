@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.service;
 
+import com.capstone_project.hbts.dto.RoomDetailDTO;
 import com.capstone_project.hbts.dto.RoomTypeDTO;
 import com.capstone_project.hbts.entity.RoomType;
 
@@ -30,5 +31,11 @@ public interface RoomTypeService {
      * @param roomTypeId
      */
     void deleteRoomType(int roomTypeId);
+
+    /**
+     * View detail of a room type
+     * @param roomTypeId
+     */
+    RoomDetailDTO viewRoomDetail(int roomTypeId);
 
 }

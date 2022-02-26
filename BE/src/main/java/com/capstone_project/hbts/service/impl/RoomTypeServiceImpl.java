@@ -1,12 +1,17 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.RoomDetailDTO;
 import com.capstone_project.hbts.dto.RoomTypeDTO;
+import com.capstone_project.hbts.entity.Facility;
 import com.capstone_project.hbts.entity.RoomType;
+import com.capstone_project.hbts.repository.FacilityRepository;
+import com.capstone_project.hbts.repository.RoomFacilityRepository;
 import com.capstone_project.hbts.repository.RoomTypeRepository;
 import com.capstone_project.hbts.service.RoomTypeService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -18,9 +23,17 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     private final ModelMapper modelMapper;
 
-    public RoomTypeServiceImpl(RoomTypeRepository roomTypeRepository, ModelMapper modelMapper) {
+    private final RoomFacilityRepository roomFacilityRepository;
+
+    private final FacilityRepository facilityRepository;
+
+    public RoomTypeServiceImpl(RoomTypeRepository roomTypeRepository, ModelMapper modelMapper,
+                               RoomFacilityRepository roomFacilityRepository,
+                               FacilityRepository facilityRepository) {
         this.roomTypeRepository = roomTypeRepository;
         this.modelMapper = modelMapper;
+        this.roomFacilityRepository = roomFacilityRepository;
+        this.facilityRepository = facilityRepository;
     }
 
     @Override
@@ -54,6 +67,24 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Override
     public void deleteRoomType(int id) {
         log.info("Request to delete room type");
+
+    }
+
+    @Override
+    public RoomDetailDTO viewRoomDetail(int roomTypeId) {
+        log.info("Request to view detail room type");
+        // get room type by id
+        RoomType roomType = roomTypeRepository.getById(roomTypeId);
+
+        // get list facility id from room facility
+        List<Integer> listFacilityId = roomFacilityRepository.getAllFacilityIdByRoomTypeId(roomTypeId);
+
+        // select all facility from facility table by list facility ids
+        List<Facility> facilityList = facilityRepository.findAllById(listFacilityId);
+
+        // convert to DTO
+        return new RoomDetailDTO(roomType.getId(), roomType.getName(),
+                roomType.getListImage(), facilityList);
 
     }
 

@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -35,10 +36,12 @@ public class Facility {
     private String name;
 
     @ManyToOne
-    @JoinColumn(name = "facility")
+    @JoinColumn(name = "facility_type_id")
+    @JsonIgnore
     private FacilityType facility;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")
+    @JsonIgnore
     private Set<RoomFacility> listRoomFacility;
 
 }
