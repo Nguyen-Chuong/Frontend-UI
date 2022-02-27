@@ -1,1 +1,5 @@
-<p>user-bookings-completed works!</p>
+<ul class="booking-list">
+  <li class="booking-list__item" *ngFor="let booking of bookings">
+    <app-booking-card [booking]="booking"></app-booking-card>
+  </li>
+</ul>

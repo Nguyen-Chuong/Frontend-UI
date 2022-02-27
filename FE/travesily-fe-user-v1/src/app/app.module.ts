@@ -42,6 +42,7 @@ import { UserBookingsCancelledComponent } from './components/master/body/body-us
 import { ForgotPasswordComponent } from './components/master/body/authentication/forgot-password/forgot-password.component';
 import { OtpCheckerComponent } from './components/master/body/authentication/otp-checker/otp-checker.component';
 import {NgOtpInputModule} from "ng-otp-input";
+import { BookingCardComponent } from './components/master/body/body-user/user-bookings/booking-card/booking-card.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import {NgOtpInputModule} from "ng-otp-input";
     UserBookingsUpcomingComponent,
     UserBookingsCancelledComponent,
     ForgotPasswordComponent,
-    OtpCheckerComponent
+    OtpCheckerComponent,
+    BookingCardComponent
   ],
   imports: [
     BrowserModule,

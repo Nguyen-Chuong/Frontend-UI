@@ -1,10 +1,10 @@
-.btn-login{
+.btn-login {
   background: #8f3682;
-  background-image: -webkit-linear-gradient(45deg, rgba($color-primary,.3), rgba($color-secondary, .4));
-  background-image: -moz-linear-gradient(45deg, rgba($color-primary,.3), rgba($color-secondary, .4));
-  background-image: -ms-linear-gradient(45deg, rgba($color-primary,.3), rgba($color-secondary, .4));
-  background-image: -o-linear-gradient(45deg, rgba($color-primary,.3), rgba($color-secondary, .4));
-  background-image: linear-gradient(45deg, rgba($color-primary,.3), rgba($color-secondary, .4));
+  background-image: -webkit-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
+  background-image: -moz-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
+  background-image: -ms-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
+  background-image: -o-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
+  background-image: linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
   //-webkit-border-radius: 13;
   //-moz-border-radius: 13;
   border: 1px solid #fff;
@@ -17,7 +17,7 @@
   cursor: pointer;
 }
 
-.btn-guest-modifier{
+.btn-guest-modifier {
   font-size: 1.8rem;
   padding: 1rem;
   border: none;
@@ -25,14 +25,14 @@
   cursor: pointer;
 }
 
-.btn-done{
+.btn-done {
   font-size: 1.8rem;
   padding: .2rem;
   border-radius: 1rem;
   color: $color-secondary;
 }
 
-.btn-edit{
+.btn-edit {
   border: none;
   font-size: 2rem;
   background-color: #fff;
@@ -40,17 +40,36 @@
   cursor: pointer;
 }
 
-.dropdown-button{
+.dropdown-button {
   cursor: pointer;
-  &:hover{
+
+  &:hover {
     background-color: $color-secondary;
   }
 }
 
-.btn-credit{
+.btn-credit {
   border: none;
   background-color: #fff;
   font-style: inherit;
   font-size: 1.8rem;
   cursor: pointer;
+}
+
+.btn-fill {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 400;
+  background-color: $color-tertiary;
+  color: #fff;
+  border-radius: .3rem;
+}
+
+.btn-plain {
+padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background-color: #fff;
+  color: $color-tertiary;
+  border-radius: .3rem;
 }

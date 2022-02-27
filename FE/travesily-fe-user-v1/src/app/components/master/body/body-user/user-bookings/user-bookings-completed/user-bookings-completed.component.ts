@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {BookingService} from "../../../../../../_services/booking.service";
+import {Hotel} from "../../../../../../_models/hotel";
+import {Account} from "../../../../../../_models/account";
+import {AuthService} from "../../../../../../_services/auth.service";
+import {first} from "rxjs";
+import {Booking} from "../../../../../../_models/booking";
 
 @Component({
   selector: 'app-user-bookings-completed',
@@ -7,9 +12,18 @@ import {BookingService} from "../../../../../../_services/booking.service";
   styleUrls: ['./user-bookings-completed.component.scss']
 })
 export class UserBookingsCompletedComponent implements OnInit {
+  account: Account
+  bookings: Booking[]
+  constructor(private bookingService: BookingService, private authService: AuthService) {
+    authService.getProfile().pipe(first()).subscribe(account => {
+      this.account = account['data']
+      this.bookingService.getBookingByStatus(this.account.id, 1).pipe(first()).subscribe(
+        rs => {
+          this.bookings = rs['data']
+        }
+      )
+    })
 
-  constructor(private bookingService: BookingService) {
-    
   }
 
   ngOnInit(): void {

@@ -12,4 +12,8 @@ export class BookingService {
   getCompletedBooking(userId: number){
     return this.http.get(`${this.baseUrl}/bookings-completed/${userId}`)
   }
+
+  getBookingByStatus(userId: number, status: number){
+    return this.http.get(`${this.baseUrl}/bookings-by-status/${userId}/${status}`)
+  }
 }

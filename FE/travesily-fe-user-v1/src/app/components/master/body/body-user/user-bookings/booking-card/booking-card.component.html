@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card__avatar">
+    <img src="../../../assets/img/ha.JPG" alt="Hotel Image" class="card__avatar--image">
+  </div>
+  <div class="card__title">
+    <h4>{{booking.hotel.name}}</h4>
+    <h5>Booking ID: {{booking.id}}</h5>
+    <h5>{{this.booking.status == 0 ? 'Upcoming' : this.booking.status == 1 ? 'Completed' : 'Cancelled'}}</h5>
+  </div>
+  <div class="card__date">{{booking.checkIn}} | {{booking.checkOut}}</div>
+  <div class="card__review">
+    <a class="btn-review btn-plain">Submit Your Review</a>
+  </div>
+  <div class="card__details">
+    <a class="btn-details btn-fill">View Booking Details</a>
+  </div>
+</div>

@@ -12,7 +12,7 @@ import {BookingService} from "../../../../../_services/booking.service";
   styleUrls: ['./user-vip.component.scss']
 })
 export class UserVipComponent implements OnInit {
-  account: Account
+  account: Account = new Account()
   bookingCount: number = 0
 
   constructor(private authService: AuthService, private alertService: AlertService, private bookingService: BookingService) {
