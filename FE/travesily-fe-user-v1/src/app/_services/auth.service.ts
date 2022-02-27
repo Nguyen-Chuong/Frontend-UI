@@ -28,7 +28,7 @@ export class AuthService {
     return JSON.parse(localStorage.getItem('account'))
   }
 
-  clearAccountStorage(){
+  clearAccountStorage() {
     localStorage.removeItem('account')
   }
 
@@ -39,15 +39,6 @@ export class AuthService {
     localStorage.setItem('account-type', loginInfo['data']['type'].toString())
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()))
   }
-
-  private setAdminSession(loginInfo) {
-    const jwtToken = JSON.parse(atob(loginInfo['data']['jwttoken'].split('.')[1]))
-    const expiresAt = moment().add(jwtToken.exp, 'second')
-    localStorage.setItem('a-token', loginInfo['data']['jwttoken'])
-    localStorage.setItem('account-type', loginInfo['data']['type'].toString())
-    localStorage.setItem("a-expires_at", JSON.stringify(expiresAt.valueOf()))
-  }
-
 
   get authToken() {
     return localStorage.getItem('token')
@@ -60,8 +51,7 @@ export class AuthService {
             throw new Error('Login Failed')
           if (loginInfo['data']['type'] === 0)
             this.setSession(loginInfo)
-          else if (loginInfo['data']['type'] === 1)
-            this.setAdminSession(loginInfo)
+
         }
       ))
   }

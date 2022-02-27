@@ -54,15 +54,9 @@ export class RegisterComponent implements OnInit {
     account.username = val.username
     account.status = 0
 
-    this.authService.generateOtp(account.email).pipe(first()).subscribe(
-      rs => {
-        this.authService.accountStorage = account
-        this.router.navigateByUrl('/authentication/otp-checker')
-      },
-      error => {
-        this.alertService.error(error)
-      }
-    )
+    this.authService.accountStorage = account
+    this.router.navigateByUrl('/authentication/otp-checker')
+
   }
 
   matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {

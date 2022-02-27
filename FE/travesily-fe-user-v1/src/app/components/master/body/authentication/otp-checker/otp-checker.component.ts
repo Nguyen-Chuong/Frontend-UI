@@ -15,6 +15,14 @@ export class OtpCheckerComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router, private alertService: AlertService) {
     this.account = this.authService.accountStorage
+    this.authService.generateOtp(this.account.email).pipe(first()).subscribe(
+      rs => {
+        this.alertService.success('We have sent you an email with OTP code')
+      },
+      error => {
+        this.alertService.error(error)
+      }
+    )
   }
 
   ngOnInit(): void {
@@ -37,14 +45,27 @@ export class OtpCheckerComponent implements OnInit {
                         window.location.reload()
                       })
                     })
-
                 }, error: error => {
                   this.alertService.error('Register Failed')
                 }
               }
             )
+        },
+        error => {
+          this.alertService.error(error)
         }
       )
     }
+  }
+
+  resend() {
+    this.authService.generateOtp(this.account.email).pipe(first()).subscribe(
+      rs => {
+        this.alertService.success('We have sent you a new email with OTP code')
+      },
+      error => {
+        this.alertService.error(error)
+      }
+    )
   }
 }
