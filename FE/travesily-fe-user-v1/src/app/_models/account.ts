@@ -13,4 +13,5 @@ export class Account {
   spend: number
   idVip: Vip
   password: string
+  status: number
 }

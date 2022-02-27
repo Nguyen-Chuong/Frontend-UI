@@ -52,34 +52,18 @@ export class RegisterComponent implements OnInit {
     account.email = val.email
     account.password = val.password
     account.username = val.username
+    account.status = 0
 
-    this.authService.register(account)
-      .pipe(first())
-      .subscribe({
-          next: () => {
-            this.authService.login(account.email, account.password)
-              .pipe(first())
-              .subscribe(() =>{
-                this.router.navigateByUrl('/user/profile').then(() => {
-                  this.alertService.success('Register Successful')
-                  window.location.reload()
-                })
-              })
-
-          }, error: error => {
-            this.alertService.error('Register Failed')
-            this.form.reset()
-          }
-        }
-      )
+    this.authService.generateOtp(account.email).pipe(first()).subscribe(
+      rs => {
+        this.authService.accountStorage = account
+        this.router.navigateByUrl('/authentication/otp-checker')
+      },
+      error => {
+        this.alertService.error(error)
+      }
+    )
   }
-
-  // checkPassword: ValidatorFn = (group: AbstractControl): ValidationErrors | null => {
-  //   let pass = group.get('password').value
-  //   let confirmPass = group.get('confirmPassword').value
-  //   console.log(`${pass} and ${confirmPass}`)
-  //   return pass === confirmPass ? null : {notMatch: true}
-  // }
 
   matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {

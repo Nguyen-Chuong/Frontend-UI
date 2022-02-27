@@ -11,11 +11,25 @@ import {Vip} from "../_models/vip";
 })
 export class AuthService {
   baseUrl = 'http://localhost:8080/api/v1'
-  httpSkip
   private account = new Subject<Account>()
 
-  constructor(private http: HttpClient, handler: HttpBackend) {
-    this.httpSkip = new HttpClient(handler)
+  constructor(private http: HttpClient) {
+  }
+
+  get accountType() {
+    return +localStorage.getItem('account-type')
+  }
+
+  set accountStorage(account: Account) {
+    localStorage.setItem('account', JSON.stringify(account))
+  }
+
+  get accountStorage(): Account {
+    return JSON.parse(localStorage.getItem('account'))
+  }
+
+  clearAccountStorage(){
+    localStorage.removeItem('account')
   }
 
   private setSession(loginInfo) {
@@ -40,7 +54,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    return this.httpSkip.post(`${this.baseUrl}/authenticate/user`, {email, password})
+    return this.http.post(`${this.baseUrl}/authenticate/user`, {email, password}, {withCredentials: false})
       .pipe(tap(loginInfo => {
           if (loginInfo['data'] === null)
             throw new Error('Login Failed')
@@ -53,7 +67,7 @@ export class AuthService {
   }
 
   register(account: Account) {
-    return this.httpSkip.post(`${this.baseUrl}/register/user`, {...account})
+    return this.http.post(`${this.baseUrl}/register/user`, {...account}, {withCredentials: false})
   }
 
   update(account: Account) {
@@ -62,10 +76,6 @@ export class AuthService {
 
   getProfile() {
     return this.http.get<Account>(`${this.baseUrl}/profile/user`)
-  }
-
-  get accountType() {
-    return +localStorage.getItem('account-type')
   }
 
   changePassword(oldPass: string, newPass: string) {
@@ -81,11 +91,11 @@ export class AuthService {
   }
 
   checkUsernameDuplicated(username: string) {
-    return this.httpSkip.get(`${this.baseUrl}/check/user/username/u-${username}`)
+    return this.http.get(`${this.baseUrl}/check/user/username/u-${username}`, {withCredentials: false})
   }
 
   checkEmailDuplicated(email: string) {
-    return this.httpSkip.get(`${this.baseUrl}/check/user/email/${email}`)
+    return this.http.get(`${this.baseUrl}/check/user/email/${email}`, {withCredentials: false})
   }
 
   getVip() {
@@ -98,14 +108,25 @@ export class AuthService {
     localStorage.removeItem("account-type")
   }
 
-  generateOtp(email: number) {
+  generateOtp(email: string) {
     const params = new HttpParams().append('email', email)
-    return this.httpSkip.post(`${this.baseUrl}/generateOtp`, undefined, {params: params})
+    return this.http.post(`${this.baseUrl}/authenticate/generateOtp`, undefined, {
+      params: params,
+      withCredentials: false
+    })
   }
 
   verifyOtp(email: string, otp: string) {
     const params = new HttpParams().append('email', email).append('otp', otp)
-    return this.httpSkip.post(`${this.baseUrl}/verifyOtp`, undefined, {params: params})
+    return this.http.post(`${this.baseUrl}/authenticate/verifyOtp`, undefined, {
+      params: params,
+      withCredentials: false
+    }).pipe(tap(
+      (rs => {
+        if (rs['status'] === 400) {
+          throw new Error(rs['error_message'])
+        }
+      })))
   }
 
   public isLoggedIn() {
