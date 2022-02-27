@@ -29,16 +29,10 @@ public class BookingServiceImpl implements BookingService {
         log.info("Request to get all booking by user id");
         List<UserBooking> list = bookingRepository.findAllByUserId(userId);
 
-        List<UserBookingDTO> userBookingDTOList = list
-                .stream()
+        return list.stream()
                 .map(item -> modelMapper.map(item, UserBookingDTO.class))
                 .collect(Collectors.toList());
 
-        // loop booking dto list to set hotel id
-        for(int i = 0; i < userBookingDTOList.size(); i++){
-            userBookingDTOList.get(i).setHotelId(list.get(i).getHotel().getId());
-        }
-        return userBookingDTOList;
     }
 
     @Override
