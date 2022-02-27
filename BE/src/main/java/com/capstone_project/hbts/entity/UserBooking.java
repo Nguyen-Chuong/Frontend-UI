@@ -42,6 +42,9 @@ public class UserBooking {
     @Column(name = "review_status")
     private int reviewStatus;
 
+    @Column(name = "booking_date")
+    private Timestamp bookingDate;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking_id")
     private Set<Review> listReview;
 
