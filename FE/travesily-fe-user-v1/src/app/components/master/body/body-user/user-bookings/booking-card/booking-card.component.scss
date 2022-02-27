@@ -2,7 +2,7 @@
 
 .card {
   display: grid;
-  grid-template-columns: 20rem auto 20%;
+  grid-template-columns: 20rem auto auto;
   grid-template-rows: 10rem 10rem;
   box-shadow: .2rem .2rem .2rem .2rem rgba($color-grey-dark-2, .5);
   margin-bottom: 1rem;

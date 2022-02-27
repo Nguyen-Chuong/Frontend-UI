@@ -8,9 +8,13 @@
   display: none;
   position: absolute;
   background-color: $color-white;
-  & *{
+  box-shadow: .2rem .1rem .2rem .1rem rgba($color-grey-dark-2, .5);
+  width: 15rem;
+
+  & * {
     display: block;
   }
+
   z-index: 1;
 }
 
@@ -23,12 +27,13 @@
   justify-content: space-between;
   align-items: center;
   height: 5rem;
+  width: 15rem;
   border: none;
   cursor: pointer;
   margin-right: 1rem;
   padding: 0 1rem;
-  //background-color: #fff;
+
   & *:not(:last-child) {
-margin-right: .5rem;
+    margin-right: .5rem;
   }
 }

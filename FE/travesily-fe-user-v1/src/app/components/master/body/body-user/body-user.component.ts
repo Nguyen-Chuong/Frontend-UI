@@ -8,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class BodyUserComponent implements OnInit {
 
   navItems=[
-    {id:'bookings', name:'My Bookings'},
-    {id:'reviews', name:'My Reviews'},
-    {id: 'profile', name:'Profile'},
-    {id: 'vip', name: 'Vip Status'}
+    {id:'/bookings/upcoming', name:'My Bookings'},
+    {id:'/reviews', name:'My Reviews'},
+    {id: '/profile', name:'Profile'},
+    {id: '/vip', name: 'Vip Status'}
   ]
   constructor() { }
 

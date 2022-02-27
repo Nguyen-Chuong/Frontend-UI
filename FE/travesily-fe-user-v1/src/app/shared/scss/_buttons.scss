@@ -66,10 +66,18 @@
 }
 
 .btn-plain {
-padding: 1rem;
+  padding: 1rem;
   font-size: 1.5rem;
   font-weight: 600;
   background-color: #fff;
   color: $color-tertiary;
   border-radius: .3rem;
+}
+
+.btn-logout {
+  background-color: #FF1818;
+}
+
+.btn-md{
+  width: 10rem;
 }
