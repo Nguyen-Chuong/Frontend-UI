@@ -2,13 +2,16 @@ package com.capstone_project.hbts.service.impl;
 
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.entity.UserBooking;
+import com.capstone_project.hbts.entity.UserBookingDetail;
 import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.service.BookingService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,15 +27,35 @@ public class BookingServiceImpl implements BookingService {
         this.modelMapper = modelMapper;
     }
 
+    public BigDecimal countTotalPaidForABooking(UserBooking userBooking){
+        // get list user booking detail
+        Set<UserBookingDetail> userBookingDetails = userBooking.getListUserBookingDetail();
+
+        BigDecimal totalPaid = BigDecimal.valueOf(0);
+
+        for(UserBookingDetail item : userBookingDetails){
+            totalPaid = totalPaid
+                    .add(item.getPaid() // price for each room type
+                            .multiply(BigDecimal.valueOf(item.getQuantity()))); // quantity
+        }
+        return totalPaid;
+    }
+
     @Override
     public List<UserBookingDTO> getAllBookings(int userId) {
         log.info("Request to get all booking by user id");
         List<UserBooking> list = bookingRepository.findAllByUserId(userId);
 
-        return list.stream()
+        List<UserBookingDTO> userBookingDTOList = list.stream()
                 .map(item -> modelMapper.map(item, UserBookingDTO.class))
                 .collect(Collectors.toList());
 
+        for(int i = 0 ; i < list.size(); i++){
+            BigDecimal totalPaid = countTotalPaidForABooking(list.get(i));
+            // set total paid for each user booking
+            userBookingDTOList.get(i).setTotalPaid(totalPaid);
+        }
+        return userBookingDTOList;
     }
 
     @Override
@@ -40,9 +63,16 @@ public class BookingServiceImpl implements BookingService {
         log.info("Request to get all booking need to review or not by user id");
         List<UserBooking> list = bookingRepository.findBookingsReview(reviewStatus, userId);
 
-        return list.stream()
+        List<UserBookingDTO> userBookingDTOList = list.stream()
                 .map(item -> modelMapper.map(item, UserBookingDTO.class))
                 .collect(Collectors.toList());
+
+        for(int i = 0 ; i < list.size(); i++){
+            BigDecimal totalPaid = countTotalPaidForABooking(list.get(i));
+            // set total paid for each user booking
+            userBookingDTOList.get(i).setTotalPaid(totalPaid);
+        }
+        return userBookingDTOList;
     }
 
     @Override
@@ -56,9 +86,16 @@ public class BookingServiceImpl implements BookingService {
         log.info("Request to get all booking by status");
         List<UserBooking> list = bookingRepository.findBookingsByStatus(status, userId);
 
-        return list.stream()
+        List<UserBookingDTO> userBookingDTOList = list.stream()
                 .map(item -> modelMapper.map(item, UserBookingDTO.class))
                 .collect(Collectors.toList());
+
+        for(int i = 0 ; i < list.size(); i++){
+            BigDecimal totalPaid = countTotalPaidForABooking(list.get(i));
+            // set total paid for each user booking
+            userBookingDTOList.get(i).setTotalPaid(totalPaid);
+        }
+        return userBookingDTOList;
     }
 
 }

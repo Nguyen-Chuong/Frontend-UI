@@ -4,6 +4,7 @@ import com.capstone_project.hbts.dto.HotelDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 
 @Data
@@ -21,5 +22,7 @@ public class UserBookingDTO {
     private int reviewStatus;
 
     private HotelDTO hotel;
+
+    private BigDecimal totalPaid;
 
 }
