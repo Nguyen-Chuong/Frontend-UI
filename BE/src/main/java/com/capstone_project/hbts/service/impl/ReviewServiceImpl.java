@@ -37,15 +37,21 @@ public class ReviewServiceImpl implements ReviewService {
     public Page<ReviewDTO> loadReview(int hotelId, Pageable pageable) {
         log.info("Request to get all review by hotel id");
 
+        // get list user booking
         List<UserBooking> userBookingList = bookingRepository.findUserBookingByHotelId(hotelId);
+
+        // add list user booking ids to list
         ArrayList<Integer> listBookingId = new ArrayList<>();
         userBookingList.forEach(item -> listBookingId.add(item.getId()));
 
+        // get page review by list user booking id
         Page<Review> pageReview = reviewRepository.loadReviewByBookingId(listBookingId, pageable);
         List<Review> listReview = new ArrayList<>(pageReview.getContent());
 
-        List<ReviewDTO> reviewDTOList = listReview.stream().map(
-                item -> modelMapper.map(item, ReviewDTO.class)).collect(Collectors.toList());
+        List<ReviewDTO> reviewDTOList = listReview
+                .stream()
+                .map(item -> modelMapper.map(item, ReviewDTO.class))
+                .collect(Collectors.toList());
 
         return new CustomPageImpl<>(reviewDTOList);
     }

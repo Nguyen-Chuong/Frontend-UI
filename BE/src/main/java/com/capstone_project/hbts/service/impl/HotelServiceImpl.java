@@ -70,8 +70,10 @@ public class HotelServiceImpl implements HotelService {
         }
 
         // final result in hotelList
-        List<HotelDTO> hotelDTOList = result.stream().map(
-                item -> modelMapper.map(item, HotelDTO.class)).collect(Collectors.toList());
+        List<HotelDTO> hotelDTOList = result
+                .stream()
+                .map(item -> modelMapper.map(item, HotelDTO.class))
+                .collect(Collectors.toList());
 
         return new CustomPageImpl<>(hotelDTOList);
     }

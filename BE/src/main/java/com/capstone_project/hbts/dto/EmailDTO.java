@@ -5,10 +5,8 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class CityDTO {
+public class EmailDTO {
 
-    private Integer id;
-
-    private String nameCity;
+    // to convert from entity from db, title, content email, etc
 
 }

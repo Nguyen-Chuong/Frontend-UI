@@ -35,7 +35,7 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
-    public List<Email> getContent(String subject) {
+    public List<Email> getContent(String subject) { // change return type to DTO
         log.info("Request to get all email content by subject");
         return emailRepository.findAllBySubject(subject);
     }

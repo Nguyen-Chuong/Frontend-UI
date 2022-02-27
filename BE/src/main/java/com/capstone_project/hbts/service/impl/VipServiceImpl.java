@@ -30,7 +30,8 @@ public class VipServiceImpl implements VipService {
 
         List<Vip> list = vipRepository.findAll();
 
-        return list.stream().map( item -> modelMapper.map(item, VipDTO.class))
+        return list.stream()
+                .map( item -> modelMapper.map(item, VipDTO.class))
                 .collect(Collectors.toList());
     }
 }
