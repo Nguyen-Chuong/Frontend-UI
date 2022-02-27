@@ -4,7 +4,6 @@ import com.capstone_project.hbts.dto.Facility.FacilityDTO;
 import com.capstone_project.hbts.dto.ImageDTO;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
-import com.capstone_project.hbts.entity.Facility;
 import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.FacilityRepository;
 import com.capstone_project.hbts.repository.RoomFacilityRepository;
