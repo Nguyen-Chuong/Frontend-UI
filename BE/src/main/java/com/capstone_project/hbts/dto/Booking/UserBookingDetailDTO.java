@@ -13,8 +13,6 @@ public class UserBookingDetailDTO {
 
     private BigDecimal paid;  // this is the price that user have to pay for this room type, = roomType get price ()
 
-    private int userBookingId;
-
     private int roomTypeId;
 
     private int quantity;
