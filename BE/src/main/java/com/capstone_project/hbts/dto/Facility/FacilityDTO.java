@@ -1,15 +1,15 @@
-package com.capstone_project.hbts.dto;
+package com.capstone_project.hbts.dto.Facility;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class RoomFacilityDTO {
+public class FacilityDTO {
 
     private Integer id;
 
-    private int roomType;
+    private String name;
 
     private int facility;
 

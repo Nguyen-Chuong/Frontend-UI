@@ -1,7 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
-import com.capstone_project.hbts.dto.UserDTO;
+import com.capstone_project.hbts.dto.Actor.UserDTO;
 import com.capstone_project.hbts.dto.VipDTO;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;

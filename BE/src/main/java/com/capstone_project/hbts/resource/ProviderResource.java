@@ -1,7 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
-import com.capstone_project.hbts.dto.ProviderDTO;
+import com.capstone_project.hbts.dto.Actor.ProviderDTO;
 import com.capstone_project.hbts.request.ProviderRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;

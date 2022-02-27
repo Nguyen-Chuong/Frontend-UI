@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.service;
 
-import com.capstone_project.hbts.dto.UserBookingDTO;
+import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 
 import java.util.List;
 

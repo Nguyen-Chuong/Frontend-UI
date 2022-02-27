@@ -1,4 +1,4 @@
-package com.capstone_project.hbts.dto;
+package com.capstone_project.hbts.dto.Room;
 
 import com.capstone_project.hbts.entity.Facility;
 import com.capstone_project.hbts.entity.Image;

@@ -1,5 +1,6 @@
-package com.capstone_project.hbts.dto;
+package com.capstone_project.hbts.dto.Actor;
 
+import com.capstone_project.hbts.dto.VipDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

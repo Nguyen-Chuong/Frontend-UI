@@ -1,4 +1,4 @@
-package com.capstone_project.hbts.dto;
+package com.capstone_project.hbts.dto.Actor;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

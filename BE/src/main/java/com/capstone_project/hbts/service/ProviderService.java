@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.service;
 
-import com.capstone_project.hbts.dto.ProviderDTO;
+import com.capstone_project.hbts.dto.Actor.ProviderDTO;
 import com.capstone_project.hbts.request.ProviderRequest;
 
 public interface ProviderService {

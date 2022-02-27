@@ -1,8 +1,8 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
-import com.capstone_project.hbts.dto.RoomDetailDTO;
-import com.capstone_project.hbts.dto.RoomTypeDTO;
+import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
+import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.RoomTypeService;
 import lombok.extern.log4j.Log4j2;
