@@ -28,7 +28,7 @@ public class EmailResource {
         this.otpService = otpService;
     }
 
-    @PostMapping("/generateOtp")
+    @PostMapping("authenticate/generateOtp")
     public ResponseEntity<?> generateOtp(@RequestParam String email){
         log.info("REST request to generate otp and send email to user");
 
@@ -46,7 +46,7 @@ public class EmailResource {
         }
     }
 
-    @PostMapping("/verifyOtp")
+    @PostMapping("authenticate/verifyOtp")
     public ResponseEntity<?> verifyOtp(@RequestParam String email, @RequestParam int otp){
         log.info("REST request to verify otp that user sent");
 
