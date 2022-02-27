@@ -25,4 +25,6 @@ public class UserBookingDTO {
 
     private BigDecimal totalPaid;
 
+    private Timestamp bookingDate;
+
 }
