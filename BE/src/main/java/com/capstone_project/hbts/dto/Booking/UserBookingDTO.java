@@ -1,6 +1,5 @@
 package com.capstone_project.hbts.dto.Booking;
 
-import com.capstone_project.hbts.dto.HotelDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -20,6 +19,6 @@ public class UserBookingDTO {
 
     private int reviewStatus;
 
-    private HotelDTO hotel;
+    private int hotelId;
 
 }

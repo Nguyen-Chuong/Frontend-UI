@@ -1,7 +1,7 @@
 package com.capstone_project.hbts.dto.Room;
 
-import com.capstone_project.hbts.entity.Facility;
-import com.capstone_project.hbts.entity.Image;
+import com.capstone_project.hbts.dto.Facility.FacilityDTO;
+import com.capstone_project.hbts.dto.ImageDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,8 +18,8 @@ public class RoomDetailDTO {
 
     private String name;
 
-    private Set<Image> listImage;
+    private Set<ImageDTO> listImage;
 
-    private List<Facility> listFacility;
+    private List<FacilityDTO> listFacility;
 
 }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 @Log4j2
@@ -29,9 +30,15 @@ public class BookingServiceImpl implements BookingService {
         log.info("Request to get all booking by user id");
         List<UserBooking> list = bookingRepository.findAllByUserId(userId);
 
-        return list.stream().map(
+        List<UserBookingDTO> userBookingDTOList = list.stream().map(
                 item -> modelMapper.map(item, UserBookingDTO.class)
         ).collect(Collectors.toList());
+
+        // loop booking dto list to set hotel id
+        for(int i = 0; i < userBookingDTOList.size(); i++){
+            userBookingDTOList.get(i).setHotelId(list.get(i).getHotel().getId());
+        }
+        return userBookingDTOList;
     }
 
     @Override

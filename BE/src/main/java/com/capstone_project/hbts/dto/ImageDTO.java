@@ -11,6 +11,4 @@ public class ImageDTO {
 
     private String src;
 
-    private int roomType;
-
 }

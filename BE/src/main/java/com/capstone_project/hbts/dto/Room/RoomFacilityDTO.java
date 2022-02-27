@@ -9,8 +9,8 @@ public class RoomFacilityDTO {
 
     private Integer id;
 
-    private int roomType;
+    private int roomTypeId;
 
-    private int facility;
+    private int facilityId;
 
 }

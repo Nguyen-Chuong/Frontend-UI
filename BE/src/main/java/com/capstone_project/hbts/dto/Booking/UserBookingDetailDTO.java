@@ -13,9 +13,9 @@ public class UserBookingDetailDTO {
 
     private BigDecimal paid;
 
-    private int userBooking;
+    private int userBookingId;
 
-    private int roomType;
+    private int roomTypeId;
 
     private int quantity;
 

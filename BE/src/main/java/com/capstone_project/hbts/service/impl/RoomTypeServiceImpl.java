@@ -1,5 +1,7 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.Facility.FacilityDTO;
+import com.capstone_project.hbts.dto.ImageDTO;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
 import com.capstone_project.hbts.entity.Facility;
@@ -13,6 +15,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -76,15 +79,24 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         // get room type by id
         RoomType roomType = roomTypeRepository.getById(roomTypeId);
 
+        // get set image from this room type and transfer to DTO
+        Set<ImageDTO> imageDTOSet = roomType.getListImage()
+                .stream()
+                .map(item -> modelMapper.map(item, ImageDTO.class))
+                .collect(Collectors.toSet());
+
         // get list facility id from room facility
         List<Integer> listFacilityId = roomFacilityRepository.getAllFacilityIdByRoomTypeId(roomTypeId);
 
-        // select all facility from facility table by list facility ids
-        List<Facility> facilityList = facilityRepository.findAllById(listFacilityId);
+        // select all facility from facility table by list facility ids and convert to DTO
+        List<FacilityDTO> facilityDTOList = facilityRepository.findAllById(listFacilityId)
+                .stream()
+                .map(item -> modelMapper.map(item, FacilityDTO.class))
+                .collect(Collectors.toList());
 
         // convert to DTO
         return new RoomDetailDTO(roomType.getId(), roomType.getName(),
-                roomType.getListImage(), facilityList);
+                imageDTOSet, facilityDTOList);
 
     }
 
