@@ -1,11 +1,14 @@
 <div class="user">
   <button class="btn-dropdown" (click)="dropdown()">
     <img src="../../../assets/img/ha.JPG" alt="H" class="user-avatar">
-    <p class="user__name">{{account['username']?.slice(2, account['username']?.length)}}</p>
+<!--    <p class="user__name">{{account['username']?.slice(2, account['username']?.length)}}</p>-->
+    <p class="user__name">{{account['firstname']}}</p>
     <i class="arrow down"></i>
   </button>
   <div id="user-dropdown" class="dropdown-content">
-    <a (click)="logout()" class="dropdown-button">Logout</a>
-    <a [routerLink]="['/user']" class="dropdown-button">User Info</a>
+    <a [routerLink]="['/user/bookings/upcoming']" class="btn-plain">My Bookings</a>
+    <a [routerLink]="['/user/profile']" class="btn-plain">User Info</a>
+    <a [routerLink]="['/user/reviews']" class="btn-plain">Reviews</a>
+    <a (click)="logout()" class="btn-fill btn-logout">Logout</a>
   </div>
 </div>
