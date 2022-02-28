@@ -1,8 +1,10 @@
 package com.capstone_project.hbts.service.impl;
 
 import com.capstone_project.hbts.dto.Actor.UserDTO;
+import com.capstone_project.hbts.entity.Role;
 import com.capstone_project.hbts.entity.Users;
 import com.capstone_project.hbts.repository.BookingRepository;
+import com.capstone_project.hbts.repository.RoleRepository;
 import com.capstone_project.hbts.repository.UserRepository;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.service.UserService;
@@ -22,10 +24,14 @@ public class UserServiceImpl implements UserService {
 
     private final BookingRepository bookingRepository;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, BookingRepository bookingRepository) {
+    private final RoleRepository roleRepository;
+
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper,
+                           BookingRepository bookingRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.bookingRepository = bookingRepository;
+        this.roleRepository = roleRepository;
     }
 
     @Override
@@ -35,6 +41,12 @@ public class UserServiceImpl implements UserService {
         Users newUser = modelMapper.map(userRequest, Users.class);
         newUser.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
         userRepository.save(newUser);
+//        Set<Role> setRole = new HashSet<>(); // in case add many role
+//        Role role = new Role(newUser, "ROLE_MANAGER");
+//        setRole.add(role);
+//        roleRepository.saveAll(setRole);
+        Role role = new Role(newUser, "ROLE_USER");
+        roleRepository.save(role);
     }
 
     @Override

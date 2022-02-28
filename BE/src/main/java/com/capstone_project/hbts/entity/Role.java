@@ -23,7 +23,7 @@ import javax.persistence.Table;
 public class Role {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @ManyToOne
@@ -34,5 +34,10 @@ public class Role {
     // only user has role format like this can be processed in spring security
     @Column(name = "role_name")
     private String name;
+
+    public Role(Users users, String name) {
+        this.users = users;
+        this.name = name;
+    }
 
 }
