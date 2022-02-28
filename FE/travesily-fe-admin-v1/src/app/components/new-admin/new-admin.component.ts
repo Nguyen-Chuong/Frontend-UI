@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthServiceService } from 'src/app/auth-service.service';
+import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-new-admin',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewAdminComponent implements OnInit {
 
-  constructor() { }
+  formGroup!: FormGroup;
+  constructor(private authService: AuthServiceService,
+    private router: Router,
+    private notificationService: NotificationService) {
+  }
 
   ngOnInit(): void {
   }
 
+  addAdmin(){
+
+  }
 }

@@ -15,7 +15,6 @@ export class ChangePasswordComponent implements OnInit {
 
   account: Account = new Account;
   formGroup!: FormGroup;
-  isNotPassword= false
   passNotMatch= false
   constructor(private authService: AuthServiceService,
     private router: Router,
@@ -35,22 +34,18 @@ export class ChangePasswordComponent implements OnInit {
 
   changePassword() {
     const val = this.formGroup.value
-    if (this.account.password === val.password) {
       if (val.newPassword === val.confirmNewPassword) {
         this.authService.changePassword(val.password, val.newPassword).pipe(first()).subscribe({
           next: () => {
             this.notificationService.onSuccess('Change Password successfully');
+            window.location.reload()
           }, error: err => {
             this.notificationService.onError('Change Password false')
           }
         })
       }else{
-        this.passNotMatch = true
+        this.passNotMatch = !this.passNotMatch
       }
-    }else{
-      console.log(val.password)
-      console.log(this.account.password)
-      this.isNotPassword = true
-    }
+
   }
 }

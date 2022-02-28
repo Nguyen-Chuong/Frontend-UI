@@ -8,28 +8,28 @@ import { Account } from './_models/account';
   providedIn: 'root'
 })
 export class AuthServiceService {
-  baseUrl = 'http://localhost:8080'
+  baseUrl = 'http://localhost:8080/api/v1'
   isLoggedIn$ = false
+  httpSkip: any;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+   }
 
   update(account: Account) {
-    return this.http.patch(`${this.baseUrl}/update-profile`, {...account})
+    return this.http.patch(`${this.baseUrl}/update-profile`, { ...account })
   }
 
 
   logout() {
-    localStorage.removeItem("token");
-    localStorage.removeItem("expires_at");
-
+    localStorage.removeItem("a-token");
   }
 
   changePassword(oldPass: string, newPass: string) {
     const params = new HttpParams().append('oldPass', oldPass).append('newPass', newPass)
-    return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params})
+    return this.http.patch(`${this.baseUrl}/change-password`, undefined, { params: params })
       .pipe(first(),
         tap(rs => {
-          if(rs['status'] !== 200){
+          if (rs['status'] !== 200) {
             throw new Error(rs['error_message'])
           }
         }))
@@ -39,6 +39,13 @@ export class AuthServiceService {
   public isLoggedOut() {
     return !this.isLoggedIn$
   }
+
+  getToken() {
+    return this.http.get(`${this.baseUrl}/authenticate/admin`).pipe(first()).subscribe(token => {
+      localStorage.setItem('a-token', token['data'])
+    })
+  }
+
 
   get authToken() {
     return localStorage.getItem('a-token')

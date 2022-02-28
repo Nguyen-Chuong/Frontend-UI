@@ -1,11 +1,11 @@
-.hotels-approve{
+.user-detail{
   display: flex;
 }
 .menu-list{
   width: 20%;
   height: 100%;
 }
-.hotels {
+.user {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -13,14 +13,6 @@
   margin: 20px auto;
   padding-top: 90px;
 }
-table{
+.mat-tab-group {
   width: 100%;
-}
-
-.mat-elevation-z8{
-  width: 100%;
-}
-
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
 }

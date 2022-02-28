@@ -1,3 +1,5 @@
+import { UserDetailComponent } from './components/user-detail/user-detail.component';
+import { NewAdminComponent } from './components/new-admin/new-admin.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
 import { TaskbarComponent } from './components/taskbar/taskbar.component';
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
@@ -7,6 +9,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HistoryComponent } from './components/history/history.component';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   {
@@ -36,6 +39,18 @@ const routes: Routes = [
   {
     path: 'admin-profile',
     component: AdminProfileComponent,
+  },
+  {
+    path: 'new-admin',
+    component: NewAdminComponent,
+  },
+  {
+    path: 'user',
+    component: UserComponent,
+  },
+  {
+    path: 'user-detail',
+    component: UserDetailComponent,
   },
 ];
 
