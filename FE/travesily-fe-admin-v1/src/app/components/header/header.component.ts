@@ -22,8 +22,17 @@ export class HeaderComponent implements OnInit {
     })
   }
 
+  public openAddAdmin(){
+    this.router.navigateByUrl('/new-admin');
+  }
+
   public openProfile(){
     this.router.navigateByUrl('/admin-profile');
+  }
+
+  public logout(){
+    this.authService.logout()
+    window.location.href = 'http://localhost:4200'
   }
 
   // To open the url in the blank page.

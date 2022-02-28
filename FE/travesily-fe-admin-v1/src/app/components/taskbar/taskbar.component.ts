@@ -30,6 +30,10 @@ export class TaskbarComponent implements OnInit {
     this.router.navigate(['/booking']);
   }
 
+  openUserList(): void{
+    this.router.navigate(['/user']);
+  }
+
   logout(): void{
     this.authService.logout();
     this.authService.isLoggedOut();
