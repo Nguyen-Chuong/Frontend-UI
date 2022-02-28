@@ -47,14 +47,14 @@ public class EmailResource {
     }
 
     @PostMapping("authenticate/verifyOtp")
-    public ResponseEntity<?> verifyOtp(@RequestParam String email, @RequestParam int otp){
+    public ResponseEntity<?> verifyOtp(@RequestParam String email,
+                                       @RequestParam int otp){
         log.info("REST request to verify otp that user sent");
 
         try {
             // verify otp and otpCache
-            int otpVerify = otp;
             int serverOtp = otpService.getOtp(email);
-            if(otpVerify <= 0){
+            if(otp <= 0){
                 return ResponseEntity.badRequest()
                         .body(new ApiResponse<>(400, null,
                                 ErrorConstant.ERR_OTP_001, ErrorConstant.ERR_OTP_001_LABEL));
@@ -64,7 +64,7 @@ public class EmailResource {
                         .body(new ApiResponse<>(400, null,
                                 ErrorConstant.ERR_OTP_002, ErrorConstant.ERR_OTP_002_LABEL));
             }
-            if(otpVerify == serverOtp){
+            if(otp == serverOtp){
                 otpService.clearOtp(email);
                 return ResponseEntity.ok()
                         .body(new ApiResponse<>(200, null,

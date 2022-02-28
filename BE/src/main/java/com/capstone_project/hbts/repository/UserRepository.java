@@ -54,4 +54,11 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
             @Param("idVip") int idVip,
             @Param("userId") int userId);
 
+    @Modifying
+    @Query(value = "UPDATE capstone.users SET password = :newPass WHERE capstone.users.email = :email",
+            nativeQuery = true)
+    void changeForgotPassword(
+            @Param("email") String email,
+            @Param("newPass") String newPass);
+
 }

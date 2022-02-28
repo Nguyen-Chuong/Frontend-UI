@@ -60,4 +60,11 @@ public interface UserService {
      */
     void updateVipStatus(int userId);
 
+    /**
+     * Change forgot password
+     * @param email
+     * @param newPass
+     */
+    void changeForgotPassword(String email, String newPass);
+
 }

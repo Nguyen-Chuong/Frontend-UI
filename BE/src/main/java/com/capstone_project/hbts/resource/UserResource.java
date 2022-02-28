@@ -9,7 +9,6 @@ import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -220,6 +219,33 @@ public class UserResource {
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
+    }
+
+    /**
+     * @param email
+     * @param newPass
+     * return
+     */
+    @PatchMapping("/authenticate/forgot-password")
+    public ResponseEntity<?> changePassword(@RequestParam String email,
+                                            @RequestParam String newPass){
+        log.info("REST request to change user's password cuz they forgot them :) !");
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String newPasswordEncoded = bCryptPasswordEncoder.encode(newPass);
+
+        try {
+            userService.changeForgotPassword(email, newPasswordEncoded);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+
     }
 
 }

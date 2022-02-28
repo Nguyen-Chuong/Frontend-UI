@@ -119,4 +119,11 @@ public class UserServiceImpl implements UserService {
         userRepository.updateVipStatus(vipId, userId);
     }
 
+    @Override
+    @Transactional
+    public void changeForgotPassword(String email, String newPass) {
+        log.info("Request to change user's password that forgot");
+        userRepository.changeForgotPassword(email, newPass);
+    }
+
 }
