@@ -1,6 +1,8 @@
 package com.capstone_project.hbts.repository;
 
 import com.capstone_project.hbts.entity.UserBooking;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -29,5 +31,7 @@ public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
     @Query(value = "SELECT * from capstone.user_booking WHERE status = :status and user_id = :userId", nativeQuery = true)
     List<UserBooking> findBookingsByStatus(@Param("status") int status,
                                          @Param("userId") int userId);
+
+    Page<UserBooking> findAllByOrderByBookingDateDesc(Pageable pageable);
 
 }

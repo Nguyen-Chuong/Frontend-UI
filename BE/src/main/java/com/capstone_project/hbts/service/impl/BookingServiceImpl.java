@@ -1,12 +1,16 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.Booking.ListBookingDTO;
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.entity.UserBooking;
 import com.capstone_project.hbts.entity.UserBookingDetail;
 import com.capstone_project.hbts.repository.BookingRepository;
+import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.BookingService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
@@ -96,6 +100,24 @@ public class BookingServiceImpl implements BookingService {
             userBookingDTOList.get(i).setTotalPaid(totalPaid);
         }
         return userBookingDTOList;
+    }
+
+    @Override
+    public Page<ListBookingDTO> getAllBookingForAdmin(Pageable pageable) {
+        log.info("Request to get all booking for admin paging");
+        Page<UserBooking> userBookingPage = bookingRepository.findAllByOrderByBookingDateDesc(pageable);
+
+        List<UserBooking> userBookingList = userBookingPage.getContent();
+
+        List<ListBookingDTO> listBookingDTOList = userBookingList.stream()
+                .map(item -> modelMapper.map(item, ListBookingDTO.class))
+                .collect(Collectors.toList());
+
+        for(int i = 0; i < listBookingDTOList.size(); i++){
+            listBookingDTOList.get(i).setUsername(userBookingList.get(i).getUsers().getUsername());
+        }
+
+        return new CustomPageImpl<>(listBookingDTOList);
     }
 
 }
