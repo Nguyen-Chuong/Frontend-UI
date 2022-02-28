@@ -86,7 +86,8 @@ public class Users {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "receiver")
     private Set<Feedback> listResponseFeedback;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    // EAGER loading to get list role when load user outside session in hibernate
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "users")
     private Set<Role> listRole;
 
 }

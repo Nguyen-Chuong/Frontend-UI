@@ -9,6 +9,7 @@ import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +44,8 @@ public class UserResource {
     // may raw adding but need to think 'bout encrypt password
     // admin account cannot be registered
     @PostMapping("/register/user")
+//    @PreAuthorize("hasRole('ROLE_ADMIN')") // get via table role
+//    @PreAuthorize("hasAuthority('ADMIN')") // get via table authority
     public ResponseEntity<?> register(@RequestBody UserRequest userRequest){
         log.info("REST request to register a new user : {}", userRequest);
 

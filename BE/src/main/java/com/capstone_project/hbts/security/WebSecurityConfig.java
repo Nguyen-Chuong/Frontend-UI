@@ -59,6 +59,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable()
                 // dont authenticate this request
                 .authorizeRequests()
+                // can authorize here by urls .hasRole("NAME") or pre-authorize in resource
                 .antMatchers("/api/v1/authenticate/**").permitAll()
                 .antMatchers("/api/v1/register/**").permitAll()
                 .antMatchers("/api/v1/check/**").permitAll()
