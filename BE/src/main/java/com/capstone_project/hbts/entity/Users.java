@@ -86,4 +86,7 @@ public class Users {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "receiver")
     private Set<Feedback> listResponseFeedback;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+    private Set<Role> listRole;
+
 }
