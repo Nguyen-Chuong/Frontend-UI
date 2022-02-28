@@ -146,6 +146,8 @@ public class UserServiceImpl implements UserService {
         Users newManager = modelMapper.map(managerRequest, Users.class);
         newManager.setPassword(bCryptPasswordEncoder.encode(managerRequest.getPassword()));
         userRepository.save(newManager);
+        Role role = new Role(newManager, "ROLE_MANAGER");
+        roleRepository.save(role);
     }
 
 }
