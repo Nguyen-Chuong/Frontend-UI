@@ -61,6 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 // can authorize here by urls .hasRole("NAME") or pre-authorize in resource
                 .antMatchers("/api/v1/authenticate/**").permitAll()
+                .antMatchers("/api/v1/public/**").permitAll() // APIs for guests can call
                 .antMatchers("/api/v1/register/**").permitAll()
                 .antMatchers("/api/v1/check/**").permitAll()
                 // all other requests need to be authenticated

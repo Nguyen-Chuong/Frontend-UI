@@ -40,7 +40,7 @@ public class HotelResource {
      * @param pageSize
      * @return
      */
-    @GetMapping("/search-hotel")
+    @GetMapping("/public/search-hotel")
     public ResponseEntity<?> searchHotel(@RequestParam int districtId,
                                          @RequestParam Date dateIn,
                                          @RequestParam Date dateOut,
