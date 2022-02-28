@@ -1,5 +1,8 @@
 @import "../../../../shared/scss/main";
-.user{
-  display: flex;
-  justify-content: space-between;
+.user-login{
+  & *{
+    margin-left: 2rem;
+    display: inline-block;
+    text-align: center;
+  }
 }

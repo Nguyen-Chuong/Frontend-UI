@@ -13,12 +13,12 @@ import {first} from "rxjs";
 export class UserComponent implements OnInit {
   account: Account = new Account()
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
     })
-    window.onclick = function(event) {
-      if (!event.target.matches('.btn-dropdown *')&&!event.target.matches('.btn-dropdown')) {
+    window.onclick = function (event) {
+      if (!event.target.matches('.btn-dropdown *') && !event.target.matches('.btn-dropdown')) {
         document.getElementById("user-dropdown").classList.remove('show')
       }
     }
@@ -29,13 +29,17 @@ export class UserComponent implements OnInit {
 
   logout() {
     this.authService.logout()
-    window.location.reload()
+    this.router.navigateByUrl('/home').then(() => {
+      window.location.reload()
+    })
+
   }
 
 
   dropdown() {
     document.getElementById("user-dropdown").classList.toggle("show");
   }
+
 // Close the dropdown menu if the user clicks outside of it
 
 }

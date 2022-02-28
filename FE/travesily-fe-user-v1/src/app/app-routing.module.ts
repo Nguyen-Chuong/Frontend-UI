@@ -26,6 +26,7 @@ import {
   ForgotPasswordComponent
 } from "./components/master/body/authentication/forgot-password/forgot-password.component";
 import {OtpCheckerComponent} from "./components/master/body/authentication/otp-checker/otp-checker.component";
+import {NewPasswordComponent} from "./components/master/body/authentication/new-password/new-password.component";
 
 const routes: Routes = [
   {
@@ -37,6 +38,7 @@ const routes: Routes = [
           {path: 'register', component: RegisterComponent},
           {path: 'forgot-password', component: ForgotPasswordComponent},
           {path: 'otp-checker', component: OtpCheckerComponent},
+          {path: 'new-password', component: NewPasswordComponent}
         ]
       },
       {

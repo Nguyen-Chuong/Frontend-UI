@@ -14,7 +14,6 @@
     list-style: none;
     display: flex;
     justify-content: space-between;
-    flex-basis: 40%;
 
     &--item{
     }
@@ -32,7 +31,6 @@
 
   &__user{
     margin-left: auto;
-    height: 100%;
   }
 }
 
