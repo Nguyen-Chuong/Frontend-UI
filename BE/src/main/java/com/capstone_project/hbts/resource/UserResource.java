@@ -3,12 +3,14 @@ package com.capstone_project.hbts.resource;
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.Actor.UserDTO;
 import com.capstone_project.hbts.dto.VipDTO;
+import com.capstone_project.hbts.request.ManagerRequest;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -59,7 +61,7 @@ public class UserResource {
                             ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
         }
         try {
-            // type 0 is normal user and 1 is admin, register is always user
+            // type 0 is normal user, 1 is manager and 2 admin, register is always user
             userRequest.setType(0);
             // name prefix for user table
             userRequest.setUsername("u-" + userRequest.getUsername());
@@ -245,7 +247,38 @@ public class UserResource {
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
         }
+    }
 
+    @PostMapping("/add-manager")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> register(@RequestBody ManagerRequest managerRequest){
+        log.info("REST request to add a new manager : {}", managerRequest);
+
+        if(userService.isEmailExist(managerRequest.getEmail())){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL));
+        }
+        if(userService.isUsernameExist("u-" + managerRequest.getUsername())){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
+        }
+        try {
+            // type 0 is normal user, 1 is manager and 2 admin, register is always user
+            managerRequest.setType(1);
+            // name prefix for user table
+            managerRequest.setUsername("u-" + managerRequest.getUsername());
+            userService.addNewManager(managerRequest);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
     }
 
 }

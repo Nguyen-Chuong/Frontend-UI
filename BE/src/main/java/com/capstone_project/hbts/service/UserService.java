@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.service;
 
 import com.capstone_project.hbts.dto.Actor.UserDTO;
+import com.capstone_project.hbts.request.ManagerRequest;
 import com.capstone_project.hbts.request.UserRequest;
 
 public interface UserService {
@@ -66,5 +67,11 @@ public interface UserService {
      * @param newPass
      */
     void changeForgotPassword(String email, String newPass);
+
+    /**
+     * Add new manager
+     * @param managerRequest
+     */
+    void addNewManager(ManagerRequest managerRequest);
 
 }
