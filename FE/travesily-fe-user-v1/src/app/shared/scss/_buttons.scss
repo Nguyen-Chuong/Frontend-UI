@@ -1,22 +1,3 @@
-.btn-login {
-  background: #8f3682;
-  background-image: -webkit-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
-  background-image: -moz-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
-  background-image: -ms-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
-  background-image: -o-linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
-  background-image: linear-gradient(45deg, rgba($color-primary, .3), rgba($color-secondary, .4));
-  //-webkit-border-radius: 13;
-  //-moz-border-radius: 13;
-  border: 1px solid #fff;
-  border-radius: 1rem;
-  font-family: Arial;
-  color: #ffffff;
-  font-size: 1.8rem;
-  padding: 1rem 2rem 1rem 2rem;
-  text-decoration: none;
-  cursor: pointer;
-}
-
 .btn-guest-modifier {
   font-size: 1.8rem;
   padding: 1rem;
@@ -59,7 +40,7 @@
 .btn-fill {
   padding: 1rem;
   font-size: 1.5rem;
-  font-weight: 400;
+  font-weight: 900;
   background-color: $color-tertiary;
   color: #fff;
   border-radius: .3rem;
@@ -80,4 +61,20 @@
 
 .btn-md{
   width: 10rem;
+}
+
+.btn-purple{
+  background-color: #11468F;
+}
+
+.btn-blue{
+  background-color: #2666CF;
+}
+
+.btn-green{
+  background-color: #2EB086;
+}
+
+.btn-orange{
+  background-color: #F76E11;
 }

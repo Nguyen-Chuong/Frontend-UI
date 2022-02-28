@@ -12,12 +12,12 @@
                               [control]="form?.controls['password']!"></app-authentication-input>
   </div>
   <div class="form-submit">
-    <button  class="btn-login" [disabled]="form.invalid">
+    <button  class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">
       Login
     </button>
   </div>
   <div class="form-redirection">
-    <a routerLink="../register" class="">Register</a>
-    <a routerLink="../forgot-password" class="">Forgot Password?</a>
+    <a routerLink="../register" class="register">Register</a>
+    <a routerLink="../forgot-password" class="forgot">Forgot Password?</a>
   </div>
 </form>

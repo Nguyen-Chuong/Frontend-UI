@@ -19,19 +19,31 @@ export class AuthService {
   get accountType() {
     return +localStorage.getItem('account-type')
   }
-
+//Save account to local storage
   set accountStorage(account: Account) {
     localStorage.setItem('account', JSON.stringify(account))
   }
-
+//Get account from local storage
   get accountStorage(): Account {
     return JSON.parse(localStorage.getItem('account'))
   }
-
+//Get email from local storage
+  get emailStorage(): string {
+    return localStorage.getItem('email')
+  }
+//Save email to local storage
+  set emailStorage(email: string) {
+    localStorage.setItem('email', email)
+  }
+//Remove account from local storage
   clearAccountStorage() {
     localStorage.removeItem('account')
   }
-
+//Remove email from local storage
+  clearEmailStorage() {
+    localStorage.removeItem('email')
+  }
+//Save jwt to local storage
   private setSession(loginInfo) {
     const jwtToken = JSON.parse(atob(loginInfo['data']['jwttoken'].split('.')[1]))
     const expiresAt = moment().add(jwtToken.exp, 'second')
@@ -39,11 +51,11 @@ export class AuthService {
     localStorage.setItem('account-type', loginInfo['data']['type'].toString())
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()))
   }
-
+//Get jwt token from local storage
   get authToken() {
     return localStorage.getItem('token')
   }
-
+//Login account
   login(email: string, password: string) {
     return this.http.post(`${this.baseUrl}/authenticate/user`, {email, password}, {withCredentials: false})
       .pipe(tap(loginInfo => {
@@ -55,19 +67,19 @@ export class AuthService {
         }
       ))
   }
-
+//Register new account
   register(account: Account) {
     return this.http.post(`${this.baseUrl}/register/user`, {...account}, {withCredentials: false})
   }
-
+//Update user's info
   update(account: Account) {
     return this.http.patch(`${this.baseUrl}/update-profile`, {...account})
   }
-
+//Get user profile detail
   getProfile() {
     return this.http.get<Account>(`${this.baseUrl}/profile/user`)
   }
-
+//Change user password
   changePassword(oldPass: string, newPass: string) {
     const params = new HttpParams().append('oldPass', oldPass).append('newPass', newPass)
     return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params})
@@ -79,25 +91,33 @@ export class AuthService {
         }))
 
   }
-
+//Reset password with given email and newPass
+  resetPassword(email: string, newPass: string) {
+    const params = new HttpParams().append('email', email).append('newPass', newPass)
+    return this.http.patch(`${this.baseUrl}/authenticate/forgot-password`, undefined, {
+      params: params,
+      withCredentials: false
+    })
+  }
+//Check if username is duplicated
   checkUsernameDuplicated(username: string) {
     return this.http.get(`${this.baseUrl}/check/user/username/u-${username}`, {withCredentials: false})
   }
-
+//Check if email is duplicated
   checkEmailDuplicated(email: string) {
     return this.http.get(`${this.baseUrl}/check/user/email/${email}`, {withCredentials: false})
   }
-
+//Get VIP info
   getVip() {
     return this.http.get(`${this.baseUrl}/vip-info`)
   }
-
+//Logout remove account info from local storage
   logout() {
     localStorage.removeItem('token')
     localStorage.removeItem("expires_at")
     localStorage.removeItem("account-type")
   }
-
+//Generate random OTP send to an email
   generateOtp(email: string) {
     const params = new HttpParams().append('email', email)
     return this.http.post(`${this.baseUrl}/authenticate/generateOtp`, undefined, {
@@ -105,7 +125,7 @@ export class AuthService {
       withCredentials: false
     })
   }
-
+//Verify if OTP is correct
   verifyOtp(email: string, otp: string) {
     const params = new HttpParams().append('email', email).append('otp', otp)
     return this.http.post(`${this.baseUrl}/authenticate/verifyOtp`, undefined, {
