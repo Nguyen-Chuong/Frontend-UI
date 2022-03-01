@@ -34,4 +34,15 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
             @Param("address") String address,
             @Param("id") Integer id);
 
+    @Modifying
+    @Query(value = "UPDATE capstone.provider SET password = :newPass WHERE capstone.provider.username = :username",
+            nativeQuery = true)
+    void changePass(
+            @Param("username") String username,
+            @Param("newPass") String newPass);
+
+    @Query(value = "SELECT password from capstone.provider WHERE capstone.provider.username = :username",
+            nativeQuery = true)
+    String getOldPassword(@Param("username") String username);
+
 }

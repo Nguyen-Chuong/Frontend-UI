@@ -41,4 +41,17 @@ public interface ProviderService {
      */
     void updateProviderProfile(ProviderDTO providerDTO);
 
+    /**
+     * Change provider 's password
+     * @param username
+     * @param newPass
+     */
+    void changeProviderPassword(String username, String newPass);
+
+    /**
+     * Get old password
+     * @param username
+     */
+    String getOldPassword(String username);
+
 }

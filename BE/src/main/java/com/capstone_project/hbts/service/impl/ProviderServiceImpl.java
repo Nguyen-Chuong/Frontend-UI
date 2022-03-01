@@ -72,4 +72,17 @@ public class ProviderServiceImpl implements ProviderService {
                 providerDTO.getAddress(), providerDTO.getId());
     }
 
+    @Override
+    @Transactional
+    public void changeProviderPassword(String username, String newPass) {
+        log.info("Request to change provider's password");
+        providerRepository.changePass(username, newPass);
+    }
+
+    @Override
+    public String getOldPassword(String username) {
+        log.info("Request to get provider's old password");
+        return providerRepository.getOldPassword(username);
+    }
+
 }

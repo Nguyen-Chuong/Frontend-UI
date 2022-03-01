@@ -45,7 +45,6 @@ public class UserResource {
     // may raw adding but need to think 'bout encrypt password
     // admin account cannot be registered
     @PostMapping("/register/user")
-//    @PreAuthorize("hasRole('ROLE_ADMIN')") // get via table role
 //    @PreAuthorize("hasAuthority('ADMIN')") // get via table authority
     public ResponseEntity<?> register(@RequestBody UserRequest userRequest){
         log.info("REST request to register a new user : {}", userRequest);
@@ -107,7 +106,7 @@ public class UserResource {
      * @param newPass
      * return
      */
-    @PatchMapping("/change-password")
+    @PatchMapping("/change-password/user")
     public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String jwttoken,
                                          @RequestParam String oldPass,
                                          @RequestParam String newPass){
@@ -125,7 +124,7 @@ public class UserResource {
                             ErrorConstant.ERR_USER_001, ErrorConstant.ERR_USER_001_LABEL));
         }else {
             try {
-                userService.changePassword(username, newPasswordEncoded);
+                userService.changeUserPassword(username, newPasswordEncoded);
                 return ResponseEntity.ok()
                         .body(new ApiResponse<>(200, null,
                                 null, null));

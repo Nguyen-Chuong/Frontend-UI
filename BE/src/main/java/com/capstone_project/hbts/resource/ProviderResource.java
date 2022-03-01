@@ -8,6 +8,7 @@ import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.ProviderService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -145,6 +147,42 @@ public class ProviderResource {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param oldPass
+     * @param newPass
+     * return
+     */
+    @PatchMapping("/change-password/provider")
+    public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String jwttoken,
+                                            @RequestParam String oldPass,
+                                            @RequestParam String newPass){
+        log.info("REST request to change provider's password");
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String newPasswordEncoded = bCryptPasswordEncoder.encode(newPass);
+
+        String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
+        String userPassword = providerService.getOldPassword(username);
+
+        if(!bCryptPasswordEncoder.matches(oldPass, userPassword)){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_001, ErrorConstant.ERR_USER_001_LABEL));
+        }else {
+            try {
+                providerService.changeProviderPassword(username, newPasswordEncoded);
+                return ResponseEntity.ok()
+                        .body(new ApiResponse<>(200, null,
+                                null, null));
+            }catch (Exception e){
+                e.printStackTrace();
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponse<>(400, null,
+                                ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+            }
         }
     }
 

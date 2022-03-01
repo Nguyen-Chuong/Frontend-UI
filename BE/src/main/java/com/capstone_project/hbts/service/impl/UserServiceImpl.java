@@ -43,8 +43,7 @@ public class UserServiceImpl implements UserService {
         newUser.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
         userRepository.save(newUser);
 //        Set<Role> setRole = new HashSet<>(); // in case add many role
-//        Role role = new Role(newUser, "ROLE_MANAGER");
-//        setRole.add(role);
+//        setRole.add(new Role(newUser, "ROLE_MANAGER"));
 //        roleRepository.saveAll(setRole);
         Role role = new Role(newUser, "ROLE_USER");
         roleRepository.save(role);
@@ -74,7 +73,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public void changePassword(String username, String newPass) {
+    public void changeUserPassword(String username, String newPass) {
         log.info("Request to change user's password");
         userRepository.changePass(username, newPass);
     }

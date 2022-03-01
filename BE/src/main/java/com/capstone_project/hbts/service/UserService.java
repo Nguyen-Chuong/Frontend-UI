@@ -29,7 +29,7 @@ public interface UserService {
      * @param username
      * @param newPass
      */
-    void changePassword(String username, String newPass);
+    void changeUserPassword(String username, String newPass);
 
     /**
      * Get old password
