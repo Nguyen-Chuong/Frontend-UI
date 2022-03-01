@@ -11,13 +11,13 @@ import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.JwtService;
 import com.capstone_project.hbts.service.ProviderService;
 import com.capstone_project.hbts.service.UserService;
-import com.capstone_project.hbts.service.impl.CustomUserDetailsService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +35,7 @@ public class JwtAuthenticationResource {
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    private final CustomUserDetailsService customUserDetailsService;
+    private final UserDetailsService userDetailsService;
 
     private final UserService userService;
 
@@ -44,11 +44,11 @@ public class JwtAuthenticationResource {
     private final JwtService jwtService;
 
     public JwtAuthenticationResource(AuthenticationManager authenticationManager, JwtTokenUtil jwtTokenUtil,
-                                     CustomUserDetailsService customUserDetailsService, UserService userService,
+                                     UserDetailsService userDetailsService, UserService userService,
                                      ProviderService providerService, JwtService jwtService) {
         this.authenticationManager = authenticationManager;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.customUserDetailsService = customUserDetailsService;
+        this.userDetailsService = userDetailsService;
         this.userService = userService;
         this.providerService = providerService;
         this.jwtService = jwtService;
@@ -81,7 +81,7 @@ public class JwtAuthenticationResource {
                             ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL));
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(user.getUsername());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
@@ -127,7 +127,7 @@ public class JwtAuthenticationResource {
                             ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL));
         }
 
-        final UserDetails userDetails = customUserDetailsService.loadUserByUsername(providerUserName);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(providerUserName);
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 
