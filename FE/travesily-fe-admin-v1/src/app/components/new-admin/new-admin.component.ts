@@ -1,12 +1,10 @@
 import { Account } from 'src/app/_models/account';
 import { Component, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { NotificationService } from 'src/app/_services/notification.service';
-import { UsernameValidator } from 'src/app/_validators/username.validator';
-import { EmailValidator } from 'src/app/_validators/email.validator';
 import { first } from 'rxjs';
+import { ParentErrorStateMatcher, PasswordValidator } from 'src/app/_validators/password.validator';
 
 @Component({
   selector: 'app-new-admin',
@@ -15,42 +13,95 @@ import { first } from 'rxjs';
 })
 export class NewAdminComponent implements OnInit {
 
-  formGroup!: FormGroup;
+  managerProfile: FormGroup;
+
   manager = new Account
-  constructor(private authService: AuthServiceService,
-    private router: Router,
-    private notificationService: NotificationService) {
+
+  matchingPasswordsGroup: FormGroup;
+
+  parentErrorStateMatcher = new ParentErrorStateMatcher();
+  account_validation_messages = {
+    'username': [
+      { type: 'required', message: 'Username is required' },
+      { type: 'minlength', message: 'Username must be at least 5 characters long' },
+      { type: 'maxlength', message: 'Username cannot be more than 25 characters long' },
+      { type: 'validUsername', message: 'Your username has already been taken' }
+    ],
+    'email': [
+      { type: 'required', message: 'Email is required' },
+      { type: 'pattern', message: 'Enter a valid email' }
+    ],
+    'confirm_password': [
+      { type: 'required', message: 'Confirm password is required' },
+      { type: 'areEqual', message: 'Password mismatch' }
+    ],
+    'password': [
+      { type: 'required', message: 'Password is required' },
+      { type: 'minlength', message: 'Password must be at least 5 characters long' },
+      { type: 'pattern', message: 'Your password must contain at least one uppercase, one lowercase, and one number' }
+    ],
+    'terms': [
+      { type: 'pattern', message: 'make sure you create a manager?' }
+    ]
+  }
+  constructor(private fb: FormBuilder,
+    private authService: AuthServiceService,
+    private notificationService: NotificationService) { }
+
+
+  ngOnInit() {
+    this.createForms();
   }
 
-  ngOnInit(): void {
-    this.formGroup = new FormGroup({
-      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]),
-      email: new FormControl('', [Validators.required, Validators.email, EmailValidator(this.authService)]),
-      username: new FormControl('', [Validators.required, UsernameValidator(this.authService)]),
-      password: new FormControl('', [Validators.required]),
-      cfPassword: new FormControl('', [Validators.required]),
+  createForms() {
+    // matching passwords validation
+    this.matchingPasswordsGroup = new FormGroup({
+      password: new FormControl('', Validators.compose([
+        Validators.minLength(5),
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$')
+      ])),
+      confirm_password: new FormControl('', Validators.required)
+    }, (formGroup: FormGroup) => {
+      return PasswordValidator.areEqual(formGroup);
+    });
+
+    // user links form validations
+    this.managerProfile = this.fb.group({
+      username: new FormControl('', Validators.compose([
+        Validators.maxLength(25),
+        Validators.minLength(5),
+        Validators.pattern('^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$'),
+        Validators.required
+      ])),
+      email: new FormControl('', Validators.compose([
+        Validators.required,
+        Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
+      ])),
+      matchingPasswords: this.matchingPasswordsGroup,
+      terms: new FormControl(false, Validators.pattern('true'))
     })
 
-}
+  }
 
-addAdmin(){
-  console.log('new manager')
-  const val = this.formGroup.value
-  this.manager.email = val.email
-  this.manager.username = val.username
-  this.manager.phone = val.phone
-  this.manager.password = val.password
-  console.log('new manager2')
-  this.authService.addManager(this.manager).pipe(first()).subscribe({
+  addAdmin(value) {
+    this.manager.email = value.email
+    this.manager.username = value.username
+    this.manager.password = value.matchingPasswords.password
+    console.log(value.email)
+    console.log(value.matchingPasswords.password)
+    this.authService.addManager(this.manager).pipe(first()).subscribe({
 
-    next: () => {
-      console.log('new manager3')
-      this.notificationService.onSuccess('Add new manager successfully');
-    },
-    error: err => {
-      console.log('new manager5')
-      this.notificationService.onError('Add new manager false')
-    }
-  })
-}
+      next: () => {
+
+        this.notificationService.onSuccess('Add new manager successfully');
+        this.managerProfile.reset()
+        window.location.reload()
+      },
+      error: err => {
+        this.notificationService.onError('Add new manager false')
+        console.log(err)
+      }
+    })
+  }
 }
