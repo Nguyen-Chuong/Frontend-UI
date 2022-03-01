@@ -142,7 +142,7 @@ public class UserResource {
      * @param userDTO
      * return
      */
-    @PatchMapping("/update-profile")
+    @PatchMapping("/update-profile/user")
     public ResponseEntity<?> updateUserProfile(@RequestBody UserDTO userDTO){
         log.info("REST request to update an user : {}", userDTO);
 

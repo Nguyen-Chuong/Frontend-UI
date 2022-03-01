@@ -35,4 +35,10 @@ public interface ProviderService {
      */
     ProviderDTO getProviderProfile(String username);
 
+    /**
+     * Update an provider
+     * @param providerDTO
+     */
+    void updateProviderProfile(ProviderDTO providerDTO);
+
 }

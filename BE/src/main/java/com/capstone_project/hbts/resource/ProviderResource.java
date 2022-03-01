@@ -10,6 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -117,6 +118,27 @@ public class ProviderResource {
             boolean isEmailExist = providerService.isEmailExist(email);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, isEmailExist,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param providerDTO
+     * return
+     */
+    @PatchMapping("/update-profile/provider")
+    public ResponseEntity<?> updateProviderProfile(@RequestBody ProviderDTO providerDTO){
+        log.info("REST request to update a provider : {}", providerDTO);
+
+        try{
+            providerService.updateProviderProfile(providerDTO);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

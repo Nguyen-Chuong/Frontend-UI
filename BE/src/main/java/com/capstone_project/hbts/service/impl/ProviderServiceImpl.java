@@ -9,6 +9,7 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Log4j2
@@ -61,6 +62,14 @@ public class ProviderServiceImpl implements ProviderService {
         }else {
             return modelMapper.map(provider, ProviderDTO.class);
         }
+    }
+
+    @Override
+    @Transactional
+    public void updateProviderProfile(ProviderDTO providerDTO) {
+        log.info("Request to update provider profile");
+        providerRepository.updateProviderProfile(providerDTO.getProviderName(), providerDTO.getPhone(),
+                providerDTO.getAddress(), providerDTO.getId());
     }
 
 }

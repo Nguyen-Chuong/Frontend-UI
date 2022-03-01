@@ -2,6 +2,7 @@ package com.capstone_project.hbts.repository;
 
 import com.capstone_project.hbts.entity.Provider;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -22,5 +23,15 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
     @Query(value = "select email from capstone.provider where email = :email",
             nativeQuery = true)
     String getEmail(@Param("email") String email);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.provider SET provider_name = :providerName, phone = :phone, " +
+            "address = :address WHERE capstone.provider.id = :id",
+            nativeQuery = true)
+    void updateProviderProfile(
+            @Param("providerName") String providerName,
+            @Param("phone") String phone,
+            @Param("address") String address,
+            @Param("id") Integer id);
 
 }
