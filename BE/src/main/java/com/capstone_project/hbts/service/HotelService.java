@@ -20,4 +20,10 @@ public interface HotelService {
     Page<HotelDTO> searchHotel(int districtId, Date dateIn, Date dateOut,
                                int numberOfPeople, int numberOfRoom, Pageable pageable);
 
+    /**
+     * @param status
+     * @return
+     */
+    Page<HotelDTO> getAllHotels(int status, Pageable pageable);
+
 }

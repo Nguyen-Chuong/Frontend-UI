@@ -78,4 +78,24 @@ public class HotelServiceImpl implements HotelService {
         return new CustomPageImpl<>(hotelDTOList);
     }
 
+    @Override
+    public Page<HotelDTO> getAllHotels(int status, Pageable pageable) {
+        log.info("Request to get all hotel by status");
+        List<HotelDTO> hotelDTOList;
+
+        if(status == 0){
+            hotelDTOList = hotelRepository.findAll()
+                    .stream()
+                    .map(item -> modelMapper.map(item, HotelDTO.class))
+                    .collect(Collectors.toList());
+        }else {
+            hotelDTOList = hotelRepository.findAllByStatus(status)
+                    .stream()
+                    .map(item -> modelMapper.map(item, HotelDTO.class))
+                    .collect(Collectors.toList());
+        }
+
+        return new CustomPageImpl<>(hotelDTOList);
+    }
+
 }

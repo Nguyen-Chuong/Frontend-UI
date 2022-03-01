@@ -21,6 +21,6 @@ public class HotelDTO {
 
     private BigDecimal lowestPrice;
 
-    private int status;
+    private int status; // 1-active, 2-deactivated
 
 }

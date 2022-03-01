@@ -10,11 +10,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
 
@@ -53,6 +49,36 @@ public class HotelResource {
         try{
             Page<HotelDTO> hotelDTOPage = hotelService.searchHotel(districtId, dateIn, dateOut,
                     numberOfPeople, numberOfRoom, PageRequest.of(page, pageSize));
+
+            DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(hotelDTOPage.getContent(),
+                    hotelDTOPage.getTotalElements(), page, hotelDTOPage.getSize());
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
+            // may catch more kinda exception
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param status
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @GetMapping("/get-hotel/{status}")
+    public ResponseEntity<?> searchHotel(@PathVariable int status,
+                                         @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
+                                         @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+        log.info("REST request to get all hotel by status");
+
+        try{
+            Page<HotelDTO> hotelDTOPage = hotelService.getAllHotels(status, PageRequest.of(page, pageSize));
 
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(hotelDTOPage.getContent(),
                     hotelDTOPage.getTotalElements(), page, hotelDTOPage.getSize());
