@@ -1,5 +1,5 @@
 import { Account } from './../../../../../travesily-fe-user-v1/src/app/_models/account';
-import { AuthServiceService } from 'src/app/auth-service.service';
+import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { ItemModel, MenuEventArgs } from '@syncfusion/ej2-angular-splitbuttons';
 import { first } from 'rxjs';

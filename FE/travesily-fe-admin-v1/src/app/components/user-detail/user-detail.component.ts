@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
@@ -13,11 +14,15 @@ import { BookingService } from 'src/app/_services/booking.service';
 export class UserDetailComponent implements OnInit {
   account: Account
   bookings: Booking[]
+  userId
 
-  constructor(public navCtrl: NgxNavigationWithDataComponent, private bookingService: BookingService) {
-    const userId = this.navCtrl.get('id')
-    console.log(userId)
-    this.bookingService.getBookingByStatus(userId, 1).pipe(first()).subscribe(
+  constructor(private router: Router,
+    private route: ActivatedRoute, private bookingService: BookingService) {
+    this.route.queryParams.subscribe((param) =>{
+      console.log(param)
+      this.userId = param['id']
+    })
+    this.bookingService.getUserBooking(this.userId).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']
       }

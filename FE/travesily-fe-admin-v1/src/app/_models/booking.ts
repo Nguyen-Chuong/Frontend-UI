@@ -8,4 +8,5 @@ id: number
   reviewStatus: number
   hotel: Hotel
   totalPaid: number
+  username: string
 }

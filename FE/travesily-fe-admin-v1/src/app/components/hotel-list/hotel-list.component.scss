@@ -1,17 +1,18 @@
-.booking{
+.hotels{
   display: flex;
-
-  &-table{
-    width: 75%;
-    padding-top: 90px;
-  }
 }
-
 .menu-list{
   width: 20%;
   height: 100%;
 }
-
+.hotel {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 75%;
+  margin: 20px auto;
+  padding-top: 90px;
+}
 table{
   width: 100%;
 }

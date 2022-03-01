@@ -6,4 +6,5 @@ export class Hotel {
   description: string
   lowestPrice: number
   status: number
+  providerId: number
 }

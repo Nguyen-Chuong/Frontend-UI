@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/auth-service.service';
+import { AuthServiceService } from 'src/app/_services/auth-service.service';
 
 
 @Component({
@@ -22,6 +22,10 @@ export class TaskbarComponent implements OnInit {
     this.router.navigateByUrl('/hotel-approve');
   }
 
+  openListHotels(): void{
+    this.router.navigateByUrl('/hotel-list');
+  }
+
   openHistory(): void{
     this.router.navigate(['/history']);
   }
@@ -32,12 +36,6 @@ export class TaskbarComponent implements OnInit {
 
   openUserList(): void{
     this.router.navigate(['/user']);
-  }
-
-  logout(): void{
-    this.authService.logout();
-    this.authService.isLoggedOut();
-    this.router.navigate(['/login']);
   }
 
   toggleSidebar(){

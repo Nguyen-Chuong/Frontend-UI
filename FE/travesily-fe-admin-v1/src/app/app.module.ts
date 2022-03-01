@@ -36,6 +36,7 @@ import { UserBookingComponent } from './components/user-booking/user-booking.com
 import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
 import { UserFeedbackComponent } from './components/user-feedback/user-feedback.component';
 import {MatTabsModule} from '@angular/material/tabs';
+import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     UserDetailComponent,
     UserBookingComponent,
     BookingDetailComponent,
-    UserFeedbackComponent
+    UserFeedbackComponent,
+    HotelListComponent
   ],
   imports: [
     BrowserModule,

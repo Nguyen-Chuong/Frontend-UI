@@ -3,15 +3,10 @@
     <app-taskbar></app-taskbar>
   </div>
   <div class="new-admin">
-  <form class="col-md-10 border-right" [formGroup]="formGroup">
+    <simple-notifications></simple-notifications>
+  <form class="col-md-10 border-right" [formGroup]="formGroup" (ngSubmit)="addAdmin()">
     <div class="p-3 py-5">
-      <h1>New Admin</h1>
-      <div class="col-md-12"><label class="labels">First name</label>
-        <input type="text" class="form-control" formControlName="firstname">
-      </div>
-      <div class="col-md-12"><label class="labels">Last name</label>
-        <input type="text" class="form-control" formControlName="lastname">
-      </div>
+      <h1>New Manager</h1>
       <div class="col-md-12"><label class="labels">Username</label>
         <input type="text" class="form-control" formControlName="username">
       </div>
@@ -20,6 +15,12 @@
       </div>
       <div class="col-md-12"><label class="labels">PhoneNumber</label>
         <input type="text" class="form-control" formControlName="phone">
+      </div>
+      <div class="col-md-12"><label class="labels">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+      </div>
+      <div class="col-md-12"><label class="labels">Confirm Password</label>
+        <input type="password" class="form-control" formControlName="cfPassword">
       </div>
       <div class="mt-5 text-center">
         <button class="btn btn-primary new-admin-button" type="submit">Save</button>

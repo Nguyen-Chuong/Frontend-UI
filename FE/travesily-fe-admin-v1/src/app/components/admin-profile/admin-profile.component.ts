@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AuthServiceService } from 'src/app/auth-service.service';
+import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { Account } from 'src/app/_models/account';
 import { NotificationService } from 'src/app/_services/notification.service';
 
@@ -14,6 +14,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class AdminProfileComponent implements OnInit {
   account: Account = new Account;
   formGroup!: FormGroup;
+  isPhone = false
   constructor(private authService: AuthServiceService,
     private router: Router,
     private notificationService: NotificationService) {
@@ -26,7 +27,7 @@ export class AdminProfileComponent implements OnInit {
     this.formGroup = new FormGroup({
       firstname: new FormControl('', [Validators.required]),
       lastname: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]),
+      phone: new FormControl('', [Validators.minLength(10), Validators.maxLength(11)]),
       address: new FormControl('', [Validators.required])
     })
   }
@@ -42,6 +43,7 @@ export class AdminProfileComponent implements OnInit {
     if (val.phone) {
       this.account.phone = val.phone
     }
+
     if (val.address) {
       this.account.address = val.address
     }
@@ -53,6 +55,7 @@ export class AdminProfileComponent implements OnInit {
         this.notificationService.onError('Update profile false')
       }
     })
+
   }
 
 }

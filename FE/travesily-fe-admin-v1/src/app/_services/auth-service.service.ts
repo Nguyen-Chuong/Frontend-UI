@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, first, Observable, tap } from 'rxjs';
 import * as moment from "moment";
-import { Account } from './_models/account';
+import { Account } from '../_models/account';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +13,15 @@ export class AuthServiceService {
   httpSkip: any;
 
   constructor(private http: HttpClient) {
-   }
+  }
 
   update(account: Account) {
     return this.http.patch(`${this.baseUrl}/update-profile`, { ...account })
+  }
+
+  //add new manager
+  addManager(account: Account) {
+    return this.http.post(`${this.baseUrl}/add-manager`, {...account})
   }
 
 
@@ -36,9 +41,6 @@ export class AuthServiceService {
 
   }
 
-  public isLoggedOut() {
-    return !this.isLoggedIn$
-  }
 
   getToken() {
     return this.http.get(`${this.baseUrl}/authenticate/admin`).pipe(first()).subscribe(token => {
@@ -55,16 +57,14 @@ export class AuthServiceService {
     return this.http.get<Account>(`${this.baseUrl}/profile/user`)
   }
 
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration());
+  //Check if username is duplicated
+  checkUsernameDuplicated(username: string) {
+    return this.http.get(`${this.baseUrl}/check/user/username/u-${username}`, { withCredentials: false })
   }
 
-  getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
-    if (expiration) {
-      const expiresAt = JSON.parse(expiration);
-      return moment(expiresAt);
-    }
+  //Check if email is duplicated
+  checkEmailDuplicated(email: string) {
+    return this.http.get(`${this.baseUrl}/check/user/email/${email}`, { withCredentials: false })
   }
 
 }

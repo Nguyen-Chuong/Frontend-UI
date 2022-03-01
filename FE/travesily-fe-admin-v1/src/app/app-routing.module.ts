@@ -1,3 +1,4 @@
+import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { NewAdminComponent } from './components/new-admin/new-admin.component';
 import { AdminProfileComponent } from './components/admin-profile/admin-profile.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
   {
     path: 'hotel-approve',
     component: HotelApproveComponent,
+  },
+  {
+    path: 'hotel-list',
+    component: HotelListComponent,
   },
   {
     path: 'history',

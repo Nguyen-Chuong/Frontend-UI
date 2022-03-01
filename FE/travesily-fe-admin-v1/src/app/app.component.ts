@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
-import { AuthServiceService } from './auth-service.service';
+import { AuthServiceService } from './_services/auth-service.service';
 
 
 @Component({

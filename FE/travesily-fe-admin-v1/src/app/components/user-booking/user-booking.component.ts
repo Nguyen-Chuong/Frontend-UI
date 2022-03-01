@@ -8,23 +8,18 @@ import { Booking } from 'src/app/_models/booking';
   templateUrl: './user-booking.component.html',
   styleUrls: ['./user-booking.component.scss']
 })
-export class UserBookingComponent implements AfterViewInit {
+export class UserBookingComponent {
   @Input() bookings: Booking[]
   dataSource
   constructor() {
     this.dataSource = new MatTableDataSource<Booking>(this.bookings);
-
   }
 
-  displayedColumns: string[] = ['id', 'hotel', 'totalPaid','checkIn', 'checkOut', 'status'];
+  displayedColumns: string[] = ['id', 'hotel', 'totalPaid', 'checkIn', 'checkOut', 'status'];
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+
+  openBookingDetail(id) {
+
   }
-
-openBookingDetail(id){
-
-}
 }
