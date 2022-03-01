@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.dto.Booking;
 
-import com.capstone_project.hbts.dto.HotelDTO;
+import com.capstone_project.hbts.dto.Hotel.HotelDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

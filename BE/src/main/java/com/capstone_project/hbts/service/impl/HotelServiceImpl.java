@@ -1,7 +1,8 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
 import com.capstone_project.hbts.response.CustomPageImpl;
-import com.capstone_project.hbts.dto.HotelDTO;
+import com.capstone_project.hbts.dto.Hotel.HotelDTO;
 import com.capstone_project.hbts.entity.Hotel;
 import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.HotelRepository;
@@ -96,6 +97,12 @@ public class HotelServiceImpl implements HotelService {
         }
 
         return new CustomPageImpl<>(hotelDTOList);
+    }
+
+    @Override
+    public HotelDetailDTO getDetailHotelById(int hotelId) {
+        log.info("Request to get detail hotel by id");
+        return modelMapper.map(hotelRepository.getById(hotelId), HotelDetailDTO.class);
     }
 
 }

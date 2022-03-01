@@ -2,7 +2,8 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
-import com.capstone_project.hbts.dto.HotelDTO;
+import com.capstone_project.hbts.dto.Hotel.HotelDTO;
+import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.HotelService;
@@ -85,6 +86,29 @@ public class HotelResource {
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
+            // may catch more kinda exception
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param hotelId
+     * @return
+     */
+    @GetMapping("/hotel-detail/{hotelId}")
+    public ResponseEntity<?> searchHotel(@PathVariable int hotelId){
+        log.info("REST request to get hotel detail by hotel id");
+
+        try{
+            HotelDetailDTO hotelDetailDTO = hotelService.getDetailHotelById(hotelId);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, hotelDetailDTO,
                             null, null));
             // may catch more kinda exception
         }catch (Exception e){

@@ -8,7 +8,7 @@ public interface EmailService {
     /**
      * send email
      */
-    void send(String to, String subject,String content);
+    void send(String to, String subject, String content);
 
     /**
      * get content email

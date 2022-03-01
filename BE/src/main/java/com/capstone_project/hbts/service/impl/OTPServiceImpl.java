@@ -11,23 +11,23 @@ import java.util.concurrent.TimeUnit;
 
 @Service
 public class OTPServiceImpl implements OTPService {
-    //cache based on username and OPT MAX 8
+    //cache based on username and OTP MAX 8
     private static final Integer EXPIRE_MINS = 1;
 
-    private LoadingCache<String, Integer> otpCache;
+    private final LoadingCache<String, Integer> otpCache;
 
     public OTPServiceImpl(){
-        otpCache = CacheBuilder.newBuilder().expireAfterAccess(EXPIRE_MINS , TimeUnit.MINUTES)
+        otpCache = CacheBuilder.newBuilder().expireAfterAccess(EXPIRE_MINS, TimeUnit.MINUTES)
                 .build(new CacheLoader<String, Integer>() {
                     @Override
-                    public Integer load(String s) throws Exception {
+                    public Integer load(String s) {
                         return 0;
                     }
                 });
     }
 
-    //This method is used to push the opt number against Key. Rewrite the OTP if it exists
-    // Using user id as key
+    // This method is used to push the otp number against Key. Rewrite the OTP if it exists
+    // Using email as key
     @Override
     public int generateOtp(String key) {
         Random random = new Random();
@@ -36,8 +36,8 @@ public class OTPServiceImpl implements OTPService {
         return otp;
     }
 
-    // This method is used to return the OPT number against Key->Key values is
-    // username
+    // This method is used to return the otp number against Key -> Key values is
+    // email
     @Override
     public int getOtp(String key) {
         try {
