@@ -2,7 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
-import com.capstone_project.hbts.dto.Booking.ListBookingDTO;
+import com.capstone_project.hbts.dto.Booking.BookingListDTO;
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
@@ -133,7 +133,7 @@ public class BookingResource {
         log.info("REST request to get list user's booking for admin");
 
         try{
-            Page<ListBookingDTO> userBookingDTOList = bookingService.getAllBookingForAdmin(PageRequest.of(page, pageSize));
+            Page<BookingListDTO> userBookingDTOList = bookingService.getAllBookingForAdmin(PageRequest.of(page, pageSize));
 
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(userBookingDTOList.getContent(),
                     userBookingDTOList.getTotalElements(), page, userBookingDTOList.getSize());

@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.service;
 
-import com.capstone_project.hbts.dto.Booking.ListBookingDTO;
+import com.capstone_project.hbts.dto.Booking.BookingListDTO;
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -38,6 +38,6 @@ public interface BookingService {
      * get all bookings for admin
      *
      */
-    Page<ListBookingDTO> getAllBookingForAdmin(Pageable pageable);
+    Page<BookingListDTO> getAllBookingForAdmin(Pageable pageable);
 
 }

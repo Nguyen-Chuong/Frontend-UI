@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.service.impl;
 
-import com.capstone_project.hbts.dto.Booking.ListBookingDTO;
+import com.capstone_project.hbts.dto.Booking.BookingListDTO;
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.entity.UserBooking;
 import com.capstone_project.hbts.entity.UserBookingDetail;
@@ -103,14 +103,14 @@ public class BookingServiceImpl implements BookingService {
     }
 
     @Override
-    public Page<ListBookingDTO> getAllBookingForAdmin(Pageable pageable) {
+    public Page<BookingListDTO> getAllBookingForAdmin(Pageable pageable) {
         log.info("Request to get all booking for admin paging");
         Page<UserBooking> userBookingPage = bookingRepository.findAllByOrderByBookingDateDesc(pageable);
 
         List<UserBooking> userBookingList = userBookingPage.getContent();
 
-        List<ListBookingDTO> listBookingDTOList = userBookingList.stream()
-                .map(item -> modelMapper.map(item, ListBookingDTO.class))
+        List<BookingListDTO> listBookingDTOList = userBookingList.stream()
+                .map(item -> modelMapper.map(item, BookingListDTO.class))
                 .collect(Collectors.toList());
 
         for(int i = 0; i < listBookingDTOList.size(); i++){

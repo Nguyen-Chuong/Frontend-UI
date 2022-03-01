@@ -8,7 +8,9 @@ import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
-public class ListBookingDTO {
+public class BookingListDTO {
+
+    private Integer id;
 
     private Timestamp checkIn;
 
