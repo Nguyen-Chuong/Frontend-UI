@@ -40,4 +40,9 @@ public interface BookingService {
      */
     Page<BookingListDTO> getAllBookingForAdmin(Pageable pageable);
 
+    /**
+     * get booking by booking id
+     */
+    UserBookingDTO getBookingById(int bookingId);
+
 }

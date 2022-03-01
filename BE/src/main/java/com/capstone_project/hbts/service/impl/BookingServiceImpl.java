@@ -120,4 +120,10 @@ public class BookingServiceImpl implements BookingService {
         return new CustomPageImpl<>(listBookingDTOList);
     }
 
+    @Override
+    public UserBookingDTO getBookingById(int bookingId) {
+        log.info("Request to get booking by id");
+        return modelMapper.map(bookingRepository.getById(bookingId), UserBookingDTO.class);
+    }
+
 }

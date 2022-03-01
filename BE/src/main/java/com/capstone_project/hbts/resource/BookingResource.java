@@ -149,4 +149,25 @@ public class BookingResource {
         }
     }
 
+    /**
+     * @param bookingId
+     * return
+     */
+    @GetMapping("/get-booking/{bookingId}")
+    public ResponseEntity<?> getBookingById(@PathVariable int bookingId){
+        log.info("REST request to get user's booking by id");
+
+        try{
+            UserBookingDTO userBookingDTO = bookingService.getBookingById(bookingId);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, userBookingDTO,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }
