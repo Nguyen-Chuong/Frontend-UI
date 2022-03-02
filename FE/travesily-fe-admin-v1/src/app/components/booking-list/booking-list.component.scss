@@ -1,25 +1,45 @@
-.booking{
+.booking {
   display: flex;
 
-  &-table{
+  &-table {
     width: 75%;
     padding-top: 90px;
   }
 }
 
-.menu-list{
+.menu-list {
   width: 20%;
   height: 100%;
 }
 
-table{
+table {
   width: 100%;
 }
 
-.mat-elevation-z8{
+.mat-elevation-z8 {
   width: 100%;
 }
 
 .mat-row:hover .mat-cell {
   border-color: currentColor;
+}
+
+.pagination {
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  padding-top: 50px;
+  cursor: pointer;
+
+  &-active {
+    background-color: #4caf50;
+    color: white;
+  }
+}
+
+
+.pagination li {
+  color: black;
+  float: left;
+  padding: 8px 16px;
 }

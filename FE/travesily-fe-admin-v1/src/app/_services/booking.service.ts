@@ -13,8 +13,12 @@ export class BookingService {
     return this.http.get(`${this.baseUrl}/user-bookings/${userId}`)
   }
 
-  getAllBooking(page: number, pageSize: number){
+  getAllBookingPage(page: number, pageSize: number){
     const params = new HttpParams().append('page', page).append('pageSize', pageSize)
     return this.http.get(`${this.baseUrl}/get-all-booking`, {params: params})
+  }
+
+  getAllBooking(){
+    return this.http.get(`${this.baseUrl}/get-all-booking`)
   }
 }

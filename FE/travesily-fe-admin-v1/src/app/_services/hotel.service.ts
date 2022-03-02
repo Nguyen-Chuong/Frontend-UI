@@ -14,7 +14,12 @@ export class HotelService {
     return this.http.get(`${this.baseUrl}/get-all-hotel`, {params: params})
   }
 
-  getHotelByStatus(status: number){
+  getHotelByStatus(status: number,page: number, pageSize: number){
+    const params = new HttpParams().append('page', page).append('pageSize', pageSize)
+    return this.http.get(`${this.baseUrl}/get-hotel/${status}`, {params: params})
+  }
+
+  getAllHotelByStatus(status: number){
     return this.http.get(`${this.baseUrl}/get-hotel/${status}`)
   }
 }

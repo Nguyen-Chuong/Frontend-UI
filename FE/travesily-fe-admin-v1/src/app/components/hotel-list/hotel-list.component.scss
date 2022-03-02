@@ -24,3 +24,16 @@ table{
 .mat-row:hover .mat-cell {
   border-color: currentColor;
 }
+
+.pagination {
+  display: inline-block;
+  text-align: center;
+  justify-content: center;
+  padding-top: 50px;
+  cursor: pointer;
+
+  &-active {
+    background-color: #4caf50;
+    color: white;
+  }
+}

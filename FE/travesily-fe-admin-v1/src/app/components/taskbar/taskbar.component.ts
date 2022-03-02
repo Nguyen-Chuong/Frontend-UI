@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
 
 
@@ -11,6 +11,7 @@ import { AuthServiceService } from 'src/app/_services/auth-service.service';
 export class TaskbarComponent implements OnInit {
   opened = true;
   constructor(private router: Router,
+    private route: ActivatedRoute,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
@@ -23,7 +24,9 @@ export class TaskbarComponent implements OnInit {
   }
 
   openListHotels(): void{
-    this.router.navigateByUrl('/hotel-list');
+    this.router.navigate(['hotel-list'], {
+      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
+    });
   }
 
   openHistory(): void{
@@ -31,7 +34,9 @@ export class TaskbarComponent implements OnInit {
   }
 
   openBookingList(): void{
-    this.router.navigate(['/booking']);
+    this.router.navigate(['booking'], {
+      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
+    });
   }
 
   openUserList(): void{

@@ -14,7 +14,7 @@ export class HotelApproveComponent{
   hotels: Hotel[]
   dataSource
   constructor(private hotelsService: HotelService) {
-    this.hotelsService.getHotelByStatus(0).pipe(first()).subscribe(
+    this.hotelsService.getAllHotelByStatus(0).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
       }
