@@ -62,4 +62,10 @@ public class Hotel {
     @JoinColumn(name = "provider_id", nullable = false)
     private Provider provider;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
 }

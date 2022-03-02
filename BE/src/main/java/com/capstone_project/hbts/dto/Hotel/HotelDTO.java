@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.dto.Hotel;
 
+import com.capstone_project.hbts.dto.Location.DistrictDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -22,5 +23,11 @@ public class HotelDTO {
     private BigDecimal lowestPrice;
 
     private int status; // 1-active, 2-deactivated
+
+    private String phone;
+
+    private String email;
+
+    private DistrictDTO district;
 
 }
