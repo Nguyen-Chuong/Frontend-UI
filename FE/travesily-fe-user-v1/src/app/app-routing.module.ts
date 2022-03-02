@@ -27,6 +27,9 @@ import {
 } from "./components/master/body/authentication/forgot-password/forgot-password.component";
 import {OtpCheckerComponent} from "./components/master/body/authentication/otp-checker/otp-checker.component";
 import {NewPasswordComponent} from "./components/master/body/authentication/new-password/new-password.component";
+import {
+  UserBookingDetailComponent
+} from "./components/master/body/body-user/user-bookings/user-booking-detail/user-booking-detail.component";
 
 const routes: Routes = [
   {
@@ -58,7 +61,8 @@ const routes: Routes = [
               {path:'cancelled', component: UserBookingsCancelledComponent}
             ]},
           {path: 'reviews', component: UserReviewsComponent},
-          {path: 'vip', component: UserVipComponent}
+          {path: 'vip', component: UserVipComponent},
+          {path: 'booking-detail', component: UserBookingDetailComponent}
         ]
       }
     ]

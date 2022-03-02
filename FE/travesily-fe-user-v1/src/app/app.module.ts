@@ -44,6 +44,8 @@ import { OtpCheckerComponent } from './components/master/body/authentication/otp
 import {NgOtpInputModule} from "ng-otp-input";
 import { BookingCardComponent } from './components/master/body/body-user/user-bookings/booking-card/booking-card.component';
 import { NewPasswordComponent } from './components/master/body/authentication/new-password/new-password.component';
+import { UserBookingDetailComponent } from './components/master/body/body-user/user-bookings/user-booking-detail/user-booking-detail.component';
+import { UserBookingDetailCardComponent } from './components/master/body/body-user/user-bookings/user-booking-detail/user-booking-detail-card/user-booking-detail-card.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,9 @@ import { NewPasswordComponent } from './components/master/body/authentication/ne
     ForgotPasswordComponent,
     OtpCheckerComponent,
     BookingCardComponent,
-    NewPasswordComponent
+    NewPasswordComponent,
+    UserBookingDetailComponent,
+    UserBookingDetailCardComponent
   ],
   imports: [
     BrowserModule,

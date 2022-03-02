@@ -1,0 +1,11 @@
+<div class="booking-detail">
+  <div class="booking-detail__header">
+    <h1>Room information</h1>
+    <img class="booking-detail__header--image" [src]="roomDetail?.listImage ? roomDetail?.listImage[0]['src'] : ''"
+         alt="Room Type Image">
+    <h2 class="booking-detail__header--room-type-name">{{bookingDetail.quantity}} X {{roomDetail.name}}</h2>
+    <h3>{{roomDetail.listFacility?.map(filterFacility).join(' | ')}}</h3>
+    <h2 class="booking-detail__header--paid">{{bookingDetail.paid * bookingDetail.quantity|number}} VNĐ</h2>
+  </div>
+
+</div>
