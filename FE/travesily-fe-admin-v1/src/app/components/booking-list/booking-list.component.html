@@ -46,5 +46,7 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openBookingDetail(row.id)"></tr>
     </table>
+
+    <span *ngFor="let page of pages">11{{page}}</span>
   </div>
 </div>

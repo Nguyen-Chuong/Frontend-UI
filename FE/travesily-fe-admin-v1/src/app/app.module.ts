@@ -37,6 +37,7 @@ import { BookingDetailComponent } from './components/booking-detail/booking-deta
 import { UserFeedbackComponent } from './components/user-feedback/user-feedback.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { HotelListComponent } from './components/hotel-list/hotel-list.component
     MatMenuModule,
     MatPaginatorModule,
     MatTabsModule,
+    MatCheckboxModule,
     SimpleNotificationsModule.forRoot()
   ],
   providers: [

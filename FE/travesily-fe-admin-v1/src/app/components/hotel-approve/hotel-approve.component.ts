@@ -14,15 +14,15 @@ export class HotelApproveComponent{
   hotels: Hotel[]
   dataSource
   constructor(private hotelsService: HotelService) {
-    this.hotelsService.getHotelByStatus(1).pipe(first()).subscribe(
+    this.hotelsService.getHotelByStatus(0).pipe(first()).subscribe(
       rs => {
-        this.hotels = rs['data']
+        this.hotels = rs['data']['items']
       }
     )
     this.dataSource = new MatTableDataSource<Hotel>(this.hotels);
 
   }
-  displayedColumns: string[] = ['hotelName', 'provider', 'address', 'status'];
+  displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', 'status'];
 
   openHotelDetail(id) {
 
