@@ -126,4 +126,17 @@ public class BookingServiceImpl implements BookingService {
         return modelMapper.map(bookingRepository.getById(bookingId), UserBookingDTO.class);
     }
 
+    @Override
+    public Page<UserBookingDTO> getBookingsByHotelId(int hotelId, Pageable pageable) {
+        log.info("Request to get booking by hotel id");
+        Page<UserBooking> userBookingPage = bookingRepository.findAllByHotel_IdOrderByBookingDateDesc(hotelId, pageable);
+
+        List<UserBookingDTO> userBookingDTOList = userBookingPage.getContent()
+                .stream()
+                .map(item -> modelMapper.map(item, UserBookingDTO.class))
+                .collect(Collectors.toList());
+
+        return new CustomPageImpl<>(userBookingDTOList);
+    }
+
 }

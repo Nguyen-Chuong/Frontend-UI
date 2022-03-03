@@ -34,4 +34,6 @@ public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
 
     Page<UserBooking> findAllByOrderByBookingDateDesc(Pageable pageable);
 
+    Page<UserBooking> findAllByHotel_IdOrderByBookingDateDesc(int hotelId, Pageable pageable);
+
 }

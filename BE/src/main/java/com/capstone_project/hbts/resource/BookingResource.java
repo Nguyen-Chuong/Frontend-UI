@@ -170,4 +170,32 @@ public class BookingResource {
         }
     }
 
+    /**
+     * @param hotelId
+     * return
+     */
+    @GetMapping("/bookings/hotel/{hotelId}")
+    public ResponseEntity<?> getBookingByHotelId(@PathVariable int hotelId,
+                                                 @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
+                                                 @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+        log.info("REST request to get user's booking by hotel id");
+
+        try{
+            Page<UserBookingDTO> userBookingDTOPage = bookingService.getBookingsByHotelId(hotelId,
+                    PageRequest.of(page, pageSize));
+
+            DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(userBookingDTOPage.getContent(),
+                    userBookingDTOPage.getTotalElements(), page, userBookingDTOPage.getSize());
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }
