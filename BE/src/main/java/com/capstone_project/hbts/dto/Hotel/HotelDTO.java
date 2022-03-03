@@ -1,12 +1,10 @@
 package com.capstone_project.hbts.dto.Hotel;
 
-import com.capstone_project.hbts.dto.Benefit.HotelBenefitDTO;
 import com.capstone_project.hbts.dto.Location.DistrictDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -31,7 +29,5 @@ public class HotelDTO {
     private String email;
 
     private DistrictDTO district;
-
-    private Set<HotelBenefitDTO> listBenefit;
 
 }

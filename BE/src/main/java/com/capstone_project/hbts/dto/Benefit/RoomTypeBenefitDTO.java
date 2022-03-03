@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class HotelBenefitDTO {
+public class RoomTypeBenefitDTO {
 
     private String name;
 

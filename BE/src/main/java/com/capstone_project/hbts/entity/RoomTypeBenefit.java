@@ -20,8 +20,8 @@ import javax.persistence.Table;
 @Getter
 @Setter
 @Entity
-@Table(name = "hotel_benefit")
-public class HotelBenefit {
+@Table(name = "roomType_benefit")
+public class RoomTypeBenefit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +32,7 @@ public class HotelBenefit {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+    @JoinColumn(name = "roomType_id")
+    private RoomType roomType;
 
 }

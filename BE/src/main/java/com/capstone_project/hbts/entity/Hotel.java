@@ -69,9 +69,6 @@ public class Hotel {
     private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
-    private Set<HotelBenefit> listBenefit;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
     private Set<Request> listRequest;
 
 }
