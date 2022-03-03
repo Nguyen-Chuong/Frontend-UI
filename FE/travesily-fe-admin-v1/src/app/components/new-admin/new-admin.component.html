@@ -4,111 +4,32 @@
   </div>
   <div class="new-admin">
     <simple-notifications></simple-notifications>
-    <!-- <form class="col-md-10 border-right" [formGroup]="managerProfile" novalidate (ngSubmit)="addAdmin(managerProfile.value)">
-      <div class="p-3 py-5">
-        <h1>New managerProfile</h1>
-
-        <div class="col-md-12"><label class="labels">Username</label>
-          <input type="text" class="form-control" formControlName="username">
-          <mat-error *ngFor="let validation of account_validation_messages.username">
-            <mat-error class="error-message"
-              *ngIf="managerProfile.get('username').hasError(validation.type) && (managerProfile.get('username').dirty || managerProfile.get('username').touched)">
-              {{validation.message}}</mat-error>
-          </mat-error>
-        </div>
-
-        <div class="col-md-12"><label class="labels">Email</label>
-          <input type="text" class="form-control" formControlName="email">
-          <mat-error *ngFor="let validation of account_validation_messages.email">
-            <mat-error class="error-message"
-              *ngIf="managerProfile.get('email').hasError(validation.type) && (managerProfile.get('email').dirty || managerProfile.get('email').touched)">
-              {{validation.message}}</mat-error>
-          </mat-error>
-        </div>
-
-        <div class="col-md-12"><label class="labels">PhoneNumber</label>
-          <input type="text" class="form-control" formControlName="phone">
-        </div>
-
-        <div class="col-md-12"><label class="labels">Password</label>
-          <input type="password" class="form-control" formControlName="password">
-          <mat-error *ngFor="let validation of account_validation_messages.password">
-            <mat-error class="error-message"
-              *ngIf="managerProfile.get('matchingPasswords').get('password').hasError(validation.type) && (managerProfile.get('matchingPasswords').get('password').dirty || managerProfile.get('matchingPasswords').get('password').touched)">
-              {{validation.message}}</mat-error>
-          </mat-error>
-        </div>
-
-        <div class="col-md-12"><label class="labels">Confirm Password</label>
-          <input type="password" class="form-control" formControlName="cfPassword">
-          <mat-error *ngFor="let validation of account_validation_messages.confirm_password">
-            <mat-error class="error-message"
-              *ngIf="(managerProfile.get('matchingPasswords').get('confirm_password').hasError(validation.type)|| managerProfile.get('matchingPasswords').hasError(validation.type)) && (managerProfile.get('matchingPasswords').get('confirm_password').dirty || managerProfile.get('matchingPasswords').get('confirm_password').touched)">
-              {{validation.message}}</mat-error>
-          </mat-error>
-        </div>
-        <div class="mt-5 text-center">
-          <button class="btn btn-primary new-admin-button" type="submit" [disabled]="!managerProfile.valid">Save</button>
-        </div>
+    <h2 class="form-header">NEW MANAGER</h2>
+    <form class="form-body" [formGroup]="form" (ngSubmit)="addAdmin()">
+      <div class="form-control">
+        <label class="new-admin-labels">Username</label>
+        <app-authentication-input type="text" placeholder="Username" [control]="form?.controls['username']">
+        </app-authentication-input>
       </div>
-    </form> -->
-
-    <form [formGroup]="managerProfile" novalidate (ngSubmit)="addAdmin(managerProfile.value)">
-      <h1>New manager</h1>
-      <mat-form-field class="full-width">
-        <input matInput maxlength="25" placeholder="Username" formControlName="username" required>
-        <mat-error *ngFor="let validation of account_validation_messages.username">
-          <mat-error class="error-message"
-            *ngIf="managerProfile.get('username').hasError(validation.type) && (managerProfile.get('username').dirty || managerProfile.get('username').touched)">
-            {{validation.message}}</mat-error>
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="full-width">
-        <input matInput type="email" placeholder="Email" formControlName="email" required>
-        <mat-error *ngFor="let validation of account_validation_messages.email">
-          <mat-error class="error-message"
-            *ngIf="managerProfile.get('email').hasError(validation.type) && (managerProfile.get('email').dirty || managerProfile.get('email').touched)">
-            {{validation.message}}</mat-error>
-        </mat-error>
-      </mat-form-field>
-
-
-      <div formGroupName="matchingPasswords">
-        <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Password" formControlName="password" required>
-          <mat-error *ngFor="let validation of account_validation_messages.password">
-            <mat-error class="error-message"
-              *ngIf="managerProfile.get('matchingPasswords').get('password').hasError(validation.type) && (managerProfile.get('matchingPasswords').get('password').dirty || managerProfile.get('matchingPasswords').get('password').touched)">
-              {{validation.message}}</mat-error>
-          </mat-error>
-        </mat-form-field>
-
-        <mat-form-field class="full-width">
-          <input matInput type="password" placeholder="Confirm Password" formControlName="confirm_password"
-            [errorStateMatcher]="parentErrorStateMatcher" required>
-          <mat-error *ngFor="let validation of account_validation_messages.confirm_password">
-            <mat-error class="error-message"
-              *ngIf="(managerProfile.get('matchingPasswords').get('confirm_password').hasError(validation.type)|| managerProfile.get('matchingPasswords').hasError(validation.type)) && (managerProfile.get('matchingPasswords').get('confirm_password').dirty || managerProfile.get('matchingPasswords').get('confirm_password').touched)">
-              {{validation.message}}</mat-error>
-          </mat-error>
-        </mat-form-field>
-
+      <div class="form-control">
+        <label class="new-admin-labels">Email</label>
+        <app-authentication-input type="text" placeholder="Email" [control]="form?.controls['email']">
+        </app-authentication-input>
       </div>
-
-      <mat-checkbox formControlName="terms">
-        Sure create a managerProfile
-      </mat-checkbox>
-      <mat-error *ngFor="let validation of account_validation_messages.terms">
-        <mat-error class="error-message"
-          *ngIf="managerProfile.get('terms').hasError(validation.type) && (managerProfile.get('terms').dirty || managerProfile.get('terms').touched)">
-          {{validation.message}}</mat-error>
-      </mat-error>
-
-      <button class="submit-btn" color="primary" mat-raised-button type="submit" [disabled]="!managerProfile.valid">
-        SAVE
-      </button>
-
+      <div class="form-control">
+        <label class="new-admin-labels">Password</label>
+        <app-authentication-input type="password" placeholder="Password" [control]="form?.controls['password']">
+        </app-authentication-input>
+      </div>
+      <div class="form-control">
+        <label class="new-admin-labels">Confirm Password</label>
+        <app-authentication-input type="password" placeholder="Confirm Password"
+          [control]="form?.controls['confirmPassword']"></app-authentication-input>
+      </div>
+      <div class="form-submit">
+        <button class="new-admin-button" [disabled]="form.invalid">Save</button>
+      </div>
     </form>
+
   </div>
 </div>

@@ -38,6 +38,8 @@ import { UserFeedbackComponent } from './components/user-feedback/user-feedback.
 import {MatTabsModule} from '@angular/material/tabs';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { AboutHotelComponent } from './components/about-hotel/about-hotel.component';
+import { AuthenticationInputComponent } from './components/authentication-input/authentication-input.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     UserBookingComponent,
     BookingDetailComponent,
     UserFeedbackComponent,
-    HotelListComponent
+    HotelListComponent,
+    AboutHotelComponent,
+    AuthenticationInputComponent
   ],
   imports: [
     BrowserModule,

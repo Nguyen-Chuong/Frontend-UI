@@ -40,7 +40,9 @@ export class TaskbarComponent implements OnInit {
   }
 
   openUserList(): void{
-    this.router.navigate(['/user']);
+    this.router.navigate(['user'], {
+      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
+    });
   }
 
   toggleSidebar(){

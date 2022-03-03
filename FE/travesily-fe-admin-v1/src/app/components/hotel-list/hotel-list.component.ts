@@ -51,7 +51,9 @@ export class HotelListComponent {
   }
 
   openHotelDetail(id) {
-
+    this.router.navigate(['hotel-detail'], {
+      queryParams: { id: JSON.stringify(id)}
+    });
   }
 
   openPage(page) {

@@ -4,7 +4,7 @@
   </div>
   <div class="user">
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="dataSource">
+      <table mat-table [dataSource]="users" class="user-table">
 
         <!-- Position Column -->
         <ng-container matColumnDef="username">
@@ -33,11 +33,11 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openUserDetail(row.id)"></tr>
       </table>
-
-      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
-                     showFirstLastButtons
-                     aria-label="Select page of periodic elements">
-      </mat-paginator>
+      <div class="paging">
+        <div *ngFor="let page of pages" class="pagination">
+          <li (click)="openPage(page)" [ngClass]="{'pagination-active' : [currentPage + 1] == page}">{{page}}</li>
+        </div>
+      </div>
     </div>
   </div>
 </div>

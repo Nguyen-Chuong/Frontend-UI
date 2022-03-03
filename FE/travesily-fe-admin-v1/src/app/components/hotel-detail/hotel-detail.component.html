@@ -1,15 +1,19 @@
 <div class="hotel-detail">
   <div class="hotel-banner">
     <img class="hotel-banner-image"
-    src="https://images.trvl-media.com/hotels/34000000/33520000/33519300/33519248/307de976.jpg?impolicy=fcrop&w=670&h=385&p=1&q=medium"
+    src={{hotel.avatar}}
     alt="background image">
   </div>
-  <div class="hotel-content">
-    <div class="hotel-detail-wrapper">
-      <div class="hotel-header">
-        <h1 class="hotel-header-title">Sài Gòn Hotel</h1>
-        <h1 class="hotel-header-price">Lowest price: 500.000 vnd</h1>
-        <h1 class="hotel-header-address">305, Nguyễn Huệ, P. Nam Bình, Thành phố Ninh Bình, T. Ninh Bình</h1>
-      </div>
+  <div class="hotel-infor">
+    <h1 class="hotel-name">{{ hotel.name }}</h1>
+    <div class="hotel-content">
+      <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
+        <mat-tab label="About">
+          <app-about-hotel [hotel]="hotel"></app-about-hotel>
+        </mat-tab>
+        <mat-tab label="Room">
+        </mat-tab>
+      </mat-tab-group>
+    </div>
   </div>
 </div>

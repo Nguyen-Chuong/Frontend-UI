@@ -22,4 +22,8 @@ export class HotelService {
   getAllHotelByStatus(status: number){
     return this.http.get(`${this.baseUrl}/get-hotel/${status}`)
   }
+
+  getHotelById(id: number){
+    return this.http.get(`${this.baseUrl}/hotel-detail/${id}`)
+  }
 }

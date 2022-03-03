@@ -1,3 +1,4 @@
+
 .menu-list{
   width: 20%;
   height: 100%;
@@ -10,15 +11,14 @@
   width: 60%;
   padding-top: 90px;
   &-button {
-    background: rgb(99, 39, 120);
-    box-shadow: none;
-    border: none;
+    margin-top: 30px;
+    text-align: center;
+  }
 
-    &:hover {
-      color: #3513ca;
-      background: #ede8ee;
-      box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
-    }
+  &-labels {
+    font-size: 15px;
+    padding-top: 10px;
+    padding-bottom: 5px;
   }
 }
 .form-control:focus {
@@ -42,20 +42,20 @@
   margin-bottom: 10px;
 }
 
-.error-message {
-  font-size: 12px;
+.form-body{
+  display: grid;
+  grid-row-gap: 2rem;
 }
 
-.double-line-hint {
-  .mat-input-hint-wrapper {
-    flex-wrap: wrap;
-
-    .hint-line {
-      flex: 0 0 100%;
-    }
-  }
+.header{
+  color: black
 }
+
+.input{
+   margin-bottom: 1rem;
+}
+
 
 .submit-btn {
-  margin-top: 30px;
+
 }

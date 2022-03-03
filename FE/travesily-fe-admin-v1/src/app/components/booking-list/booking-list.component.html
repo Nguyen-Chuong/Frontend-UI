@@ -46,9 +46,10 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openBookingDetail(row.id)"></tr>
     </table>
-
-    <div *ngFor="let page of pages" class="pagination">
-      <li (click)="openPage(page)" [ngClass]="{'pagination-active' : [currentPage + 1] == page}">{{page}}</li>
+    <div class="paging">
+      <div *ngFor="let page of pages" class="pagination">
+        <li (click)="openPage(page)" [ngClass]="{'pagination-active' : [currentPage + 1] == page}">{{page}}</li>
+      </div>
     </div>
   </div>
 </div>

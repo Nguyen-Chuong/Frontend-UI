@@ -26,9 +26,7 @@ table {
 
 .pagination {
   display: inline-block;
-  text-align: center;
-  justify-content: center;
-  padding-top: 50px;
+
   cursor: pointer;
 
   &-active {
@@ -37,9 +35,14 @@ table {
   }
 }
 
-
 .pagination li {
   color: black;
   float: left;
   padding: 8px 16px;
+}
+
+.paging{
+  text-align: center;
+  justify-content: center;
+  padding-top: 50px;
 }
