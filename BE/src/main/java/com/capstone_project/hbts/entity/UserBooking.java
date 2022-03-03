@@ -60,6 +60,6 @@ public class UserBooking {
     private Hotel hotel;
 
     @Column(name = "booked_quantity")
-    private Timestamp bookedQuantity; // number of people booked
+    private int bookedQuantity; // number of people booked
 
 }

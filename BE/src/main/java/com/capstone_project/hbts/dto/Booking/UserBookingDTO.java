@@ -27,4 +27,6 @@ public class UserBookingDTO {
 
     private Timestamp bookingDate;
 
+    private int bookedQuantity;
+
 }
