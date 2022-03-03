@@ -8,9 +8,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @CrossOrigin
@@ -46,5 +49,31 @@ public class VipResource {
     }
 
     // modify vip table for admin
+    /**
+     * @param discount
+     * @param rangeStart
+     * @param rangeEnd
+     * @param id
+     * return
+     */
+    @PatchMapping("/update-vip-info")
+    public ResponseEntity<?> updateVipClass(@RequestParam int discount,
+                                            @RequestParam BigDecimal rangeStart,
+                                            @RequestParam BigDecimal rangeEnd,
+                                            @RequestParam Integer id){
+        log.info("REST request to update vip class for admin");
+
+        try {
+            vipService.updateVipClass(discount, rangeStart, rangeEnd, id);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
 
 }

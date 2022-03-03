@@ -7,7 +7,9 @@ import com.capstone_project.hbts.service.VipService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,5 +35,12 @@ public class VipServiceImpl implements VipService {
         return list.stream()
                 .map( item -> modelMapper.map(item, VipDTO.class))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    @Transactional
+    public void updateVipClass(int discount, BigDecimal rangeStart, BigDecimal rangeEnd, Integer id) {
+        log.info("Request to update vip class");
+        vipRepository.updateVipClass(discount, rangeStart, rangeEnd, id);
     }
 }
