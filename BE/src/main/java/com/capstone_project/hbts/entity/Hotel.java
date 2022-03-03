@@ -68,4 +68,7 @@ public class Hotel {
     @Column(name = "email")
     private String email;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
+    private Set<HotelBenefit> listBenefit;
+
 }
