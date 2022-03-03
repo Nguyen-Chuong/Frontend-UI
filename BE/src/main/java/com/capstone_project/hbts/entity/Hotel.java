@@ -46,7 +46,7 @@ public class Hotel {
     private BigDecimal lowestPrice;
 
     @Column(name = "status")
-    private int status;
+    private int status; // 1-active, 2-deactivated, 3-pending (approved -> active, denied -> delete)
 
     @ManyToOne
     @JoinColumn(name = "district_id")
@@ -70,5 +70,8 @@ public class Hotel {
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
     private Set<HotelBenefit> listBenefit;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
+    private Set<Request> listRequest;
 
 }

@@ -58,4 +58,7 @@ public class Provider {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
     private Set<Hotel> listHotel;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
+    private Set<Request> listRequest;
+
 }
