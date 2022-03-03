@@ -45,6 +45,12 @@ export class TaskbarComponent implements OnInit {
     });
   }
 
+  openProviderList(){
+    this.router.navigate(['provider'], {
+      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
+    });
+  }
+
   toggleSidebar(){
     this.opened = !this.opened
   }

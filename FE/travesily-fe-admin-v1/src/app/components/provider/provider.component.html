@@ -1,0 +1,56 @@
+<div class="provider-list">
+  <div class="menu-list">
+    <app-taskbar></app-taskbar>
+  </div>
+  <div class="provider">
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="providers" class="user-table">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="username">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="providerName">
+          <th mat-header-cell *matHeaderCellDef> Provider Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.providerName}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Phone </th>
+          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="address">
+          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openUserDetail(row.id)"></tr>
+      </table>
+      <div class="paging">
+        <div *ngFor="let page of pages" class="pagination">
+          <li (click)="openPage(page)" [ngClass]="{'pagination-active' : [currentPage + 1] == page}">{{page}}</li>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,3 +1,4 @@
+import { ProviderComponent } from './components/provider/provider.component';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { NewAdminComponent } from './components/new-admin/new-admin.component';
@@ -52,6 +53,10 @@ const routes: Routes = [
   {
     path: 'user',
     component: UserComponent,
+  },
+  {
+    path: 'provider',
+    component: ProviderComponent,
   },
   {
     path: 'user-detail',

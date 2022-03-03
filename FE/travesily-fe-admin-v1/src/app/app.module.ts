@@ -40,6 +40,7 @@ import { HotelListComponent } from './components/hotel-list/hotel-list.component
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AboutHotelComponent } from './components/about-hotel/about-hotel.component';
 import { AuthenticationInputComponent } from './components/authentication-input/authentication-input.component';
+import { ProviderComponent } from './components/provider/provider.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AuthenticationInputComponent } from './components/authentication-input/
     UserFeedbackComponent,
     HotelListComponent,
     AboutHotelComponent,
-    AuthenticationInputComponent
+    AuthenticationInputComponent,
+    ProviderComponent
   ],
   imports: [
     BrowserModule,
