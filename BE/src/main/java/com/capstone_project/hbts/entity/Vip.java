@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -41,6 +42,7 @@ public class Vip {
     private int discount;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "idVip")
+    @JsonIgnore
     private Set<Users> listUsers;
 
 }

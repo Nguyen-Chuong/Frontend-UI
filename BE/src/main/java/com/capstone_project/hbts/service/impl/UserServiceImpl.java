@@ -1,11 +1,14 @@
 package com.capstone_project.hbts.service.impl;
 
 import com.capstone_project.hbts.dto.Actor.UserDTO;
+import com.capstone_project.hbts.dto.VipDTO;
 import com.capstone_project.hbts.entity.Role;
 import com.capstone_project.hbts.entity.Users;
+import com.capstone_project.hbts.entity.Vip;
 import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.repository.RoleRepository;
 import com.capstone_project.hbts.repository.UserRepository;
+import com.capstone_project.hbts.repository.VipRepository;
 import com.capstone_project.hbts.request.ManagerRequest;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.CustomPageImpl;
@@ -33,12 +36,16 @@ public class UserServiceImpl implements UserService {
 
     private final RoleRepository roleRepository;
 
+    private final VipRepository vipRepository;
+
     public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper,
-                           BookingRepository bookingRepository, RoleRepository roleRepository) {
+                           BookingRepository bookingRepository, RoleRepository roleRepository,
+                           VipRepository vipRepository) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
         this.bookingRepository = bookingRepository;
         this.roleRepository = roleRepository;
+        this.vipRepository = vipRepository;
     }
 
     @Override
@@ -118,22 +125,20 @@ public class UserServiceImpl implements UserService {
         log.info("Request to update user's vip status");
         int numberBookingCompleted = bookingRepository.numberBookingCompleted(userId);
         int vipId = 0;
-        if(numberBookingCompleted == 0 || numberBookingCompleted == 1){
-            // member class
-            vipId = 1;
-        } else if (numberBookingCompleted >=2 && numberBookingCompleted <= 4){
-            // silver class
-            vipId = 2;
-        } else if (numberBookingCompleted >=5 && numberBookingCompleted <= 9){
-            // gold class
-            vipId = 3;
-        } else if (numberBookingCompleted >= 10 && numberBookingCompleted <= 19){
-            // platinum class
-            vipId = 4;
-        } else if (numberBookingCompleted >= 20){
-            // diamond class
-            vipId = 5;
+        // consider number get from db cuz it can be change later
+
+        List<VipDTO> listVipDTO = vipRepository.findAll()
+                .stream()
+                .map(item -> modelMapper.map(item, VipDTO.class))
+                .collect(Collectors.toList());
+
+        for (VipDTO vipDTO : listVipDTO) {
+            if (numberBookingCompleted >= vipDTO.getRangeStart().intValue()
+                    && numberBookingCompleted <= vipDTO.getRangeEnd().intValue()) {
+                vipId = vipDTO.getId();
+            }
         }
+
         userRepository.updateVipStatus(vipId, userId);
     }
 
