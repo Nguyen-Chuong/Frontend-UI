@@ -45,4 +45,6 @@ public class VipResource {
         }
     }
 
+    // modify vip table for admin
+
 }
