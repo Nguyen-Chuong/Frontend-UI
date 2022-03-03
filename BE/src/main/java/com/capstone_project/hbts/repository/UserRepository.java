@@ -1,6 +1,8 @@
 package com.capstone_project.hbts.repository;
 
 import com.capstone_project.hbts.entity.Users;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -60,5 +62,8 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
     void changeForgotPassword(
             @Param("email") String email,
             @Param("newPass") String newPass);
+
+    @Query(value = "SELECT * from capstone.users", nativeQuery = true)
+    Page<Users> findAllUser(Pageable pageable);
 
 }

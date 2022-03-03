@@ -3,6 +3,8 @@ package com.capstone_project.hbts.service;
 import com.capstone_project.hbts.dto.Actor.UserDTO;
 import com.capstone_project.hbts.request.ManagerRequest;
 import com.capstone_project.hbts.request.UserRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface UserService {
 
@@ -73,5 +75,11 @@ public interface UserService {
      * @param managerRequest
      */
     void addNewManager(ManagerRequest managerRequest);
+
+    /**
+     * Get page of all user
+     * @param pageable
+     */
+    Page<UserDTO> getAllUser(Pageable pageable);
 
 }
