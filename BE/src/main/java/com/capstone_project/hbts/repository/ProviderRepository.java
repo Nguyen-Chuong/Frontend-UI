@@ -1,6 +1,8 @@
 package com.capstone_project.hbts.repository;
 
 import com.capstone_project.hbts.entity.Provider;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -44,5 +46,8 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
     @Query(value = "SELECT password from capstone.provider WHERE capstone.provider.username = :username",
             nativeQuery = true)
     String getOldPassword(@Param("username") String username);
+
+    @Query(value = "SELECT * from capstone.provider", nativeQuery = true)
+    Page<Provider> findAllProvider(Pageable pageable);
 
 }

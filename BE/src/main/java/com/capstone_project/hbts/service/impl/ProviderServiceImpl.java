@@ -4,12 +4,18 @@ import com.capstone_project.hbts.dto.Actor.ProviderDTO;
 import com.capstone_project.hbts.entity.Provider;
 import com.capstone_project.hbts.repository.ProviderRepository;
 import com.capstone_project.hbts.request.ProviderRequest;
+import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.ProviderService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -83,6 +89,18 @@ public class ProviderServiceImpl implements ProviderService {
     public String getOldPassword(String username) {
         log.info("Request to get provider's old password");
         return providerRepository.getOldPassword(username);
+    }
+
+    @Override
+    public Page<ProviderDTO> getAllProvider(Pageable pageable) {
+        log.info("Request to get all provider for admin");
+        List<Provider> providerList = providerRepository.findAllProvider(pageable).getContent();
+
+        List<ProviderDTO> providerDTOList = providerList.stream()
+                .map(item -> modelMapper.map(item, ProviderDTO.class))
+                .collect(Collectors.toList());
+
+        return new CustomPageImpl<>(providerDTOList);
     }
 
 }

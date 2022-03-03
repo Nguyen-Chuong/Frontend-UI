@@ -2,6 +2,8 @@ package com.capstone_project.hbts.service;
 
 import com.capstone_project.hbts.dto.Actor.ProviderDTO;
 import com.capstone_project.hbts.request.ProviderRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ProviderService {
 
@@ -53,5 +55,11 @@ public interface ProviderService {
      * @param username
      */
     String getOldPassword(String username);
+
+    /**
+     * Get page of all provider
+     * @param pageable
+     */
+    Page<ProviderDTO> getAllProvider(Pageable pageable);
 
 }
