@@ -39,6 +39,6 @@ public class Request {
     private Provider provider;
 
     @Column(name = "status")
-    private int status; // 1-pending, 2-accepted, 3-denied
+    private int status; // 1-pending, 2-accepted, 3-denied, 4-cancelled
 
 }

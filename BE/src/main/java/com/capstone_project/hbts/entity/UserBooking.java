@@ -59,4 +59,7 @@ public class UserBooking {
     @JoinColumn(name = "hotelId")
     private Hotel hotel;
 
+    @Column(name = "booked_quantity")
+    private Timestamp bookedQuantity; // number of people booked
+
 }
