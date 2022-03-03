@@ -50,4 +50,9 @@ public interface BookingService {
      */
     Page<UserBookingDTO> getBookingsByHotelId(int hotelId, Pageable pageable);
 
+    /**
+     * cancel a booking
+     */
+    void cancelBooking(int bookingId);
+
 }

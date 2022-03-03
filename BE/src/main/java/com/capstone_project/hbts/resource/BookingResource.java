@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -189,6 +190,27 @@ public class BookingResource {
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param bookingId
+     * return
+     */
+    @PatchMapping("/cancel-booking/{bookingId}")
+    public ResponseEntity<?> cancelBooking(@PathVariable int bookingId){
+        log.info("REST request to cancel booking");
+
+        try{
+            bookingService.cancelBooking(bookingId);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

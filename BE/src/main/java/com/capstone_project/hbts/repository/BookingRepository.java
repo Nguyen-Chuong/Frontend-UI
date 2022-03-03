@@ -4,6 +4,7 @@ import com.capstone_project.hbts.entity.UserBooking;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -35,5 +36,9 @@ public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
     Page<UserBooking> findAllByOrderByBookingDateDesc(Pageable pageable);
 
     Page<UserBooking> findAllByHotel_IdOrderByBookingDateDesc(int hotelId, Pageable pageable);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.user_booking SET status = 3 WHERE id = :bookingId", nativeQuery = true)
+    void cancelBooking(@Param("bookingId") int bookingId);
 
 }

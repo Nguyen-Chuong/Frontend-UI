@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -137,6 +138,13 @@ public class BookingServiceImpl implements BookingService {
                 .collect(Collectors.toList());
 
         return new CustomPageImpl<>(userBookingDTOList);
+    }
+
+    @Override
+    @Transactional
+    public void cancelBooking(int bookingId) {
+        log.info("Request to cancel booking");
+        bookingRepository.cancelBooking(bookingId);
     }
 
 }

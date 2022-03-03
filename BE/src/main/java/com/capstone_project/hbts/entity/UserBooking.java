@@ -37,7 +37,7 @@ public class UserBooking {
     private Timestamp checkOut;
 
     @Column(name = "status")
-    private int status;
+    private int status; // 1-upcoming, 2-completed, 3-cancelled
 
     @Column(name = "review_status")
     private int reviewStatus;
