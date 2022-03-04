@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<Users, Integer> {
@@ -65,5 +66,13 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
 
     @Query(value = "SELECT * from capstone.users", nativeQuery = true)
     Page<Users> findAllUser(Pageable pageable);
+
+    @Query(value = "SELECT * from capstone.users WHERE type = 1", nativeQuery = true)
+    List<Users> findAllManager();
+
+    @Modifying
+    @Query(value = "UPDATE capstone.users SET type = 0 WHERE capstone.users.id = :userId",
+            nativeQuery = true)
+    void deleteManager(@Param("userId") int userId);
 
 }

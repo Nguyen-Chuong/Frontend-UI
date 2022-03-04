@@ -8,14 +8,10 @@ import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.repository.RoleRepository;
 import com.capstone_project.hbts.repository.UserRepository;
 import com.capstone_project.hbts.repository.VipRepository;
-import com.capstone_project.hbts.request.ManagerRequest;
 import com.capstone_project.hbts.request.UserRequest;
-import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -146,29 +142,6 @@ public class UserServiceImpl implements UserService {
     public void changeForgotPassword(String email, String newPass) {
         log.info("Request to change user's password that forgot");
         userRepository.changeForgotPassword(email, newPass);
-    }
-
-    @Override
-    public void addNewManager(ManagerRequest managerRequest) {
-        log.info("Request to add new manager");
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        Users newManager = modelMapper.map(managerRequest, Users.class);
-        newManager.setPassword(bCryptPasswordEncoder.encode(managerRequest.getPassword()));
-        userRepository.save(newManager);
-        Role role = new Role(newManager, "ROLE_MANAGER");
-        roleRepository.save(role);
-    }
-
-    @Override
-    public Page<UserDTO> getAllUser(Pageable pageable) {
-        log.info("Request to get all user for admin");
-        List<Users> usersList = userRepository.findAllUser(pageable).getContent();
-
-        List<UserDTO> userDTOList = usersList.stream()
-                .map(item -> modelMapper.map(item, UserDTO.class))
-                .collect(Collectors.toList());
-
-        return new CustomPageImpl<>(userDTOList);
     }
 
 }
