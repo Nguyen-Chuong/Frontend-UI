@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.Benefit.RoomTypeBenefitDTO;
 import com.capstone_project.hbts.dto.Facility.FacilityDTO;
 import com.capstone_project.hbts.dto.ImageDTO;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
@@ -84,6 +85,12 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                 .map(item -> modelMapper.map(item, ImageDTO.class))
                 .collect(Collectors.toSet());
 
+        // get set benefit from this room type and transfer to DTO
+        Set<RoomTypeBenefitDTO> roomTypeBenefitDTOSet = roomType.getListBenefit()
+                .stream()
+                .map(item -> modelMapper.map(item, RoomTypeBenefitDTO.class))
+                .collect(Collectors.toSet());
+
         // get list facility id from room facility
         List<Integer> listFacilityId = roomFacilityRepository.getAllFacilityIdByRoomTypeId(roomTypeId);
 
@@ -95,7 +102,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
         // convert to DTO
         return new RoomDetailDTO(roomType.getId(), roomType.getName(),
-                imageDTOSet, facilityDTOList);
+                imageDTOSet, facilityDTOList, roomTypeBenefitDTOSet);
 
     }
 
