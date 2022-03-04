@@ -12,12 +12,12 @@ import java.util.concurrent.TimeUnit;
 @Service
 public class OTPServiceImpl implements OTPService {
     //cache based on username and OTP MAX 8
-    private static final Integer EXPIRE_MINS = 1;
+    private static final Integer EXPIRE_MINUTES = 1;
 
     private final LoadingCache<String, Integer> otpCache;
 
     public OTPServiceImpl(){
-        otpCache = CacheBuilder.newBuilder().expireAfterAccess(EXPIRE_MINS, TimeUnit.MINUTES)
+        otpCache = CacheBuilder.newBuilder().expireAfterAccess(EXPIRE_MINUTES, TimeUnit.MINUTES)
                 .build(new CacheLoader<String, Integer>() {
                     @Override
                     public Integer load(String s) {

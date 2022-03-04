@@ -154,7 +154,7 @@ public class BookingResource {
      * @param bookingId
      * return
      */
-    @GetMapping("/get-booking/{bookingId}")
+    @GetMapping("/booking/{bookingId}")
     public ResponseEntity<?> getBookingById(@PathVariable int bookingId){
         log.info("REST request to get user's booking by id");
 
