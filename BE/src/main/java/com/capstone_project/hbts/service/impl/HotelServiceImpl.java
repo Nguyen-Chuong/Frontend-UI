@@ -85,12 +85,12 @@ public class HotelServiceImpl implements HotelService {
         List<HotelDTO> hotelDTOList;
 
         if(status == 0){
-            hotelDTOList = hotelRepository.findAll()
+            hotelDTOList = hotelRepository.findAllHotel(pageable)
                     .stream()
                     .map(item -> modelMapper.map(item, HotelDTO.class))
                     .collect(Collectors.toList());
         }else {
-            hotelDTOList = hotelRepository.findAllByStatus(status)
+            hotelDTOList = hotelRepository.findAllByStatus(status, pageable)
                     .stream()
                     .map(item -> modelMapper.map(item, HotelDTO.class))
                     .collect(Collectors.toList());

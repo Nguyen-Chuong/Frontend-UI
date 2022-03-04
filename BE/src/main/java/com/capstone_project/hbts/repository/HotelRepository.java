@@ -8,8 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
@@ -18,9 +16,12 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             @Param("districtId") int districtId,
             Pageable pageable);
 
-    List<Hotel> findAllByStatus(int status);
+    Page<Hotel> findAllByStatus(int status, Pageable pageable);
 
     @Query(value = "select * from capstone.hotel where id = :id limit 1", nativeQuery = true)
     Hotel getHotelById(@Param("id") int id);
+
+    @Query(value = "select * from capstone.hotel", nativeQuery = true)
+    Page<Hotel> findAllHotel(Pageable pageable);
 
 }
