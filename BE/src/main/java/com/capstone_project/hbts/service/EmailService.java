@@ -5,6 +5,7 @@ import com.capstone_project.hbts.entity.Email;
 import java.util.List;
 
 public interface EmailService {
+
     /**
      * send email
      */
