@@ -4,7 +4,6 @@ import com.capstone_project.hbts.dto.Actor.UserDTO;
 import com.capstone_project.hbts.dto.VipDTO;
 import com.capstone_project.hbts.entity.Role;
 import com.capstone_project.hbts.entity.Users;
-import com.capstone_project.hbts.entity.Vip;
 import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.repository.RoleRepository;
 import com.capstone_project.hbts.repository.UserRepository;
