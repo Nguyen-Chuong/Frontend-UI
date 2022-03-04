@@ -31,7 +31,7 @@ public class JwtServiceImpl implements JwtService {
     @Override
     public String getTokenKeyForAdmin() {
         log.info("Request to get a token for admin to verify");
-        return jwtRepository.getById(1).getJwt();
+        return jwtRepository.getJwtById(1).getJwt();
     }
 
 }

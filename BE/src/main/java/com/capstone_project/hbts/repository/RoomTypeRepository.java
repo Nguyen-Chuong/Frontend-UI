@@ -14,4 +14,7 @@ public interface RoomTypeRepository extends JpaRepository<RoomType, Integer> {
     @Query(value = "SELECT * FROM capstone.room_type where hotel_id = :hotelId", nativeQuery = true)
     List<RoomType> findRoomTypeByHotelId(@Param("hotelId") int hotelId);
 
+    @Query(value = "SELECT * FROM capstone.room_type where id = :id limit 1", nativeQuery = true)
+    RoomType getRoomTypeById(@Param("id") int id);
+
 }

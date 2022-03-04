@@ -102,7 +102,7 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public HotelDetailDTO getDetailHotelById(int hotelId) {
         log.info("Request to get detail hotel by id");
-        return modelMapper.map(hotelRepository.getById(hotelId), HotelDetailDTO.class);
+        return modelMapper.map(hotelRepository.getHotelById(hotelId), HotelDetailDTO.class);
     }
 
 }

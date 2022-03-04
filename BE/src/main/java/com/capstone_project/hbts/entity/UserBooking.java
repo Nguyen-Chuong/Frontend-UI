@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -49,9 +50,11 @@ public class UserBooking {
     private Set<Review> listReview;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking")
+    @JsonIgnore
     private Set<UserBookingDetail> listUserBookingDetail;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "userId")
     private Users users;
 

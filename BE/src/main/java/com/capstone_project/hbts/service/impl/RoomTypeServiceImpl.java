@@ -77,7 +77,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     public RoomDetailDTO viewRoomDetail(int roomTypeId) {
         log.info("Request to view detail room type");
         // get room type by id
-        RoomType roomType = roomTypeRepository.getById(roomTypeId);
+        RoomType roomType = roomTypeRepository.getRoomTypeById(roomTypeId);
 
         // get set image from this room type and transfer to DTO
         Set<ImageDTO> imageDTOSet = roomType.getListImage()

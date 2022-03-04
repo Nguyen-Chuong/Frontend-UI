@@ -41,4 +41,7 @@ public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
     @Query(value = "UPDATE capstone.user_booking SET status = 3 WHERE id = :bookingId", nativeQuery = true)
     void cancelBooking(@Param("bookingId") int bookingId);
 
+    @Query(value = "select * from capstone.user_booking where id = :id limit 1", nativeQuery = true)
+    UserBooking getBookingById(@Param("id") int id);
+
 }

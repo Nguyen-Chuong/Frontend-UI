@@ -124,8 +124,8 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public UserBookingDTO getBookingById(int bookingId) {
         log.info("Request to get booking by id");
-        UserBooking userBooking = bookingRepository.getById(bookingId);
-        UserBookingDTO userBookingDTO = modelMapper.map(bookingRepository.getById(bookingId), UserBookingDTO.class);
+        UserBooking userBooking = bookingRepository.getBookingById(bookingId);
+        UserBookingDTO userBookingDTO = modelMapper.map(userBooking, UserBookingDTO.class);
         userBookingDTO.setTotalPaid(countTotalPaidForABooking(userBooking));
         return userBookingDTO;
     }

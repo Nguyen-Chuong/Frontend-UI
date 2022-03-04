@@ -20,4 +20,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
     List<Hotel> findAllByStatus(int status);
 
+    @Query(value = "select * from capstone.hotel where id = :id limit 1", nativeQuery = true)
+    Hotel getHotelById(@Param("id") int id);
+
 }
