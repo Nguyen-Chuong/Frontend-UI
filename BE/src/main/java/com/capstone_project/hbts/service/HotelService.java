@@ -27,6 +27,10 @@ public interface HotelService {
      */
     Page<HotelDTO> getAllHotels(int status, Pageable pageable);
 
+    /**
+     * @param hotelId
+     * @return
+     */
     HotelDetailDTO getDetailHotelById(int hotelId);
 
 }

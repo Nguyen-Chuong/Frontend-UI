@@ -22,7 +22,7 @@ public class HotelDTO {
 
     private BigDecimal lowestPrice;
 
-    private int status; // 1-active, 2-deactivated
+    private int status; // 1-active, 2-deactivated, 3-pending
 
     private String phone;
 
