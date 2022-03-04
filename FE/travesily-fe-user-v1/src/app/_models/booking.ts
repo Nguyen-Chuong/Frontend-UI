@@ -8,5 +8,7 @@ id: number
   reviewStatus: number
   hotel: Hotel
   totalPaid: number
+  bookingDate: Date
   totalDays: number
+  bookedQuantity: number
 }

@@ -1,37 +1,8 @@
 @import "../../../shared/scss/main";
-.header{
-  display: flex;
-  background-color: #fff;
-  align-items: center;
-  font-size: 1.8rem;
-  font-weight: 500;
 
-  &__logo{
-    height: 6rem;
-    width: 6rem;
-  }
-  &__nav{
-    list-style: none;
-    display: flex;
-    justify-content: space-between;
-
-    &--item{
-    }
-    &--link{
-      text-decoration: none;
-      color: #000;
-      transition: all .5s;
-      cursor: pointer;
-      &:hover{
-        display: inline-block;
-        transform: translateY(-.5rem);
-      }
-    }
-  }
-
-  &__user{
-    margin-left: auto;
-  }
+.nav-image{
+  width: 8rem;
+  height: 8rem;
 }
 
 

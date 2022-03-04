@@ -17,11 +17,6 @@ export class UserComponent implements OnInit {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
     })
-    window.onclick = function (event) {
-      if (!event.target.matches('.btn-dropdown *') && !event.target.matches('.btn-dropdown')) {
-        document.getElementById("user-dropdown").classList.remove('show')
-      }
-    }
   }
 
   ngOnInit(): void {
@@ -36,9 +31,7 @@ export class UserComponent implements OnInit {
   }
 
 
-  dropdown() {
-    document.getElementById("user-dropdown").classList.toggle("show");
-  }
+
 
 // Close the dropdown menu if the user clicks outside of it
 

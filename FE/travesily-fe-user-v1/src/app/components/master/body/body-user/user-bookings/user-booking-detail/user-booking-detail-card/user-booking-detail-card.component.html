@@ -1,11 +1,22 @@
-<div class="booking-detail">
-  <div class="booking-detail__header">
-    <h1>Room information</h1>
-    <img class="booking-detail__header--image" [src]="roomDetail?.listImage ? roomDetail?.listImage[0]['src'] : ''"
-         alt="Room Type Image">
-    <h2 class="booking-detail__header--room-type-name">{{bookingDetail.quantity}} X {{roomDetail.name}}</h2>
-    <h3>{{roomDetail.listFacility?.map(filterFacility).join(' | ')}}</h3>
-    <h2 class="booking-detail__header--paid">{{bookingDetail.paid * bookingDetail.quantity|number}} VNĐ</h2>
+<div class="card mb-5">
+  <div class="card-header">
+    <h2>Room information</h2>
   </div>
-
+  <div class="row g-0">
+    <div class="col-md-2">
+      <img class="room-image" [src]="roomDetail?.listImage ? roomDetail?.listImage[0]['src'] : ''"
+           alt="Room Type Image">
+    </div>
+    <div class="col-md-10">
+      <div class="card-body">
+        <h3 class="card-title text-blue-1">{{bookingDetail.quantity}} X {{roomDetail.name}}</h3>
+        <h4 class="card-text text-success">{{roomDetail.listFacility?.map(filterFacility).join(' | ')}}</h4>
+        <h3 class="card-text">{{bookingDetail.paid * bookingDetail.quantity|number}} VNĐ</h3>
+      </div>
+    </div>
+    <div class="card-footer">
+      <h3>Benefits</h3>
+      <ng-container></ng-container>
+    </div>
+  </div>
 </div>

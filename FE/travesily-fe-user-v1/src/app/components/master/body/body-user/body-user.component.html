@@ -1,7 +1,11 @@
-<div class="container">
-  <div class="nav-column">
-    <a *ngFor="let item of navItems" routerLinkActive="nav-active" class="nav-column__item"
-       [routerLink]="['/user'+item.id]">{{item.name}}</a>
+<div class="container-fluid">
+  <div class="nav-column col-md-2">
+    <ul class="nav flex-column">
+      <li class="nav-item" *ngFor="let item of navItems">
+        <a routerLinkActive="nav-user-active" class="nav-link"
+           [routerLink]="['/user'+item.id]">{{item.name}}</a>
+      </li>
+    </ul>
   </div>
   <div class="user-detail">
     <router-outlet></router-outlet>

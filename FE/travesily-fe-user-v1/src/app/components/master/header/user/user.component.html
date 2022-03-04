@@ -1,14 +1,12 @@
-<div class="user">
-  <button class="btn-dropdown" (click)="dropdown()">
-    <img src="../../../assets/img/ha.JPG" alt="H" class="user-avatar">
-<!--    <p class="user__name">{{account['username']?.slice(2, account['username']?.length)}}</p>-->
-    <p class="user__name">{{account['firstname']}}</p>
-    <i class="arrow down"></i>
+<div class="dropdown">
+  <button class="btn btn-plain dropdown-toggle d-flex justify-content-between align-items-center" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    <img [src]="account.avatar??''" alt="H" class="user-avatar me-4">
+    <!--    <p class="user__name">{{account['username']?.slice(2, account['username']?.length)}}</p>-->
+    <p class="me-4">{{account['firstname']}}</p>
   </button>
-  <div id="user-dropdown" class="dropdown-content">
-    <a [routerLink]="['/user/bookings/upcoming']" class="btn-plain">My Bookings</a>
-    <a [routerLink]="['/user/profile']" class="btn-plain">User Info</a>
-    <a [routerLink]="['/user/reviews']" class="btn-plain">Reviews</a>
-    <a (click)="logout()" class="btn-fill btn-logout">Logout</a>
-  </div>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item" [routerLink]="['/user/bookings/upcoming']">User Info</a></li>
+    <li><a class="dropdown-item" [routerLink]="['/user/profile']">Reviews</a></li>
+    <li><a class="dropdown-item btn-logout" [routerLink]="['/user/reviews']">Logout</a></li>
+  </ul>
 </div>

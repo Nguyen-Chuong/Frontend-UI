@@ -1,6 +1,9 @@
-<div class="bookings">
-  <div class="bookings__nav">
-      <a *ngFor="let item of navItems" routerLinkActive="active" class="bookings__nav--link" [routerLink]="['/user','bookings',item.id]">{{item.name}}</a>
+  <ul class="nav nav-tabs">
+    <li class="nav-item" *ngFor="let item of navItems">
+      <a routerLinkActive="nav-active" class="nav-link"
+         [routerLink]="['/user','bookings',item.id]">{{item.name}}</a>
+    </li>
+  </ul>
+  <div class="bookings__body">
+    <router-outlet></router-outlet>
   </div>
-  <div class="bookings__body"><router-outlet></router-outlet></div>
-</div>

@@ -26,7 +26,6 @@ export class EditDropdownNameComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.account)
     const val = this.form.value
     if (val.firstname && val.lastname) {
       this.account.firstname = val.firstname
