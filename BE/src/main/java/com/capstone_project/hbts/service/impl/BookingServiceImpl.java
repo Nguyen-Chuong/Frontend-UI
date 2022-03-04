@@ -135,10 +135,18 @@ public class BookingServiceImpl implements BookingService {
         log.info("Request to get booking by hotel id");
         Page<UserBooking> userBookingPage = bookingRepository.findAllByHotel_IdOrderByBookingDateDesc(hotelId, pageable);
 
-        List<UserBookingDTO> userBookingDTOList = userBookingPage.getContent()
+        List<UserBooking> list = userBookingPage.getContent();
+
+        List<UserBookingDTO> userBookingDTOList = list
                 .stream()
                 .map(item -> modelMapper.map(item, UserBookingDTO.class))
                 .collect(Collectors.toList());
+
+        for(int i = 0 ; i < list.size(); i++){
+            BigDecimal totalPaid = countTotalPaidForABooking(list.get(i));
+            // set total paid for each user booking
+            userBookingDTOList.get(i).setTotalPaid(totalPaid);
+        }
 
         return new CustomPageImpl<>(userBookingDTOList);
     }
