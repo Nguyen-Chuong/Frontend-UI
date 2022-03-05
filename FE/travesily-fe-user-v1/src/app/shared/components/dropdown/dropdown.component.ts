@@ -1,6 +1,7 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormControl} from "@angular/forms";
-import {IGuestNumber} from "../../../interfaces/guest-number";
+import {GuestNumber} from "../../../_models/guest-number";
+import {typeofExpr} from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: 'app-dropdown',
@@ -8,11 +9,11 @@ import {IGuestNumber} from "../../../interfaces/guest-number";
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent implements OnInit {
+  @Output() guestNumberEvent = new EventEmitter<number>()
+  @Output() roomNumberEvent = new EventEmitter<number>()
+  guestNum = 0
+  roomNum = 0
 
-  @Input() control: FormControl | any
-  guest: IGuestNumber = {id: 0, adult: 0, children: 0, roomNumber: 0}
-
-  btnContent = this.guest.adult? `${this.guest.adult} adults`:'' + this.guest.children? `${this.guest.children} children`:'' + this.guest.roomNumber? `${this.guest.roomNumber} rooms`:'' ;
   constructor() {
   }
 
@@ -25,16 +26,26 @@ export class DropdownComponent implements OnInit {
 
   }
 
-  toggleNumberPlus(itemName: string) {
-    itemName === 'adult' ? this.guest.adult++ : itemName === 'children'
-      ? this.guest.children++ : itemName === 'room'
-        ? this.guest.roomNumber++ : ''
+// 1 = guestNumber, 2 = roomNumber
+  toggleNumberPlus(type: number) {
+    if (type === 1) {
+      this.guestNum = this.guestNum + 1
+      this.guestNumberEvent.emit(this.guestNum)
+    } else if (type === 2) {
+      this.roomNum = this.roomNum + 1
+      this.roomNumberEvent.emit(this.roomNum)
+    }
   }
 
-
-  toggleNumberMinus(itemName: string) {
-    itemName === 'adult' ? this.guest.adult-- : itemName === 'children'
-      ? this.guest.children-- : itemName === 'room'
-        ? this.guest.roomNumber-- : ''
+// 1 = guestNumber, 2 = roomNumber
+  toggleNumberMinus(type: number) {
+    if(type === 1) {
+      this.guestNum = this.guestNum - 1
+      this.guestNumberEvent.emit(this.guestNum)
+    }
+     else if(type === 2){
+      this.roomNum = this.roomNum - 1
+      this.roomNumberEvent.emit(this.roomNum)
+    }
   }
 }

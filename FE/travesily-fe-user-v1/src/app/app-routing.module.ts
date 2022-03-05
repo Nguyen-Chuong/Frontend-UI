@@ -30,6 +30,10 @@ import {NewPasswordComponent} from "./components/master/body/authentication/new-
 import {
   UserBookingDetailComponent
 } from "./components/master/body/body-user/user-bookings/user-booking-detail/user-booking-detail.component";
+import {BodyMainComponent} from "./components/master/body/body-main/body-main.component";
+import {
+  SearchHotelListComponent
+} from "./components/master/body/body-main/search-hotel-list/search-hotel-list.component";
 
 const routes: Routes = [
   {
@@ -49,6 +53,11 @@ const routes: Routes = [
         children: [
           {path: '', component: HotelHomeComponent},
           {path: 'hotelAndHome', component: HotelHomeComponent},
+        ]
+      },
+      {
+        path:'main', component: BodyMainComponent, children:[
+          {path: 'search-hotel-list', component: SearchHotelListComponent}
         ]
       },
       {

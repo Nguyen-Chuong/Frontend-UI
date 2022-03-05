@@ -1,8 +1,8 @@
 <div class="field">
-  <label class="lbl-md">{{label}}</label>
-  <div class="control">
+  <label class="form-label">{{label}}</label>
+  <div class="mb-3">
     <input
-      class="input"
+      class="form-control form-control-lg"
       [type]="inputType"
       [ngClass]="{'is-danger': control.dirty&&control.touched&&control.errors}"
       placeholder="{{placeholder}}"
@@ -10,7 +10,7 @@
     >
   </div>
   <ng-container *ngIf="control.touched&&control.dirty">
-    <div class="text-danger"  *ngIf="control.errors?.required">
+    <div class="text-danger" *ngIf="control.errors?.required">
       {{itemName}} is required
     </div>
     <div class="text-danger" *ngIf="control.errors?.minlength">

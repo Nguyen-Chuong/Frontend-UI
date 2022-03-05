@@ -1,4 +1,4 @@
-import {Component, OnInit,Input} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormControl} from "@angular/forms";
 @Component({
   selector: 'app-input',
@@ -12,11 +12,11 @@ export class InputComponent implements OnInit {
   @Input() placeholder: string | any
   @Input() control: FormControl | any
   @Input() label: string | any
+  @Input() detectChange: boolean
 
   constructor() {
   }
 
   ngOnInit(): void {
   }
-
 }

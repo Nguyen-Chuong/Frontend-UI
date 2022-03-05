@@ -46,6 +46,11 @@ import { BookingCardComponent } from './components/master/body/body-user/user-bo
 import { NewPasswordComponent } from './components/master/body/authentication/new-password/new-password.component';
 import { UserBookingDetailComponent } from './components/master/body/body-user/user-bookings/user-booking-detail/user-booking-detail.component';
 import { UserBookingDetailCardComponent } from './components/master/body/body-user/user-bookings/user-booking-detail/user-booking-detail-card/user-booking-detail-card.component';
+import { BodyMainComponent } from './components/master/body/body-main/body-main.component';
+import { SearchHotelListComponent } from './components/master/body/body-main/search-hotel-list/search-hotel-list.component';
+import { HotelCardComponent } from './components/master/body/body-main/search-hotel-list/hotel-card/hotel-card.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {AngularMaterialModule} from "./angular-material.module";
 
 @NgModule({
   declarations: [
@@ -88,7 +93,10 @@ import { UserBookingDetailCardComponent } from './components/master/body/body-us
     BookingCardComponent,
     NewPasswordComponent,
     UserBookingDetailComponent,
-    UserBookingDetailCardComponent
+    UserBookingDetailCardComponent,
+    BodyMainComponent,
+    SearchHotelListComponent,
+    HotelCardComponent
   ],
   imports: [
     BrowserModule,
@@ -96,6 +104,10 @@ import { UserBookingDetailCardComponent } from './components/master/body/body-us
     ReactiveFormsModule,
     HttpClientModule,
     NgOtpInputModule,
+    BrowserAnimationsModule,
+    BrowserAnimationsModule,
+    AngularMaterialModule
+
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
