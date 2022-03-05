@@ -1,4 +1,4 @@
-package com.capstone_project.hbts.dto.Feedback;
+package com.capstone_project.hbts.dto.Report;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

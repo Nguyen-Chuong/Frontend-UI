@@ -2,7 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
-import com.capstone_project.hbts.dto.Feedback.FeedbackDTO;
+import com.capstone_project.hbts.dto.Report.FeedbackDTO;
 import com.capstone_project.hbts.request.FeedbackRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
@@ -156,7 +156,7 @@ public class FeedbackResource {
     /**
      * @param feedbackId
      * return
-     * @apiNote
+     * @apiNote both admin and user can user it
      */
     @GetMapping("/feedback/{feedbackId}")
     public ResponseEntity<?> getFeedbackById(@PathVariable int feedbackId){

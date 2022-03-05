@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.service.impl;
 
-import com.capstone_project.hbts.dto.Feedback.ResponseDTO;
+import com.capstone_project.hbts.dto.Report.ResponseDTO;
 import com.capstone_project.hbts.repository.ResponseRepository;
 import com.capstone_project.hbts.repository.UserRepository;
 import com.capstone_project.hbts.request.ResponseAdminRequest;
