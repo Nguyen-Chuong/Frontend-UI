@@ -65,16 +65,27 @@ public class FeedbackServiceImpl implements FeedbackService {
     public List<FeedbackDTO> getListAnUserFeedback(int userId) {
         log.info("Request to get list feedback of an user");
 
-        return feedbackRepository.getUserFeedback(userId)
-                .stream()
+        List<Feedback> list = feedbackRepository.getUserFeedback(userId);
+
+        List<FeedbackDTO> feedbackDTOList = list.stream()
                 .map(item -> modelMapper.map(item, FeedbackDTO.class))
                 .collect(Collectors.toList());
+
+        for(int i = 0 ; i< feedbackDTOList.size(); i++){
+            feedbackDTOList.get(i).setSenderName(list.get(i).getSender().getUsername());
+        }
+
+        return feedbackDTOList;
+
     }
 
     @Override
     public FeedbackDTO getFeedbackById(int feedbackId) {
         log.info("Request to get feedback by id");
-        return modelMapper.map(feedbackRepository.getFeedbackById(feedbackId), FeedbackDTO.class);
+        Feedback feedback = feedbackRepository.getFeedbackById(feedbackId);
+        FeedbackDTO feedbackDTO = modelMapper.map(feedback, FeedbackDTO.class);
+        feedbackDTO.setSenderName(feedback.getSender().getUsername());
+        return feedbackDTO;
     }
 
 }
