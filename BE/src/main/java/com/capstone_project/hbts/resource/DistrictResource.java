@@ -30,7 +30,7 @@ public class DistrictResource {
      * @param text
      * return
      */
-    @GetMapping("/search-district")
+    @GetMapping("/public/search-district")
     public ResponseEntity<?> searchDistrict(@RequestParam String text){
         log.info("REST request to search district by text");
 

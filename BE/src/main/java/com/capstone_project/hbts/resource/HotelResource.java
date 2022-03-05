@@ -81,7 +81,7 @@ public class HotelResource {
     public ResponseEntity<?> searchHotel(@PathVariable int status,
                                          @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                          @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
-        log.info("REST request to get all hotel by status");
+        log.info("REST request to get all hotel by status for admin");
 
         try{
             Page<HotelDTO> hotelDTOPage = hotelService.getAllHotels(status, PageRequest.of(page, pageSize));
