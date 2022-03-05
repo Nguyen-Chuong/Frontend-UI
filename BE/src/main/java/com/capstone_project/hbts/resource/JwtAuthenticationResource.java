@@ -13,6 +13,7 @@ import com.capstone_project.hbts.service.ProviderService;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -56,7 +57,8 @@ public class JwtAuthenticationResource {
 
 
     /**
-     * @param
+     * @param userRequest
+     * return
      */
     @PostMapping("/authenticate/user")
     public ResponseEntity<?> createJsonWebTokenKeyForUser(@RequestBody UserRequest userRequest) {
@@ -103,7 +105,8 @@ public class JwtAuthenticationResource {
     }
 
     /**
-     * @param
+     * @param providerRequest
+     * return
      */
     @PostMapping("/authenticate/provider")
     public ResponseEntity<?> createJsonWebTokenKeyForProvider(@RequestBody ProviderRequest providerRequest) {
@@ -141,8 +144,10 @@ public class JwtAuthenticationResource {
     /**
      * @Param
      * return
+     * @apiNote for admin/ manager to get their key
      */
     @GetMapping("/authenticate/admin")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> getJsonWebTokenKeyForAdmin(){
         log.info("REST request to get jwt token for admin");
 

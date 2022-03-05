@@ -43,6 +43,11 @@ public class FeedbackResource {
         this.jwtTokenUtil = jwtTokenUtil;
     }
 
+    /**
+     * @param feedbackRequest
+     * return
+     * @apiNote for user
+     */
     @PostMapping("/send-feedback")
     public ResponseEntity<?> sendFeedback(@RequestBody FeedbackRequest feedbackRequest){
         log.info("REST request to send user feedback");
@@ -60,6 +65,12 @@ public class FeedbackResource {
         }
     }
 
+    /**
+     * @param page
+     * @param pageSize
+     * return
+     * @apiNote for admin/manager
+     */
     @GetMapping("/get-all-feedback")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> getAllFeedback(@RequestParam(defaultValue = ValidateConstant.PAGE) int page,
@@ -83,10 +94,15 @@ public class FeedbackResource {
         }
     }
 
+    /**
+     * @param username
+     * return
+     * @apiNote for admin/manager
+     */
     @GetMapping("/search-feedback")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> searchFeedbackOfAnUser(@RequestParam String username){
-        log.info("REST request to get an user's feedback");
+        log.info("REST request to search an user's feedback");
         int userId;
 
         try{
@@ -110,6 +126,11 @@ public class FeedbackResource {
         }
     }
 
+    /**
+     * @param jwttoken
+     * return
+     * @apiNote for user
+     */
     @GetMapping("/feedback")
     public ResponseEntity<?> getListFeedback(@RequestHeader("Authorization") String jwttoken){
         log.info("REST request to get user's feedbacks that sent");
