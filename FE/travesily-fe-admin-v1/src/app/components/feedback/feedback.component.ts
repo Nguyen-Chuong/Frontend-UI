@@ -13,17 +13,16 @@ import { FeedbackService } from 'src/app/_services/feedback.service';
 export class FeedbackComponent implements OnInit {
 
   feedbacks: Feedback[]
-  dataSource
   currentPage: number
   pageSize: number
   pages: any[]
   total: number
   maxpage: number
-  constructor(private feedbackService: FeedbackService,
+
+  constructor(
+    private feedbackService: FeedbackService,
     private router: Router,
     private route: ActivatedRoute) { }
-  displayedColumns: string[] = ['id', 'type', 'senderName', 'message', 'modifyDate'];
-
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
       this.currentPage = param['page']
@@ -47,15 +46,7 @@ export class FeedbackComponent implements OnInit {
         this.feedbacks = rs['data']['items']
       }
     )
-    this.dataSource = new MatTableDataSource<Feedback>(this.feedbacks);
   }
-
-  openResponse(id): void {
-    this.router.navigate(['response'], {
-      queryParams: { id: JSON.stringify(id) }
-    });
-  }
-
   openPage(page) {
     this.router.navigate(['feedback'], {
       queryParams: { page: JSON.stringify(page - 1), size: JSON.stringify(Number(this.pageSize)) }

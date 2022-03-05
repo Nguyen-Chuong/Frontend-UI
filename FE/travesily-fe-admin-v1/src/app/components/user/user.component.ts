@@ -48,9 +48,9 @@ export class UserComponent {
     this.dataSource = new MatTableDataSource<Account>(this.users);
   }
 
-  openUserDetail(id): void {
+  openUserDetail(username): void {
     this.router.navigate(['user-detail'], {
-      queryParams: { id: JSON.stringify(id) }
+      queryParams: { username: JSON.stringify(username) }
     });
   }
 

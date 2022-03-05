@@ -44,6 +44,7 @@ import { NgImageSliderModule } from 'ng-image-slider';
 import { ManagerListComponent } from './components/manager-list/manager-list.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ResponseComponent } from './components/response/response.component';
+import { FeedbackTableComponent } from './components/feedback-table/feedback-table.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ResponseComponent } from './components/response/response.component';
     ProviderComponent,
     ManagerListComponent,
     FeedbackComponent,
-    ResponseComponent
+    ResponseComponent,
+    FeedbackTableComponent
   ],
   imports: [
     BrowserModule,
