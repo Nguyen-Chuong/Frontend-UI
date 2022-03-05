@@ -13,14 +13,14 @@ import java.sql.Timestamp;
 public interface ResponseRepository extends JpaRepository<Response, Integer> {
 
     @Modifying
-    @Query(value = "insert into capstone.response(type, sender_id, message, modify_date, is_completed) " +
-            "values (:type, :senderId, :message, :modifyDate, :isCompleted);",
+    @Query(value = "insert into capstone.response(admin_id, message, modify_date, user_id, feedback_id) " +
+            "values (:adminId, :message, :modifyDate, :userId, :feedbackId);",
             nativeQuery = true)
-    void sendFeedback(
-            @Param("type") int type,
-            @Param("senderId") int senderId,
+    void sendResponseFromFeedback(
+            @Param("adminId") int adminId,
             @Param("message") String message,
             @Param("modifyDate") Timestamp modifyDate,
-            @Param("isCompleted") int isCompleted);
+            @Param("userId") int userId,
+            @Param("feedbackId") int feedbackId);
 
 }
