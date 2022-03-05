@@ -16,11 +16,16 @@ export class FeedbackService {
   }
 
   getAllFeedback(){
-    return this.http.get(`${this.baseUrl}/get-all-feedback/${status}`)
+    return this.http.get(`${this.baseUrl}/get-all-feedback/`)
   }
 
   getFeedbackById(id: number){
     return this.http.get(`${this.baseUrl}/feedback/${id}`)
+  }
+
+  getFeedbackByName(username: string){
+    const params = new HttpParams().append('username', username)
+    return this.http.get(`${this.baseUrl}/search-feedback`, {params: params})
   }
 
   sendResponse(response: AdminResponse) {
