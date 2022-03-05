@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 public interface ResponseRepository extends JpaRepository<Response, Integer> {
@@ -27,5 +28,7 @@ public interface ResponseRepository extends JpaRepository<Response, Integer> {
             "Order by modify_date desc limit 1",
             nativeQuery = true)
     Integer getAdminId(@Param("feedbackId") int feedbackId);
+
+    List<Response> findAllByFeedback_IdOrderByModifyDateAsc(int feedbackId);
 
 }

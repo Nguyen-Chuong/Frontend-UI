@@ -1,15 +1,19 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.Feedback.ResponseDTO;
 import com.capstone_project.hbts.repository.ResponseRepository;
 import com.capstone_project.hbts.repository.UserRepository;
 import com.capstone_project.hbts.request.ResponseAdminRequest;
 import com.capstone_project.hbts.request.ResponseUserRequest;
 import com.capstone_project.hbts.service.ResponseService;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Timestamp;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -19,9 +23,12 @@ public class ResponseServiceImpl implements ResponseService {
 
     private final UserRepository userRepository;
 
-    public ResponseServiceImpl(ResponseRepository responseRepository, UserRepository userRepository) {
+    private final ModelMapper modelMapper;
+
+    public ResponseServiceImpl(ResponseRepository responseRepository, UserRepository userRepository, ModelMapper modelMapper) {
         this.responseRepository = responseRepository;
         this.userRepository = userRepository;
+        this.modelMapper = modelMapper;
     }
 
     // rule: two admins/managers cannot response to one user in one feedback (only one) and vice versa
@@ -53,6 +60,16 @@ public class ResponseServiceImpl implements ResponseService {
                 responseUserRequest.getModifyDate(),
                 responseUserRequest.getUserId(),
                 responseUserRequest.getFeedbackId());
+    }
+
+    @Override
+    public List<ResponseDTO> getAllResponseByFeedbackId(int feedbackId) {
+        log.info("Request to get all response by feedback id");
+        // first response always be admin/ manager
+        return responseRepository.findAllByFeedback_IdOrderByModifyDateAsc(feedbackId)
+                .stream()
+                .map(item -> modelMapper.map(item, ResponseDTO.class))
+                .collect(Collectors.toList());
     }
 
 }
