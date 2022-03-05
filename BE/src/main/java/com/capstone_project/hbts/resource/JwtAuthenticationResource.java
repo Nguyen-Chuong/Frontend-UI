@@ -146,8 +146,7 @@ public class JwtAuthenticationResource {
      * return
      * @apiNote for admin/ manager to get their key
      */
-    @GetMapping("/authenticate/admin")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+    @GetMapping("/authenticate/admin-manager/hbts102secret/jwt1key")
     public ResponseEntity<?> getJsonWebTokenKeyForAdmin(){
         log.info("REST request to get jwt token for admin");
 
