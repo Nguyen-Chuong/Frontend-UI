@@ -4,23 +4,17 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class FeedbackService {
 
   baseUrl = 'http://localhost:8080/api/v1'
   constructor(private http: HttpClient) { }
 
-  getAllUserPage(page: number, pageSize: number){
+  getFeedback(page: number, pageSize: number){
     const params = new HttpParams().append('page', page).append('pageSize', pageSize)
-    return this.http.get(`${this.baseUrl}/get-all-user`, {params: params})
+    return this.http.get(`${this.baseUrl}/get-all-feedback`, {params: params})
   }
 
-  getAllUser(){
-    return this.http.get(`${this.baseUrl}/get-all-user`)
+  getAllFeedback(){
+    return this.http.get(`${this.baseUrl}/get-all-feedback/${status}`)
   }
-
-  getAllManager(){
-    return this.http.get(`${this.baseUrl}/get-all-manager`)
-  }
-
-
 }

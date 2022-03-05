@@ -1,28 +1,28 @@
-import { Provider } from './../../_models/provider';
+import { Feedback } from './../../_models/feedback';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
-import { ProviderService } from 'src/app/_services/provider.service';
+import { FeedbackService } from 'src/app/_services/feedback.service';
 
 @Component({
-  selector: 'app-provider',
-  templateUrl: './provider.component.html',
-  styleUrls: ['./provider.component.scss']
+  selector: 'app-feedback',
+  templateUrl: './feedback.component.html',
+  styleUrls: ['./feedback.component.scss']
 })
-export class ProviderComponent implements OnInit {
+export class FeedbackComponent implements OnInit {
 
-  providers: Provider[]
+  feedbacks: Feedback[]
   dataSource
   currentPage: number
   pageSize: number
   pages: any[]
   total: number
   maxpage: number
-  constructor(private providerService: ProviderService,
+  constructor(private feedbackService: FeedbackService,
     private router: Router,
     private route: ActivatedRoute) { }
-  displayedColumns: string[] = ['id', 'username','providerName', 'email', 'phone', 'address'];
+  displayedColumns: string[] = ['id', 'type', 'senderName', 'message', 'modifyDate'];
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
@@ -30,22 +30,24 @@ export class ProviderComponent implements OnInit {
       this.pageSize = param['size']
     })
 
-    this.providerService.getAllProvider().pipe(first()).subscribe(
+    this.feedbackService.getAllFeedback().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        this.maxpage = this.total / this.pageSize
-        if (this.total % this.pageSize != 0) {
-          this.maxpage++
+
+        if (this.total % this.pageSize == 0) {
+          this.maxpage = this.total / this.pageSize
+        } else {
+          this.maxpage = this.total / this.pageSize + 1
         }
         this.pages = Array.from({ length: this.maxpage }, (_, i) => i + 1)
       }
     )
-    this.providerService.getAllProviderPage(this.currentPage, this.pageSize).pipe(first()).subscribe(
+    this.feedbackService.getFeedback(this.currentPage, this.pageSize).pipe(first()).subscribe(
       rs => {
-        this.providers = rs['data']['items']
+        this.feedbacks = rs['data']['items']
       }
     )
-    this.dataSource = new MatTableDataSource<Provider>(this.providers);
+    this.dataSource = new MatTableDataSource<Feedback>(this.feedbacks);
   }
 
   openUserDetail(id): void {
@@ -55,7 +57,7 @@ export class ProviderComponent implements OnInit {
   }
 
   openPage(page) {
-    this.router.navigate(['provider'], {
+    this.router.navigate(['feedback'], {
       queryParams: { page: JSON.stringify(page - 1), size: JSON.stringify(Number(this.pageSize)) }
     });
   }

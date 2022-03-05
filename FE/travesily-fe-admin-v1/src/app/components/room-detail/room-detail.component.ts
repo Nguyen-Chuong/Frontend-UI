@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Image } from './../../_models/image';
+import { Component, Input, OnInit } from '@angular/core';
+import { Room } from 'src/app/_models/room';
 
 @Component({
   selector: 'app-room-detail',
@@ -6,10 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./room-detail.component.scss']
 })
 export class RoomDetailComponent implements OnInit {
+  @Input() room: Room
 
-  constructor() { }
+  images: Image[]
+  image: Image
+  constructor() {
 
-  ngOnInit(): void {
   }
 
+  ngOnInit(): void {
+    this.images = this.room.listImage
+    this.image = this.images[0]
+    console.log(this.image)
+    console.log('get image')
+  }
 }

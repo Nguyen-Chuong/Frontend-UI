@@ -22,11 +22,10 @@ export class HotelListComponent {
   constructor(private hotelsService: HotelService, private router: Router,
     private route: ActivatedRoute) { }
 
-  displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', 'status'];
+  displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', 'phone'];
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      console.log(param)
       this.currentPage = param['page']
       this.pageSize = param['size']
     })

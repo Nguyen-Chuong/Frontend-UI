@@ -1,7 +1,7 @@
 import { District } from "./district";
 
 
-describe('Hotel', () => {
+describe('District', () => {
   it('should create an instance', () => {
     expect(new District()).toBeTruthy();
   });

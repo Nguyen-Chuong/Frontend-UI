@@ -4,8 +4,8 @@
   </div>
   <div class="new-admin">
     <simple-notifications></simple-notifications>
-    <h2 class="form-header">NEW MANAGER</h2>
-    <form class="form-body" [formGroup]="form" (ngSubmit)="addAdmin()">
+    <form *ngIf="isAdmin" class="form-body" [formGroup]="form" (ngSubmit)="addAdmin()">
+      <h2 class="form-header">NEW MANAGER</h2>
       <div class="form-control">
         <label class="new-admin-labels">Username</label>
         <app-authentication-input type="text" placeholder="Username" [control]="form?.controls['username']">
@@ -30,6 +30,6 @@
         <button class="new-admin-button" [disabled]="form.invalid">Save</button>
       </div>
     </form>
-
+    <div *ngIf="isManager">you are not authorized to add manager</div>
   </div>
 </div>

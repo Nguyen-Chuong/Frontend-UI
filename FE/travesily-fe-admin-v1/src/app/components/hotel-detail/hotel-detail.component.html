@@ -12,6 +12,9 @@
           <app-about-hotel [hotel]="hotel"></app-about-hotel>
         </mat-tab>
         <mat-tab label="Room">
+          <div *ngFor="let room of rooms" class="room-detail">
+            <app-room-detail [room]="room"></app-room-detail>
+          </div>
         </mat-tab>
       </mat-tab-group>
     </div>

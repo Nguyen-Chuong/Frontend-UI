@@ -26,7 +26,6 @@ export class BookingListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      console.log(param)
       this.currentPage = param['page']
       this.pageSize = param['size']
     })
@@ -34,14 +33,11 @@ export class BookingListComponent implements OnInit {
     this.bookingService.getAllBooking().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        console.log('total: ' + this.total)
         this.maxpage = this.total / this.pageSize
         if (this.total % this.pageSize != 0) {
           this.maxpage++
         }
-        console.log('maxpage: ' + this.maxpage)
         this.pages = Array.from({ length: this.maxpage }, (_, i) => i + 1)
-        console.log('length: ' + this.pages.length)
       }
     )
     this.bookingService.getAllBookingPage(this.currentPage, this.pageSize).pipe(first()).subscribe(

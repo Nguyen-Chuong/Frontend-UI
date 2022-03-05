@@ -1,6 +1,8 @@
+import { Account } from 'src/app/_models/account';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
+import { first } from 'rxjs';
 
 
 @Component({
@@ -10,13 +12,20 @@ import { AuthServiceService } from 'src/app/_services/auth-service.service';
 })
 export class TaskbarComponent implements OnInit {
   opened = true;
+  account: Account
   constructor(private router: Router,
     private route: ActivatedRoute,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    authService.getProfile().pipe(first()).subscribe(account => {
+      this.account = account['data']
+      localStorage.setItem('type', String(this.account.type))
+    })
    }
 
   ngOnInit(): void {
+    this.authService.getToken()
+
   }
 
   openApprovingHotels(): void{
@@ -29,8 +38,18 @@ export class TaskbarComponent implements OnInit {
     });
   }
 
+  openListManager(): void{
+    this.router.navigateByUrl('/manager-list');
+  }
+
   openHistory(): void{
     this.router.navigate(['/history']);
+  }
+
+  openFeedbackList(): void{
+    this.router.navigate(['feedback'], {
+      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
+    });
   }
 
   openBookingList(): void{

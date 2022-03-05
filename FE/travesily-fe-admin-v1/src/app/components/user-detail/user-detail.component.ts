@@ -19,7 +19,6 @@ export class UserDetailComponent implements OnInit {
   constructor(private router: Router,
     private route: ActivatedRoute, private bookingService: BookingService) {
     this.route.queryParams.subscribe((param) =>{
-      console.log(param)
       this.userId = param['id']
     })
     this.bookingService.getUserBooking(this.userId).pipe(first()).subscribe(

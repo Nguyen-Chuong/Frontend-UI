@@ -1,11 +1,10 @@
-import { UserService } from './../../_services/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { Booking } from 'src/app/_models/booking';
 import { Account } from 'src/app/_models/account';
+import { UserService } from 'src/app/_services/user.service';
 
 @Component({
   selector: 'app-user',
@@ -27,7 +26,6 @@ export class UserComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      console.log(param)
       this.currentPage = param['page']
       this.pageSize = param['size']
     })
@@ -35,14 +33,11 @@ export class UserComponent {
     this.userService.getAllUser().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        console.log('total: ' + this.total)
         this.maxpage = this.total / this.pageSize
         if (this.total % this.pageSize != 0) {
           this.maxpage++
         }
-        console.log('maxpage: ' + this.maxpage)
         this.pages = Array.from({ length: this.maxpage }, (_, i) => i + 1)
-        console.log('length: ' + this.pages.length)
       }
     )
     this.userService.getAllUserPage(this.currentPage, this.pageSize).pipe(first()).subscribe(
