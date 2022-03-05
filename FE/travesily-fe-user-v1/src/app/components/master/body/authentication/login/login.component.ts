@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
             if (this.authService.accountType === 0) {
               this.form.reset()
               this.router.navigateByUrl('/home').then(() => window.location.reload());
-            } else if (this.authService.accountType === 1) {
+            } else if (this.authService.accountType === 1 || this.authService.accountType === 2) {
               this.form.reset()
               window.location.href = 'http://localhost:4300/taskbar'
             }
