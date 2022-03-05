@@ -144,4 +144,10 @@ public class UserServiceImpl implements UserService {
         userRepository.changeForgotPassword(email, newPass);
     }
 
+    @Override
+    public int getUserId(String username) {
+        log.info("Request to get user id by username");
+        return userRepository.getUserId(username);
+    }
+
 }

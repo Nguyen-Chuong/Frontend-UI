@@ -43,7 +43,7 @@ public class FeedbackServiceImpl implements FeedbackService {
     }
 
     @Override
-    public Page<FeedbackDTO> viewListUserFeedback(Pageable pageable) {
+    public Page<FeedbackDTO> viewPageUserFeedback(Pageable pageable) {
         log.info("Request to get all user feedback");
 
         Page<Feedback> feedbacks = feedbackRepository.findAllByOrderByModifyDateDesc(pageable);
@@ -58,6 +58,16 @@ public class FeedbackServiceImpl implements FeedbackService {
         }
 
         return new CustomPageImpl<>(feedbackDTOList);
+    }
+
+    @Override
+    public List<FeedbackDTO> getListAnUserFeedback(int userId) {
+        log.info("Request to get list feedback of an user");
+
+        return feedbackRepository.getUserFeedback(userId)
+                .stream()
+                .map(item -> modelMapper.map(item, FeedbackDTO.class))
+                .collect(Collectors.toList());
     }
 
 }

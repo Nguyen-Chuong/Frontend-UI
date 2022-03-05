@@ -39,6 +39,12 @@ public class ErrorConstant {
     public static final String ERR_USER_005_LABEL = "This username is already taken";
 
     /**
+     * Username không tồn tại
+     */
+    public static final String ERR_USER_006 = "ERR_USER_006";
+    public static final String ERR_USER_006_LABEL = "Username not found";
+
+    /**
      * Không tìm thấy Otp
      */
     public static final String ERR_OTP_001 = "ERR_OTP_001";

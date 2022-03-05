@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
@@ -25,5 +26,9 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
             @Param("modifyDate") Timestamp modifyDate);
 
     Page<Feedback> findAllByOrderByModifyDateDesc(Pageable pageable);
+
+    @Query(value = "SELECT * from capstone.feedback WHERE sender_id = :userId",
+            nativeQuery = true)
+    List<Feedback> getUserFeedback(@Param("userId") int userId);
 
 }

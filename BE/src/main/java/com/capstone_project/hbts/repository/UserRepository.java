@@ -75,4 +75,8 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
             nativeQuery = true)
     void deleteManager(@Param("userId") int userId);
 
+    @Query(value = "select id from capstone.users where username = :username limit 1",
+            nativeQuery = true)
+    int getUserId(@Param("username") String username);
+
 }

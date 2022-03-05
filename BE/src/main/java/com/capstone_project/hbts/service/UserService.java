@@ -67,4 +67,10 @@ public interface UserService {
      */
     void changeForgotPassword(String email, String newPass);
 
+    /**
+     * get user id
+     * @param username
+     */
+    int getUserId(String username);
+
 }
