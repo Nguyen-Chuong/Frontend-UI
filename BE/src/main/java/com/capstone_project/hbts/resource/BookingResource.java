@@ -109,7 +109,7 @@ public class BookingResource {
      */
     @GetMapping("/bookings-by-status/{userId}/{status}")
     public ResponseEntity<?> getUserBookingByStatus(@PathVariable int status,
-                                                  @PathVariable int userId){
+                                                    @PathVariable int userId){
         log.info("REST request to get list user's booking by status");
 
         try{
