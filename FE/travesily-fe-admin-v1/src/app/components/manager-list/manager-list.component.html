@@ -33,7 +33,7 @@
         <ng-container matColumnDef=" ">
           <th mat-header-cell *matHeaderCellDef>  </th>
           <td mat-cell *matCellDef="let element">
-            <button class="manager-table-remove">Remove</button>
+            <button class="manager-table-remove" (click)="deleteManager(element.id)">Remove</button>
           </td>
         </ng-container>
 

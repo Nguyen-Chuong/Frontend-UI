@@ -1,3 +1,4 @@
+import { NotificationService } from './../../_services/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { first } from 'rxjs';
@@ -13,7 +14,8 @@ export class ManagerListComponent implements OnInit {
 
   managers: Account[]
   dataSource
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private notificationService: NotificationService) { }
   displayedColumns: string[] = ['id', 'username', 'email', 'phone', ' '];
 
   ngOnInit(): void {
@@ -22,7 +24,18 @@ export class ManagerListComponent implements OnInit {
         this.managers = rs['data']
       }
     )
-    console.log(this.managers)
     this.dataSource = new MatTableDataSource<Account>(this.managers);
+  }
+
+  deleteManager(id){
+    this.userService.deleteManage(id).pipe(first()).subscribe({
+      next: () => {
+        this.notificationService.onSuccess('Removed successfully');
+        window.location.reload()
+      },
+      error: err => {
+        this.notificationService.onError('Removed false')
+      }
+    })
   }
 }

@@ -22,5 +22,7 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/get-all-manager`)
   }
 
-
+  deleteManage(id: number){
+    return this.http.patch(`${this.baseUrl}/delete-manager/${id}`, '')
+  }
 }
