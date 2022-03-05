@@ -1,5 +1,5 @@
 .hotel-detail {
-  background-color: #151515;
+  background-color: #a09595;
   padding-top: 60px;
 }
 
@@ -19,6 +19,8 @@
     &-img {
       width: 100%;
       filter: blur(5px);
+
+
     }
   }
 
@@ -32,19 +34,24 @@
 
   &-name {
     font-size: 70px;
-    color: #fff;
+    color: rgb(10, 10, 10);
     font-weight: 700;
     line-height: 70px;
     white-space: nowrap;
   }
 
   &-content {
-    background: rgb(63 81 181 / 61%);
-    color: #fff;
+    background: rgb(255, 255, 255);
+    color: rgb(10, 10, 10);
     text-align: left;
     padding: 10px;
     ::ng-deep .mat-tab-labels {
       justify-content: center;
     }
   }
+}
+
+.room-detail{
+  margin-bottom: 20px;
+  margin-top: 20px;
 }

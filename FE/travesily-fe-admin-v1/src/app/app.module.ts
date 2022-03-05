@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { HotelApproveComponent } from './components/hotel-approve/hotel-approve.component';
-import { HistoryComponent } from './components/history/history.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
 import { TaskbarComponent } from './components/taskbar/taskbar.component';
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
@@ -41,13 +40,15 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AboutHotelComponent } from './components/about-hotel/about-hotel.component';
 import { AuthenticationInputComponent } from './components/authentication-input/authentication-input.component';
 import { ProviderComponent } from './components/provider/provider.component';
+import { NgImageSliderModule } from 'ng-image-slider';
+import { ManagerListComponent } from './components/manager-list/manager-list.component';
+import { FeedbackComponent } from './components/feedback/feedback.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HotelApproveComponent,
-    HistoryComponent,
     BookingListComponent,
     TaskbarComponent,
     HotelDetailComponent,
@@ -64,7 +65,9 @@ import { ProviderComponent } from './components/provider/provider.component';
     HotelListComponent,
     AboutHotelComponent,
     AuthenticationInputComponent,
-    ProviderComponent
+    ProviderComponent,
+    ManagerListComponent,
+    FeedbackComponent
   ],
   imports: [
     BrowserModule,
@@ -86,6 +89,7 @@ import { ProviderComponent } from './components/provider/provider.component';
     MatPaginatorModule,
     MatTabsModule,
     MatCheckboxModule,
+    NgImageSliderModule,
     SimpleNotificationsModule.forRoot()
   ],
   providers: [

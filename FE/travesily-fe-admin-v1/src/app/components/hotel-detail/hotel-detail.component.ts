@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { Hotel } from 'src/app/_models/hotel';
+import { Room } from 'src/app/_models/room';
 import { HotelService } from 'src/app/_services/hotel.service';
 
 @Component({
@@ -13,6 +14,7 @@ export class HotelDetailComponent implements OnInit {
 
   hotel: Hotel
   hotelId: number
+  rooms: Room[]
 
   constructor(private hotelsService: HotelService,
     private router: Router,
@@ -27,6 +29,12 @@ export class HotelDetailComponent implements OnInit {
       rs => {
         this.hotel = rs['data']
 
+      }
+    )
+
+    this.hotelsService.getRoomByHotelId(this.hotelId).pipe(first()).subscribe(
+      rs => {
+        this.rooms = rs['data']
       }
     )
   }

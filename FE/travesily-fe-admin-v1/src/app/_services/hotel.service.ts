@@ -26,4 +26,12 @@ export class HotelService {
   getHotelById(id: number){
     return this.http.get(`${this.baseUrl}/hotel-detail/${id}`)
   }
+
+  getRoomByHotelId(id: number){
+    return this.http.get(`${this.baseUrl}/room-type/${id}`)
+  }
+
+  getRoomDetailById(id: number){
+    return this.http.get(`${this.baseUrl}/room-detail/${id}`)
+  }
 }

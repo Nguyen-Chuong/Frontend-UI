@@ -15,6 +15,10 @@ import { EmailValidator } from 'src/app/_validators/email.validator';
   styleUrls: ['./new-admin.component.scss']
 })
 export class NewAdminComponent implements OnInit {
+  isAdmin = false
+
+  isManager = false
+
   manager = new Account
 
   matchingPasswordsGroup: FormGroup;
@@ -37,6 +41,11 @@ export class NewAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('type')  === '2'){
+      this.isAdmin = true
+    }else{
+      this.isManager = true
+    }
   }
 
   matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {
@@ -70,7 +79,6 @@ export class NewAdminComponent implements OnInit {
       },
       error: err => {
         this.notificationService.onError('Add new manager false')
-        console.log(err)
       }
     })
   }

@@ -6,37 +6,37 @@
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="providers" class="user-table">
 
-        <!-- Position Column -->
+        <!-- id -->
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> ID </th>
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
 
-        <!-- Name Column -->
+        <!-- username -->
         <ng-container matColumnDef="username">
           <th mat-header-cell *matHeaderCellDef> Name </th>
           <td mat-cell *matCellDef="let element"> {{element.username}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- providerName Column -->
         <ng-container matColumnDef="providerName">
           <th mat-header-cell *matHeaderCellDef> Provider Name </th>
           <td mat-cell *matCellDef="let element"> {{element.providerName}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
+        <!-- email Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef> Email </th>
           <td mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
 
-        <!-- Weight Column -->
+        <!-- phone Column -->
         <ng-container matColumnDef="phone">
           <th mat-header-cell *matHeaderCellDef> Phone </th>
           <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
         </ng-container>
 
-        <!-- Symbol Column -->
+        <!-- address Column -->
         <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef> Address </th>
           <td mat-cell *matCellDef="let element"> {{element.address}} </td>
@@ -53,4 +53,3 @@
     </div>
   </div>
 </div>
-

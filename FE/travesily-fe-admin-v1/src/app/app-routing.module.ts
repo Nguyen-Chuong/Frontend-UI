@@ -1,3 +1,5 @@
+import { FeedbackComponent } from './components/feedback/feedback.component';
+import { ManagerListComponent } from './components/manager-list/manager-list.component';
 import { ProviderComponent } from './components/provider/provider.component';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
@@ -9,7 +11,6 @@ import { BookingListComponent } from './components/booking-list/booking-list.com
 import { HotelApproveComponent } from './components/hotel-approve/hotel-approve.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HistoryComponent } from './components/history/history.component';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { UserComponent } from './components/user/user.component';
 
@@ -27,12 +28,16 @@ const routes: Routes = [
     component: HotelListComponent,
   },
   {
-    path: 'history',
-    component: HistoryComponent,
+    path: 'manager-list',
+    component: ManagerListComponent,
   },
   {
     path: 'booking',
     component: BookingListComponent,
+  },
+  {
+    path: 'feedback',
+    component: FeedbackComponent,
   },
   {
     path: 'hotel-detail',
