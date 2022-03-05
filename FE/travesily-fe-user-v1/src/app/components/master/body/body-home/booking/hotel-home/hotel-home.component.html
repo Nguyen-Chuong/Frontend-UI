@@ -1,7 +1,25 @@
+<div class="container-fluid">
 <form [formGroup]="hotelForm" class="hotel-form">
-  <app-input class="hotel-form__destination" inputType="text" itemName="Destination" placeholder="Enter Destination" label="Destination" [control]="hotelForm.controls['destination']"></app-input>
-  <app-input class="hotel-form__from" inputType="date" itemName="Start" label="Start" [control]="hotelForm.controls['from']"></app-input>
-  <app-input class="hotel-form__to" inputType="date" itemName="End" label="End" [control]="hotelForm.controls['to']"></app-input>
-  <app-dropdown class="hotel-form__guest" [control]="hotelForm.controls['guestNumber']"></app-dropdown>
-  <button class="hotel-form__search btn-login item-center">Search</button>
+  <div class="row">
+  <mat-form-field>
+    <label class="form-label">Destination</label>
+    <input type="text" matInput [formControl]="convertToFormControl(hotelForm.controls['destination'])"
+           [matAutocomplete]="auto" (input)="onSearchHotelChange($event)">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of districts" [value]="option.nameDistrict">
+        {{option.nameDistrict}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  </div>
+  <div class="row">
+  <app-input class="col-md-6" inputType="date" itemName="Start" label="Start" [control]="hotelForm.controls['from']"></app-input>
+  <app-input class="col-md-6" inputType="date" itemName="End" label="End" [control]="hotelForm.controls['to']"></app-input>
+  </div>
+  <div class="row">
+  <label class="form-label">Number of guests</label>
+  <app-dropdown class="hotel-form__guest" (guestNumberEvent)="updateGuest($event)" (roomNumberEvent)="updateRoom($event)"></app-dropdown>
+  </div>
+  <button class="btn btn-success btn-lg col-md-12" [disabled]="hotelForm.invalid" (click)="search()">Search</button>
 </form>
+</div>

@@ -22,7 +22,7 @@ export class BookingService {
   }
   //Get Booking By id
   getBookingById(bookingId: number){
-    return this.http.get(`${this.baseUrl}/get-booking/${bookingId}`)
+    return this.http.get(`${this.baseUrl}/booking/${bookingId}`)
   }
 
 
