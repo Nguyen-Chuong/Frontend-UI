@@ -7,7 +7,7 @@ import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
-public class ResponseRequest {
+public class ResponseAdminRequest {
 
     private int adminId;
 

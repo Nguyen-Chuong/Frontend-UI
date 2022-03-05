@@ -23,4 +23,9 @@ public interface ResponseRepository extends JpaRepository<Response, Integer> {
             @Param("userId") int userId,
             @Param("feedbackId") int feedbackId);
 
+    @Query(value = "SELECT admin_id FROM capstone.response where feedback_id = :feedbackId " +
+            "Order by modify_date desc limit 1",
+            nativeQuery = true)
+    Integer getAdminId(@Param("feedbackId") int feedbackId);
+
 }

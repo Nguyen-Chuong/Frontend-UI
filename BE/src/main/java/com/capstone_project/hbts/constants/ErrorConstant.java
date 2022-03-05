@@ -45,6 +45,12 @@ public class ErrorConstant {
     public static final String ERR_USER_006_LABEL = "Username not found";
 
     /**
+     * Feedback chưa được phản hồi
+     */
+    public static final String ERR_USER_007 = "ERR_USER_007";
+    public static final String ERR_USER_007_LABEL = "Feedback has not been answered";
+
+    /**
      * Không tìm thấy Otp
      */
     public static final String ERR_OTP_001 = "ERR_OTP_001";
