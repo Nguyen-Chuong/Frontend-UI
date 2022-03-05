@@ -27,6 +27,10 @@ public class RoomTypeResource {
         this.roomTypeService = roomTypeService;
     }
 
+    /**
+     * @param hotelId
+     * return
+     */
     @GetMapping("/room-type/{hotelId}")
     public ResponseEntity<?> getRoomType(@PathVariable int hotelId){
         log.info("REST request to get list room type by hotel id");
@@ -44,6 +48,10 @@ public class RoomTypeResource {
         }
     }
 
+    /**
+     * @param roomTypeId
+     * return
+     */
     @GetMapping("/room-detail/{roomTypeId}")
     public ResponseEntity<?> getRoomDetailByRoomTypeId(@PathVariable int roomTypeId){
         log.info("REST request to get detail room type by room type id");

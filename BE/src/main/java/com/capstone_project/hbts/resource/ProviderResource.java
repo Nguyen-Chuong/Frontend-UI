@@ -41,7 +41,8 @@ public class ProviderResource {
     }
 
     /**
-     * @param
+     * @param providerRequest
+     * return
      */
     @PostMapping("/register/provider")
     public ResponseEntity<?> register(@RequestBody ProviderRequest providerRequest){
@@ -72,6 +73,7 @@ public class ProviderResource {
     }
 
     /**
+     * @param jwttoken
      * return
      */
     @GetMapping("/profile/provider")
@@ -191,6 +193,12 @@ public class ProviderResource {
         }
     }
 
+    /**
+     * @param page
+     * @param pageSize
+     * return
+     * @apiNote for admin/ manager
+     */
     @GetMapping("/get-all-provider")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> getAllProvider(@RequestParam(defaultValue = ValidateConstant.PAGE) int page,

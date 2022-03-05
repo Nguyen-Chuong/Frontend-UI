@@ -37,7 +37,8 @@ public class UserResource {
     }
 
     /**
-     * @param
+     * @param userRequest
+     * return
      */
     // Consider about add a new admin account / assign by type
     // admin and manager account cannot be registered
@@ -78,6 +79,7 @@ public class UserResource {
     }
 
     /**
+     * @param jwttoken
      * return
      */
     @GetMapping("/profile/user")

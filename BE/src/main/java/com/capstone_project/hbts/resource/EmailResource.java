@@ -28,6 +28,11 @@ public class EmailResource {
         this.otpService = otpService;
     }
 
+    /**
+     * @param email
+     * return
+     * @apiNote server
+     */
     @PostMapping("authenticate/generateOtp")
     public ResponseEntity<?> generateOtp(@RequestParam String email){
         log.info("REST request to generate otp and send email to user");
@@ -46,6 +51,12 @@ public class EmailResource {
         }
     }
 
+    /**
+     * @param email
+     * @param otp
+     * return
+     * @apiNote server
+     */
     @PostMapping("authenticate/verifyOtp")
     public ResponseEntity<?> verifyOtp(@RequestParam String email,
                                        @RequestParam int otp){

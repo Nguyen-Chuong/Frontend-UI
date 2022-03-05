@@ -126,6 +126,8 @@ public class BookingResource {
     }
 
     /**
+     * @param page
+     * @param pageSize
      * return
      */
     @GetMapping("/get-all-booking")
@@ -173,6 +175,8 @@ public class BookingResource {
 
     /**
      * @param hotelId
+     * @param page
+     * @param pageSize
      * return
      */
     @GetMapping("/bookings/hotel/{hotelId}")

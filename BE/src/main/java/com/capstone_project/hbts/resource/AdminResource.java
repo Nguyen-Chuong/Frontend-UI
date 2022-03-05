@@ -40,6 +40,11 @@ public class AdminResource {
         this.userService = userService;
     }
 
+    /**
+     * @param managerRequest
+     * return
+     * @apiNote only for admin
+     */
     @PostMapping("/add-manager")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> register(@RequestBody ManagerRequest managerRequest){
@@ -72,6 +77,12 @@ public class AdminResource {
         }
     }
 
+    /**
+     * @param page
+     * @param pageSize
+     * return
+     * @apiNote for admin/ manager
+     */
     @GetMapping("/get-all-user")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> getAllUser(@RequestParam(defaultValue = ValidateConstant.PAGE) int page,
@@ -95,6 +106,10 @@ public class AdminResource {
         }
     }
 
+    /**
+     * return
+     * @apiNote only for admin
+     */
     @GetMapping("/get-all-manager")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> getAllManager(){
@@ -114,10 +129,15 @@ public class AdminResource {
         }
     }
 
+    /**
+     * @param userId
+     * return
+     * @apiNote only for admin
+     */
     @PatchMapping("/delete-manager/{userId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public ResponseEntity<?> deleteManager(@PathVariable int userId){
-        log.info("REST request to get all manager for admin");
+        log.info("REST request to delete manager for admin");
 
         try {
             adminService.deleteManager(userId);

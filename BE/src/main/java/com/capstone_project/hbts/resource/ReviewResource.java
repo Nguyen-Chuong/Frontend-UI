@@ -28,6 +28,12 @@ public class ReviewResource {
         this.reviewService = reviewService;
     }
 
+    /**
+     * @param hotelId
+     * @param page
+     * @param pageSize
+     * return
+     */
     @GetMapping("/reviews")
     public ResponseEntity<?> getReview(@RequestParam int hotelId,
                                     @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
