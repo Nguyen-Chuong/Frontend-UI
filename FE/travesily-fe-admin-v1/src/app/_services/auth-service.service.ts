@@ -45,7 +45,7 @@ export class AuthServiceService {
 
   getToken() {
     localStorage.clear()
-    return this.http.get(`${this.baseUrl}/authenticate/admin`).pipe(first()).subscribe(token => {
+    return this.http.get(`${this.baseUrl}/authenticate/admin-manager/hbts102secret/jwt1key`).pipe(first()).subscribe(token => {
       localStorage.setItem('a-token', token['data'])
     })
   }

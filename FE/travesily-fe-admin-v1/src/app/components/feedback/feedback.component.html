@@ -36,7 +36,7 @@
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openUserDetail(row.id)"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openResponse(row.id)"></tr>
       </table>
       <div class="paging">
         <div *ngFor="let page of pages" class="pagination">

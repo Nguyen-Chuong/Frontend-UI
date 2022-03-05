@@ -20,6 +20,7 @@ export class TaskbarComponent implements OnInit {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
       localStorage.setItem('type', String(this.account.type))
+      localStorage.setItem('admin-id', String(this.account.id))
     })
    }
 

@@ -1,3 +1,4 @@
+import { ResponseComponent } from './components/response/response.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ManagerListComponent } from './components/manager-list/manager-list.component';
 import { ProviderComponent } from './components/provider/provider.component';
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'feedback',
     component: FeedbackComponent,
+  },
+  {
+    path: 'response',
+    component: ResponseComponent,
   },
   {
     path: 'hotel-detail',

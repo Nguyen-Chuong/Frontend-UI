@@ -43,6 +43,7 @@ import { ProviderComponent } from './components/provider/provider.component';
 import { NgImageSliderModule } from 'ng-image-slider';
 import { ManagerListComponent } from './components/manager-list/manager-list.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
+import { ResponseComponent } from './components/response/response.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
     AuthenticationInputComponent,
     ProviderComponent,
     ManagerListComponent,
-    FeedbackComponent
+    FeedbackComponent,
+    ResponseComponent
   ],
   imports: [
     BrowserModule,

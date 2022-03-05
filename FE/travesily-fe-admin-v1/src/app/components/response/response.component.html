@@ -1,0 +1,36 @@
+<div class="response">
+  <div class="menu-list">
+    <app-taskbar></app-taskbar>
+  </div>
+  <div class="response-detail">
+    <form class="col-md-10 border-right" [formGroup]="formGroup" (ngSubmit)="saveResponse()">
+      <div class="p-3 py-5">
+        <h1>Response User</h1>
+        <div class="row mt-2">
+          <div class="col-md-6"><label class="labels">Sender Name</label>
+            <input type="text" class="form-control" value={{feedback.senderName}} disabled>
+          </div>
+          <div class="col-md-6"><label class="labels">Type</label>
+            <input type="text" class="form-control" value={{feedback.type}} disabled>
+          </div>
+        </div>
+        <div class="col-md-12"><label class="labels">Modify Date</label>
+          <input type="text" class="form-control" value={{feedback.modifyDate}} disabled>
+        </div>
+        <div class="col-md-12"><label class="labels">Message</label>
+          <textarea rows="5" type="text" class="form-control message" value={{feedback.message}} disabled>
+          </textarea>
+        </div>
+
+        <div class="col-md-12"><label class="labels">Admin response</label>
+          <textarea rows="5" type="text" class="form-control message" formControlName="message_response">
+          </textarea>
+        </div>
+
+        <div class="mt-5 text-center">
+          <button class="btn btn-primary response-button" type="submit">Save Response</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

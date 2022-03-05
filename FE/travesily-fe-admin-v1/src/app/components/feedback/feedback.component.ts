@@ -50,8 +50,8 @@ export class FeedbackComponent implements OnInit {
     this.dataSource = new MatTableDataSource<Feedback>(this.feedbacks);
   }
 
-  openUserDetail(id): void {
-    this.router.navigate(['user-detail'], {
+  openResponse(id): void {
+    this.router.navigate(['response'], {
       queryParams: { id: JSON.stringify(id) }
     });
   }
