@@ -62,7 +62,7 @@ public class Users {
     private String address;
 
     @Column(name = "type")
-    private int type;
+    private int type; // 0-user, 1-manager, 2-admin
 
     @Column(name = "avatar")
     private String avatar;

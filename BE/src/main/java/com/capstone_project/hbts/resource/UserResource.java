@@ -39,9 +39,8 @@ public class UserResource {
     /**
      * @param
      */
-    // Consider about add new admin account / assign new account to db
-    // may raw adding but need to think 'bout encrypt password
-    // admin account cannot be registered
+    // Consider about add a new admin account / assign by type
+    // admin and manager account cannot be registered
     @PostMapping("/register/user")
 //    @PreAuthorize("hasAuthority('ADMIN')") // get via table authority
     public ResponseEntity<?> register(@RequestBody UserRequest userRequest){
