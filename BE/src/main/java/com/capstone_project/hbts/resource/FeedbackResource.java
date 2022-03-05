@@ -55,8 +55,8 @@ public class FeedbackResource {
     }
 
     @GetMapping("/get-all-feedback")
-    public ResponseEntity<?> sendFeedback(@RequestParam(defaultValue = ValidateConstant.PAGE) int page,
-                                          @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+    public ResponseEntity<?> getAllFeedback(@RequestParam(defaultValue = ValidateConstant.PAGE) int page,
+                                            @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         log.info("REST request to get all user's feedback");
 
         try {
@@ -77,7 +77,7 @@ public class FeedbackResource {
     }
 
     @GetMapping("/search-feedback")
-    public ResponseEntity<?> getFeedbackOfAnUser(@RequestParam String username){
+    public ResponseEntity<?> searchFeedbackOfAnUser(@RequestParam String username){
         log.info("REST request to get an user's feedback");
         int userId;
 
