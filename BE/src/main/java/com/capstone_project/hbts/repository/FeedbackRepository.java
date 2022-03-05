@@ -32,4 +32,8 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
             nativeQuery = true)
     List<Feedback> getUserFeedback(@Param("userId") int userId);
 
+    @Query(value = "SELECT * from capstone.feedback WHERE id = :feedbackId limit 1",
+            nativeQuery = true)
+    Feedback getFeedbackById(@Param("feedbackId") int feedbackId);
+
 }

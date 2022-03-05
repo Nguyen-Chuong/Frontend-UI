@@ -71,4 +71,10 @@ public class FeedbackServiceImpl implements FeedbackService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public FeedbackDTO getFeedbackById(int feedbackId) {
+        log.info("Request to get feedback by id");
+        return modelMapper.map(feedbackRepository.getFeedbackById(feedbackId), FeedbackDTO.class);
+    }
+
 }

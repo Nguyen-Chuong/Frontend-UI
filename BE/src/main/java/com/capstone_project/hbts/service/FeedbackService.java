@@ -27,4 +27,10 @@ public interface FeedbackService {
      */
     List<FeedbackDTO> getListAnUserFeedback(int userId);
 
+    /**
+     * @param feedbackId
+     * @return
+     */
+    FeedbackDTO getFeedbackById(int feedbackId);
+
 }
