@@ -87,7 +87,8 @@ public class JwtAuthenticationResource {
 
         JwtResponse jwtResponse = new JwtResponse(jwt, user.getType());
 
-        if(user.getType() == 1){
+        // manager or admin
+        if(user.getType() == 1 || user.getType() == 2){
             JwtRequest jwtRequest = new JwtRequest(1, jwt);
             try{
                 jwtService.saveTokenKeyForAdmin(jwtRequest);
