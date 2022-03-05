@@ -7,10 +7,12 @@ import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.BookingService;
+import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -29,18 +31,23 @@ public class BookingResource {
 
     private final BookingService bookingService;
 
-    public BookingResource(BookingService bookingService) {
+    private final UserService userService;
+
+    public BookingResource(BookingService bookingService, UserService userService) {
         this.bookingService = bookingService;
+        this.userService = userService;
     }
 
     /**
-     * @param userId
+     * @param username
+     * @apiNote both admin & user can call this
      * return
      */
-    @GetMapping("/user-bookings/{userId}")
-    public ResponseEntity<?> getUserBooking(@PathVariable int userId){
-        log.info("REST request to get list user's booking by ID");
+    @GetMapping("/user-bookings/{username}")
+    public ResponseEntity<?> getUserBooking(@PathVariable String username){
+        log.info("REST request to get list user's booking by username");
 
+        int userId = userService.getUserId(username);
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
             return ResponseEntity.ok()
@@ -131,6 +138,7 @@ public class BookingResource {
      * return
      */
     @GetMapping("/get-all-booking")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> getAllUserBooking(@RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                                @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         log.info("REST request to get list user's booking for admin");
@@ -177,6 +185,7 @@ public class BookingResource {
      * @param hotelId
      * @param page
      * @param pageSize
+     * @apiNote for provider
      * return
      */
     @GetMapping("/bookings/hotel/{hotelId}")
