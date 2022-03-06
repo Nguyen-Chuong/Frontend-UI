@@ -6,6 +6,7 @@ import com.capstone_project.hbts.dto.Booking.BookingListDTO;
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
+import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.BookingService;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,9 +35,12 @@ public class BookingResource {
 
     private final UserService userService;
 
-    public BookingResource(BookingService bookingService, UserService userService) {
+    private final JwtTokenUtil jwtTokenUtil;
+
+    public BookingResource(BookingService bookingService, UserService userService, JwtTokenUtil jwtTokenUtil) {
         this.bookingService = bookingService;
         this.userService = userService;
+        this.jwtTokenUtil = jwtTokenUtil;
     }
 
     /**
@@ -63,13 +68,15 @@ public class BookingResource {
 
     /**
      * @param reviewStatus
-     * @param userId
+     * @param jwttoken
      * return
      */
-    @GetMapping("/bookings-review/{userId}/{reviewStatus}")
+    @GetMapping("/bookings-review/{reviewStatus}")
     public ResponseEntity<?> getUserBookingReview(@PathVariable int reviewStatus,
-                                                  @PathVariable int userId){
+                                                  @RequestHeader("Authorization") String jwttoken){
         log.info("REST request to get list user's booking need to review or not");
+
+        int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
 
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsReview(reviewStatus, userId);
@@ -89,12 +96,14 @@ public class BookingResource {
     // here
 
     /**
-     * @param userId
+     * @param jwttoken
      * return
      */
-    @GetMapping("/bookings-completed/{userId}")
-    public ResponseEntity<?> getNumberBookingsCompleted(@PathVariable int userId){
+    @GetMapping("/bookings-completed")
+    public ResponseEntity<?> getNumberBookingsCompleted(@RequestHeader("Authorization") String jwttoken){
         log.info("REST request to get number booking completed by user id");
+
+        int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
 
         try{
             int numberBookingCompleted = bookingService.getNumberBookingsCompleted(userId);
@@ -111,13 +120,15 @@ public class BookingResource {
 
     /**
      * @param status
-     * @param userId
+     * @param jwttoken
      * return
      */
-    @GetMapping("/bookings-by-status/{userId}/{status}")
+    @GetMapping("/bookings-by-status/{status}")
     public ResponseEntity<?> getUserBookingByStatus(@PathVariable int status,
-                                                    @PathVariable int userId){
+                                                    @RequestHeader("Authorization") String jwttoken){
         log.info("REST request to get list user's booking by status");
+
+        int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
 
         try{
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsByStatus(status, userId);

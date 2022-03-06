@@ -207,15 +207,16 @@ public class UserResource {
 
     // api update vip status will be called when user complete a booking
     /**
-     * @param userId
+     * @param jwttoken
      * @apiNote for user to update their vip status after completing a booking
      * return
      */
-    @PatchMapping("/update-vip-status/{userId}")
-    public ResponseEntity<?> updateVipStatus(@PathVariable int userId){
+    @PatchMapping("/update-vip-status")
+    public ResponseEntity<?> updateVipStatus(@RequestHeader("Authorization") String jwttoken){
         log.info("REST request to update user's vip status");
 
         try{
+            int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
             userService.updateVipStatus(userId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
@@ -266,8 +267,7 @@ public class UserResource {
         log.info("REST request to delete an user account");
 
         try{
-            String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
-            int userId = userService.getUserId(username);
+            int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
             userService.deleteAccount(userId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
