@@ -25,7 +25,8 @@ public class ResponseServiceImpl implements ResponseService {
 
     private final ModelMapper modelMapper;
 
-    public ResponseServiceImpl(ResponseRepository responseRepository, UserRepository userRepository, ModelMapper modelMapper) {
+    public ResponseServiceImpl(ResponseRepository responseRepository, UserRepository userRepository,
+                               ModelMapper modelMapper) {
         this.responseRepository = responseRepository;
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;

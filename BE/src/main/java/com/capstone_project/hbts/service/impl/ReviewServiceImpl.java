@@ -27,7 +27,8 @@ public class ReviewServiceImpl implements ReviewService {
 
     private final ModelMapper modelMapper;
 
-    public ReviewServiceImpl(BookingRepository bookingRepository, ReviewRepository reviewRepository, ModelMapper modelMapper) {
+    public ReviewServiceImpl(BookingRepository bookingRepository, ReviewRepository reviewRepository,
+                             ModelMapper modelMapper) {
         this.bookingRepository = bookingRepository;
         this.reviewRepository = reviewRepository;
         this.modelMapper = modelMapper;

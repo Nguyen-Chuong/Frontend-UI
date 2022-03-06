@@ -36,8 +36,7 @@ public class HotelServiceImpl implements HotelService {
 
     public int getTotalRoom(Set<RoomType> roomTypes){
         int totalRoom = 0;
-        for(Iterator<RoomType> iterator = roomTypes.iterator(); iterator.hasNext();){
-            RoomType roomType = iterator.next();
+        for (RoomType roomType : roomTypes) {
             totalRoom = totalRoom + roomType.getAvailableRooms();
         }
         return totalRoom;
@@ -45,8 +44,7 @@ public class HotelServiceImpl implements HotelService {
 
     public int getTotalPeople(Set<RoomType> roomTypes){
         int totalPeople = 0;
-        for(Iterator<RoomType> iterator = roomTypes.iterator(); iterator.hasNext();){
-            RoomType roomType = iterator.next();
+        for (RoomType roomType : roomTypes) {
             totalPeople = totalPeople + roomType.getNumberOfPeople();
         }
         return totalPeople;

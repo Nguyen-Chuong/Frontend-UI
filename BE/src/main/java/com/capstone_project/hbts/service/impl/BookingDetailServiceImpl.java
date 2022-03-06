@@ -19,7 +19,8 @@ public class BookingDetailServiceImpl implements BookingDetailService {
 
     private final ModelMapper modelMapper;
 
-    public BookingDetailServiceImpl(BookingDetailRepository bookingDetailRepository, ModelMapper modelMapper) {
+    public BookingDetailServiceImpl(BookingDetailRepository bookingDetailRepository,
+                                    ModelMapper modelMapper) {
         this.bookingDetailRepository = bookingDetailRepository;
         this.modelMapper = modelMapper;
     }

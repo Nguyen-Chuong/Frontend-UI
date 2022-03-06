@@ -30,7 +30,8 @@ public class FeedbackResource {
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    public FeedbackResource(FeedbackService feedbackService, UserService userService, JwtTokenUtil jwtTokenUtil) {
+    public FeedbackResource(FeedbackService feedbackService, UserService userService,
+                            JwtTokenUtil jwtTokenUtil) {
         this.feedbackService = feedbackService;
         this.userService = userService;
         this.jwtTokenUtil = jwtTokenUtil;

@@ -79,8 +79,8 @@ public class ProviderServiceImpl implements ProviderService {
     @Transactional
     public void updateProviderProfile(ProviderDTO providerDTO) {
         log.info("Request to update provider profile");
-        providerRepository.updateProviderProfile(providerDTO.getProviderName(), providerDTO.getPhone(),
-                providerDTO.getAddress(), providerDTO.getId());
+        providerRepository.updateProviderProfile(providerDTO.getProviderName(),
+                providerDTO.getPhone(), providerDTO.getAddress(), providerDTO.getId());
     }
 
     @Override

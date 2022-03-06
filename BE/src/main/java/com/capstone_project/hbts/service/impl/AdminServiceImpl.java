@@ -29,7 +29,8 @@ public class AdminServiceImpl implements AdminService {
 
     private final ModelMapper modelMapper;
 
-    public AdminServiceImpl(UserRepository userRepository, RoleRepository roleRepository, ModelMapper modelMapper) {
+    public AdminServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
+                            ModelMapper modelMapper) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.modelMapper = modelMapper;
