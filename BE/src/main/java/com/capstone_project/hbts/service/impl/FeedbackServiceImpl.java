@@ -54,8 +54,15 @@ public class FeedbackServiceImpl implements FeedbackService {
                 .map(item -> modelMapper.map(item, FeedbackDTO.class))
                 .collect(Collectors.toList());
 
-        for(int i = 0 ; i< feedbackDTOList.size(); i++){
+        for (int i = 0; i < feedbackDTOList.size(); i++) {
+            // set sender name
             feedbackDTOList.get(i).setSenderName(feedbacks.getContent().get(i).getSender().getUsername());
+            // set receiver id
+            if (feedbacks.getContent().get(i).getReceiver() == null) {
+                feedbackDTOList.get(i).setReceiverId(0);
+            } else {
+                feedbackDTOList.get(i).setReceiverId(feedbacks.getContent().get(i).getReceiver().getId());
+            }
         }
 
         return new CustomPageImpl<>(feedbackDTOList);
@@ -71,8 +78,15 @@ public class FeedbackServiceImpl implements FeedbackService {
                 .map(item -> modelMapper.map(item, FeedbackDTO.class))
                 .collect(Collectors.toList());
 
-        for(int i = 0 ; i< feedbackDTOList.size(); i++){
+        for (int i = 0; i < feedbackDTOList.size(); i++) {
+            // set sender name
             feedbackDTOList.get(i).setSenderName(list.get(i).getSender().getUsername());
+            // set receiver id
+            if (list.get(i).getReceiver() == null) {
+                feedbackDTOList.get(i).setReceiverId(0);
+            } else {
+                feedbackDTOList.get(i).setReceiverId(list.get(i).getReceiver().getId());
+            }
         }
 
         return feedbackDTOList;
@@ -84,7 +98,14 @@ public class FeedbackServiceImpl implements FeedbackService {
         log.info("Request to get feedback by id");
         Feedback feedback = feedbackRepository.getFeedbackById(feedbackId);
         FeedbackDTO feedbackDTO = modelMapper.map(feedback, FeedbackDTO.class);
+        // set sender name
         feedbackDTO.setSenderName(feedback.getSender().getUsername());
+        // set receiver id
+        if (feedback.getReceiver() == null) {
+            feedbackDTO.setReceiverId(0);
+        } else {
+            feedbackDTO.setReceiverId(feedback.getReceiver().getId());
+        }
         return feedbackDTO;
     }
 

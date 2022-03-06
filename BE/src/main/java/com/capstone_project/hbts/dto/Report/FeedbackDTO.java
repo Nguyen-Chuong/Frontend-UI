@@ -15,6 +15,8 @@ public class FeedbackDTO {
 
     private String senderName;
 
+    private int receiverId;
+
     private String message;
 
     private Timestamp modifyDate;
