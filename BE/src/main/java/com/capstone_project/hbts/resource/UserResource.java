@@ -257,7 +257,8 @@ public class UserResource {
 
     /**
      * @param jwttoken
-     * @apiNote for user/manager/admin to to delete their account
+     * @apiNote for user to delete their account, manager account can be disabled by admin
+     * provider don't have feature to delete account but they can be disabled by admin
      * return
      */
     @PatchMapping("/delete-account/user")

@@ -51,6 +51,12 @@ public class ErrorConstant {
     public static final String ERR_USER_007_LABEL = "Feedback has not been answered";
 
     /**
+     * Tài khoản của bạn đã bị xóa
+     */
+    public static final String ERR_USER_008 = "ERR_USER_008";
+    public static final String ERR_USER_008_LABEL = "Your account has been disabled";
+
+    /**
      * Không tìm thấy Otp
      */
     public static final String ERR_OTP_001 = "ERR_OTP_001";

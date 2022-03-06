@@ -31,9 +31,14 @@ public class ProviderServiceImpl implements ProviderService {
     }
 
     @Override
-    public String loadProviderUsernameByEmail(String email) {
-        log.info("Request to get provider username by email");
-        return providerRepository.getProviderUsernameByEmail(email);
+    public ProviderDTO loadProviderByEmail(String email) {
+        log.info("Request to load provider by email");
+        Provider provider = providerRepository.getProviderByEmail(email);
+        if(provider == null){
+            return null;
+        }else {
+            return modelMapper.map(provider, ProviderDTO.class);
+        }
     }
 
     @Override

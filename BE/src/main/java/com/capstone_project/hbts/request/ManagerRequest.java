@@ -13,6 +13,8 @@ public class ManagerRequest {
 
     private String firstname;
 
+    private int status;
+
     private String lastname;
 
     private String email;

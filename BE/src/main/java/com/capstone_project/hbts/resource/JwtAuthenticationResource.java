@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.dto.Actor.ProviderDTO;
 import com.capstone_project.hbts.dto.Actor.UserDTO;
 import com.capstone_project.hbts.request.JwtRequest;
 import com.capstone_project.hbts.request.ProviderRequest;
@@ -13,7 +14,6 @@ import com.capstone_project.hbts.service.ProviderService;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -74,7 +74,11 @@ public class JwtAuthenticationResource {
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL));
         }
-
+        if(user.getStatus() == 0){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_008, ErrorConstant.ERR_USER_008_LABEL));
+        }
         try{
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
         } catch (BadCredentialsException e){
@@ -116,16 +120,20 @@ public class JwtAuthenticationResource {
 
         String email = providerRequest.getEmail();
         String password = providerRequest.getPassword();
-        String providerUserName = providerService.loadProviderUsernameByEmail(email);
+        ProviderDTO providerDTO = providerService.loadProviderByEmail(email);
 
-        if(providerUserName == null){
+        if(providerDTO == null){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL));
         }
-
+        if(providerDTO.getStatus() == 0){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_008, ErrorConstant.ERR_USER_008_LABEL));
+        }
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(providerUserName, password));
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(providerDTO.getUsername(), password));
         } catch (BadCredentialsException e){
             e.printStackTrace();
             return ResponseEntity.badRequest()
@@ -133,7 +141,7 @@ public class JwtAuthenticationResource {
                             ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL));
         }
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(providerUserName);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(providerDTO.getUsername());
 
         final String jwt = jwtTokenUtil.generateToken(userDetails);
 

@@ -8,10 +8,10 @@ import org.springframework.data.domain.Pageable;
 public interface ProviderService {
 
     /**
-     * Load provider's username by email
+     * Load provider by email
      * @param email
      */
-    String loadProviderUsernameByEmail(String email);
+    ProviderDTO loadProviderByEmail(String email);
 
     /**
      * Register an provider

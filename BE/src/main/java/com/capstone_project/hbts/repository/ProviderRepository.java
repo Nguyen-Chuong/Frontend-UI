@@ -12,11 +12,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProviderRepository extends JpaRepository<Provider, Integer> {
 
-    @Query(value = "select username from capstone.provider where email = :email",
-            nativeQuery = true)
-    String getProviderUsernameByEmail(@Param("email") String email);
-
     Provider getProviderByUsername(String username);
+
+    Provider getProviderByEmail(String email);
 
     @Query(value = "select username from capstone.provider where username = :username",
             nativeQuery = true)

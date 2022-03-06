@@ -60,8 +60,10 @@ public class ProviderResource {
                             ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
         }
         try {
+            // name prefix for provider table
             providerRequest.setUsername("p-" + providerRequest.getUsername());
-            providerRequest.setStatus(1); // active
+            // set active for new provider
+            providerRequest.setStatus(1);
             providerService.register(providerRequest);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
