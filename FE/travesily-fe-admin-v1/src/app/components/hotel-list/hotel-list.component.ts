@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
-import { Booking } from 'src/app/_models/booking';
 import { Hotel } from 'src/app/_models/hotel';
 import { HotelService } from 'src/app/_services/hotel.service';
+import { NotificationService } from 'src/app/_services/notification.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-hotel-list',
@@ -12,6 +14,8 @@ import { HotelService } from 'src/app/_services/hotel.service';
   styleUrls: ['./hotel-list.component.scss']
 })
 export class HotelListComponent {
+  message: string
+  checked: boolean
   currentPage: number
   pageSize: number
   pages: any[]
@@ -20,9 +24,11 @@ export class HotelListComponent {
   hotels: Hotel[]
   dataSource
   constructor(private hotelsService: HotelService, private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private notificationService: NotificationService,
+    public dialog: MatDialog) { }
 
-  displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', 'phone'];
+  displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', ' ', 'detail'];
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
@@ -47,11 +53,34 @@ export class HotelListComponent {
       }
     )
     this.dataSource = new MatTableDataSource<Hotel>(this.hotels);
+    this.message = 'Are you sure wanna ban this hotel!'
   }
 
   openHotelDetail(id) {
     this.router.navigate(['hotel-detail'], {
       queryParams: { id: JSON.stringify(id)}
+    });
+  }
+
+  deleteHotel(id){
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {checked: this.checked, message: this.message},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.checked = result['checked']
+      if(this.checked){
+        this.hotelsService.deleteHotel(id).pipe(first()).subscribe({
+          next: () => {
+            this.notificationService.onSuccess('Removed successfully');
+            window.location.reload()
+          },
+          error: err => {
+            this.notificationService.onError('Removed false')
+          }
+        })
+      }
     });
   }
 

@@ -4,6 +4,9 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { ProviderService } from 'src/app/_services/provider.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NotificationService } from 'src/app/_services/notification.service';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-provider',
@@ -11,7 +14,8 @@ import { ProviderService } from 'src/app/_services/provider.service';
   styleUrls: ['./provider.component.scss']
 })
 export class ProviderComponent implements OnInit {
-
+  message: string
+  checked: boolean
   providers: Provider[]
   dataSource
   currentPage: number
@@ -21,8 +25,10 @@ export class ProviderComponent implements OnInit {
   maxpage: number
   constructor(private providerService: ProviderService,
     private router: Router,
-    private route: ActivatedRoute) { }
-  displayedColumns: string[] = ['id', 'username','providerName', 'email', 'phone', 'address'];
+    private route: ActivatedRoute,
+    private notificationService: NotificationService,
+    public dialog: MatDialog) { }
+  displayedColumns: string[] = ['id', 'username','providerName', 'email', 'phone', 'address', ' '];
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
@@ -46,11 +52,34 @@ export class ProviderComponent implements OnInit {
       }
     )
     this.dataSource = new MatTableDataSource<Provider>(this.providers);
+    this.message = 'Are you sure wanna ban this provider!'
   }
 
   openUserDetail(id): void {
     this.router.navigate(['user-detail'], {
       queryParams: { id: JSON.stringify(id) }
+    });
+  }
+
+  banProvider(id){
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {checked: this.checked, message: this.message},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.checked = result['checked']
+      if(this.checked){
+        this.providerService.deleteProvider(id).pipe(first()).subscribe({
+          next: () => {
+            this.notificationService.onSuccess('Removed successfully');
+            window.location.reload()
+          },
+          error: err => {
+            this.notificationService.onError('Removed false')
+          }
+        })
+      }
     });
   }
 

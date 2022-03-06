@@ -17,4 +17,8 @@ export class ProviderService {
   getAllProvider(){
     return this.http.get(`${this.baseUrl}/get-all-provider`)
   }
+
+  deleteProvider(id: number){
+    return this.http.patch(`${this.baseUrl}/ban-provider/${id}`, '')
+  }
 }

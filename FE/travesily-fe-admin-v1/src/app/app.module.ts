@@ -45,6 +45,8 @@ import { ManagerListComponent } from './components/manager-list/manager-list.com
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ResponseComponent } from './components/response/response.component';
 import { FeedbackTableComponent } from './components/feedback-table/feedback-table.component';
+import { DialogComponent } from './components/dialog/dialog.component';
+import { MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { FeedbackTableComponent } from './components/feedback-table/feedback-tab
     ManagerListComponent,
     FeedbackComponent,
     ResponseComponent,
-    FeedbackTableComponent
+    FeedbackTableComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -94,6 +97,7 @@ import { FeedbackTableComponent } from './components/feedback-table/feedback-tab
     MatTabsModule,
     MatCheckboxModule,
     NgImageSliderModule,
+    MatDialogModule,
     SimpleNotificationsModule.forRoot()
   ],
   providers: [

@@ -1,0 +1,10 @@
+<div mat-dialog-content>
+  <mat-form-field appearance="fill">
+    <mat-checkbox [(ngModel)]="data.checked">{{data.message}}</mat-checkbox>
+    <input matInput>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+  <button mat-button [mat-dialog-close]="data" [disabled] = "!data.checked">Ok</button>
+</div>
