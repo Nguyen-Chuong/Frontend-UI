@@ -29,7 +29,7 @@ public class RoomTypeResource {
 
     /**
      * @param hotelId
-     * @apiNote both for guest can view
+     * @apiNote public for guest can view
      * return
      */
     @GetMapping("/public/room-type/{hotelId}")
@@ -51,7 +51,7 @@ public class RoomTypeResource {
 
     /**
      * @param roomTypeId
-     * @apiNote both for guest can view
+     * @apiNote public for guest can view
      * return
      */
     @GetMapping("/public/room-detail/{roomTypeId}")

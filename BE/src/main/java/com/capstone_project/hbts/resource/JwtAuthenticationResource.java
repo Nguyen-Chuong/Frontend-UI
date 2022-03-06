@@ -58,6 +58,7 @@ public class JwtAuthenticationResource {
 
     /**
      * @param userRequest
+     * @apiNote for admin/manager/user can authenticate
      * return
      */
     @PostMapping("/authenticate/user")
@@ -89,7 +90,7 @@ public class JwtAuthenticationResource {
 
         JwtResponse jwtResponse = new JwtResponse(jwt, user.getType());
 
-        // manager or admin
+        // type manager or admin
         if(user.getType() == 1 || user.getType() == 2){
             JwtRequest jwtRequest = new JwtRequest(1, jwt);
             try{
@@ -106,6 +107,7 @@ public class JwtAuthenticationResource {
 
     /**
      * @param providerRequest
+     * @apiNote for provider can authenticate
      * return
      */
     @PostMapping("/authenticate/provider")

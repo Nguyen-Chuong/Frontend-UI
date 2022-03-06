@@ -42,10 +42,11 @@ public class ProviderResource {
 
     /**
      * @param providerRequest
+     * @apiNote for provider can register
      * return
      */
     @PostMapping("/register/provider")
-    public ResponseEntity<?> register(@RequestBody ProviderRequest providerRequest){
+    public ResponseEntity<?> registerProvider(@RequestBody ProviderRequest providerRequest){
         log.info("REST request to register a new provider : {}", providerRequest);
 
         if(providerService.isEmailExist(providerRequest.getEmail())){
@@ -74,6 +75,7 @@ public class ProviderResource {
 
     /**
      * @param jwttoken
+     * @apiNote for provider can get their profile
      * return
      */
     @GetMapping("/profile/provider")
@@ -138,6 +140,7 @@ public class ProviderResource {
 
     /**
      * @param providerDTO
+     * @apiNote for provider to update their profile
      * return
      */
     @PatchMapping("/update-profile/provider")
@@ -160,6 +163,7 @@ public class ProviderResource {
     /**
      * @param oldPass
      * @param newPass
+     * @apiNote for provider to change their password
      * return
      */
     @PatchMapping("/change-password/provider")
@@ -197,7 +201,7 @@ public class ProviderResource {
      * @param page
      * @param pageSize
      * return
-     * @apiNote for admin/ manager
+     * @apiNote for admin/ manager to view all provider
      */
     @GetMapping("/get-all-provider")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")

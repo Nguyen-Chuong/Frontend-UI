@@ -6,6 +6,7 @@ import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.VipService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -30,6 +31,7 @@ public class VipResource {
 
     /**
      * return
+     * @apiNote both user and admin can use this api
      */
     @GetMapping("/vip-info")
     public ResponseEntity<?> getVipStatus(){
@@ -57,6 +59,7 @@ public class VipResource {
      * return
      */
     @PatchMapping("/update-vip-info")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> updateVipClass(@RequestParam int discount,
                                             @RequestParam BigDecimal rangeStart,
                                             @RequestParam BigDecimal rangeEnd,

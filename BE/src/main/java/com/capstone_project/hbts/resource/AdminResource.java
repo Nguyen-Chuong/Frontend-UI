@@ -47,7 +47,7 @@ public class AdminResource {
      */
     @PostMapping("/add-manager")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> register(@RequestBody ManagerRequest managerRequest){
+    public ResponseEntity<?> addManager(@RequestBody ManagerRequest managerRequest){
         log.info("REST request to add a new manager : {}", managerRequest);
 
         if(userService.isEmailExist(managerRequest.getEmail())){

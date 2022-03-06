@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -75,10 +76,12 @@ public class HotelResource {
      * @param status
      * @param page
      * @param pageSize
+     * @apiNote for admin/manager can view list all hotel in the system
      * @return
      */
     @GetMapping("/get-hotel/{status}")
-    public ResponseEntity<?> searchHotel(@PathVariable int status,
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+    public ResponseEntity<?> getAllHotel(@PathVariable int status,
                                          @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                          @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         log.info("REST request to get all hotel by status for admin");
@@ -103,10 +106,12 @@ public class HotelResource {
 
     /**
      * @param hotelId
+     * @apiNote for admin/manager can view detail of a hotel
      * @return
      */
     @GetMapping("/hotel-detail/{hotelId}")
-    public ResponseEntity<?> searchHotel(@PathVariable int hotelId){
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+    public ResponseEntity<?> viewHotelDetail(@PathVariable int hotelId){
         log.info("REST request to get hotel detail by hotel id");
 
         try{

@@ -185,7 +185,7 @@ public class BookingResource {
      * @param hotelId
      * @param page
      * @param pageSize
-     * @apiNote for provider
+     * @apiNote for provider to view list booking in their hotel
      * return
      */
     @GetMapping("/bookings/hotel/{hotelId}")
@@ -214,6 +214,7 @@ public class BookingResource {
 
     /**
      * @param bookingId
+     * @apiNote for user to cancel booking
      * return
      */
     @PatchMapping("/cancel-booking/{bookingId}")

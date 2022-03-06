@@ -83,7 +83,7 @@ public class ResponseResource {
     /**
      * @param feedbackId
      * return
-     * @apiNote view list response for a feedback
+     * @apiNote view list response for a feedback, both admin and user can use this api
      */
     @GetMapping("/view-response/{feedbackId}")
     public ResponseEntity<?> viewResponseByFeedbackId(@PathVariable int feedbackId) {

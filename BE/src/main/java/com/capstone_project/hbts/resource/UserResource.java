@@ -38,21 +38,22 @@ public class UserResource {
 
     /**
      * @param userRequest
+     * @apiNote for only user register, manager will be added by admin
      * return
      */
-    // Consider about add a new admin account / assign by type
+    // add a new admin account / assign by type
     // admin and manager account cannot be registered
     @PostMapping("/register/user")
 //    @PreAuthorize("hasAuthority('ADMIN')") // get via table authority
-    public ResponseEntity<?> register(@RequestBody UserRequest userRequest){
+    public ResponseEntity<?> registerUser(@RequestBody UserRequest userRequest){
         log.info("REST request to register a new user : {}", userRequest);
 
-        if(userService.loadUserByEmail(userRequest.getEmail()) != null){
+        if(userService.isEmailExist(userRequest.getEmail())){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_004, ErrorConstant.ERR_USER_004_LABEL));
         }
-        if(userService.getUserProfile("u-" + userRequest.getUsername()) != null){
+        if(userService.isUsernameExist("u-" + userRequest.getUsername())){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
@@ -80,6 +81,7 @@ public class UserResource {
 
     /**
      * @param jwttoken
+     * @apiNote for user can get their profile, both admin/manager can use it
      * return
      */
     @GetMapping("/profile/user")
@@ -103,12 +105,13 @@ public class UserResource {
     /**
      * @param oldPass
      * @param newPass
+     * @apiNote for user can change their password, both admin/manager can use it
      * return
      */
     @PatchMapping("/change-password/user")
     public ResponseEntity<?> changePassword(@RequestHeader("Authorization") String jwttoken,
-                                         @RequestParam String oldPass,
-                                         @RequestParam String newPass){
+                                            @RequestParam String oldPass,
+                                            @RequestParam String newPass){
         log.info("REST request to change user's password");
 
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
@@ -138,6 +141,7 @@ public class UserResource {
 
     /**
      * @param userDTO
+     * @apiNote for user to update their profile, both admin/manager can use it
      * return
      */
     @PatchMapping("/update-profile/user")
@@ -202,6 +206,7 @@ public class UserResource {
     // api update vip status will be called when user complete a booking
     /**
      * @param userId
+     * @apiNote for user to update their vip status after completing a booking
      * return
      */
     @PatchMapping("/update-vip-status/{userId}")
@@ -224,6 +229,7 @@ public class UserResource {
     /**
      * @param email
      * @param newPass
+     * @apiNote for user who forgot their password can refresh new password via email
      * return
      */
     @PatchMapping("/authenticate/forgot-password")
