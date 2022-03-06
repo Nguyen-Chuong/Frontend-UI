@@ -41,7 +41,7 @@ public class UserBooking {
     private int status; // 1-upcoming, 2-completed, 3-cancelled
 
     @Column(name = "review_status")
-    private int reviewStatus;
+    private int reviewStatus; // 0-not yet, 1-reviewed
 
     @Column(name = "booking_date")
     private Timestamp bookingDate;

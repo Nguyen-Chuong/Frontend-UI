@@ -14,7 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.math.BigDecimal;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -33,10 +32,10 @@ public class Vip {
     private String nameVip;
 
     @Column(name = "range_start")
-    private BigDecimal rangeStart;
+    private int rangeStart;
 
     @Column(name = "range_end")
-    private BigDecimal rangeEnd;
+    private int rangeEnd;
 
     @Column(name = "discount")
     private int discount;

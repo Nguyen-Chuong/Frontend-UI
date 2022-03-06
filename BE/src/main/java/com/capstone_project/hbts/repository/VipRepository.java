@@ -18,8 +18,8 @@ public interface VipRepository extends JpaRepository<Vip, Integer> {
             nativeQuery = true)
     void updateVipClass(
             @Param("discount") int discount,
-            @Param("rangeStart") BigDecimal rangeStart,
-            @Param("rangeEnd") BigDecimal rangeEnd,
+            @Param("rangeStart") int rangeStart,
+            @Param("rangeEnd") int rangeEnd,
             @Param("id") Integer id);
 
 }

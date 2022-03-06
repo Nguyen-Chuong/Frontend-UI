@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 @CrossOrigin
@@ -61,8 +60,8 @@ public class VipResource {
     @PatchMapping("/update-vip-info")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> updateVipClass(@RequestParam int discount,
-                                            @RequestParam BigDecimal rangeStart,
-                                            @RequestParam BigDecimal rangeEnd,
+                                            @RequestParam int rangeStart,
+                                            @RequestParam int rangeEnd,
                                             @RequestParam Integer id){
         log.info("REST request to update vip class for admin");
 

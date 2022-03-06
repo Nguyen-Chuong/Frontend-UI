@@ -3,8 +3,6 @@ package com.capstone_project.hbts.dto;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-
 @Data
 @NoArgsConstructor
 public class VipDTO {
@@ -13,9 +11,9 @@ public class VipDTO {
 
     private String nameVip;
 
-    private BigDecimal rangeStart;
+    private int rangeStart;
 
-    private BigDecimal rangeEnd;
+    private int rangeEnd;
 
     private int discount;
 

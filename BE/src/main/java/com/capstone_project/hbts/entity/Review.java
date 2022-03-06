@@ -27,10 +27,10 @@ public class Review {
     private Integer id;
 
     @Column(name = "service")
-    private float service;
+    private float service; // type
 
     @Column(name = "value_money")
-    private float valueForMoney;
+    private float valueForMoney; // type
 
     @Column(name = "review_title")
     private String reviewTitle;
@@ -39,13 +39,13 @@ public class Review {
     private String reviewDetail;
 
     @Column(name = "cleanliness")
-    private float cleanliness;
+    private float cleanliness; // type
 
     @Column(name = "location")
-    private float location;
+    private float location; // type
 
     @Column(name = "facilities")
-    private float facilities;
+    private float facilities; // type
 
     @ManyToOne
     @JoinColumn(name = "userBooking_Id")

@@ -9,7 +9,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,7 +38,7 @@ public class VipServiceImpl implements VipService {
 
     @Override
     @Transactional
-    public void updateVipClass(int discount, BigDecimal rangeStart, BigDecimal rangeEnd, Integer id) {
+    public void updateVipClass(int discount, int rangeStart, int rangeEnd, Integer id) {
         log.info("Request to update vip class");
         vipRepository.updateVipClass(discount, rangeStart, rangeEnd, id);
     }

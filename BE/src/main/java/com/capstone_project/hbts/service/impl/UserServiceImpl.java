@@ -128,8 +128,8 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
 
         for (VipDTO vipDTO : listVipDTO) {
-            if (numberBookingCompleted >= vipDTO.getRangeStart().intValue()
-                    && numberBookingCompleted <= vipDTO.getRangeEnd().intValue()) {
+            if (numberBookingCompleted >= vipDTO.getRangeStart()
+                    && numberBookingCompleted <= vipDTO.getRangeEnd()) {
                 vipId = vipDTO.getId();
             }
         }

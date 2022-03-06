@@ -46,7 +46,9 @@ public class Hotel {
     private BigDecimal lowestPrice;
 
     @Column(name = "status")
-    private int status; // 1-active, 2-deactivated, 3-pending (approved -> active, denied -> delete)
+    private int status; // 1-active, 2-deactivated, 3-pending, 4-banned
+    // (if pending: approved -> active, denied -> delete)
+    // (if provider disable -> deactivated)
 
     @ManyToOne
     @JoinColumn(name = "district_id")
