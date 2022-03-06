@@ -71,7 +71,7 @@ public class Users {
     private BigDecimal spend;
 
     @Column(name = "status")
-    private int status;
+    private int status; // 1-active, 0-account deleted
 
     @ManyToOne
     @JoinColumn(name = "id_vip")

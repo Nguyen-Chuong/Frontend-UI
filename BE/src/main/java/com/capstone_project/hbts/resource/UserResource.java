@@ -61,6 +61,8 @@ public class UserResource {
         try {
             // type 0 is normal user, 1 is manager and 2 admin, register is always user
             userRequest.setType(0);
+            // set active for new user: 1-active, 0-deleted
+            userRequest.setStatus(1);
             // name prefix for user table
             userRequest.setUsername("u-" + userRequest.getUsername());
             // set vip status auto 1 for new user

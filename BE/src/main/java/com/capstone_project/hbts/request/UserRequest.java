@@ -20,6 +20,8 @@ public class UserRequest {
 
     private String email;
 
+    private int status; // 1-active, 0-account deleted
+
     private String phone;
 
     private String address;
