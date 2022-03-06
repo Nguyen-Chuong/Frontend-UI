@@ -150,4 +150,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.getUserId(username);
     }
 
+    @Override
+    @Transactional
+    public void deleteAccount(int userId) {
+        log.info("Request to delete user account for user");
+        userRepository.deleteAccount(userId);
+    }
+
 }

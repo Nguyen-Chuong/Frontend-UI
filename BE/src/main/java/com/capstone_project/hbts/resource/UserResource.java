@@ -255,4 +255,28 @@ public class UserResource {
         }
     }
 
+    /**
+     * @param jwttoken
+     * @apiNote for user/manager/admin to to delete their account
+     * return
+     */
+    @PatchMapping("/delete-account/user")
+    public ResponseEntity<?> deleteAccount(@RequestHeader("Authorization") String jwttoken){
+        log.info("REST request to delete an user account");
+
+        try{
+            String username = jwtTokenUtil.getUsernameFromToken(jwttoken.substring(7));
+            int userId = userService.getUserId(username);
+            userService.deleteAccount(userId);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }

@@ -79,4 +79,9 @@ public interface UserRepository extends JpaRepository<Users, Integer> {
             nativeQuery = true)
     int getUserId(@Param("username") String username);
 
+    @Modifying
+    @Query(value = "UPDATE capstone.users SET status = 0 WHERE capstone.users.id = :userId",
+            nativeQuery = true)
+    void deleteAccount(@Param("userId") int userId);
+
 }

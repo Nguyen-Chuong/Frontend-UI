@@ -73,4 +73,10 @@ public interface UserService {
      */
     int getUserId(String username);
 
+    /**
+     * Delete account for user
+     * @param userId
+     */
+    void deleteAccount(int userId);
+
 }
