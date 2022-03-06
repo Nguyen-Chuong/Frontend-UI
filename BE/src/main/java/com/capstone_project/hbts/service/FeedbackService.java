@@ -33,4 +33,11 @@ public interface FeedbackService {
      */
     FeedbackDTO getFeedbackById(int feedbackId);
 
+    /**
+     * @param feedbackId
+     * @param adminId
+     * @return
+     */
+    void updateFeedbackReceiver(int feedbackId, int adminId);
+
 }

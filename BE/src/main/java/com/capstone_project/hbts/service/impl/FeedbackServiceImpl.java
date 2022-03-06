@@ -88,4 +88,11 @@ public class FeedbackServiceImpl implements FeedbackService {
         return feedbackDTO;
     }
 
+    @Override
+    @Transactional
+    public void updateFeedbackReceiver(int feedbackId, int adminId) {
+        log.info("Request to update feedback receiver and process status");
+        feedbackRepository.updateFeedbackReceiver(feedbackId, adminId);
+    }
+
 }

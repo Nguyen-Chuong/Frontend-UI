@@ -14,15 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -166,6 +158,31 @@ public class FeedbackResource {
             FeedbackDTO feedbackDTO = feedbackService.getFeedbackById(feedbackId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, feedbackDTO,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param feedbackId
+     * @param adminId
+     * return
+     * @apiNote api will be called when admin/manager clicked on one user's feedback
+     */
+    @PatchMapping("/update-receiver")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+    public ResponseEntity<?> updateFeedbackReceiver(@RequestParam int feedbackId,
+                                                    @RequestParam int adminId){
+        log.info("REST request to update feedback receiver");
+
+        try {
+            feedbackService.updateFeedbackReceiver(feedbackId, adminId);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

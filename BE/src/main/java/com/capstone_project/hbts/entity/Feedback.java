@@ -50,7 +50,7 @@ public class Feedback {
     @Column(name = "modify_date")
     private Timestamp modifyDate;
 
-    @Column(name = "is_completed")
+    @Column(name = "is_completed") // that admin/manager start to process
     private int isProcessed;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "feedback")

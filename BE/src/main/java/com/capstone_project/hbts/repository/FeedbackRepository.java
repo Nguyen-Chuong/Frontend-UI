@@ -36,4 +36,10 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
             nativeQuery = true)
     Feedback getFeedbackById(@Param("feedbackId") int feedbackId);
 
+    @Modifying
+    @Query(value = "UPDATE capstone.feedback set receiver_id = :adminId, is_completed = 1 WHERE id = :feedbackId",
+            nativeQuery = true)
+    void updateFeedbackReceiver(@Param("feedbackId") int feedbackId,
+                                @Param("adminId") int adminId);
+
 }
