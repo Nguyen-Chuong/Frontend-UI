@@ -34,6 +34,8 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         log.info("Request to load user by username");
+        // this method get credential from db and authenticationManager compare to credential that user sent
+        // in its authenticate method
         if(username.startsWith("u-")){
             Users user = userRepository.getUsersByUsername(username);
             if(user == null){

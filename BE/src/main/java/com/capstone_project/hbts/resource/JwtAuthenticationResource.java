@@ -67,20 +67,22 @@ public class JwtAuthenticationResource {
 
         String email = userRequest.getEmail();
         String password = userRequest.getPassword();
-        UserDTO user = userService.loadUserByEmail(email);
+        UserDTO userDTO = userService.loadUserByEmail(email);
 
-        if(user == null){
+        if(userDTO == null){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_003, ErrorConstant.ERR_USER_003_LABEL));
         }
-        if(user.getStatus() == 0){
+        if(userDTO.getStatus() == 0){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_008, ErrorConstant.ERR_USER_008_LABEL));
         }
         try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), password));
+            // also call to method loadUserByUsername of customUserDetailsService (in web config)
+            // to check username & password
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(userDTO.getUsername(), password)); // client send
         } catch (BadCredentialsException e){
             e.printStackTrace();
             return ResponseEntity.badRequest()
@@ -88,14 +90,14 @@ public class JwtAuthenticationResource {
                             ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL));
         }
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getUsername());
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(userDTO.getUsername());
 
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String jwt = jwtTokenUtil.generateToken(userDTO.getId()+"", userDetails);
 
-        JwtResponse jwtResponse = new JwtResponse(jwt, user.getType());
+        JwtResponse jwtResponse = new JwtResponse(jwt, userDTO.getType());
 
         // type manager or admin
-        if(user.getType() == 1 || user.getType() == 2){
+        if(userDTO.getType() == 1 || userDTO.getType() == 2){
             JwtRequest jwtRequest = new JwtRequest(1, jwt);
             try{
                 jwtService.saveTokenKeyForAdmin(jwtRequest);
@@ -141,9 +143,11 @@ public class JwtAuthenticationResource {
                             ErrorConstant.ERR_USER_002, ErrorConstant.ERR_USER_002_LABEL));
         }
 
+        // userDetails contain username, password & list authority
+        // but when call method generateToken, only get id and username to compact jwt
         final UserDetails userDetails = userDetailsService.loadUserByUsername(providerDTO.getUsername());
 
-        final String jwt = jwtTokenUtil.generateToken(userDetails);
+        final String jwt = jwtTokenUtil.generateToken(providerDTO.getId()+"", userDetails);
 
         return ResponseEntity.ok()
                 .body(new ApiResponse<>(200, jwt,
