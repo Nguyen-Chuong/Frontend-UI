@@ -62,4 +62,10 @@ public interface ProviderService {
      */
     Page<ProviderDTO> getAllProvider(Pageable pageable);
 
+    /**
+     * @param providerId
+     * @return
+     */
+    void banProvider(int providerId);
+
 }

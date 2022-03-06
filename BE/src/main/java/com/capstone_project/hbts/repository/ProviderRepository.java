@@ -50,4 +50,9 @@ public interface ProviderRepository extends JpaRepository<Provider, Integer> {
     @Query(value = "SELECT * from capstone.provider", nativeQuery = true)
     Page<Provider> findAllProvider(Pageable pageable);
 
+    @Modifying
+    @Query(value = "UPDATE capstone.provider set status = 0 WHERE id = :providerId",
+            nativeQuery = true)
+    void banProviderById(@Param("providerId") int providerId);
+
 }

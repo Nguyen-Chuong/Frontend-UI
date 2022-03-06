@@ -42,6 +42,9 @@ public class Provider {
     @Column(name = "providerName")
     private String providerName;
 
+    @Column(name = "status")
+    private int status;  // 1-active, 0-banned
+
     @Column(name = "email")
     @Email
     @Size(min = 5, max = 50, message = "{casa.nomatch.size}")

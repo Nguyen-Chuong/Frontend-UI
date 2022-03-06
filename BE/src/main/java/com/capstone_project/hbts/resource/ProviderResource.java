@@ -61,6 +61,7 @@ public class ProviderResource {
         }
         try {
             providerRequest.setUsername("p-" + providerRequest.getUsername());
+            providerRequest.setStatus(1); // active
             providerService.register(providerRequest);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,

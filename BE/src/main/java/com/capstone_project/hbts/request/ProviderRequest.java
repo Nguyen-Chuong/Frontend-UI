@@ -13,6 +13,8 @@ public class ProviderRequest {
 
     private String providerName;
 
+    private int status;
+
     private String email;
 
     private String phone;

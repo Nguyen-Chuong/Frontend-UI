@@ -137,11 +137,11 @@ public class HotelResource {
      */
     @PatchMapping("/ban-hotel/{hotelId}")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public ResponseEntity<?> banHotel(@PathVariable int hotelId){
+    public ResponseEntity<?> banHotelById(@PathVariable int hotelId){
         log.info("REST request to ban hotel by hotel id");
 
         try{
-            hotelService.banHotel(hotelId);
+            hotelService.banHotelByHotelId(hotelId);
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,

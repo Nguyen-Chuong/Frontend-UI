@@ -7,6 +7,8 @@ import com.capstone_project.hbts.request.ManagerRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.AdminService;
+import com.capstone_project.hbts.service.HotelService;
+import com.capstone_project.hbts.service.ProviderService;
 import com.capstone_project.hbts.service.UserService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -35,9 +37,16 @@ public class AdminResource {
 
     private final UserService userService;
 
-    public AdminResource(AdminService adminService, UserService userService) {
+    private final ProviderService providerService;
+
+    private final HotelService hotelService;
+
+    public AdminResource(AdminService adminService, UserService userService,
+                         ProviderService providerService, HotelService hotelService) {
         this.adminService = adminService;
         this.userService = userService;
+        this.providerService = providerService;
+        this.hotelService = hotelService;
     }
 
     /**
@@ -142,6 +151,32 @@ public class AdminResource {
         try {
             adminService.deleteManager(userId);
 
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        } catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param providerId
+     * return
+     * @apiNote only for admin can access this api
+     */
+    @PatchMapping("/ban-provider/{providerId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> banProviderById(@PathVariable int providerId){
+        log.info("REST request to ban provider and their hotel for admin");
+
+        try {
+            // ban provider
+            providerService.banProvider(providerId);
+            // ban their hotels
+            hotelService.banHotelByProviderId(providerId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));

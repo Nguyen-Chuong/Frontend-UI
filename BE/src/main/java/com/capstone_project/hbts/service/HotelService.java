@@ -37,6 +37,12 @@ public interface HotelService {
      * @param hotelId
      * @return
      */
-    void banHotel(int hotelId);
+    void banHotelByHotelId(int hotelId);
+
+    /**
+     * @param providerId
+     * @return
+     */
+    void banHotelByProviderId(int providerId);
 
 }

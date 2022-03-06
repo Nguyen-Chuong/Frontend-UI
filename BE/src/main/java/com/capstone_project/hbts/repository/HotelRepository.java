@@ -28,6 +28,11 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     @Modifying
     @Query(value = "UPDATE capstone.hotel set status = 4 WHERE id = :hotelId",
             nativeQuery = true)
-    void banHotel(@Param("hotelId") int hotelId);
+    void banHotelById(@Param("hotelId") int hotelId);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.hotel set status = 4 WHERE provider_id = :providerId",
+            nativeQuery = true)
+    void banHotelByProviderId(@Param("providerId") int providerId);
 
 }

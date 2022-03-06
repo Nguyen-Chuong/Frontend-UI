@@ -108,9 +108,16 @@ public class HotelServiceImpl implements HotelService {
 
     @Override
     @Transactional
-    public void banHotel(int hotelId) {
-        log.info("Request to ban hotel by admin");
-        hotelRepository.banHotel(hotelId);
+    public void banHotelByHotelId(int hotelId) {
+        log.info("Request to ban hotel by id for admin");
+        hotelRepository.banHotelById(hotelId);
+    }
+
+    @Override
+    @Transactional
+    public void banHotelByProviderId(int providerId) {
+        log.info("Request to ban hotel by provider id");
+        hotelRepository.banHotelByProviderId(providerId);
     }
 
 }

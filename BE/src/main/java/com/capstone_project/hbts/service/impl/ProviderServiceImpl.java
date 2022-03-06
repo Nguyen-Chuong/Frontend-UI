@@ -103,4 +103,11 @@ public class ProviderServiceImpl implements ProviderService {
         return new CustomPageImpl<>(providerDTOList);
     }
 
+    @Override
+    @Transactional
+    public void banProvider(int providerId) {
+        log.info("Request to ban provider for admin");
+        providerRepository.banProviderById(providerId);
+    }
+
 }
