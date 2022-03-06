@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -121,6 +122,30 @@ public class HotelResource {
                     .body(new ApiResponse<>(200, hotelDetailDTO,
                             null, null));
             // may catch more kinda exception
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param hotelId
+     * @apiNote for admin can ban a hotel
+     * @return
+     */
+    @PatchMapping("/ban-hotel/{hotelId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public ResponseEntity<?> banHotel(@PathVariable int hotelId){
+        log.info("REST request to ban hotel by hotel id");
+
+        try{
+            hotelService.banHotel(hotelId);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest()

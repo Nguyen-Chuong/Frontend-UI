@@ -33,4 +33,10 @@ public interface HotelService {
      */
     HotelDetailDTO getDetailHotelById(int hotelId);
 
+    /**
+     * @param hotelId
+     * @return
+     */
+    void banHotel(int hotelId);
+
 }

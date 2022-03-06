@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.util.ArrayList;
@@ -103,6 +104,13 @@ public class HotelServiceImpl implements HotelService {
     public HotelDetailDTO getDetailHotelById(int hotelId) {
         log.info("Request to get detail hotel by id");
         return modelMapper.map(hotelRepository.getHotelById(hotelId), HotelDetailDTO.class);
+    }
+
+    @Override
+    @Transactional
+    public void banHotel(int hotelId) {
+        log.info("Request to ban hotel by admin");
+        hotelRepository.banHotel(hotelId);
     }
 
 }

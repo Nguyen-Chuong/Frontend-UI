@@ -4,6 +4,7 @@ import com.capstone_project.hbts.entity.Hotel;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -23,5 +24,10 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
     @Query(value = "select * from capstone.hotel", nativeQuery = true)
     Page<Hotel> findAllHotel(Pageable pageable);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.hotel set status = 4 WHERE id = :hotelId",
+            nativeQuery = true)
+    void banHotel(@Param("hotelId") int hotelId);
 
 }
