@@ -28,10 +28,14 @@ export class HotelService {
   }
 
   getRoomByHotelId(id: number){
-    return this.http.get(`${this.baseUrl}/room-type/${id}`)
+    return this.http.get(`${this.baseUrl}/public/room-type/${id}`)
   }
 
   getRoomDetailById(id: number){
     return this.http.get(`${this.baseUrl}/room-detail/${id}`)
+  }
+
+  deleteHotel(id: number){
+    return this.http.patch(`${this.baseUrl}/ban-hotel/${id}`, '')
   }
 }

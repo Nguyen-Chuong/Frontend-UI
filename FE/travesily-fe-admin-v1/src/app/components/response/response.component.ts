@@ -1,6 +1,6 @@
 import { AdminResponse } from './../../_models/admin-response';
 import { Feedback } from './../../_models/feedback';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FeedbackService } from 'src/app/_services/feedback.service';
@@ -15,8 +15,11 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class ResponseComponent implements OnInit {
   formGroup!: FormGroup;
   feedback: Feedback
+  responses: AdminResponse[]
   response: AdminResponse = new AdminResponse
   feedbackId: any
+  isAdmin= true
+  idAdmin: number
   constructor(
     private notificationService: NotificationService,
     private feedbackService: FeedbackService,
@@ -37,6 +40,16 @@ export class ResponseComponent implements OnInit {
         this.feedback = rs['data']
       }
     )
+
+    this.feedbackService.getResponseByFeedbackId(this.feedbackId).pipe(first()).subscribe(
+      rs => {
+        this.responses = rs['data']
+      }
+    )
+
+    if(this.responses.length % 2 == 0){
+      this.isAdmin = false
+    }
   }
 
   saveResponse() {

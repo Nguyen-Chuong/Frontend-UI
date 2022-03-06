@@ -2,7 +2,6 @@ import { FeedbackService } from 'src/app/_services/feedback.service';
 import { Feedback } from './../../_models/feedback';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { NgxNavigationWithDataComponent } from 'ngx-navigation-with-data';
 import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingService } from 'src/app/_services/booking.service';

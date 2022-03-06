@@ -21,14 +21,19 @@
           <textarea rows="5" type="text" class="form-control message" value={{feedback.message}} disabled>
           </textarea>
         </div>
-
+        <div class="response-list" *ngFor="let response of responses; let indexOfelement=index">
+          <div class="col-md-12">
+            <textarea rows="5" type="text" [ngClass]="{'admin-response': indexOfelement%2 == 0}" class="form-control message-response" value={{response.message}} disabled>
+            </textarea>
+          </div>
+        </div>
         <div class="col-md-12"><label class="labels">Admin response</label>
           <textarea rows="5" type="text" class="form-control message" formControlName="message_response">
           </textarea>
         </div>
 
         <div class="mt-5 text-center">
-          <button class="btn btn-primary response-button" type="submit">Save Response</button>
+          <button class="btn btn-primary response-button" type="submit" [disabled]="isAdmin">Save Response</button>
         </div>
       </div>
     </form>

@@ -31,4 +31,8 @@ export class FeedbackService {
   sendResponse(response: AdminResponse) {
     return this.http.post(`${this.baseUrl}/send-response`, {...response})
   }
+
+  getResponseByFeedbackId(id: number){
+    return this.http.get(`${this.baseUrl}/view-response/${id}`)
+  }
 }
