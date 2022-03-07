@@ -26,4 +26,8 @@ public class HotelDTO {
 
     private DistrictDTO district;
 
+    private long price;
+
+    private int salePercent;
+
 }

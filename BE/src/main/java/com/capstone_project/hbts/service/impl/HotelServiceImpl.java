@@ -1,11 +1,11 @@
 package com.capstone_project.hbts.service.impl;
 
-import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
-import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.dto.Hotel.HotelDTO;
+import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
 import com.capstone_project.hbts.entity.Hotel;
 import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.HotelRepository;
+import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.HotelService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -16,7 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -34,7 +34,8 @@ public class HotelServiceImpl implements HotelService {
         this.modelMapper = modelMapper;
     }
 
-    public int getTotalRoom(Set<RoomType> roomTypes){
+    // get total room available in a hotel
+    public int getTotalRoom(Set<RoomType> roomTypes) {
         int totalRoom = 0;
         for (RoomType roomType : roomTypes) {
             totalRoom = totalRoom + roomType.getAvailableRooms();
@@ -42,7 +43,8 @@ public class HotelServiceImpl implements HotelService {
         return totalRoom;
     }
 
-    public int getTotalPeople(Set<RoomType> roomTypes){
+    // get total people available in a hotel
+    public int getTotalPeople(Set<RoomType> roomTypes) {
         int totalPeople = 0;
         for (RoomType roomType : roomTypes) {
             totalPeople = totalPeople + roomType.getNumberOfPeople();
@@ -50,8 +52,27 @@ public class HotelServiceImpl implements HotelService {
         return totalPeople;
     }
 
+    // get lowest price (included sale) in a hotel
+    // check if hotel have no room => return a new empty room :)
+    public RoomType getLowestPriceInHotel(Set<RoomType> roomTypes) {
+        List<Long> listPrice = new ArrayList<>();
+        // add room prices to list to compare
+        for (RoomType roomType : roomTypes) {
+            listPrice.add(roomType.getPrice() * roomType.getDealPercentage());
+        }
+        // loop list room and return the room that have lowest price
+        for (RoomType roomType : roomTypes) {
+            if (roomType.getPrice() * roomType.getDealPercentage() == Collections.min(listPrice)) {
+                return roomType;
+            }
+        }
+        return new RoomType();
+    }
+
     @Override
-    public Page<HotelDTO> searchHotel(int districtId, Date dateIn, Date dateOut, int numberOfPeople, int numberOfRoom, Pageable pageable) {
+    public Page<HotelDTO> searchHotel(int districtId, Date dateIn, Date dateOut,
+                                      int numberOfPeople, int numberOfRoom,
+                                      Pageable pageable) {
         log.info("Request to get all hotel by district and other info");
 
         // get all hotel in this district
@@ -62,38 +83,76 @@ public class HotelServiceImpl implements HotelService {
         // convert page to list to process
         List<Hotel> result = new ArrayList<>(hotelPage.getContent());
 
-        for(int i = result.size() - 1 ; i >= 0; i --){
-            if(getTotalRoom(result.get(i).getListRoomType()) < numberOfRoom
-                    || getTotalPeople(result.get(i).getListRoomType()) < numberOfPeople){
+        // remove some hotel if it is not eligible
+        for (int i = result.size() - 1; i >= 0; i--) {
+            if (getTotalRoom(result.get(i).getListRoomType()) < numberOfRoom
+                    || getTotalPeople(result.get(i).getListRoomType()) < numberOfPeople) {
                 result.remove(result.get(i));
             }
         }
-
-        // final result in hotelList
+        // final result in hotelList DTO
         List<HotelDTO> hotelDTOList = result
                 .stream()
                 .map(item -> modelMapper.map(item, HotelDTO.class))
                 .collect(Collectors.toList());
+
+        // set property lowest price and deal percentage
+        for (int i = 0; i < hotelDTOList.size(); i++) {
+            // set price
+            hotelDTOList.get(i).setPrice(getLowestPriceInHotel
+                    (result.get(i).getListRoomType()).getPrice());
+            // set %deal
+            hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
+                    (result.get(i).getListRoomType()).getDealPercentage());
+        }
+        // hotel with no room have deal and price = 0
 
         return new CustomPageImpl<>(hotelDTOList);
     }
 
     @Override
     public Page<HotelDTO> getAllHotels(int status, Pageable pageable) {
-        log.info("Request to get all hotel by status");
+        log.info("Request to get all hotel by status for admin");
         List<HotelDTO> hotelDTOList;
 
-        if(status == 0){
-            hotelDTOList = hotelRepository.findAllHotel(pageable)
+        List<Hotel> resultList;
+
+        if (status == 0) {
+            resultList = hotelRepository.findAllHotel(pageable).getContent();
+            // convert to DTO list
+            hotelDTOList = resultList
                     .stream()
                     .map(item -> modelMapper.map(item, HotelDTO.class))
                     .collect(Collectors.toList());
-        }else {
-            hotelDTOList = hotelRepository.findAllByStatus(status, pageable)
+
+            // set property lowest price and deal percentage
+            for (int i = 0; i < hotelDTOList.size(); i++) {
+                // set price
+                hotelDTOList.get(i).setPrice(getLowestPriceInHotel
+                        (resultList.get(i).getListRoomType()).getPrice());
+                // set %deal
+                hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
+                        (resultList.get(i).getListRoomType()).getDealPercentage());
+            }
+        } else {
+            resultList = hotelRepository.findAllByStatus(status, pageable).getContent();
+            // convert to DTO list
+            hotelDTOList = resultList
                     .stream()
                     .map(item -> modelMapper.map(item, HotelDTO.class))
                     .collect(Collectors.toList());
+
+            // set property lowest price and deal percentage
+            for (int i = 0; i < hotelDTOList.size(); i++) {
+                // set price
+                hotelDTOList.get(i).setPrice(getLowestPriceInHotel
+                        (resultList.get(i).getListRoomType()).getPrice());
+                // set %deal
+                hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
+                        (resultList.get(i).getListRoomType()).getDealPercentage());
+            }
         }
+        // hotel with no room have deal and price = 0
 
         return new CustomPageImpl<>(hotelDTOList);
     }

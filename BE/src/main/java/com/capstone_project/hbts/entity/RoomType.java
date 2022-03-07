@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,10 +17,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -37,7 +38,7 @@ public class RoomType {
     private String name;
 
     @Column(name = "price")
-    private BigDecimal price;
+    private long price;
 
     @Column(name = "number_of_people")
     private int numberOfPeople;

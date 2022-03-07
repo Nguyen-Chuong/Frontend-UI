@@ -5,7 +5,6 @@ import com.capstone_project.hbts.dto.ImageDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Set;
 
@@ -17,7 +16,7 @@ public class RoomTypeDTO {
 
     private String name;
 
-    private BigDecimal price;
+    private long price;
 
     private int numberOfPeople;
 
