@@ -1,4 +1,4 @@
-package com.capstone_project.hbts.validate;
+package com.capstone_project.hbts.decryption;
 
 import org.springframework.stereotype.Component;
 
@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 
 @Component
-public class DataValidate {
+public class DataDecryption {
 
     static final String SECRET_KEY = "06052000";
 

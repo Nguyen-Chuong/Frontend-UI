@@ -2,6 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Booking.BookingListDTO;
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.response.ApiResponse;
@@ -37,10 +38,14 @@ public class BookingResource {
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    public BookingResource(BookingService bookingService, UserService userService, JwtTokenUtil jwtTokenUtil) {
+    private final DataDecryption dataDecryption;
+
+    public BookingResource(BookingService bookingService, UserService userService,
+                           JwtTokenUtil jwtTokenUtil, DataDecryption dataDecryption) {
         this.bookingService = bookingService;
         this.userService = userService;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -49,16 +54,16 @@ public class BookingResource {
      * return
      */
     @GetMapping("/user-bookings/{username}")
-    public ResponseEntity<?> getUserBooking(@PathVariable String username){
+    public ResponseEntity<?> getUserBooking(@PathVariable String username) {
         log.info("REST request to get list user's booking by username");
 
         int userId = userService.getUserId(username);
-        try{
+        try {
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, userBookingDTOList,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -73,17 +78,17 @@ public class BookingResource {
      */
     @GetMapping("/bookings-review/{reviewStatus}")
     public ResponseEntity<?> getUserBookingReview(@PathVariable int reviewStatus,
-                                                  @RequestHeader("Authorization") String jwttoken){
+                                                  @RequestHeader("Authorization") String jwttoken) {
         log.info("REST request to get list user's booking need to review or not");
 
         int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
 
-        try{
+        try {
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsReview(reviewStatus, userId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, userBookingDTOList,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -100,17 +105,17 @@ public class BookingResource {
      * return
      */
     @GetMapping("/bookings-completed")
-    public ResponseEntity<?> getNumberBookingsCompleted(@RequestHeader("Authorization") String jwttoken){
+    public ResponseEntity<?> getNumberBookingsCompleted(@RequestHeader("Authorization") String jwttoken) {
         log.info("REST request to get number booking completed by user id");
 
         int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
 
-        try{
+        try {
             int numberBookingCompleted = bookingService.getNumberBookingsCompleted(userId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, numberBookingCompleted,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -125,17 +130,17 @@ public class BookingResource {
      */
     @GetMapping("/bookings-by-status/{status}")
     public ResponseEntity<?> getUserBookingByStatus(@PathVariable int status,
-                                                    @RequestHeader("Authorization") String jwttoken){
+                                                    @RequestHeader("Authorization") String jwttoken) {
         log.info("REST request to get list user's booking by status");
 
         int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
 
-        try{
+        try {
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookingsByStatus(status, userId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, userBookingDTOList,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -151,10 +156,10 @@ public class BookingResource {
     @GetMapping("/get-all-booking")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> getAllUserBooking(@RequestParam(defaultValue = ValidateConstant.PAGE) int page,
-                                               @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+                                               @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize) {
         log.info("REST request to get list user's booking for admin");
 
-        try{
+        try {
             Page<BookingListDTO> userBookingDTOList = bookingService.getAllBookingForAdmin(PageRequest.of(page, pageSize));
 
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(userBookingDTOList.getContent(),
@@ -163,7 +168,7 @@ public class BookingResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, dataPagingResponse,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -175,16 +180,23 @@ public class BookingResource {
      * @param bookingId
      * return
      */
-    @GetMapping("/booking/{bookingId}")
-    public ResponseEntity<?> getBookingById(@PathVariable int bookingId){
+    @GetMapping("/booking")
+    public ResponseEntity<?> getBookingById(@RequestParam String bookingId) {
         log.info("REST request to get user's booking by id");
-
-        try{
-            UserBookingDTO userBookingDTO = bookingService.getBookingById(bookingId);
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedData(bookingId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            UserBookingDTO userBookingDTO = bookingService.getBookingById(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, userBookingDTO,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -202,10 +214,10 @@ public class BookingResource {
     @GetMapping("/bookings/hotel/{hotelId}")
     public ResponseEntity<?> getBookingByHotelId(@PathVariable int hotelId,
                                                  @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
-                                                 @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
+                                                 @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize) {
         log.info("REST request to get user's booking by hotel id");
 
-        try{
+        try {
             Page<UserBookingDTO> userBookingDTOPage = bookingService.getBookingsByHotelId(hotelId,
                     PageRequest.of(page, pageSize));
 
@@ -215,7 +227,7 @@ public class BookingResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, dataPagingResponse,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -229,15 +241,15 @@ public class BookingResource {
      * return
      */
     @PatchMapping("/cancel-booking/{bookingId}")
-    public ResponseEntity<?> cancelBooking(@PathVariable int bookingId){
+    public ResponseEntity<?> cancelBooking(@PathVariable int bookingId) {
         log.info("REST request to cancel booking");
 
-        try{
+        try {
             bookingService.cancelBooking(bookingId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
