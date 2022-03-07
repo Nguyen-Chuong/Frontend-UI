@@ -74,4 +74,10 @@ public class ErrorConstant {
     public static final String ERR_OTP_003 = "ERR_OTP_003";
     public static final String ERR_OTP_003_LABEL = "OTP is incorrect";
 
+    /**
+     * Dữ liệu cần giải mã không hợp lệ
+     */
+    public static final String ERR_DATA_001 = "ERR_DATA_001";
+    public static final String ERR_DATA_001_LABEL = "Your data url decrypted is not valid";
+
 }
