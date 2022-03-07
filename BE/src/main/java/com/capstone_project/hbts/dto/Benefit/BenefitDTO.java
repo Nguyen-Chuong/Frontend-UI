@@ -6,5 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class BenefitDTO {
-    // for admin to add
+
+    private String name;
+
 }

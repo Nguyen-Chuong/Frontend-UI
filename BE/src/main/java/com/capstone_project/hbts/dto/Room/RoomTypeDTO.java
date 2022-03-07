@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.dto.Room;
 
-import com.capstone_project.hbts.dto.Benefit.RoomTypeBenefitDTO;
+import com.capstone_project.hbts.dto.Benefit.BenefitDTO;
 import com.capstone_project.hbts.dto.ImageDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,7 +28,7 @@ public class RoomTypeDTO {
 
     private Timestamp dealExpire;
 
-    private Set<RoomTypeBenefitDTO> listBenefit;
+    private Set<BenefitDTO> listBenefit;
 
     private Set<ImageDTO> listImage;
 

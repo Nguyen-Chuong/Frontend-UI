@@ -69,6 +69,6 @@ public class RoomType {
     private Set<RoomFacility> listRoomFacility;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "roomType")
-    private Set<RoomTypeBenefit> listBenefit;
+    private Set<RoomTypeBenefit> listRoomBenefit;
 
 }

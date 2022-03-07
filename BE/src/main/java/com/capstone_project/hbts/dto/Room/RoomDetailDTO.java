@@ -1,6 +1,6 @@
 package com.capstone_project.hbts.dto.Room;
 
-import com.capstone_project.hbts.dto.Benefit.RoomTypeBenefitDTO;
+import com.capstone_project.hbts.dto.Benefit.BenefitDTO;
 import com.capstone_project.hbts.dto.Facility.FacilityDTO;
 import com.capstone_project.hbts.dto.ImageDTO;
 import lombok.AllArgsConstructor;
@@ -23,6 +23,6 @@ public class RoomDetailDTO {
 
     private List<FacilityDTO> listFacility;
 
-    private Set<RoomTypeBenefitDTO> listBenefit;
+    private Set<BenefitDTO> listBenefit;
 
 }

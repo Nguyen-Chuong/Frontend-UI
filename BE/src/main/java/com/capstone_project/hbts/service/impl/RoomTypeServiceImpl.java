@@ -1,11 +1,12 @@
 package com.capstone_project.hbts.service.impl;
 
-import com.capstone_project.hbts.dto.Benefit.RoomTypeBenefitDTO;
+import com.capstone_project.hbts.dto.Benefit.BenefitDTO;
 import com.capstone_project.hbts.dto.Facility.FacilityDTO;
 import com.capstone_project.hbts.dto.ImageDTO;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
 import com.capstone_project.hbts.entity.RoomType;
+import com.capstone_project.hbts.repository.BenefitRepository;
 import com.capstone_project.hbts.repository.FacilityRepository;
 import com.capstone_project.hbts.repository.RoomFacilityRepository;
 import com.capstone_project.hbts.repository.RoomTypeRepository;
@@ -14,6 +15,7 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -30,13 +32,17 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     private final FacilityRepository facilityRepository;
 
+    private final BenefitRepository benefitRepository;
+
     public RoomTypeServiceImpl(RoomTypeRepository roomTypeRepository, ModelMapper modelMapper,
                                RoomFacilityRepository roomFacilityRepository,
-                               FacilityRepository facilityRepository) {
+                               FacilityRepository facilityRepository,
+                               BenefitRepository benefitRepository) {
         this.roomTypeRepository = roomTypeRepository;
         this.modelMapper = modelMapper;
         this.roomFacilityRepository = roomFacilityRepository;
         this.facilityRepository = facilityRepository;
+        this.benefitRepository = benefitRepository;
     }
 
     @Override
@@ -61,10 +67,11 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Override
     public List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId) {
         log.info("Request to load room type by hotel id");
-
+        // consider set benefit dto for each room w/out query in loop
         List<RoomType> list = roomTypeRepository.findRoomTypeByHotelId(hotelId);
         return list.stream().map(
-                item -> modelMapper.map(item, RoomTypeDTO.class)).collect(Collectors.toList());
+                item -> modelMapper.map(item, RoomTypeDTO.class))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -85,10 +92,14 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                 .map(item -> modelMapper.map(item, ImageDTO.class))
                 .collect(Collectors.toSet());
 
-        // get set benefit from this room type and transfer to DTO
-        Set<RoomTypeBenefitDTO> roomTypeBenefitDTOSet = roomType.getListBenefit()
+        List<Integer> benefitId = new ArrayList<>();
+        // get set benefit from this room type and add to list id
+        roomType.getListRoomBenefit().forEach(item -> benefitId.add(item.getBenefit().getId()));
+
+        // get set benefitDTO by list ids
+        Set<BenefitDTO> benefitDTOSet = benefitRepository.findAllById(benefitId)
                 .stream()
-                .map(item -> modelMapper.map(item, RoomTypeBenefitDTO.class))
+                .map(item -> modelMapper.map(item, BenefitDTO.class))
                 .collect(Collectors.toSet());
 
         // get list facility id from room facility
@@ -102,8 +113,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
         // convert to DTO
         return new RoomDetailDTO(roomType.getId(), roomType.getName(),
-                imageDTOSet, facilityDTOList, roomTypeBenefitDTOSet);
-
+                imageDTOSet, facilityDTOList, benefitDTOSet);
     }
 
 }

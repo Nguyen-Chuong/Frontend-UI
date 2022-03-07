@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,8 +26,10 @@ public class RoomTypeBenefit {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
-    private String name;
+    @ManyToOne
+    @JsonIgnore
+    @JoinColumn(name = "benefit_id")
+    private Benefit benefit;
 
     @ManyToOne
     @JsonIgnore
