@@ -48,11 +48,10 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Override
     public void createRoomType(RoomType roomType) {
         log.info("Request to create room type");
-
-        if(roomType != null){
+        if (roomType != null) {
             try {
                 roomTypeRepository.save(roomType);
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
@@ -69,8 +68,9 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         log.info("Request to load room type by hotel id");
         // consider set benefit dto for each room w/out query in loop
         List<RoomType> list = roomTypeRepository.findRoomTypeByHotelId(hotelId);
-        return list.stream().map(
-                item -> modelMapper.map(item, RoomTypeDTO.class))
+        // using dto & repository relationship, load table room benefit also load table benefit
+        return list.stream()
+                .map(item -> modelMapper.map(item, RoomTypeDTO.class))
                 .collect(Collectors.toList());
     }
 
