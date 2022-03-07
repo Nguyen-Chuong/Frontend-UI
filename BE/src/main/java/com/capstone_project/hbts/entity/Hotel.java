@@ -15,7 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import java.math.BigDecimal;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -41,9 +40,6 @@ public class Hotel {
 
     @Column(name = "description")
     private String description;
-
-    @Column(name = "lowest_price")
-    private BigDecimal lowestPrice;
 
     @Column(name = "status")
     private int status; // 1-active, 2-deactivated, 3-pending, 4-banned
