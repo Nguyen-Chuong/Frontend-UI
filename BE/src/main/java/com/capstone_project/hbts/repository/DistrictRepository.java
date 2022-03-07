@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.repository;
 
+import com.capstone_project.hbts.dto.Location.CityDistrict;
 import com.capstone_project.hbts.entity.District;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,5 +16,11 @@ public interface DistrictRepository extends JpaRepository<District, Integer> {
             nativeQuery = true)
     List<District> searchDistrict(@Param("text") String text);
 
+    @Query(value = "select new com.capstone_project.hbts.dto.Location.CityDistrict(district.id, " +
+            "district.nameDistrict, city.nameCity) from District " +
+            "as district join City as city on district.cityFK.id = city.id " +
+            "where district.nameDistrict like lower(concat('%',:text,'%')) " +
+            "or city.nameCity like lower(concat('%',:text,'%')) ")
+    List<CityDistrict> searchDistrictCity(@Param("text") String text);
 
 }
