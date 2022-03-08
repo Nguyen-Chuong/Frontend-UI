@@ -180,10 +180,22 @@ public class HotelServiceImpl implements HotelService {
     @Override
     public List<HotelDTO> viewListHotelByProviderId(int providerId) {
         log.info("Request to get list hotel by provider id");
-        return hotelRepository.getAllByProviderId(providerId)
-                .stream()
+        List<Hotel> hotelList = hotelRepository.getAllByProviderId(providerId);
+
+        List<HotelDTO> hotelDTOList = hotelList.stream()
                 .map(item -> modelMapper.map(item, HotelDTO.class))
                 .collect(Collectors.toList());
+
+        // set property lowest price and deal percentage
+        for (int i = 0; i < hotelDTOList.size(); i++) {
+            // set price
+            hotelDTOList.get(i).setPrice(getLowestPriceInHotel
+                    (hotelList.get(i).getListRoomType()).getPrice());
+            // set %deal
+            hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
+                    (hotelList.get(i).getListRoomType()).getDealPercentage());
+        }
+        return hotelDTOList;
     }
 
     @Override
@@ -198,6 +210,19 @@ public class HotelServiceImpl implements HotelService {
     public void enableHotel(int hotelId) {
         log.info("Request to enable a hotel by provider");
         hotelRepository.enableHotel(hotelId);
+    }
+
+    @Override
+    public HotelDTO getHotelById(int hotelId) {
+        log.info("Request to get a hotel by id");
+        Hotel hotel = hotelRepository.getHotelById(hotelId);
+        HotelDTO hotelDTO = modelMapper.map(hotel, HotelDTO.class);
+        // set lowest price
+        hotelDTO.setPrice(getLowestPriceInHotel(hotel.getListRoomType()).getPrice());
+        // set % deal
+        hotelDTO.setSalePercent(getLowestPriceInHotel(hotel.getListRoomType()).getDealPercentage());
+
+        return hotelDTO;
     }
 
 }

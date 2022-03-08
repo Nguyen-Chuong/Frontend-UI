@@ -65,4 +65,10 @@ public interface HotelService {
      */
     void enableHotel(int hotelId);
 
+    /**
+     * @param hotelId
+     * @return
+     */
+    HotelDTO getHotelById(int hotelId);
+
 }

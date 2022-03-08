@@ -229,4 +229,27 @@ public class HotelResource {
         }
     }
 
+    /**
+     * @param hotelId
+     * @apiNote get hotel by id
+     * @return
+     */
+    @GetMapping("/hotel/{hotelId}")
+    public ResponseEntity<?> viewHotelById(@PathVariable int hotelId){
+        log.info("REST request to get hotel by id");
+
+        try{
+            HotelDTO hotelDTO = hotelService.getHotelById(hotelId);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, hotelDTO,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }
