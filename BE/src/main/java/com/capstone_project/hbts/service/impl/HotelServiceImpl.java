@@ -186,4 +186,11 @@ public class HotelServiceImpl implements HotelService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    @Transactional
+    public void disableHotel(int hotelId) {
+        log.info("Request to disable a hotel by provider");
+        hotelRepository.disableHotel(hotelId);
+    }
+
 }

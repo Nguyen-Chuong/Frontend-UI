@@ -53,4 +53,10 @@ public interface HotelService {
      */
     List<HotelDTO> viewListHotelByProviderId(int providerId);
 
+    /**
+     * @param hotelId
+     * @return
+     */
+    void disableHotel(int hotelId);
+
 }

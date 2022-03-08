@@ -183,4 +183,27 @@ public class HotelResource {
         }
     }
 
+    /**
+     * @param hotelId
+     * @apiNote for provider can disable a hotel, they can enable again if they want (is not banned)
+     * @return
+     */
+    @PatchMapping("/disable-hotel/{hotelId}")
+    public ResponseEntity<?> disableHotelById(@PathVariable int hotelId){
+        log.info("REST request to disable hotel by hotel id");
+
+        try{
+            hotelService.disableHotel(hotelId);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }

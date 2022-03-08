@@ -14,10 +14,11 @@ import java.util.List;
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
-    @Query(value = "select * from capstone.hotel where district_id = :districtId", nativeQuery = true)
-    Page<Hotel> searchHotelByDistrict(
-            @Param("districtId") int districtId,
-            Pageable pageable);
+    // find all hotel active
+    @Query(value = "select * from capstone.hotel where district_id = :districtId and status = 1 ",
+            nativeQuery = true)
+    Page<Hotel> searchHotelByDistrict(@Param("districtId") int districtId,
+                                      Pageable pageable);
 
     Page<Hotel> findAllByStatus(int status, Pageable pageable);
 
@@ -38,5 +39,10 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     void banHotelByProviderId(@Param("providerId") int providerId);
 
     List<Hotel> getAllByProviderId(int providerId);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.hotel set status = 2 WHERE id = :hotelId",
+            nativeQuery = true)
+    void disableHotel(@Param("hotelId") int hotelId);
 
 }
