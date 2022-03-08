@@ -290,7 +290,8 @@ public class HotelResource {
 
     /**
      * @param jwttoken
-     * @apiNote for provider to add their hotel
+     * @apiNote for provider to add their hotel, they have to complete adding
+     * at least one room type to add a new request to post hotel
      * @return
      */
     @PostMapping("/add-hotel")
