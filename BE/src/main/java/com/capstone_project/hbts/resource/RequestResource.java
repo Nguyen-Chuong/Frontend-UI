@@ -111,7 +111,6 @@ public class RequestResource {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> denyRequest(@RequestParam String requestId){
         log.info("REST request to deny provider's request to post hotel");
-        System.out.println(requestId);
         int id;
         try {
             id = dataDecryption.convertEncryptedDataToInt(requestId);
