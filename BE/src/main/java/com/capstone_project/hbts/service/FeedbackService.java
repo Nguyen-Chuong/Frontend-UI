@@ -10,30 +10,35 @@ import java.util.List;
 public interface FeedbackService {
 
     /**
+     * user send feedback to admin
      * @param feedbackRequest
      * @return
      */
     void sendFeedback(FeedbackRequest feedbackRequest);
 
     /**
+     * admin view page user feedback
      * @param pageable
      * @return
      */
     Page<FeedbackDTO> viewPageUserFeedback(Pageable pageable);
 
     /**
+     * admin view list an user's feedback
      * @param userId
      * @return
      */
     List<FeedbackDTO> getListAnUserFeedback(int userId);
 
     /**
+     * get user's feedback by id
      * @param feedbackId
      * @return
      */
     FeedbackDTO getFeedbackById(int feedbackId);
 
     /**
+     * update feedback receiver that click on
      * @param feedbackId
      * @param adminId
      * @return

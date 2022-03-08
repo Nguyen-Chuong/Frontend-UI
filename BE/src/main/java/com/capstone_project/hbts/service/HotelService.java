@@ -11,6 +11,7 @@ import java.util.List;
 public interface HotelService {
 
     /**
+     * search hotel for user n guest
      * @param districtId
      * @param dateIn
      * @param dateOut
@@ -23,6 +24,7 @@ public interface HotelService {
                                int numberOfPeople, int numberOfRoom, Pageable pageable);
 
     /**
+     * get page hotel dto for admin
      * @param status
      * @param pageable
      * @return
@@ -30,42 +32,49 @@ public interface HotelService {
     Page<HotelDTO> getAllHotels(int status, Pageable pageable);
 
     /**
+     * get detail hotel by id
      * @param hotelId
      * @return
      */
     HotelDetailDTO getDetailHotelById(int hotelId);
 
     /**
+     * ban hotel by id for admin
      * @param hotelId
      * @return
      */
     void banHotelByHotelId(int hotelId);
 
     /**
+     * ban hotel by provider id
      * @param providerId
      * @return
      */
     void banHotelByProviderId(int providerId);
 
     /**
+     * view list hotel for provider
      * @param providerId
      * @return
      */
     List<HotelDTO> viewListHotelByProviderId(int providerId);
 
     /**
+     * disable hotel for provider
      * @param hotelId
      * @return
      */
     void disableHotel(int hotelId);
 
     /**
+     * enable hotel for provider
      * @param hotelId
      * @return
      */
     void enableHotel(int hotelId);
 
     /**
+     * get hotel by id
      * @param hotelId
      * @return
      */

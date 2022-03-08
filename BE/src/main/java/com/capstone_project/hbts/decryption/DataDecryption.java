@@ -16,6 +16,7 @@ public class DataDecryption {
 
     static final String SECRET_KEY = "06052000";
 
+    // for data like id
     public Integer convertEncryptedDataToInt(String dataEncrypted) {
 
         // specify secret key
@@ -44,6 +45,7 @@ public class DataDecryption {
         return null;
     }
 
+    // for data like username
     public String convertEncryptedDataToString(String dataEncrypted) {
 
         // specify secret key

@@ -9,18 +9,21 @@ import java.util.List;
 public interface ResponseService {
 
     /**
+     * admin send response to user
      * @param responseAdminRequest
      * @return
      */
     void sendResponseToUser(ResponseAdminRequest responseAdminRequest);
 
     /**
+     * user send response to admin
      * @param responseUserRequest
      * @return
      */
     void sendResponseToAdmin(ResponseUserRequest responseUserRequest);
 
     /**
+     * get all response by feedback id
      * @param feedbackId
      * @return
      */
