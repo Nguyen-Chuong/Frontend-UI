@@ -70,4 +70,32 @@ public class DataDecryption {
         return null;
     }
 
+    public static String convertOriginalDataToStringEncrypted(String original) {
+
+        // specify secret key
+        SecretKeySpec secretKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "DES");
+
+        try {
+            // new an object to help decrypt data
+            Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5PADDING");
+            // init cipher encrypt mode with key
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+            // get the data byte[] after encrypted
+            byte[] byteEncrypted = cipher.doFinal(original.getBytes());
+            // convert data byte[] to string
+            return Base64.getEncoder().encodeToString(byteEncrypted);
+        } catch (NoSuchAlgorithmException |
+                NoSuchPaddingException |
+                InvalidKeyException |
+                IllegalBlockSizeException |
+                BadPaddingException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+//    public static void main(String[] args) {
+//        System.out.println(convertOriginalDataToStringEncrypted("1"));
+//    }
+
 }
