@@ -38,8 +38,10 @@ public class FeedbackServiceImpl implements FeedbackService {
         feedbackRequest.setModifyDate(new Timestamp(System.currentTimeMillis()));
         // not yet processed
         feedbackRequest.setIsProcessed(0);
-        feedbackRepository.sendFeedback(feedbackRequest.getType(), feedbackRequest.getSenderId(),
-                feedbackRequest.getMessage(), feedbackRequest.getModifyDate(),
+        feedbackRepository.sendFeedback(feedbackRequest.getType(),
+                feedbackRequest.getSenderId(),
+                feedbackRequest.getMessage(),
+                feedbackRequest.getModifyDate(),
                 feedbackRequest.getIsProcessed());
     }
 

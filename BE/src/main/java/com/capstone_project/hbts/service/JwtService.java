@@ -6,6 +6,7 @@ public interface JwtService {
 
     /**
      * Save token key for admin
+     * @param jwtRequest
      */
     void saveTokenKeyForAdmin(JwtRequest jwtRequest);
 

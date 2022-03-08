@@ -20,7 +20,7 @@ public class UserRequest {
 
     private String email;
 
-    private int status; // 1-active, 0-account deleted
+    private int status; // 1-active, 0-account deleted, not required
 
     private String phone;
 
@@ -30,8 +30,8 @@ public class UserRequest {
 
     private BigDecimal spend;
 
-    private int type;
+    private int type; // not required
 
-    private VipDTO idVip;
+    private VipDTO idVip; // not required
 
 }

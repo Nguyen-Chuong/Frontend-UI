@@ -4,12 +4,14 @@ import com.capstone_project.hbts.service.OTPService;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@Log4j2
 public class OTPServiceImpl implements OTPService {
     //cache based on username and OTP MAX 8
     private static final Integer EXPIRE_MINUTES = 1;
@@ -30,6 +32,7 @@ public class OTPServiceImpl implements OTPService {
     // Using email as key
     @Override
     public int generateOtp(String key) {
+        log.info("Request to generate otp");
         Random random = new Random();
         int otp = 100000 + random.nextInt(900000);
         otpCache.put(key, otp);
@@ -40,6 +43,7 @@ public class OTPServiceImpl implements OTPService {
     // email
     @Override
     public int getOtp(String key) {
+        log.info("Request to get otp");
         try {
             return otpCache.get(key);
         } catch (Exception e) {
@@ -50,6 +54,7 @@ public class OTPServiceImpl implements OTPService {
     //This method is used to clear the OTP cache already
     @Override
     public void clearOtp(String key) {
+        log.info("Request to clear otp");
         otpCache.invalidate(key);
     }
 

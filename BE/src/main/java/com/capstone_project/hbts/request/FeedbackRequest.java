@@ -15,8 +15,8 @@ public class FeedbackRequest {
 
     private String message;
 
-    private Timestamp modifyDate;
+    private Timestamp modifyDate; // not required
 
-    private int isProcessed;
+    private int isProcessed; // not required
 
 }

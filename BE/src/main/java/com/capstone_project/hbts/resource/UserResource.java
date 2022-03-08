@@ -96,6 +96,7 @@ public class UserResource {
     /**
      * @param oldPass
      * @param newPass
+     * @param jwttoken
      * @apiNote for user can change their password, both admin/manager can use it
      * return
      */

@@ -14,7 +14,10 @@ public interface VipService {
 
     /**
      * update vip info
-     * @param
+     * @param discount
+     * @param rangeEnd
+     * @param rangeStart
+     * @param id
      */
     void updateVipClass(int discount, int rangeStart, int rangeEnd, Integer id);
 

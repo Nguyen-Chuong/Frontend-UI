@@ -162,6 +162,7 @@ public class ProviderResource {
     /**
      * @param oldPass
      * @param newPass
+     * @param jwttoken
      * @apiNote for provider to change their password
      * return
      */

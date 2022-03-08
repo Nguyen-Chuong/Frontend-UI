@@ -111,7 +111,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                 .map(item -> modelMapper.map(item, FacilityDTO.class))
                 .collect(Collectors.toList());
 
-        // convert to DTO
+        // convert to RoomDetailDTO
         return new RoomDetailDTO(roomType.getId(), roomType.getName(),
                 imageDTOSet, facilityDTOList, benefitDTOSet);
     }

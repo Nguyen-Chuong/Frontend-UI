@@ -13,7 +13,7 @@ public class ManagerRequest {
 
     private String firstname;
 
-    private int status;
+    private int status; // not required
 
     private String lastname;
 
@@ -21,6 +21,6 @@ public class ManagerRequest {
 
     private String phone;
 
-    private int type;
+    private int type; // not required
 
 }

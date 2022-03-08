@@ -23,6 +23,7 @@ public interface HotelService {
 
     /**
      * @param status
+     * @param pageable
      * @return
      */
     Page<HotelDTO> getAllHotels(int status, Pageable pageable);

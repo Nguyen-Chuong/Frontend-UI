@@ -13,7 +13,7 @@ public class ResponseUserRequest {
 
     private String message;
 
-    private Timestamp modifyDate;
+    private Timestamp modifyDate; // not required
 
     private int adminId;
 

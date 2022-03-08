@@ -79,7 +79,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         // configure AuthenticationManager so that it knows from where to load
         // user for matching credentials - user customUserDetailsService below w/ method loadUserByUsername
-        // Use BCryptPasswordEncoder
+        // Use BCryptPasswordEncoder to encode password that user sent for checking
         super.configure(auth);
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
     }

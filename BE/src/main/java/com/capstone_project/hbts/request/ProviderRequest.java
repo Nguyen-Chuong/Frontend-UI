@@ -13,7 +13,7 @@ public class ProviderRequest {
 
     private String providerName;
 
-    private int status;
+    private int status; // not required
 
     private String email;
 
