@@ -2,7 +2,6 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.dto.Actor.UserDTO;
-import com.capstone_project.hbts.dto.VipDTO;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
@@ -59,16 +58,6 @@ public class UserResource {
                             ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
         }
         try {
-            // type 0 is normal user, 1 is manager and 2 admin, register is always user
-            userRequest.setType(0);
-            // set active for new user: 1-active, 0-deleted
-            userRequest.setStatus(1);
-            // name prefix for user table
-            userRequest.setUsername("u-" + userRequest.getUsername());
-            // set vip status auto 1 for new user
-            VipDTO vipDTO = new VipDTO();
-            vipDTO.setId(1);
-            userRequest.setIdVip(vipDTO);
             userService.register(userRequest);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,

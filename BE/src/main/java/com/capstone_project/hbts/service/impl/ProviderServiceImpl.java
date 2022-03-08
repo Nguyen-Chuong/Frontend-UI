@@ -44,6 +44,12 @@ public class ProviderServiceImpl implements ProviderService {
     @Override
     public void register(ProviderRequest providerRequest) {
         log.info("Request to register a new provider");
+
+        // name prefix for provider table
+        providerRequest.setUsername("p-" + providerRequest.getUsername());
+        // set active for new provider
+        providerRequest.setStatus(1);
+
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         Provider newProvider = modelMapper.map(providerRequest, Provider.class);
         newProvider.setPassword(bCryptPasswordEncoder.encode(newProvider.getPassword()));

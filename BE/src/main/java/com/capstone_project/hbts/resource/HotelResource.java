@@ -64,7 +64,7 @@ public class HotelResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, dataPagingResponse,
                             null, null));
-            // may catch more kinda exception
+            // may catch more kinda exception that user can make
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest()

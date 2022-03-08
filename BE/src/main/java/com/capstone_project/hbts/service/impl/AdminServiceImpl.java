@@ -39,6 +39,14 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public void addNewManager(ManagerRequest managerRequest) {
         log.info("Request to add new manager");
+
+        // type 0 is normal user, 1 is manager and 2 admin, register is always user
+        managerRequest.setType(1);
+        // set active for new manager: 1-active, 0-deleted
+        managerRequest.setStatus(1);
+        // name prefix for user table
+        managerRequest.setUsername("u-" + managerRequest.getUsername());
+
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         Users newManager = modelMapper.map(managerRequest, Users.class);
         newManager.setPassword(bCryptPasswordEncoder.encode(managerRequest.getPassword()));

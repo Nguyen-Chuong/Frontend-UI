@@ -70,12 +70,6 @@ public class AdminResource {
                             ErrorConstant.ERR_USER_005, ErrorConstant.ERR_USER_005_LABEL));
         }
         try {
-            // type 0 is normal user, 1 is manager and 2 admin, register is always user
-            managerRequest.setType(1);
-            // set active for new manager: 1-active, 0-deleted
-            managerRequest.setStatus(1);
-            // name prefix for user table
-            managerRequest.setUsername("u-" + managerRequest.getUsername());
             adminService.addNewManager(managerRequest);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,

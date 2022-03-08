@@ -115,7 +115,6 @@ public class FeedbackResource {
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_006, ErrorConstant.ERR_USER_006_LABEL));
         }
-
         try {
             List<FeedbackDTO> feedbackDTOList = feedbackService.getListAnUserFeedback(userId);
             return ResponseEntity.ok()

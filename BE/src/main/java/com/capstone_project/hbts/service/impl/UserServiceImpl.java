@@ -46,9 +46,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public void register(UserRequest userRequest) {
         log.info("Request to register an user");
+
+        // type 0 is normal user, 1 is manager and 2 admin, register is always user
+        userRequest.setType(0);
+        // set active for new user: 1-active, 0-deleted
+        userRequest.setStatus(1);
+        // name prefix for user table
+        userRequest.setUsername("u-" + userRequest.getUsername());
+        // set vip status auto 1 for new user
+        VipDTO vipDTO = new VipDTO();
+        vipDTO.setId(1);
+        userRequest.setIdVip(vipDTO);
+
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         Users newUser = modelMapper.map(userRequest, Users.class);
         newUser.setPassword(bCryptPasswordEncoder.encode(userRequest.getPassword()));
+
         userRepository.save(newUser);
 //        Set<Role> setRole = new HashSet<>(); // in case add many role
 //        setRole.add(new Role(newUser, "ROLE_MANAGER"));
