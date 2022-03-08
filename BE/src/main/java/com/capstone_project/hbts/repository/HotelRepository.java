@@ -50,4 +50,21 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             nativeQuery = true)
     void enableHotel(@Param("hotelId") int hotelId);
 
+    @Modifying
+    @Query(value = "insert into capstone.hotel(address, avatar, description, email, " +
+            "name, phone, status, district_id, provider_id) " +
+            "values (:address, :avatar, :description, :email, :name, " +
+            ":phone, :status, :districtId, :providerId);",
+            nativeQuery = true)
+    void addNewHotel(
+            @Param("address") String address,
+            @Param("avatar") String avatar,
+            @Param("description") String description,
+            @Param("email") String email,
+            @Param("name") String name,
+            @Param("phone") String phone,
+            @Param("status") int status,
+            @Param("districtId") int districtId,
+            @Param("providerId") int providerId);
+
 }

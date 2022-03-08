@@ -5,6 +5,7 @@ import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
 import com.capstone_project.hbts.entity.Hotel;
 import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.HotelRepository;
+import com.capstone_project.hbts.request.HotelRequest;
 import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.HotelService;
 import lombok.extern.log4j.Log4j2;
@@ -223,6 +224,24 @@ public class HotelServiceImpl implements HotelService {
         hotelDTO.setSalePercent(getLowestPriceInHotel(hotel.getListRoomType()).getDealPercentage());
 
         return hotelDTO;
+    }
+
+    @Override
+    @Transactional
+    public void addHotelByProvider(HotelRequest hotelRequest) {
+        log.info("Request to add a hotel by provider");
+        // set status pending: 3, if admin approved -> status 1, if admin denied -> delete it
+        hotelRequest.setStatus(3);
+        // add new hotel
+        hotelRepository.addNewHotel(hotelRequest.getAddress(),
+                hotelRequest.getAvatar(),
+                hotelRequest.getDescription(),
+                hotelRequest.getEmail(),
+                hotelRequest.getName(),
+                hotelRequest.getPhone(),
+                hotelRequest.getStatus(),
+                hotelRequest.getDistrictId(),
+                hotelRequest.getProviderId());
     }
 
 }

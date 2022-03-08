@@ -5,6 +5,7 @@ import com.capstone_project.hbts.constants.ValidateConstant;
 import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Hotel.HotelDTO;
 import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
+import com.capstone_project.hbts.request.HotelRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -276,6 +279,33 @@ public class HotelResource {
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, hotelDTO,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param jwttoken
+     * @apiNote for provider to add their hotel
+     * @return
+     */
+    @PostMapping("/add-hotel")
+    public ResponseEntity<?> addHotelForProvider(@RequestHeader("Authorization") String jwttoken,
+                                                 @RequestBody HotelRequest hotelRequest){
+        log.info("REST request to add new hotel for provider");
+
+        int providerId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
+        // set provider id
+        hotelRequest.setProviderId(providerId);
+        try{
+            hotelService.addHotelByProvider(hotelRequest);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

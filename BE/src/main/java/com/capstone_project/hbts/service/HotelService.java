@@ -2,6 +2,7 @@ package com.capstone_project.hbts.service;
 
 import com.capstone_project.hbts.dto.Hotel.HotelDTO;
 import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
+import com.capstone_project.hbts.request.HotelRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -79,5 +80,12 @@ public interface HotelService {
      * @return
      */
     HotelDTO getHotelById(int hotelId);
+
+    /**
+     * add a hotel by provider
+     * @param hotelRequest
+     * @return
+     */
+    void addHotelByProvider(HotelRequest hotelRequest);
 
 }
