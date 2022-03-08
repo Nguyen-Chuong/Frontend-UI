@@ -18,4 +18,11 @@ public interface RequestService {
      */
     void acceptRequest(int requestId);
 
+    /**
+     * for admin to deny a request
+     * @param requestId
+     * @return
+     */
+    void denyRequest(int requestId);
+
 }

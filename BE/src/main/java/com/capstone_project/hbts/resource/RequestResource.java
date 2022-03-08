@@ -72,7 +72,7 @@ public class RequestResource {
      */
     @PatchMapping("/accept-request")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
-    public ResponseEntity<?> addRequestPostHotel(@RequestParam String requestId){
+    public ResponseEntity<?> acceptRequest(@RequestParam String requestId){
         log.info("REST request to accept provider's request to post hotel");
         int id;
         try {
@@ -84,6 +84,39 @@ public class RequestResource {
         }
         try{
             requestService.acceptRequest(id);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param requestId
+     * @apiNote for admin/manager to deny provider's request to post hotel
+     * @return
+     */
+    @PatchMapping("/deny-request")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
+    public ResponseEntity<?> denyRequest(@RequestParam String requestId){
+        log.info("REST request to deny provider's request to post hotel");
+        System.out.println(requestId);
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(requestId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try{
+            requestService.denyRequest(id);
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,

@@ -31,4 +31,9 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
             nativeQuery = true)
     Request getRequestById(@Param("requestId") int requestId);
 
+    @Modifying
+    @Query(value = "UPDATE capstone.request set status = 3 where id = :requestId",
+            nativeQuery = true)
+    void denyRequest(@Param("requestId") int requestId);
+
 }

@@ -18,7 +18,7 @@ public class HotelDTO {
 
     private String description;
 
-    private int status; // 1-active, 2-deactivated, 3-pending, 4-banned
+    private int status; // 1-active, 2-deactivated, 3-pending, 4-banned, 5-denied
 
     private String phone;
 

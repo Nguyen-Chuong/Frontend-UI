@@ -49,4 +49,16 @@ public class RequestServiceImpl implements RequestService {
         hotelRepository.enableHotel(hotelId);
     }
 
+    @Override
+    @Transactional
+    public void denyRequest(int requestId) {
+        log.info("Request to deny a request for admin");
+        // update request status to 2 - approved
+        requestRepository.denyRequest(requestId);
+        // get hotel id to deny
+        int hotelId = requestRepository.getRequestById(requestId).getHotel().getId();
+        // delete this hotel
+        hotelRepository.denyHotelById(hotelId);
+    }
+
 }
