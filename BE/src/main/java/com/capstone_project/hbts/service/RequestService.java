@@ -11,4 +11,11 @@ public interface RequestService {
      */
     void addNewRequest(PostHotelRequest postHotelRequest);
 
+    /**
+     * for admin to accept a request
+     * @param requestId
+     * @return
+     */
+    void acceptRequest(int requestId);
+
 }

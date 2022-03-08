@@ -22,4 +22,13 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
             @Param("hotelId") int hotelId,
             @Param("providerId") int providerId);
 
+    @Modifying
+    @Query(value = "UPDATE capstone.request set status = 2 where id = :requestId",
+            nativeQuery = true)
+    void acceptRequest(@Param("requestId") int requestId);
+
+    @Query(value = "select * from capstone.request where id = :requestId limit 1",
+            nativeQuery = true)
+    Request getRequestById(@Param("requestId") int requestId);
+
 }

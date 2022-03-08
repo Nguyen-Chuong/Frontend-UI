@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.repository.HotelRepository;
 import com.capstone_project.hbts.repository.RequestRepository;
 import com.capstone_project.hbts.request.PostHotelRequest;
 import com.capstone_project.hbts.service.RequestService;
@@ -15,8 +16,11 @@ public class RequestServiceImpl implements RequestService {
 
     private final RequestRepository requestRepository;
 
-    public RequestServiceImpl(RequestRepository requestRepository) {
+    private final HotelRepository hotelRepository;
+
+    public RequestServiceImpl(RequestRepository requestRepository, HotelRepository hotelRepository) {
         this.requestRepository = requestRepository;
+        this.hotelRepository = hotelRepository;
     }
 
     @Override
@@ -31,6 +35,18 @@ public class RequestServiceImpl implements RequestService {
                 postHotelRequest.getStatus(),
                 postHotelRequest.getHotelId(),
                 postHotelRequest.getProviderId());
+    }
+
+    @Override
+    @Transactional
+    public void acceptRequest(int requestId) {
+        log.info("Request to accept a request for admin");
+        // update request status to 2 - approved
+        requestRepository.acceptRequest(requestId);
+        // get hotel id to accept, ready to on stage
+        int hotelId = requestRepository.getRequestById(requestId).getHotel().getId();
+        // update hotel status
+        hotelRepository.enableHotel(hotelId);
     }
 
 }
