@@ -18,7 +18,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -168,8 +167,8 @@ public class FeedbackResource {
      * return
      * @apiNote both admin and user can user it
      */
-    @GetMapping("/feedback/{feedbackId}")
-    public ResponseEntity<?> getFeedbackById(@PathVariable String feedbackId){
+    @GetMapping("/feedback")
+    public ResponseEntity<?> getFeedbackById(@RequestParam String feedbackId){
         log.info("REST request to get feedback by id");
         int id;
         try {

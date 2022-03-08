@@ -12,10 +12,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -89,8 +89,8 @@ public class ResponseResource {
      * return
      * @apiNote view list response for a feedback, both admin and user can use this api
      */
-    @GetMapping("/view-response/{feedbackId}")
-    public ResponseEntity<?> viewResponseByFeedbackId(@PathVariable String feedbackId) {
+    @GetMapping("/view-response")
+    public ResponseEntity<?> viewResponseByFeedbackId(@RequestParam String feedbackId) {
         log.info("REST request to get list response for feedback");
         int id;
         try {

@@ -123,9 +123,9 @@ public class HotelResource {
      * @apiNote for admin/manager can view detail of a hotel
      * @return
      */
-    @GetMapping("/hotel-detail/{hotelId}")
+    @GetMapping("/hotel-detail")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
-    public ResponseEntity<?> viewHotelDetail(@PathVariable String hotelId){
+    public ResponseEntity<?> viewHotelDetail(@RequestParam String hotelId){
         log.info("REST request to get hotel detail by hotel id");
         int id;
         try {
@@ -203,8 +203,8 @@ public class HotelResource {
      * @apiNote for provider can disable a hotel, they can enable again if they want (is not banned)
      * @return
      */
-    @PatchMapping("/disable-hotel/{hotelId}")
-    public ResponseEntity<?> disableHotelById(@PathVariable String hotelId){
+    @PatchMapping("/disable-hotel")
+    public ResponseEntity<?> disableHotelById(@RequestParam String hotelId){
         log.info("REST request to disable hotel by hotel id");
         int id;
         try {
@@ -233,8 +233,8 @@ public class HotelResource {
      * @apiNote for provider can enable a hotel again
      * @return
      */
-    @PatchMapping("/enable-hotel/{hotelId}")
-    public ResponseEntity<?> enableHotelById(@PathVariable String hotelId){
+    @PatchMapping("/enable-hotel")
+    public ResponseEntity<?> enableHotelById(@RequestParam String hotelId){
         log.info("REST request to enable hotel by hotel id");
         int id;
         try {
@@ -263,8 +263,8 @@ public class HotelResource {
      * @apiNote get hotel by id
      * @return
      */
-    @GetMapping("/hotel/{hotelId}")
-    public ResponseEntity<?> viewHotelById(@PathVariable String hotelId){
+    @GetMapping("/hotel")
+    public ResponseEntity<?> viewHotelById(@RequestParam String hotelId){
         log.info("REST request to get hotel by id");
         int id;
         try {

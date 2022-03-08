@@ -220,8 +220,8 @@ public class BookingResource {
      * @apiNote for provider to view list booking in their hotel
      * return
      */
-    @GetMapping("/bookings/hotel/{hotelId}")
-    public ResponseEntity<?> getBookingByHotelId(@PathVariable String hotelId,
+    @GetMapping("/bookings/hotel")
+    public ResponseEntity<?> getBookingByHotelId(@RequestParam String hotelId,
                                                  @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                                  @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize) {
         log.info("REST request to get user's booking by hotel id");
@@ -256,8 +256,8 @@ public class BookingResource {
      * @apiNote for user to cancel booking
      * return
      */
-    @PatchMapping("/cancel-booking/{bookingId}")
-    public ResponseEntity<?> cancelBooking(@PathVariable String bookingId) {
+    @PatchMapping("/cancel-booking")
+    public ResponseEntity<?> cancelBooking(@RequestParam String bookingId) {
         log.info("REST request to cancel booking");
         int id;
         try {

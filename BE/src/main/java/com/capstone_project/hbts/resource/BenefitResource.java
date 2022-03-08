@@ -9,8 +9,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -34,8 +34,8 @@ public class BenefitResource {
      * @param hotelId
      * return
      */
-    @GetMapping("/public/list-hotel-benefit/{hotelId}")
-    public ResponseEntity<?> getListBenefitByHotelId(@PathVariable String hotelId) {
+    @GetMapping("/public/list-hotel-benefit")
+    public ResponseEntity<?> getListBenefitByHotelId(@RequestParam String hotelId) {
         log.info("REST request to get list benefit by hotel id");
         int id;
         try {

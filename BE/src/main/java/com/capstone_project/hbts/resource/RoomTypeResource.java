@@ -10,8 +10,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -36,8 +36,8 @@ public class RoomTypeResource {
      * @apiNote public for guest can view
      * return
      */
-    @GetMapping("/public/room-type/{hotelId}")
-    public ResponseEntity<?> getRoomType(@PathVariable String hotelId){
+    @GetMapping("/public/room-type")
+    public ResponseEntity<?> getRoomType(@RequestParam String hotelId){
         log.info("REST request to get list room type by hotel id");
         int id;
         try {
@@ -65,8 +65,8 @@ public class RoomTypeResource {
      * @apiNote public for guest can view
      * return
      */
-    @GetMapping("/public/room-detail/{roomTypeId}")
-    public ResponseEntity<?> getRoomDetailByRoomTypeId(@PathVariable String roomTypeId){
+    @GetMapping("/public/room-detail")
+    public ResponseEntity<?> getRoomDetailByRoomTypeId(@RequestParam String roomTypeId){
         log.info("REST request to get detail room type by room type id");
         int id;
         try {
