@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.sql.Date;
+import java.util.List;
 
 public interface HotelService {
 
@@ -45,5 +46,11 @@ public interface HotelService {
      * @return
      */
     void banHotelByProviderId(int providerId);
+
+    /**
+     * @param providerId
+     * @return
+     */
+    List<HotelDTO> viewListHotelByProviderId(int providerId);
 
 }

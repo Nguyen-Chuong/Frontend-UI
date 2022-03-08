@@ -177,4 +177,13 @@ public class HotelServiceImpl implements HotelService {
         hotelRepository.banHotelByProviderId(providerId);
     }
 
+    @Override
+    public List<HotelDTO> viewListHotelByProviderId(int providerId) {
+        log.info("Request to get list hotel by provider id");
+        return hotelRepository.getAllByProviderId(providerId)
+                .stream()
+                .map(item -> modelMapper.map(item, HotelDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

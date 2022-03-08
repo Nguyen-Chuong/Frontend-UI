@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface HotelRepository extends JpaRepository<Hotel, Integer> {
 
@@ -34,5 +36,7 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
     @Query(value = "UPDATE capstone.hotel set status = 4 WHERE provider_id = :providerId",
             nativeQuery = true)
     void banHotelByProviderId(@Param("providerId") int providerId);
+
+    List<Hotel> getAllByProviderId(int providerId);
 
 }
