@@ -187,7 +187,7 @@ public class BookingResource {
         log.info("REST request to get user's booking by id");
         int id;
         try {
-            id = dataDecryption.convertEncryptedData(bookingId);
+            id = dataDecryption.convertEncryptedDataToInt(bookingId);
         } catch (Exception e) {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
