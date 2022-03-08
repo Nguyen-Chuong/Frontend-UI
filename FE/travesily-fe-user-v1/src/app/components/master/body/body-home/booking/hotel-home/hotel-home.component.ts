@@ -13,7 +13,7 @@ import {District} from "../../../../../../_models/district";
   styleUrls: ['./hotel-home.component.scss']
 })
 export class HotelHomeComponent implements OnInit {
-  districts: District[]
+  results: { id: number, resultSearch: string }[]
 
   hotelForm = new FormGroup({
     destination: new FormControl('', [Validators.required]),
@@ -40,8 +40,8 @@ export class HotelHomeComponent implements OnInit {
   search() {
     const val = this.hotelForm.value
     if (val.destination, val.from, val.to, val.guestNumber, val.roomNumber) {
-      const district = this.districts.filter(rs => rs.nameDistrict === val.destination)[0]
-      if (district !== null){
+      const district = this.results.filter(rs => rs.resultSearch === val.destination)[0]
+      if (district !== null) {
         this.router.navigate(['/main/search-hotel-list'], {
           queryParams: {
             destination: district.id,
@@ -51,14 +51,14 @@ export class HotelHomeComponent implements OnInit {
             roomNumber: val.roomNumber
           }
         })
-    }
+      }
     }
   }
 
   onSearchHotelChange($event) {
     this.locationService.searchDistrict((<HTMLInputElement>$event.target).value).pipe(first()).subscribe(
       rs => {
-        this.districts = rs['data']
+        this.results = rs['data']
       }
     )
   }

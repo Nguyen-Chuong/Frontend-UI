@@ -11,6 +11,6 @@ export class LocationService {
   //Search district by text
   searchDistrict(text: string){
     const params = new HttpParams().append('text', text)
-    return this.http.get(`${this.baseUrl}/public/search-district`,{withCredentials: false ,params: params})
+    return this.http.get(`${this.baseUrl}/public/search-city-district`,{withCredentials: false ,params: params})
   }
 }
