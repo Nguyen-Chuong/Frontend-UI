@@ -5,6 +5,7 @@ import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
 import com.capstone_project.hbts.entity.UserBooking;
 import com.capstone_project.hbts.entity.UserBookingDetail;
 import com.capstone_project.hbts.repository.BookingRepository;
+import com.capstone_project.hbts.request.BookingRequest;
 import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.BookingService;
 import lombok.extern.log4j.Log4j2;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -156,6 +158,28 @@ public class BookingServiceImpl implements BookingService {
     public void cancelBooking(int bookingId) {
         log.info("Request to cancel booking");
         bookingRepository.cancelBooking(bookingId);
+    }
+
+    @Override
+    @Transactional
+    public void addNewBooking(BookingRequest bookingRequest) {
+        log.info("Request to add a new booking");
+        // set current time stamp
+        bookingRequest.setBookingDate(new Timestamp(System.currentTimeMillis()));
+        // set review status is 0; after review reset 1
+        bookingRequest.setReviewStatus(0);
+        // set booking status is 1-upcoming, user can cancel booking -> set to 3
+        // completed a booking -> set to 2 - may call when they paid money or over checkin date
+        bookingRequest.setStatus(1);
+        // save to db
+        bookingRepository.addNewBooking(bookingRequest.getBookedQuantity(),
+                bookingRequest.getBookingDate(),
+                bookingRequest.getCheckIn(),
+                bookingRequest.getCheckOut(),
+                bookingRequest.getReviewStatus(),
+                bookingRequest.getStatus(),
+                bookingRequest.getHotelId(),
+                bookingRequest.getUserId());
     }
 
 }

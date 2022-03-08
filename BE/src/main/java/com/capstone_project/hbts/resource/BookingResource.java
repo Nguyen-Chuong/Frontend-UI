@@ -5,6 +5,7 @@ import com.capstone_project.hbts.constants.ValidateConstant;
 import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Booking.BookingListDTO;
 import com.capstone_project.hbts.dto.Booking.UserBookingDTO;
+import com.capstone_project.hbts.request.BookingRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -96,8 +99,7 @@ public class BookingResource {
         }
     }
 
-    // api insert a booking into booking table after user booked
-    // and modify later when user cancelled or do smth
+    // modify booking later when user cancelled or do smth
     // here
 
     /**
@@ -246,6 +248,31 @@ public class BookingResource {
 
         try {
             bookingService.cancelBooking(bookingId);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param bookingRequest
+     * @param jwttoken
+     * @apiNote for user to add a new booking
+     * return
+     */
+    @PostMapping("/add-booking")
+    public ResponseEntity<?> addNewBooking(@RequestBody BookingRequest bookingRequest,
+                                           @RequestHeader("Authorization") String jwttoken) {
+        log.info("REST request to add a new booking");
+        int userId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
+        try {
+            bookingRequest.setUserId(userId);
+            bookingService.addNewBooking(bookingRequest);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));

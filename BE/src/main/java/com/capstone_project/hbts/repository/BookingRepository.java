@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Repository
@@ -43,5 +44,21 @@ public interface BookingRepository extends JpaRepository<UserBooking, Integer> {
 
     @Query(value = "select * from capstone.user_booking where id = :id limit 1", nativeQuery = true)
     UserBooking getBookingById(@Param("id") int id);
+
+    @Modifying
+    @Query(value = "insert into capstone.user_booking(booked_quantity, booking_date, check_in, check_out, " +
+            "review_status, status, hotel_id, user_id) " +
+            "values (:bookedQuantity, :bookingDate, :checkIn, :checkOut, " +
+            ":reviewStatus, :status, :hotelId, :userId);",
+            nativeQuery = true)
+    void addNewBooking(
+            @Param("bookedQuantity") int bookedQuantity,
+            @Param("bookingDate") Timestamp bookingDate,
+            @Param("checkIn") Timestamp checkIn,
+            @Param("checkOut") Timestamp checkOut,
+            @Param("reviewStatus") int reviewStatus,
+            @Param("status") int status,
+            @Param("hotelId") int hotelId,
+            @Param("userId") int userId);
 
 }
