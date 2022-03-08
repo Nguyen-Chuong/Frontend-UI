@@ -6,8 +6,8 @@
     <input type="text" matInput [formControl]="convertToFormControl(hotelForm.controls['destination'])"
            [matAutocomplete]="auto" (input)="onSearchHotelChange($event)">
     <mat-autocomplete #auto="matAutocomplete">
-      <mat-option *ngFor="let option of districts" [value]="option.nameDistrict">
-        {{option.nameDistrict}}
+      <mat-option *ngFor="let option of results" [value]="option.resultSearch">
+        {{option.resultSearch}}
       </mat-option>
     </mat-autocomplete>
   </mat-form-field>

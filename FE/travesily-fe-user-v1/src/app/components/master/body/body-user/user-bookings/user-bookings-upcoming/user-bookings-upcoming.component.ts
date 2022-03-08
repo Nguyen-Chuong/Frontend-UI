@@ -14,14 +14,11 @@ export class UserBookingsUpcomingComponent implements OnInit {
   account: Account
   bookings: Booking[]
   constructor(private bookingService: BookingService, private authService: AuthService) {
-    authService.getProfile().pipe(first()).subscribe(account => {
-      this.account = account['data']
-      this.bookingService.getBookingByStatus(this.account.id, 0).pipe(first()).subscribe(
+      this.bookingService.getBookingByStatus(0).pipe(first()).subscribe(
         rs => {
           this.bookings = rs['data']
         }
       )
-    })
 
   }
   ngOnInit(): void {

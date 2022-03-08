@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookingService} from "../../../../../../_services/booking.service";
 import {Hotel} from "../../../../../../_models/hotel";
 import {Account} from "../../../../../../_models/account";
@@ -14,15 +14,14 @@ import {Booking} from "../../../../../../_models/booking";
 export class UserBookingsCompletedComponent implements OnInit {
   account: Account
   bookings: Booking[]
-  constructor(private bookingService: BookingService, private authService: AuthService) {
-    authService.getProfile().pipe(first()).subscribe(account => {
-      this.account = account['data']
-      this.bookingService.getBookingByStatus(this.account.id, 1).pipe(first()).subscribe(
-        rs => {
-          this.bookings = rs['data']
-        }
-      )
-    })
+
+  constructor(private bookingService: BookingService) {
+
+    this.bookingService.getBookingByStatus(1).pipe(first()).subscribe(
+      rs => {
+        this.bookings = rs['data']
+      }
+    )
 
   }
 
