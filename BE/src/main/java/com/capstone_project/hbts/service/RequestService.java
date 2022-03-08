@@ -1,6 +1,9 @@
 package com.capstone_project.hbts.service;
 
+import com.capstone_project.hbts.dto.Request.RequestDTO;
 import com.capstone_project.hbts.request.PostHotelRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface RequestService {
 
@@ -24,5 +27,13 @@ public interface RequestService {
      * @return
      */
     void denyRequest(int requestId);
+
+    /**
+     * for admin to view all requests by status
+     * @param status
+     * @param pageable
+     * @return
+     */
+    Page<RequestDTO> viewAllRequestByStatus(int status, Pageable pageable);
 
 }

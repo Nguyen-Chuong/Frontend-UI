@@ -1,6 +1,8 @@
 package com.capstone_project.hbts.repository;
 
 import com.capstone_project.hbts.entity.Request;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -35,5 +37,11 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
     @Query(value = "UPDATE capstone.request set status = 3 where id = :requestId",
             nativeQuery = true)
     void denyRequest(@Param("requestId") int requestId);
+
+    @Query(value = "select * from capstone.request where status = :status ORDER BY request_date DESC",
+            nativeQuery = true)
+    Page<Request> getAllRequestByStatus(@Param("status") int status, Pageable pageable);
+
+    Page<Request> findAllByOrderByRequestDateDesc(Pageable pageable);
 
 }
