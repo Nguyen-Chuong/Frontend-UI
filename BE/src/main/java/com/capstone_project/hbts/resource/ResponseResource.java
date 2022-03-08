@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Report.ResponseDTO;
 import com.capstone_project.hbts.request.ResponseAdminRequest;
 import com.capstone_project.hbts.request.ResponseUserRequest;
@@ -27,8 +28,11 @@ public class ResponseResource {
 
     private final ResponseService responseService;
 
-    public ResponseResource(ResponseService responseService) {
+    private final DataDecryption dataDecryption;
+
+    public ResponseResource(ResponseService responseService, DataDecryption dataDecryption) {
         this.responseService = responseService;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -86,10 +90,17 @@ public class ResponseResource {
      * @apiNote view list response for a feedback, both admin and user can use this api
      */
     @GetMapping("/view-response/{feedbackId}")
-    public ResponseEntity<?> viewResponseByFeedbackId(@PathVariable int feedbackId) {
+    public ResponseEntity<?> viewResponseByFeedbackId(@PathVariable String feedbackId) {
         log.info("REST request to get list response for feedback");
-
-        List<ResponseDTO> responseDTOList = responseService.getAllResponseByFeedbackId(feedbackId);
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(feedbackId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        List<ResponseDTO> responseDTOList = responseService.getAllResponseByFeedbackId(id);
         try {
             if (responseDTOList.isEmpty()) {
                 return ResponseEntity.ok()

@@ -2,6 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Hotel.HotelDTO;
 import com.capstone_project.hbts.dto.Hotel.HotelDetailDTO;
 import com.capstone_project.hbts.response.ApiResponse;
@@ -35,9 +36,13 @@ public class HotelResource {
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    public HotelResource(HotelService hotelService, JwtTokenUtil jwtTokenUtil) {
+    private final DataDecryption dataDecryption;
+
+    public HotelResource(HotelService hotelService, JwtTokenUtil jwtTokenUtil,
+                         DataDecryption dataDecryption) {
         this.hotelService = hotelService;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -117,11 +122,18 @@ public class HotelResource {
      */
     @GetMapping("/hotel-detail/{hotelId}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
-    public ResponseEntity<?> viewHotelDetail(@PathVariable int hotelId){
+    public ResponseEntity<?> viewHotelDetail(@PathVariable String hotelId){
         log.info("REST request to get hotel detail by hotel id");
-
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
         try{
-            HotelDetailDTO hotelDetailDTO = hotelService.getDetailHotelById(hotelId);
+            HotelDetailDTO hotelDetailDTO = hotelService.getDetailHotelById(id);
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, hotelDetailDTO,
@@ -189,11 +201,18 @@ public class HotelResource {
      * @return
      */
     @PatchMapping("/disable-hotel/{hotelId}")
-    public ResponseEntity<?> disableHotelById(@PathVariable int hotelId){
+    public ResponseEntity<?> disableHotelById(@PathVariable String hotelId){
         log.info("REST request to disable hotel by hotel id");
-
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
         try{
-            hotelService.disableHotel(hotelId);
+            hotelService.disableHotel(id);
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
@@ -212,11 +231,18 @@ public class HotelResource {
      * @return
      */
     @PatchMapping("/enable-hotel/{hotelId}")
-    public ResponseEntity<?> enableHotelById(@PathVariable int hotelId){
+    public ResponseEntity<?> enableHotelById(@PathVariable String hotelId){
         log.info("REST request to enable hotel by hotel id");
-
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
         try{
-            hotelService.enableHotel(hotelId);
+            hotelService.enableHotel(id);
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
@@ -235,11 +261,18 @@ public class HotelResource {
      * @return
      */
     @GetMapping("/hotel/{hotelId}")
-    public ResponseEntity<?> viewHotelById(@PathVariable int hotelId){
+    public ResponseEntity<?> viewHotelById(@PathVariable String hotelId){
         log.info("REST request to get hotel by id");
-
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
         try{
-            HotelDTO hotelDTO = hotelService.getHotelById(hotelId);
+            HotelDTO hotelDTO = hotelService.getHotelById(id);
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, hotelDTO,

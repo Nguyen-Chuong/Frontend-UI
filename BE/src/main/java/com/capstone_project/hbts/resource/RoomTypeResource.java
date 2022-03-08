@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
 import com.capstone_project.hbts.response.ApiResponse;
@@ -23,8 +24,11 @@ public class RoomTypeResource {
 
     private final RoomTypeService roomTypeService;
 
-    public RoomTypeResource(RoomTypeService roomTypeService) {
+    private final DataDecryption dataDecryption;
+
+    public RoomTypeResource(RoomTypeService roomTypeService, DataDecryption dataDecryption) {
         this.roomTypeService = roomTypeService;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -33,11 +37,18 @@ public class RoomTypeResource {
      * return
      */
     @GetMapping("/public/room-type/{hotelId}")
-    public ResponseEntity<?> getRoomType(@PathVariable int hotelId){
+    public ResponseEntity<?> getRoomType(@PathVariable String hotelId){
         log.info("REST request to get list room type by hotel id");
-
+        int id;
         try {
-            List<RoomTypeDTO> list = roomTypeService.loadRoomTypeByHotelId(hotelId);
+            id = dataDecryption.convertEncryptedDataToInt(hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            List<RoomTypeDTO> list = roomTypeService.loadRoomTypeByHotelId(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, list,
                             null, null));
@@ -55,11 +66,18 @@ public class RoomTypeResource {
      * return
      */
     @GetMapping("/public/room-detail/{roomTypeId}")
-    public ResponseEntity<?> getRoomDetailByRoomTypeId(@PathVariable int roomTypeId){
+    public ResponseEntity<?> getRoomDetailByRoomTypeId(@PathVariable String roomTypeId){
         log.info("REST request to get detail room type by room type id");
-
+        int id;
         try {
-            RoomDetailDTO roomDetailDTO = roomTypeService.viewRoomDetail(roomTypeId);
+            id = dataDecryption.convertEncryptedDataToInt(roomTypeId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            RoomDetailDTO roomDetailDTO = roomTypeService.viewRoomDetail(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, roomDetailDTO,
                             null, null));

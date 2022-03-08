@@ -2,6 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.EmailService;
 import com.capstone_project.hbts.service.OTPService;
@@ -23,9 +24,13 @@ public class EmailResource {
 
     private final OTPService otpService;
 
-    public EmailResource(EmailService emailService, OTPService otpService) {
+    private final DataDecryption dataDecryption;
+
+    public EmailResource(EmailService emailService, OTPService otpService,
+                         DataDecryption dataDecryption) {
         this.emailService = emailService;
         this.otpService = otpService;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -53,15 +58,22 @@ public class EmailResource {
 
     /**
      * @param email
-     * @param otp
+     * @param otpEncrypted
      * return
      * @apiNote server
      */
     @PostMapping("authenticate/verifyOtp")
     public ResponseEntity<?> verifyOtp(@RequestParam String email,
-                                       @RequestParam int otp){
+                                       @RequestParam String otpEncrypted){
         log.info("REST request to verify otp that user sent");
-
+        int otp;
+        try {
+            otp = dataDecryption.convertEncryptedDataToInt(otpEncrypted);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
         try {
             // verify otp and otpCache
             int serverOtp = otpService.getOtp(email);

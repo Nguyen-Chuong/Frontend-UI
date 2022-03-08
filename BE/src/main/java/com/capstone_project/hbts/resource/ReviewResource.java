@@ -2,6 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Report.ReviewDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
@@ -25,8 +26,11 @@ public class ReviewResource {
 
     private final ReviewService reviewService;
 
-    public ReviewResource(ReviewService reviewService) {
+    private final DataDecryption dataDecryption;
+
+    public ReviewResource(ReviewService reviewService, DataDecryption dataDecryption) {
         this.reviewService = reviewService;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -37,13 +41,20 @@ public class ReviewResource {
      * return
      */
     @GetMapping("/reviews/{hotelId}")
-    public ResponseEntity<?> getReview(@PathVariable int hotelId,
+    public ResponseEntity<?> getReview(@PathVariable String hotelId,
                                        @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                        @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         log.info("REST request to get list review by hotel id");
-
+        int id;
         try {
-            Page<ReviewDTO> pageReview = reviewService.loadReview(hotelId, PageRequest.of(page,pageSize));
+            id = dataDecryption.convertEncryptedDataToInt(hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            Page<ReviewDTO> pageReview = reviewService.loadReview(id, PageRequest.of(page,pageSize));
 
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(pageReview.getContent(),
                     pageReview.getTotalElements(), page, pageReview.getSize());

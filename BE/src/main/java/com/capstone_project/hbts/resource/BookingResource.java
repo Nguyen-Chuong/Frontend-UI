@@ -56,11 +56,18 @@ public class BookingResource {
      * @apiNote both admin & user can call this
      * return
      */
-    @GetMapping("/user-bookings/{username}")
-    public ResponseEntity<?> getUserBooking(@PathVariable String username) {
+    @GetMapping("/user-bookings")
+    public ResponseEntity<?> getUserBooking(@RequestParam String username) {
         log.info("REST request to get list user's booking by username");
-
-        int userId = userService.getUserId(username);
+        String usernameDecrypted;
+        try{
+            usernameDecrypted = dataDecryption.convertEncryptedDataToString(username);
+        } catch (Exception e){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        int userId = userService.getUserId(usernameDecrypted);
         try {
             List<UserBookingDTO> userBookingDTOList = bookingService.getAllBookings(userId);
             return ResponseEntity.ok()
@@ -214,13 +221,20 @@ public class BookingResource {
      * return
      */
     @GetMapping("/bookings/hotel/{hotelId}")
-    public ResponseEntity<?> getBookingByHotelId(@PathVariable int hotelId,
+    public ResponseEntity<?> getBookingByHotelId(@PathVariable String hotelId,
                                                  @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                                  @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize) {
         log.info("REST request to get user's booking by hotel id");
-
+        int id;
         try {
-            Page<UserBookingDTO> userBookingDTOPage = bookingService.getBookingsByHotelId(hotelId,
+            id = dataDecryption.convertEncryptedDataToInt(hotelId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            Page<UserBookingDTO> userBookingDTOPage = bookingService.getBookingsByHotelId(id,
                     PageRequest.of(page, pageSize));
 
             DataPagingResponse<?> dataPagingResponse = new DataPagingResponse<>(userBookingDTOPage.getContent(),
@@ -243,11 +257,18 @@ public class BookingResource {
      * return
      */
     @PatchMapping("/cancel-booking/{bookingId}")
-    public ResponseEntity<?> cancelBooking(@PathVariable int bookingId) {
+    public ResponseEntity<?> cancelBooking(@PathVariable String bookingId) {
         log.info("REST request to cancel booking");
-
+        int id;
         try {
-            bookingService.cancelBooking(bookingId);
+            id = dataDecryption.convertEncryptedDataToInt(bookingId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            bookingService.cancelBooking(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));

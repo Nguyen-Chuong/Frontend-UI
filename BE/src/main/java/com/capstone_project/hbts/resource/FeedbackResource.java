@@ -2,6 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Report.FeedbackDTO;
 import com.capstone_project.hbts.request.FeedbackRequest;
 import com.capstone_project.hbts.response.ApiResponse;
@@ -39,11 +40,14 @@ public class FeedbackResource {
 
     private final JwtTokenUtil jwtTokenUtil;
 
+    private final DataDecryption dataDecryption;
+
     public FeedbackResource(FeedbackService feedbackService, UserService userService,
-                            JwtTokenUtil jwtTokenUtil) {
+                            JwtTokenUtil jwtTokenUtil, DataDecryption dataDecryption) {
         this.feedbackService = feedbackService;
         this.userService = userService;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -106,10 +110,17 @@ public class FeedbackResource {
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> searchFeedbackOfAnUser(@RequestParam String username){
         log.info("REST request to search an user's feedback");
-        int userId;
-
+        String usernameDecrypted;
         try{
-            userId = userService.getUserId(username);
+            usernameDecrypted = dataDecryption.convertEncryptedDataToString(username);
+        } catch (Exception e){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        int userId;
+        try{
+            userId = userService.getUserId(usernameDecrypted);
         }catch (Exception e){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -158,11 +169,18 @@ public class FeedbackResource {
      * @apiNote both admin and user can user it
      */
     @GetMapping("/feedback/{feedbackId}")
-    public ResponseEntity<?> getFeedbackById(@PathVariable int feedbackId){
+    public ResponseEntity<?> getFeedbackById(@PathVariable String feedbackId){
         log.info("REST request to get feedback by id");
-
+        int id;
         try {
-            FeedbackDTO feedbackDTO = feedbackService.getFeedbackById(feedbackId);
+            id = dataDecryption.convertEncryptedDataToInt(feedbackId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            FeedbackDTO feedbackDTO = feedbackService.getFeedbackById(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, feedbackDTO,
                             null, null));
@@ -182,13 +200,20 @@ public class FeedbackResource {
      */
     @PatchMapping("/update-receiver")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
-    public ResponseEntity<?> updateFeedbackReceiver(@RequestParam int feedbackId,
+    public ResponseEntity<?> updateFeedbackReceiver(@RequestParam String feedbackId,
                                                     @RequestHeader("Authorization") String jwttoken){
         log.info("REST request to update feedback receiver");
         int adminId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
-
+        int id;
         try {
-            feedbackService.updateFeedbackReceiver(feedbackId, adminId);
+            id = dataDecryption.convertEncryptedDataToInt(feedbackId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            feedbackService.updateFeedbackReceiver(id, adminId);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));
