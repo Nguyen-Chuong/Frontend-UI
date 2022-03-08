@@ -30,7 +30,7 @@ public class BenefitResource {
      * @param hotelId
      * return
      */
-    @GetMapping("/list-hotel-benefit/{hotelId}")
+    @GetMapping("/public/list-hotel-benefit/{hotelId}")
     public ResponseEntity<?> getListBenefitByHotelId(@PathVariable int hotelId) {
         log.info("REST request to get list benefit by hotel id");
 
