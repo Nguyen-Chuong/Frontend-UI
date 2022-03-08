@@ -59,4 +59,10 @@ public interface HotelService {
      */
     void disableHotel(int hotelId);
 
+    /**
+     * @param hotelId
+     * @return
+     */
+    void enableHotel(int hotelId);
+
 }

@@ -206,4 +206,27 @@ public class HotelResource {
         }
     }
 
+    /**
+     * @param hotelId
+     * @apiNote for provider can enable a hotel again
+     * @return
+     */
+    @PatchMapping("/enable-hotel/{hotelId}")
+    public ResponseEntity<?> enableHotelById(@PathVariable int hotelId){
+        log.info("REST request to enable hotel by hotel id");
+
+        try{
+            hotelService.enableHotel(hotelId);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }

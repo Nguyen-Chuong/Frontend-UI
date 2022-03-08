@@ -193,4 +193,11 @@ public class HotelServiceImpl implements HotelService {
         hotelRepository.disableHotel(hotelId);
     }
 
+    @Override
+    @Transactional
+    public void enableHotel(int hotelId) {
+        log.info("Request to enable a hotel by provider");
+        hotelRepository.enableHotel(hotelId);
+    }
+
 }
