@@ -41,10 +41,17 @@ public class EmailResource {
     @PostMapping("authenticate/generateOtp")
     public ResponseEntity<?> generateOtp(@RequestParam String email){
         log.info("REST request to generate otp and send email to user");
-
+        String emailDecrypted;
         try {
-            int otp = otpService.generateOtp(email);
-            emailService.send(email, ValidateConstant.EMAIL_SUBJECT, ValidateConstant.OTP_MESSAGE + otp);
+            emailDecrypted = dataDecryption.convertEncryptedDataToString(email);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            int otp = otpService.generateOtp(emailDecrypted);
+            emailService.send(emailDecrypted, ValidateConstant.EMAIL_SUBJECT, ValidateConstant.OTP_MESSAGE + otp);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, otp,
                             null, null));
@@ -66,6 +73,14 @@ public class EmailResource {
     public ResponseEntity<?> verifyOtp(@RequestParam String email,
                                        @RequestParam String otpEncrypted){
         log.info("REST request to verify otp that user sent");
+        String emailDecrypted;
+        try {
+            emailDecrypted = dataDecryption.convertEncryptedDataToString(email);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
         int otp;
         try {
             otp = dataDecryption.convertEncryptedDataToInt(otpEncrypted);
@@ -76,7 +91,7 @@ public class EmailResource {
         }
         try {
             // verify otp and otpCache
-            int serverOtp = otpService.getOtp(email);
+            int serverOtp = otpService.getOtp(emailDecrypted);
             if(otp <= 0){
                 return ResponseEntity.badRequest()
                         .body(new ApiResponse<>(400, null,
@@ -88,7 +103,7 @@ public class EmailResource {
                                 ErrorConstant.ERR_OTP_002, ErrorConstant.ERR_OTP_002_LABEL));
             }
             if(otp == serverOtp){
-                otpService.clearOtp(email);
+                otpService.clearOtp(emailDecrypted);
                 return ResponseEntity.ok()
                         .body(new ApiResponse<>(200, null,
                                 null, null));
