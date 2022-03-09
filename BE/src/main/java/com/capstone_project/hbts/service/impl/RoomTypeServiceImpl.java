@@ -14,6 +14,8 @@ import com.capstone_project.hbts.repository.BenefitRepository;
 import com.capstone_project.hbts.repository.FacilityRepository;
 import com.capstone_project.hbts.repository.RoomTypeRepository;
 import com.capstone_project.hbts.service.RoomTypeService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -84,6 +86,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Override
     public RoomDetailDTO viewRoomDetail(int roomTypeId) {
         log.info("Request to view detail room type");
+        ObjectMapper mapper = new ObjectMapper();
         // get room type by id
         RoomType roomType = roomTypeRepository.getRoomTypeById(roomTypeId);
 
@@ -106,7 +109,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         Set<BenefitTypeDTO> setBenefitType = new HashSet<>();
         benefitDTOList.forEach(item -> setBenefitType.add(item.getBenefitType()));
         // map result to return
-        Map<BenefitTypeDTO, List<BenefitResult>> mapBenefitResult = new HashMap<>();
+        Map<String, List<BenefitResult>> mapBenefitResult = new HashMap<>();
         // loop through set benefit type
         for (BenefitTypeDTO item : setBenefitType) {
             // filter to add benefitDTOs that has this benefit type to a list
@@ -120,7 +123,11 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                     .map(element -> modelMapper.map(element, BenefitResult.class))
                     .collect(Collectors.toList());
             // put all of them to a map result
-            mapBenefitResult.put(item, listBenefitResult);
+            try {
+                mapBenefitResult.put(mapper.writeValueAsString(item), listBenefitResult);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
         }
 
         // handle facility
@@ -136,7 +143,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         Set<FacilityTypeDTO> setFacilityType = new HashSet<>();
         facilityDTOList.forEach(item -> setFacilityType.add(item.getFacilityType()));
         // map result to return
-        Map<FacilityTypeDTO, List<FacilityResult>> mapFacilityResult = new HashMap<>();
+        Map<String, List<FacilityResult>> mapFacilityResult = new HashMap<>();
         // loop through set facility type
         for (FacilityTypeDTO item : setFacilityType) {
             // filter to add facilityDTOs that has this facility type to a list
@@ -150,7 +157,11 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                     .map(element -> modelMapper.map(element, FacilityResult.class))
                     .collect(Collectors.toList());
             // put all of them to a map result
-            mapFacilityResult.put(item, listFacilityResult);
+            try {
+                mapFacilityResult.put(mapper.writeValueAsString(item), listFacilityResult);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
         }
 
         // convert to RoomDetailDTO
