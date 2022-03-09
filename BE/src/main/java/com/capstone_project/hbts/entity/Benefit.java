@@ -34,7 +34,7 @@ public class Benefit {
     private String name;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefit")
-    private Set<RoomTypeBenefit> listRoomBenefit;
+    private Set<RoomBenefit> listRoomBenefit;
 
     @ManyToOne
     @JoinColumn(name = "benefit_type_id")

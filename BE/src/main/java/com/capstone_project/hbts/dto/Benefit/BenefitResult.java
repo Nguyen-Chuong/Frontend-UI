@@ -5,8 +5,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class RoomBenefitDTO {
+public class BenefitResult {
 
-    private BenefitDTO benefit;
+    private Integer id;
+
+    private String name;
 
 }

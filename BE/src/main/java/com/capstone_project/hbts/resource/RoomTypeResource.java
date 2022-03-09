@@ -4,6 +4,7 @@ import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
+import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.RoomTypeService;
 import lombok.extern.log4j.Log4j2;
@@ -37,7 +38,7 @@ public class RoomTypeResource {
      * return
      */
     @GetMapping("/public/room-type")
-    public ResponseEntity<?> getRoomType(@RequestParam String hotelId){
+    public ResponseEntity<?> getListRoomTypeByHotel(@RequestParam String hotelId){
         log.info("REST request to get list room type by hotel id");
         int id;
         try {

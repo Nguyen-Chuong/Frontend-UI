@@ -20,7 +20,7 @@ import javax.persistence.Table;
 @Setter
 @Entity
 @Table(name = "roomType_benefit")
-public class RoomTypeBenefit {
+public class RoomBenefit {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
