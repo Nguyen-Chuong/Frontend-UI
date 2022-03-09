@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Injectable } from '@angular/core';
 export class HotelService {
 
   baseUrl = 'http://localhost:8080/api/v1'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cryptoService: CryptoService) { }
 
   getAllHotel(page: number, pageSize: number){
     const params = new HttpParams().append('page', page).append('pageSize', pageSize)
@@ -23,12 +24,19 @@ export class HotelService {
     return this.http.get(`${this.baseUrl}/get-hotel/${status}`)
   }
 
-  getHotelById(id: number){
-    return this.http.get(`${this.baseUrl}/hotel-detail/${id}`)
+  getPageHotelByStatus(status: number, page: number, pageSize: number){
+    const params = new HttpParams().append('page', page).append('pageSize', pageSize)
+    return this.http.get(`${this.baseUrl}/get-hotel/${status}`, {params: params})
   }
 
-  getRoomByHotelId(id: number){
-    return this.http.get(`${this.baseUrl}/public/room-type/${id}`)
+  getHotelById(id: string){
+    const params = new HttpParams().append('hotelId', id)
+    return this.http.get(`${this.baseUrl}/hotel-detail`, {params: params})
+  }
+
+  getRoomByHotelId(id: string){
+    const params = new HttpParams().append('hotelId', id)
+    return this.http.get(`${this.baseUrl}/public/room-type/`, {params : params})
   }
 
   getRoomDetailById(id: number){

@@ -13,7 +13,7 @@ import { HotelService } from 'src/app/_services/hotel.service';
 export class HotelDetailComponent implements OnInit {
 
   hotel: Hotel
-  hotelId: number
+  hotelId: any
   rooms: Room[]
 
   constructor(private hotelsService: HotelService,
@@ -22,7 +22,8 @@ export class HotelDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      this.hotelId = param['id']
+      this.hotelId = param['id'].slice(1, -1);
+      console.log(this.hotelId)
     })
 
     this.hotelsService.getHotelById(this.hotelId).pipe(first()).subscribe(

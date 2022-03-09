@@ -30,7 +30,9 @@ export class TaskbarComponent implements OnInit {
   }
 
   openApprovingHotels(): void{
-    this.router.navigateByUrl('/hotel-approve');
+    this.router.navigate(['hotel-approve'], {
+      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
+    });
   }
 
   openListHotels(): void{

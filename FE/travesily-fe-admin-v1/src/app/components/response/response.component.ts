@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FeedbackService } from 'src/app/_services/feedback.service';
 import { first } from 'rxjs';
 import { NotificationService } from 'src/app/_services/notification.service';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-response',
@@ -18,13 +19,14 @@ export class ResponseComponent implements OnInit {
   responses: AdminResponse[]
   response: AdminResponse = new AdminResponse
   feedbackId: any
-  isAdmin= true
+  isAdmin= false
   idAdmin: number
   constructor(
     private notificationService: NotificationService,
     private feedbackService: FeedbackService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cryptoService: CryptoService
   ) {
   }
 
@@ -32,7 +34,8 @@ export class ResponseComponent implements OnInit {
     this.formGroup = new FormGroup({ message_response: new FormControl('', [Validators.required]) })
 
     this.route.queryParams.subscribe((param) => {
-      this.feedbackId = param['id']
+      this.feedbackId = param['id'].slice(1, -1);
+      console.log(this.feedbackId)
     })
 
     this.feedbackService.getFeedbackById(this.feedbackId).pipe(first()).subscribe(
@@ -44,12 +47,14 @@ export class ResponseComponent implements OnInit {
     this.feedbackService.getResponseByFeedbackId(this.feedbackId).pipe(first()).subscribe(
       rs => {
         this.responses = rs['data']
+        if(this.responses.length % 2 === 1 || this.formGroup.value.message_response === null){
+          this.isAdmin = true
+        }
+        console.log(this.isAdmin)
       }
     )
 
-    if(this.responses.length % 2 == 0){
-      this.isAdmin = false
-    }
+
   }
 
   saveResponse() {
@@ -57,19 +62,17 @@ export class ResponseComponent implements OnInit {
 
 
     this.response.adminId = Number(localStorage.getItem('admin-id'))
-    this.response.feedbackId = this.feedbackId
+    this.response.feedbackId = Number(this.cryptoService.get('06052000', this.feedbackId))
     this.response.username = this.feedback.senderName
     this.response.message = this.formGroup.value.message_response
-    console.log(this.response.username)
+    console.log(this.response)
     this.feedbackService.sendResponse(this.response).pipe(first()).subscribe({
       next: () => {
-        this.notificationService.onSuccess('Add new manager successfully');
-        this.router.navigate(['feedback'], {
-          queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-        });
+        this.notificationService.onSuccess('Send response successfully');
+        window.location.reload()
       },
       error: err => {
-        this.notificationService.onError('Add new manager false')
+        this.notificationService.onError('Send response false '+ err )
       }
     })
   }

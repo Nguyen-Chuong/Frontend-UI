@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface DialogData {
   message: string;
   checked: boolean;
+  isAdmin: boolean
 }
 
 
@@ -13,12 +14,11 @@ export interface DialogData {
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
-
+  isAdmin = false
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-  ) {
-  }
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();

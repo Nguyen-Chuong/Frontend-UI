@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { UserService } from 'src/app/_services/user.service';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-user',
@@ -21,7 +22,8 @@ export class UserComponent {
   maxpage: number
   constructor(private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private cryptoService: CryptoService) { }
   displayedColumns: string[] = ['username', 'email', 'phone', 'vip'];
 
   ngOnInit(): void {
@@ -49,8 +51,9 @@ export class UserComponent {
   }
 
   openUserDetail(username): void {
+    const encryptedUsername = this.cryptoService.set('06052000',username)
     this.router.navigate(['user-detail'], {
-      queryParams: { username: JSON.stringify(username) }
+      queryParams: { username: JSON.stringify(encryptedUsername) }
     });
   }
 

@@ -1,5 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,10 +8,11 @@ import { Injectable } from '@angular/core';
 export class BookingService {
 
   baseUrl = 'http://localhost:8080/api/v1'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private cryptoService: CryptoService) { }
 
   getUserBooking(username: string){
-    return this.http.get(`${this.baseUrl}/user-bookings/${username}`)
+    const params = new HttpParams().append('username', username)
+    return this.http.get(`${this.baseUrl}/user-bookings`, {params: params})
   }
 
   getAllBookingPage(page: number, pageSize: number){

@@ -12,6 +12,12 @@
   width: 75%;
   margin: 20px auto;
   padding-top: 90px;
+
+  &-btn-detail{
+    background-color: #fff;
+    border: none;
+    color: #304cee;
+  }
 }
 table {
   width: 100%;
@@ -53,3 +59,5 @@ table {
     }
   }
 }
+
+
