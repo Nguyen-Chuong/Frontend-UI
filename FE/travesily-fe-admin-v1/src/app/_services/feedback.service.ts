@@ -1,6 +1,7 @@
 import { AdminResponse } from './../_models/admin-response';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +9,7 @@ import { Injectable } from '@angular/core';
 export class FeedbackService {
 
   baseUrl = 'http://localhost:8080/api/v1'
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private cryptoService: CryptoService) { }
 
   getFeedback(page: number, pageSize: number){
     const params = new HttpParams().append('page', page).append('pageSize', pageSize)
@@ -20,7 +21,8 @@ export class FeedbackService {
   }
 
   getFeedbackById(id: number){
-    return this.http.get(`${this.baseUrl}/feedback/${id}`)
+    const params = new HttpParams().append('feedbackId', id)
+    return this.http.get(`${this.baseUrl}/feedback/`, {params: params})
   }
 
   getFeedbackByName(username: string){
@@ -29,10 +31,11 @@ export class FeedbackService {
   }
 
   sendResponse(response: AdminResponse) {
-    return this.http.post(`${this.baseUrl}/send-response`, {...response})
+    return this.http.post(`${this.baseUrl}/send-response/user`, {...response})
   }
 
   getResponseByFeedbackId(id: number){
-    return this.http.get(`${this.baseUrl}/view-response/${id}`)
+    const params = new HttpParams().append('feedbackId', id)
+    return this.http.get(`${this.baseUrl}/view-response/`, {params: params})
   }
 }

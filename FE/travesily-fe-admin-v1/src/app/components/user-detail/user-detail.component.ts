@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingService } from 'src/app/_services/booking.service';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -20,7 +21,8 @@ export class UserDetailComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private bookingService: BookingService,
-    private feedbackService : FeedbackService
+    private feedbackService : FeedbackService,
+    private cryptoService: CryptoService
     ) {
     this.route.queryParams.subscribe((param) =>{
       this.username = param['username'].slice(1, -1);
@@ -29,6 +31,7 @@ export class UserDetailComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
     this.bookingService.getUserBooking(this.username).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']

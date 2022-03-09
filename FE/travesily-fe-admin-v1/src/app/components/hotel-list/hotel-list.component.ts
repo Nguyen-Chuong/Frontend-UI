@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { Hotel } from 'src/app/_models/hotel';
+import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -23,14 +24,19 @@ export class HotelListComponent {
   maxpage: number
   hotels: Hotel[]
   dataSource
+  isAdmin = false
   constructor(private hotelsService: HotelService, private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private cryptoService: CryptoService) { }
 
   displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', ' ', 'detail'];
 
   ngOnInit(): void {
+    if(localStorage.getItem('type') === '2'){
+      this.isAdmin = true
+    }
     this.route.queryParams.subscribe((param) => {
       this.currentPage = param['page']
       this.pageSize = param['size']
@@ -57,15 +63,16 @@ export class HotelListComponent {
   }
 
   openHotelDetail(id) {
+    const encryptedId = this.cryptoService.set('06052000',id)
     this.router.navigate(['hotel-detail'], {
-      queryParams: { id: JSON.stringify(id)}
+      queryParams: { id: JSON.stringify(encryptedId)}
     });
   }
 
   deleteHotel(id){
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: this.message},
+      data: {checked: this.checked, message: this.message, isAdmin : this.isAdmin},
     });
 
     dialogRef.afterClosed().subscribe(result => {

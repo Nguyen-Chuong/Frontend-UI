@@ -10,4 +10,6 @@ export class Hotel {
   status: number
   district: District
   provider: Provider
+  email: string
+  phone: string
 }
