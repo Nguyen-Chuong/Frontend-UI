@@ -244,6 +244,12 @@ public class HotelResource {
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
         }
+        // if hotel status = 4 -> it is banned, provider cannot enable hotel again
+        if(hotelService.viewHotelStatus(id) == 4){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_HOTEL_001, ErrorConstant.ERR_HOTEL_001_LABEL));
+        }
         try{
             hotelService.enableHotel(id);
 
