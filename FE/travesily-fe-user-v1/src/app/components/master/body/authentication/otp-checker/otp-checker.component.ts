@@ -2,8 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from "../../../../../_services/auth.service";
 import {Account} from "../../../../../_models/account";
 import {first} from "rxjs";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../../../../_services/alert.service";
+import {CryptoService} from "../../../../../_services/crypto.service";
 
 @Component({
   selector: 'app-otp-checker',
@@ -14,24 +15,31 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
   email: string
   isVerified: boolean = false
 
-  constructor(private authService: AuthService, private router: Router, private alertService: AlertService) {
+  constructor(private authService: AuthService,
+              private router: Router,
+              private alertService: AlertService,
+              private cryptoService: CryptoService,
+              private activatedRoute: ActivatedRoute
+  ) {
     if (this.authService.accountStorage)
       this.email = this.authService.accountStorage.email
-    else if (this.authService.emailStorage)
-      this.email = this.authService.emailStorage
 
-    this.authService.generateOtp(this.email).pipe(first()).subscribe(
-      rs => {
-        this.alertService.success('We have sent you an email with OTP code')
-      },
-      error => {
-        this.alertService.error(error)
-      }
-    )
   }
 
   ngOnInit(): void {
-
+    this.activatedRoute.queryParams.subscribe(
+      rs => {
+        this.email = rs['email']
+        this.authService.generateOtp(this.email).pipe(first()).subscribe(
+          rs => {
+            this.alertService.success('We have sent you an email with OTP code')
+          },
+          error => {
+            this.alertService.error(error)
+          }
+        )
+      }
+    )
   }
 
   ngOnDestroy() {
@@ -43,7 +51,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
 
   onOtpChange($event: string) {
     if ($event.length === 6) {
-      this.authService.verifyOtp(this.email, $event).pipe(first()).subscribe(
+      this.authService.verifyOtp(this.email, this.cryptoService.set('06052000', $event)).pipe(first()).subscribe(
         rs => {
           if (this.authService.accountStorage) {
             const account: Account = this.authService.accountStorage
@@ -66,9 +74,13 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
                   }
                 }
               )
-          } else if (this.authService.emailStorage) {
+          } else if (this.email) {
             this.isVerified = true
-            this.router.navigateByUrl('/authentication/new-password')
+            this.router.navigate(['/authentication/new-password'], {
+              queryParams: {
+                email: this.email
+              }
+            })
           }
         },
         error => {

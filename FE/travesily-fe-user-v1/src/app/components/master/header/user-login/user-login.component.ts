@@ -13,6 +13,7 @@ export class UserLoginComponent implements OnInit {
   account: Account
 
   constructor(private authService: AuthService) {
+    if(this.authService.authToken)
     this.authService.getProfile()
       .pipe(first())
       .subscribe(account => {
