@@ -110,4 +110,13 @@ public class RequestServiceImpl implements RequestService {
         // else denied-3, hotel can request again
     }
 
+    @Override
+    public List<RequestDTO> getRequestByProviderId(int providerId) {
+        log.info("Request to get all request of provider");
+        return requestRepository.getAllByProviderIdOrderByRequestDateDesc(providerId)
+                .stream()
+                .map(item -> modelMapper.map(item, RequestDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }

@@ -5,6 +5,8 @@ import com.capstone_project.hbts.request.PostHotelRequest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.util.List;
+
 public interface RequestService {
 
     /**
@@ -42,5 +44,12 @@ public interface RequestService {
      * @return
      */
     boolean checkRequest(int hotelId);
+
+    /**
+     * to view all request of provider
+     * @param providerId
+     * @return
+     */
+    List<RequestDTO> getRequestByProviderId(int providerId);
 
 }

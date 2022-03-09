@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 @Log4j2
@@ -145,7 +147,7 @@ public class RequestResource {
      * @apiNote for admin/manager to view list provider's request
      * @return
      */
-    @GetMapping("/view-request")
+    @GetMapping("/admin/view-request")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_MANAGER')")
     public ResponseEntity<?> viewListRequestByStatus(@RequestParam int status,
                                                      @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
@@ -161,6 +163,30 @@ public class RequestResource {
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param jwttoken
+     * @apiNote for provider to view their list request
+     * @return
+     */
+    @GetMapping("/provider/view-request")
+    public ResponseEntity<?> viewListRequestByProviderId(@RequestHeader("Authorization") String jwttoken){
+        log.info("REST request to view all provider's request by status");
+        int providerId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
+
+        try{
+            List<RequestDTO> requestDTOList = requestService.getRequestByProviderId(providerId);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, requestDTOList,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

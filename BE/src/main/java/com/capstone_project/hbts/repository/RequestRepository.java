@@ -49,4 +49,6 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
             nativeQuery = true)
     List<Integer> getRequestStatusByHotelId(@Param("hotelId") int hotelId);
 
+    List<Request> getAllByProviderIdOrderByRequestDateDesc(int providerId);
+
 }
