@@ -7,6 +7,11 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.SecretKeySpec;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
@@ -17,11 +22,18 @@ public class DataDecryption {
     static final String SECRET_KEY = "06052000";
 
     // for data like id
-    public Integer convertEncryptedDataToInt(String dataEncrypted) {
-
+    public Integer convertEncryptedDataToInt(String dataURLEncoded) {
+        // url decode
+        String URLDecoded = URLDecoder.decode(dataURLEncoded, StandardCharsets.UTF_8);
+        // data to encrypt
+        String dataEncrypted = null;
+        try {
+            dataEncrypted = new URI(URLDecoded).getPath();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         // specify secret key
         SecretKeySpec secretKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "DES");
-
         try {
             // new an object to help decrypt data
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5PADDING");
@@ -46,11 +58,18 @@ public class DataDecryption {
     }
 
     // for data like username
-    public String convertEncryptedDataToString(String dataEncrypted) {
-
+    public String convertEncryptedDataToString(String dataURLEncoded) {
+        // url decode
+        String URLDecoded = URLDecoder.decode(dataURLEncoded, StandardCharsets.UTF_8);
+        // data to encrypt
+        String dataEncrypted = null;
+        try {
+            dataEncrypted = new URI(URLDecoded).getPath();
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
         // specify secret key
         SecretKeySpec secretKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "DES");
-
         try {
             // new an object to help decrypt data
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5PADDING");
@@ -72,11 +91,9 @@ public class DataDecryption {
         return null;
     }
 
-    public static String convertOriginalDataToStringEncrypted(String original) {
-
+    public static URI convertOriginalDataToStringEncrypted(String original) {
         // specify secret key
         SecretKeySpec secretKeySpec = new SecretKeySpec(SECRET_KEY.getBytes(), "DES");
-
         try {
             // new an object to help decrypt data
             Cipher cipher = Cipher.getInstance("DES/ECB/PKCS5PADDING");
@@ -85,7 +102,15 @@ public class DataDecryption {
             // get the data byte[] after encrypted
             byte[] byteEncrypted = cipher.doFinal(original.getBytes());
             // convert data byte[] to string
-            return Base64.getEncoder().encodeToString(byteEncrypted);
+            String dataEncrypted = Base64.getEncoder().encodeToString(byteEncrypted);
+            String URLEncoded = URLEncoder.encode(dataEncrypted, StandardCharsets.UTF_8);
+            URI result = null;
+            try {
+                result = new URI(URLEncoded);
+            } catch (URISyntaxException e) {
+                e.printStackTrace();
+            }
+            return result;
         } catch (NoSuchAlgorithmException |
                 NoSuchPaddingException |
                 InvalidKeyException |
