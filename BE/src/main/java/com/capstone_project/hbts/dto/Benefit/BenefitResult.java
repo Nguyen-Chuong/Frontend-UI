@@ -11,4 +11,6 @@ public class BenefitResult {
 
     private String name;
 
+    private String icon;
+
 }

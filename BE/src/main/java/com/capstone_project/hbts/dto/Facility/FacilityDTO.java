@@ -11,6 +11,8 @@ public class FacilityDTO {
 
     private String name;
 
+    private String icon;
+
     private FacilityTypeDTO facilityType;
 
 }

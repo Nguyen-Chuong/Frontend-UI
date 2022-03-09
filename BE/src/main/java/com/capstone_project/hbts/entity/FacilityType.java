@@ -35,4 +35,7 @@ public class FacilityType {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "facilityType")
     private Set<Facility> listFacility;
 
+    @Column(name = "icon")
+    private String icon;
+
 }

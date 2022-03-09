@@ -33,6 +33,9 @@ public class Benefit {
     @Column(name = "name")
     private String name;
 
+    @Column(name = "icon")
+    private String icon;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefit")
     private Set<RoomBenefit> listRoomBenefit;
 

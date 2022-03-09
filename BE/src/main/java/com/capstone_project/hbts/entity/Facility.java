@@ -44,4 +44,7 @@ public class Facility {
     @JsonIgnore
     private Set<RoomFacility> listRoomFacility;
 
+    @Column(name = "icon")
+    private String icon;
+
 }

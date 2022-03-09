@@ -35,4 +35,7 @@ public class BenefitType {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefitType")
     private Set<Benefit> listBenefit;
 
+    @Column(name = "icon")
+    private String icon;
+
 }
