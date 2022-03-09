@@ -32,7 +32,7 @@ public class FacilityType {
     @Column(name = "name_facility_type")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "facilityType")
     private Set<Facility> listFacility;
 
 }

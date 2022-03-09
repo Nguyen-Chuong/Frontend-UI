@@ -38,7 +38,7 @@ public class Facility {
     @ManyToOne
     @JoinColumn(name = "facility_type_id")
     @JsonIgnore
-    private FacilityType facility;
+    private FacilityType facilityType;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")
     @JsonIgnore
