@@ -86,4 +86,10 @@ public class ErrorConstant {
     public static final String ERR_REQ_001 = "ERR_REQ_001";
     public static final String ERR_REQ_001_LABEL = "You cannot request again, your request is pending or accepted";
 
+    /**
+     * Khách sạn này của bạn đã bị cấm đăng bài
+     */
+    public static final String ERR_HOTEL_001 = "ERR_HOTEL_001";
+    public static final String ERR_HOTEL_001_LABEL = "Your hotel is banned, you cannot request again";
+
 }

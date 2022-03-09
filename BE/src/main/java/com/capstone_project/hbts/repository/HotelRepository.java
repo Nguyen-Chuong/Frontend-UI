@@ -72,4 +72,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             nativeQuery = true)
     void denyHotelById(@Param("hotelId") int hotelId);
 
+    @Query(value = "SELECT status FROM capstone.hotel WHERE id = :hotelId",
+            nativeQuery = true)
+    Integer viewHotelStatus(@Param("hotelId") int hotelId);
+
 }

@@ -88,4 +88,11 @@ public interface HotelService {
      */
     void addHotelByProvider(HotelRequest hotelRequest);
 
+    /**
+     * view a hotel status
+     * @param hotelId
+     * @return
+     */
+    Integer viewHotelStatus(int hotelId);
+
 }

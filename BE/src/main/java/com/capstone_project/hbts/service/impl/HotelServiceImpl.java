@@ -244,4 +244,10 @@ public class HotelServiceImpl implements HotelService {
                 hotelRequest.getProviderId());
     }
 
+    @Override
+    public Integer viewHotelStatus(int hotelId) {
+        log.info("Request to view a hotel status");
+        return hotelRepository.viewHotelStatus(hotelId);
+    }
+
 }

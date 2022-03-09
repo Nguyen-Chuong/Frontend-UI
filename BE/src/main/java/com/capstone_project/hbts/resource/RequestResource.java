@@ -8,6 +8,7 @@ import com.capstone_project.hbts.request.PostHotelRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
+import com.capstone_project.hbts.service.HotelService;
 import com.capstone_project.hbts.service.RequestService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -38,11 +39,14 @@ public class RequestResource {
 
     private final DataDecryption dataDecryption;
 
+    private final HotelService hotelService;
+
     public RequestResource(RequestService requestService, JwtTokenUtil jwtTokenUtil,
-                           DataDecryption dataDecryption) {
+                           DataDecryption dataDecryption, HotelService hotelService) {
         this.requestService = requestService;
         this.jwtTokenUtil = jwtTokenUtil;
         this.dataDecryption = dataDecryption;
+        this.hotelService = hotelService;
     }
 
     /**
@@ -55,7 +59,11 @@ public class RequestResource {
     public ResponseEntity<?> addRequestPostHotel(@RequestHeader("Authorization") String jwttoken,
                                                  @RequestBody PostHotelRequest postHotelRequest){
         log.info("REST request to add new request to post hotel for provider");
-
+        if(hotelService.viewHotelStatus(postHotelRequest.getHotelId()) == 4){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_HOTEL_001, ErrorConstant.ERR_HOTEL_001_LABEL));
+        }
         int providerId = Integer.parseInt(jwtTokenUtil.getUserIdFromToken(jwttoken.substring(7)));
         // set provider id
         postHotelRequest.setProviderId(providerId);
