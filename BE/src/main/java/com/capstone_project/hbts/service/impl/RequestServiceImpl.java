@@ -119,4 +119,17 @@ public class RequestServiceImpl implements RequestService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public Integer getRequestStatus(int requestId) {
+        log.info("Request to get request status");
+        return requestRepository.viewRequestStatus(requestId);
+    }
+
+    @Override
+    @Transactional
+    public void cancelRequest(int requestId) {
+        log.info("Request to cancel request by provider");
+        requestRepository.cancelRequest(requestId);
+    }
+
 }

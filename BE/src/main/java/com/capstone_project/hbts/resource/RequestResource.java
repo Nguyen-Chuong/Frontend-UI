@@ -74,12 +74,12 @@ public class RequestResource {
                 return ResponseEntity.badRequest()
                         .body(new ApiResponse<>(400, null,
                                 ErrorConstant.ERR_REQ_001, ErrorConstant.ERR_REQ_001_LABEL));
-            } else { // else return 200 and can add request
+            } else { // else status 3-denied / 4-cancelled -> return 200 and can add request
                 requestService.addNewRequest(postHotelRequest);
+                return ResponseEntity.ok()
+                        .body(new ApiResponse<>(200, null,
+                                null, null));
             }
-            return ResponseEntity.ok()
-                    .body(new ApiResponse<>(200, null,
-                            null, null));
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest()
@@ -197,6 +197,43 @@ public class RequestResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, requestDTOList,
                             null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param requestId
+     * @apiNote for provider to cancel their request
+     * they have to go to list request page to pick request to cancel
+     * @return
+     */
+    @PatchMapping("/provider/cancel-request")
+    public ResponseEntity<?> cancelRequest(@RequestParam String requestId){
+        log.info("REST request to cancel request by provider");
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(requestId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try{
+            if(requestService.getRequestStatus(id) != 1){
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponse<>(400, null,
+                                ErrorConstant.ERR_REQ_002, ErrorConstant.ERR_REQ_002_LABEL));
+            } else {
+                requestService.cancelRequest(id);
+                return ResponseEntity.ok()
+                        .body(new ApiResponse<>(200, null,
+                                null, null));
+            }
         }catch (Exception e){
             e.printStackTrace();
             return ResponseEntity.badRequest()

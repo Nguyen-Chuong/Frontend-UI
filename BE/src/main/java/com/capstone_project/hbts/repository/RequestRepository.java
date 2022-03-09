@@ -51,4 +51,13 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
 
     List<Request> getAllByProviderIdOrderByRequestDateDesc(int providerId);
 
+    @Query(value = "SELECT status FROM capstone.request WHERE id = :requestId",
+            nativeQuery = true)
+    Integer viewRequestStatus(@Param("requestId") int requestId);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.request set status = 4 where id = :requestId",
+            nativeQuery = true)
+    void cancelRequest(@Param("requestId") int requestId);
+
 }

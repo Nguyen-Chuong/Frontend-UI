@@ -87,6 +87,13 @@ public class ErrorConstant {
     public static final String ERR_REQ_001_LABEL = "You cannot request again, your request is pending or accepted";
 
     /**
+     * Không thể hủy request
+     */
+    public static final String ERR_REQ_002 = "ERR_REQ_002";
+    public static final String ERR_REQ_002_LABEL = "You cannot cancel request, it has been processed";
+
+
+    /**
      * Khách sạn này của bạn đã bị cấm đăng bài
      */
     public static final String ERR_HOTEL_001 = "ERR_HOTEL_001";

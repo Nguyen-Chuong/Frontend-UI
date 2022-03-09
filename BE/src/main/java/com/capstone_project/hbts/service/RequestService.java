@@ -52,4 +52,18 @@ public interface RequestService {
      */
     List<RequestDTO> getRequestByProviderId(int providerId);
 
+    /**
+     * to view request status
+     * @param requestId
+     * @return
+     */
+    Integer getRequestStatus(int requestId);
+
+    /**
+     * for provider to cancel a request
+     * @param requestId
+     * @return
+     */
+    void cancelRequest(int requestId);
+
 }
