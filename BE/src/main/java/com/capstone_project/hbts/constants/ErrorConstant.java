@@ -80,4 +80,10 @@ public class ErrorConstant {
     public static final String ERR_DATA_001 = "ERR_DATA_001";
     public static final String ERR_DATA_001_LABEL = "Your data url decrypted is not valid";
 
+    /**
+     * Không thể gửi tiếp request
+     */
+    public static final String ERR_REQ_001 = "ERR_REQ_001";
+    public static final String ERR_REQ_001_LABEL = "You cannot request again, your request is pending or accepted";
+
 }

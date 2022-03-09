@@ -45,7 +45,7 @@ public class Hotel {
     private int status; // 1-active, 2-deactivated, 3-pending, 4-banned, 5-denied
     // (if pending: approved -> 1-active, denied -> 5-denied)
     // (if provider disable -> deactivated)
-    // if admin banned -> cannot re-active, but if provider disable -> still can re-active
+    // if admin banned -> cannot re-active or request again, but if provider disable -> still can re-active
 
     @ManyToOne
     @JoinColumn(name = "district_id")

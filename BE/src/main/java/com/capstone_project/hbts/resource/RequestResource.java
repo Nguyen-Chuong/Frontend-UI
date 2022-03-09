@@ -58,8 +58,14 @@ public class RequestResource {
         // set provider id
         postHotelRequest.setProviderId(providerId);
         try{
-            requestService.addNewRequest(postHotelRequest);
-
+            // if list request status contain 1 or 2 -> cannot request
+            if(!requestService.checkRequest(postHotelRequest.getHotelId())){
+                return ResponseEntity.badRequest()
+                        .body(new ApiResponse<>(400, null,
+                                ErrorConstant.ERR_REQ_001, ErrorConstant.ERR_REQ_001_LABEL));
+            } else { // else return 200 and can add request
+                requestService.addNewRequest(postHotelRequest);
+            }
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));

@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 @Repository
 public interface RequestRepository extends JpaRepository<Request, Integer> {
@@ -43,5 +44,9 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
     Page<Request> getAllRequestByStatus(@Param("status") int status, Pageable pageable);
 
     Page<Request> findAllByOrderByRequestDateDesc(Pageable pageable);
+
+    @Query(value = "select status from capstone.request where hotel_id = :hotelId",
+            nativeQuery = true)
+    List<Integer> getRequestStatusByHotelId(@Param("hotelId") int hotelId);
 
 }

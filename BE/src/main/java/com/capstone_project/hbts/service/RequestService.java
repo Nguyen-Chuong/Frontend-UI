@@ -36,4 +36,11 @@ public interface RequestService {
      */
     Page<RequestDTO> viewAllRequestByStatus(int status, Pageable pageable);
 
+    /**
+     * to check if a hotel can request or not
+     * @param hotelId
+     * @return
+     */
+    boolean checkRequest(int hotelId);
+
 }

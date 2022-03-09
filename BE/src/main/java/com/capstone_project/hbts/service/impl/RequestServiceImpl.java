@@ -101,4 +101,13 @@ public class RequestServiceImpl implements RequestService {
         }
     }
 
+    @Override
+    public boolean checkRequest(int hotelId) {
+        log.info("Request to check request status of a hotel");
+        List<Integer> listStatus = requestRepository.getRequestStatusByHotelId(hotelId);
+        // contain any request pending or accepted -> cannot request again
+        return !listStatus.contains(1) && !listStatus.contains(2);
+        // else denied-3, hotel can request again
+    }
+
 }
