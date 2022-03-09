@@ -1,6 +1,5 @@
 package com.capstone_project.hbts.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -23,22 +21,18 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Table(name = "benefit")
-public class Benefit {
+@Table(name = "benefit_type")
+public class BenefitType {
 
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "name_benefit_type")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefit")
-    private Set<RoomTypeBenefit> listRoomBenefit;
-
-    @ManyToOne
-    @JoinColumn(name = "benefit_type_id")
-    @JsonIgnore
-    private BenefitType benefitType;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefitType")
+    private Set<Benefit> listBenefit;
 
 }

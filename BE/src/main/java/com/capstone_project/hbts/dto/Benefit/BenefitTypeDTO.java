@@ -5,12 +5,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class BenefitDTO {
+public class BenefitTypeDTO {
 
     private Integer id;
 
     private String name;
-
-    private BenefitTypeDTO benefitType;
 
 }
