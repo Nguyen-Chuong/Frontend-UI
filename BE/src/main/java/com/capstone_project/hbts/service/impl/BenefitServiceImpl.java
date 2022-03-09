@@ -1,7 +1,8 @@
 package com.capstone_project.hbts.service.impl;
 
 import com.capstone_project.hbts.dto.Benefit.BenefitDTO;
-import com.capstone_project.hbts.entity.Benefit;
+import com.capstone_project.hbts.dto.Benefit.BenefitResult;
+import com.capstone_project.hbts.dto.Benefit.BenefitTypeDTO;
 import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.BenefitRepository;
 import com.capstone_project.hbts.repository.HotelRepository;
@@ -11,8 +12,11 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,9 +38,9 @@ public class BenefitServiceImpl implements BenefitService {
     }
 
     @Override
-    public List<BenefitDTO> getListBenefitByHotelId(int hotelId) {
+    public Map<BenefitTypeDTO, List<BenefitResult>> getListBenefitByHotelId(int hotelId) {
         log.info("Request to get all room's benefit by hotel id");
-        // get set room type
+        // get list room type
         Set<RoomType> roomTypeSet = hotelRepository.getHotelById(hotelId).getListRoomType();
         // list benefit id from these room
         List<Integer> benefitId = new ArrayList<>();
@@ -48,12 +52,33 @@ public class BenefitServiceImpl implements BenefitService {
         // remove duplicate id from list id above
         List<Integer> benefitIdUnique = new ArrayList<>(new LinkedHashSet<>(benefitId));
 
-        // get list benefit from list ids
-        List<Benefit> benefitList = benefitRepository.findAllById(benefitIdUnique);
-
-        return benefitList.stream()
+        // get set benefitDTO by list id
+        List<BenefitDTO> benefitDTOList = benefitRepository.findAllById(benefitIdUnique)
+                .stream()
                 .map(item -> modelMapper.map(item, BenefitDTO.class))
                 .collect(Collectors.toList());
+
+        // to remove duplicate benefit type
+        Set<BenefitTypeDTO> setBenefitType = new HashSet<>();
+        benefitDTOList.forEach(item -> setBenefitType.add(item.getBenefitType()));
+        // map result to return
+        Map<BenefitTypeDTO, List<BenefitResult>> mapBenefitResult = new HashMap<>();
+        // loop through set benefit type
+        for (BenefitTypeDTO item : setBenefitType) {
+            // filter to add benefitDTOs that has this benefit type to a list
+            List<BenefitDTO> listBenefit = benefitDTOList
+                    .stream()
+                    .filter(element -> element.getBenefitType().equals(item))
+                    .collect(Collectors.toList());
+            // remove BenefitTypeDTO property in list return
+            List<BenefitResult> listBenefitResult = listBenefit
+                    .stream()
+                    .map(element -> modelMapper.map(element, BenefitResult.class))
+                    .collect(Collectors.toList());
+            // put all of them to a map result
+            mapBenefitResult.put(item, listBenefitResult);
+        }
+        return mapBenefitResult;
     }
 
 }

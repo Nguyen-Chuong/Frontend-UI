@@ -2,7 +2,8 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.decryption.DataDecryption;
-import com.capstone_project.hbts.dto.Benefit.BenefitDTO;
+import com.capstone_project.hbts.dto.Benefit.BenefitResult;
+import com.capstone_project.hbts.dto.Benefit.BenefitTypeDTO;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.BenefitService;
 import lombok.extern.log4j.Log4j2;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.Map;
 
 @CrossOrigin
 @RestController
@@ -46,7 +48,7 @@ public class BenefitResource {
                             ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
         }
         try {
-            List<BenefitDTO> benefitDTOList = benefitService.getListBenefitByHotelId(id);
+            Map<BenefitTypeDTO, List<BenefitResult>> benefitDTOList = benefitService.getListBenefitByHotelId(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, benefitDTOList,
                             null, null));
