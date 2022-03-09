@@ -3,7 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, 
 import {AuthService} from "../../../../../_services/auth.service";
 import {AlertService} from "../../../../../_services/alert.service";
 import {first} from "rxjs";
-import {Route, Router} from "@angular/router";
+import {ActivatedRoute, Route, Router} from "@angular/router";
 
 @Component({
   selector: 'app-new-password',
@@ -17,14 +17,17 @@ export class NewPasswordComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private alertService: AlertService,
-              private router: Router) {
-    this.email = this.authService.emailStorage
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       newPass: ['', [Validators.required, this.matchValidator('confirmNewPass', true)]],
       confirmNewPass: ['', [Validators.required, this.matchValidator('newPass')]]
+    })
+    this.activatedRoute.queryParams.subscribe(rs => {
+      this.email = rs['email']
     })
   }
 
