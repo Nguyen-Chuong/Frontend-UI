@@ -3,9 +3,11 @@ package com.capstone_project.hbts.service.impl;
 import com.capstone_project.hbts.dto.Benefit.BenefitDTO;
 import com.capstone_project.hbts.dto.Benefit.BenefitResult;
 import com.capstone_project.hbts.dto.Benefit.BenefitTypeDTO;
+import com.capstone_project.hbts.dto.Benefit.ObjectBenefit;
 import com.capstone_project.hbts.dto.Facility.FacilityDTO;
 import com.capstone_project.hbts.dto.Facility.FacilityResult;
 import com.capstone_project.hbts.dto.Facility.FacilityTypeDTO;
+import com.capstone_project.hbts.dto.Facility.ObjectFacility;
 import com.capstone_project.hbts.dto.ImageDTO;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
@@ -14,17 +16,13 @@ import com.capstone_project.hbts.repository.BenefitRepository;
 import com.capstone_project.hbts.repository.FacilityRepository;
 import com.capstone_project.hbts.repository.RoomTypeRepository;
 import com.capstone_project.hbts.service.RoomTypeService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -86,7 +84,6 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     @Override
     public RoomDetailDTO viewRoomDetail(int roomTypeId) {
         log.info("Request to view detail room type");
-        ObjectMapper mapper = new ObjectMapper();
         // get room type by id
         RoomType roomType = roomTypeRepository.getRoomTypeById(roomTypeId);
 
@@ -108,8 +105,8 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         // to remove duplicate benefit type
         Set<BenefitTypeDTO> setBenefitType = new HashSet<>();
         benefitDTOList.forEach(item -> setBenefitType.add(item.getBenefitType()));
-        // map result to return
-        Map<String, List<BenefitResult>> mapBenefitResult = new HashMap<>();
+        // list benefit to return
+        List<ObjectBenefit> finalResultBenefit = new ArrayList<>();
         // loop through set benefit type
         for (BenefitTypeDTO item : setBenefitType) {
             // filter to add benefitDTOs that has this benefit type to a list
@@ -122,12 +119,9 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                     .stream()
                     .map(element -> modelMapper.map(element, BenefitResult.class))
                     .collect(Collectors.toList());
-            // put all of them to a map result
-            try {
-                mapBenefitResult.put(mapper.writeValueAsString(item), listBenefitResult);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            // add new object benefit and put to list
+            ObjectBenefit obj = new ObjectBenefit(item.getId(), item.getName(), listBenefitResult);
+            finalResultBenefit.add(obj);
         }
 
         // handle facility
@@ -142,8 +136,8 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         // to remove duplicate facility type
         Set<FacilityTypeDTO> setFacilityType = new HashSet<>();
         facilityDTOList.forEach(item -> setFacilityType.add(item.getFacilityType()));
-        // map result to return
-        Map<String, List<FacilityResult>> mapFacilityResult = new HashMap<>();
+        // list facility to return
+        List<ObjectFacility> finalResultFacility = new ArrayList<>();
         // loop through set facility type
         for (FacilityTypeDTO item : setFacilityType) {
             // filter to add facilityDTOs that has this facility type to a list
@@ -156,12 +150,9 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                     .stream()
                     .map(element -> modelMapper.map(element, FacilityResult.class))
                     .collect(Collectors.toList());
-            // put all of them to a map result
-            try {
-                mapFacilityResult.put(mapper.writeValueAsString(item), listFacilityResult);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
+            // add new object facility and put to list
+            ObjectFacility obj = new ObjectFacility(item.getId(), item.getName(), listFacilityResult);
+            finalResultFacility.add(obj);
         }
 
         // convert to RoomDetailDTO
@@ -174,8 +165,8 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                 roomType.getDealPercentage(),
                 roomType.getDealExpire(),
                 imageDTOSet,
-                mapFacilityResult,
-                mapBenefitResult);
+                finalResultFacility,
+                finalResultBenefit);
     }
 
 }

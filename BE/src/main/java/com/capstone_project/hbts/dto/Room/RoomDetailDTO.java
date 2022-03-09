@@ -1,7 +1,7 @@
 package com.capstone_project.hbts.dto.Room;
 
-import com.capstone_project.hbts.dto.Benefit.BenefitResult;
-import com.capstone_project.hbts.dto.Facility.FacilityResult;
+import com.capstone_project.hbts.dto.Benefit.ObjectBenefit;
+import com.capstone_project.hbts.dto.Facility.ObjectFacility;
 import com.capstone_project.hbts.dto.ImageDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 @Data
@@ -35,8 +34,8 @@ public class RoomDetailDTO {
 
     private Set<ImageDTO> listImage;
 
-    private Map<String, List<FacilityResult>> listFacility;
+    private List<ObjectFacility> listFacility;
 
-    private Map<String, List<BenefitResult>> listBenefit;
+    private List<ObjectBenefit> listBenefit;
 
 }
