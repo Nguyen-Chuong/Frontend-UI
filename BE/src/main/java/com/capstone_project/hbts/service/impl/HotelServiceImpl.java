@@ -250,4 +250,20 @@ public class HotelServiceImpl implements HotelService {
         return hotelRepository.viewHotelStatus(hotelId);
     }
 
+    @Override
+    public void updateHotel(HotelDTO hotelDTO) {
+        log.info("Request to update a hotel info");
+        // get hotel need to update from db
+        Hotel hotel = hotelRepository.getHotelById(hotelDTO.getId());
+        // set props again
+        hotel.setAddress(hotelDTO.getAddress());
+        hotel.setAvatar(hotelDTO.getAvatar());
+        hotel.setDescription(hotelDTO.getDescription());
+        hotel.setEmail(hotelDTO.getEmail());
+        hotel.setName(hotelDTO.getName());
+        hotel.setPhone(hotelDTO.getPhone());
+        // save hotel again
+        hotelRepository.save(hotel);
+    }
+
 }
