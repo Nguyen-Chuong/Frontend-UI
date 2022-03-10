@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from "moment";
-import { tap } from 'rxjs';
+import { first, tap } from 'rxjs';
 import { Account } from '../_models/account';
 
 @Injectable({
@@ -58,6 +58,18 @@ export class AuthService {
 
   update(account: Account) {
     return this.http.patch(`${this.baseUrl}/update-profile/provider`, { ...account })
+  }
+
+  changePassword(oldPass: string, newPass: string) {
+    const params = new HttpParams().append('oldPass', oldPass).append('newPass', newPass)
+    return this.http.patch(`${this.baseUrl}/change-password/provider`, undefined, { params: params })
+      .pipe(first(),
+        tap(rs => {
+          if (rs['status'] !== 200) {
+            throw new Error(rs['error_message'])
+          }
+        }))
+
   }
 
   logout(){
