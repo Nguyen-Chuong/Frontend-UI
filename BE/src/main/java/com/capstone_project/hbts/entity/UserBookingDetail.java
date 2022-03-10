@@ -30,6 +30,9 @@ public class UserBookingDetail {
     @Column(name = "paid")
     private BigDecimal paid; // this is the price that user have to pay for this room type
 
+    @Column(name = "quantity")
+    private int quantity;
+
     @ManyToOne
     @JoinColumn(name = "booking_id")
     private UserBooking userBooking;
@@ -37,8 +40,5 @@ public class UserBookingDetail {
     @ManyToOne
     @JoinColumn(name = "room_type_id")
     private RoomType roomType;
-
-    @Column(name = "quantity")
-    private int quantity;
 
 }

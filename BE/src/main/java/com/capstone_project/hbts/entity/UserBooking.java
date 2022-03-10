@@ -46,12 +46,8 @@ public class UserBooking {
     @Column(name = "booking_date")
     private Timestamp bookingDate;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking_id")
-    private Set<Review> listReview;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking")
-    @JsonIgnore
-    private Set<UserBookingDetail> listUserBookingDetail;
+    @Column(name = "booked_quantity")
+    private int bookedQuantity; // number of people booked
 
     @ManyToOne
     @JsonIgnore
@@ -62,7 +58,11 @@ public class UserBooking {
     @JoinColumn(name = "hotelId")
     private Hotel hotel;
 
-    @Column(name = "booked_quantity")
-    private int bookedQuantity; // number of people booked
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking_id")
+    private Set<Review> listReview;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userBooking")
+    @JsonIgnore
+    private Set<UserBookingDetail> listUserBookingDetail;
 
 }

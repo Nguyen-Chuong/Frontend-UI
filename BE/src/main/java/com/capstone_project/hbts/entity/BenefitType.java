@@ -32,10 +32,10 @@ public class BenefitType {
     @Column(name = "name_benefit_type")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefitType")
-    private Set<Benefit> listBenefit;
-
     @Column(name = "icon")
     private String icon;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefitType")
+    private Set<Benefit> listBenefit;
 
 }

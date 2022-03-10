@@ -35,6 +35,9 @@ public class Facility {
     @Column(name = "name_facility")
     private String name;
 
+    @Column(name = "icon")
+    private String icon;
+
     @ManyToOne
     @JoinColumn(name = "facility_type_id")
     @JsonIgnore
@@ -43,8 +46,5 @@ public class Facility {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "facility")
     @JsonIgnore
     private Set<RoomFacility> listRoomFacility;
-
-    @Column(name = "icon")
-    private String icon;
 
 }

@@ -36,14 +36,6 @@ public class Feedback {
     @Column(name = "type")
     private int type;
 
-    @ManyToOne
-    @JoinColumn(name = "sender_id")
-    private Users sender;
-
-    @ManyToOne
-    @JoinColumn(name = "receiver_id")
-    private Users receiver;
-
     @Column(name = "message")
     private String message;
 
@@ -52,6 +44,14 @@ public class Feedback {
 
     @Column(name = "is_completed") // that admin/manager start to process
     private int isProcessed;
+
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
+    private Users sender;
+
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
+    private Users receiver;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "feedback")
     private Set<Response> listResponse;

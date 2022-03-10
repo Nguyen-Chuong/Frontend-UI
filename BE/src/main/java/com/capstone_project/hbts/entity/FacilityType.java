@@ -32,10 +32,10 @@ public class FacilityType {
     @Column(name = "name_facility_type")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "facilityType")
-    private Set<Facility> listFacility;
-
     @Column(name = "icon")
     private String icon;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "facilityType")
+    private Set<Facility> listFacility;
 
 }

@@ -29,10 +29,6 @@ public class Response {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne
-    @JoinColumn(name = "feedback_id")
-    private Feedback feedback;
-
     @Column(name = "message")
     private String message;
 
@@ -44,5 +40,9 @@ public class Response {
 
     @Column(name = "admin_id")
     private int adminId;
+
+    @ManyToOne
+    @JoinColumn(name = "feedback_id")
+    private Feedback feedback;
 
 }

@@ -37,7 +37,7 @@ public class District {
 
     @ManyToOne
     @JoinColumn(name = "cityId")
-    private City cityFK;
+    private City city;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "district")
     private Set<Hotel> listHotel;
