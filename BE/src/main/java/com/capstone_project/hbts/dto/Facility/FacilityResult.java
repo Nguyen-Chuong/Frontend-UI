@@ -11,4 +11,6 @@ public class FacilityResult {
 
     private String name;
 
+    private String icon;
+
 }

@@ -2,7 +2,7 @@ package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.decryption.DataDecryption;
-import com.capstone_project.hbts.dto.Benefit.BenefitDTO;
+import com.capstone_project.hbts.dto.Benefit.ObjectBenefit;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.BenefitService;
 import lombok.extern.log4j.Log4j2;
@@ -46,9 +46,9 @@ public class BenefitResource {
                             ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
         }
         try {
-            List<BenefitDTO> benefitDTOList = benefitService.getListBenefitByHotelId(id);
+            List<ObjectBenefit> benefitObjectList = benefitService.getListBenefitByHotelId(id);
             return ResponseEntity.ok()
-                    .body(new ApiResponse<>(200, benefitDTOList,
+                    .body(new ApiResponse<>(200, benefitObjectList,
                             null, null));
         } catch (Exception e) {
             e.printStackTrace();

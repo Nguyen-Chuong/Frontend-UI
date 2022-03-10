@@ -33,12 +33,15 @@ public class Benefit {
     @Column(name = "name")
     private String name;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefit")
-    private Set<RoomBenefit> listRoomBenefit;
+    @Column(name = "icon")
+    private String icon;
 
     @ManyToOne
     @JoinColumn(name = "benefit_type_id")
     @JsonIgnore
     private BenefitType benefitType;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "benefit")
+    private Set<RoomBenefit> listRoomBenefit;
 
 }

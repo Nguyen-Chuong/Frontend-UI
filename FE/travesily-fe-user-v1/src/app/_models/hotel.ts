@@ -6,7 +6,8 @@ export class Hotel {
   address: string
   avatar: string
   description: string
-  lowestPrice: number
+  price: number
+  salePercent: number
   status: number
   phone: string
   email: string

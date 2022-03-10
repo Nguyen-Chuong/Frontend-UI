@@ -95,4 +95,11 @@ public interface HotelService {
      */
     Integer viewHotelStatus(int hotelId);
 
+    /**
+     * update hotel for provider
+     * @param hotelDTO
+     * @return
+     */
+    void updateHotel(HotelDTO hotelDTO);
+
 }

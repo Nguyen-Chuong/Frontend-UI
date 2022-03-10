@@ -27,18 +27,18 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Column(name = "request_date")
+    private Timestamp requestDate;
+
+    @Column(name = "status")
+    private int status; // 1-pending, 2-accepted, 3-denied, 4-cancelled
+
     @ManyToOne
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @Column(name = "request_date")
-    private Timestamp requestDate;
-
     @ManyToOne
     @JoinColumn(name = "provider_id")
     private Provider provider;
-
-    @Column(name = "status")
-    private int status; // 1-pending, 2-accepted, 3-denied, 4-cancelled
 
 }

@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Actor.UserDTO;
 import com.capstone_project.hbts.request.UserRequest;
 import com.capstone_project.hbts.response.ApiResponse;
@@ -30,9 +31,13 @@ public class UserResource {
 
     private final JwtTokenUtil jwtTokenUtil;
 
-    public UserResource(UserService userService, JwtTokenUtil jwtTokenUtil) {
+    private final DataDecryption dataDecryption;
+
+    public UserResource(UserService userService, JwtTokenUtil jwtTokenUtil,
+                        DataDecryption dataDecryption) {
         this.userService = userService;
         this.jwtTokenUtil = jwtTokenUtil;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -229,12 +234,19 @@ public class UserResource {
     public ResponseEntity<?> changePassword(@RequestParam String email,
                                             @RequestParam String newPass){
         log.info("REST request to change user's password cuz they forgot them :) !");
-
+        String emailDecrypted;
+        try {
+            emailDecrypted = dataDecryption.convertEncryptedDataToString(email);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
         BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
         String newPasswordEncoded = bCryptPasswordEncoder.encode(newPass);
 
         try {
-            userService.changeForgotPassword(email, newPasswordEncoded);
+            userService.changeForgotPassword(emailDecrypted, newPasswordEncoded);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));

@@ -19,8 +19,8 @@ export class CryptoService {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
       });
-
-    return encrypted.toString();
+    return encodeURIComponent(encrypted.toString());
+    // return encrypted.toString();
   }
 
   //The get method is use for decrypt the value.

@@ -1,9 +1,8 @@
-import {Facility} from "./facility";
-import {FacilityType} from "./facility-type";
 import {Benefit} from "./benefit";
-import {BenefitType} from "./benefit-type";
+import {FacilityType} from "./facility-type";
+import {Facility} from "./facility";
 
-export class RoomDetail {
+export class RoomType {
   id: number
   name: string
   price: number
@@ -13,6 +12,4 @@ export class RoomDetail {
   dealPercentage: number
   dealExpire: Date
   listImage: {id: number, src: string}[]
-  listFacility: FacilityType[]
-  listRoomBenefit: BenefitType[]
 }

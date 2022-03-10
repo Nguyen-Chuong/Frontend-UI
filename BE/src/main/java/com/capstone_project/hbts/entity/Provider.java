@@ -45,6 +45,9 @@ public class Provider {
     @Column(name = "status")
     private int status;  // 1-active, 0-banned
 
+    @Column(name = "address")
+    private String address;
+
     @Column(name = "email")
     @Email
     @Size(min = 5, max = 50, message = "{casa.nomatch.size}")
@@ -54,9 +57,6 @@ public class Provider {
     @Size(min = 5, max = 20, message = "{casa.nomatch.size}")
     @Pattern(regexp = "(09|03|01|05|08)+([0-9]{7,10})\\b")
     private String phone;
-
-    @Column(name = "address")
-    private String address;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "provider")
     private Set<Hotel> listHotel;

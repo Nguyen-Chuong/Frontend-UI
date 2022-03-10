@@ -3,7 +3,6 @@ import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
 import {first, map, Observable, Subject, tap} from "rxjs";
 import * as moment from "moment";
 import {Account} from "../_models/account";
-import {Vip} from "../_models/vip";
 
 
 @Injectable({
@@ -152,7 +151,7 @@ export class AuthService {
 
 //Verify if OTP is correct
   verifyOtp(email: string, otp: string) {
-    const params = new HttpParams().append('email', email).append('otp', otp)
+    const params = new HttpParams().append('email', email).append('otpEncrypted', otp)
     return this.http.post(`${this.baseUrl}/authenticate/verifyOtp`, undefined, {
       params: params,
       withCredentials: false

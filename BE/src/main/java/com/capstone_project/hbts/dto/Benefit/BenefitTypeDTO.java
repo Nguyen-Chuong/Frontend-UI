@@ -11,4 +11,6 @@ public class BenefitTypeDTO {
 
     private String name;
 
+    private String icon;
+
 }

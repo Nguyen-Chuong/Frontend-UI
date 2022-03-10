@@ -35,6 +35,9 @@ public class Facility {
     @Column(name = "name_facility")
     private String name;
 
+    @Column(name = "icon")
+    private String icon;
+
     @ManyToOne
     @JoinColumn(name = "facility_type_id")
     @JsonIgnore

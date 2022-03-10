@@ -41,6 +41,12 @@ public class Hotel {
     @Column(name = "description")
     private String description;
 
+    @Column(name = "phone")
+    private String phone;
+
+    @Column(name = "email")
+    private String email;
+
     @Column(name = "status")
     private int status; // 1-active, 2-deactivated, 3-pending, 4-banned, 5-denied
     // (if pending: approved -> 1-active, denied -> 5-denied)
@@ -51,21 +57,15 @@ public class Hotel {
     @JoinColumn(name = "district_id")
     private District district;
 
+    @ManyToOne
+    @JoinColumn(name = "provider_id", nullable = false)
+    private Provider provider;
+
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
     private Set<UserBooking> listUserBooking;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
     private Set<RoomType> listRoomType;
-
-    @ManyToOne
-    @JoinColumn(name = "provider_id", nullable = false)
-    private Provider provider;
-
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "email")
-    private String email;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "hotel")
     private Set<Request> listRequest;

@@ -1,11 +1,15 @@
 package com.capstone_project.hbts.dto.Benefit;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
-public class BenefitDTO {
+@AllArgsConstructor
+public class ObjectBenefit {
 
     private Integer id;
 
@@ -13,6 +17,6 @@ public class BenefitDTO {
 
     private String icon;
 
-    private BenefitTypeDTO benefitType;
+    private List<BenefitResult> benefits;
 
 }

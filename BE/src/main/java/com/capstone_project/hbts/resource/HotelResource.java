@@ -269,7 +269,7 @@ public class HotelResource {
      * @apiNote get hotel by id
      * @return
      */
-    @GetMapping("/hotel")
+    @GetMapping("/public/hotel")
     public ResponseEntity<?> viewHotelById(@RequestParam String hotelId){
         log.info("REST request to get hotel by id");
         int id;
@@ -310,6 +310,28 @@ public class HotelResource {
         hotelRequest.setProviderId(providerId);
         try{
             hotelService.addHotelByProvider(hotelRequest);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param hotelDTO
+     * @apiNote for provider can update a hotel
+     * @return
+     */
+    @PatchMapping("/update-hotel-info")
+    public ResponseEntity<?> updateHotel(@RequestBody HotelDTO hotelDTO){
+        log.info("REST request to update hotel");
+        try{
+            hotelService.updateHotel(hotelDTO);
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,

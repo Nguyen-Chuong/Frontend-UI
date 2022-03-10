@@ -33,7 +33,7 @@ public class City {
     @NotNull
     private String nameCity;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cityFK")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "city")
     private Set<District> listDistrict;
 
 }

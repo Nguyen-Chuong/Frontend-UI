@@ -1,11 +1,15 @@
 package com.capstone_project.hbts.dto.Facility;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
-public class FacilityDTO {
+@AllArgsConstructor
+public class ObjectFacility {
 
     private Integer id;
 
@@ -13,6 +17,6 @@ public class FacilityDTO {
 
     private String icon;
 
-    private FacilityTypeDTO facilityType;
+    private List<FacilityResult> facilities;
 
 }
