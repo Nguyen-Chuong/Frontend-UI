@@ -12,8 +12,8 @@ label {
   font-size: 2rem;
 }
 
-.text-danger {
-  color: #FC4F4F;
+.text-grey{
+  color: $color-grey-light-3;
 }
 
 a {
@@ -37,6 +37,5 @@ li {
 
 button{
   cursor: pointer;
-  border: none;
 }
 

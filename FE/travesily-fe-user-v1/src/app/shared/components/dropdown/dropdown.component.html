@@ -1,21 +1,23 @@
-<div class="dropdown">
-  <button (click)="toggleContent()" class="btn btn-secondary dropdown-toggle" type="button" aria-expanded="false">
+<div class="row position-relative">
+  <button (click)="toggleContent()" class="btn btn-secondary" type="button" aria-expanded="false">
     {{guestNum}} adult(s), {{roomNum}} room(s)
   </button>
-  <div class="dropdown__content" id="content">
-    <div class="dropdown__content__item">
-      <label class="lbl-md dropdown__content__item--title">Adults</label>
-      <button class="btn-guest-modifier" (click)="toggleNumberMinus(1)">-</button>
-      <label class="lbl-md dropdown__content__item--number">{{guestNum}}</label>
-      <button class="btn-guest-modifier" (click)="toggleNumberPlus(1)">+</button>
+  <div class="dropdown-content row p-5 bg-white shadow position-absolute top-100 mt-5" id="content">
+    <div class="row mb-5 d-flex justify-content-around">
+    <div class="col-md-4 d-flex justify-content-evenly align-items-center">
+      <label class="">Adults</label>
+      <button class="btn btn-danger" (click)="toggleNumberMinus(1)">-</button>
+      <label class="bg-grey item-center p-3">{{guestNum}}</label>
+      <button class="btn btn-success" (click)="toggleNumberPlus(1)">+</button>
     </div>
-    <div class="dropdown__content__item">
-      <label class="lbl-md dropdown__content__item--title">Rooms</label>
-      <button class="btn-guest-modifier" (click)="toggleNumberMinus(2)">-</button>
-      <label class="lbl-md dropdown__content__item--number">{{roomNum}}</label>
-      <button class="btn-guest-modifier" (click)="toggleNumberPlus(2)">+</button>
+    <div class="col-md-4 d-flex justify-content-evenly align-items-center">
+      <label class="">Rooms</label>
+      <button class="btn btn-danger" (click)="toggleNumberMinus(2)">-</button>
+      <label class="bg-grey item-center p-3">{{roomNum}}</label>
+      <button class="btn btn-success" (click)="toggleNumberPlus(2)">+</button>
     </div>
-    <div class="dropdown__content__item">
+    </div>
+    <div class="row">
       <button class="btn btn-primary col-md-12" (click)="toggleContent()">Done</button>
     </div>
   </div>
