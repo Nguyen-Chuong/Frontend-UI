@@ -2,17 +2,17 @@ package com.capstone_project.hbts.service;
 
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
-import com.capstone_project.hbts.entity.RoomType;
+import com.capstone_project.hbts.request.RoomTypeRequest;
 
 import java.util.List;
 
 public interface RoomTypeService {
 
     /**
-     * Create room type
-     * @param roomType
+     * Create room type for provider
+     * @param roomTypeRequest
      */
-    void createRoomType(RoomType roomType);
+    void createRoomType(RoomTypeRequest roomTypeRequest);
 
     /**
      * Update room type
@@ -37,5 +37,9 @@ public interface RoomTypeService {
      * @param roomTypeId
      */
     RoomDetailDTO viewRoomDetail(int roomTypeId);
+
+    // add, edit pure room type
+    // have drop down list pick facility, benefit type -> filter list facility, benefit to pick
+    // add to room facility, room benefit table
 
 }

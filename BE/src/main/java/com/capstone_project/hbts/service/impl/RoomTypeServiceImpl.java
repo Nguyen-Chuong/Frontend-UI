@@ -15,10 +15,12 @@ import com.capstone_project.hbts.entity.RoomType;
 import com.capstone_project.hbts.repository.BenefitRepository;
 import com.capstone_project.hbts.repository.FacilityRepository;
 import com.capstone_project.hbts.repository.RoomTypeRepository;
+import com.capstone_project.hbts.request.RoomTypeRequest;
 import com.capstone_project.hbts.service.RoomTypeService;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -47,15 +49,17 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     }
 
     @Override
-    public void createRoomType(RoomType roomType) {
+    @Transactional
+    public void createRoomType(RoomTypeRequest roomTypeRequest) {
         log.info("Request to create room type");
-        if (roomType != null) {
-            try {
-                roomTypeRepository.save(roomType);
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        roomTypeRepository.addNewRoomType(roomTypeRequest.getAvailableRooms(),
+                roomTypeRequest.getDealExpire(),
+                roomTypeRequest.getDealPercentage(),
+                roomTypeRequest.getName(),
+                roomTypeRequest.getNumberOfPeople(),
+                roomTypeRequest.getPrice(),
+                roomTypeRequest.getQuantity(),
+                roomTypeRequest.getHotelId());
     }
 
     @Override
