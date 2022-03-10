@@ -41,7 +41,7 @@ public class RoomTypeResource {
      * return
      */
     @GetMapping("/public/room-type")
-    public ResponseEntity<?> getListRoomTypeByHotel(@RequestParam String hotelId){
+    public ResponseEntity<?> getListRoomTypeByHotel(@RequestParam String hotelId) {
         log.info("REST request to get list room type by hotel id");
         int id;
         try {
@@ -56,7 +56,7 @@ public class RoomTypeResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, list,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -70,7 +70,7 @@ public class RoomTypeResource {
      * return
      */
     @GetMapping("/public/room-detail")
-    public ResponseEntity<?> getRoomDetailByRoomTypeId(@RequestParam String roomTypeId){
+    public ResponseEntity<?> getRoomDetailByRoomTypeId(@RequestParam String roomTypeId) {
         log.info("REST request to get detail room type by room type id");
         int id;
         try {
@@ -85,7 +85,7 @@ public class RoomTypeResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, roomDetailDTO,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -99,7 +99,7 @@ public class RoomTypeResource {
      * return
      */
     @PostMapping("/add-room")
-    public ResponseEntity<?> addRoomType(@RequestBody RoomTypeRequest roomTypeRequest){
+    public ResponseEntity<?> addRoomType(@RequestBody RoomTypeRequest roomTypeRequest) {
         log.info("REST request to add new room type for provider");
 
         try {
@@ -107,7 +107,7 @@ public class RoomTypeResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
@@ -121,7 +121,7 @@ public class RoomTypeResource {
      * return
      */
     @PatchMapping("/update-room")
-    public ResponseEntity<?> updateRoomType(@RequestBody RoomTypeDTO roomTypeDTO){
+    public ResponseEntity<?> updateRoomType(@RequestBody RoomTypeDTO roomTypeDTO) {
         log.info("REST request to update room type for provider");
 
         try {
@@ -129,7 +129,65 @@ public class RoomTypeResource {
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));
-        }catch (Exception e){
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param roomTypeId
+     * @apiNote for provider can disable a room type
+     * return
+     */
+    @PatchMapping("/disable-room")
+    public ResponseEntity<?> disableRoomType(@RequestParam String roomTypeId) {
+        log.info("REST request to disable room type for provider");
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(roomTypeId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            roomTypeService.disableRoomType(id);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param roomTypeId
+     * @apiNote for provider can enable a room type
+     * return
+     */
+    @PatchMapping("/enable-room")
+    public ResponseEntity<?> enableRoomType(@RequestParam String roomTypeId) {
+        log.info("REST request to enable room type for provider");
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(roomTypeId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            roomTypeService.enableRoomType(id);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,

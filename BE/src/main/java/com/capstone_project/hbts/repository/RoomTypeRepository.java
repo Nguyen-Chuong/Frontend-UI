@@ -13,7 +13,7 @@ import java.util.List;
 @Repository
 public interface RoomTypeRepository extends JpaRepository<RoomType, Integer> {
 
-    @Query(value = "SELECT * FROM capstone.room_type where hotel_id = :hotelId", nativeQuery = true)
+    @Query(value = "SELECT * FROM capstone.room_type where hotel_id = :hotelId and status = 1", nativeQuery = true)
     List<RoomType> findRoomTypeByHotelId(@Param("hotelId") int hotelId);
 
     @Query(value = "SELECT * FROM capstone.room_type where id = :id limit 1", nativeQuery = true)
@@ -34,5 +34,15 @@ public interface RoomTypeRepository extends JpaRepository<RoomType, Integer> {
             @Param("price") long price,
             @Param("quantity") int quantity,
             @Param("hotelId") int hotelId);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.room_type set status = 0 WHERE id = :roomTypeId",
+            nativeQuery = true)
+    void disableRoomTypeById(@Param("roomTypeId") int roomTypeId);
+
+    @Modifying
+    @Query(value = "UPDATE capstone.room_type set status = 1 WHERE id = :roomTypeId",
+            nativeQuery = true)
+    void enableRoomTypeById(@Param("roomTypeId") int roomTypeId);
 
 }

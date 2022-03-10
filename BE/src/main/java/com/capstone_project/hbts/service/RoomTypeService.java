@@ -27,10 +27,16 @@ public interface RoomTypeService {
     List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId);
 
     /**
-     * Delete room type
+     * Disable room type
      * @param roomTypeId
      */
-    void deleteRoomType(int roomTypeId);
+    void disableRoomType(int roomTypeId);
+
+    /**
+     * Enable room type
+     * @param roomTypeId
+     */
+    void enableRoomType(int roomTypeId);
 
     /**
      * View detail of a room type

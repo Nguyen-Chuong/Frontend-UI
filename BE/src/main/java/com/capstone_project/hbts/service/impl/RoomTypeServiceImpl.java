@@ -90,9 +90,17 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     }
 
     @Override
-    public void deleteRoomType(int id) {
-        log.info("Request to delete room type");
+    @Transactional
+    public void disableRoomType(int roomTypeId) {
+        log.info("Request to disable a room type");
+        roomTypeRepository.disableRoomTypeById(roomTypeId);
+    }
 
+    @Override
+    @Transactional
+    public void enableRoomType(int roomTypeId) {
+        log.info("Request to enable a room type");
+        roomTypeRepository.enableRoomTypeById(roomTypeId);
     }
 
     @Override
