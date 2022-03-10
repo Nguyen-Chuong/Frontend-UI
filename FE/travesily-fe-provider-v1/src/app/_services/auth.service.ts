@@ -51,4 +51,18 @@ export class AuthService {
     return this.http.get(`${this.baseUrl}/check/provider/email/${email}`, {withCredentials: false})
   }
 
+  //Get user profile detail
+  getProfile() {
+    return this.http.get<Account>(`${this.baseUrl}/profile/provider`)
+  }
+
+  update(account: Account) {
+    return this.http.patch(`${this.baseUrl}/update-profile/provider`, { ...account })
+  }
+
+  logout(){
+    localStorage.removeItem('token')
+    localStorage.removeItem('expires_at')
+  }
+
 }

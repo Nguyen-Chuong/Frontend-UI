@@ -1,11 +1,11 @@
 
 export class Account {
- id: number | undefined
- address: string | undefined
- email: string | undefined
- password: string | undefined
- phone: string | undefined
- providerName: string | undefined
- username: string | undefined
- status: number | undefined
+ id: number
+ address: string
+ email: string
+ password: string
+ phone: string
+ providerName: string
+ username: string
+ status: number
 }

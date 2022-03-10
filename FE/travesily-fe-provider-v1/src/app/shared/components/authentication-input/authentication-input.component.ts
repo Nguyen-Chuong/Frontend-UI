@@ -12,6 +12,7 @@ export class AuthenticationInputComponent implements OnInit {
   @Input() type: string | any
   @Input() placeholder: string | any
   @Input() classes: string | any
+  @Input() value: string | any
 
   constructor() {
   }

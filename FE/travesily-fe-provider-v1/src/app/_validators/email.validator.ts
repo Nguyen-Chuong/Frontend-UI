@@ -10,7 +10,7 @@ export function EmailValidator(authService: AuthService): AsyncValidatorFn {
     return timer(debounceTime).pipe(switchMap(() => {
       return authService.checkEmailDuplicated(control.value).pipe(
         map(res => {
-          return res['data' as keyof typeof res] ? { 'duplicateEmail': res['data' as keyof typeof res] } : null
+          return res['data'] ? { 'duplicateEmail': res['data'] } : null
         })
       )
     }))
