@@ -1,10 +1,8 @@
 package com.capstone_project.hbts.service;
 
-import com.capstone_project.hbts.dto.Benefit.BenefitResult;
-import com.capstone_project.hbts.dto.Benefit.BenefitTypeDTO;
+import com.capstone_project.hbts.dto.Benefit.ObjectBenefit;
 
 import java.util.List;
-import java.util.Map;
 
 public interface BenefitService {
 
@@ -12,6 +10,6 @@ public interface BenefitService {
      * Get all room's benefit in hotel
      * @param hotelId
      */
-    Map<BenefitTypeDTO, List<BenefitResult>> getListBenefitByHotelId(int hotelId);
+    List<ObjectBenefit> getListBenefitByHotelId(int hotelId);
 
 }
