@@ -15,6 +15,8 @@ public class ObjectBenefit {
 
     private String name;
 
+    private String icon;
+
     private List<BenefitResult> benefits;
 
 }

@@ -120,7 +120,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                     .map(element -> modelMapper.map(element, BenefitResult.class))
                     .collect(Collectors.toList());
             // add new object benefit and put to list
-            ObjectBenefit obj = new ObjectBenefit(item.getId(), item.getName(), listBenefitResult);
+            ObjectBenefit obj = new ObjectBenefit(item.getId(), item.getName(), item.getIcon(), listBenefitResult);
             finalResultBenefit.add(obj);
         }
 
@@ -151,7 +151,7 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                     .map(element -> modelMapper.map(element, FacilityResult.class))
                     .collect(Collectors.toList());
             // add new object facility and put to list
-            ObjectFacility obj = new ObjectFacility(item.getId(), item.getName(), listFacilityResult);
+            ObjectFacility obj = new ObjectFacility(item.getId(), item.getName(), item.getIcon(), listFacilityResult);
             finalResultFacility.add(obj);
         }
 

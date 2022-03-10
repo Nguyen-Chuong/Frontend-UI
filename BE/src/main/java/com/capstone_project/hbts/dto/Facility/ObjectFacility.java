@@ -15,6 +15,8 @@ public class ObjectFacility {
 
     private String name;
 
+    private String icon;
+
     private List<FacilityResult> facilities;
 
 }

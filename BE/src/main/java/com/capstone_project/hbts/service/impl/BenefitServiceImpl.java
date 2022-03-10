@@ -75,7 +75,7 @@ public class BenefitServiceImpl implements BenefitService {
                     .map(element -> modelMapper.map(element, BenefitResult.class))
                     .collect(Collectors.toList());
             // add new object benefit and put to list
-            ObjectBenefit obj = new ObjectBenefit(item.getId(), item.getName(), listBenefitResult);
+            ObjectBenefit obj = new ObjectBenefit(item.getId(), item.getName(), item.getIcon(), listBenefitResult);
             finalResultBenefit.add(obj);
         }
         return finalResultBenefit;

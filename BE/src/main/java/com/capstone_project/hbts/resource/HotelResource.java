@@ -269,7 +269,7 @@ public class HotelResource {
      * @apiNote get hotel by id
      * @return
      */
-    @GetMapping("/hotel")
+    @GetMapping("/public/hotel")
     public ResponseEntity<?> viewHotelById(@RequestParam String hotelId){
         log.info("REST request to get hotel by id");
         int id;
