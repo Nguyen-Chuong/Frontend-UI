@@ -7,7 +7,6 @@ import java.sql.Timestamp;
 
 @Data
 @NoArgsConstructor
-
 public class BookingRequest {
 
     private int bookedQuantity;
