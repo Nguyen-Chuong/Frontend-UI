@@ -6,7 +6,7 @@
     rgba($color-primary, .2),
     rgba($color-secondary, .2)
   ), url("../assets/img/maldives.jpeg");
-  min-height: 100vh;
+  min-height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -15,11 +15,11 @@
 }
 
 .header {
+
 }
 
 .body {
 
-  min-height: 100vh;
 }
 
 .footer {
