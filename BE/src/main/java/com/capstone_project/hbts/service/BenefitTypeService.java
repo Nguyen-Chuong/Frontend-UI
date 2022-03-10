@@ -15,7 +15,7 @@ public interface BenefitTypeService {
 
     /**
      * Get list benefit by benefit type id
-     * @param
+     * @param benefitTypeId
      */
     List<BenefitResult> getAllBenefitByTypeId(int benefitTypeId);
 
