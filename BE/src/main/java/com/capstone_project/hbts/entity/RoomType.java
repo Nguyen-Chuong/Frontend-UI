@@ -55,6 +55,9 @@ public class RoomType {
     @Column(name = "dealExpire")
     private Timestamp dealExpire;
 
+    @Column(name = "status")
+    private int status; // 0-deactivate 1-active
+
     @ManyToOne
     @JoinColumn(name = "hotelId")
     private Hotel hotel;
