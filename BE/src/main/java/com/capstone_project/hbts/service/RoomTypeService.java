@@ -15,10 +15,10 @@ public interface RoomTypeService {
     void createRoomType(RoomTypeRequest roomTypeRequest);
 
     /**
-     * Update room type
-     * @param roomTypeId
+     * Update room type for provider
+     * @param roomTypeDTO
      */
-    boolean updateRoomType(Integer roomTypeId);
+    void updateRoomType(RoomTypeDTO roomTypeDTO);
 
     /**
      * Get room type by hotel id

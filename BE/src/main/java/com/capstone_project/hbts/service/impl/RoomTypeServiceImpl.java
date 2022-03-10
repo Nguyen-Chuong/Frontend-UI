@@ -63,9 +63,19 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     }
 
     @Override
-    public boolean updateRoomType(Integer roomTypeId) {
+    @Transactional
+    public void updateRoomType(RoomTypeDTO roomTypeDTO) {
         log.info("Request to update room type");
-        return false;
+        // get room to update
+        RoomType roomType = roomTypeRepository.getRoomTypeById(roomTypeDTO.getId());
+        roomType.setAvailableRooms(roomTypeDTO.getAvailableRooms());
+        roomType.setDealExpire(roomTypeDTO.getDealExpire());
+        roomType.setDealPercentage(roomTypeDTO.getDealPercentage());
+        roomType.setName(roomTypeDTO.getName());
+        roomType.setNumberOfPeople(roomTypeDTO.getNumberOfPeople());
+        roomType.setPrice(roomTypeDTO.getPrice());
+        roomType.setQuantity(roomTypeDTO.getQuantity());
+        roomTypeRepository.save(roomType);
     }
 
     @Override

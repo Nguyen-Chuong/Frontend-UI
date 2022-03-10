@@ -27,6 +27,6 @@ public class RoomTypeDTO {
 
     private Timestamp dealExpire;
 
-    private Set<ImageDTO> listImage;
+    private Set<ImageDTO> listImage; // not required when update
 
 }

@@ -11,6 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -103,6 +104,28 @@ public class RoomTypeResource {
 
         try {
             roomTypeService.createRoomType(roomTypeRequest);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param roomTypeDTO
+     * @apiNote for provider can update a room type for their hotel
+     * return
+     */
+    @PatchMapping("/update-room")
+    public ResponseEntity<?> updateRoomType(@RequestBody RoomTypeDTO roomTypeDTO){
+        log.info("REST request to update room type for provider");
+
+        try {
+            roomTypeService.updateRoomType(roomTypeDTO);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
                             null, null));
