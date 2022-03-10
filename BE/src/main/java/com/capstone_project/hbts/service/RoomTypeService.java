@@ -38,7 +38,6 @@ public interface RoomTypeService {
      */
     RoomDetailDTO viewRoomDetail(int roomTypeId);
 
-    // add, edit pure room type
     // have drop down list pick facility, benefit type -> filter list facility, benefit to pick
     // add to room facility, room benefit table
 
