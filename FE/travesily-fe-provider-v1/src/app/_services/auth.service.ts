@@ -2,15 +2,17 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import * as moment from "moment";
 import { tap } from 'rxjs';
+import { Account } from '../_models/account';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  account: Account | undefined
 
   baseUrl = 'http://localhost:8080/api/v1'
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   //Save jwt to local storage
   private setSession(loginInfo: any) {
@@ -20,19 +22,33 @@ export class AuthService {
     localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()))
   }
 
-//Get jwt token from local storage
+  //Get jwt token from local storage
   get authToken() {
     return localStorage.getItem('token')
   }
 
-//Login account
+  //Login account
   login(email: string, password: string) {
-    return this.http.post(`${this.baseUrl}/authenticate/provider`, {email, password}, {withCredentials: false})
+    return this.http.post(`${this.baseUrl}/authenticate/provider`, { email, password }, { withCredentials: false })
       .pipe(tap(loginInfo => {
-            this.setSession(loginInfo)
-        }
+        this.setSession(loginInfo)
+
+      }
       ))
   }
+  //Register new account
+  register(account: Account) {
+    return this.http.post(`${this.baseUrl}/register/provider`, { ...account }, { withCredentials: false })
+  }
 
+  //Check if username is duplicated
+  checkUsernameDuplicated(username: string) {
+    return this.http.get(`${this.baseUrl}/check/provider/username/${username}`, {withCredentials: false})
+  }
+
+//Check if email is duplicated
+  checkEmailDuplicated(email: string) {
+    return this.http.get(`${this.baseUrl}/check/provider/email/${email}`, {withCredentials: false})
+  }
 
 }
