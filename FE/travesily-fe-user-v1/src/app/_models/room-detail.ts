@@ -13,6 +13,6 @@ export class RoomDetail {
   dealPercentage: number
   dealExpire: Date
   listImage: {id: number, src: string}[]
-  listFacility: Map<FacilityType, Facility[]>
-  listRoomBenefit: Map<BenefitType, Benefit[]>
+  listFacility: FacilityType[]
+  listRoomBenefit: BenefitType[]
 }
