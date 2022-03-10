@@ -1,12 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "cli": {
-    "analytics": "14a51633-f845-4c19-b135-c6f247e1ede7"
+    "analytics": "469b6f51-05de-472d-8464-81686cf6eda9"
   },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "travesily-fe-user-v1": {
+    "travesily-fe-provider-v1": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/travesily-fe-user-v1",
+            "outputPath": "dist/travesily-fe-provider-v1",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -34,20 +34,10 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+              "src/styles.scss"
             ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/app/shared/scss",
-                "src/app/assets"
-              ]
-            },
-            "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/crypto-js/crypto-js.js"
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -86,10 +76,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "travesily-fe-user-v1:build:production"
+              "browserTarget": "travesily-fe-provider-v1:build:production"
             },
             "development": {
-              "browserTarget": "travesily-fe-user-v1:build:development"
+              "browserTarget": "travesily-fe-provider-v1:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -97,7 +87,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "travesily-fe-user-v1:build"
+            "browserTarget": "travesily-fe-provider-v1:build"
           }
         },
         "test": {
@@ -113,7 +103,7 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
+              "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
             "scripts": []
@@ -122,5 +112,5 @@
       }
     }
   },
-  "defaultProject": "travesily-fe-user-v1"
+  "defaultProject": "travesily-fe-provider-v1"
 }

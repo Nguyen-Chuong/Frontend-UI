@@ -30,7 +30,6 @@ import { NewAdminComponent } from './components/new-admin/new-admin.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
-import { NgxNavigationWithDataComponent } from "ngx-navigation-with-data";
 import { UserBookingComponent } from './components/user-booking/user-booking.component';
 import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
 import { UserFeedbackComponent } from './components/user-feedback/user-feedback.component';
@@ -106,7 +105,6 @@ import { MatDialogModule} from '@angular/material/dialog';
       useClass: AuthInterceptor,
       multi: true
     },
-    NgxNavigationWithDataComponent
   ],
   bootstrap: [AppComponent]
 })
