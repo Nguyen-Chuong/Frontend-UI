@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -44,7 +45,19 @@ public class RoomFacilityResource {
     @PostMapping("/add-list-facility")
     public ResponseEntity<?> addListRoomFacility(@RequestBody FacilityRequest facilityRequest) {
         log.info("REST request to add a list facility to provider's room type");
+        // get all facility ids from db
+        List<Integer> listFacilityIds = roomFacilityService.getListFacilityIds(facilityRequest.getRoomTypeId());
+        // list all ids from user request
         List<Integer> listIds = facilityRequest.getFacilityIds();
+        // check list common items in two lists (if have)
+        List<Integer> common = new ArrayList<>(listFacilityIds);
+        common.retainAll(listIds);
+        // check if they have common item
+        if(!common.isEmpty()){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_ITEM_002, ErrorConstant.ERR_ITEM_002_LABEL));
+        }
         Set<Integer> setIds = new HashSet<>(listIds);
         if(setIds.size() < listIds.size()){
             return ResponseEntity.badRequest()

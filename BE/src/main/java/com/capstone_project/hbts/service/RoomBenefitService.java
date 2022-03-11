@@ -25,6 +25,12 @@ public interface RoomBenefitService {
      */
     void deleteRoomBenefit(int roomBenefitId);
 
+    /**
+     * get list benefit id of a room type
+     * @param roomTypeId
+     */
+    List<Integer> getListBenefitIds(int roomTypeId);
+
     // have no option to update list benefit
     // if provider doesn't provide this benefit for this room anymore, they can delete it
     // if they want to change, add an other one

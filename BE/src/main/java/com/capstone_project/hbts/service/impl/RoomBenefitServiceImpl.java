@@ -66,4 +66,10 @@ public class RoomBenefitServiceImpl implements RoomBenefitService {
         roomBenefitRepository.deleteById(roomBenefitId);
     }
 
+    @Override
+    public List<Integer> getListBenefitIds(int roomTypeId) {
+        log.info("Request to get list benefit id of a room type");
+        return roomBenefitRepository.getListBenefitIds(roomTypeId);
+    }
+
 }

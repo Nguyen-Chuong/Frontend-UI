@@ -66,4 +66,10 @@ public class RoomFacilityServiceImpl implements RoomFacilityService {
         roomFacilityRepository.deleteById(roomFacilityId);
     }
 
+    @Override
+    public List<Integer> getListFacilityIds(int roomTypeId) {
+        log.info("Request to get list facility id of a room type");
+        return roomFacilityRepository.getListFacilityIds(roomTypeId);
+    }
+
 }
