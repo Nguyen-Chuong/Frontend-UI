@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Booking} from "../../../../../../_models/booking";
 import {BookingService} from "../../../../../../_services/booking.service";
 import {Router} from "@angular/router";
+import {CryptoService} from "../../../../../../_services/crypto.service";
 
 @Component({
   selector: 'app-booking-card',
@@ -11,7 +12,7 @@ import {Router} from "@angular/router";
 export class BookingCardComponent implements OnInit {
   @Input() booking: Booking = new Booking()
 
-  constructor(private bookingService: BookingService, private router: Router) {
+  constructor(private bookingService: BookingService, private router: Router, private cryptoService: CryptoService) {
   }
 
   ngOnInit(): void {
@@ -19,6 +20,6 @@ export class BookingCardComponent implements OnInit {
   }
 
   viewDetail() {
-    this.router.navigate(['/user/booking-detail'],{queryParams:{bookingId: this.booking.id}})
+    this.router.navigate(['/user/booking-detail'],{queryParams:{bookingId: this.cryptoService.set('06052000',this.booking.id)}})
   }
 }

@@ -6,6 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {Booking} from "../../../../../../_models/booking";
 import {Account} from "../../../../../../_models/account";
 import {AuthService} from "../../../../../../_services/auth.service";
+import {CryptoService} from "../../../../../../_services/crypto.service";
 
 @Component({
   selector: 'app-user-booking-detail',
@@ -17,7 +18,10 @@ export class UserBookingDetailComponent implements OnInit {
   booking: Booking = new Booking()
   bookingDetails: BookingDetail[] = []
 
-  constructor(authService: AuthService ,private bookingService: BookingService, private activatedRoute: ActivatedRoute) {
+  constructor(authService: AuthService,
+              private bookingService: BookingService,
+              private activatedRoute: ActivatedRoute,
+  ) {
     authService.getProfile().pipe(first()).subscribe(rs => {
       this.account = rs['data']
     })
@@ -25,12 +29,13 @@ export class UserBookingDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
-      this.bookingService.getBookingDetail(params['bookingId']).pipe(first()).subscribe(
+      const encryptedId = params['bookingId']
+      this.bookingService.getBookingDetail(encryptedId).subscribe(
         rs => {
           this.bookingDetails = rs['data']
         }
       )
-      this.bookingService.getBookingById(params['bookingId']).pipe(first()).subscribe(
+      this.bookingService.getBookingById(encryptedId).subscribe(
         rs => {
           this.booking = rs['data']
           this.booking.checkIn = new Date(this.booking.checkIn)

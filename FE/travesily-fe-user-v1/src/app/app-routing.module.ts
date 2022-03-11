@@ -34,6 +34,7 @@ import {BodyMainComponent} from "./components/master/body/body-main/body-main.co
 import {
   SearchHotelListComponent
 } from "./components/master/body/body-main/search-hotel-list/search-hotel-list.component";
+import {HotelDetailComponent} from "./components/master/body/body-main/hotel-detail/hotel-detail.component";
 
 const routes: Routes = [
   {
@@ -57,7 +58,8 @@ const routes: Routes = [
       },
       {
         path:'main', component: BodyMainComponent, children:[
-          {path: 'search-hotel-list', component: SearchHotelListComponent}
+          {path: 'search-hotel-list', component: SearchHotelListComponent},
+          {path: 'hotel-detail', component: HotelDetailComponent},
         ]
       },
       {

@@ -51,6 +51,8 @@ import { SearchHotelListComponent } from './components/master/body/body-main/sea
 import { HotelCardComponent } from './components/master/body/body-main/search-hotel-list/hotel-card/hotel-card.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from "./angular-material.module";
+import { HotelDetailComponent } from './components/master/body/body-main/hotel-detail/hotel-detail.component';
+import { RoomTypeCardComponent } from './components/master/body/body-main/hotel-detail/room-type-card/room-type-card.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +98,9 @@ import {AngularMaterialModule} from "./angular-material.module";
     UserBookingDetailCardComponent,
     BodyMainComponent,
     SearchHotelListComponent,
-    HotelCardComponent
+    HotelCardComponent,
+    HotelDetailComponent,
+    RoomTypeCardComponent
   ],
   imports: [
     BrowserModule,
@@ -106,8 +110,7 @@ import {AngularMaterialModule} from "./angular-material.module";
     NgOtpInputModule,
     BrowserAnimationsModule,
     BrowserAnimationsModule,
-    AngularMaterialModule
-
+    AngularMaterialModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,

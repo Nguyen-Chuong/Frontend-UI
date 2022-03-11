@@ -18,7 +18,7 @@ export class UserVipComponent implements OnInit {
   constructor(private authService: AuthService, private alertService: AlertService, private bookingService: BookingService) {
     authService.getProfile().pipe(first()).subscribe(rs => {
         this.account = rs['data']
-        bookingService.getCompletedBooking(this.account.id).pipe(first()).subscribe(rs => {
+        bookingService.getCompletedBooking().pipe(first()).subscribe(rs => {
             this.bookingCount = rs['data']
           document.getElementById('progress-bar').style.width=`${this.bookingCount*5}%`
           },

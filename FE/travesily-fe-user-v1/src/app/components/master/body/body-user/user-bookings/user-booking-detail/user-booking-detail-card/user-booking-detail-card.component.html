@@ -10,7 +10,7 @@
     <div class="col-md-10">
       <div class="card-body">
         <h3 class="card-title text-blue-1">{{bookingDetail.quantity}} X {{roomDetail.name}}</h3>
-        <h4 class="card-text text-success">{{roomDetail.listFacility?.map(filterFacility).join(' | ')}}</h4>
+        <h4 class="card-text text-success">{{roomDetail.listFacility}}</h4>
         <h3 class="card-text">{{bookingDetail.paid * bookingDetail.quantity|number}} VNĐ</h3>
       </div>
     </div>
