@@ -57,6 +57,12 @@ public class ErrorConstant {
     public static final String ERR_USER_008_LABEL = "Your account has been disabled";
 
     /**
+     * Ngày đến phải trước ngày đi
+     */
+    public static final String ERR_USER_009 = "ERR_USER_009";
+    public static final String ERR_USER_009_LABEL = "Your date in have to before date out";
+
+    /**
      * Không tìm thấy Otp
      */
     public static final String ERR_OTP_001 = "ERR_OTP_001";

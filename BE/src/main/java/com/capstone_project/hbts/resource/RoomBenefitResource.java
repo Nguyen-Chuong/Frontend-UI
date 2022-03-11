@@ -53,13 +53,13 @@ public class RoomBenefitResource {
         List<Integer> common = new ArrayList<>(listBenefitIds);
         common.retainAll(listIds);
         // check if they have common item
-        if(!common.isEmpty()){
+        if (!common.isEmpty()) {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_ITEM_002, ErrorConstant.ERR_ITEM_002_LABEL));
         }
         Set<Integer> setIds = new HashSet<>(listIds);
-        if(setIds.size() < listIds.size()){
+        if (setIds.size() < listIds.size()) {
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_ITEM_001, ErrorConstant.ERR_ITEM_001_LABEL));
@@ -94,7 +94,7 @@ public class RoomBenefitResource {
                             ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
         }
         try {
-            List<RoomBenefitDTO> roomBenefitDTOList= roomBenefitService.viewListBenefit(id);
+            List<RoomBenefitDTO> roomBenefitDTOList = roomBenefitService.viewListBenefit(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, roomBenefitDTOList,
                             null, null));

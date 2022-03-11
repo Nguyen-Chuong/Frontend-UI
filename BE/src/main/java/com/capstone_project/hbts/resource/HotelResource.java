@@ -10,6 +10,7 @@ import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.security.jwt.JwtTokenUtil;
 import com.capstone_project.hbts.service.HotelService;
+import com.capstone_project.hbts.validate.ValidateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -67,7 +68,11 @@ public class HotelResource {
                                          @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                          @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         log.info("REST request to search hotel via district id and other info");
-
+        if(!ValidateUtils.isFromDateBeforeToDate(dateIn.toString(), dateOut.toString())){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_USER_009, ErrorConstant.ERR_USER_009_LABEL));
+        }
         try{
             Page<HotelDTO> hotelDTOPage = hotelService.searchHotel(districtId, dateIn, dateOut,
                     numberOfPeople, numberOfRoom, PageRequest.of(page, pageSize));
