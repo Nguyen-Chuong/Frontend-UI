@@ -19,4 +19,10 @@ public interface RoomBenefitService {
      */
     List<RoomBenefitDTO> viewListBenefit(int roomTypeId);
 
+    /**
+     * for provider to delete their room benefit
+     * @param roomBenefitId
+     */
+    void deleteRoomBenefit(int roomBenefitId);
+
 }
