@@ -1,5 +1,6 @@
 package com.capstone_project.hbts.service.impl;
 
+import com.capstone_project.hbts.dto.Room.RoomBenefitDTO;
 import com.capstone_project.hbts.entity.Benefit;
 import com.capstone_project.hbts.entity.RoomBenefit;
 import com.capstone_project.hbts.entity.RoomType;
@@ -7,10 +8,12 @@ import com.capstone_project.hbts.repository.RoomBenefitRepository;
 import com.capstone_project.hbts.request.BenefitRequest;
 import com.capstone_project.hbts.service.RoomBenefitService;
 import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Log4j2
@@ -18,8 +21,11 @@ public class RoomBenefitServiceImpl implements RoomBenefitService {
 
     private final RoomBenefitRepository roomBenefitRepository;
 
-    public RoomBenefitServiceImpl(RoomBenefitRepository roomBenefitRepository) {
+    private final ModelMapper modelMapper;
+
+    public RoomBenefitServiceImpl(RoomBenefitRepository roomBenefitRepository, ModelMapper modelMapper) {
         this.roomBenefitRepository = roomBenefitRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -43,6 +49,15 @@ public class RoomBenefitServiceImpl implements RoomBenefitService {
         }
         // batch processing with max size 10
         roomBenefitRepository.saveAll(roomBenefitList);
+    }
+
+    @Override
+    public List<RoomBenefitDTO> viewListBenefit(int roomTypeId) {
+        log.info("Request to view list room benefit of a room type");
+        return roomBenefitRepository.getAllByRoomTypeId(roomTypeId)
+                .stream()
+                .map(item -> modelMapper.map(item, RoomBenefitDTO.class))
+                .collect(Collectors.toList());
     }
 
 }
