@@ -12,6 +12,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 @RestController
 @CrossOrigin
 @Log4j2
@@ -32,7 +36,13 @@ public class RoomBenefitResource {
     @PostMapping("/add-list-benefit")
     public ResponseEntity<?> addListRoomBenefit(@RequestBody BenefitRequest benefitRequest) {
         log.info("REST request to add a list benefit to provider's room type");
-
+        List<Integer> listIds = benefitRequest.getBenefitIds();
+        Set<Integer> setIds = new HashSet<>(listIds);
+        if(setIds.size() < listIds.size()){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_ITEM_001, ErrorConstant.ERR_ITEM_001_LABEL));
+        }
         try {
             roomBenefitService.addListBenefitToRoomType(benefitRequest);
             return ResponseEntity.ok()

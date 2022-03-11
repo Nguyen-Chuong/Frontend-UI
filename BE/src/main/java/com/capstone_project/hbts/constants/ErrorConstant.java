@@ -99,4 +99,10 @@ public class ErrorConstant {
     public static final String ERR_HOTEL_001 = "ERR_HOTEL_001";
     public static final String ERR_HOTEL_001_LABEL = "Your hotel is banned, you cannot request again";
 
+    /**
+     * Không thể thêm trùng item
+     */
+    public static final String ERR_ITEM_001 = "ERR_ITEM_001";
+    public static final String ERR_ITEM_001_LABEL = "You cannot add duplicate item";
+
 }
