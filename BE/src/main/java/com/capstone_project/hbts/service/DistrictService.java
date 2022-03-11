@@ -19,4 +19,10 @@ public interface DistrictService {
      */
     List<ResultSearch> searchDistrictCity(String text);
 
+    /**
+     * get all districts in city
+     * @param cityId
+     */
+    List<DistrictSearchDTO> getAllDistrictInCity(int cityId);
+
 }

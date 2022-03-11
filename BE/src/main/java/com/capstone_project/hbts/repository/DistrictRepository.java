@@ -23,4 +23,6 @@ public interface DistrictRepository extends JpaRepository<District, Integer> {
             "or city.nameCity like lower(concat('%',:text,'%')) ")
     List<CityDistrict> searchDistrictCity(@Param("text") String text);
 
+    List<District> getAllByCityIdOrderByNameDistrictAsc(int cityId);
+
 }

@@ -1,6 +1,7 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Location.DistrictSearchDTO;
 import com.capstone_project.hbts.dto.Location.ResultSearch;
 import com.capstone_project.hbts.response.ApiResponse;
@@ -23,8 +24,11 @@ public class DistrictResource {
 
     private final DistrictService districtService;
 
-    public DistrictResource(DistrictService districtService) {
+    private final DataDecryption dataDecryption;
+
+    public DistrictResource(DistrictService districtService, DataDecryption dataDecryption) {
         this.districtService = districtService;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -60,6 +64,34 @@ public class DistrictResource {
             List<ResultSearch> cityDistricts = districtService.searchDistrictCity(text);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, cityDistricts,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param cityId
+     * return
+     */
+    @GetMapping("/get-district")
+    public ResponseEntity<?> getDistrictInCity(@RequestParam String cityId){
+        log.info("REST request to get all district in city");
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(cityId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try{
+            List<DistrictSearchDTO> districtSearchDTOList = districtService.getAllDistrictInCity(id);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, districtSearchDTOList,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

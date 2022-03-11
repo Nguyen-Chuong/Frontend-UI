@@ -51,4 +51,13 @@ public class DistrictServiceImpl implements DistrictService {
         return listResultSearch;
     }
 
+    @Override
+    public List<DistrictSearchDTO> getAllDistrictInCity(int cityId) {
+        log.info("Request to get all district in city");
+        return districtRepository.getAllByCityIdOrderByNameDistrictAsc(cityId)
+                .stream()
+                .map(item -> modelMapper.map(item, DistrictSearchDTO.class))
+                .collect(Collectors.toList());
+    }
+
 }
