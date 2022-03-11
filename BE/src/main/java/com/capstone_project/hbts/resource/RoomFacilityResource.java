@@ -1,15 +1,19 @@
 package com.capstone_project.hbts.resource;
 
 import com.capstone_project.hbts.constants.ErrorConstant;
+import com.capstone_project.hbts.decryption.DataDecryption;
+import com.capstone_project.hbts.dto.Room.RoomFacilityDTO;
 import com.capstone_project.hbts.request.FacilityRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.RoomFacilityService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashSet;
@@ -24,8 +28,11 @@ public class RoomFacilityResource {
 
     private final RoomFacilityService roomFacilityService;
 
-    public RoomFacilityResource(RoomFacilityService roomFacilityService) {
+    private final DataDecryption dataDecryption;
+
+    public RoomFacilityResource(RoomFacilityService roomFacilityService, DataDecryption dataDecryption) {
         this.roomFacilityService = roomFacilityService;
+        this.dataDecryption = dataDecryption;
     }
 
     /**
@@ -47,6 +54,35 @@ public class RoomFacilityResource {
             roomFacilityService.addListFacilityToRoomType(facilityRequest);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, null,
+                            null, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param roomTypeId
+     * @apiNote for provider can view a list facility of their room
+     * return
+     */
+    @GetMapping("/get-room-facility")
+    public ResponseEntity<?> getListRoomFacility(@RequestParam String roomTypeId) {
+        log.info("REST request to view a list facility of room type");
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(roomTypeId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            List<RoomFacilityDTO> roomFacilityDTOList= roomFacilityService.viewListFacility(id);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, roomFacilityDTOList,
                             null, null));
         } catch (Exception e) {
             e.printStackTrace();

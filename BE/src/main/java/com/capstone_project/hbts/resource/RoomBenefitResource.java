@@ -69,7 +69,7 @@ public class RoomBenefitResource {
      * return
      */
     @GetMapping("/get-room-benefit")
-    public ResponseEntity<?> addListRoomBenefit(@RequestParam String roomTypeId) {
+    public ResponseEntity<?> getListRoomBenefit(@RequestParam String roomTypeId) {
         log.info("REST request to view a list benefit of room type");
         int id;
         try {

@@ -4,7 +4,11 @@ import com.capstone_project.hbts.entity.RoomFacility;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface RoomFacilityRepository extends JpaRepository<RoomFacility, Integer> {
+
+    List<RoomFacility> getAllByRoomTypeId(int roomTypeId);
 
 }
