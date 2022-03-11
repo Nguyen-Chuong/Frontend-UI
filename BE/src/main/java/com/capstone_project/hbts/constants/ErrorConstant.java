@@ -105,4 +105,10 @@ public class ErrorConstant {
     public static final String ERR_ITEM_001 = "ERR_ITEM_001";
     public static final String ERR_ITEM_001_LABEL = "You cannot add duplicate item";
 
+    /**
+     * Item này đã tồn tại trong danh sách
+     */
+    public static final String ERR_ITEM_002 = "ERR_ITEM_002";
+    public static final String ERR_ITEM_002_LABEL = "You already have this item in your list";
+
 }

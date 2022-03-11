@@ -25,4 +25,8 @@ public interface RoomFacilityService {
      */
     void deleteRoomFacility(int roomFacilityId);
 
+    // have no option to update list facility
+    // if provider doesn't provide this facility for this room anymore, they can delete it
+    // if they want to change, add an other one
+
 }
