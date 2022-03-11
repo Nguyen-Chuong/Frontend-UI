@@ -9,6 +9,7 @@ import com.capstone_project.hbts.service.RoomFacilityService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -83,6 +84,35 @@ public class RoomFacilityResource {
             List<RoomFacilityDTO> roomFacilityDTOList= roomFacilityService.viewListFacility(id);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, roomFacilityDTOList,
+                            null, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param roomFacilityId
+     * @apiNote for provider can delete a facility of their room
+     * return
+     */
+    @DeleteMapping("/delete-room-facility")
+    public ResponseEntity<?> deleteRoomFacility(@RequestParam String roomFacilityId) {
+        log.info("REST request to delete a facility of room type");
+        int id;
+        try {
+            id = dataDecryption.convertEncryptedDataToInt(roomFacilityId);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
+        }
+        try {
+            roomFacilityService.deleteRoomFacility(id);
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
                             null, null));
         } catch (Exception e) {
             e.printStackTrace();

@@ -60,4 +60,10 @@ public class RoomFacilityServiceImpl implements RoomFacilityService {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public void deleteRoomFacility(int roomFacilityId) {
+        log.info("Request to delete a facility of a room type");
+        roomFacilityRepository.deleteById(roomFacilityId);
+    }
+
 }

@@ -19,4 +19,10 @@ public interface RoomFacilityService {
      */
     List<RoomFacilityDTO> viewListFacility(int roomTypeId);
 
+    /**
+     * for provider to delete their room facility
+     * @param roomFacilityId
+     */
+    void deleteRoomFacility(int roomFacilityId);
+
 }
