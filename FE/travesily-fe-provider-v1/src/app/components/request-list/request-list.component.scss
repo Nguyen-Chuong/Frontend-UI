@@ -2,14 +2,14 @@
   font-style: inherit;
   font-size: 1.5rem;
 }
-.hotels {
+.requests {
   display: flex;
 }
 .menu-list {
   width: 210px;
   height: 100%;
 }
-.hotel {
+.request {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -25,18 +25,6 @@
     color: rgb(78, 78, 223);
   }
 
-  &-table-remove {
-    background-color: rgb(211, 34, 34);
-    padding: 5px;
-    border-radius: 5px;
-
-    &:hover {
-      color: #3f51b5;
-      background-color: #fff;
-      border: 1px solid #3f51b5;
-      box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
-    }
-  }
 }
 table {
   width: 100%;
@@ -51,3 +39,4 @@ table {
 .mat-row:hover .mat-cell {
   border-color: currentColor;
 }
+

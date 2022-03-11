@@ -18,6 +18,7 @@ import { AuthInterceptor } from './_helper/auth.interceptor';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NegativeBarComponent } from './components/negative-bar/negative-bar.component';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
+import { RequestListComponent } from './components/request-list/request-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { HotelListComponent } from './components/hotel-list/hotel-list.component
     ProfileComponent,
     NegativeBarComponent,
     HotelListComponent,
+    RequestListComponent,
   ],
   imports: [
     BrowserModule,

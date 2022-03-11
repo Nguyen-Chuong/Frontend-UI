@@ -1,3 +1,4 @@
+import { RequestListComponent } from './components/request-list/request-list.component';
 import { NegativeBarComponent } from './components/negative-bar/negative-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
@@ -40,6 +41,10 @@ const routes: Routes = [
   {
     path: 'hotel-list',
     component: HotelListComponent
+  },
+  {
+    path: 'request-list',
+    component: RequestListComponent
   },
 ];
 
