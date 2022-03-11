@@ -266,4 +266,11 @@ public class HotelServiceImpl implements HotelService {
         hotelRepository.save(hotel);
     }
 
+    @Override
+    public boolean isHotelHadRoom(int hotelId) {
+        log.info("Request to check if a hotel had rooms or not");
+        Hotel hotel = hotelRepository.getHotelById(hotelId);
+        return hotel.getListRoomType().size() != 0;
+    }
+
 }

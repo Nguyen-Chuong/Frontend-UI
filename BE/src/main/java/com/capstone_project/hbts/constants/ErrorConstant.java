@@ -106,6 +106,13 @@ public class ErrorConstant {
     public static final String ERR_HOTEL_001_LABEL = "Your hotel is banned, you cannot request again";
 
     /**
+     * Khách sạn chưa đủ điều kiện request
+     */
+    public static final String ERR_HOTEL_002 = "ERR_HOTEL_002";
+    public static final String ERR_HOTEL_002_LABEL = "Your hotel is not qualified for requesting, " +
+            "add at least one room type for booking";
+
+    /**
      * Không thể thêm trùng item
      */
     public static final String ERR_ITEM_001 = "ERR_ITEM_001";

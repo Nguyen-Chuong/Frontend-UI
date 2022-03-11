@@ -102,4 +102,11 @@ public interface HotelService {
      */
     void updateHotel(HotelDTO hotelDTO);
 
+    /**
+     * check if hotel had rooms or not
+     * @param hotelId
+     * @return
+     */
+    boolean isHotelHadRoom(int hotelId);
+
 }

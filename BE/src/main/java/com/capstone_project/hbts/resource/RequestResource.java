@@ -59,6 +59,11 @@ public class RequestResource {
     public ResponseEntity<?> addRequestPostHotel(@RequestHeader("Authorization") String jwttoken,
                                                  @RequestBody PostHotelRequest postHotelRequest){
         log.info("REST request to add new request to post hotel for provider");
+        if(!hotelService.isHotelHadRoom(postHotelRequest.getHotelId())){
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_HOTEL_002, ErrorConstant.ERR_HOTEL_002_LABEL));
+        }
         // if hotel status = 4 -> it is banned, provider cannot send request for this hotel anymore
         if(hotelService.viewHotelStatus(postHotelRequest.getHotelId()) == 4){
             return ResponseEntity.badRequest()
