@@ -1,3 +1,4 @@
+import { NegativeBarComponent } from './components/negative-bar/negative-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -5,6 +6,7 @@ import { ChangePasswordComponent } from './components/authentication/change-pass
 import { ForgotPasswordComponent } from './components/authentication/forgot-password/forgot-password.component';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
+import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 
 const routes: Routes = [
   {
@@ -30,6 +32,14 @@ const routes: Routes = [
   {
     path: 'profile',
     component: ProfileComponent
+  },
+  {
+    path: 'home',
+    component: NegativeBarComponent
+  },
+  {
+    path: 'hotel-list',
+    component: HotelListComponent
   },
 ];
 

@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   public openProfile(){
-    this.router.navigateByUrl('/admin-profile');
+    this.router.navigateByUrl('/profile');
   }
 
   public logout(){

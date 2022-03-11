@@ -8,7 +8,7 @@ import { Account } from '../_models/account';
   providedIn: 'root'
 })
 export class AuthService {
-  account: Account | undefined
+  account: Account
 
   baseUrl = 'http://localhost:8080/api/v1'
 
