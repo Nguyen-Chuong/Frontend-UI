@@ -10,4 +10,6 @@ public class ValidateConstant {
     // constants email
     public static final String EMAIL_SUBJECT = "[Verify] Please verify your email";
 
+    public static final String DATE_FORMAT = "yyyy-MM-dd";
+
 }
