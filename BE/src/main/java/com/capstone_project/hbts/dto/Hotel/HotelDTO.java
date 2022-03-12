@@ -4,6 +4,8 @@ import com.capstone_project.hbts.dto.Location.DistrictDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
 public class HotelDTO {
@@ -29,5 +31,7 @@ public class HotelDTO {
     private long price;
 
     private int salePercent;
+
+    private Timestamp dealExpired;
 
 }

@@ -105,6 +105,9 @@ public class HotelServiceImpl implements HotelService {
             // set %deal
             hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
                     (result.get(i).getListRoomType()).getDealPercentage());
+            // set deal expired
+            hotelDTOList.get(i).setDealExpired(getLowestPriceInHotel
+                    (result.get(i).getListRoomType()).getDealExpire());
         }
         // hotel with no room have deal and price = 0
 
@@ -134,6 +137,9 @@ public class HotelServiceImpl implements HotelService {
                 // set %deal
                 hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
                         (resultList.get(i).getListRoomType()).getDealPercentage());
+                // set deal expired
+                hotelDTOList.get(i).setDealExpired(getLowestPriceInHotel
+                        (resultList.get(i).getListRoomType()).getDealExpire());
             }
         } else {
             resultList = hotelRepository.findAllByStatus(status, pageable).getContent();
@@ -151,6 +157,9 @@ public class HotelServiceImpl implements HotelService {
                 // set %deal
                 hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
                         (resultList.get(i).getListRoomType()).getDealPercentage());
+                // set deal expired
+                hotelDTOList.get(i).setDealExpired(getLowestPriceInHotel
+                        (resultList.get(i).getListRoomType()).getDealExpire());
             }
         }
         // hotel with no room have deal and price = 0
@@ -195,6 +204,9 @@ public class HotelServiceImpl implements HotelService {
             // set %deal
             hotelDTOList.get(i).setSalePercent(getLowestPriceInHotel
                     (hotelList.get(i).getListRoomType()).getDealPercentage());
+            // set deal expired
+            hotelDTOList.get(i).setDealExpired(getLowestPriceInHotel
+                    (hotelList.get(i).getListRoomType()).getDealExpire());
         }
         return hotelDTOList;
     }
@@ -222,7 +234,8 @@ public class HotelServiceImpl implements HotelService {
         hotelDTO.setPrice(getLowestPriceInHotel(hotel.getListRoomType()).getPrice());
         // set % deal
         hotelDTO.setSalePercent(getLowestPriceInHotel(hotel.getListRoomType()).getDealPercentage());
-
+        // set deal expired
+        hotelDTO.setDealExpired(getLowestPriceInHotel(hotel.getListRoomType()).getDealExpire());
         return hotelDTO;
     }
 
