@@ -3,6 +3,8 @@ package com.capstone_project.hbts.dto.Report;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Timestamp;
+
 @Data
 @NoArgsConstructor
 public class ReviewDTO {
@@ -23,6 +25,6 @@ public class ReviewDTO {
 
     private float facilities;
 
-    private int review;
+    private Timestamp reviewDate;
 
 }

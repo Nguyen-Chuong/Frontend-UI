@@ -5,6 +5,7 @@ import com.capstone_project.hbts.entity.Review;
 import com.capstone_project.hbts.entity.UserBooking;
 import com.capstone_project.hbts.repository.BookingRepository;
 import com.capstone_project.hbts.repository.ReviewRepository;
+import com.capstone_project.hbts.request.ReviewRequest;
 import com.capstone_project.hbts.response.CustomPageImpl;
 import com.capstone_project.hbts.service.ReviewService;
 import lombok.extern.log4j.Log4j2;
@@ -12,7 +13,9 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -55,6 +58,21 @@ public class ReviewServiceImpl implements ReviewService {
                 .collect(Collectors.toList());
 
         return new CustomPageImpl<>(reviewDTOList);
+    }
+
+    @Override
+    @Transactional
+    public void addReview(ReviewRequest reviewRequest) {
+        log.info("Request to add a new review about hotel services");
+        reviewRepository.addNewReview(reviewRequest.getCleanliness(),
+                reviewRequest.getFacilities(),
+                reviewRequest.getLocation(),
+                reviewRequest.getService(),
+                reviewRequest.getValueForMoney(),
+                reviewRequest.getReviewTitle(),
+                reviewRequest.getReviewDetail(),
+                reviewRequest.getUserBookingId(),
+                new Timestamp(System.currentTimeMillis()));
     }
 
 }

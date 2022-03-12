@@ -4,6 +4,7 @@ import com.capstone_project.hbts.constants.ErrorConstant;
 import com.capstone_project.hbts.constants.ValidateConstant;
 import com.capstone_project.hbts.decryption.DataDecryption;
 import com.capstone_project.hbts.dto.Report.ReviewDTO;
+import com.capstone_project.hbts.request.ReviewRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.response.DataPagingResponse;
 import com.capstone_project.hbts.service.ReviewService;
@@ -13,6 +14,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -60,6 +63,29 @@ public class ReviewResource {
 
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, dataPagingResponse,
+                            null, null));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
+    /**
+     * @param reviewRequest
+     * @apiNote for user can add a new review about hotel's service
+     * return
+     */
+    @PostMapping("/add-review")
+    public ResponseEntity<?> getReview(@RequestBody ReviewRequest reviewRequest){
+        log.info("REST request to add a new review ");
+
+        try {
+            reviewService.addReview(reviewRequest);
+
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();
