@@ -1,3 +1,4 @@
+import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { NegativeBarComponent } from './components/negative-bar/negative-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -45,6 +46,10 @@ const routes: Routes = [
   {
     path: 'request-list',
     component: RequestListComponent
+  },
+  {
+    path: 'new-hotel',
+    component: NewHotelComponent
   },
 ];
 

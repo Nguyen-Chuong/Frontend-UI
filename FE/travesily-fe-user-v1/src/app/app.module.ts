@@ -53,6 +53,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {AngularMaterialModule} from "./angular-material.module";
 import { HotelDetailComponent } from './components/master/body/body-main/hotel-detail/hotel-detail.component';
 import { RoomTypeCardComponent } from './components/master/body/body-main/hotel-detail/room-type-card/room-type-card.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import {AngularFireModule} from "@angular/fire/compat";
+import { UploadFormComponent } from './shared/components/upload-form/upload-form.component';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 @NgModule({
   declarations: [
@@ -100,7 +107,8 @@ import { RoomTypeCardComponent } from './components/master/body/body-main/hotel-
     SearchHotelListComponent,
     HotelCardComponent,
     HotelDetailComponent,
-    RoomTypeCardComponent
+    RoomTypeCardComponent,
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,
@@ -111,6 +119,11 @@ import { RoomTypeCardComponent } from './components/master/body/body-main/hotel-
     BrowserAnimationsModule,
     BrowserAnimationsModule,
     AngularMaterialModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => getFirestore()),
+    provideStorage(() => getStorage()),
+    AngularFireModule.initializeApp(environment.firebase),
+    provideDatabase(() => getDatabase()),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,

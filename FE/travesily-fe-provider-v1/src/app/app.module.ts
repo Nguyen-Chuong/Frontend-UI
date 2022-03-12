@@ -19,6 +19,10 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { NegativeBarComponent } from './components/negative-bar/negative-bar.component';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
+import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
+import { AddBenefitsComponent } from './components/add-benefits/add-benefits.component';
+import { AddRoomComponent } from './components/add-room/add-room.component';
+import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +36,10 @@ import { RequestListComponent } from './components/request-list/request-list.com
     NegativeBarComponent,
     HotelListComponent,
     RequestListComponent,
+    NewHotelComponent,
+    AddBenefitsComponent,
+    AddRoomComponent,
+    AddHotelComponent,
   ],
   imports: [
     BrowserModule,
