@@ -15,6 +15,12 @@ public interface RoomTypeService {
     void createRoomType(RoomTypeRequest roomTypeRequest);
 
     /**
+     * get the room type id just insert
+     * @param
+     */
+    Integer getRoomIdJustInsert();
+
+    /**
      * Update room type for provider
      * @param roomTypeDTO
      */

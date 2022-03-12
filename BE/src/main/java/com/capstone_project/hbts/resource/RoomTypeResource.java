@@ -104,8 +104,10 @@ public class RoomTypeResource {
 
         try {
             roomTypeService.createRoomType(roomTypeRequest);
+            Integer roomId = roomTypeService.getRoomIdJustInsert();
+
             return ResponseEntity.ok()
-                    .body(new ApiResponse<>(200, null,
+                    .body(new ApiResponse<>(200, roomId,
                             null, null));
         } catch (Exception e) {
             e.printStackTrace();

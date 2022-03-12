@@ -63,6 +63,12 @@ public class RoomTypeServiceImpl implements RoomTypeService {
     }
 
     @Override
+    public Integer getRoomIdJustInsert() {
+        log.info("Request to get room type id just insert");
+        return roomTypeRepository.getRoomTypeIdJustInsert();
+    }
+
+    @Override
     @Transactional
     public void updateRoomType(RoomTypeDTO roomTypeDTO) {
         log.info("Request to update room type");

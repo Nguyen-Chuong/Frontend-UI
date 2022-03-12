@@ -35,6 +35,10 @@ public interface RoomTypeRepository extends JpaRepository<RoomType, Integer> {
             @Param("quantity") int quantity,
             @Param("hotelId") int hotelId);
 
+    @Query(value = "select last_insert_id(id) from capstone.room_type order by last_insert_id(id) desc limit 1;",
+            nativeQuery = true)
+    Integer getRoomTypeIdJustInsert();
+
     @Modifying
     @Query(value = "UPDATE capstone.room_type set status = 0 WHERE id = :roomTypeId",
             nativeQuery = true)
