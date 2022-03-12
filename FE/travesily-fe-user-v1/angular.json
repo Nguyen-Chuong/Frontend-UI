@@ -120,6 +120,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "travesily-fe-user-v1:build:production",
+            "firebaseProject": "capstone-343210",
+            "firebaseHostingSite": "capstone-343210"
+          }
         }
       }
     }

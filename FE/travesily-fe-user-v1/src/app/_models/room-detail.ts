@@ -11,7 +11,7 @@ export class RoomDetail {
   quantity: number
   availableRooms: number
   dealPercentage: number
-  dealExpire: Date
+  dealExpire: number
   listImage: {id: number, src: string}[]
   listFacility: FacilityType[]
   listRoomBenefit: BenefitType[]
