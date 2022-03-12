@@ -8,6 +8,7 @@ import com.capstone_project.hbts.request.RoomTypeRequest;
 import com.capstone_project.hbts.response.ApiResponse;
 import com.capstone_project.hbts.service.RoomTypeService;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -41,7 +43,11 @@ public class RoomTypeResource {
      * return
      */
     @GetMapping("/public/room-type")
-    public ResponseEntity<?> getListRoomTypeByHotel(@RequestParam String hotelId) {
+    public ResponseEntity<?> getListRoomTypeByHotel(@RequestParam String hotelId,
+                                                    @RequestParam(required = false) @DateTimeFormat
+                                                            (pattern = "yyyy-MM-dd") Date dateIn,
+                                                    @RequestParam(required = false) @DateTimeFormat
+                                                            (pattern = "yyyy-MM-dd") Date dateOut) {
         log.info("REST request to get list room type by hotel id");
         int id;
         try {
@@ -52,7 +58,7 @@ public class RoomTypeResource {
                             ErrorConstant.ERR_DATA_001, ErrorConstant.ERR_DATA_001_LABEL));
         }
         try {
-            List<RoomTypeDTO> list = roomTypeService.loadRoomTypeByHotelId(id);
+            List<RoomTypeDTO> list = roomTypeService.loadRoomTypeByHotelId(id, dateIn, dateOut);
             return ResponseEntity.ok()
                     .body(new ApiResponse<>(200, list,
                             null, null));

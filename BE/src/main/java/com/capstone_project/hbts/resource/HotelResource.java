@@ -14,6 +14,7 @@ import com.capstone_project.hbts.validate.ValidateUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @CrossOrigin
@@ -61,14 +62,14 @@ public class HotelResource {
      */
     @GetMapping("/public/search-hotel")
     public ResponseEntity<?> searchHotel(@RequestParam int districtId,
-                                         @RequestParam Date dateIn,
-                                         @RequestParam Date dateOut,
+                                         @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateIn,
+                                         @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date dateOut,
                                          @RequestParam int numberOfPeople,
                                          @RequestParam int numberOfRoom,
                                          @RequestParam(defaultValue = ValidateConstant.PAGE) int page,
                                          @RequestParam(defaultValue = ValidateConstant.PER_PAGE) int pageSize){
         log.info("REST request to search hotel via district id and other info");
-        if(!ValidateUtils.isFromDateBeforeToDate(dateIn.toString(), dateOut.toString())){
+        if(!ValidateUtils.isFromDateBeforeToDate(dateIn, dateOut)){
             return ResponseEntity.badRequest()
                     .body(new ApiResponse<>(400, null,
                             ErrorConstant.ERR_USER_009, ErrorConstant.ERR_USER_009_LABEL));

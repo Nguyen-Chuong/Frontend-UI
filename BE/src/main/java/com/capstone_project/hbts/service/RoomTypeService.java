@@ -4,6 +4,7 @@ import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
 import com.capstone_project.hbts.request.RoomTypeRequest;
 
+import java.util.Date;
 import java.util.List;
 
 public interface RoomTypeService {
@@ -30,7 +31,7 @@ public interface RoomTypeService {
      * Get room type by hotel id
      * @param hotelId
      */
-    List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId);
+    List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId, Date dateIn, Date dateOut);
 
     /**
      * Disable room type

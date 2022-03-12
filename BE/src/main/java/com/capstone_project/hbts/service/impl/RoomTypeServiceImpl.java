@@ -12,7 +12,10 @@ import com.capstone_project.hbts.dto.ImageDTO;
 import com.capstone_project.hbts.dto.Room.RoomDetailDTO;
 import com.capstone_project.hbts.dto.Room.RoomTypeDTO;
 import com.capstone_project.hbts.entity.RoomType;
+import com.capstone_project.hbts.entity.UserBooking;
+import com.capstone_project.hbts.entity.UserBookingDetail;
 import com.capstone_project.hbts.repository.BenefitRepository;
+import com.capstone_project.hbts.repository.BookingDetailRepository;
 import com.capstone_project.hbts.repository.FacilityRepository;
 import com.capstone_project.hbts.repository.RoomTypeRepository;
 import com.capstone_project.hbts.request.RoomTypeRequest;
@@ -23,8 +26,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -40,12 +46,16 @@ public class RoomTypeServiceImpl implements RoomTypeService {
 
     private final BenefitRepository benefitRepository;
 
+    private final BookingDetailRepository bookingDetailRepository;
+
     public RoomTypeServiceImpl(RoomTypeRepository roomTypeRepository, ModelMapper modelMapper,
-                               FacilityRepository facilityRepository, BenefitRepository benefitRepository) {
+                               FacilityRepository facilityRepository, BenefitRepository benefitRepository,
+                               BookingDetailRepository bookingDetailRepository) {
         this.roomTypeRepository = roomTypeRepository;
         this.modelMapper = modelMapper;
         this.facilityRepository = facilityRepository;
         this.benefitRepository = benefitRepository;
+        this.bookingDetailRepository = bookingDetailRepository;
     }
 
     @Override
@@ -84,13 +94,69 @@ public class RoomTypeServiceImpl implements RoomTypeService {
         roomTypeRepository.save(roomType);
     }
 
+    // check if a room is sold out or not
+    public boolean isRoomSoldOut(RoomType roomType, List<UserBooking> listBookingInThisRoom, Date dateIn, Date dateOut){
+        // get total quantity room available
+        int numberOfRoomsTotal = roomType.getQuantity();
+        for(UserBooking userBooking : listBookingInThisRoom){
+            // get date user booking checkin
+            Date userBookingCheckIn = new Date(userBooking.getCheckIn().getTime());
+            // get date user booking check out
+            Date userBookingCheckOut = new Date(userBooking.getCheckOut().getTime());
+            // cases that date in, date out is not available
+            if(dateIn.before(userBookingCheckIn) && dateOut.after(userBookingCheckIn)
+                    || dateIn.before(userBookingCheckOut) && dateOut.after(userBookingCheckOut)
+                    || dateIn.after(userBookingCheckIn) && dateOut.before(userBookingCheckOut)
+                    || dateIn.before(userBookingCheckIn) && dateOut.after(userBookingCheckOut)
+                    || dateIn.equals(userBookingCheckIn) && dateOut.equals(userBookingCheckOut)
+                    || dateIn.equals(userBookingCheckIn) && dateOut.before(userBookingCheckOut)
+                    || dateIn.after(userBookingCheckIn) && dateOut.equals(userBookingCheckOut)) {
+                // minus 1 with number of room booked
+                numberOfRoomsTotal = numberOfRoomsTotal - 1;
+            }
+        }
+        return numberOfRoomsTotal <= 0;
+    }
+
     @Override
-    public List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId) {
+    public List<RoomTypeDTO> loadRoomTypeByHotelId(int hotelId, Date dateIn, Date dateOut) {
         log.info("Request to load room type by hotel id");
 
         List<RoomType> list = roomTypeRepository.findRoomTypeByHotelId(hotelId);
+        // get array list roomType ids
+        ArrayList<Integer> roomTypeIds = (ArrayList<Integer>) list
+                .stream()
+                .map(RoomType::getId)
+                .collect(Collectors.toList());
+        // get all user booking detail by list room ids
+        List<UserBookingDetail> bookingDetailList = bookingDetailRepository.getAllByRoomTypeId(roomTypeIds);
+        // create a map to store room type and its user booking
+        Map<RoomType, List<UserBooking>> mapRoomAndBooking = new LinkedHashMap<>();
+        for (RoomType roomType : list) {
+            // filter booking detail has room type equal w/ item in list room type
+            List<UserBookingDetail> bookingDetail = bookingDetailList
+                    .stream()
+                    .filter(element -> element.getRoomType().equals(roomType))
+                    .collect(Collectors.toList());
+            // get list user booking
+            List<UserBooking> userBookings = bookingDetail
+                    .stream()
+                    .map(UserBookingDetail::getUserBooking)
+                    .collect(Collectors.toList());
+            // put them into map
+            mapRoomAndBooking.put(roomType, userBookings);
+        }
 
-        return list.stream()
+        // for loop through map and set available room = 0 for these rooms that sold out
+        for(var entry : mapRoomAndBooking.entrySet()){
+            // check if a room is sold out or not
+            if(isRoomSoldOut(entry.getKey(), entry.getValue(), dateIn, dateOut)){
+                // set available room
+                entry.getKey().setAvailableRooms(0);
+            }
+        }
+
+        return mapRoomAndBooking.keySet().stream()
                 .map(item -> modelMapper.map(item, RoomTypeDTO.class))
                 .collect(Collectors.toList());
     }

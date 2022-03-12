@@ -17,11 +17,9 @@ public class ValidateUtils {
         return true;
     }
 
-    public static boolean isFromDateBeforeToDate(String fromDate, String toDate) {
+    public static boolean isFromDateBeforeToDate(Date fromDate, Date toDate) {
         try {
-            Date fromD = new SimpleDateFormat(ValidateConstant.DATE_FORMAT).parse(fromDate);
-            Date toD = new SimpleDateFormat(ValidateConstant.DATE_FORMAT).parse(toDate);
-            return fromD.before(toD);
+            return fromDate.before(toDate);
         } catch (Exception e) {
             return false;
         }
