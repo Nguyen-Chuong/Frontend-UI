@@ -191,4 +191,11 @@ public class RoomTypeServiceImpl implements RoomTypeService {
                 finalResultBenefit);
     }
 
+    @Override
+    @Transactional
+    public void createSQLEventUpdateDealViaDateExpired() {
+        log.info("Request to create sql event update deal percentage");
+        roomTypeRepository.createSQLEventUpdateDealViaDateExpired();
+    }
+
 }

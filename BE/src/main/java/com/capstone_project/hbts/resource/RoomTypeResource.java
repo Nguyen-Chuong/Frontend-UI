@@ -195,4 +195,26 @@ public class RoomTypeResource {
         }
     }
 
+    /**
+     * @param
+     * @apiNote create a sql event to auto update deal percentage via date expired
+     * return
+     */
+    @PatchMapping("/create-event-update-deal")
+    public ResponseEntity<?> createEventUpdateDeal() {
+        log.info("REST request to create event update deal via date expired");
+
+        try {
+            roomTypeService.createSQLEventUpdateDealViaDateExpired();
+            return ResponseEntity.ok()
+                    .body(new ApiResponse<>(200, null,
+                            null, null));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.badRequest()
+                    .body(new ApiResponse<>(400, null,
+                            ErrorConstant.ERR_000, ErrorConstant.ERR_000_LABEL));
+        }
+    }
+
 }

@@ -47,4 +47,10 @@ public interface RoomTypeService {
     // have drop down list all to pick facility, benefit type -> filter list facility, benefit to pick
     // add to room facility, room benefit table repo
 
+    /**
+     * Create sql event to update deal via date expired
+     * @param
+     */
+    void createSQLEventUpdateDealViaDateExpired();
+
 }

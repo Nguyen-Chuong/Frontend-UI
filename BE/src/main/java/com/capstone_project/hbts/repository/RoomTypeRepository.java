@@ -45,4 +45,15 @@ public interface RoomTypeRepository extends JpaRepository<RoomType, Integer> {
             nativeQuery = true)
     void enableRoomTypeById(@Param("roomTypeId") int roomTypeId);
 
+    @Modifying
+    @Query(value = "create event if not exists event_update_deal_percentage \n" +
+            "on schedule \n" +
+            "every 1 day\n" +
+            "starts current_timestamp \n" +
+            "ends current_timestamp + interval 3 month\n" +
+            "do\n" +
+            "UPDATE capstone.room_type SET deal_percentage = 0 WHERE deal_expire < now();",
+            nativeQuery = true)
+    void createSQLEventUpdateDealViaDateExpired();
+
 }
