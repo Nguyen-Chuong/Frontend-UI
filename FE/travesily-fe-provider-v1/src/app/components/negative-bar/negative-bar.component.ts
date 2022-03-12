@@ -35,8 +35,8 @@ export class NegativeBarComponent implements OnInit {
     this.router.navigateByUrl('/request-list');
   }
 
-  openHistory(): void{
-    this.router.navigate(['/history']);
+  openNewHotel(): void{
+    this.router.navigate(['/new-hotel']);
   }
 
   openFeedbackList(): void{

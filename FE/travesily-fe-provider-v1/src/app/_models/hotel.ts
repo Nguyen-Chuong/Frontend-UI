@@ -9,4 +9,5 @@ export class Hotel {
  description: string
  status: number
  price: number
+ districtID: number
 }

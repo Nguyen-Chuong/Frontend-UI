@@ -20,7 +20,7 @@ export class HotelListComponent implements OnInit {
     private notificationService: NotificationService
     ) { }
 
-  displayedColumns: string[] = ['hotelName', 'address', 'status', 'detail'];
+  displayedColumns: string[] = ['hotelName', 'address', 'status', 'update', 'detail'];
 
   ngOnInit(): void {
     this.hotelService.getAllHotel().pipe(first()).subscribe(
