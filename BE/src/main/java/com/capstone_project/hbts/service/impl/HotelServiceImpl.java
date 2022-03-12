@@ -258,6 +258,12 @@ public class HotelServiceImpl implements HotelService {
     }
 
     @Override
+    public Integer getHotelIdJustInsert() {
+        log.info("Request to get hotel id that just insert");
+        return hotelRepository.getHotelIdJustInsert();
+    }
+
+    @Override
     public Integer viewHotelStatus(int hotelId) {
         log.info("Request to view a hotel status");
         return hotelRepository.viewHotelStatus(hotelId);

@@ -29,4 +29,6 @@ public class RoomTypeDTO {
 
     private Set<ImageDTO> listImage; // not required when update
 
+    private boolean soldOut;
+
 }

@@ -89,6 +89,12 @@ public interface HotelService {
     void addHotelByProvider(HotelRequest hotelRequest);
 
     /**
+     * Get hotel id just insert
+     * @return
+     */
+    Integer getHotelIdJustInsert();
+
+    /**
      * view a hotel status
      * @param hotelId
      * @return

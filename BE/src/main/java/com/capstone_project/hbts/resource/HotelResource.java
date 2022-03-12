@@ -315,9 +315,10 @@ public class HotelResource {
         hotelRequest.setProviderId(providerId);
         try{
             hotelService.addHotelByProvider(hotelRequest);
+            Integer hotelId = hotelService.getHotelIdJustInsert();
 
             return ResponseEntity.ok()
-                    .body(new ApiResponse<>(200, null,
+                    .body(new ApiResponse<>(200, hotelId,
                             null, null));
         }catch (Exception e){
             e.printStackTrace();

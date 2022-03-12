@@ -76,4 +76,8 @@ public interface HotelRepository extends JpaRepository<Hotel, Integer> {
             nativeQuery = true)
     Integer viewHotelStatus(@Param("hotelId") int hotelId);
 
+    @Query(value = "select last_insert_id(id) from capstone.hotel order by last_insert_id(id) desc limit 1;",
+            nativeQuery = true)
+    Integer getHotelIdJustInsert();
+
 }
