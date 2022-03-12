@@ -59,11 +59,11 @@ public class HotelServiceImpl implements HotelService {
         List<Long> listPrice = new ArrayList<>();
         // add room prices to list to compare
         for (RoomType roomType : roomTypes) {
-            listPrice.add(roomType.getPrice() * roomType.getDealPercentage());
+            listPrice.add(roomType.getPrice() - roomType.getPrice() * roomType.getDealPercentage()/100);
         }
         // loop list room and return the room that have lowest price
         for (RoomType roomType : roomTypes) {
-            if (roomType.getPrice() * roomType.getDealPercentage() == Collections.min(listPrice)) {
+            if (roomType.getPrice() - roomType.getPrice() * roomType.getDealPercentage()/100 == Collections.min(listPrice)) {
                 return roomType;
             }
         }
