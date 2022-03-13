@@ -23,36 +23,6 @@ export class AuthService {
     localStorage.setItem('account-type', type.toString())
   }
 
-//Save account to local storage
-  set accountStorage(account: Account) {
-    localStorage.setItem('account', JSON.stringify(account))
-  }
-
-//Get account from local storage
-  get accountStorage(): Account {
-    return JSON.parse(localStorage.getItem('account'))
-  }
-
-//Get email from local storage
-  get emailStorage(): string {
-    return localStorage.getItem('email')
-  }
-
-//Save email to local storage
-  set emailStorage(email: string) {
-    localStorage.setItem('email', email)
-  }
-
-//Remove account from local storage
-  clearAccountStorage() {
-    localStorage.removeItem('account')
-  }
-
-//Remove email from local storage
-  clearEmailStorage() {
-    localStorage.removeItem('email')
-  }
-
 //Save jwt to local storage
   private setSession(loginInfo) {
     const jwtToken = JSON.parse(atob(loginInfo['data']['jwttoken'].split('.')[1]))

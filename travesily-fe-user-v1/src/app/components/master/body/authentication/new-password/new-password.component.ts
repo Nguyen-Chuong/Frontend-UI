@@ -11,7 +11,7 @@ import {ActivatedRoute, Route, Router} from "@angular/router";
   styleUrls: ['./new-password.component.scss']
 })
 export class NewPasswordComponent implements OnInit {
-  email: string
+  encryptedEmail: string
   form: FormGroup
 
   constructor(private fb: FormBuilder,
@@ -27,7 +27,7 @@ export class NewPasswordComponent implements OnInit {
       confirmNewPass: ['', [Validators.required, this.matchValidator('newPass')]]
     })
     this.activatedRoute.queryParams.subscribe(rs => {
-      this.email = rs['email']
+      this.encryptedEmail = rs['encryptedEmail']
     })
   }
 
@@ -51,9 +51,8 @@ export class NewPasswordComponent implements OnInit {
 
   onSave() {
     if (this.form.value.newPass && this.form.value.confirmNewPass) {
-      this.authService.resetPassword(this.email, this.form.value.newPass).pipe(first()).subscribe(
+      this.authService.resetPassword(this.encryptedEmail, this.form.value.newPass).pipe(first()).subscribe(
         rs => {
-          this.authService.clearEmailStorage()
           this.router.navigateByUrl('/authentication/login').then(() => {
             this.alertService.success('Change password successfully')
           })

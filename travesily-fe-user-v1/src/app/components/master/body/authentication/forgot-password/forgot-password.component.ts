@@ -35,7 +35,7 @@ export class ForgotPasswordComponent implements OnInit {
 
           this.router.navigate(['authentication/otp-checker'], {
             queryParams: {
-              email: this.cryptoService.set('06052000', this.form.value.email)
+              encryptedEmail: this.cryptoService.set('06052000', this.form.value.email)
             }
           })
         } else {

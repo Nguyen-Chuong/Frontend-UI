@@ -15,6 +15,7 @@ import {concatMap, first} from "rxjs";
 import {AlertService} from "../../../../../_services/alert.service";
 import {UsernameValidator} from "../../../../../_validators/username.validator";
 import {EmailValidator} from "../../../../../_validators/email.validator";
+import {CryptoService} from "../../../../../_services/crypto.service";
 
 @Component({
   selector: 'app-register',
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private cryptoService: CryptoService
   ) {
     this.form = fb.group({
       firstname: ['', [Validators.required]],
@@ -46,16 +48,15 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     const val = this.form.value
-    const account = new Account()
-    account.firstname = val.firstname
-    account.lastname = val.lastname
-    account.email = val.email
-    account.password = val.password
-    account.username = val.username
-    account.status = 0
-
-    this.authService.accountStorage = account
-    this.router.navigateByUrl('/authentication/otp-checker')
+    this.router.navigate(['/authentication/otp-checker'],{
+      queryParams:{
+        firstname: val.firstname,
+        lastname: val.lastname,
+        encryptedEmail: this.cryptoService.set('06052000',val.email),
+        encryptedPassword: this.cryptoService.set('06052000',val.password),
+        encryptedUsername: this.cryptoService.set('06052000',val.username),
+      }
+    })
 
   }
 
