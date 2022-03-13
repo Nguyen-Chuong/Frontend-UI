@@ -58,7 +58,6 @@ import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
-import { UploadFormComponent } from './shared/components/upload-form/upload-form.component';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 
 @NgModule({
@@ -108,7 +107,6 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     HotelCardComponent,
     HotelDetailComponent,
     RoomTypeCardComponent,
-    UploadFormComponent
   ],
   imports: [
     BrowserModule,
