@@ -88,7 +88,7 @@ export class AuthService {
 
 //Update user's info
   update(account: Account) {
-    return this.http.patch(`${this.baseUrl}/update-profile`, {...account})
+    return this.http.patch(`${this.baseUrl}/update-profile/user`, {...account})
   }
 
 //Get user profile detail
