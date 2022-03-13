@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Hotel} from "../../../../../../_models/hotel";
 import {first} from "rxjs";
 import {HotelService} from "../../../../../../_services/hotel.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CryptoService} from "../../../../../../_services/crypto.service";
 import {Benefit} from "../../../../../../_models/benefit";
 import {BenefitType} from "../../../../../../_models/benefit-type";
@@ -16,7 +16,10 @@ export class HotelCardComponent implements OnInit {
   @Input() hotel: Hotel
   benefits: Benefit[] = []
 
-  constructor(private hotelService: HotelService, private router: Router, private cryptoService: CryptoService) {
+  constructor(private hotelService: HotelService,
+              private router: Router,
+              private cryptoService: CryptoService,
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -34,10 +37,19 @@ export class HotelCardComponent implements OnInit {
 
 
   selectRoom() {
-    this.router.navigate(['/main/hotel-detail'], {
-      queryParams: {
-        hotelId: this.cryptoService.set('06052000', this.hotel.id)
+    this.activatedRoute.queryParams.subscribe(
+      rs => {
+        const from = rs['from']
+        const to = rs['to']
+        this.router.navigate(['/main/hotel-detail'], {
+          queryParams: {
+            hotelId: this.cryptoService.set('06052000', this.hotel.id),
+            from: from,
+            to: to
+          }
+        })
       }
-    })
+    )
+
   }
 }

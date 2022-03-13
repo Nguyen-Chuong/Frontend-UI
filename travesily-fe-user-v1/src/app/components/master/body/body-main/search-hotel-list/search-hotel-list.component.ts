@@ -6,6 +6,7 @@ import {Hotel} from "../../../../../_models/hotel";
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LocationService} from "../../../../../_services/location.service";
 import {District} from "../../../../../_models/district";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-search-hotel-list',
@@ -36,8 +37,6 @@ export class SearchHotelListComponent implements OnInit {
         const to = rs['to']
         const guestNumber = rs['guestNumber']
         const roomNumber = rs['roomNumber']
-        console.log(from)
-        console.log(to)
         hotelService.searchHotel(destination, from, to, guestNumber, roomNumber, 0, 10)
           .pipe(first())
           .subscribe(

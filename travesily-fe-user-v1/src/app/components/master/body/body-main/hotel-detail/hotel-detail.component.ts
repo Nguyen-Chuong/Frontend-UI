@@ -27,7 +27,9 @@ export class HotelDetailComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       rs => {
         const hotelId = rs['hotelId']
-        this.roomTypeService.getRoomTypesByHotelId(hotelId).subscribe(
+        const from = rs['from']
+        const to = rs['to']
+        this.roomTypeService.getRoomTypesByHotelId(hotelId, from, to).subscribe(
           rs => {
             this.roomTypes = rs['data']
           }
