@@ -24,10 +24,6 @@ export class UserComponent implements OnInit {
 
   logout() {
     this.authService.logout()
-    this.router.navigateByUrl('/home').then(() => {
-      window.location.reload()
-    })
-
   }
 
 

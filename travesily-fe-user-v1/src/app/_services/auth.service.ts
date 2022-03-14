@@ -3,6 +3,7 @@ import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
 import {first, map, Observable, Subject, tap} from "rxjs";
 import * as moment from "moment";
 import {Account} from "../_models/account";
+import {Router} from "@angular/router";
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class AuthService {
   baseUrl = 'http://localhost:8080/api/v1'
   private account = new Subject<Account>()
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   get accountType() {
@@ -108,6 +109,9 @@ export class AuthService {
     localStorage.removeItem('token')
     localStorage.removeItem("expires_at")
     localStorage.removeItem("account-type")
+    this.router.navigateByUrl('/home').then(() => {
+      window.location.reload()
+    })
   }
 
 //Generate random OTP send to an email
