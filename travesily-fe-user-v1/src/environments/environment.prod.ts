@@ -1,4 +1,5 @@
 export const environment = {
+  API_URL: 'http://localhost:8080',
   firebase: {
     projectId: 'capstone-343210',
     appId: '1:1022240410262:web:daaa55b157824cff2a90b7',

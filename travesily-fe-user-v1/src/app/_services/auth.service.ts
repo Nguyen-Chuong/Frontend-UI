@@ -4,13 +4,14 @@ import {first, map, Observable, Subject, tap} from "rxjs";
 import * as moment from "moment";
 import {Account} from "../_models/account";
 import {Router} from "@angular/router";
+import {environment} from "../../environments/environment";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  baseUrl = 'http://localhost:8080/api/v1'
+  baseUrl = environment.API_URL
   private account = new Subject<Account>()
 
   constructor(private http: HttpClient, private router: Router) {

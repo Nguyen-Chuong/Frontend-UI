@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {CryptoService} from "./crypto.service";
 import {DatePipe} from "@angular/common";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoomTypeService {
-  baseUrl = 'http://localhost:8080/api/v1'
+  baseUrl = environment.API_URL
   datePipe = new DatePipe('en-US')
   constructor(private http: HttpClient, private cryptoService: CryptoService) { }
   //Get room detail by roomTypeId

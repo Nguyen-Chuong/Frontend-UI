@@ -2,12 +2,13 @@ import {Inject, Injectable, LOCALE_ID} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
 import {H} from "@angular/cdk/keycodes";
+import {environment} from "../../environments/environment";
 
 @Injectable({
   providedIn: 'root'
 })
 export class HotelService {
-  baseUrl = 'http://localhost:8080/api/v1'
+  baseUrl = environment.API_URL
 
   constructor(private http: HttpClient, @Inject(LOCALE_ID) private _locale: string) {
   }
