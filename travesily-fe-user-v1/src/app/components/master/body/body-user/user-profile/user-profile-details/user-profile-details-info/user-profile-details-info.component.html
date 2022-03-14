@@ -45,10 +45,10 @@
     <h2>{{title}}</h2>
     <label>{{detail}}</label>
   </div>
-  <ng-container *ngIf="!isAdd">
+  <ng-container *ngIf="isEditable&&!isAdd">
     <button class="btn btn-edit" (click)="dropdown()">Edit</button>
   </ng-container>
-  <ng-container *ngIf="isAdd">
+  <ng-container *ngIf="isEditable&&isAdd">
     <button class="btn btn-edit" (click)="dropdown()">Add</button>
   </ng-container>
 </div>

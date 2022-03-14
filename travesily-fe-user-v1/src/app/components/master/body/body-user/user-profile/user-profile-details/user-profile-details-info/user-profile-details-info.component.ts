@@ -16,6 +16,7 @@ export class UserProfileDetailsInfoComponent implements OnInit {
   @Input() title: string | undefined
   @Input() hasAvatar: boolean | undefined = false
   @Input() detail: string | undefined
+  @Input() isEditable: boolean | undefined = true
   @Input() isAdd: boolean | undefined
   @Input() editType: string | undefined
   isEditShow: boolean = false
