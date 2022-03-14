@@ -1,2 +1,19 @@
 @import "main";
 
+#profileImage {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: #512DA8;
+  color: #fff;
+  text-align: center;
+  padding-top: .9rem;
+  cursor: pointer;
+}
+
+.profile-image{
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
+}

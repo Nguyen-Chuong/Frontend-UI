@@ -9,6 +9,26 @@
   }
 }
 
+.upload-form{
+
+}
+
+#profileImage {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+  background: #512DA8;
+  color: #fff;
+  text-align: center;
+  padding-top: 2rem;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: 600;
+  &:hover{
+    filter: blur(1px);
+  }
+}
+
 .user-name-detail{
 
 }
@@ -18,8 +38,12 @@
 }
 
 .user-avatar{
-  width: 6rem;
-  height: 6rem;
+  width: 9rem;
+  height: 9rem;
+  cursor: pointer;
+  &:hover{
+    filter: blur(1px);
+  }
 }
 
 .dropdown-content{

@@ -1,7 +1,46 @@
 <div class="user-info">
-  <ng-container *ngIf="avatar">
-    <img class="user-avatar" [src]="avatar" alt="H">
+  <ng-container *ngIf="hasAvatar">
+    <ng-container *ngIf="!account.avatar">
+      <div class="profile-image me-3">
+        <div id="profileImage" data-bs-toggle="modal" data-bs-target="#exampleModal">{{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="account.avatar">
+      <img class="user-avatar" [src]="account.avatar" alt="H" (click)="changeAvatar()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    </ng-container>
   </ng-container>
+  <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade w-100 h-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Image picker</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row shadow p-5 m-5">
+            <label>
+              <input
+                type="file"
+                class="text-nowrap text-truncate"
+                (change)="selectFile($event)"
+              />
+            </label>
+          </div>
+          <img id="preview-image" class="img-fluid item-center m-auto" src="#" alt="H">
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="upload()" data-bs-dismiss="modal">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div class="user-name-detail">
     <h2>{{title}}</h2>
     <label>{{detail}}</label>
@@ -27,7 +66,5 @@
     <ng-container *ngIf="editType==='add-phone'">
       <app-edit-dropdown-add-phone [account]="account"></app-edit-dropdown-add-phone>
     </ng-container>
-
-
   </div>
 </ng-container>
