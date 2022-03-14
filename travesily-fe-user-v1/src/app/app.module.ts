@@ -12,7 +12,10 @@ import {BodyHomeComponent} from './components/master/body/body-home/body-home.co
 import {BookingComponent} from './components/master/body/body-home/booking/booking.component';
 import {InputComponent} from './shared/components/input/input.component';
 import {DropdownComponent} from './shared/components/dropdown/dropdown.component';
-import {HotelHomeComponent} from './components/master/body/body-home/booking/hotel-home/hotel-home.component';
+import {
+  HotelHomeComponent,
+  MaxRangeDirective, MinRangeDirective
+} from './components/master/body/body-home/booking/hotel-home/hotel-home.component';
 import {AuthenticationComponent} from './components/master/body/authentication/authentication.component';
 import {LoginComponent} from './components/master/body/authentication/login/login.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
@@ -107,6 +110,8 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
     HotelCardComponent,
     HotelDetailComponent,
     RoomTypeCardComponent,
+    MaxRangeDirective,
+    MinRangeDirective
   ],
   imports: [
     BrowserModule,

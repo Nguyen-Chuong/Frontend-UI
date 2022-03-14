@@ -21,3 +21,7 @@ mat-form-field.mat-form-field-wrapper{
   border: 1px solid lightgrey;
   border-radius: 1rem !important;
 }
+
+.mat-calendar-body-preview-end > .mat-calendar-body-cell-content {
+  background-color: rgba(0, 0, 0, 0.04)!important;
+}
