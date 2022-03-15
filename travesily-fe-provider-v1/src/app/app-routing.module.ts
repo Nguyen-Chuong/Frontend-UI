@@ -1,3 +1,4 @@
+import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
 import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
 import { NegativeBarComponent } from './components/negative-bar/negative-bar.component';
@@ -50,6 +51,10 @@ const routes: Routes = [
   {
     path: 'new-hotel',
     component: NewHotelComponent
+  },
+  {
+    path: 'update-hotel',
+    component: UpdateHotelComponent
   },
 ];
 

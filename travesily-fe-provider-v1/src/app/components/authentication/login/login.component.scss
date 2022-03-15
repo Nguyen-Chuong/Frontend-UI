@@ -7,7 +7,7 @@
   transform: translateY(100px);
   display: grid;
   grid-row-gap: 2rem;
-  width: 30%;
+  width: 35%;
   margin: 0 auto;
   border: 1px solid red;
   border-radius: 5px;
@@ -31,4 +31,9 @@ a{
   font-size: 25px;
   font-weight: 700;
   text-align: center;
+}
+
+.form-control{
+  background-color: aliceblue;
+  border: none;
 }

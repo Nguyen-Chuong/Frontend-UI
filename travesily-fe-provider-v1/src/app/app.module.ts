@@ -23,6 +23,9 @@ import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
 import { AddBenefitsComponent } from './components/add-benefits/add-benefits.component';
 import { AddRoomComponent } from './components/add-room/add-room.component';
 import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
+import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
+import { DialogComponent } from './shared/components/dialog/dialog.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,6 +43,8 @@ import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
     AddBenefitsComponent,
     AddRoomComponent,
     AddHotelComponent,
+    UpdateHotelComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,6 +54,7 @@ import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
     AngularMaterialModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
     SimpleNotificationsModule.forRoot()
   ],
   providers: [

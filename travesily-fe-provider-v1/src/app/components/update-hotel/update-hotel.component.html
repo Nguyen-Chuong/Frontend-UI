@@ -1,0 +1,71 @@
+<div class="update-hotel">
+  <div class="menu-list">
+    <app-negative-bar></app-negative-bar>
+  </div>
+  <simple-notifications></simple-notifications>
+  <div class="hotel">
+    <simple-notifications></simple-notifications>
+    <h1>New Hotel</h1>
+    <form class="form-body" [formGroup]="form">
+
+      <div class="group-input">
+
+        <div class="form-control">
+          <label>Hotel</label>
+          <app-authentication-input type="text" value={{hotel.name}} [control]="form.controls['name']">
+          </app-authentication-input>
+        </div>
+        <div class="form-control">
+          <label>Email</label>
+          <app-authentication-input type="text" value={{hotel.email}} [control]="form.controls['email']">
+          </app-authentication-input>
+        </div>
+      </div>
+      <div class="group-input">
+        <div class="form-control">
+          <label>Phone</label>
+          <app-authentication-input type="text" value={{hotel.phone}} [control]="form.controls['phone']">
+          </app-authentication-input>
+        </div>
+        <div class="form-control">
+          <label>Address</label>
+          <app-authentication-input type="text" value={{hotel.address}} [control]="form.controls['address']">
+          </app-authentication-input>
+        </div>
+      </div>
+
+      <div class="group-input">
+        <mat-form-field appearance="fill" class="select">
+          <mat-label>City</mat-label>
+          <mat-select [formControl]="cityControl" required (selectionChange)="changeCityID($event.value)">
+            <mat-option *ngFor="let city of cities" [value]="city">
+              {{city.nameCity}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="cityControl.hasError('required')">Please choose a city</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="select district">
+          <mat-label>District</mat-label>
+          <mat-select [formControl]="districtControl" required >
+            <!-- <mat-option>{{hotel.district.city.nameCity}}</mat-option> -->
+            <mat-option *ngFor="let district of districts" [value]="district">
+              {{district.nameDistrict}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="districtControl.hasError('required')">Please choose a district</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="description">
+        <label>Description</label> <br><br>
+        <textarea name="description" id="" cols="70" rows="5" [value]="hotel.description" formControlName ="description"></textarea>
+      </div>
+      <div class="form-submit">
+        <button class="update-hotel-btn update-hotel-btn-enable" [disabled]="isEnable" (click)="enableHotel()">Enable</button>
+        <button class="update-hotel-btn update-hotel-btn-save" [disabled]="form.invalid" (click)="submit()">Save</button>
+        <button class="update-hotel-btn update-hotel-btn-disable" [disabled]="isDisable" (click)="disableHotel()">Disable</button>
+      </div>
+    </form>
+  </div>
+
+</div>

@@ -17,4 +17,23 @@ export class HotelService {
   newHotel(hotel: Hotel) {
     return this.http.post(`${this.baseUrl}/add-hotel`, {...hotel})
   }
+
+  getHotelById(id: any){
+    const params = new HttpParams().append('hotelId', id)
+    return this.http.get(`${this.baseUrl}/public/hotel`, {params: params})
+  }
+
+  updateHotel(hotel: Hotel) {
+    return this.http.patch(`${this.baseUrl}/update-hotel-info`, { ...hotel })
+  }
+
+  enableHotel(id: any) {
+    const params = new HttpParams().append('hotelId', id)
+    return this.http.patch(`${this.baseUrl}/enable-hotel`,undefined, {params: params})
+  }
+
+  disableHotel(id: any) {
+    const params = new HttpParams().append('hotelId', id)
+    return this.http.patch(`${this.baseUrl}/disable-hotel`,undefined, {params: params})
+  }
 }

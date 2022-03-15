@@ -1,0 +1,103 @@
+*{
+  font-style: inherit;
+  font-size: 1.5rem;
+
+}
+
+.update-hotel{
+  display: flex;
+
+  &-btn{
+    text-align: center;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+
+    &-save{
+      background-color: rgb(13, 55, 243);
+    }
+    &-enable{
+      background-color: rgb(13, 196, 44);
+    }
+    &-disable{
+      background-color: rgb(230, 34, 8);
+    }
+  }
+}
+.menu-list {
+  width: 210px;
+  height: 100%;
+}
+.hotel {
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 70%;
+  margin: 20px auto;
+  & h1 {
+    text-align: center;
+    font-size: 2rem;
+    font-style: 700;
+  }
+}
+
+.form-body {
+  display: grid;
+  grid-row-gap: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid red;
+  border-radius: 5px;
+  padding: 20px;
+  background-color: aliceblue;
+}
+
+.form-redirection {
+  display: flex;
+  justify-content: space-between;
+}
+
+a {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.form-header {
+  font-size: 25px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.form-control{
+  background: none;
+  border: none;
+  margin: 0 auto;
+}
+
+.group-input{
+  display: flex;
+}
+
+.description{
+  display: inline-block;
+  padding-left: 10px;
+
+  & textarea{
+    border-radius: 10px;
+  }
+}
+
+.select{
+  width: 45%;
+  padding: 10px;
+  background-color: aliceblue;
+}
+
+.district{
+  margin-left: 40px;
+}
+
+.form-submit{
+  text-align: center;
+}

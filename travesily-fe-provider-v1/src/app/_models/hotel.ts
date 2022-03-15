@@ -1,3 +1,4 @@
+import { District } from "./district"
 
 export class Hotel {
  id: number
@@ -9,5 +10,6 @@ export class Hotel {
  description: string
  status: number
  price: number
+ district: District
  districtID: number
 }

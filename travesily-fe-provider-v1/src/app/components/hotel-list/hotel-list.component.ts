@@ -1,3 +1,4 @@
+import { CryptoService } from 'src/app/_services/crypto.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,7 +18,8 @@ export class HotelListComponent implements OnInit {
 
   constructor(private hotelService: HotelService, private router: Router,
     private route: ActivatedRoute,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private cryptoService: CryptoService
     ) { }
 
   displayedColumns: string[] = ['hotelName', 'address', 'status', 'update', 'detail'];
@@ -37,6 +39,13 @@ export class HotelListComponent implements OnInit {
     // this.router.navigate(['hotel-detail'], {
     //   queryParams: { id: JSON.stringify(encryptedId)}
     // });
+  }
+
+  updateHotel(id){
+    const encryptedId = this.cryptoService.set('06052000',id)
+    this.router.navigate(['update-hotel'], {
+      queryParams: { id: JSON.stringify(encryptedId)}
+    });
   }
 
 }

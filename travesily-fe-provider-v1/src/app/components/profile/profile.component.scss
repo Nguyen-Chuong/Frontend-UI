@@ -39,7 +39,7 @@
 
 .form-body {
   display: grid;
-  grid-row-gap: 2rem;
+  grid-row-gap: 1rem;
   width: 100%;
   text-align: left;
   padding: 20px;
@@ -61,4 +61,10 @@ a {
   font-size: 25px;
   font-weight: 700;
   text-align: center;
+}
+
+.form-control{
+  background-color: aliceblue;
+  border: none;
+
 }

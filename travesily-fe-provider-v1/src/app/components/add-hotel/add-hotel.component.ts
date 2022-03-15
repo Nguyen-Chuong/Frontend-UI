@@ -44,7 +44,7 @@ export class AddHotelComponent implements OnInit {
     hotel.email = val.email
     hotel.phone = val.phone
     hotel.description = val.description
-    hotel.districtID = 1
+    hotel.district.id = 1
     this.hotelService.newHotel(hotel)
         .pipe(first())
         .subscribe({
