@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {AuthService} from "../../../../../_services/auth.service";
 import {Account} from "../../../../../_models/account";
 import {first} from "rxjs";
@@ -15,6 +15,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
   encryptedEmail: string
   account: Account = new Account()
   isRegister: boolean = false
+  @ViewChild('ngOtpInput') ngOtpInputRef:any;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -29,7 +30,6 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
     this.activatedRoute.queryParams.subscribe(
       rs => {
         this.encryptedEmail = rs['encryptedEmail']
-        console.log(this.encryptedEmail)
         if (rs['encryptedUsername']) {
           this.isRegister = true
           this.account.email = this.cryptoService.get('06052000', rs['encryptedEmail'])
@@ -55,6 +55,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
 
   onOtpChange($event: string) {
     if ($event.length === 6) {
+      console.log(this.encryptedEmail)
       this.authService.verifyOtp(this.encryptedEmail, this.cryptoService.set('06052000', $event)).pipe(first()).subscribe(
         rs => {
           if (this.isRegister) {
@@ -85,10 +86,13 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
           this.alertService.error(error)
         }
       )
+      this.ngOtpInputRef.otpForm.disable()
     }
   }
 
   resend() {
+    this.ngOtpInputRef.otpForm.enable()
+    this.ngOtpInputRef.otpForm.reset()
     this.authService.generateOtp(this.encryptedEmail).pipe(first()).subscribe(
       rs => {
         this.alertService.success('We have sent you a new email with OTP code')
