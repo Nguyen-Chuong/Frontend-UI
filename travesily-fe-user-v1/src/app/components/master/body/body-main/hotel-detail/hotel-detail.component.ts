@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {RoomTypeService} from "../../../../../_services/room-type.service";
 import {RoomType} from "../../../../../_models/room-type";
 import {Hotel} from "../../../../../_models/hotel";
@@ -16,11 +16,15 @@ export class HotelDetailComponent implements OnInit {
   roomTypes: RoomType[] = []
   hotel: Hotel = new Hotel()
   benefitTypes: BenefitType[]
+  listImage: {id: number, src: string}[] = []
+currentUrl = ''
 
   constructor(private activatedRoute: ActivatedRoute,
               private roomTypeService: RoomTypeService,
-              private hotelService: HotelService
+              private hotelService: HotelService,
+              private router: Router
   ) {
+    this.currentUrl = this.router.url
   }
 
   ngOnInit(): void {
@@ -32,6 +36,9 @@ export class HotelDetailComponent implements OnInit {
         this.roomTypeService.getRoomTypesByHotelId(hotelId, from, to).subscribe(
           rs => {
             this.roomTypes = rs['data']
+            this.roomTypes.forEach(roomType => {
+              this.listImage?.push(...roomType.listImage)
+            })
           }
         )
         this.hotelService.getHotelById(hotelId).subscribe(

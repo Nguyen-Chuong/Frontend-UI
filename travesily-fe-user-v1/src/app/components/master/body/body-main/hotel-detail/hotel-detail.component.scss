@@ -1,3 +1,4 @@
+@import "main";
 
 .flex-list{
   flex-basis: 15rem;
@@ -11,3 +12,30 @@
 span{
   font-size: 2.5rem;
 }
+
+.images-list{
+  border-radius: 2rem!important;
+}
+
+.nav-link{
+  font-size: 1.5rem;
+  &:hover{
+    //font-size: 1.8rem;
+    color: $color-blue-2 !important;
+    border-bottom: $color-blue-2 !important;
+    transition: all .5s;
+    transform: translateY(-3px);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+}
+
+.carousel-inner{
+  width: 100% !important;
+  height: 64rem !important;
+  overflow: hidden;
+}
+

@@ -56,20 +56,9 @@ export class UserProfileDetailsInfoComponent implements OnInit {
         rs => {
           this.account.avatar = rs
           this.authService.update(this.account).subscribe(rs => {
-            this.authService.getProfile().pipe(first()).subscribe(account => {
-              this.account = account['data']
-            },error => {
-              console.log(error)
-            },
-              () =>{
-                this.router.navigateByUrl('/user').then(() => {
-                  this.router.navigateByUrl('/user/profile').then(() => {
-                    window.location.reload()
-                  })
-                });
-                // window.location.reload()
-              })
-
+            setTimeout(() => {
+              window.location.reload()
+            },3000)
           })
         },
         error => {

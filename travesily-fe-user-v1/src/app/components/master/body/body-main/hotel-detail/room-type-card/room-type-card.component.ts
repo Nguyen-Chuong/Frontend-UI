@@ -13,13 +13,15 @@ export class RoomTypeCardComponent implements OnInit {
   @Input() roomType: RoomType
   roomDetail: RoomDetail
   iconMale = 'fa fa-male'
-  constructor(private roomTypeService: RoomTypeService, private cryptoService: CryptoService) {
+  modal = ''
 
+  constructor(private roomTypeService: RoomTypeService, private cryptoService: CryptoService) {
+    this.modal = `#room-type-image-modal-${this.roomType?.id}`
   }
 
   ngOnInit(): void {
-   this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000',this.roomType.id))
-      .subscribe(rs =>{
+    this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', this.roomType.id))
+      .subscribe(rs => {
         this.roomDetail = rs['data']
       })
   }
