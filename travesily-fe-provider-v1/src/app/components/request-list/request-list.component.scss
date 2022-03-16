@@ -17,14 +17,19 @@
   margin: 20px auto;
   padding-top: 90px;
 
-  &-detail {
-    width: 90%;
-    margin: 20px;
+  &-cancel {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
     border: none;
-    background-color: aliceblue;
-    color: rgb(78, 78, 223);
-  }
+    padding: 5px;
+    border-radius: 5px;
 
+    &:hover {
+      color: #3513ca;
+      background: #ede8ee;
+      box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
+    }
+  }
 }
 table {
   width: 100%;
@@ -39,4 +44,3 @@ table {
 .mat-row:hover .mat-cell {
   border-color: currentColor;
 }
-
