@@ -63,6 +63,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ImagesCarouselComponent } from './components/master/body/body-main/hotel-detail/images-carousel/images-carousel.component';
+import { MainSearchBarComponent } from './components/master/body/body-main/main-search-bar/main-search-bar.component';
 
 @NgModule({
   declarations: [
@@ -113,7 +114,8 @@ import { ImagesCarouselComponent } from './components/master/body/body-main/hote
     RoomTypeCardComponent,
     MaxRangeDirective,
     MinRangeDirective,
-    ImagesCarouselComponent
+    ImagesCarouselComponent,
+    MainSearchBarComponent
   ],
   imports: [
     BrowserModule,

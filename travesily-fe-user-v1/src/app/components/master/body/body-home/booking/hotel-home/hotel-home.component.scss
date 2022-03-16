@@ -1,10 +1,6 @@
 @import "../../../../../../shared/scss/main";
 
 
-.input-end{
-  margin-left: 50%;
-}
-
 mat-form-field.mat-form-field {
   font-size: 1.8rem;
 }
@@ -13,15 +9,25 @@ input::placeholder{
   color: grey;
 }
 
-mat-form-field.mat-form-field-wrapper{
-  padding: 0;
-}
 
 .rounded{
   border: 1px solid lightgrey;
   border-radius: 1rem !important;
 }
 
-.mat-calendar-body-preview-end > .mat-calendar-body-cell-content {
-  background-color: rgba(0, 0, 0, 0.04)!important;
+
+//::ng-deep .mat-form-field-wrapper{
+//  margin-bottom: -1.25em;
+//}
+//
+//::ng-deep .mat-form-field-flex{
+//  padding: 0 !important;
+//}
+
+::ng-deep .mat-date-range-input{
+  border: 0 !important;
+}
+
+::ng-deep .mat-date-range-input-start-wrapper{
+  width: 50%;
 }

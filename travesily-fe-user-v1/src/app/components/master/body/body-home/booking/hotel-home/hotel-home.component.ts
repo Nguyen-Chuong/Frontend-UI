@@ -1,17 +1,38 @@
 import {Component, Directive, Inject, Injectable, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {GuestNumber} from "../../../../../../_models/guest-number";
 import {HotelService} from "../../../../../../_services/hotel.service";
 import {first} from "rxjs";
 import {Router} from "@angular/router";
 import {LocationService} from "../../../../../../_services/location.service";
-import {District} from "../../../../../../_models/district";
 import {
   DateRange,
   MAT_DATE_RANGE_SELECTION_STRATEGY,
   MatDateRangeSelectionStrategy
 } from "@angular/material/datepicker";
-import {DateAdapter} from "@angular/material/core";
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import * as _moment from 'moment';
+// tslint:disable-next-line:no-duplicate-imports
+import * as _rollupMoment from 'moment';
+import {SearchFilter} from "../../../../../../_models/search-filter";
+import {ResultSearch} from "../../../../../../_models/result-search";
+
+const moment = _rollupMoment || _moment;
+
+// See the Moment.js docs for the meaning of these formats:
+// https://momentjs.com/docs/#/displaying/format/
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
+
 
 @Injectable()
 export class MaxRangeSelectionStrategy<D>
@@ -148,10 +169,22 @@ export class MinRangeDirective {
 @Component({
   selector: 'app-hotel-home',
   templateUrl: './hotel-home.component.html',
-  styleUrls: ['./hotel-home.component.scss']
+  styleUrls: ['./hotel-home.component.scss'],
+  providers: [
+    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+    // application's root module. We provide it at the component level here, due to limitations of
+    // our example generation script.
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 export class HotelHomeComponent implements OnInit {
-  results: { id: number, resultSearch: string }[]
+  results: ResultSearch[]
   todayDate: Date = new Date();
   tomorrowDate: Date = new Date(new Date().setDate(this.todayDate.getDate() + 1))
 
@@ -184,6 +217,14 @@ export class HotelHomeComponent implements OnInit {
     if (val.destination, val.from, val.to, val.guestNumber, val.roomNumber) {
       const district = this.results.filter(rs => rs.resultSearch === val.destination)[0]
       if (district !== null) {
+        const filter = new SearchFilter()
+        filter.destination = district
+        filter.from = val.from
+        filter.to = val.to
+        filter.guestNumber = val.guestNumber
+        filter.roomNumber = val.roomNumber
+        console.log(filter)
+        this.hotelService.searchFilter = filter
         this.router.navigate(['/main/search-hotel-list'], {
           queryParams: {
             destination: district.id,

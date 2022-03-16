@@ -11,6 +11,8 @@ import {typeofExpr} from "@angular/compiler/src/output/output_ast";
 export class DropdownComponent implements OnInit {
   @Output() guestNumberEvent = new EventEmitter<number>()
   @Output() roomNumberEvent = new EventEmitter<number>()
+  @Input() inputGuestNum = 0
+  @Input() inputRoomNum = 0
   guestNum = 0
   roomNum = 0
 
@@ -18,13 +20,10 @@ export class DropdownComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.guestNum = this.inputGuestNum
+    this.roomNum = this.inputRoomNum
   }
 
-  toggleContent() {
-    const classList = document.getElementById('content')?.classList
-    classList?.contains('active') ? classList.remove('active') : classList?.add('active')
-
-  }
 
 // 1 = guestNumber, 2 = roomNumber
   toggleNumberPlus(type: number) {

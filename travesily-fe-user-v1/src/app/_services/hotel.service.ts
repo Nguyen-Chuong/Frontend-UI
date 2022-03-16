@@ -3,6 +3,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {DatePipe} from "@angular/common";
 import {H} from "@angular/cdk/keycodes";
 import {environment} from "../../environments/environment";
+import {SearchFilter} from "../_models/search-filter";
+import {ResultSearch} from "../_models/result-search";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +13,24 @@ export class HotelService {
   baseUrl = environment.API_URL
 
   constructor(private http: HttpClient, @Inject(LOCALE_ID) private _locale: string) {
+  }
+
+  set searchFilter(filter: SearchFilter) {
+    localStorage.setItem('destination', JSON.stringify(filter.destination))
+    localStorage.setItem('from', filter.from.toDateString())
+    localStorage.setItem('to', filter.to.toDateString())
+    localStorage.setItem('guestNumber', filter.guestNumber.toString())
+    localStorage.setItem('roomNumber', filter.roomNumber.toString())
+  }
+
+  get searchFilter() {
+    const filter = new SearchFilter()
+    filter.destination = JSON.parse(localStorage.getItem('destination'))
+    filter.from = new Date(localStorage.getItem('from'))
+    filter.to = new Date(localStorage.getItem('to'))
+    filter.guestNumber = +localStorage.getItem('guestNumber')
+    filter.roomNumber = +localStorage.getItem('roomNumber')
+    return filter
   }
 
   datePipe = new DatePipe('en-US')
@@ -38,8 +58,8 @@ export class HotelService {
   }
 
   //Get hotel by id
-  getHotelById(hotelId: string){
+  getHotelById(hotelId: string) {
     const params = new HttpParams().append('hotelId', hotelId)
-    return this.http.get(`${this.baseUrl}/public/hotel`,{withCredentials: false,params: params})
+    return this.http.get(`${this.baseUrl}/public/hotel`, {withCredentials: false, params: params})
   }
 }

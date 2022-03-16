@@ -1,24 +1,19 @@
-<div class="row position-relative">
-  <button (click)="toggleContent()" class="btn btn-secondary" type="button" aria-expanded="false">
-    {{guestNum}} adult(s), {{roomNum}} room(s)
+<div class="dropdown">
+  <button class="btn btn-lg btn-secondary dropdown-toggle item-fullwidth" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          data-bs-auto-close="outside" aria-expanded="false">
+    {{guestNum}} adults, {{roomNum}} rooms
   </button>
-  <div class="dropdown-content row p-5 bg-white shadow position-absolute top-100 mt-5" id="content">
-    <div class="row mb-5 d-flex justify-content-around">
-    <div class="col-md-4 d-flex justify-content-evenly align-items-center">
-      <label class="">Adults</label>
-      <button class="btn btn-danger" (click)="toggleNumberMinus(1)">-</button>
-      <label class="bg-grey item-center p-3">{{guestNum}}</label>
-      <button class="btn btn-success" (click)="toggleNumberPlus(1)">+</button>
-    </div>
-    <div class="col-md-4 d-flex justify-content-evenly align-items-center">
-      <label class="">Rooms</label>
-      <button class="btn btn-danger" (click)="toggleNumberMinus(2)">-</button>
-      <label class="bg-grey item-center p-3">{{roomNum}}</label>
-      <button class="btn btn-success" (click)="toggleNumberPlus(2)">+</button>
-    </div>
-    </div>
-    <div class="row">
-      <button class="btn btn-primary col-md-12" (click)="toggleContent()">Done</button>
-    </div>
-  </div>
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+    <li class="d-flex justify-content-around">
+      <button class="btn text-primary" (click)="toggleNumberMinus(1)">-</button>
+      <label class="item-center p-3"><span class="text-primary">{{guestNum}}</span> Adults</label>
+      <button class="btn text-primary" (click)="toggleNumberPlus(1)">+</button>
+    </li>
+    <li class="d-flex justify-content-around">
+      <button class="btn text-primary" (click)="toggleNumberMinus(2)">-</button>
+      <label class="item-center p-3"><span class="text-primary">{{roomNum}}</span> Rooms</label>
+      <button class="btn text-primary" (click)="toggleNumberPlus(2)">+</button>
+    </li>
+  </ul>
 </div>
+
