@@ -1,3 +1,5 @@
+import { PostRequest } from './../../_models/postRequest';
+import { RequestService } from 'src/app/_services/request.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -29,6 +31,7 @@ export class UpdateHotelComponent implements OnInit {
   city: City
   isEnable = true
   isDisable = true
+  isPending = true
   checked: boolean
   encryptedHotelId: string
 
@@ -39,6 +42,7 @@ export class UpdateHotelComponent implements OnInit {
     private citiesService: CitiesService,
     private cryptoService: CryptoService,
     public dialog: MatDialog,
+    private requestService: RequestService,
     private notificationService: NotificationService) {
     this.form = fb.group({
       name: [''],
@@ -65,6 +69,11 @@ export class UpdateHotelComponent implements OnInit {
 
       if (this.hotel.status === 2) {
         this.isEnable = false
+
+      }
+
+      if (this.hotel.status === 3) {
+        this.isPending = false
 
       }
 
@@ -121,6 +130,32 @@ export class UpdateHotelComponent implements OnInit {
     this.citiesService.getDistrictInCity(encryptedId).pipe(first()).subscribe(res => {
       this.districts = res['data']
     })
+  }
+
+  addRequestHotel(){
+    const dialogRef = this.dialog.open(DialogComponent, {
+      width: '400px',
+      data: {checked: this.checked, message: "Are you sure wanna add this hotel to request list"},
+    });
+
+    const postRequest: PostRequest = new PostRequest
+    postRequest.hotelId = this.hotel.id
+    console.log(postRequest)
+    dialogRef.afterClosed().subscribe(result => {
+      this.checked = result['checked']
+      if(this.checked){
+        this.requestService.addRequest(postRequest).pipe(first()).subscribe({
+          next: () => {
+            this.notificationService.onSuccess('Add successfully');
+            window.location.reload()
+          },
+          error: err => {
+            console.log(err)
+            this.notificationService.onError(err['error']['error_message'])
+          }
+        })
+      }
+    });
   }
 
   disableHotel(){

@@ -64,6 +64,7 @@
         <button class="update-hotel-btn update-hotel-btn-enable" [disabled]="isEnable" (click)="enableHotel()">Enable</button>
         <button class="update-hotel-btn update-hotel-btn-save" [disabled]="form.invalid" (click)="submit()">Save</button>
         <button class="update-hotel-btn update-hotel-btn-disable" [disabled]="isDisable" (click)="disableHotel()">Disable</button>
+        <button class="update-hotel-btn update-hotel-btn-request" [disabled]="isPending" (click)="addRequestHotel()">Request</button>
       </div>
     </form>
   </div>
