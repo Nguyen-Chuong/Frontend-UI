@@ -39,6 +39,10 @@ export class NegativeBarComponent implements OnInit {
     this.router.navigate(['/new-hotel']);
   }
 
+  openUpdateRoom(): void{
+    this.router.navigate(['/update-room']);
+  }
+
   openFeedbackList(): void{
     this.router.navigate(['feedback'], {
       queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }

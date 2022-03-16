@@ -43,7 +43,7 @@ export class AddRoomComponent implements OnInit {
     const room = new Room
     room.name = val.name
     room.quantity = val.quantity
-    room.availableRoom = val.availableRoom
+    room.availableRooms = val.availableRoom
     room.numberOfPeople = val.numberOfPeople
     room.price = val.price
     room.hotelId = Number(localStorage.getItem('hotel-id'))

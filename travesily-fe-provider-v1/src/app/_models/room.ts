@@ -4,10 +4,10 @@ export class Room {
  dealExpire: Date
  status: number
  hotelId: number
- availableRoom: number
+ availableRooms: number
  name: string
  numberOfPeople: number
  price: number
  quantity: number
- dealPersentage: number
+ dealPercentage: number
 }

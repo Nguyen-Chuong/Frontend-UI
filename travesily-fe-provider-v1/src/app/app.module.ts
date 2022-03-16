@@ -26,6 +26,7 @@ import { AddHotelComponent } from './components/add-hotel/add-hotel.component';
 import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
 import { DialogComponent } from './shared/components/dialog/dialog.component';
 import { FormsModule } from '@angular/forms';
+import { UpdateRoomComponent } from './components/update-room/update-room.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +46,7 @@ import { FormsModule } from '@angular/forms';
     AddHotelComponent,
     UpdateHotelComponent,
     DialogComponent,
+    UpdateRoomComponent,
   ],
   imports: [
     BrowserModule,
