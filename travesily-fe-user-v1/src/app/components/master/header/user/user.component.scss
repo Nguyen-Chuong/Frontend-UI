@@ -17,3 +17,14 @@
   height: 4rem;
   cursor: pointer;
 }
+
+//.dropdown-menu{ width:100%;}
+
+.dropdown-item{
+  font-size: 1.8rem;
+  width: 20rem;
+  color: $color-grey-dark-2;
+  &:hover{
+    color: $color-blue-1;
+  }
+}

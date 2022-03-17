@@ -1,8 +1,11 @@
 @import "main";
+.card-body{
+  box-shadow: .1rem .1rem .1rem .1rem rgba($color-grey-dark-2, .3);
+}
+
 .user-info{
   display: flex;
   align-items: center;
-  box-shadow: .1rem .1rem .1rem .1rem rgba($color-grey-dark-2, .4);
   padding: 2rem;
   & *:not(:last-child){
     margin-right: 2rem;

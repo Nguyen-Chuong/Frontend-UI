@@ -1,39 +1,25 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 <div class="dropdown">
-  <button
-    class="btn btn-plain dropdown-toggle d-flex justify-content-between align-items-center"
-    type="button"
-    id="dropdownMenuButton1"
-    data-bs-toggle="dropdown"
-    aria-expanded="false"
-  >
+  <button class="btn btn-plain dropdown-toggle d-flex justify-content-between align-items-center" type="button"
+          id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
     <!--    <img [src]="account.avatar??''" alt="H" class="user-avatar me-4">-->
     <ng-container *ngIf="account.avatar">
-      <img class="profile-image me-3" [src]="account.avatar" alt="" />
+      <img class="profile-image me-3" [src]="account.avatar" alt="">
     </ng-container>
     <ng-container *ngIf="!account.avatar">
       <div class="profile-image me-3">
-        <div id="profileImage">
-          {{ account?.firstname?.charAt(0) }}{{ account?.lastname?.charAt(0) }}
-        </div>
+        <div id="profileImage">{{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
       </div>
     </ng-container>
     <!--    <p class="user__name">{{account['username']?.slice(2, account['username']?.length)}}</p>-->
-    <p class="me-4 mt-3">{{ account["firstname"] }}</p>
+    <p class="me-4 mt-3">{{account['firstname']}}</p>
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-    <li>
-      <a class="dropdown-item" [routerLink]="['/user/bookings/upcoming']"
-        >User Info</a
-      >
-    </li>
-    <li>
-      <a class="dropdown-item" [routerLink]="['/user/profile']">Reviews</a>
-    </li>
-    <li>
-      <a class="dropdown-item" [routerLink]="['/user/reviews']">Reviews</a>
-    </li>
-    <li><a class="dropdown-item btn-logout" (click)="logout()">Logout</a></li>
+  <ul class="dropdown-menu dropdown-menu-xl-end p-3" aria-labelledby="dropdownMenuButton1">
+    <li><a class="dropdown-item p-3" [routerLink]="['/user/profile']">Profile</a></li>
+    <li><a class="dropdown-item p-3" [routerLink]="['/user/bookings/upcoming']">My Bookings</a></li>
+    <li><a class="dropdown-item p-3" [routerLink]="['/user/reviews']">Reviews</a></li>
+    <li><a class="dropdown-item p-3" [routerLink]="['/user/vip']">VIP Status</a></li>
+    <li><button class="btn btn-outline-danger item-fullwidth mt-2" (click)="logout()">Logout</button></li>
   </ul>
 </div>
