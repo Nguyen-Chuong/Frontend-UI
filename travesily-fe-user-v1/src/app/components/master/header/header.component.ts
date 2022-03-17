@@ -3,15 +3,11 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  navItems = [
-    {id: 'hotelAndHome', name: 'Hotel & Home'},
-  ]
-  constructor() { }
+  navItems = [{ id: 'hotelAndHome', name: 'Hotel & Home' }];
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

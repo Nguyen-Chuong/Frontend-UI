@@ -1,7 +1,7 @@
-import {City} from "./city";
+import { City } from './city';
 
 export class District {
-  id: number
-  nameDistrict: string
-  city: City
+  id: number;
+  nameDistrict: string;
+  city: City;
 }

@@ -1,7 +1,7 @@
 export class Vip {
-  id: number
-  nameVip: string
-  rangeStart: number
-  rangeEnd: number
-  discount: number
+  id: number;
+  nameVip: string;
+  rangeStart: number;
+  rangeEnd: number;
+  discount: number;
 }

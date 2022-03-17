@@ -1,4 +1,4 @@
 export class ResultSearch {
-  id: number
-  resultSearch: string
+  id: number;
+  resultSearch: string;
 }

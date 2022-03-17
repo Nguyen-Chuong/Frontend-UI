@@ -1,8 +1,8 @@
-import {Benefit} from "./benefit";
+import { Benefit } from './benefit';
 
 export class BenefitType {
-  id: number
-  name: string
-  icon: string
-  benefits: Benefit[]
+  id: number;
+  name: string;
+  icon: string;
+  benefits: Benefit[];
 }

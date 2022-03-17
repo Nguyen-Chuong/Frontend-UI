@@ -1,119 +1,152 @@
-import {Injectable} from '@angular/core';
-import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
-import {first, map, Observable, Subject, tap} from "rxjs";
-import * as moment from "moment";
-import {Account} from "../_models/account";
-import {Router} from "@angular/router";
-import {environment} from "../../environments/environment";
-import {StorageService} from "./storage.service";
-
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { first, Subject, tap } from 'rxjs';
+import { Account } from '../_models/account';
+import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
+import { StorageService } from './storage.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-  baseUrl = environment.API_URL
-  private account = new Subject<Account>()
+  baseUrl = environment.API_URL;
+  private account = new Subject<Account>();
 
-  constructor(private http: HttpClient, private router: Router, private storage: StorageService) {
-  }
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private storage: StorageService
+  ) {}
 
-
-//Login account
+  //Login account
   login(email: string, password: string) {
-    return this.http.post(`${this.baseUrl}/authenticate/user`, {email, password}, {withCredentials: false})
-      .pipe(tap(loginInfo => {
-          if (loginInfo['data'] === null)
-            throw new Error('Login Failed')
+    return this.http
+      .post(
+        `${this.baseUrl}/authenticate/user`,
+        { email, password },
+        { withCredentials: false }
+      )
+      .pipe(
+        tap((loginInfo) => {
+          if (loginInfo['data'] === null) throw new Error('Login Failed');
           if (loginInfo['data']['type'] === 0)
-            this.storage.setSession(loginInfo)
-          else
-            this.storage.accountType = loginInfo['data']['type']
-        }
-      ))
+            this.storage.setSession(loginInfo);
+          else this.storage.accountType = loginInfo['data']['type'];
+        })
+      );
   }
 
-//Register new account
+  //Register new account
   register(account: Account) {
-    return this.http.post(`${this.baseUrl}/register/user`, {...account}, {withCredentials: false})
+    return this.http.post(
+      `${this.baseUrl}/register/user`,
+      { ...account },
+      { withCredentials: false }
+    );
   }
 
-//Update user's info
+  //Update user's info
   update(account: Account) {
-    return this.http.patch(`${this.baseUrl}/update-profile/user`, {...account})
+    return this.http.patch(`${this.baseUrl}/update-profile/user`, {
+      ...account,
+    });
   }
 
-//Get user profile detail
+  //Get user profile detail
   getProfile() {
-    return this.http.get<Account>(`${this.baseUrl}/profile/user`)
+    return this.http.get<Account>(`${this.baseUrl}/profile/user`);
   }
 
-//Change user password
+  //Change user password
   changePassword(oldPass: string, newPass: string) {
-    const params = new HttpParams().append('oldPass', oldPass).append('newPass', newPass)
-    return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params})
-      .pipe(first(),
-        tap(rs => {
+    const params = new HttpParams()
+      .append('oldPass', oldPass)
+      .append('newPass', newPass);
+    return this.http
+      .patch(`${this.baseUrl}/change-password`, undefined, { params: params })
+      .pipe(
+        first(),
+        tap((rs) => {
           if (rs['status'] !== 200) {
-            throw new Error(rs['error_message'])
+            throw new Error(rs['error_message']);
           }
-        }))
-
+        })
+      );
   }
 
-//Reset password with given email and newPass
+  //Reset password with given email and newPass
   resetPassword(email: string, newPass: string) {
-    const params = new HttpParams().append('email', email).append('newPass', newPass)
-    return this.http.patch(`${this.baseUrl}/authenticate/forgot-password`, undefined, {
-      params: params,
-      withCredentials: false
-    })
+    const params = new HttpParams()
+      .append('email', email)
+      .append('newPass', newPass);
+    return this.http.patch(
+      `${this.baseUrl}/authenticate/forgot-password`,
+      undefined,
+      {
+        params: params,
+        withCredentials: false,
+      }
+    );
   }
 
-//Check if username is duplicated
+  //Check if username is duplicated
   checkUsernameDuplicated(username: string) {
-    return this.http.get(`${this.baseUrl}/check/user/username/u-${username}`, {withCredentials: false})
+    return this.http.get(`${this.baseUrl}/check/user/username/u-${username}`, {
+      withCredentials: false,
+    });
   }
 
-//Check if email is duplicated
+  //Check if email is duplicated
   checkEmailDuplicated(email: string) {
-    return this.http.get(`${this.baseUrl}/check/user/email/${email}`, {withCredentials: false})
+    return this.http.get(`${this.baseUrl}/check/user/email/${email}`, {
+      withCredentials: false,
+    });
   }
 
-//Get VIP info
+  //Get VIP info
   getVip() {
-    return this.http.get(`${this.baseUrl}/vip-info`)
+    return this.http.get(`${this.baseUrl}/vip-info`);
   }
 
-//Logout remove account info from local storage
+  //Logout remove account info from local storage
   logout() {
-    this.storage.removeSession()
+    this.storage.removeSession();
     this.router.navigateByUrl('/home').then(() => {
-      window.location.reload()
-    })
+      window.location.reload();
+    });
   }
 
-//Generate random OTP send to an email
+  //Generate random OTP send to an email
   generateOtp(email: string) {
-    const params = new HttpParams().append('email', email)
-    return this.http.post(`${this.baseUrl}/authenticate/generateOtp`, undefined, {
-      params: params,
-      withCredentials: false
-    })
+    const params = new HttpParams().append('email', email);
+    return this.http.post(
+      `${this.baseUrl}/authenticate/generateOtp`,
+      undefined,
+      {
+        params: params,
+        withCredentials: false,
+      }
+    );
   }
 
-//Verify if OTP is correct
+  //Verify if OTP is correct
   verifyOtp(email: string, otp: string) {
-    const params = new HttpParams().append('email', email).append('otpEncrypted', otp)
-    return this.http.post(`${this.baseUrl}/authenticate/verifyOtp`, undefined, {
-      params: params,
-      withCredentials: false
-    }).pipe(tap(
-      (rs => {
-        if (rs['status'] === 400) {
-          throw new Error(rs['error_message'])
-        }
-      })))
+    const params = new HttpParams()
+      .append('email', email)
+      .append('otpEncrypted', otp);
+    return this.http
+      .post(`${this.baseUrl}/authenticate/verifyOtp`, undefined, {
+        params: params,
+        withCredentials: false,
+      })
+      .pipe(
+        tap((rs) => {
+          if (rs['status'] === 400) {
+            throw new Error(rs['error_message']);
+          }
+        })
+      );
   }
 
   // public isLoggedIn() {
