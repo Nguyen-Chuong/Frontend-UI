@@ -1,4 +1,4 @@
 export class Image {
-  src: string
-  id: number
+  src: string;
+  id: number;
 }
