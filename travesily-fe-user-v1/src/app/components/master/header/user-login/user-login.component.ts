@@ -3,6 +3,7 @@ import {LoginInfo} from "../../../../_models/login-info";
 import {AuthService} from "../../../../_services/auth.service";
 import {first} from "rxjs";
 import {Account} from "../../../../_models/account";
+import {StorageService} from "../../../../_services/storage.service";
 
 @Component({
   selector: 'app-user-login',
@@ -12,13 +13,13 @@ import {Account} from "../../../../_models/account";
 export class UserLoginComponent implements OnInit {
   account: Account
 
-  constructor(private authService: AuthService) {
-    if(this.authService.authToken)
-    this.authService.getProfile()
-      .pipe(first())
-      .subscribe(account => {
-        this.account = account['data']
-      })
+  constructor(private authService: AuthService, private storage: StorageService) {
+    if (this.storage.authToken)
+      this.authService.getProfile()
+        .pipe(first())
+        .subscribe(account => {
+          this.account = account['data']
+        })
   }
 
   ngOnInit(): void {

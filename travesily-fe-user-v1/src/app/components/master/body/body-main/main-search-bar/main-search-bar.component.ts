@@ -16,6 +16,7 @@ import {ResultSearch} from "../../../../../_models/result-search";
 import {HotelService} from "../../../../../_services/hotel.service";
 import {LocationService} from "../../../../../_services/location.service";
 import {SearchFilter} from "../../../../../_models/search-filter";
+import {StorageService} from "../../../../../_services/storage.service";
 
 const moment = _rollupMoment || _moment;
 
@@ -64,8 +65,9 @@ export class MainSearchBarComponent implements OnInit {
   constructor(private hotelService: HotelService,
               private router: Router,
               private locationService: LocationService,
-              private fb: FormBuilder) {
-    this.filter = this.hotelService.searchFilter
+              private fb: FormBuilder,
+              private storage: StorageService) {
+    this.filter = this.storage.searchFilter
     this.results?.push(this.filter.destination)
     // this.hotelForm.controls['destination'].setValue(this.filter.destination.resultSearch)
     // // this.hotelForm.controls['from'].setValue(new Date(this.filter.from))

@@ -5,6 +5,7 @@ import * as moment from "moment";
 import {Account} from "../_models/account";
 import {Router} from "@angular/router";
 import {environment} from "../../environments/environment";
+import {StorageService} from "./storage.service";
 
 
 @Injectable({
@@ -14,30 +15,9 @@ export class AuthService {
   baseUrl = environment.API_URL
   private account = new Subject<Account>()
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient, private router: Router, private storage: StorageService) {
   }
 
-  get accountType() {
-    return +localStorage.getItem('account-type')
-  }
-
-  set accountType(type: number) {
-    localStorage.setItem('account-type', type.toString())
-  }
-
-//Save jwt to local storage
-  private setSession(loginInfo) {
-    const jwtToken = JSON.parse(atob(loginInfo['data']['jwttoken'].split('.')[1]))
-    const expiresAt = moment().add(jwtToken.exp, 'second')
-    localStorage.setItem('token', loginInfo['data']['jwttoken'])
-    localStorage.setItem('account-type', loginInfo['data']['type'])
-    localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()))
-  }
-
-//Get jwt token from local storage
-  get authToken() {
-    return localStorage.getItem('token')
-  }
 
 //Login account
   login(email: string, password: string) {
@@ -46,9 +26,9 @@ export class AuthService {
           if (loginInfo['data'] === null)
             throw new Error('Login Failed')
           if (loginInfo['data']['type'] === 0)
-            this.setSession(loginInfo)
+            this.storage.setSession(loginInfo)
           else
-            this.accountType = loginInfo['data']['type']
+            this.storage.accountType = loginInfo['data']['type']
         }
       ))
   }
@@ -107,9 +87,7 @@ export class AuthService {
 
 //Logout remove account info from local storage
   logout() {
-    localStorage.removeItem('token')
-    localStorage.removeItem("expires_at")
-    localStorage.removeItem("account-type")
+    this.storage.removeSession()
     this.router.navigateByUrl('/home').then(() => {
       window.location.reload()
     })
@@ -138,17 +116,17 @@ export class AuthService {
       })))
   }
 
-  public isLoggedIn() {
-    return moment().isBefore(this.getExpiration())
-  }
-
-  isLoggedOut() {
-    return !this.isLoggedIn()
-  }
-
-  getExpiration() {
-    const expiration = localStorage.getItem("expires_at");
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt)
-  }
+  // public isLoggedIn() {
+  //   return moment().isBefore(this.getExpiration())
+  // }
+  //
+  // isLoggedOut() {
+  //   return !this.isLoggedIn()
+  // }
+  //
+  // getExpiration() {
+  //   const expiration = localStorage.getItem("expires_at");
+  //   const expiresAt = JSON.parse(expiration);
+  //   return moment(expiresAt)
+  // }
 }

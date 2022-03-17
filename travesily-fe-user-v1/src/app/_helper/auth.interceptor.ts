@@ -8,15 +8,16 @@ import {
 import {catchError, Observable, throwError} from 'rxjs';
 import {AuthService} from "../_services/auth.service";
 import {Router} from "@angular/router";
+import {StorageService} from "../_services/storage.service";
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router, private storage: StorageService) {
   }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const token = this.authService.authToken
+    const token = this.storage.authToken
 
     if (token) {
 

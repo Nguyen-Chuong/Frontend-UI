@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../../../_services/auth.service";
 import {first} from "rxjs";
 import {AlertService} from "../../../../../_services/alert.service";
+import {StorageService} from "../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private storage: StorageService
   ) {
   }
 
@@ -40,10 +42,10 @@ export class LoginComponent implements OnInit {
         .pipe(first())
         .subscribe({
           next: () => {
-            if (this.authService.accountType === 0) {
+            if (this.storage.accountType === 0) {
               this.form.reset()
               this.router.navigateByUrl('/home').then(() => window.location.reload());
-            } else if (this.authService.accountType === 1 || this.authService.accountType === 2) {
+            } else if (this.storage.accountType === 1 || this.storage.accountType === 2) {
               this.form.reset()
               window.location.href = 'http://localhost:4300/taskbar'
             }

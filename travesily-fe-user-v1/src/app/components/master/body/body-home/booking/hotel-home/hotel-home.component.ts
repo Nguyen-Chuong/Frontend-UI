@@ -16,6 +16,7 @@ import * as _moment from 'moment';
 import * as _rollupMoment from 'moment';
 import {SearchFilter} from "../../../../../../_models/search-filter";
 import {ResultSearch} from "../../../../../../_models/result-search";
+import {StorageService} from "../../../../../../_services/storage.service";
 
 const moment = _rollupMoment || _moment;
 
@@ -198,7 +199,10 @@ export class HotelHomeComponent implements OnInit {
     roomNumber: new FormControl(0, [Validators.required, Validators.min(1)])
   })
 
-  constructor(private hotelService: HotelService, private router: Router, private locationService: LocationService) {
+  constructor(private hotelService: HotelService,
+              private router: Router,
+              private locationService: LocationService,
+              private storage: StorageService) {
   }
 
   ngOnInit(): void {
@@ -224,7 +228,7 @@ export class HotelHomeComponent implements OnInit {
         filter.guestNumber = val.guestNumber
         filter.roomNumber = val.roomNumber
         console.log(filter)
-        this.hotelService.searchFilter = filter
+        this.storage.searchFilter = filter
         this.router.navigate(['/main/search-hotel-list'], {
           queryParams: {
             destination: district.id,

@@ -15,24 +15,6 @@ export class HotelService {
   constructor(private http: HttpClient, @Inject(LOCALE_ID) private _locale: string) {
   }
 
-  set searchFilter(filter: SearchFilter) {
-    localStorage.setItem('destination', JSON.stringify(filter.destination))
-    localStorage.setItem('from', filter.from.toDateString())
-    localStorage.setItem('to', filter.to.toDateString())
-    localStorage.setItem('guestNumber', filter.guestNumber.toString())
-    localStorage.setItem('roomNumber', filter.roomNumber.toString())
-  }
-
-  get searchFilter() {
-    const filter = new SearchFilter()
-    filter.destination = JSON.parse(localStorage.getItem('destination'))
-    filter.from = new Date(localStorage.getItem('from'))
-    filter.to = new Date(localStorage.getItem('to'))
-    filter.guestNumber = +localStorage.getItem('guestNumber')
-    filter.roomNumber = +localStorage.getItem('roomNumber')
-    return filter
-  }
-
   datePipe = new DatePipe('en-US')
 
   //Search hotel by filter
