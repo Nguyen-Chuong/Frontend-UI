@@ -1,11 +1,12 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  baseUrl = 'http://localhost:8080/api/v1';
+  baseUrl = environment.API_URL;
   constructor(private http: HttpClient) {}
 
   getAllUserPage(page: number, pageSize: number) {

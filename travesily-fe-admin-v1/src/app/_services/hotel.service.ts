@@ -1,12 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { CryptoService } from './crypto.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class HotelService {
-  baseUrl = 'http://localhost:8080/api/v1';
+  baseUrl = environment.API_URL;
   constructor(private http: HttpClient, private cryptoService: CryptoService) {}
 
   getAllHotel(page: number, pageSize: number) {

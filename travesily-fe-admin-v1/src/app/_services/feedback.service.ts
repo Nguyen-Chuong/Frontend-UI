@@ -2,12 +2,13 @@ import { AdminResponse } from './../_models/admin-response';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CryptoService } from './crypto.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class FeedbackService {
-  baseUrl = 'http://localhost:8080/api/v1';
+  baseUrl = environment.API_URL;
   constructor(private http: HttpClient, private cryptoService: CryptoService) {}
 
   getFeedback(page: number, pageSize: number) {

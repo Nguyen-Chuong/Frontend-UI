@@ -1,13 +1,14 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { first, tap } from 'rxjs';
+import { environment } from 'src/environments/environment';
 import { Account } from '../_models/account';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthServiceService {
-  baseUrl = 'http://localhost:8080/api/v1';
+  baseUrl = environment.API_URL;
   isLoggedIn$ = false;
   httpSkip: any;
 
