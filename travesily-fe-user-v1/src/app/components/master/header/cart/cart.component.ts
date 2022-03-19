@@ -36,6 +36,7 @@ export class CartComponent implements OnInit {
             this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', cart.roomTypeId)).subscribe(
               rs => {
                 this.roomDetails.push(rs['data'])
+                this.roomDetails = [...new Set(this.roomDetails)]
               }
             )
           })
