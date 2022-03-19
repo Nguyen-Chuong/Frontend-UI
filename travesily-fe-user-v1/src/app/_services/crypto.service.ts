@@ -11,7 +11,7 @@ export class CryptoService {
     var key = CryptoJS.enc.Utf8.parse(keys);
     var iv = CryptoJS.enc.Utf8.parse(keys);
     var encrypted = CryptoJS.DES.encrypt(
-      CryptoJS.enc.Utf8.parse(value.toString()),
+      CryptoJS.enc.Utf8.parse(value?.toString()),
       key,
       {
         keySize: 64,

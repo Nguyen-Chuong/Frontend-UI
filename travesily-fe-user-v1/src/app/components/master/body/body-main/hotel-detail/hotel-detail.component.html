@@ -141,7 +141,7 @@
   <section id="listRoom">
     <ul class="list-inline">
       <li class="mb-3" *ngFor="let roomType of roomTypes">
-        <app-room-type-card [roomType]="roomType"></app-room-type-card>
+        <app-room-type-card [hotelId]="hotel.id" [roomType]="roomType"></app-room-type-card>
       </li>
     </ul>
   </section>
