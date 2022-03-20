@@ -90,16 +90,30 @@ export class UpdateRoomComponent implements OnInit {
     if (val.dealExpire)
       this.room.dealExpire = val.dealExpire
     console.log(this.room)
-    this.roomService.updateRoom(this.room).pipe(first()).subscribe({
-      next: () => {
-        this.notificationService.onSuccess('Update Room successfully');
-        //window.location.reload()
-      },
-      error: err => {
-        console.log(err)
-        this.notificationService.onError('Update Room false')
-      }
-    })
+    if (this.roomControl.value === "newRoom") {
+      this.roomService.newRoom(this.room).pipe(first()).subscribe({
+        next: () => {
+          this.notificationService.onSuccess('Add Room successfully');
+          //window.location.reload()
+        },
+        error: err => {
+          console.log(err)
+          this.notificationService.onError('Update Room false')
+        }
+      })
+    } else {
+      this.roomService.updateRoom(this.room).pipe(first()).subscribe({
+        next: () => {
+          this.notificationService.onSuccess('Update Room successfully');
+          //window.location.reload()
+        },
+        error: err => {
+          console.log(err)
+          this.notificationService.onError('Update Room false')
+        }
+      })
+    }
+
 
   }
 
@@ -115,14 +129,14 @@ export class UpdateRoomComponent implements OnInit {
     this.roomService.getRoomDetail(encryptedId).pipe(first()).subscribe(res => {
       this.room = res['data']
       this.encryptedRoomId = this.cryptoService.set('06052000', room.id)
-      if(this.room.status === 1)
+      if (this.room.status === 1)
         this.isDisable = false
-      if(this.room.status === 2)
+      if (this.room.status === 2)
         this.isEnable = false
     })
   }
 
-  disableHotel() {
+  disableRoom() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: { checked: this.checked, message: "Are you sure wanna Disable this Room" },
@@ -144,7 +158,7 @@ export class UpdateRoomComponent implements OnInit {
     });
   }
 
-  enableHotel() {
+  enableRoom() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: { checked: this.checked, message: "Are you sure wanna Enable this Room" },

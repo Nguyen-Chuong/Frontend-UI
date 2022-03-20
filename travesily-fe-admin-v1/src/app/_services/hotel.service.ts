@@ -46,7 +46,7 @@ export class HotelService {
 
   getRoomByHotelId(id: string) {
     const params = new HttpParams().append('hotelId', id);
-    return this.http.get(`${this.baseUrl}/public/room-type/`, {
+    return this.http.get(`${this.baseUrl}/list-room-type`, {
       params: params,
     });
   }
