@@ -11,6 +11,7 @@ import { ForgotPasswordComponent } from './components/authentication/forgot-pass
 import { LoginComponent } from './components/authentication/login/login.component';
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
+import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
   {
     path: 'update-room',
     component: UpdateRoomComponent
+  },
+  {
+    path: 'hotel-detail',
+    component: HotelDetailComponent
   },
 ];
 

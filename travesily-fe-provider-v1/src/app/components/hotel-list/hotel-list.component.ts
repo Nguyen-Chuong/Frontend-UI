@@ -35,10 +35,10 @@ export class HotelListComponent implements OnInit {
   }
 
   openHotelDetail(id) {
-    // const encryptedId = this.cryptoService.set('06052000',id)
-    // this.router.navigate(['hotel-detail'], {
-    //   queryParams: { id: JSON.stringify(encryptedId)}
-    // });
+    const encryptedId = this.cryptoService.set('06052000',id)
+    this.router.navigate(['hotel-detail'], {
+      queryParams: { id: JSON.stringify(encryptedId)}
+    });
   }
 
   updateHotel(id){

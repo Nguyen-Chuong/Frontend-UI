@@ -23,15 +23,16 @@
             <mat-option *ngFor="let room of rooms" [value]="room">
               {{room.name}}
             </mat-option>
+            <mat-option value="newRoom">New Room</mat-option>
           </mat-select>
           <mat-error *ngIf="roomControl.hasError('required')">Please choose a room</mat-error>
         </mat-form-field>
       </div>
       <div class="room-detail">
-        <form class="col-md-10 border-right" [formGroup]="form" (ngSubmit)="submit()">
+        <form class="col-md-10 border-right" [formGroup]="form" (ngSubmit)="submit()" aria-readonly="true">
           <div class="p-3 py-5">
             <div class="col-md-12"><label class="labels">Room name</label>
-              <input type="text" class="form-control" value={{room.name}} formControlName="name">
+              <input type="text" class="form-control" value={{room.name}} formControlName="name" [disabled]>
             </div>
             <div class="row mt-2">
               <div class="col-md-6"><label class="labels">Quantity room</label>
@@ -62,12 +63,12 @@
             </div>
             <div class="mt-5 text-center">
               <button class="btn btn-primary room-button update-room-btn update-room-btn-enable" [disabled]="isEnable"
-                (click)="enableHotel()">Enable</button>
+                (click)="enableRoom()">Enable</button>
 
               <button class="btn btn-primary room-button" type="submit" (click)="submit()">Save</button>
 
               <button class="btn btn-primary room-button update-room-btn update-room-btn-disable" [disabled]="isDisable"
-                (click)="disableHotel()">Disable</button>
+                (click)="disableRoom()">Disable</button>
             </div>
           </div>
         </form>

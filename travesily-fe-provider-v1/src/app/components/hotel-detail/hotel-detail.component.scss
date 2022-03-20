@@ -1,3 +1,7 @@
+* {
+  font-style: inherit;
+  font-size: 1.5rem;
+}
 .hotel-detail{
   display: flex;
 }
@@ -11,7 +15,10 @@
   justify-content: center;
   width: 75%;
   margin: 20px auto;
-  padding-top: 90px;
+  margin-top: 90px;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: aliceblue;
 }
 .mat-tab-group {
   width: 100%;
