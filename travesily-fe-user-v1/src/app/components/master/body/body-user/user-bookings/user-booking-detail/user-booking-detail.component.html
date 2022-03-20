@@ -23,11 +23,11 @@
           <div class="row border-bottom border-end">
             <a><h2 class="text-primary">{{booking.hotel?.name}}</h2></a>
             <h2>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
-              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star {{booking.hotel.star>=1?'checked':''}}"></span>
+              <span class="fa fa-star {{booking.hotel.star>=2?'checked':''}}"></span>
+              <span class="fa fa-star {{booking.hotel.star>=3?'checked':''}}"></span>
+              <span class="fa fa-star {{booking.hotel.star>=4?'checked':''}}"></span>
+              <span class="fa fa-star {{booking.hotel.star>=5?'checked':''}}"></span>
             </h2>
             <h3 class="text-blue-1">{{booking.hotel?.address}}, {{booking.hotel?.district.nameDistrict}}
               , {{booking.hotel?.district.city.nameCity}}</h3>

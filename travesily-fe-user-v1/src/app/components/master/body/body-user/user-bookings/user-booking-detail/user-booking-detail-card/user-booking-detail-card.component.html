@@ -10,8 +10,12 @@
     <div class="col-md-10">
       <div class="card-body">
         <h3 class="card-title text-blue-1">{{bookingDetail.quantity}} X {{roomDetail.name}}</h3>
-        <h4 class="card-text text-success">{{roomDetail.listFacility}}</h4>
-        <h3 class="card-text">{{bookingDetail.paid * bookingDetail.quantity|number}} VNĐ</h3>
+        <h4 class="card-text text-success">
+          <ul class="list-inline">
+            <li *ngFor="let facilityType of roomDetail.listFacility"><i class="fa fa-check"></i> {{facilityType.facilities[0].name}}</li>
+          </ul>
+        </h4>
+        <h3 class="card-text">{{bookingDetail.paid * bookingDetail.quantity|number}} đ</h3>
       </div>
     </div>
     <div class="card-footer">

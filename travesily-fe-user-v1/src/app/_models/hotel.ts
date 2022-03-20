@@ -12,5 +12,6 @@ export class Hotel {
   phone: string;
   email: string;
   taxPercentage: number;
+  star: number
   district: District;
 }

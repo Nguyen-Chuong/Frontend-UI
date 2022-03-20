@@ -1,35 +1,3 @@
-<!--<div class="card">-->
-<!--  <div class="card__avatar">-->
-<!--    <img [src]="booking.hotel?.avatar" alt="Hotel Image" class="card__avatar&#45;&#45;image">-->
-<!--  </div>-->
-<!--  <div class="card__title">-->
-<!--    <h1>{{booking.hotel?.name}}</h1>-->
-<!--    <h2>Booking ID: {{booking.id}}</h2>-->
-<!--    <h2 class="card__title&#45;&#45;status"-->
-<!--        [classList]="booking.status===0?'upcoming':booking.status===1?'completed':'cancelled'">-->
-<!--      <ng-container *ngIf="booking.status===0">-->
-<!--        <i class="fa fa-spinner" aria-hidden="true"></i>-->
-<!--      </ng-container>-->
-<!--      <ng-container *ngIf="booking.status===1">-->
-<!--        <i class="fa fa-check" aria-hidden="true"></i>-->
-<!--      </ng-container>-->
-<!--      <ng-container *ngIf="booking.status===2">-->
-<!--        <i class="fa fa-times" aria-hidden="true"></i>-->
-<!--      </ng-container>-->
-<!--      {{this.booking?.status == 0 ? 'Upcoming' : this.booking?.status == 1 ? 'Completed' : 'Cancelled'}}-->
-<!--    </h2>-->
-<!--    <h1>{{booking.totalPaid | number}} VNĐ</h1>-->
-<!--  </div>-->
-<!--  <div class="card__date"><h1>{{booking?.checkIn | date: 'dd MMM EEE'}}-->
-<!--    | {{booking?.checkOut | date: 'dd MMM EEE'}}</h1></div>-->
-<!--  <div class="card__review">-->
-<!--    <a class="btn-review btn-plain">Submit Your Review</a>-->
-<!--  </div>-->
-<!--  <div class="card__details">-->
-<!--    <a class="btn-details btn-fill" (click)="viewDetail()">View Booking Details</a>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class="card mb-3">
   <div class="card-body">
     <div class="row">

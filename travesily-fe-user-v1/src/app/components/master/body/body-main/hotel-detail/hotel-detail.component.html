@@ -89,11 +89,11 @@
             <div class="card-body">
               <h1 class="card-title"><b>{{hotel.name}}</b></h1>
               <h4 class="m-0">
-                <span class="fa fa-star checked me-2"></span>
-                <span class="fa fa-star checked me-2"></span>
-                <span class="fa fa-star checked me-2"></span>
-                <span class="fa fa-star checked me-2"></span>
-                <span class="fa fa-star checked me-2"></span>
+                <span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span>
+                <span class="fa fa-star {{hotel.star>=2?'checked':''}}"></span>
+                <span class="fa fa-star {{hotel.star>=3?'checked':''}}"></span>
+                <span class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
+                <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
               </h4>
               <h3>{{hotel.address}}, {{hotel.district?.nameDistrict}}, {{hotel.district?.city.nameCity}}</h3>
             </div>

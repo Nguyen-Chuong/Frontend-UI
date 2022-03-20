@@ -35,7 +35,6 @@ export class HotelCardComponent implements OnInit {
     )
   }
 
-
   selectRoom() {
     this.activatedRoute.queryParams.subscribe(
       rs => {
