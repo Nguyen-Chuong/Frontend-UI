@@ -105,6 +105,7 @@ export class MainSearchBarComponent implements OnInit {
         filter.to = val.to
         filter.guestNumber = val.guestNumber
         filter.roomNumber = val.roomNumber
+        this.storage.searchFilter = filter
         this.router.navigate(['/main/search-hotel-list'], {
           queryParams: {
             destination: district.id,

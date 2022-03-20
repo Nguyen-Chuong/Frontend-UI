@@ -2,14 +2,27 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CryptoService } from './crypto.service';
 import { environment } from '../../environments/environment';
+import {Booking} from "../_models/booking";
+import {DatePipe} from "@angular/common";
+import {BookingDetail} from "../_models/booking-detail";
+import {BookingRequest} from "../_models/booking-request";
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookingService {
   baseUrl = environment.API_URL;
+  datePipe = new DatePipe('en-US')
 
   constructor(private http: HttpClient, private cryptoService: CryptoService) {}
+
+  //Add new booking
+  addBooking(booking: BookingRequest){
+    booking.checkIn = new Date(this.datePipe.transform(new Date(booking.checkIn), 'yyyy-MM-dd'))
+    booking.checkOut = new Date(this.datePipe.transform(new Date(booking.checkOut), 'yyyy-MM-dd'))
+    booking.bookingDate = new Date(this.datePipe.transform(new Date(booking.bookingDate), 'yyyy-MM-dd'))
+    return this.http.post(`${this.baseUrl}/add-booking`,{...booking})
+  }
 
   //Get the number of completed bookings by user
   getCompletedBooking() {

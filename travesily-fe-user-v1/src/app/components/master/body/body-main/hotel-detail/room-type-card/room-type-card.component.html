@@ -108,7 +108,7 @@
             <h1 class="text-success">₫ {{roomType.price - roomType.price * roomType.dealPercentage / 100 | number}}</h1>
           </div>
           <div class="col-md-1">
-            <h2 class="card-title bg-grey p-3 item-center">1</h2>
+            <h2 class="card-title bg-grey p-3 item-center">{{filter.roomNumber}}</h2>
           </div>
           <div class="col-md-3">
             <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()">Add to

@@ -5,6 +5,7 @@ import {RoomDetail} from "../../../../../../_models/room-detail";
 import {CryptoService} from "../../../../../../_services/crypto.service";
 import {CartService} from "../../../../../../_services/cart.service";
 import {StorageService} from "../../../../../../_services/storage.service";
+import {SearchFilter} from "../../../../../../_models/search-filter";
 
 @Component({
   selector: 'app-room-type-card',
@@ -16,6 +17,7 @@ export class RoomTypeCardComponent implements OnInit {
   @Input() hotelId: number
   roomDetail: RoomDetail
   iconMale = 'fa fa-male'
+  filter: SearchFilter
   modal = ''
 
   constructor(private roomTypeService: RoomTypeService,
@@ -23,6 +25,7 @@ export class RoomTypeCardComponent implements OnInit {
               private cartService: CartService,
               private storageService: StorageService) {
     this.modal = `#room-type-image-modal-${this.roomType?.id}`
+    this.filter = this.storageService.searchFilter
   }
 
   ngOnInit(): void {
@@ -33,9 +36,8 @@ export class RoomTypeCardComponent implements OnInit {
   }
 
   addToCart() {
-    const filter = this.storageService.searchFilter
-    this.cartService.addToCart(this.hotelId, this.roomType.id, 1,filter.from,filter.to).subscribe(rs => {
-      this.cartService.updateCarts()
+    this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
+        this.cartService.updateCarts()
         alert('An item has been added to your cart!')
       },
       err => {

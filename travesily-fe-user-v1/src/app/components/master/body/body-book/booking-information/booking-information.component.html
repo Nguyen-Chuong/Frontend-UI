@@ -89,14 +89,7 @@
                           here for more request</h4>
                       </a>
                       <div *ngIf="isShow" class="border p-3">
-                        <ul>
-                          <li *ngFor="let option of sampleOptions">
-                            <mat-checkbox color="primary">
-                              {{option.display}}
-                            </mat-checkbox>
-                          </li>
-                        </ul>
-                        <textarea class="item-fullwidth p-3"></textarea>
+                        <textarea formControlName="additional" class="item-fullwidth p-3"></textarea>
                       </div>
                     </div>
                   </form>
@@ -113,7 +106,8 @@
 
               <h3 class="text-success d-block float-end">RISK FREE! No cancellation fee before 23:59 hrs. on April 7,
                 2022 (property local time)</h3>
-              <button type="button" class="btn btn-primary d-block float-end" (click)="checkOut()">PROCEED TO
+              <button type="button" class="btn btn-primary d-block float-end" [disabled]="carts.length ===0"
+                      (click)="checkOut()">PROCEED TO
                 CHECKOUT!
               </button>
             </div>

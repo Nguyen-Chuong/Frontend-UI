@@ -16,6 +16,9 @@ import {BenefitType} from "../../../../../_models/benefit-type";
 import {Benefit} from "../../../../../_models/benefit";
 import {FormBuilder} from "@angular/forms";
 import {Booking} from "../../../../../_models/booking";
+import {BookingService} from "../../../../../_services/booking.service";
+import {BookingRequest} from "../../../../../_models/booking-request";
+import {BookingDetail} from "../../../../../_models/booking-detail";
 
 @Component({
   selector: 'app-booking-information',
@@ -31,14 +34,6 @@ export class BookingInformationComponent implements OnInit {
   isShow: boolean = false
   bookingForm
 
-  sampleOptions = [
-    {value: "Room on high floor", display: "I'd like a room on high floor"},
-    {value: "Quiet room", display: "I'd like a quiet room"},
-    {value: "Taxi pick up", display: "I'd like taxi pick me up"},
-    {value: "Child bed", display: "I'd like to have a small bed for my child"},
-
-  ]
-
   constructor(private fb: FormBuilder,
               private activatedRoute: ActivatedRoute,
               private cartService: CartService,
@@ -47,6 +42,7 @@ export class BookingInformationComponent implements OnInit {
               private cryptoService: CryptoService,
               private roomTypeService: RoomTypeService,
               private storageService: StorageService,
+              private bookingService: BookingService,
               private router: Router) {
     //Get user search filter
     this.searchFilter = storageService.searchFilter
@@ -55,12 +51,14 @@ export class BookingInformationComponent implements OnInit {
     })
     this.cartService.getCarts().subscribe({
       next: value => {
+        if(value.length === 0)
+          this.router.navigateByUrl('/home')
         this.carts = value
         this.carts.forEach(cart => {
           cart.dateIn = new Date(cart.dateIn)
           cart.dateOut = new Date(cart.dateOut)
         })
-        this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0].hotelId)).subscribe({
+        this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0]?.hotelId)).subscribe({
           next: value => {
             this.hotel = value['data']
           }
@@ -95,14 +93,37 @@ export class BookingInformationComponent implements OnInit {
   }
 
   checkOut() {
-    const booking: Booking = new Booking()
-    booking.hotel = this.hotel
+    const booking: BookingRequest = new BookingRequest()
+    const bookingDetails: BookingDetail[] = []
+    booking.hotelId = this.hotel.id
     booking.bookingDate = new Date()
     booking.checkIn = this.carts[0].dateIn
     booking.checkOut = this.carts[0].dateOut
-    booking.totalPaid = ((this.roomDetails[0]?.price - this.roomDetails[0]?.price * this.roomDetails[0]?.dealPercentage / 100)
-        * this.carts[0]?.quantity + (this.roomDetails[1]?.price * this.carts[1]?.quantity - this.roomDetails[1]?.price * this.roomDetails[1]?.dealPercentage / 100))
-      * (100 + this.hotel.taxPercentage) / 100
-    this.router.navigateByUrl('/book/booking-payment-info')
+    booking.bookedQuantity = this.carts[0]?.bookedQuantity + (this.carts[1]?.bookedQuantity || 0)
+    const val = this.bookingForm.value
+    booking.otherRequirement = `${val.bed ? (val.bed + ', ') : ''}${val.smoking ? (val.smoking + ', ') : ''}${val.additional}`
+    booking.status = 0
+    this.roomDetails.forEach((roomDetail, i) => {
+      const bookingDetail = new BookingDetail()
+      bookingDetail.roomTypeId = roomDetail.id
+      bookingDetail.quantity = this.carts[i].quantity
+      bookingDetail.paid = ((roomDetail.price - roomDetail.price * roomDetail.dealPercentage / 100)) * (100 + this.hotel.taxPercentage) / 100
+      bookingDetails.push(bookingDetail)
+    })
+    booking.bookingDetail = bookingDetails
+    console.log(booking)
+    this.bookingService.addBooking(booking).subscribe({
+      next: value => {
+        this.cartService.clearCart().subscribe({
+          next: value => {
+            this.router.navigateByUrl('/book/booking-payment-info')
+          }
+        })
+      },
+      error: err => {
+        console.error(err)
+      }
+    })
+
   }
 }

@@ -27,6 +27,7 @@ export class CartComponent implements OnInit {
         next: value => {
           this.carts = value
           this.roomDetails = []
+          this.hotel = new Hotel()
           if (this.carts.length !== 0)
             this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0]?.hotelId)).subscribe(
               rs => {
