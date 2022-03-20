@@ -1,1 +1,25 @@
-<p>review works!</p>
+<div class="review">
+  <div class="review-rate">
+    <mat-progress-bar mode="determinate" value={{cleanliness}}></mat-progress-bar>
+    <div class="review-rate-value">
+      <p>Cleanliness</p> <span class="review-rate-value-detail">{{review.cleanliness}}</span>
+    </div>
+    <mat-progress-bar mode="determinate" value={{facilities}}></mat-progress-bar>
+    <div class="review-rate-value">
+      <p>Facilities</p> <span class="review-rate-value-detail">{{review.facilities}}</span>
+    </div>
+    <mat-progress-bar mode="determinate" value={{location}}></mat-progress-bar>
+    <div class="review-rate-value">
+      <p>Location</p> <span class="review-rate-value-detail">{{review.location}}</span>
+    </div>
+    <mat-progress-bar mode="determinate" value={{service}}></mat-progress-bar>
+    <div class="review-rate-value">
+      <p>Service</p> <span class="review-rate-value-detail">{{review.service}}</span>
+    </div>
+  </div>
+  <div class="review-content">
+    <h1 class="review-content-title">"{{review.reviewTitle}}"</h1>
+    <p class="review-content-detail">{{review.reviewDetail}}</p>
+    <p class="review-content-date">{{review.reviewDate}}</p>
+  </div>
+</div>

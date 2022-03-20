@@ -1,0 +1,29 @@
+* {
+  font-style: inherit;
+  font-size: 1rem;
+}
+
+.review{
+  display: flex;
+  height: 200px;
+  border: 1px solid green;
+  border-radius: 10px;
+  padding: 10px;
+  &-rate{
+    width: 25%;
+
+    &-value{
+      margin-top: 5px;
+      display: inline-flex;
+      width: 100%;
+      justify-content: space-between
+
+    }
+  }
+
+  &-content{
+    width: 70%;
+    margin-left: 20px;
+  }
+
+}

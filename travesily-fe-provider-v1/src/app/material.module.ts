@@ -34,6 +34,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatStepperModule} from '@angular/material/stepper';
 import { MatDialogModule} from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 const materialModules = [
   CdkTreeModule,
@@ -69,7 +70,8 @@ const materialModules = [
   MatDatepickerModule,
   MatTooltipModule,
   MatStepperModule,
-  MatDialogModule
+  MatDialogModule,
+  MatProgressBarModule
 ];
 @NgModule({
   imports: [

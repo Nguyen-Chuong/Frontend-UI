@@ -1,3 +1,5 @@
+import { Review } from './../../_models/review';
+import { ReviewsService } from './../../_services/reviews.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -19,9 +21,9 @@ export class HotelDetailComponent implements OnInit {
   total: number
   maxpage: number
   bookings: Booking[]
-  dataSource
-  isAdmin = false
+  reviews: Review[]
   constructor(private bookingsService: BookingsService,
+    private reviewsService: ReviewsService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -51,6 +53,13 @@ export class HotelDetailComponent implements OnInit {
     this.bookingsService.getBookingOfHotel(this.hotelId, this.currentPage, this.pageSize).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']['items']
+
+      }
+    )
+
+    this.reviewsService.getReviewOfHotel(this.hotelId, this.currentPage, this.pageSize).pipe(first()).subscribe(
+      rs => {
+        this.reviews = rs['data']['items']
 
       }
     )

@@ -13,4 +13,9 @@ export class ReviewsService {
     const params = new HttpParams().append('hotelId', hotelId).append('page', page).append('pageSize', pageSize)
     return this.http.get(`${this.baseUrl}/reviews`, {params: params})
   }
+
+  getAllReviewOfHotel(hotelId: any){
+    const params = new HttpParams().append('hotelId', hotelId)
+    return this.http.get(`${this.baseUrl}/reviews`, {params: params})
+  }
 }
