@@ -35,6 +35,13 @@ import {
   SearchHotelListComponent
 } from "./components/master/body/body-main/search-hotel-list/search-hotel-list.component";
 import {HotelDetailComponent} from "./components/master/body/body-main/hotel-detail/hotel-detail.component";
+import {BodyBookComponent} from "./components/master/body/body-book/body-book.component";
+import {
+  BookingInformationComponent
+} from "./components/master/body/body-book/booking-information/booking-information.component";
+import {
+  BookingPaymentInformationComponent
+} from "./components/master/body/body-book/booking-payment-information/booking-payment-information.component";
 
 const routes: Routes = [
   {
@@ -75,7 +82,11 @@ const routes: Routes = [
           {path: 'vip', component: UserVipComponent},
           {path: 'booking-detail', component: UserBookingDetailComponent}
         ]
-      }
+      },
+      {path:'book', component:BodyBookComponent, children:[
+          {path: 'booking-info', component: BookingInformationComponent},
+          {path: 'booking-payment-info', component: BookingPaymentInformationComponent}
+        ]}
     ]
   }
 

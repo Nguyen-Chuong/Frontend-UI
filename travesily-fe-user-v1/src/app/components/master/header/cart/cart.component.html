@@ -1,6 +1,10 @@
 <div class="dropdown me-5">
   <button class="dropdown-toggle btn btn-secondary" type="button"
           id="cart-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="fa fa-shopping-cart"></i>
+    <span *ngIf="carts.length!==0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{carts.length}}
+    <span class="visually-hidden">Cart items</span>
+  </span>
   </button>
   <div class="dropdown-menu dropdown-menu-xl-end p-5">
     <h3 class="text-orange-1"><b>Here's your booking cart</b></h3>
@@ -22,7 +26,7 @@
     </ul>
     <div class="d-flex justify-content-between">
       <button class="btn btn-warning float-end" (click)="clearCart()">Clear cart</button>
-      <button class="btn btn-primary float-end">Proceed to checkout</button>
+      <button class="btn btn-primary float-end" [disabled]="carts.length === 0" (click)="checkOut()">Proceed to checkout</button>
     </div>
   </div>
 </div>

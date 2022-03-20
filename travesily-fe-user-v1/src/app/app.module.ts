@@ -65,6 +65,9 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ImagesCarouselComponent } from './components/master/body/body-main/hotel-detail/images-carousel/images-carousel.component';
 import { MainSearchBarComponent } from './components/master/body/body-main/main-search-bar/main-search-bar.component';
 import { CartComponent } from './components/master/header/cart/cart.component';
+import { BodyBookComponent } from './components/master/body/body-book/body-book.component';
+import { BookingInformationComponent } from './components/master/body/body-book/booking-information/booking-information.component';
+import { BookingPaymentInformationComponent } from './components/master/body/body-book/booking-payment-information/booking-payment-information.component';
 
 @NgModule({
   declarations: [
@@ -117,7 +120,10 @@ import { CartComponent } from './components/master/header/cart/cart.component';
     MinRangeDirective,
     ImagesCarouselComponent,
     MainSearchBarComponent,
-    CartComponent
+    CartComponent,
+    BodyBookComponent,
+    BookingInformationComponent,
+    BookingPaymentInformationComponent
   ],
   imports: [
     BrowserModule,

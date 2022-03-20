@@ -12,5 +12,5 @@ export class RoomDetail {
   dealExpire: number;
   listImage: { id: number; src: string }[];
   listFacility: FacilityType[];
-  listRoomBenefit: BenefitType[];
+  listBenefit: BenefitType[];
 }

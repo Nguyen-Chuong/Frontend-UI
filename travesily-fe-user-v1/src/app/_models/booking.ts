@@ -11,4 +11,5 @@ export class Booking {
   bookingDate: Date;
   totalDays: number;
   bookedQuantity: number;
+  otherRequirement: string
 }

@@ -35,7 +35,7 @@ currentUrl = ''
         const to = rs['to']
         this.roomTypeService.getRoomTypesByHotelId(hotelId, from, to).subscribe(
           rs => {
-            this.roomTypes = rs['data']
+            this.roomTypes = rs['data']['listRooms']
             this.roomTypes.forEach(roomType => {
               this.listImage?.push(...roomType.listImage)
             })

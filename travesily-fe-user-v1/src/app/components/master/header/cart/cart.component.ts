@@ -26,6 +26,7 @@ export class CartComponent implements OnInit {
     this.cartService.getCarts().subscribe({
         next: value => {
           this.carts = value
+          this.roomDetails = []
           if (this.carts.length !== 0)
             this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0]?.hotelId)).subscribe(
               rs => {
@@ -60,11 +61,14 @@ export class CartComponent implements OnInit {
       this.cartService.clearCart().subscribe(rs => {
         alert('Your booking cart has been cleared!')
         this.cartService.updateCarts()
-        // this.carts = []
         this.roomDetails = []
         this.hotel = new Hotel()
 
       })
     }
+  }
+
+  checkOut() {
+    this.router.navigateByUrl('/book/booking-info')
   }
 }

@@ -48,8 +48,6 @@ export class HotelCardComponent implements OnInit {
             to: to
           }
         })
-      }
-    )
-
+      })
   }
 }

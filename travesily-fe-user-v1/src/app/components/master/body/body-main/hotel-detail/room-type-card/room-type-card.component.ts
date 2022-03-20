@@ -4,6 +4,7 @@ import {RoomTypeService} from "../../../../../../_services/room-type.service";
 import {RoomDetail} from "../../../../../../_models/room-detail";
 import {CryptoService} from "../../../../../../_services/crypto.service";
 import {CartService} from "../../../../../../_services/cart.service";
+import {StorageService} from "../../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-room-type-card',
@@ -19,7 +20,8 @@ export class RoomTypeCardComponent implements OnInit {
 
   constructor(private roomTypeService: RoomTypeService,
               private cryptoService: CryptoService,
-              private cartService: CartService) {
+              private cartService: CartService,
+              private storageService: StorageService) {
     this.modal = `#room-type-image-modal-${this.roomType?.id}`
   }
 
@@ -31,7 +33,8 @@ export class RoomTypeCardComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.hotelId, this.roomType.id, 1).subscribe(rs => {
+    const filter = this.storageService.searchFilter
+    this.cartService.addToCart(this.hotelId, this.roomType.id, 1,filter.from,filter.to).subscribe(rs => {
       this.cartService.updateCarts()
         alert('An item has been added to your cart!')
       },

@@ -40,7 +40,7 @@ export class UserBookingDetailComponent implements OnInit {
           this.booking = rs['data']
           this.booking.checkIn = new Date(this.booking.checkIn)
           this.booking.checkOut = new Date(this.booking.checkOut)
-          this.booking.totalDays = new Date(this.booking.checkOut).getDay() - new Date(this.booking.checkIn).getDay()
+          this.booking.totalDays = new Date(this.booking.checkOut).getDate() - new Date(this.booking.checkIn).getDate()
         }
       )
     })

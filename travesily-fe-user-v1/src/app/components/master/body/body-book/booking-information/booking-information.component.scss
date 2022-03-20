@@ -1,0 +1,21 @@
+@import "main";
+
+.container-fluid{
+  min-height: 100vh;
+}
+
+.checked{
+  color: gold;
+}
+
+::ng-deep .mat-checkbox-inner-container{
+  border: 1px solid black;
+}
+
+::ng-deep .mat-checkbox-label{
+  font-size: 1.5rem;
+}
+
+textarea{
+  min-height: 15rem;
+}

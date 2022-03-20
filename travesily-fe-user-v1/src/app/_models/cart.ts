@@ -3,4 +3,6 @@ export class Cart {
   roomTypeId: number
   hotelId: number
   quantity: number
+  dateIn: Date
+  dateOut: Date
 }
