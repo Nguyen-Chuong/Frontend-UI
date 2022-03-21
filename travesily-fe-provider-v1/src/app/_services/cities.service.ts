@@ -1,20 +1,20 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CitiesService {
+  baseUrl = environment.API_URL;
+  constructor(private http: HttpClient) {}
 
-  baseUrl = 'http://localhost:8080/api/v1'
-  constructor(private http: HttpClient) { }
-
-  getAllCities(){
-    return this.http.get(`${this.baseUrl}/get-city`)
+  getAllCities() {
+    return this.http.get(`${this.baseUrl}/get-city`);
   }
 
-  getDistrictInCity(id: any){
-    const params = new HttpParams().append('cityId', id)
-    return this.http.get(`${this.baseUrl}/get-district`, {params: params})
+  getDistrictInCity(id: any) {
+    const params = new HttpParams().append('cityId', id);
+    return this.http.get(`${this.baseUrl}/get-district`, { params: params });
   }
 }
