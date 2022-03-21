@@ -21,47 +21,10 @@
         <a data-bs-toggle="modal"
            [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id"><h4 class="text-primary">Room photos and
           details</h4></a>
-
-        <div class="modal-body">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col-md-9">
-                <!-- Modal -->
-                <div class="modal fade" id="room-type-image-modal-{{roomType.id}}" tabindex="-1"
-                     aria-labelledby="room-type-image-modal-label"
-                     aria-hidden="true">
-                  <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                      <div id="carouselImageRoomTypeControls" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-inner">
-                          <app-images-carousel [listImage]="roomType.listImage"></app-images-carousel>
-                        </div>
-                        <button class="carousel-control-prev" type="button"
-                                data-bs-target="#carouselImageRoomTypeControls"
-                                data-bs-slide="prev">
-                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button"
-                                data-bs-target="#carouselImageRoomTypeControls"
-                                data-bs-slide="next">
-                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                          <span class="visually-hidden">Next</span>
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-3">
-              </div>
-            </div>
-          </div>
-        </div>
-
         <ul class="list-inline">
-          <li *ngFor="let item of roomDetail?.listFacility"><i
-            class="fa {{item.facilities[0].icon}}"></i> {{item.facilities[0].name}}</li>
+          <li *ngFor="let item of roomDetail?.listFacility">
+            <p class="text-secondary"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>
+          </li>
         </ul>
         <div class="room-facilities position-relative">
           <div class="see-all-hover">
@@ -76,7 +39,7 @@
                   <p><b>{{facilityType.name}}</b></p>
                   <ul class="list-inline">
                     <li class="" *ngFor="let facility of facilityType.facilities">
-                      <i class="fa {{facility.icon}}"></i> {{facility.name}}
+                      <p><i class="{{facility.icon}} me-1"></i> {{facility.name}}</p>
                     </li>
                   </ul>
                 </li>
@@ -115,6 +78,40 @@
               cart
             </button>
             <button type="button" class="btn btn-primary d-block w-100 p-3">Book now</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-9">
+        <!-- Modal -->
+        <div class="modal fade" id="room-type-image-modal-{{roomType.id}}" tabindex="-1"
+             aria-labelledby="room-type-image-modal-label"
+             aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div id="carouselImageRoomTypeControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <app-images-carousel [listImage]="roomType.listImage"></app-images-carousel>
+                </div>
+                <button class="carousel-control-prev" type="button"
+                        data-bs-target="#carouselImageRoomTypeControls"
+                        data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                        data-bs-target="#carouselImageRoomTypeControls"
+                        data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>

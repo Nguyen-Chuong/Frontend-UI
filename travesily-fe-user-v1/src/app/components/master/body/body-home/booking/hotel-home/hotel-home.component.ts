@@ -11,17 +11,12 @@ import {
 } from "@angular/material/datepicker";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
-import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
-import * as _rollupMoment from 'moment';
 import {SearchFilter} from "../../../../../../_models/search-filter";
 import {ResultSearch} from "../../../../../../_models/result-search";
 import {StorageService} from "../../../../../../_services/storage.service";
 
-const moment = _rollupMoment || _moment;
 
-// See the Moment.js docs for the meaning of these formats:
-// https://momentjs.com/docs/#/displaying/format/
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -223,8 +218,8 @@ export class HotelHomeComponent implements OnInit {
       if (district !== null) {
         const filter = new SearchFilter()
         filter.destination = district
-        filter.from = val.from
-        filter.to = val.to
+        filter.from = new Date(val.from)
+        filter.to = new Date(val.to)
         filter.guestNumber = val.guestNumber
         filter.roomNumber = val.roomNumber
         console.log(filter)
