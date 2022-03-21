@@ -10,17 +10,17 @@
             <h3 class="text-primary">{{booking.hotel?.name}}</h3>
             <h4 class="text-grey">Booking ID: {{booking.id}}</h4>
             <h4
-              [classList]="booking.status===0?'upcoming text-primary':booking.status===1?'completed text-success':'cancelled text-danger'">
-              <ng-container *ngIf="booking.status===0">
-                <i class="fa fa-spinner text-primary" aria-hidden="true"></i>
-              </ng-container>
+              [classList]="booking.status===1?'upcoming text-warning':booking.status===2?'completed text-success':'cancelled text-danger'">
               <ng-container *ngIf="booking.status===1">
-                <i class="fa fa-check text-success" aria-hidden="true"></i>
+                <i class="fa fa-spinner text-warning" aria-hidden="true"></i>
               </ng-container>
               <ng-container *ngIf="booking.status===2">
+                <i class="fa fa-check text-success" aria-hidden="true"></i>
+              </ng-container>
+              <ng-container *ngIf="booking.status===3">
                 <i class="fa fa-times text-danger" aria-hidden="true"></i>
               </ng-container>
-              {{this.booking?.status == 0 ? 'Upcoming' : this.booking?.status == 1 ? 'Completed' : 'Cancelled'}}
+              {{this.booking?.status == 1 ? 'Upcoming' : this.booking?.status == 2 ? 'Completed' : 'Cancelled'}}
             </h4>
           </div>
           <div class="col-md-5"><h4 class="text-grey">{{booking?.checkIn | date: 'dd MMM EEE'}}
