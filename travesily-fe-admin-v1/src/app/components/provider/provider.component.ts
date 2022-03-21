@@ -23,6 +23,7 @@ export class ProviderComponent implements OnInit {
   pages: any[]
   total: number
   maxpage: number
+  isAdmin= false
   constructor(private providerService: ProviderService,
     private router: Router,
     private route: ActivatedRoute,
@@ -62,9 +63,12 @@ export class ProviderComponent implements OnInit {
   }
 
   banProvider(id){
+    if(Number(localStorage.getItem('type')) === 2){
+      this.isAdmin = true
+    }
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: this.message},
+      data: {checked: this.checked, message: this.message, isAdmin: this.isAdmin},
     });
 
     dialogRef.afterClosed().subscribe(result => {

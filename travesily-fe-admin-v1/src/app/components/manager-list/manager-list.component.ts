@@ -16,6 +16,7 @@ export class ManagerListComponent implements OnInit {
   message: string
   checked: boolean
   managers: Account[]
+  isAdmin = false
   dataSource
   constructor(private userService: UserService,
     private notificationService: NotificationService,
@@ -33,9 +34,12 @@ export class ManagerListComponent implements OnInit {
   }
 
   deleteManager(id){
+    if(Number(localStorage.getItem('type')) === 2){
+      this.isAdmin = true
+    }
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: this.message},
+      data: {checked: this.checked, message: this.message, isAdmin: this.isAdmin},
     });
 
     dialogRef.afterClosed().subscribe(result => {
