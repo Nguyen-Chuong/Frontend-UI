@@ -46,6 +46,9 @@ export class BookingPaymentInformationComponent implements OnInit {
         this.bookingService.getBookingById(value['bookingId']).subscribe({
           next: booking => {
             this.booking = booking['data']
+            //CHECK IF USER TRY TO BACKWARD AFTER COMPLETED PAYMENT
+            if(this.booking.status !== 1)
+              this.router.navigateByUrl('/home')
             this.hotel = this.booking.hotel
             this.authService.getProfile().subscribe({
               next: value => this.account = value['data']
