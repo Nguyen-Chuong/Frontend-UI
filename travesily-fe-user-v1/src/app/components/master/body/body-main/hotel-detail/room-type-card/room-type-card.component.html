@@ -1,11 +1,10 @@
-<div class="card">
+<div class="card position-relative">
   <div class="card-header">
     <h2>{{roomType.name}}</h2>
   </div>
   <div class="card-body bg-light-grey">
     <div class="row">
       <div class="col-md-2">
-        <div>
           <div class="row p-1">
             <img class="room-type-img p-0" [src]="roomDetail?.listImage[0]?.src" alt="">
           </div>
@@ -17,13 +16,12 @@
               <img class="room-type-img" [src]="roomDetail?.listImage[2]?.src" alt="">
             </div>
           </div>
-        </div>
         <a data-bs-toggle="modal"
-           [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id"><h4 class="text-primary">Room photos and
+           [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id"><h4 class="text-primary mb-1">Room photos and
           details</h4></a>
         <ul class="list-inline">
           <li *ngFor="let item of roomDetail?.listFacility">
-            <p class="text-secondary"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>
+            <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>
           </li>
         </ul>
         <div class="room-facilities position-relative">
@@ -71,13 +69,20 @@
             <h1 class="text-success">₫ {{roomType.price - roomType.price * roomType.dealPercentage / 100 | number}}</h1>
           </div>
           <div class="col-md-1">
-            <h2 class="card-title bg-grey p-3 item-center">{{filter.roomNumber}}</h2>
+            <h2 class="card-title bg-light-grey p-3 item-center">{{filter.roomNumber}}</h2>
           </div>
-          <div class="col-md-3">
-            <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()">Add to
-              cart
+          <div class="col-md-3" *ngIf="roomType.availableRooms!==0">
+            <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()"><strong>Add to
+              cart</strong>
             </button>
-            <button type="button" class="btn btn-primary d-block w-100 p-3">Book now</button>
+            <button type="button" class="btn btn-primary d-block w-100 p-3" (click)="bookNow()"><strong>Book now</strong></button>
+            <h3 *ngIf="roomType.availableRooms > 1" class="text-danger float-end"><strong>Our last {{roomType.availableRooms}} rooms!</strong></h3>
+            <h3 *ngIf="roomType.availableRooms === 1" class="text-danger float-end"><strong>Our last room!</strong></h3>
+          </div>
+          <div class="col-md-3" *ngIf="roomType.availableRooms===0">
+            <button type="button" class="btn btn-outline-danger d-block w-100 mb-3 p-3" disabled><strong>Out of rooms</strong>
+            </button>
+<!--            <button type="button" class="btn btn-primary d-block w-100 p-3">Book now</button>-->
           </div>
         </div>
       </div>
