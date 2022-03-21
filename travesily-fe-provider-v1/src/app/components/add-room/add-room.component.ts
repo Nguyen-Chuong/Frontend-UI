@@ -49,14 +49,15 @@ export class AddRoomComponent implements OnInit {
     room.hotelId = Number(localStorage.getItem('hotel-id'))
 
     this.roomService.newRoom(room)
-        .pipe(first())
-        .subscribe({
-          next: () => {
-              this.notificationService.onSuccess("Add room Successfully")
-          }, error: error => {
-            this.notificationService.onError("Add room False")
-          }
-        })
+      .pipe(first())
+      .subscribe({
+        next: (res) => {
+          localStorage.setItem('room-id', res['data'])
+          this.notificationService.onSuccess("Add room Successfully")
+        }, error: error => {
+          this.notificationService.onError("Add room False")
+        }
+      })
 
   }
 

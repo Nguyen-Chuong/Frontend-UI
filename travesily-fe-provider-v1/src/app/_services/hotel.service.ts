@@ -1,3 +1,4 @@
+import { HotelRequest } from './../_models/hotelRequest';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Hotel } from '../_models/hotel';
@@ -14,7 +15,7 @@ export class HotelService {
     return this.http.get(`${this.baseUrl}/list-hotel`)
   }
 
-  newHotel(hotel: Hotel) {
+  newHotel(hotel: HotelRequest) {
     return this.http.post(`${this.baseUrl}/add-hotel`, {...hotel})
   }
 
@@ -23,7 +24,7 @@ export class HotelService {
     return this.http.get(`${this.baseUrl}/public/hotel`, {params: params})
   }
 
-  updateHotel(hotel: Hotel) {
+  updateHotel(hotel: HotelRequest) {
     return this.http.patch(`${this.baseUrl}/update-hotel-info`, { ...hotel })
   }
 

@@ -1,3 +1,4 @@
+import { HotelRequest } from './../../_models/hotelRequest';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -38,13 +39,13 @@ export class AddHotelComponent implements OnInit {
 
   submit() {
     const val = this.form.value
-    const hotel = new Hotel
+    const hotel = new HotelRequest
     hotel.name = val.hotelName
     hotel.address = val.address
     hotel.email = val.email
     hotel.phone = val.phone
     hotel.description = val.description
-    hotel.district.id = 1
+    hotel.districtId = 1
     this.hotelService.newHotel(hotel)
         .pipe(first())
         .subscribe({

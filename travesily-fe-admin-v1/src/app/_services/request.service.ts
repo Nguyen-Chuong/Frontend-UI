@@ -28,11 +28,11 @@ export class RequestService {
       .append('page', page)
       .append('pageSize', pageSize)
       .append('status', status);
-    return this.http.get(`${this.baseUrl}/view-request`, { params: params });
+    return this.http.get(`${this.baseUrl}/admin/view-request`, { params: params });
   }
 
   getAllRequest(status: number) {
     const params = new HttpParams().append('status', status);
-    return this.http.get(`${this.baseUrl}/view-request`, { params: params });
+    return this.http.get(`${this.baseUrl}/admin/view-request`, { params: params });
   }
 }

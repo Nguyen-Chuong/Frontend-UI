@@ -13,6 +13,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { CitiesService } from './../../_services/cities.service';
+import { HotelRequest } from 'src/app/_models/hotelRequest';
 
 @Component({
   selector: 'app-update-hotel',
@@ -86,31 +87,31 @@ export class UpdateHotelComponent implements OnInit {
 
   submit() {
     const val = this.form.value
+    const hotelRequest = new HotelRequest
     if (val.name) {
-      this.hotel.name = val.name
+      hotelRequest.name = val.name
     }
     if (val.email) {
-      this.hotel.email = val.email
+      hotelRequest.email = val.email
     }
     if (val.phone) {
-      this.hotel.phone = val.phone
+      hotelRequest.phone = val.phone
     }
     if (val.address) {
-      this.hotel.address = val.address
+      hotelRequest.address = val.address
     }
-    console.log(val.description)
     if (val.description) {
-      this.hotel.description = val.description
+      hotelRequest.description = val.description
     }
     this.district.id = this.districtControl.value.id
     this.district.nameDistrict = this.districtControl.value.nameDistrict
     console.log(this.districtControl.value)
     if (this.districtControl.value.id) {
-      this.hotel.district = this.district
+      hotelRequest.districtId = this.district.id
     }
 
 
-    this.hotelService.updateHotel(this.hotel).pipe(first()).subscribe({
+    this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
       next: () => {
         console.log(this.hotel)
         this.notificationService.onSuccess('Update Hotel successfully');

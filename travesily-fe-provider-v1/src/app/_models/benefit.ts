@@ -5,4 +5,5 @@ export class Benefit {
  name: string
  benefitType: BenefitType
  icon: string
+ isChecked: false
 }

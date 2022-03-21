@@ -1,7 +1,5 @@
-import { District } from "./district"
 
-export class Hotel {
- id: number
+export class HotelRequest {
  address: string
  email: string
  avatar: string
@@ -10,5 +8,6 @@ export class Hotel {
  description: string
  status: number
  price: number
- district: District
+ districtId: number
+ providerId: number
 }
