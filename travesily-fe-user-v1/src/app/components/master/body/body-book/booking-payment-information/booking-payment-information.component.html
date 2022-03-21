@@ -1,3 +1,14 @@
-<div class="container-fluid min-vh-100 bg-white">
-
+<div class="container-fluid bg-white pt-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <app-booking-information-payment></app-booking-information-payment>
+      </div>
+      <div class="col-md-4 ps-5">
+        <app-booking-information-detail [bookingInformationDetails]="bookingInformationDetails"
+                                        [roomDetails]="roomDetails"
+                                        [hotel]="hotel"></app-booking-information-detail>
+      </div>
+    </div>
+  </div>
 </div>

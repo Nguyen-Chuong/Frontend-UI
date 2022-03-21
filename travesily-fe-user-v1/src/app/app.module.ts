@@ -68,6 +68,12 @@ import { CartComponent } from './components/master/header/cart/cart.component';
 import { BodyBookComponent } from './components/master/body/body-book/body-book.component';
 import { BookingInformationComponent } from './components/master/body/body-book/booking-information/booking-information.component';
 import { BookingPaymentInformationComponent } from './components/master/body/body-book/booking-payment-information/booking-payment-information.component';
+import { BookingInformationConfirmComponent } from './components/master/body/body-book/booking-information/booking-information-confirm/booking-information-confirm.component';
+import { BookingInformationDetailComponent } from './components/master/body/body-book/booking-information/booking-information-detail/booking-information-detail.component';
+import { BookingInformationPaymentComponent } from './components/master/body/body-book/booking-information/booking-information-payment/booking-information-payment.component';
+import { BookingVnpayComponent } from './components/master/body/body-book/booking-information/booking-information-payment/booking-vnpay/booking-vnpay.component';
+import { BookingCodComponent } from './components/master/body/body-book/booking-information/booking-information-payment/booking-cod/booking-cod.component';
+import { BookingTransactionInformationComponent } from './components/master/body/body-book/booking-transaction-information/booking-transaction-information.component';
 
 @NgModule({
   declarations: [
@@ -123,7 +129,13 @@ import { BookingPaymentInformationComponent } from './components/master/body/bod
     CartComponent,
     BodyBookComponent,
     BookingInformationComponent,
-    BookingPaymentInformationComponent
+    BookingPaymentInformationComponent,
+    BookingInformationConfirmComponent,
+    BookingInformationDetailComponent,
+    BookingInformationPaymentComponent,
+    BookingVnpayComponent,
+    BookingCodComponent,
+    BookingTransactionInformationComponent,
   ],
   imports: [
     BrowserModule,

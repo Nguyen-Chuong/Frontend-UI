@@ -42,6 +42,21 @@ import {
 import {
   BookingPaymentInformationComponent
 } from "./components/master/body/body-book/booking-payment-information/booking-payment-information.component";
+import {
+  BookingInformationConfirmComponent
+} from "./components/master/body/body-book/booking-information/booking-information-confirm/booking-information-confirm.component";
+import {
+  BookingInformationPaymentComponent
+} from "./components/master/body/body-book/booking-information/booking-information-payment/booking-information-payment.component";
+import {
+  BookingVnpayComponent
+} from "./components/master/body/body-book/booking-information/booking-information-payment/booking-vnpay/booking-vnpay.component";
+import {
+  BookingCodComponent
+} from "./components/master/body/body-book/booking-information/booking-information-payment/booking-cod/booking-cod.component";
+import {
+  BookingTransactionInformationComponent
+} from "./components/master/body/body-book/booking-transaction-information/booking-transaction-information.component";
 
 const routes: Routes = [
   {
@@ -64,7 +79,7 @@ const routes: Routes = [
         ]
       },
       {
-        path:'main', component: BodyMainComponent, children:[
+        path: 'main', component: BodyMainComponent, children: [
           {path: 'search-hotel-list', component: SearchHotelListComponent},
           {path: 'hotel-detail', component: HotelDetailComponent},
         ]
@@ -72,21 +87,31 @@ const routes: Routes = [
       {
         path: 'user', component: BodyUserComponent, children: [
           {path: 'profile', component: UserProfileComponent},
-          {path: 'bookings', component: UserBookingsComponent, children:[
-              {path:'', component: UserBookingsUpcomingComponent},
-              {path:'completed', component: UserBookingsCompletedComponent},
-              {path:'upcoming', component: UserBookingsUpcomingComponent},
-              {path:'cancelled', component: UserBookingsCancelledComponent}
-            ]},
+          {
+            path: 'bookings', component: UserBookingsComponent, children: [
+              {path: '', component: UserBookingsUpcomingComponent},
+              {path: 'completed', component: UserBookingsCompletedComponent},
+              {path: 'upcoming', component: UserBookingsUpcomingComponent},
+              {path: 'cancelled', component: UserBookingsCancelledComponent}
+            ]
+          },
           {path: 'reviews', component: UserReviewsComponent},
           {path: 'vip', component: UserVipComponent},
           {path: 'booking-detail', component: UserBookingDetailComponent}
         ]
       },
-      {path:'book', component:BodyBookComponent, children:[
+      {
+        path: 'book', component: BodyBookComponent, children: [
           {path: 'booking-info', component: BookingInformationComponent},
-          {path: 'booking-payment-info', component: BookingPaymentInformationComponent}
-        ]}
+          {
+            path: 'booking-payment-info', component: BookingPaymentInformationComponent, children: [
+              {path: 'booking-payment-vnpay', component: BookingVnpayComponent},
+              {path: 'booking-payment-cod', component: BookingCodComponent}
+            ]
+          },
+          {path: 'transaction-info', component: BookingTransactionInformationComponent}
+        ]
+      }
     ]
   }
 

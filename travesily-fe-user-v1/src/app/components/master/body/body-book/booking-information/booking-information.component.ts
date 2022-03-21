@@ -19,6 +19,7 @@ import {Booking} from "../../../../../_models/booking";
 import {BookingService} from "../../../../../_services/booking.service";
 import {BookingRequest} from "../../../../../_models/booking-request";
 import {BookingDetail} from "../../../../../_models/booking-detail";
+import {BookingInformationDetail} from "../../../../../_models/booking-information-detail";
 
 @Component({
   selector: 'app-booking-information',
@@ -31,8 +32,7 @@ export class BookingInformationComponent implements OnInit {
   hotel: Hotel = new Hotel()
   roomDetails: RoomDetail[] = []
   searchFilter: SearchFilter = new SearchFilter()
-  isShow: boolean = false
-  bookingForm
+  bookingInformationDetails: BookingInformationDetail[] = []
 
   constructor(private fb: FormBuilder,
               private activatedRoute: ActivatedRoute,
@@ -51,7 +51,7 @@ export class BookingInformationComponent implements OnInit {
     })
     this.cartService.getCarts().subscribe({
       next: value => {
-        if(value.length === 0)
+        if (value.length === 0)
           this.router.navigateByUrl('/home')
         this.carts = value
         this.carts.forEach(cart => {
@@ -63,7 +63,7 @@ export class BookingInformationComponent implements OnInit {
             this.hotel = value['data']
           }
         })
-
+        this.bookingInformationDetails = []
         const tempRoomDetails = []
 
         this.carts.forEach(cart => {
@@ -75,55 +75,19 @@ export class BookingInformationComponent implements OnInit {
               this.roomDetails = tempRoomDetails
             }
           })
+          const bookingInformationDetail = new BookingInformationDetail()
+          bookingInformationDetail.dateIn = cart.dateIn
+          bookingInformationDetail.dateOut = cart.dateOut
+          bookingInformationDetail.quantity = cart.quantity
+          this.bookingInformationDetails.push(bookingInformationDetail)
         })
       }
     })
   }
 
   ngOnInit(): void {
-    this.bookingForm = this.fb.group({
-      smoking: [''],
-      bed: [''],
-      additional: ['']
-    })
-  }
-
-  toggleTextArea() {
-    this.isShow = !this.isShow
-  }
-
-  checkOut() {
-    const booking: BookingRequest = new BookingRequest()
-    const bookingDetails: BookingDetail[] = []
-    booking.hotelId = this.hotel.id
-    booking.bookingDate = new Date()
-    booking.checkIn = this.carts[0].dateIn
-    booking.checkOut = this.carts[0].dateOut
-    booking.bookedQuantity = this.carts[0]?.bookedQuantity + (this.carts[1]?.bookedQuantity || 0)
-    const val = this.bookingForm.value
-    booking.otherRequirement = `${val.bed ? (val.bed + ', ') : ''}${val.smoking ? (val.smoking + ', ') : ''}${val.additional}`
-    booking.status = 0
-    this.roomDetails.forEach((roomDetail, i) => {
-      const bookingDetail = new BookingDetail()
-      bookingDetail.roomTypeId = roomDetail.id
-      bookingDetail.quantity = this.carts[i].quantity
-      bookingDetail.paid = ((roomDetail.price - roomDetail.price * roomDetail.dealPercentage / 100)) * (100 + this.hotel.taxPercentage) / 100
-      bookingDetails.push(bookingDetail)
-    })
-    booking.bookingDetail = bookingDetails
-    console.log(booking)
-    this.bookingService.addBooking(booking).subscribe({
-      next: value => {
-        this.cartService.clearCart().subscribe({
-          next: value => {
-            this.router.navigateByUrl('/book/booking-payment-info')
-          }
-        })
-      },
-      error: err => {
-        console.error(err)
-      }
-    })
 
   }
+
+
 }
