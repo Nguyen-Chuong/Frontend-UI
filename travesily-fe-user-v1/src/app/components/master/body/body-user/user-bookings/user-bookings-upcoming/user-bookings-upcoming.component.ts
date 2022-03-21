@@ -14,7 +14,7 @@ export class UserBookingsUpcomingComponent implements OnInit {
   account: Account
   bookings: Booking[]
   constructor(private bookingService: BookingService, private authService: AuthService) {
-      this.bookingService.getBookingByStatus(0).pipe(first()).subscribe(
+      this.bookingService.getBookingByStatus(1).pipe(first()).subscribe(
         rs => {
           this.bookings = rs['data']
         }

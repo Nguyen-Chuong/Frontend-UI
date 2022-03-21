@@ -17,7 +17,7 @@ export class UserBookingsCompletedComponent implements OnInit {
 
   constructor(private bookingService: BookingService) {
 
-    this.bookingService.getBookingByStatus(1).pipe(first()).subscribe(
+    this.bookingService.getBookingByStatus(2).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']
       }
