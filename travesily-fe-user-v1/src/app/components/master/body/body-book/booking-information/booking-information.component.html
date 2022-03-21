@@ -192,7 +192,7 @@
                   x {{carts[0]?.dateOut?.getDate() - carts[0]?.dateIn?.getDate()}} night<span
                     *ngIf="(carts[0]?.dateOut?.getDate() - carts[0]?.dateIn?.getDate()) > 1">s</span>):</h4>
                 <h4 class="text-danger">
-                  <s>{{roomDetails[0]?.price * carts[0]?.quantity + roomDetails[1]?.price * carts[1]?.quantity | number}}
+                  <s>{{(roomDetails[0]?.price * carts[0]?.quantity + roomDetails[1]?.price * carts[1]?.quantity) * (carts[0]?.dateOut?.getDate() - carts[0]?.dateIn?.getDate()) | number}}
                     đ</s></h4>
               </div>
               <div class="d-flex justify-content-between">
@@ -201,7 +201,8 @@
                   x {{carts[0]?.dateOut?.getDate() - carts[0]?.dateIn?.getDate()}} night<span
                     *ngIf="(carts[0]?.dateOut?.getDate() - carts[0]?.dateIn?.getDate()) > 1">s</span>):</h4>
                 <h4
-                  class="text-success">{{(roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100) * carts[0]?.quantity + (roomDetails[1]?.price * carts[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100) | number}}
+                  class="text-success">{{((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100)
+                  * carts[0]?.quantity + (roomDetails[1]?.price * carts[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) * (carts[0]?.dateOut?.getDate() - carts[0]?.dateIn?.getDate()) | number}}
                   đ</h4>
               </div>
 
@@ -215,7 +216,9 @@
               <div class="d-flex justify-content-between">
                 <h3><b>Price</b></h3>
                 <h3>
-                  <b>{{((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100) * carts[0]?.quantity + (roomDetails[1]?.price * carts[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) * (100 + hotel.taxPercentage) / 100 | number}}
+                  <b>{{((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100)
+                    * carts[0]?.quantity + (roomDetails[1]?.price * carts[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100))
+                  * (carts[0]?.dateOut?.getDate() - carts[0]?.dateIn?.getDate()) * (100 + hotel.taxPercentage) / 100 | number}}
                     đ</b></h3>
               </div>
               <h5><b>Applied fees: </b>Tax {{hotel.taxPercentage}}%</h5>
