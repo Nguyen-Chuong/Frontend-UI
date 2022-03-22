@@ -42,7 +42,6 @@ export class BookingInformationComponent implements OnInit {
               private cryptoService: CryptoService,
               private roomTypeService: RoomTypeService,
               private storageService: StorageService,
-              private bookingService: BookingService,
               private router: Router) {
     //Get user search filter
     this.searchFilter = storageService.searchFilter

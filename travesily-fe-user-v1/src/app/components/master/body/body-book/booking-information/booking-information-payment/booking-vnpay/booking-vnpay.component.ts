@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BookingService} from "../../../../../../../_services/booking.service";
 import {Booking} from "../../../../../../../_models/booking";
 import {PaymentDto} from "../../../../../../../_models/payment-dto";
+import {CryptoService} from "../../../../../../../_services/crypto.service";
 
 @Component({
   selector: 'app-booking-vnpay',
@@ -17,7 +18,9 @@ export class BookingVnpayComponent implements OnInit {
   constructor(private fb: FormBuilder,
               private paymentService: PaymentService,
               private activatedRoute: ActivatedRoute,
-              private bookingService: BookingService) {
+              private bookingService: BookingService,
+              private router: Router,
+              private cryptoService: CryptoService) {
 
     this.activatedRoute.queryParams.subscribe({
       next: value => {
@@ -34,13 +37,18 @@ export class BookingVnpayComponent implements OnInit {
   }
 
   proceed() {
-    const paymentDto = new PaymentDto()
-    paymentDto.amount = this.booking.totalPaid*100
-    paymentDto.description = `Travesily payment for booking id: ${this.booking.id}`
-    this.paymentService.createPayment(paymentDto).subscribe({
+    this.bookingService.updateBookingType(this.cryptoService.set('06052000', this.booking.id), 1).subscribe({
       next: value => {
-        window.location.href = value['data']['url']
+        const paymentDto = new PaymentDto()
+        paymentDto.amount = this.booking.totalPaid * 100
+        paymentDto.description = `${this.booking.id}-Travesily booking payment`
+        this.paymentService.createPayment(paymentDto).subscribe({
+          next: value => {
+            window.location.href = value['data']['url']
+          }
+        })
       }
     })
+
   }
 }

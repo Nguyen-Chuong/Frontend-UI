@@ -12,4 +12,5 @@ export class BookingRequest {
   userId: number
   bookingDetail: BookingDetail[]
   otherRequirement: string
+  type: number
 }

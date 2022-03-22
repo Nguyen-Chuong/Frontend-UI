@@ -62,6 +62,7 @@ export class BookingInformationConfirmComponent implements OnInit {
       bookingDetails.push(bookingDetail)
     })
     booking.bookingDetail = bookingDetails
+    booking.type = 0
     this.bookingService.addBooking(booking).subscribe({
       next: booking => {
         this.cartService.clearCart().subscribe({
