@@ -45,4 +45,16 @@ export class BookingService {
     const params = new HttpParams().append('bookingId', bookingId);
     return this.http.get(`${this.baseUrl}/booking`, { params: params });
   }
+
+  //Complete booking
+  completeBooking(bookingId: string){
+    const params = new HttpParams().append('bookingId', bookingId)
+    return this.http.patch(`${this.baseUrl}/complete-booking`,undefined,{params: params})
+  }
+
+  //Update booking type
+  updateBookingType(bookingId: string, type: number){
+    const params = new HttpParams().append('bookingId', bookingId).append('type', type)
+    return this.http.patch(`${this.baseUrl}/update-booking-type`,undefined,{params: params})
+  }
 }
