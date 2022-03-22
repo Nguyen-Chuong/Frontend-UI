@@ -101,8 +101,8 @@ export class MainSearchBarComponent implements OnInit {
       if (district !== null) {
         const filter = new SearchFilter()
         filter.destination = district
-        filter.from = val.from
-        filter.to = val.to
+        filter.from = new Date(val.from)
+        filter.to = new Date(val.to)
         filter.guestNumber = val.guestNumber
         filter.roomNumber = val.roomNumber
         this.storage.searchFilter = filter
