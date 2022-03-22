@@ -53,10 +53,8 @@ export class NegativeBarComponent implements OnInit {
     this.router.navigate(['/update-benefit']);
   }
 
-  openUserList(): void{
-    this.router.navigate(['user'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openUpdateFacility(): void{
+    this.router.navigate(['/update-facility']);
   }
 
   openProviderList(){

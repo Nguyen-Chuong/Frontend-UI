@@ -9,6 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Hotel } from 'src/app/_models/hotel';
 import { Room } from 'src/app/_models/room';
 import { first } from 'rxjs';
+import { RoomBenefit } from 'src/app/_models/roomBenefit';
 
 @Component({
   selector: 'app-update-benefits',
@@ -23,7 +24,7 @@ export class UpdateBenefitsComponent implements OnInit {
   hotels: Hotel[]
   rooms: Room[]
   room: Room
-  benefits: Benefit[]
+  benefits: RoomBenefit[]
   currentRoomId: number
   isAddBenefit = false
   constructor(

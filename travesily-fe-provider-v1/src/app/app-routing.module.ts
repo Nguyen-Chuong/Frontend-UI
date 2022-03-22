@@ -1,3 +1,4 @@
+import { UpdateFacilitiesComponent } from './components/update-facilities/update-facilities.component';
 import { UpdateBenefitsComponent } from './components/update-benefits/update-benefits.component';
 import { UpdateRoomComponent } from './components/update-room/update-room.component';
 import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'update-benefit',
     component: UpdateBenefitsComponent
+  },
+  {
+    path: 'update-facility',
+    component: UpdateFacilitiesComponent
   },
   {
     path: 'hotel-detail',
