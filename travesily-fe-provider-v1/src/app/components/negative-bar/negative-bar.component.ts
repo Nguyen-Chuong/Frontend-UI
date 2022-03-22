@@ -49,10 +49,8 @@ export class NegativeBarComponent implements OnInit {
     });
   }
 
-  openBookingList(): void{
-    this.router.navigate(['booking'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openUpdateBenefit(): void{
+    this.router.navigate(['/update-benefit']);
   }
 
   openUserList(): void{

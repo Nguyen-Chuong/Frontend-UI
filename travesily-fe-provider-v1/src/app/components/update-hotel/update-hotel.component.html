@@ -48,7 +48,6 @@
         <mat-form-field appearance="fill" class="select district">
           <mat-label>District</mat-label>
           <mat-select [formControl]="districtControl" required >
-            <!-- <mat-option>{{hotel.district.city.nameCity}}</mat-option> -->
             <mat-option *ngFor="let district of districts" [value]="district">
               {{district.nameDistrict}}
             </mat-option>

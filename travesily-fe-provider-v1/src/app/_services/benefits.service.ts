@@ -24,4 +24,14 @@ export class BenefitsService {
     const params = new HttpParams().append('benefitTypeId', benefitTypeId);
     return this.http.get(`${this.baseUrl}/list-benefit`, { params: params });
   }
+
+  getBenefitOfRoom(roomID: any){
+    const params = new HttpParams().append('roomTypeId', roomID)
+    return this.http.get(`${this.baseUrl}/get-room-benefit`, {params: params})
+  }
+
+  deleteRoomBenefit(roomBenefitId: any){
+    const params = new HttpParams().append('roomBenefitId', roomBenefitId)
+    return this.http.delete(`${this.baseUrl}/delete-room-benefit`, {params: params})
+  }
 }

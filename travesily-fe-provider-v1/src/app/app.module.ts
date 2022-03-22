@@ -30,6 +30,9 @@ import { UpdateRoomComponent } from './components/update-room/update-room.compon
 import { BookingComponent } from './components/booking/booking.component';
 import { ReviewComponent } from './components/review/review.component';
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
+import { AddFacilitiesComponent } from './components/add-facilities/add-facilities.component';
+import { UpdateBenefitsComponent } from './components/update-benefits/update-benefits.component';
+import { UpdateFacilitiesComponent } from './components/update-facilities/update-facilities.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,6 +56,9 @@ import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.com
     BookingComponent,
     ReviewComponent,
     HotelDetailComponent,
+    AddFacilitiesComponent,
+    UpdateBenefitsComponent,
+    UpdateFacilitiesComponent,
   ],
   imports: [
     BrowserModule,

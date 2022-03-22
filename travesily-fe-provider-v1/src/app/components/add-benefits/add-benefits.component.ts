@@ -2,7 +2,7 @@ import { BenefitRequest } from './../../_models/benefitRequest';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { BenefitsService } from './../../_services/benefits.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { BenefitType } from 'src/app/_models/benefitType';
 import { first } from 'rxjs';
@@ -14,6 +14,7 @@ import { Benefit } from 'src/app/_models/benefit';
   styleUrls: ['./add-benefits.component.scss']
 })
 export class AddBenefitsComponent implements OnInit {
+  @Input() roomTypeId: number
   benefitTypes: BenefitType[]
   benefitTypeControl: FormControl
   benefits: Benefit[]
@@ -51,7 +52,12 @@ export class AddBenefitsComponent implements OnInit {
   }
 
   submit() {
-    const roomTypeId = Number(localStorage.getItem('room-id'))
+    let roomTypeId
+    if(this.roomTypeId){
+      roomTypeId = this.roomTypeId
+    }else{
+      roomTypeId = Number(localStorage.getItem('room-id'))
+    }
     const benefitRequest = new BenefitRequest
     benefitRequest.roomTypeId = roomTypeId
     benefitRequest.benefitIds = this.checkedList

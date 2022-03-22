@@ -25,11 +25,9 @@ export class UpdateRoomComponent implements OnInit {
   roomControl: FormControl
   form: FormGroup
   hotel: Hotel = new Hotel
-  district: District = new District
   hotelId: any
   cities: City[]
   districts: District[]
-  city: City
   isEnable = true
   isDisable = true
   checked: boolean
@@ -57,19 +55,14 @@ export class UpdateRoomComponent implements OnInit {
       dealExpire: ['']
     })
 
-    this.hotelControl = new FormControl(this.city, Validators.required);
+    this.hotelControl = new FormControl('', Validators.required);
     this.roomControl = new FormControl('', Validators.required);
   }
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((param) => {
-      this.hotelId = param['id'].slice(1, -1);
-    })
+
     this.hotelService.getAllHotel().pipe(first()).subscribe(res => {
       this.hotels = res['data']
-    })
-    this.citiesService.getAllCities().pipe(first()).subscribe(res => {
-      this.cities = res['data']
     })
   }
 
@@ -91,6 +84,8 @@ export class UpdateRoomComponent implements OnInit {
       this.room.dealExpire = val.dealExpire
     console.log(this.room)
     if (this.roomControl.value === "newRoom") {
+      this.room.hotelId = this.hotelId
+      this.room.status = 1
       this.roomService.newRoom(this.room).pipe(first()).subscribe({
         next: () => {
           this.notificationService.onSuccess('Add Room successfully');
@@ -118,6 +113,7 @@ export class UpdateRoomComponent implements OnInit {
   }
 
   changeHotel(hotel: Hotel) {
+    this.hotelId = hotel.id
     const encryptedId = this.cryptoService.set('06052000', hotel.id)
     this.roomService.getAllRoomOfHotel(encryptedId).pipe(first()).subscribe(res => {
       this.rooms = res['data']
@@ -126,14 +122,17 @@ export class UpdateRoomComponent implements OnInit {
 
   changeRoom(room: Room) {
     const encryptedId = this.cryptoService.set('06052000', room.id)
-    this.roomService.getRoomDetail(encryptedId).pipe(first()).subscribe(res => {
-      this.room = res['data']
-      this.encryptedRoomId = this.cryptoService.set('06052000', room.id)
-      if (this.room.status === 1)
-        this.isDisable = false
-      if (this.room.status === 2)
-        this.isEnable = false
-    })
+    if(this.roomControl.value === "newRoom"){
+      this.form.reset()
+    }else{
+      this.roomService.getRoomDetail(encryptedId).pipe(first()).subscribe(res => {
+        this.room = res['data']
+        if (this.room.status === 1)
+          this.isDisable = false
+        if (this.room.status === 2)
+          this.isEnable = false
+      })
+    }
   }
 
   disableRoom() {

@@ -29,7 +29,7 @@
         </mat-form-field>
       </div>
       <div class="room-detail">
-        <form class="col-md-10 border-right" [formGroup]="form" (ngSubmit)="submit()" aria-readonly="true">
+        <form class="col-md-10 border-right" [formGroup]="form" aria-readonly="true">
           <div class="p-3 py-5">
             <div class="col-md-12"><label class="labels">Room name</label>
               <input type="text" class="form-control" value={{room.name}} formControlName="name" [disabled]>
