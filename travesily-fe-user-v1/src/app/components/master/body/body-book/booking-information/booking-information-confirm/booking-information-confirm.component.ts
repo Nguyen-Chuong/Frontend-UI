@@ -50,7 +50,7 @@ export class BookingInformationConfirmComponent implements OnInit {
     booking.bookingDate = new Date()
     booking.checkIn = this.carts[0].dateIn
     booking.checkOut = this.carts[0].dateOut
-    booking.bookedQuantity = this.carts[0]?.bookedQuantity + (this.carts[1]?.bookedQuantity || 0)
+    booking.bookedQuantity = this.carts[0]?.bookedQuantity
     const val = this.bookingForm.value
     booking.otherRequirement = `${val.bed ? (val.bed + ', ') : ''}${val.smoking ? (val.smoking + ', ') : ''}${val.additional}`
     booking.status = 0
