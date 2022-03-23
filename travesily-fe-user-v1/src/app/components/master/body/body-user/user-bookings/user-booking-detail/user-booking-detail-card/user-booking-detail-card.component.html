@@ -6,14 +6,14 @@
     <div class="row">
       <div class="col-md-3">
         <div class="row p-1">
-          <img class="room-type-img p-0" [src]="roomDetail?.listImage[0]?.src" alt="">
+          <img class="room-type-img p-0" [src]="roomDetail.listImage?roomDetail.listImage[0]?.src:''" alt="">
         </div>
         <div class="row">
           <div class="col-md-6 p-1">
-            <img class="room-type-img" [src]="roomDetail?.listImage[1]?.src" alt="">
+            <img class="room-type-img" [src]="roomDetail.listImage?roomDetail.listImage[1]?.src:''" alt="">
           </div>
           <div class="col-md-6 p-1">
-            <img class="room-type-img" [src]="roomDetail?.listImage[2]?.src" alt="">
+            <img class="room-type-img" [src]="roomDetail.listImage?roomDetail.listImage[2]?.src:''" alt="">
           </div>
         </div>
         <a data-bs-toggle="modal"
