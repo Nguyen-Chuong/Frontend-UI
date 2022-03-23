@@ -71,7 +71,7 @@
           <div class="col-md-1">
             <h2 class="card-title bg-light-grey p-3 item-center">{{filter.roomNumber}}</h2>
           </div>
-          <div class="col-md-3" *ngIf="roomType.availableRooms!==0">
+          <div class="col-md-3" *ngIf="roomType.availableRooms>=filter.roomNumber">
             <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()"><strong>Add to
               cart</strong>
             </button>
@@ -79,7 +79,7 @@
             <h3 *ngIf="roomType.availableRooms > 1" class="text-danger float-end"><strong>Our last {{roomType.availableRooms}} rooms!</strong></h3>
             <h3 *ngIf="roomType.availableRooms === 1" class="text-danger float-end"><strong>Our last room!</strong></h3>
           </div>
-          <div class="col-md-3" *ngIf="roomType.availableRooms===0">
+          <div class="col-md-3" *ngIf="roomType.availableRooms<filter.roomNumber">
             <button type="button" class="btn btn-outline-danger d-block w-100 mb-3 p-3" disabled><strong>Out of rooms</strong>
             </button>
 <!--            <button type="button" class="btn btn-primary d-block w-100 p-3">Book now</button>-->
