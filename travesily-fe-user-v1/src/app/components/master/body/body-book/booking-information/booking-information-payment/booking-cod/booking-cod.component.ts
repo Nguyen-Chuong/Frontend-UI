@@ -21,7 +21,7 @@ export class BookingCodComponent implements OnInit {
         this.bookingService.getBookingById(value['bookingId']).subscribe({
           next: booking => {
             this.booking = booking['data']
-            if(this.booking.status!==0){
+            if(this.booking.type!==0){
               this.router.navigateByUrl('/home')
             }
           }
