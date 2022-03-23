@@ -7,6 +7,7 @@ import {CartService} from "../../../../../../_services/cart.service";
 import {StorageService} from "../../../../../../_services/storage.service";
 import {SearchFilter} from "../../../../../../_models/search-filter";
 import {Router} from "@angular/router";
+import {Cart} from "../../../../../../_models/cart";
 
 @Component({
   selector: 'app-room-type-card',
@@ -20,6 +21,7 @@ export class RoomTypeCardComponent implements OnInit {
   iconMale = 'fa fa-male'
   filter: SearchFilter
   modal = ''
+  carts: Cart[] = []
 
   constructor(private roomTypeService: RoomTypeService,
               private cryptoService: CryptoService,
@@ -27,7 +29,15 @@ export class RoomTypeCardComponent implements OnInit {
               private storageService: StorageService,
               private router: Router) {
     this.modal = `#room-type-image-modal-${this.roomType?.id}`
-    this.filter = this.storageService.searchFilter
+    this.cartService.getCarts().subscribe({
+      next: carts => {
+        this.carts = carts
+        this.filter = this.storageService.searchFilter
+        if(this.carts.length>0){
+          this.filter.roomNumber = 1
+        }
+      }
+    })
   }
 
   ngOnInit(): void {
