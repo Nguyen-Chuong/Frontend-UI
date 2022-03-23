@@ -1,1 +1,51 @@
-<p>update-facilities works!</p>
+<div class="update-facility">
+  <div class="menu-list">
+    <app-negative-bar></app-negative-bar>
+  </div>
+  <simple-notifications></simple-notifications>
+  <div class="facility">
+    <div class="facility-detail-infor">
+      <h1>Update Facility</h1>
+      <div class="group-input">
+        <mat-form-field appearance="fill" class="select">
+          <mat-label>Hotel</mat-label>
+          <mat-select [formControl]="hotelControl" required (selectionChange)="changeHotel($event.value)">
+            <mat-option *ngFor="let hotel of hotels" [value]="hotel">
+              {{hotel.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hotelControl.hasError('required')">Please choose a hotel</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="select select-room">
+          <mat-label>Room</mat-label>
+          <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)">
+            <mat-option *ngFor="let room of rooms" [value]="room">
+              {{room.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="roomControl.hasError('required')">Please choose a room</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="facility-detail">
+        <ul *ngFor="let facility of facilities">
+          <li><div class="facility-detail-item">
+            <span>{{facility.facility.name}}</span>
+            <button mat-menu-item (click)="deleteFacility(facility.id)" class="facility-detail-delete">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div></li>
+        </ul>
+      </div>
+      <div class="add-new-benefit">
+        <button mat-menu-item (click)="openAddFacility()" [disabled]="!room">
+          <mat-icon>add</mat-icon>
+          <span>New Facility</span>
+        </button>
+
+        <div class="new-benefit" *ngIf="isAddFacility">
+          <app-add-facilities [roomTypeId]="room.id"></app-add-facilities>
+        </div>
+      </div>
+    </div>
+  </div>

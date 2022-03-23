@@ -12,9 +12,11 @@
   </div>
   <div class="benefit">
     <ul class="checkbox-items">
-      <li *ngFor="let benefit of benefits">
-        <input type="checkbox" name="benefit"
-        (change)="onCheckboxChange(benefit, $event)">{{benefit.name}}
+      <li *ngFor="let benefit of benefits" class="benefit-item">
+        <span>
+          <input type="checkbox" name="benefit"
+        (change)="onCheckboxChange(benefit, $event)"> {{benefit.name}}
+        </span>
       </li>
     </ul>
   </div>

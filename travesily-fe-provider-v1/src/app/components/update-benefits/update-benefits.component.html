@@ -1,11 +1,11 @@
-<div class="update-room">
+<div class="update-benefit">
   <div class="menu-list">
     <app-negative-bar></app-negative-bar>
   </div>
   <simple-notifications></simple-notifications>
-  <div class="room">
-    <div class="room-detail-infor">
-      <h1>Update Room</h1>
+  <div class="benefit">
+    <div class="benefit-detail-infor">
+      <h1>Update Benefit</h1>
       <div class="group-input">
         <mat-form-field appearance="fill" class="select">
           <mat-label>Hotel</mat-label>
@@ -27,11 +27,11 @@
           <mat-error *ngIf="roomControl.hasError('required')">Please choose a room</mat-error>
         </mat-form-field>
       </div>
-      <div class="room-detail">
+      <div class="benefit-detail">
         <ul *ngFor="let benefit of benefits">
-          <li><div>
-            <span>{{benefit.name}}</span>
-            <button mat-menu-item (click)="deleteBenefit(benefit.id)">
+          <li><div class="benefit-detail-item">
+            <span>{{benefit.benefit.name}}</span>
+            <button mat-menu-item (click)="deleteBenefit(benefit.id)" class="benefit-detail-delete">
               <mat-icon>delete</mat-icon>
             </button>
           </div></li>

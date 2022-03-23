@@ -2,15 +2,15 @@
   font-style: inherit;
   font-size: 1.5rem;
 }
-.room {
+.benefit {
   border: 1px solid red;
   border-radius: 10px;
   background-color: aliceblue;
-  margin-top: 100px;
   flex-wrap: wrap;
   justify-content: center;
   width: 70%;
   margin: 20px auto;
+  margin-top: 100px;
 
   & h1 {
     text-align: center;
@@ -21,6 +21,7 @@
   &-detail-infor {
     padding-left: 10px;
     width: 100%;
+    padding-top: 20px;
   }
 
   &-button {
@@ -32,6 +33,20 @@
       color: #3513ca;
       background: #ede8ee;
       box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
+    }
+  }
+
+  &-detail {
+    &-item {
+      display: inline-flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    &-delete{
+      width: 30px;
+      margin-right: 30px;
+      padding-right: 20px;
     }
   }
 }
@@ -51,7 +66,7 @@
   padding-bottom: 5px;
 }
 
-.update-room {
+.update-benefit {
   display: flex;
 
   &-btn {
@@ -64,20 +79,12 @@
     &-save {
       background-color: rgb(13, 55, 243);
     }
-    &-enable {
-      background-color: rgb(13, 196, 44);
-    }
-    &-disable {
-      background-color: rgb(230, 34, 8);
-    }
   }
 }
 .menu-list {
   width: 210px;
   height: 100%;
 }
-
-
 
 .group-input {
   display: flex;

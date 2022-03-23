@@ -38,6 +38,8 @@ export class AddBenefitsComponent implements OnInit {
     this.benefitsService.getBenefitByType(encryptedId).pipe(first()).subscribe(res => {
       this.benefits = res['data']
     })
+
+    this.checkedList.length = 0
   }
   onCheckboxChange(benefit: Benefit, event) {
     if (event.target.checked) {

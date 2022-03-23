@@ -1,1 +1,25 @@
-<p>add-facilities works!</p>
+<div class="add-facility">
+  <div class="facility-type">
+    <mat-form-field appearance="fill" class="select">
+      <mat-label>Facility Type</mat-label>
+      <mat-select [formControl]="facilityTypeControl" required (selectionChange)="changeFacilityType($event.value)">
+        <mat-option *ngFor="let type of facilityTypes" [value]="type">
+          {{type.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="facilityTypeControl.hasError('required')">Please choose a type of benefit</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="facility">
+    <ul class="checkbox-items">
+      <li *ngFor="let facility of facilities" class="facility-item">
+        <span>
+          <input type="checkbox" name="facility"
+        (change)="onCheckboxChange(facility, $event)"> {{facility.name}}
+        </span>
+      </li>
+    </ul>
+  </div>
+
+  <button class="btn btn-primary room-button" type="submit" (click)="submit()">Save</button>
+</div>
