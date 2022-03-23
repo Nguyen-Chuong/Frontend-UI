@@ -17,9 +17,9 @@ import {Cart} from "../../../../../../_models/cart";
 export class RoomTypeCardComponent implements OnInit {
   @Input() roomType: RoomType
   @Input() hotelId: number
-  roomDetail: RoomDetail
+  roomDetail: RoomDetail = new RoomDetail()
   iconMale = 'fa fa-male'
-  filter: SearchFilter
+  filter: SearchFilter = new SearchFilter()
   modal = ''
   carts: Cart[] = []
 

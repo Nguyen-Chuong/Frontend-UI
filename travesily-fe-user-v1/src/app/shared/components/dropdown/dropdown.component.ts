@@ -35,6 +35,7 @@ export class DropdownComponent implements OnInit {
       if(this.roomNum > this.guestNum)
         this.guestNum = this.guestNum + 1
       this.roomNumberEvent.emit(this.roomNum)
+      this.guestNumberEvent.emit(this.guestNum)
     }
   }
 
@@ -45,6 +46,7 @@ export class DropdownComponent implements OnInit {
       if(this.guestNum < this.roomNum)
         this.roomNum = this.roomNum - 1
       this.guestNumberEvent.emit(this.guestNum)
+      this.roomNumberEvent.emit(this.roomNum)
     }
      else if(type === 2){
       this.roomNum = this.roomNum - 1
