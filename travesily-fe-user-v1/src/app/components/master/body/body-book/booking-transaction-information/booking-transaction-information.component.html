@@ -1,1 +1,11 @@
-<p>booking-transaction-information works!</p>
+<div class="container-fluid min-vh-100 bg-white">
+  <div *ngIf="isCod" class="row">
+    <app-transaction-cod></app-transaction-cod>
+  </div>
+  <div *ngIf="!isCod" class="row">
+    <app-transaction-vnpay [transactionInfo]="transactionInfo"></app-transaction-vnpay>
+  </div>
+  <div class="row">
+    <app-transaction-booking-detail [account]="account" [booking]="booking" [bookingDetails]="bookingDetails" [hotel]="hotel"></app-transaction-booking-detail>
+  </div>
+</div>

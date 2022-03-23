@@ -1,0 +1,14 @@
+<!--{{transactionInfo | json}}-->
+<div class="container mb-3 mt-3">
+<div class="card">
+  <div class="card-header bg">
+    <h2 class="m-0">Payment detail</h2>
+  </div>
+  <div class="card-body">
+    <h3><strong>Transaction ID: {{transactionInfo.idService}}</strong></h3>
+    <h3><strong>BANK CODE: {{transactionInfo.bankCode}}</strong></h3>
+    <h3 class="text-danger"><strong>TOTAL: {{transactionInfo.amount/100 | number}} đ</strong></h3>
+    <h3><strong>Process date: {{payDate | date:'medium'}}</strong></h3>
+  </div>
+</div>
+</div>

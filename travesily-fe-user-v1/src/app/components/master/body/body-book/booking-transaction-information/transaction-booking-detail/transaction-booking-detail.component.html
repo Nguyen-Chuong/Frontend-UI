@@ -1,21 +1,10 @@
 <div class="container">
-  <div class="card p-5 shadow mb-3">
-    <div class="card-header bg-dark">
-      <h3
-        class="text-white item-center m-0">{{booking.status === 1 ? 'Processing' : booking.status === 2 ? 'Completed' : 'Cancelled'}}</h3>
-    </div>
-    <div class="card-body text-center">
-      <p>Booking ID: {{booking?.id}}</p>
-      <div class="row">
-        <a class="btn btn-fill">Review your stay</a>
-      </div>
-      <div class="row">
-        <a class="btn btn-plain">Book again</a>
-      </div>
-    </div>
-  </div>
-
   <div class="card mb-3">
+    <div class="card-header p-0">
+      <h3 class="text-white item-center m-0 bg-primary p-3 rounded-top">Booking ID: {{booking.id}}</h3>
+      <h3
+        class="text-white item-center m-0 {{booking.status===1?'bg-warning': booking.status===2?'bg-success':'bg-warning'}} p-3">{{booking.status === 1 ? 'Processing' : booking.status === 2 ? 'Completed' : 'Cancelled'}}</h3>
+    </div>
     <img [src]="booking.hotel?.avatar" class="card-img-top" alt="Hotel Image">
     <div class="card-body">
       <div class="row">
@@ -67,18 +56,18 @@
     </div>
     <div class="row g-0">
       <div class="col-md-10 ps-3 pt-3 border-end">
-        <h4 class="card-title">Lead guess</h4>
-        <h3 class="card-title text-primary">{{account.firstname}} {{account.lastname}}</h3>
+        <h3 class="card-title m-0 text-secondary">Lead guess</h3>
+        <h3 class="card-title"><strong>{{account.firstname}} {{account.lastname}}</strong></h3>
       </div>
       <div class="col-md-2">
         <div class="card-body">
-          <a class="booking-detail__guest-info--function--confirm"><h3><i class="fa-solid fa-users"></i> Manage guests
-          </h3></a>
+          <h4 class="text-secondary">User request</h4>
+          <p>{{booking.otherRequirement}}</p>
         </div>
       </div>
       <div class="card-footer">
-        <h4>Capacity</h4>
-        <h3 class="text-secondary">{{booking.bookedQuantity}} adults</h3>
+        <h4 class="text-secondary m-0">Capacity</h4>
+        <h3><strong>{{booking.bookedQuantity}} adults</strong></h3>
       </div>
     </div>
   </div>
@@ -86,28 +75,36 @@
     <div class="card-header">
       <h2>Payment information</h2>
     </div>
-    <div class="row">
-      <div class="col-md-8 border-end">
-        <div class="card-body row border-bottom">
-          <div class="col-md-9">
-            <h3>Total Price</h3>
-          </div>
-          <div class="col-md-3">
-            <h3>{{booking.totalPaid | number}} đ</h3>
-          </div>
-        </div>
-        <div class="card-body row border-bottom">
-          <p>Payment method</p>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-8 border-end">
+          <div class="card-body row border-bottom">
+            <div class="row">
+              <div class="col-md-9">
+                <h3><strong>Total Price</strong></h3>
+                <h5>Included in price: Hotel tax
+                  fees {{(booking.totalPaid - booking.totalPaid * hotel.taxPercentage / 100) * hotel.taxPercentage / 100 | number}}
+                  đ</h5>
+              </div>
+              <div class="col-md-3">
+                <h3><strong>{{booking.totalPaid | number}} đ</strong></h3>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-md-9">
+                <h3><strong>Payment method</strong></h3>
+              </div>
+              <div class="col-md-3">
+                <h3><strong>{{booking.type === 1 ? 'VNPAY' : booking.type === 2 ? 'Pay at hotel' : 'NOT PAID'}}</strong></h3>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="card-body row">
-          <p>Earn from this trip</p>
+        <div class="col-md-4">
+          <a class="text-primary"><i class="fa fa-envelope"></i> Send e-receipt by email</a>
         </div>
-      </div>
-      <div class="col-md-4">
-
       </div>
     </div>
-
   </div>
 </div>

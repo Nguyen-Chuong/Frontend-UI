@@ -62,7 +62,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import {AngularFireModule} from "@angular/fire/compat";
 import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { ImagesCarouselComponent } from './components/master/body/body-main/hotel-detail/images-carousel/images-carousel.component';
+import { ImagesCarouselComponent } from './shared/components/images-carousel/images-carousel.component';
 import { MainSearchBarComponent } from './components/master/body/body-main/main-search-bar/main-search-bar.component';
 import { CartComponent } from './components/master/header/cart/cart.component';
 import { BodyBookComponent } from './components/master/body/body-book/body-book.component';
@@ -74,6 +74,10 @@ import { BookingInformationPaymentComponent } from './components/master/body/bod
 import { BookingVnpayComponent } from './components/master/body/body-book/booking-information/booking-information-payment/booking-vnpay/booking-vnpay.component';
 import { BookingCodComponent } from './components/master/body/body-book/booking-information/booking-information-payment/booking-cod/booking-cod.component';
 import { BookingTransactionInformationComponent } from './components/master/body/body-book/booking-transaction-information/booking-transaction-information.component';
+import { TransactionCodComponent } from './components/master/body/body-book/booking-transaction-information/transaction-cod/transaction-cod.component';
+import { TransactionVnpayComponent } from './components/master/body/body-book/booking-transaction-information/transaction-vnpay/transaction-vnpay.component';
+import { TransactionBookingDetailComponent } from './components/master/body/body-book/booking-transaction-information/transaction-booking-detail/transaction-booking-detail.component';
+import { ImageSliderComponent } from './shared/components/image-slider/image-slider.component';
 
 @NgModule({
   declarations: [
@@ -136,6 +140,10 @@ import { BookingTransactionInformationComponent } from './components/master/body
     BookingVnpayComponent,
     BookingCodComponent,
     BookingTransactionInformationComponent,
+    TransactionCodComponent,
+    TransactionVnpayComponent,
+    TransactionBookingDetailComponent,
+    ImageSliderComponent,
   ],
   imports: [
     BrowserModule,

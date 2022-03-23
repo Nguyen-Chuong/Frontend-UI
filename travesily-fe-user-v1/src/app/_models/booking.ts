@@ -12,5 +12,5 @@ export class Booking {
   totalDays: number;
   bookedQuantity: number;
   otherRequirement: string
-
+  type: number
 }
