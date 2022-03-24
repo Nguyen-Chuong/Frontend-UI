@@ -36,15 +36,10 @@ export class HotelCardComponent implements OnInit {
   }
 
   selectRoom() {
-    this.activatedRoute.queryParams.subscribe(
-      rs => {
-        const from = rs['from']
-        const to = rs['to']
-        this.router.navigate(['/main/hotel-detail'], {
-          queryParams: {
-            hotelId: this.cryptoService.set('06052000', this.hotel.id)
-          }
-        })
-      })
+    this.router.navigate(['/main/hotel-detail'], {
+      queryParams: {
+        hotelId: this.cryptoService.set('06052000', this.hotel.id)
+      }
+    })
   }
 }

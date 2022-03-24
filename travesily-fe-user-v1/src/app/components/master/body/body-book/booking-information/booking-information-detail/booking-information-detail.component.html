@@ -40,7 +40,7 @@
         <hr>
         <div class="row">
           <div class="col-md-4">
-            <img [src]="roomDetail.listImage[0].src" alt="" class="img-fluid">
+            <img [src]="roomDetail.listImage[0]?.src" alt="" class="img-fluid">
           </div>
           <div class="col-md-8">
             <h4 class="card-text text-grey"><i class="fa fa-male"></i> {{bookingInformationDetails[i].quantity}}

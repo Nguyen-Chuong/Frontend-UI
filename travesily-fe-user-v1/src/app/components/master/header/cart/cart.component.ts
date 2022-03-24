@@ -28,20 +28,21 @@ export class CartComponent implements OnInit {
           this.hotel = new Hotel()
           this.carts = []
           this.carts = value
-          if (this.carts.length !== 0)
+          if (this.carts.length !== 0) {
             this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0]?.hotelId)).subscribe(
               rs => {
                 this.hotel = rs['data']
               }
             )
-          this.roomDetails = []
-          this.carts.forEach(cart => {
-            this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', cart.roomTypeId)).subscribe(
-              rs => {
-                this.roomDetails.push(rs['data'])
-              }
-            )
-          })
+            this.roomDetails = []
+            this.carts.forEach(cart => {
+              this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', cart.roomTypeId)).subscribe(
+                rs => {
+                  this.roomDetails.push(rs['data'])
+                }
+              )
+            })
+          }
         },
         error: err => {
           console.error(err)

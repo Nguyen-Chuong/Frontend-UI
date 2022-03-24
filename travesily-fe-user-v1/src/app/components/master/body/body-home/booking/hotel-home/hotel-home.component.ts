@@ -222,9 +222,8 @@ export class HotelHomeComponent implements OnInit {
         filter.to = new Date(val.to)
         filter.guestNumber = val.guestNumber
         filter.roomNumber = val.roomNumber
-        console.log(filter)
         this.storage.searchFilter = filter
-        this.router.navigate(['/main/search-hotel-list'])
+        this.router.navigateByUrl('/main/search-hotel-list')
       }
     }
   }
