@@ -1,0 +1,59 @@
+<div class="benefit">
+  <div class="menu-list">
+    <app-taskbar></app-taskbar>
+  </div>
+  <simple-notifications></simple-notifications>
+  <div class="add-benefit">
+    <div class="add-benefit-type">
+      <form class="col-md-10 border-right" [formGroup]="formGroup" (ngSubmit)="addBenefitType()">
+        <div class="p-3 py-5">
+          <h1>New Benefit Type</h1>
+          <div class="col-md-12"><label class="labels">Benefit Type</label>
+            <input type="text" class="form-control" formControlName="benefitType">
+          </div>
+          <div class="col-md-12"><label class="labels">Benefit Icon</label>
+            <input type="text" class="form-control" formControlName="icon">
+          </div>
+          <div class="mt-5 text-center">
+            <button class="btn btn-primary profile-button" type="submit">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="add-benefit-of-type">
+      <form class="col-md-10 border-right" [formGroup]="formGroup">
+        <div class="p-3 py-5">
+          <h1>New Benefit</h1>
+          <div class="col-md-12">
+            <mat-form-field appearance="fill" class="select">
+              <mat-label>Benefit Type</mat-label>
+              <mat-select [formControl]="benefitTypeControl" required>
+                <mat-option *ngFor="let benefitType of benefitTypes" [value]="benefitType">
+                  {{benefitType.name}}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="benefitTypeControl.hasError('required')">Please choose a hotel</mat-error>
+            </mat-form-field>
+          </div>
+          <div *ngFor="let input of inputs">
+            <div class="row mt-2">
+              <div class="col-md-6"><label class="labels">Benefit</label>
+                <input type="text" class="form-control" formControlName="benefitType">
+              </div>
+              <div class="col-md-6"><label class="labels">Benefit Icon</label>
+                <input type="text" class="form-control" formControlName="icon">
+              </div>
+            </div>
+          </div>
+          <button mat-menu-item (click)="moreInput()">
+            <mat-icon>add</mat-icon>
+            <span>More</span>
+          </button>
+          <div class="mt-5 text-center">
+            <button class="btn btn-primary" type="submit">Save</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

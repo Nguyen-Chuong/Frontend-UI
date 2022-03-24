@@ -46,6 +46,9 @@ import { ResponseComponent } from './components/response/response.component';
 import { FeedbackTableComponent } from './components/feedback-table/feedback-table.component';
 import { DialogComponent } from './components/dialog/dialog.component';
 import { MatDialogModule} from '@angular/material/dialog';
+import { BenefitComponent } from './components/benefit/benefit.component';
+import { MatSelectModule } from '@angular/material/select';
+import { FacilityComponent } from './components/facility/facility.component';
 
 @NgModule({
   declarations: [
@@ -73,7 +76,9 @@ import { MatDialogModule} from '@angular/material/dialog';
     FeedbackComponent,
     ResponseComponent,
     FeedbackTableComponent,
-    DialogComponent
+    DialogComponent,
+    BenefitComponent,
+    FacilityComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +102,7 @@ import { MatDialogModule} from '@angular/material/dialog';
     MatCheckboxModule,
     NgImageSliderModule,
     MatDialogModule,
+    MatSelectModule,
     SimpleNotificationsModule.forRoot()
   ],
   providers: [

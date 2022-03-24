@@ -1,3 +1,5 @@
+import { FacilityComponent } from './components/facility/facility.component';
+import { BenefitComponent } from './components/benefit/benefit.component';
 import { ResponseComponent } from './components/response/response.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { ManagerListComponent } from './components/manager-list/manager-list.component';
@@ -35,6 +37,14 @@ const routes: Routes = [
   {
     path: 'booking',
     component: BookingListComponent,
+  },
+  {
+    path: 'benefit',
+    component: BenefitComponent,
+  },
+  {
+    path: 'facility',
+    component: FacilityComponent,
   },
   {
     path: 'feedback',
