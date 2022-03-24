@@ -15,7 +15,7 @@ export class RoomTypeService {
   getRoomDetailByRoomTypeId(roomTypeId: string) {
     const params = new HttpParams().append('roomTypeId', roomTypeId);
     return this.http.get(`${this.baseUrl}/public/room-detail`, {
-      params: params,
+      params: params, withCredentials: false
     });
   }
 
@@ -28,7 +28,7 @@ export class RoomTypeService {
       .append('dateIn', dateIn)
       .append('dateOut', dateOut);
     return this.http.get(`${this.baseUrl}/public/room-type`, {
-      params: params,
+      params: params,withCredentials: false
     });
   }
 }

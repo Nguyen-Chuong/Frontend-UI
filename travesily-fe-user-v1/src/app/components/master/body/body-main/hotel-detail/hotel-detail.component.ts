@@ -16,8 +16,8 @@ export class HotelDetailComponent implements OnInit {
   roomTypes: RoomType[] = []
   hotel: Hotel = new Hotel()
   benefitTypes: BenefitType[]
-  listImage: {id: number, src: string}[] = []
-currentUrl = ''
+  listImage: { id: number, src: string }[] = []
+  currentUrl = ''
 
   constructor(private activatedRoute: ActivatedRoute,
               private roomTypeService: RoomTypeService,
@@ -33,12 +33,13 @@ currentUrl = ''
         const hotelId = rs['hotelId']
         const from = rs['from']
         const to = rs['to']
-        this.roomTypeService.getRoomTypesByHotelId(hotelId, from, to).subscribe(
-          rs => {
-            this.roomTypes = rs['data']['listRooms']
-            this.roomTypes.forEach(roomType => {
-              this.listImage?.push(...roomType.listImage)
-            })
+        this.roomTypeService.getRoomTypesByHotelId(hotelId, from, to).subscribe({
+            next: rs => {
+              this.roomTypes = rs['data']['listRooms']
+              this.roomTypes.forEach(roomType => {
+                this.listImage?.push(...roomType.listImage)
+              })
+            }
           }
         )
         this.hotelService.getHotelById(hotelId).subscribe(

@@ -15,7 +15,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
   encryptedEmail: string
   account: Account = new Account()
   isRegister: boolean = false
-  @ViewChild('ngOtpInput') ngOtpInputRef:any;
+  @ViewChild('ngOtpInput') ngOtpInputRef: any;
 
   constructor(private authService: AuthService,
               private router: Router,
@@ -64,10 +64,15 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
                   next: () => {
                     this.authService.login(this.account.email, this.account.password)
                       .subscribe(() => {
-                        this.router.navigateByUrl('/user/profile').then(() => {
-                          this.alertService.success('Register Successful')
-                          window.location.reload()
+                        this.activatedRoute.queryParams.subscribe({
+                          next: value => {
+                            this.router.navigateByUrl(value['url'] ? value['url'] : '/user/profile').then(() => {
+                              this.alertService.success('Register Successful')
+                              window.location.reload()
+                            })
+                          }
                         })
+
                       })
                   }, error: error => {
                     this.alertService.error('Register Failed')

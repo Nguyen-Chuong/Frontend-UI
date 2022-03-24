@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators
 } from "@angular/forms";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../../../_services/auth.service";
 import {Account} from "../../../../../_models/account";
 import {concatMap, first} from "rxjs";
@@ -31,7 +31,8 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private authService: AuthService,
     private alertService: AlertService,
-    private cryptoService: CryptoService
+    private cryptoService: CryptoService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.form = fb.group({
       firstname: ['', [Validators.required]],
@@ -48,16 +49,20 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     const val = this.form.value
-    this.router.navigate(['/authentication/otp-checker'],{
-      queryParams:{
-        firstname: val.firstname,
-        lastname: val.lastname,
-        encryptedEmail: this.cryptoService.set('06052000',val.email),
-        encryptedPassword: this.cryptoService.set('06052000',val.password),
-        encryptedUsername: this.cryptoService.set('06052000',val.username),
+    this.activatedRoute.queryParams.subscribe({
+      next: value => {
+        this.router.navigate(['/authentication/otp-checker'],{
+          queryParams:{
+            url: value['url'],
+            firstname: val.firstname,
+            lastname: val.lastname,
+            encryptedEmail: this.cryptoService.set('06052000',val.email),
+            encryptedPassword: this.cryptoService.set('06052000',val.password),
+            encryptedUsername: this.cryptoService.set('06052000',val.username),
+          }
+        })
       }
     })
-
   }
 
   matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {

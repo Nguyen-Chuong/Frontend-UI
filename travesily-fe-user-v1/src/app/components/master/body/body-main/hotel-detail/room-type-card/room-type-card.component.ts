@@ -29,15 +29,17 @@ export class RoomTypeCardComponent implements OnInit {
               private storageService: StorageService,
               private router: Router) {
     this.modal = `#room-type-image-modal-${this.roomType?.id}`
-    this.cartService.getCarts().subscribe({
-      next: carts => {
-        this.carts = carts
-        this.filter = this.storageService.searchFilter
-        if(this.carts.length>0){
-          this.filter.roomNumber = 1
+    this.filter = this.storageService.searchFilter
+    this.roomDetail.listImage = []
+    if (storageService.authToken)
+      this.cartService.getCarts().subscribe({
+        next: carts => {
+          this.carts = carts
+          if (this.carts.length > 0) {
+            this.filter.roomNumber = 1
+          }
         }
-      }
-    })
+      })
   }
 
   ngOnInit(): void {
@@ -48,28 +50,40 @@ export class RoomTypeCardComponent implements OnInit {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
-        this.cartService.updateCarts()
-        alert('An item has been added to your cart!')
-      },
-      err => {
-        alert('You can not add more than 2 item!')
+    if (!this.storageService.authToken)
+      this.router.navigate(['/authentication/login'], {
+        queryParams: {
+          url: this.router.url
+        }
       })
+    else
+      this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
+          this.cartService.updateCarts()
+          alert('An item has been added to your cart!')
+        },
+        err => {
+          alert('You can not add more than 2 item!')
+        })
   }
 
   bookNow() {
-    this.cartService.clearCart().subscribe({
-      next: value => {
-        this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
-            this.cartService.updateCarts()
-            this.router.navigateByUrl('/book/booking-info')
-          },
-          err => {
-            alert('You can not add more than 2 item!')
-          })
-      }
-    })
-
-
+    if (!this.storageService.authToken)
+      this.router.navigate(['/authentication/login'], {
+        queryParams: {
+          url: this.router.url
+        }
+      })
+    else
+      this.cartService.clearCart().subscribe({
+        next: value => {
+          this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
+              this.cartService.updateCarts()
+              this.router.navigateByUrl('/book/booking-info')
+            },
+            err => {
+              alert('You can not add more than 2 item!')
+            })
+        }
+      })
   }
 }
