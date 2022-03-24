@@ -6,6 +6,7 @@ import {Hotel} from "../../../../../_models/hotel";
 import {HotelService} from "../../../../../_services/hotel.service";
 import {Benefit} from "../../../../../_models/benefit";
 import {BenefitType} from "../../../../../_models/benefit-type";
+import {StorageService} from "../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-hotel-detail',
@@ -22,7 +23,8 @@ export class HotelDetailComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private roomTypeService: RoomTypeService,
               private hotelService: HotelService,
-              private router: Router
+              private router: Router,
+              private storageService: StorageService
   ) {
     this.currentUrl = this.router.url
   }
@@ -31,9 +33,8 @@ export class HotelDetailComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe(
       rs => {
         const hotelId = rs['hotelId']
-        const from = rs['from']
-        const to = rs['to']
-        this.roomTypeService.getRoomTypesByHotelId(hotelId, from, to).subscribe({
+        const filter = this.storageService.searchFilter
+        this.roomTypeService.getRoomTypesByHotelId(hotelId, filter.from, filter.to).subscribe({
             next: rs => {
               this.roomTypes = rs['data']['listRooms']
               this.roomTypes.forEach(roomType => {

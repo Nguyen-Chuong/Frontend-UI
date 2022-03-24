@@ -42,9 +42,7 @@ export class HotelCardComponent implements OnInit {
         const to = rs['to']
         this.router.navigate(['/main/hotel-detail'], {
           queryParams: {
-            hotelId: this.cryptoService.set('06052000', this.hotel.id),
-            from: from,
-            to: to
+            hotelId: this.cryptoService.set('06052000', this.hotel.id)
           }
         })
       })

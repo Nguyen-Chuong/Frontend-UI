@@ -96,9 +96,10 @@ export class MainSearchBarComponent implements OnInit {
 
   search() {
     const val = this.hotelForm.value
+    const currentFilter = this.storage.searchFilter
     if (val.destination, val.from, val.to, val.guestNumber, val.roomNumber) {
       const district = this.results?.filter(rs => rs.resultSearch === val.destination)[0]
-      if (district !== null) {
+      if (district !== undefined) {
         const filter = new SearchFilter()
         filter.destination = district
         filter.from = new Date(val.from)
@@ -106,15 +107,14 @@ export class MainSearchBarComponent implements OnInit {
         filter.guestNumber = val.guestNumber
         filter.roomNumber = val.roomNumber
         this.storage.searchFilter = filter
-        this.router.navigate(['/main/search-hotel-list'], {
-          queryParams: {
-            destination: district.id,
-            from: val.from,
-            to: val.to,
-            guestNumber: val.guestNumber,
-            roomNumber: val.roomNumber
-          }
-        })
+        if (this.storage.searchFilter.destination.id === currentFilter.destination.id) {
+          window.location.reload()
+        } else {
+          this.router.navigate(['/main/search-hotel-list']).then(() => {
+            window.location.reload()
+          })
+
+        }
       }
     }
   }

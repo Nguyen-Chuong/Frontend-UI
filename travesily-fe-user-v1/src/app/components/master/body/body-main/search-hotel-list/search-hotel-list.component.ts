@@ -7,6 +7,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {LocationService} from "../../../../../_services/location.service";
 import {District} from "../../../../../_models/district";
 import {DatePipe} from "@angular/common";
+import {StorageService} from "../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-search-hotel-list',
@@ -28,16 +29,11 @@ export class SearchHotelListComponent implements OnInit {
   constructor(private hotelService: HotelService,
               private activatedRoute: ActivatedRoute,
               private locationService: LocationService,
-              private router: Router
+              private router: Router,
+              private storageService: StorageService
   ) {
-    this.activatedRoute.queryParams.subscribe(
-      rs => {
-        const destination = rs['destination']
-        const from = rs['from']
-        const to = rs['to']
-        const guestNumber = rs['guestNumber']
-        const roomNumber = rs['roomNumber']
-        hotelService.searchHotel(destination, from, to, guestNumber, roomNumber, 0, 10)
+        const filter = this.storageService.searchFilter
+        hotelService.searchHotel(filter.destination.id, filter.from, filter.to, filter.guestNumber, filter.roomNumber, 0, 10)
           .pipe(first())
           .subscribe(
             rs => {
@@ -47,8 +43,7 @@ export class SearchHotelListComponent implements OnInit {
               console.log(error)
             }
           )
-      }
-    )
+
 
   }
 

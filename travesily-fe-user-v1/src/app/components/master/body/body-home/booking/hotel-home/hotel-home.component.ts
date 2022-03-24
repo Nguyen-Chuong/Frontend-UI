@@ -215,7 +215,7 @@ export class HotelHomeComponent implements OnInit {
     const val = this.hotelForm.value
     if (val.destination, val.from, val.to, val.guestNumber, val.roomNumber) {
       const district = this.results.filter(rs => rs.resultSearch === val.destination)[0]
-      if (district !== null) {
+      if (district !== undefined) {
         const filter = new SearchFilter()
         filter.destination = district
         filter.from = new Date(val.from)
@@ -224,15 +224,7 @@ export class HotelHomeComponent implements OnInit {
         filter.roomNumber = val.roomNumber
         console.log(filter)
         this.storage.searchFilter = filter
-        this.router.navigate(['/main/search-hotel-list'], {
-          queryParams: {
-            destination: district.id,
-            from: val.from,
-            to: val.to,
-            guestNumber: val.guestNumber,
-            roomNumber: val.roomNumber
-          }
-        })
+        this.router.navigate(['/main/search-hotel-list'])
       }
     }
   }
