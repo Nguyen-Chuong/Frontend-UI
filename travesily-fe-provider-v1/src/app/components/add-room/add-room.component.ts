@@ -47,7 +47,6 @@ export class AddRoomComponent implements OnInit {
     room.numberOfPeople = val.numberOfPeople
     room.price = val.price
     room.hotelId = Number(localStorage.getItem('hotel-id'))
-
     this.roomService.newRoom(room)
       .pipe(first())
       .subscribe({

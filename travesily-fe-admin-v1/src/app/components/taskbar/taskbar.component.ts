@@ -72,6 +72,13 @@ export class TaskbarComponent implements OnInit {
       queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
     });
   }
+  openBenefit(){
+    this.router.navigate(['/benefit']);
+  }
+
+  openFacility(){
+    this.router.navigate(['/facility']);
+  }
 
   toggleSidebar(){
     this.opened = !this.opened

@@ -1,0 +1,23 @@
+.benefit {
+  display: flex;
+}
+
+.menu-list {
+  width: 20%;
+  height: 100%;
+}
+
+.add-benefit {
+  width: 75%;
+  margin-top: 90px;
+  display: flex;
+  border: 1px solid red;
+
+  &-type{
+    width: 45%;
+  }
+
+  &-of-type{
+    width: 45%;
+  }
+}
