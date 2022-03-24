@@ -78,6 +78,8 @@ import { TransactionCodComponent } from './components/master/body/body-book/book
 import { TransactionVnpayComponent } from './components/master/body/body-book/booking-transaction-information/transaction-vnpay/transaction-vnpay.component';
 import { TransactionBookingDetailComponent } from './components/master/body/body-book/booking-transaction-information/transaction-booking-detail/transaction-booking-detail.component';
 import { ImageSliderComponent } from './shared/components/image-slider/image-slider.component';
+import { TopHotelsComponent } from './components/master/body/body-home/top-hotels/top-hotels.component';
+import { HotelMiniCardComponent } from './components/master/body/body-home/top-hotels/hotel-mini-card/hotel-mini-card.component';
 
 @NgModule({
   declarations: [
@@ -144,6 +146,8 @@ import { ImageSliderComponent } from './shared/components/image-slider/image-sli
     TransactionVnpayComponent,
     TransactionBookingDetailComponent,
     ImageSliderComponent,
+    TopHotelsComponent,
+    HotelMiniCardComponent,
   ],
   imports: [
     BrowserModule,

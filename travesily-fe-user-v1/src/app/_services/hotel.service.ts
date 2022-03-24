@@ -1,7 +1,7 @@
-import { DatePipe } from '@angular/common';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Inject, Injectable, LOCALE_ID } from '@angular/core';
-import { environment } from '../../environments/environment';
+import {DatePipe} from '@angular/common';
+import {HttpClient, HttpParams} from '@angular/common/http';
+import {Inject, Injectable, LOCALE_ID} from '@angular/core';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +12,8 @@ export class HotelService {
   constructor(
     private http: HttpClient,
     @Inject(LOCALE_ID) private _locale: string
-  ) {}
+  ) {
+  }
 
   datePipe = new DatePipe('en-US');
 
@@ -59,5 +60,10 @@ export class HotelService {
       withCredentials: false,
       params: params,
     });
+  }
+
+  getTopHotel(limit: string) {
+    const params = new HttpParams().append('topHotel', limit)
+    return this.http.get(`${this.baseUrl}/public/top-hotel`, {withCredentials: false, params: params})
   }
 }

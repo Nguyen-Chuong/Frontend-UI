@@ -1,0 +1,6 @@
+  <div class="row">
+    <h1>The most popular hotels</h1>
+    <ul class="list-inline">
+      <li *ngFor="let hotel of hotels"><app-hotel-mini-card [hotel]="hotel"></app-hotel-mini-card></li>
+    </ul>
+  </div>

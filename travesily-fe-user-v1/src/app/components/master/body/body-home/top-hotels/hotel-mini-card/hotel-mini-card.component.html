@@ -1,0 +1,15 @@
+<div class="card col-md-3" (click)="redirectHotelDetail()">
+  <img [src]="hotel?.avatar" class="img-fluid card-img-top" alt="">
+  <div class="card-body">
+    <h2 class="card-title">{{hotel.name}}</h2>
+    <h4 class="m-0">
+      <span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=2?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=3?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
+    </h4>
+    <h4 class="text-primary">{{hotel.address}}, {{hotel.district.nameDistrict}}, {{hotel.district.city.nameCity}}</h4>
+    <h2 class="text-orange-2">{{hotel.price - hotel.price*hotel.salePercent/100 | number}} đ</h2>
+  </div>
+</div>
