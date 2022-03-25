@@ -49,6 +49,8 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { BenefitComponent } from './components/benefit/benefit.component';
 import { MatSelectModule } from '@angular/material/select';
 import { FacilityComponent } from './components/facility/facility.component';
+import { AddBenefitComponent } from './components/add-benefit/add-benefit.component';
+import { AddFacilityComponent } from './components/add-facility/add-facility.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,9 @@ import { FacilityComponent } from './components/facility/facility.component';
     FeedbackTableComponent,
     DialogComponent,
     BenefitComponent,
-    FacilityComponent
+    FacilityComponent,
+    AddBenefitComponent,
+    AddFacilityComponent
   ],
   imports: [
     BrowserModule,

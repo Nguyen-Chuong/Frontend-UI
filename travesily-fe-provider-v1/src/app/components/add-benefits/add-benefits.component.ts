@@ -60,6 +60,7 @@ export class AddBenefitsComponent implements OnInit {
     }else{
       roomTypeId = Number(localStorage.getItem('room-id'))
     }
+    console.log(this.checkedList)
     const benefitRequest = new BenefitRequest
     benefitRequest.roomTypeId = roomTypeId
     benefitRequest.benefitIds = this.checkedList
