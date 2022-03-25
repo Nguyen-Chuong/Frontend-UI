@@ -1,10 +1,11 @@
 import { BenefitService } from './../../_services/benefit.service';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BenefitTypeRequest } from 'src/app/_models/benefitTypeRequest';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { first } from 'rxjs';
 import { BenefitType } from 'src/app/_models/benefitType';
+import { BenefitRequest } from 'src/app/_models/benefitRequest';
 
 @Component({
   selector: 'app-benefit',
@@ -13,28 +14,37 @@ import { BenefitType } from 'src/app/_models/benefitType';
 })
 export class BenefitComponent implements OnInit {
   formGroup: FormGroup;
+  benefitGroup: FormGroup;
   inputs: any[]
   max: number
   benefitTypeControl: FormControl
   benefitTypes: BenefitType[]
+  benefitRequests: BenefitRequest[]
+
   constructor(
     private benefitService: BenefitService,
-    private notificationService: NotificationService
-  ) { }
+    private notificationService: NotificationService,
+    private fb: FormBuilder
+  ) {
+
+  }
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       benefitType: new FormControl('', [Validators.required]),
       icon: new FormControl('', [Validators.required])
     })
+    this.benefitGroup = new FormGroup({
+      benefit: new FormControl('', [Validators.required]),
+      icon: new FormControl('', [Validators.required])
+    })
+
     this.benefitService.getBenefitType().pipe(first()).subscribe(
       rs => {
         this.benefitTypes = rs['data']
       })
-    this.max = 1
-    this.inputs = Array.from({ length: this.max }, (_, i) => i + 1)
-    console.log(this.inputs.length)
     this.benefitTypeControl = new FormControl('', Validators.required);
+
   }
 
   addBenefitType() {
@@ -52,10 +62,5 @@ export class BenefitComponent implements OnInit {
         this.notificationService.onError('Add false')
       }
     })
-  }
-
-  moreInput(){
-    this.max = this.max + 1
-    this.inputs = Array.from({ length: this.max }, (_, i) => i + 1)
   }
 }

@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { BenefitAddRequest } from '../_models/benefitAddRequest';
 import { BenefitRequest } from '../_models/benefitRequest';
 import { BenefitTypeRequest } from '../_models/benefitTypeRequest';
 
@@ -16,9 +17,9 @@ export class BenefitService {
     return this.http.post(`${this.baseUrl}/add-benefit-type`, { ...benefitTypeRequest });
   }
 
-  addBenefit(benefitRequest: BenefitRequest[], benefitTypeId: number){
+  addBenefit(benefitAddRequests: BenefitAddRequest, benefitTypeId: any){
     const params = new HttpParams().append('benefitTypeId', benefitTypeId);
-    return this.http.post(`${this.baseUrl}/add-benefit-type`, { ...benefitRequest } ,{params: params});
+    return this.http.post(`${this.baseUrl}/add-benefit`, benefitAddRequests ,{params: params});
   }
 
   getBenefitType(){
