@@ -7,10 +7,10 @@
     <div class="card-body text-center">
       <p>Booking ID: {{booking?.id}}</p>
       <div class="row">
-        <a class="btn btn-fill">Review your stay</a>
+        <button class="btn btn-fill" (click)="review()" [disabled]="booking.reviewStatus !==0">Review your stay</button>
       </div>
       <div class="row">
-        <a class="btn btn-plain">Book again</a>
+        <a class="btn btn-plain" (click)="bookAgain()">Book again</a>
       </div>
     </div>
   </div>

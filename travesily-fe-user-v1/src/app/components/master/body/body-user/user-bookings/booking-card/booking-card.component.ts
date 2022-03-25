@@ -22,4 +22,12 @@ export class BookingCardComponent implements OnInit {
   viewDetail() {
     this.router.navigate(['/user/booking-detail'],{queryParams:{bookingId: this.cryptoService.set('06052000',this.booking.id)}})
   }
+
+  review() {
+    this.router.navigate(['/review'], {
+      queryParams: {
+        bookingId: this.cryptoService.set('06052000', this.booking.id)
+      }
+    })
+  }
 }

@@ -10,7 +10,7 @@ import { environment } from '../../environments/environment';
 export class RoomTypeService {
   baseUrl = environment.API_URL;
   datePipe = new DatePipe('en-US');
-  constructor(private http: HttpClient, private cryptoService: CryptoService) {}
+  constructor(private http: HttpClient) {}
   //Get room detail by roomTypeId
   getRoomDetailByRoomTypeId(roomTypeId: string) {
     const params = new HttpParams().append('roomTypeId', roomTypeId);

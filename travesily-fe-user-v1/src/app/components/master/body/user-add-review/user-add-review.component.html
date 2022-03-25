@@ -1,0 +1,15 @@
+<div class="bg-white vh-100">
+  <div class="container-fluid" [ngStyle]="{'background-image':'url('+booking.hotel?.avatar+')'}">
+    <div class="row pt-5">
+      <div class="col-md-4">
+        <div class="row rounded-end shadow bg-light-blue mt-5">
+          <h1 class="text-deep-white"><strong>{{booking.hotel?.name}}</strong></h1>
+          <h2 class="text-deep-white">{{booking.checkIn| date}} - {{booking.checkOut| date}}</h2>
+        </div>
+      </div>
+      <div class="col-md-6 ms-auto">
+        <app-review-box [bookingId]="booking.id"></app-review-box>
+      </div>
+    </div>
+  </div>
+</div>

@@ -80,6 +80,8 @@ import { TransactionBookingDetailComponent } from './components/master/body/body
 import { ImageSliderComponent } from './shared/components/image-slider/image-slider.component';
 import { TopHotelsComponent } from './components/master/body/body-home/top-hotels/top-hotels.component';
 import { HotelMiniCardComponent } from './components/master/body/body-home/top-hotels/hotel-mini-card/hotel-mini-card.component';
+import { UserAddReviewComponent } from './components/master/body/user-add-review/user-add-review.component';
+import { ReviewBoxComponent } from './components/master/body/user-add-review/review-box/review-box.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +150,8 @@ import { HotelMiniCardComponent } from './components/master/body/body-home/top-h
     ImageSliderComponent,
     TopHotelsComponent,
     HotelMiniCardComponent,
+    UserAddReviewComponent,
+    ReviewBoxComponent,
   ],
   imports: [
     BrowserModule,

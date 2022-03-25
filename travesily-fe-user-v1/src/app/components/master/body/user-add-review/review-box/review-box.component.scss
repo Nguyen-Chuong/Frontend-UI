@@ -1,0 +1,189 @@
+@import "main";
+
+.container{
+  height: 60vh;
+}
+
+.card-body{
+  height: 40vh;
+}
+
+textarea{
+  min-height: 15rem;
+}
+
+/* - - - - - RATINGS */
+.rating {
+  width: 27rem;
+  height: 5rem;
+}
+
+.rating:not(:checked) > input {
+  display: none;
+}
+
+/* - - - - - RATE */
+//#rate {
+//  top: -65px;
+//}
+.rating-clean {
+  #rateClean:not(:checked) > .clean-label {
+    cursor: pointer;
+    float: right;
+    width: 5rem;
+    height: 5rem;
+    display: block;
+
+    color: rgb(142, 143, 143);
+    //line-height: 3.3rem;
+    text-align: center;
+  }
+
+  #rateClean:not(:checked) > .clean-label:hover,
+  #rateClean:not(:checked) > .clean-label:hover ~ .clean-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateClean > .clean-input:checked + .clean-label:hover,
+  #rateClean > .clean-input:checked + .clean-label:hover ~ .clean-label,
+  #rateClean > .clean-input:checked ~ .clean-label:hover,
+  #rateClean > .clean-input:checked ~ .clean-label:hover ~ .clean-label,
+  #rateClean > .clean-label:hover ~ .clean-input:checked ~ .clean-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateClean > input:checked ~ label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+}
+
+.rating-facilities{
+  #rateFacilities:not(:checked) > .facilities-label {
+    cursor: pointer;
+    float: right;
+    width: 5rem;
+    height: 5rem;
+    display: block;
+
+    color: rgb(142, 143, 143);
+    //line-height: 3.3rem;
+    text-align: center;
+  }
+
+  #rateFacilities:not(:checked) > .facilities-label:hover,
+  #rateFacilities:not(:checked) > .facilities-label:hover ~ .facilities-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateFacilities > .facilities-input:checked + .facilities-label:hover,
+  #rateFacilities > .facilities-input:checked + .facilities-label:hover ~ .facilities-label,
+  #rateFacilities > .facilities-input:checked ~ .facilities-label:hover,
+  #rateFacilities > .facilities-input:checked ~ .facilities-label:hover ~ .facilities-label,
+  #rateFacilities > .facilities-label:hover ~ .facilities-input:checked ~ .facilities-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateFacilities > .facilities-input:checked ~ .facilities-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+}
+
+.rating-location{
+  #rateLocation:not(:checked) > .location-label {
+    cursor: pointer;
+    float: right;
+    width: 5rem;
+    height: 5rem;
+    display: block;
+
+    color: rgb(142, 143, 143);
+    //line-height: 3.3rem;
+    text-align: center;
+  }
+
+  #rateLocation:not(:checked) > .location-label:hover,
+  #rateLocation:not(:checked) > .location-label:hover ~ .location-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateLocation > .location-input:checked + .location-label:hover,
+  #rateLocation > .location-input:checked + .location-label:hover ~ .location-label,
+  #rateLocation > .location-input:checked ~ .location-label:hover,
+  #rateLocation > .location-input:checked ~ .location-label:hover ~ .location-label,
+  #rateLocation > .location-label:hover ~ .location-input:checked ~ .location-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateLocation > .location-input:checked ~ .location-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+}
+.rating-service{
+  #rateService:not(:checked) > .service-label {
+    cursor: pointer;
+    float: right;
+    width: 5rem;
+    height: 5rem;
+    display: block;
+
+    color: rgb(142, 143, 143);
+    //line-height: 3.3rem;
+    text-align: center;
+  }
+
+  #rateService:not(:checked) > .service-label:hover,
+  #rateService:not(:checked) > .service-label:hover ~ .service-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateService > .service-input:checked + .service-label:hover,
+  #rateService > .service-input:checked + .service-label:hover ~ .service-label,
+  #rateService > .service-input:checked ~ .service-label:hover,
+  #rateService > .service-input:checked ~ .service-label:hover ~ .service-label,
+  #rateService > .service-label:hover ~ .service-input:checked ~ .service-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateService > .service-input:checked ~ .service-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+}
+.rating-value{
+  #rateValue:not(:checked) > .value-label {
+    cursor: pointer;
+    float: right;
+    width: 5rem;
+    height: 5rem;
+    display: block;
+
+    color: rgb(142, 143, 143);
+    //line-height: 3.3rem;
+    text-align: center;
+  }
+
+  #rateValue:not(:checked) > .value-label:hover,
+  #rateValue:not(:checked) > .value-label:hover ~ .value-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateValue > .value-input:checked + .value-label:hover,
+  #rateValue > .value-input:checked + .value-label:hover ~ .value-label,
+  #rateValue > .value-input:checked ~ .value-label:hover,
+  #rateValue > .value-input:checked ~ .value-label:hover ~ .value-label,
+  #rateValue > .value-label:hover ~ .value-input:checked ~ .value-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+
+  #rateValue > .value-input:checked ~ .value-label {
+    color: rgba(245, 230, 14, 0.89);
+  }
+}
+
+label {
+  font-size: 4rem;
+}
+
+img {
+  width: 20rem;
+  height: 20rem;
+}

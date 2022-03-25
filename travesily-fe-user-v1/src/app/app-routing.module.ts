@@ -57,6 +57,7 @@ import {
 import {
   BookingTransactionInformationComponent
 } from "./components/master/body/body-book/booking-transaction-information/booking-transaction-information.component";
+import {UserAddReviewComponent} from "./components/master/body/user-add-review/user-add-review.component";
 
 const routes: Routes = [
   {
@@ -111,7 +112,8 @@ const routes: Routes = [
           },
           {path: 'transaction-info', component: BookingTransactionInformationComponent}
         ]
-      }
+      },
+      {path: 'review', component: UserAddReviewComponent},
     ]
   }
 

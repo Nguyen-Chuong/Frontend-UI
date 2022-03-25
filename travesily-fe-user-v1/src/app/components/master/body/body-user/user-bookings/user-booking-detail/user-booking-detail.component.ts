@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BookingService} from "../../../../../../_services/booking.service";
 import {BookingDetail} from "../../../../../../_models/booking-detail";
 import {first} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Booking} from "../../../../../../_models/booking";
 import {Account} from "../../../../../../_models/account";
 import {AuthService} from "../../../../../../_services/auth.service";
@@ -21,6 +21,8 @@ export class UserBookingDetailComponent implements OnInit {
   constructor(authService: AuthService,
               private bookingService: BookingService,
               private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private cryptoService: CryptoService
   ) {
     authService.getProfile().pipe(first()).subscribe(rs => {
       this.account = rs['data']
@@ -46,4 +48,15 @@ export class UserBookingDetailComponent implements OnInit {
     })
   }
 
+  review() {
+    this.router.navigate(['/review'], {
+      queryParams: {
+        bookingId: this.cryptoService.set('06052000', this.booking.id)
+      }
+    })
+  }
+
+  bookAgain() {
+
+  }
 }

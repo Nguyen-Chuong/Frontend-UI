@@ -1,0 +1,186 @@
+<div class="container">
+<div class="card">
+  <div class="card-header bg-deep-dark">
+    <h2 class="text-white">Got a spare minute?</h2>
+  </div>
+  <div class="card-body overflow-auto">
+    <form [formGroup]="form">
+      <div class="row item-center">
+        <img src="assets/img/clieanliness.png" alt="" class="m-auto">
+        <h1 class="d-block">CLEANLINESS</h1>
+        <div class="rating-clean">
+          <div id="rateClean" class="rating m-auto">
+            <!-- FIFTH STAR -->
+            <input type="radio" class="clean-input" formControlName="cleanliness" id="star_clean_5" name="rateClean"
+                   value="5"/>
+            <label for="star_clean_5" class="clean-label"
+                   title="Five">{{form.value.cleanliness >= 5 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FOURTH STAR -->
+            <input type="radio" class="clean-input" formControlName="cleanliness" id="star_clean_4" name="rateClean"
+                   value="4"/>
+            <label for="star_clean_4" class="clean-label"
+                   title="Four">{{form.value.cleanliness >= 4 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- THIRD STAR -->
+            <input type="radio" class="clean-input" formControlName="cleanliness" id="star_clean_3" name="rateClean"
+                   value="3"/>
+            <label for="star_clean_3" class="clean-label"
+                   title="Three">{{form.value.cleanliness >= 3 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- SECOND STAR -->
+            <input type="radio" class="clean-input" formControlName="cleanliness" id="star_clean_2" name="rateClean"
+                   value="2"/>
+            <label for="star_clean_2" class="clean-label"
+                   title="Two">{{form.value.cleanliness >= 2 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FIRST STAR -->
+            <input type="radio" class="clean-input" formControlName="cleanliness" id="star_clean_1" name="rateClean"
+                   value="1"/>
+            <label for="star_clean_1" class="clean-label"
+                   title="One">{{form.value.cleanliness >= 1 ? '&#9733;' : '&#9734;'}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row item-center">
+        <img src="assets/img/facilities.jpeg" alt="" class="m-auto">
+        <h1 class="d-block">FACILITIES</h1>
+        <div class="rating-facilities">
+          <div id="rateFacilities" class="rating m-auto">
+            <!-- FIFTH STAR -->
+            <input type="radio" class="facilities-input" formControlName="facilities" id="star_facilities_5"
+                   name="rate-facilities" value="5"/>
+            <label for="star_facilities_5" class="facilities-label"
+                   title="Five">{{form.value.facilities >= 5 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FOURTH STAR -->
+            <input type="radio" class="facilities-input" formControlName="facilities" id="star_facilities_4"
+                   name="rate-facilities" value="4"/>
+            <label for="star_facilities_4" class="facilities-label"
+                   title="Four">{{form.value.facilities >= 4 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- THIRD STAR -->
+            <input type="radio" class="facilities-input" formControlName="facilities" id="star_facilities_3"
+                   name="rate-facilities" value="3"/>
+            <label for="star_facilities_3" class="facilities-label"
+                   title="Three">{{form.value.facilities >= 3 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- SECOND STAR -->
+            <input type="radio" class="facilities-input" formControlName="facilities" id="star_facilities_2"
+                   name="rate-facilities" value="2"/>
+            <label for="star_facilities_2" class="facilities-label"
+                   title="Two">{{form.value.facilities >= 2 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FIRST STAR -->
+            <input type="radio" class="facilities-input" formControlName="facilities" id="star_facilities_1"
+                   name="rate-facilities" value="1"/>
+            <label for="star_facilities_1" class="facilities-label"
+                   title="One">{{form.value.facilities >= 1 ? '&#9733;' : '&#9734;'}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row item-center">
+        <img src="assets/img/location.png" alt="" class="m-auto">
+        <h1 class="d-block">LOCATION</h1>
+        <div class="rating-location">
+          <div id="rateLocation" class="rating m-auto">
+            <!-- FIFTH STAR -->
+            <input type="radio" class="location-input" formControlName="location" id="star_location_5"
+                   name="rateLocation" value="5"/>
+            <label for="star_location_5" class="location-label"
+                   title="Five">{{form.value.location >= 5 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FOURTH STAR -->
+            <input type="radio" class="location-input" formControlName="location" id="star_location_4"
+                   name="rateLocation" value="4"/>
+            <label for="star_location_4" class="location-label"
+                   title="Four">{{form.value.location >= 4 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- THIRD STAR -->
+            <input type="radio" class="location-input" formControlName="location" id="star_location_3"
+                   name="rateLocation" value="3"/>
+            <label for="star_location_3" class="location-label"
+                   title="Three">{{form.value.location >= 3 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- SECOND STAR -->
+            <input type="radio" class="location-input" formControlName="location" id="star_location_2"
+                   name="rateLocation" value="2"/>
+            <label for="star_location_2" class="location-label"
+                   title="Two">{{form.value.location >= 2 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FIRST STAR -->
+            <input type="radio" class="location-input" formControlName="location" id="star_location_1"
+                   name="rateLocation" value="1"/>
+            <label for="star_location_1" class="location-label"
+                   title="One">{{form.value.location >= 1 ? '&#9733;' : '&#9734;'}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row item-center">
+        <img src="assets/img/service.png" alt="" class="m-auto">
+        <h1 class="d-block">SERVICE</h1>
+        <div class="rating-service">
+          <div id="rateService" class="rating m-auto">
+            <!-- FIFTH STAR -->
+            <input type="radio" class="service-input" formControlName="service" id="star_service_5" name="rateService"
+                   value="5"/>
+            <label for="star_service_5" class="service-label"
+                   title="Five">{{form.value.service >= 5 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FOURTH STAR -->
+            <input type="radio" class="service-input" formControlName="service" id="star_service_4" name="rateService"
+                   value="4"/>
+            <label for="star_service_4" class="service-label"
+                   title="Four">{{form.value.service >= 4 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- THIRD STAR -->
+            <input type="radio" class="service-input" formControlName="service" id="star_service_3" name="rateService"
+                   value="3"/>
+            <label for="star_service_3" class="service-label"
+                   title="Three">{{form.value.service >= 3 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- SECOND STAR -->
+            <input type="radio" class="service-input" formControlName="service" id="star_service_2" name="rateService"
+                   value="2"/>
+            <label for="star_service_2" class="service-label"
+                   title="Two">{{form.value.service >= 2 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FIRST STAR -->
+            <input type="radio" class="service-input" formControlName="service" id="star_service_1" name="rateService"
+                   value="1"/>
+            <label for="star_service_1" class="service-label"
+                   title="One">{{form.value.service >= 1 ? '&#9733;' : '&#9734;'}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row item-center">
+        <img src="assets/img/value.png" alt="" class="m-auto">
+        <h1 class="d-block">VALUE FOR MONEY</h1>
+        <div class="rating-value">
+          <div id="rateValue" class="rating m-auto">
+            <!-- FIFTH STAR -->
+            <input type="radio" class="value-input" formControlName="valueMoney" id="star_value_5" name="rateValue"
+                   value="5"/>
+            <label for="star_value_5" class="value-label"
+                   title="Five">{{form.value.valueMoney >= 5 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FOURTH STAR -->
+            <input type="radio" class="value-input" formControlName="valueMoney" id="star_value_4" name="rateValue"
+                   value="4"/>
+            <label for="star_value_4" class="value-label"
+                   title="Four">{{form.value.valueMoney >= 4 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- THIRD STAR -->
+            <input type="radio" class="value-input" formControlName="valueMoney" id="star_value_3" name="rateValue"
+                   value="3"/>
+            <label for="star_value_3" class="value-label"
+                   title="Three">{{form.value.valueMoney >= 3 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- SECOND STAR -->
+            <input type="radio" class="value-input" formControlName="valueMoney" id="star_value_2" name="rateValue"
+                   value="2"/>
+            <label for="star_value_2" class="value-label"
+                   title="Two">{{form.value.valueMoney >= 2 ? '&#9733;' : '&#9734;'}}</label>
+            <!-- FIRST STAR -->
+            <input type="radio" class="value-input" formControlName="valueMoney" id="star_value_1" name="rateValue"
+                   value="1"/>
+            <label for="star_value_1" class="value-label"
+                   title="One">{{form.value.valueMoney >= 1 ? '&#9733;' : '&#9734;'}}</label>
+          </div>
+        </div>
+      </div>
+      <div class="row item-center">
+        <div class="col-md-10 m-auto">
+          <h2>Please tell us your feeling about this hotel!</h2>
+          <input type="text" class="p-3 item-fullwidth mb-3" formControlName="reviewTitle" placeholder="Review title (optional)">
+          <textarea class="p-3 item-fullwidth" formControlName="reviewDetail" placeholder="Review detail (optional)"></textarea>
+        </div>
+      </div>
+      <div class="row p-5">
+      <button class="btn btn-primary m-auto item-fullwidth" (click)="submit()">Submit Review</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
