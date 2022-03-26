@@ -39,6 +39,7 @@ export class ReviewBoxComponent implements OnInit {
       && val.valueMoney) {
       const reviewRequest = new ReviewRequest()
       reviewRequest.userBookingId = this.bookingId
+      reviewRequest.service = val.service
       reviewRequest.cleanliness = val.cleanliness
       reviewRequest.facilities = val.facilities
       reviewRequest.location = val.location
