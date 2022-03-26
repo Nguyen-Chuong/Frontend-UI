@@ -8,6 +8,7 @@ import {LocationService} from "../../../../../_services/location.service";
 import {District} from "../../../../../_models/district";
 import {DatePipe} from "@angular/common";
 import {StorageService} from "../../../../../_services/storage.service";
+import {RatingAverage} from "../../../../../_models/rating-average";
 
 @Component({
   selector: 'app-search-hotel-list',
@@ -17,7 +18,10 @@ import {StorageService} from "../../../../../_services/storage.service";
 export class SearchHotelListComponent implements OnInit {
   hotels: Hotel[]
   districts: District[]
-  isLowToHigh: boolean = null
+  isPriceLowToHigh: boolean = null
+  isRatingLowToHigh: boolean = null
+  isReviewLowToHigh: boolean = null
+  isDealLowToHigh: boolean = null
   hotelForm = new FormGroup({
     destination: new FormControl('abc', [Validators.required]),
     from: new FormControl(new Date(), [Validators.required]),
@@ -32,17 +36,17 @@ export class SearchHotelListComponent implements OnInit {
               private router: Router,
               private storageService: StorageService
   ) {
-        const filter = this.storageService.searchFilter
-        hotelService.searchHotel(filter.destination.id, filter.from, filter.to, filter.guestNumber, filter.roomNumber, 0, 10)
-          .pipe(first())
-          .subscribe(
-            rs => {
-              this.hotels = rs['data']['items']
-            },
-            error => {
-              console.log(error)
-            }
-          )
+    const filter = this.storageService.searchFilter
+    hotelService.searchHotel(filter.destination.id, filter.from, filter.to, filter.guestNumber, filter.roomNumber, 0, 10)
+      .pipe(first())
+      .subscribe(
+        rs => {
+          this.hotels = rs['data']['items']
+        },
+        error => {
+          console.log(error)
+        }
+      )
 
 
   }
@@ -54,7 +58,7 @@ export class SearchHotelListComponent implements OnInit {
     const val = this.hotelForm.value
     if (val.destination, val.from, val.to, val.guestNumber, val.roomNumber) {
       const district = this.districts.filter(rs => rs.nameDistrict === val.destination)[0]
-      if (district !== null){
+      if (district !== null) {
         this.router.navigate(['/main/search-hotel-list'], {
           queryParams: {
             destination: district.id,
@@ -81,19 +85,66 @@ export class SearchHotelListComponent implements OnInit {
     return ctrl;
   }
 
-  togglePrice() {
-    this.isLowToHigh ?? (this.isLowToHigh = false)
-    this.isLowToHigh = !this.isLowToHigh
-    this.sortHotels()
+  calcAvgRating(rating: RatingAverage) {
+    return (rating.averageService + rating.averageCleanliness + rating.averageFacilities + rating.averageLocation + rating.averageValueForMoney) / 5 * 2
   }
 
-  sortHotels() {
+  sortHotels(token: boolean, sortBy: string) {
     this.hotels.sort((n1, n2) => {
-      if (n1.price > n2.price)
-        return this.isLowToHigh ? 1 : -1
-      if (n1.price < n2.price)
-        return this.isLowToHigh ? -1 : 1
+      if (n1[sortBy] > n2[sortBy])
+        return token ? 1 : -1
+      if (n1[sortBy] < n2[sortBy])
+        return token ? -1 : 1
       return 0
     })
+  }
+
+  setNull() {
+    this.isPriceLowToHigh = null
+    this.isRatingLowToHigh = null
+    this.isReviewLowToHigh = null
+    this.isDealLowToHigh = null
+  }
+
+  togglePrice() {
+    if (this.isPriceLowToHigh === null) {
+      this.setNull()
+      this.isPriceLowToHigh = false
+    }
+    this.isPriceLowToHigh = !this.isPriceLowToHigh
+    this.sortHotels(this.isPriceLowToHigh, 'price')
+  }
+
+  toggleRating() {
+    if (this.isRatingLowToHigh === null) {
+      this.setNull()
+      this.isRatingLowToHigh = false
+    }
+    this.isRatingLowToHigh = !this.isRatingLowToHigh
+    this.sortHotels(this.isRatingLowToHigh, 'star')
+  }
+
+  toggleReview() {
+    if (this.isReviewLowToHigh === null) {
+      this.setNull()
+      this.isReviewLowToHigh = false
+    }
+    this.isReviewLowToHigh = !this.isReviewLowToHigh
+    this.hotels.sort((n1, n2) => {
+      if (this.calcAvgRating(n1.rating) > this.calcAvgRating(n2.rating))
+        return this.isReviewLowToHigh ? 1 : -1
+      if (this.calcAvgRating(n1.rating) < this.calcAvgRating(n2.rating))
+        return this.isReviewLowToHigh ? -1 : 1
+      return 0
+    })
+  }
+
+  toggleHotDeal() {
+    if (this.isDealLowToHigh === null) {
+      this.setNull()
+      this.isDealLowToHigh = false
+    }
+    this.isDealLowToHigh = !this.isDealLowToHigh
+    this.sortHotels(this.isDealLowToHigh, 'salePercent')
   }
 }

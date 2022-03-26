@@ -2,24 +2,60 @@
   <div class="row"></div>
   <div class="row">
     <div class="col-md-3">
-<!--      <mat-form-field>-->
-<!--        <label class="form-label">Destination</label>-->
-<!--        <input type="text" matInput [formControl]="convertToFormControl(hotelForm.controls['destination'])"-->
-<!--               [matAutocomplete]="auto" (input)="onSearchHotelChange($event)">-->
-<!--        <mat-autocomplete #auto="matAutocomplete">-->
-<!--          <mat-option *ngFor="let option of districts" [value]="option.nameDistrict">-->
-<!--            {{option.nameDistrict}}-->
-<!--          </mat-option>-->
-<!--        </mat-autocomplete>-->
-<!--      </mat-form-field>-->
+      <!--      <mat-form-field>-->
+      <!--        <label class="form-label">Destination</label>-->
+      <!--        <input type="text" matInput [formControl]="convertToFormControl(hotelForm.controls['destination'])"-->
+      <!--               [matAutocomplete]="auto" (input)="onSearchHotelChange($event)">-->
+      <!--        <mat-autocomplete #auto="matAutocomplete">-->
+      <!--          <mat-option *ngFor="let option of districts" [value]="option.nameDistrict">-->
+      <!--            {{option.nameDistrict}}-->
+      <!--          </mat-option>-->
+      <!--        </mat-autocomplete>-->
+      <!--      </mat-form-field>-->
     </div>
     <div class="col-md-9">
-      <div class="row mb-5">
-        <div class="btn-group" role="group" aria-label="Filter group">
-          <button type="button" class="btn btn-outline-primary btn-lg">Hot deal</button>
-          <button type="button" class="btn btn-outline-primary btn-lg">Top review</button>
-          <button type="button" class="btn btn-outline-primary btn-lg">Rating</button>
-          <button type="button" class="btn btn-outline-primary btn-lg" (click)="togglePrice()">Price</button>
+      <div class="row mb-3">
+        <div class="btn-group rounded" role="group" aria-label="Filter group">
+          <button type="button" class="btn btn-outline-secondary btn-lg {{isDealLowToHigh!==null?'filter-active':''}}" (click)="toggleHotDeal()">
+            <h2 class="m-0">Hot deal
+              <ng-container
+                *ngIf="isDealLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
+              </ng-container>
+              <ng-container
+                *ngIf="isDealLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
+              </ng-container>
+            </h2>
+          </button>
+          <button type="button" class="btn btn-outline-secondary btn-lg {{isReviewLowToHigh!==null?'filter-active':''}}" (click)="toggleReview()">
+            <h2 class="m-0">Top review
+              <ng-container
+                *ngIf="isReviewLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
+              </ng-container>
+              <ng-container
+                *ngIf="isReviewLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
+              </ng-container>
+            </h2>
+          </button>
+          <button type="button" class="btn btn-outline-secondary btn-lg {{isRatingLowToHigh!==null?'filter-active':''}}" (click)="toggleRating()">
+            <h2 class="m-0">Rating
+              <ng-container
+                *ngIf="isRatingLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
+              </ng-container>
+              <ng-container
+                *ngIf="isRatingLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
+              </ng-container>
+            </h2>
+          </button>
+          <button type="button" class="btn btn-outline-secondary btn-lg {{isPriceLowToHigh!==null?'filter-active':''}}" (click)="togglePrice()">
+            <h2 class="m-0">Price
+              <ng-container
+                *ngIf="isPriceLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
+              </ng-container>
+              <ng-container
+                *ngIf="isPriceLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
+              </ng-container>
+            </h2>
+          </button>
         </div>
       </div>
       <ul class="list-group">
