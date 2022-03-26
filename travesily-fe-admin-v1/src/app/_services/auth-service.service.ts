@@ -15,7 +15,7 @@ export class AuthServiceService {
   constructor(private http: HttpClient) {}
 
   update(account: Account) {
-    return this.http.patch(`${this.baseUrl}/update-profile`, { ...account });
+    return this.http.patch(`${this.baseUrl}/update-profile/user`, { ...account });
   }
 
   //add new manager
