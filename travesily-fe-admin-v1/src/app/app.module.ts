@@ -1,3 +1,4 @@
+import { AngularFireModule } from '@angular/fire/compat';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -51,6 +52,11 @@ import { MatSelectModule } from '@angular/material/select';
 import { FacilityComponent } from './components/facility/facility.component';
 import { AddBenefitComponent } from './components/add-benefit/add-benefit.component';
 import { AddFacilityComponent } from './components/add-facility/add-facility.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideDatabase,getDatabase } from '@angular/fire/database';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+
 
 @NgModule({
   declarations: [
@@ -107,7 +113,11 @@ import { AddFacilityComponent } from './components/add-facility/add-facility.com
     NgImageSliderModule,
     MatDialogModule,
     MatSelectModule,
-    SimpleNotificationsModule.forRoot()
+    SimpleNotificationsModule.forRoot(),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideDatabase(() => getDatabase()),
+    provideFirestore(() => getFirestore()),
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
     {

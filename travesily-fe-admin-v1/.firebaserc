@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "capstone-343210": {
+      "hosting": {
+        "travesily-fe-admin-v1": [
+          "capstone-343210"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "capstone-343210"
+  }
+}
