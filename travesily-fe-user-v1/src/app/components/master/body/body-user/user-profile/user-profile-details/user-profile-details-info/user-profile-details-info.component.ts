@@ -4,7 +4,6 @@ import {FileUpload} from "../../../../../../../_models/file-upload";
 import {FirebaseService} from "../../../../../../../_services/firebase.service";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {Router} from "@angular/router";
-import {finalize, first} from "rxjs";
 
 @Component({
   selector: 'app-user-profile-details-info',
@@ -33,10 +32,6 @@ export class UserProfileDetailsInfoComponent implements OnInit {
 
   dropdown() {
     this.isEditShow = !this.isEditShow
-  }
-
-  changeAvatar() {
-
   }
 
   selectFile(event): void {
