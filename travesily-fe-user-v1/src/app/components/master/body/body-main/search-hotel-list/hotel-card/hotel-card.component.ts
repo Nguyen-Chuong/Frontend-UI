@@ -6,6 +6,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {CryptoService} from "../../../../../../_services/crypto.service";
 import {Benefit} from "../../../../../../_models/benefit";
 import {BenefitType} from "../../../../../../_models/benefit-type";
+import {RatingAverage} from "../../../../../../_models/rating-average";
+import {Review} from "../../../../../../_models/review";
 
 @Component({
   selector: 'app-hotel-card',
@@ -15,6 +17,7 @@ import {BenefitType} from "../../../../../../_models/benefit-type";
 export class HotelCardComponent implements OnInit {
   @Input() hotel: Hotel
   benefits: Benefit[] = []
+  ratingTitle: string = ''
 
   constructor(private hotelService: HotelService,
               private router: Router,
@@ -33,6 +36,17 @@ export class HotelCardComponent implements OnInit {
         })
       }
     )
+    const avgRating = this.calcAvgRating(this.hotel.rating)
+    if(avgRating>=9)
+      this.ratingTitle = 'Exceptional'
+    else if(avgRating<9 && avgRating >=8)
+      this.ratingTitle = 'Very good'
+    else if(avgRating<8 && avgRating >=7)
+      this.ratingTitle = 'Good'
+    else if(avgRating<7 && avgRating >=5)
+      this.ratingTitle = 'Average'
+    else if(avgRating<5)
+      this.ratingTitle = 'Below Average'
   }
 
   selectRoom() {
@@ -42,4 +56,14 @@ export class HotelCardComponent implements OnInit {
       }
     })
   }
+
+  calcAvgRating(rating: RatingAverage) {
+    return (rating.averageService + rating.averageCleanliness + rating.averageFacilities + rating.averageLocation + rating.averageValueForMoney) / 5 * 2
+  }
+
+  calcAvgRatingReview(review: Review) {
+    return (review.service + review.cleanliness + review.facilities + review.location + review.valueForMoney) / 5 * 2
+  }
+
+
 }

@@ -1,4 +1,6 @@
 import { District } from './district';
+import {RatingAverage} from "./rating-average";
+import {Review} from "./review";
 
 export class Hotel {
   id: number;
@@ -14,4 +16,6 @@ export class Hotel {
   taxPercentage: number;
   star: number
   district: District;
+  rating: RatingAverage
+  review: Review
 }

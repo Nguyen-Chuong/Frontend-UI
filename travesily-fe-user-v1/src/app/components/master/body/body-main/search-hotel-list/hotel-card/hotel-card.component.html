@@ -24,14 +24,27 @@
       <div class="card-text"></div>
     </div>
     <div class="col-md-3">
-      <div class="row"></div>
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="m-0 ms-auto text-end">{{ratingTitle}}</h2>
+          <p class="text-primary text-end">{{hotel.rating.totalReview}}
+            review{{hotel.rating.totalReview > 1 ? 's' : ''}}</p>
+        </div>
+        <div class="col-md-4">
+          <h2
+            class="bg-success text-center m-0 me-4 mt-2 ps-1 pe-1 rounded text-white">{{calcAvgRating(hotel.rating) | number: '1.0-1'}}</h2>
+        </div>
+      </div>
+      <div *ngIf="hotel.salePercent > 0" class="row">
+        <h2 class="text-danger bg-light-red text-end">{{hotel.salePercent}}% OFF TODAY</h2>
+      </div>
       <div class="row">
         <ng-container *ngIf="hotel.salePercent !== 0">
-          <h1 class="text-danger">
+          <h1 class="text-danger text-center">
             <del>₫ {{hotel.price | number}}</del>
           </h1>
         </ng-container>
-        <h1 class="text-success">₫ {{hotel.price - hotel.price * hotel.salePercent / 100 | number}}</h1>
+        <h1 class="text-success text-center">₫ {{hotel.price - hotel.price * hotel.salePercent / 100 | number}}</h1>
       </div>
       <div class="col-md-10 float-end me-3 d-block">
         <a class="btn btn-primary btn-lg item-fullwidth" (click)="selectRoom()"><span
@@ -39,5 +52,21 @@
       </div>
     </div>
   </div>
-  <div class="card-footer"></div>
+  <div *ngIf="hotel.review.id" class="card-footer p-4">
+    <div class="d-flex justify-content-between align-items-center">
+      <div class="d-flex align-items-center">
+      <ng-container *ngIf="hotel.review.avatar">
+        <img class="profile-image me-3" [src]="hotel.review.avatar" alt="">
+      </ng-container>
+      <ng-container *ngIf="!hotel.review.avatar">
+        <div class="profile-image me-3">
+          <div id="profileImage">{{hotel.review?.username?.charAt(0).toUpperCase()}}</div>
+        </div>
+      </ng-container>
+      <h3 class="text-primary m-0">{{hotel.review.username}}</h3>
+      </div>
+      <h3
+        class="text-primary m-0"><strong>{{calcAvgRatingReview(hotel.review)}}{{(hotel.review.reviewTitle ? ' - ' : '') + hotel.review.reviewTitle}}</strong></h3>
+    </div>
+  </div>
 </div>
