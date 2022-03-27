@@ -57,4 +57,9 @@ export class BookingService {
     const params = new HttpParams().append('bookingId', bookingId).append('type', type)
     return this.http.patch(`${this.baseUrl}/update-booking-type`,undefined,{params: params})
   }
+
+  //Update VIP status
+  updateVipStatus(){
+    return this.http.patch(`${this.baseUrl}/update-vip-status`,undefined)
+  }
 }

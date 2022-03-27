@@ -46,7 +46,7 @@
       position: relative;
       &--level-bar{
         height: 3rem;
-        background-color: $color-tertiary;
+        background-color: #2082dd;
         border-radius: 3rem;
       }
       &--silver{
@@ -73,7 +73,7 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
-    border: .2rem solid $color-grey-light-2;
+    border: .2rem solid #b9b4b4;
 
   }
   .center-star{
@@ -86,15 +86,15 @@
     background-color: #b9b4b4;
     text-align: center;
     vertical-align: middle;
-    padding: .5rem 0;
+    padding: .4rem 0;
     font-size: 1.4rem;
     font-weight: 600;
     color: #716F81;
   }
 
   .shine{
-    background-color: $color-tertiary;
-    color: $color-primary;
+    background-color: #37a731;
+    color: #ffffff;
     width: 3.6rem;
     height: 3.6rem;
     top: 0;
@@ -103,6 +103,26 @@
   }
 
   .shine-outside{
-    border: .2rem solid $color-primary;
+    border: .2rem solid #37a731;
   }
+}
+
+.text-silver{
+  color: silver;
+}
+
+.text-gold{
+  color: #f7cf01;
+}
+
+.text-plat{
+  color: #03ffbb;
+}
+
+.text-diamond{
+  color: #2d6f9f;
+}
+
+.fa-star{
+  font-size: 2.5rem;
 }

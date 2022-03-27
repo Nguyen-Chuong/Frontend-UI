@@ -41,17 +41,16 @@ export class DropdownComponent implements OnInit {
 
 // 1 = guestNumber, 2 = roomNumber
   toggleNumberMinus(type: number) {
-    if (this.guestNum > 1 && this.roomNum > 1) {
-      if (type === 1) {
-        this.guestNum = this.guestNum - 1
-        if (this.guestNum < this.roomNum)
-          this.roomNum = this.roomNum - 1
-        this.guestNumberEvent.emit(this.guestNum)
-        this.roomNumberEvent.emit(this.roomNum)
-      } else if (type === 2) {
+    if (type === 1 && this.guestNum > 1) {
+      this.guestNum = this.guestNum - 1
+      if (this.guestNum < this.roomNum)
         this.roomNum = this.roomNum - 1
-        this.roomNumberEvent.emit(this.roomNum)
-      }
+      this.guestNumberEvent.emit(this.guestNum)
+      this.roomNumberEvent.emit(this.roomNum)
+    } else if (type === 2 && this.roomNum > 1) {
+      this.roomNum = this.roomNum - 1
+      this.roomNumberEvent.emit(this.roomNum)
     }
+
   }
 }

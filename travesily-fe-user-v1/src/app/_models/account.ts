@@ -11,7 +11,7 @@ export class Account {
   type: number;
   avatar: string;
   spend: number;
-  idVip: Vip;
+  vip: Vip;
   password: string;
   status: number;
 }

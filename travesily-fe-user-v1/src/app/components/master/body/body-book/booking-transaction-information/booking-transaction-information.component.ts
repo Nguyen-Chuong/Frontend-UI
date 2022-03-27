@@ -57,6 +57,11 @@ export class BookingTransactionInformationComponent implements OnInit {
           })
         } else {
           this.isCod = false
+          this.bookingService.updateVipStatus().subscribe({
+            next: value => {
+
+            }
+          })
           const transaction: TransactionInfo = new TransactionInfo()
           transaction.amount = value['vnp_Amount']
           transaction.bankCode = value['vnp_BankCode']

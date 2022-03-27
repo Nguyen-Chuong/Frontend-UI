@@ -5,23 +5,36 @@
   </div>
   <div class="vip-ranking__status">
     <p>Status</p>
-    <label>{{account?.idVip?.nameVip}}</label>
+    <label
+      class="{{account.vip.id===2?'text-silver':account.vip.id===3?'text-gold':account.vip.id===4?'text-plat':account.vip.id===5?'text-diamond':'text-grey'}}"><strong>{{account?.vip?.nameVip}}</strong></label>
   </div>
   <div class="vip-ranking__booking-count">
     <p>Bookings in last 2 years</p>
-    <label><strong>{{bookingCount}}</strong> completed</label>
+    <label class="text-primary"><strong>{{bookingCount}}</strong> completed</label>
   </div>
   <div class="vip-ranking__progress">
     <div class="vip-ranking__progress__header">
       <p class="vip-ranking__progress__header--title">Booking progress</p>
-      <p class="vip-ranking__progress__header--count"> {{bookingCount}}/20 bookings</p>
+      <p class="vip-ranking__progress__header--count text-primary"> {{bookingCount}}/20 bookings</p>
     </div>
     <div class="vip-ranking__progress__progress-bar">
       <div class="vip-ranking__progress__progress-bar--level-bar" id="progress-bar"></div>
-      <div class="level-circle vip-ranking__progress__progress-bar--silver" [ngClass]="{'shine-outside': bookingCount>=2}"><div class="center-star" [ngClass]="{'shine': bookingCount>=2}">★</div></div>
-      <div class="level-circle vip-ranking__progress__progress-bar--gold" [ngClass]="{'shine-outside': bookingCount>=5}"><div class="center-star" [ngClass]="{'shine': bookingCount>=5}">★</div></div>
-      <div class="level-circle vip-ranking__progress__progress-bar--platinum" [ngClass]="{'shine-outside': bookingCount>=10}"><div class="center-star" [ngClass]="{'shine': bookingCount>=10}">★</div></div>
-      <div class="level-circle vip-ranking__progress__progress-bar--diamond" [ngClass]="{'shine-outside': bookingCount>=20}"><div class="center-star" [ngClass]="{'shine': bookingCount>=20}">★</div></div>
+      <div class="level-circle vip-ranking__progress__progress-bar--silver"
+           [ngClass]="{'shine-outside': bookingCount>=2}">
+        <div class="center-star" [ngClass]="{'shine': bookingCount>=2}"><i class="fa fa-star"></i></div>
+      </div>
+      <div class="level-circle vip-ranking__progress__progress-bar--gold"
+           [ngClass]="{'shine-outside': bookingCount>=5}">
+        <div class="center-star" [ngClass]="{'shine': bookingCount>=5}"><i class="fa fa-star"></i></div>
+      </div>
+      <div class="level-circle vip-ranking__progress__progress-bar--platinum"
+           [ngClass]="{'shine-outside': bookingCount>=10}">
+        <div class="center-star" [ngClass]="{'shine': bookingCount>=10}"><i class="fa fa-star"></i></div>
+      </div>
+      <div class="level-circle vip-ranking__progress__progress-bar--diamond"
+           [ngClass]="{'shine-outside': bookingCount>=20}">
+        <div class="center-star" [ngClass]="{'shine': bookingCount>=20}"><i class="fa fa-star"></i></div>
+      </div>
     </div>
   </div>
 </div>

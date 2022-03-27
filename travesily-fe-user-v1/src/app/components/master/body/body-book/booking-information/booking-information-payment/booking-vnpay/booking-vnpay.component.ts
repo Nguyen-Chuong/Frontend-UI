@@ -27,7 +27,7 @@ export class BookingVnpayComponent implements OnInit {
         this.bookingService.getBookingById(value['bookingId']).subscribe({
           next: booking => {
             this.booking = booking['data']
-            if(this.booking.type!==0){
+            if (this.booking.type !== 0) {
               router.navigateByUrl('/home')
             }
           }
