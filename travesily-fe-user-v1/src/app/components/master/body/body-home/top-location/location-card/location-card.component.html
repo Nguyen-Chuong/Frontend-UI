@@ -1,0 +1,9 @@
+<div class="card border-0 p-3" (click)="redirectLocationSearch()">
+  <div class="img-container">
+    <img [src]="district?.avatar" class="card-img-top rounded-circle" alt="{{district.nameDistrict}}">
+  </div>
+  <div class="card-body">
+    <h3 class="text-blue-1 m-0"><strong>{{district.nameDistrict}}</strong></h3>
+    <p class="text-secondary">{{district.totalBooking}} booked</p>
+  </div>
+</div>

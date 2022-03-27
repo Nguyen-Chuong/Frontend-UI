@@ -17,4 +17,10 @@ export class LocationService {
       params: params,
     });
   }
+
+  //Get top locations
+  getTopLocation(limit: string) {
+    const params = new HttpParams().append('topLocation', limit)
+    return this.http.get(`${this.baseUrl}/public/hot-location`, {withCredentials: false, params: params})
+  }
 }

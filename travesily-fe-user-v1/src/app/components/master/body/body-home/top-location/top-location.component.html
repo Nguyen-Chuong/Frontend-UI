@@ -1,0 +1,6 @@
+<h1>Top destinations</h1>
+<div class="d-flex">
+  <ng-container *ngFor="let district of districts">
+    <app-location-card [district]="district"></app-location-card>
+  </ng-container>
+</div>
