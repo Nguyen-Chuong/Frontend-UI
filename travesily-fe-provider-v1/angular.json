@@ -39,7 +39,6 @@
             ],
             "scripts": [
               "node_modules/crypto-js/crypto-js.js"
-
             ]
           },
           "configurations": {
@@ -110,6 +109,16 @@
               "src/styles.scss"
             ],
             "scripts": []
+          }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "travesily-fe-provider-v1:build:production",
+            "firebaseProject": "capstone-343210",
+            "firebaseHostingSite": "capstone-343210"
           }
         }
       }

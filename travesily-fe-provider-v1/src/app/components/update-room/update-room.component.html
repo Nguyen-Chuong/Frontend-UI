@@ -61,6 +61,9 @@
                 <input type="datetime" class="form-control" value={{room.dealExpire}} formControlName="dealExpire">
               </div>
             </div>
+            <div class="col-md-6"><label class="labels">Room Images</label>
+              <app-test-upload [id]="room.id" [folder]="folder"></app-test-upload>
+            </div>
             <div class="mt-5 text-center">
               <button class="btn btn-primary room-button update-room-btn update-room-btn-enable" [disabled]="isEnable"
                 (click)="enableRoom()">Enable</button>

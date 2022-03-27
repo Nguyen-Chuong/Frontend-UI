@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { finalize, Observable, Subject } from 'rxjs';
 import { CryptoService } from './crypto.service';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FileUpload } from '../_models/file-upload';
 
@@ -23,10 +23,11 @@ export class FirebaseService {
   pushFileToStorage(
     fileUpload: FileUpload,
     folder: string,
-    id: number
+    subFolder: number,
+    id: any
   ) {
-    const encryptedId = this.cryptoService.set('06052000', id);
-    const filePath = `${this.basePath}/${folder}/${encryptedId}`;
+    const encryptedId = this.cryptoService.set('06052000', subFolder);
+    const filePath = `${this.basePath}/${folder}/${encryptedId}/${id}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
     uploadTask.snapshotChanges().pipe(

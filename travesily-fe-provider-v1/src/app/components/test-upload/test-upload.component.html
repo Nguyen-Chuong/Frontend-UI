@@ -1,0 +1,9 @@
+<label>
+  <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" multiple="multiple" />
+</label>
+<button class="btn btn-success btn-sm" [disabled]="!selectedFiles " (click)="upload()">
+  Upload
+</button>
+<button class="btn btn-success btn-sm m-3" [disabled]="!canSave" (click)="addListImageForRoomType()">
+  Save Change
+</button>

@@ -68,9 +68,9 @@ export class AdminProfileComponent implements OnInit {
       const file = this.selectedFiles.item(0);
       this.selectedFiles = undefined;
       this.currentFileUpload = new FileUpload(file);
-      this.firebaseService.pushFileToStorage(this.currentFileUpload, 'accounts', this.account.id).subscribe(
+      this.firebaseService.pushFileToStorage(this.currentFileUpload, 'accounts', this.account.id)
+      this.firebaseService.getStorageUrl().subscribe(
         rs => {
-          console.log(rs)
           this.account.avatar = rs
           this.authService.update(this.account).pipe(first()).subscribe({
             next: () => {

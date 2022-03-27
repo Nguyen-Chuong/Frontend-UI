@@ -35,6 +35,7 @@ export class UpdateRoomComponent implements OnInit {
   hotels: Hotel[]
   rooms: Room[]
   room: Room = new Room
+  folder = "roomType"
 
   constructor(
     fb: FormBuilder,

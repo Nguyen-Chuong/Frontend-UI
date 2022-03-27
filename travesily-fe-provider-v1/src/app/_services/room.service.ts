@@ -1,3 +1,4 @@
+import { ImageRequest } from './../_models/image-request';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -42,5 +43,9 @@ export class RoomService {
     return this.http.patch(`${this.baseUrl}/disable-room`, undefined, {
       params: params,
     });
+  }
+
+  addListImageForRoomType(imageRequest: ImageRequest){
+    return this.http.post(`${this.baseUrl}/add-list-image`, imageRequest);
   }
 }
