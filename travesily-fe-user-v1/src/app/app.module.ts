@@ -82,6 +82,7 @@ import { UserAddReviewComponent } from './components/master/body/user-add-review
 import { ReviewBoxComponent } from './components/master/body/user-add-review/review-box/review-box.component';
 import { TopLocationComponent } from './components/master/body/body-home/top-location/top-location.component';
 import { LocationCardComponent } from './components/master/body/body-home/top-location/location-card/location-card.component';
+import { FooterComponent } from './components/master/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -152,6 +153,7 @@ import { LocationCardComponent } from './components/master/body/body-home/top-lo
     ReviewBoxComponent,
     TopLocationComponent,
     LocationCardComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
