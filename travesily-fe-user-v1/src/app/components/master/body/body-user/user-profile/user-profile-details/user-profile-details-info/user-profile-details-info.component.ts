@@ -47,21 +47,19 @@ export class UserProfileDetailsInfoComponent implements OnInit {
       const file = this.selectedFiles.item(0);
       this.selectedFiles = undefined;
       this.currentFileUpload = new FileUpload(file);
-      this.firebaseService.pushFileToStorage(this.currentFileUpload, 'accounts', this.account.id).subscribe(
-        rs => {
+      this.firebaseService.pushFileToStorage(this.currentFileUpload, 'accounts', this.account.id)
+
+      this.firebaseService.getStorageUrl().subscribe({
+        next: rs => {
           this.account.avatar = rs
           this.authService.update(this.account).subscribe(rs => {
-            setTimeout(() => {
-              window.location.reload()
-            },3000)
+            window.location.reload()
           })
         },
-        error => {
-          console.log(error);
-        },
-        () => {
-
-        });
+        error: err => {
+          console.log(err);
+        }
+      });
 
     }
   }
