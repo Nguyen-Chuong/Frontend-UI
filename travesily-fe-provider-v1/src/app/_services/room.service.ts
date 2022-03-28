@@ -48,4 +48,9 @@ export class RoomService {
   addListImageForRoomType(imageRequest: ImageRequest){
     return this.http.post(`${this.baseUrl}/add-list-image`, imageRequest);
   }
+
+  deleteImage(roomTypeId: any){
+    const params = new HttpParams().append('roomTypeId', roomTypeId)
+    return this.http.delete(`${this.baseUrl}/delete-image`, {params: params})
+  }
 }

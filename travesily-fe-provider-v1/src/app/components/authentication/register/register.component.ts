@@ -1,12 +1,13 @@
 import { NotificationService } from './../../../_services/notification.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { AuthService } from 'src/app/_services/auth.service';
 import { EmailValidator } from 'src/app/_validators/email.validator';
 import { UsernameValidator } from 'src/app/_validators/username.validator';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,9 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private cryptoService: CryptoService,
+    private activatedRoute: ActivatedRoute
   ) {
     this.form = fb.group({
       username: ['', [Validators.required], [UsernameValidator(this.authService)]],
@@ -36,24 +39,18 @@ export class RegisterComponent implements OnInit {
 
   submit() {
     const val = this.form.value
-    const account = new Account()
-    account.email = val.email
-    account.password = val.password
-    account.username = val.username
-    account.status = 1
-
-    this.authService.register(account)
-        .pipe(first())
-        .subscribe({
-          next: () => {
-              this.form.reset()
-              this.notificationService.onSuccess("Register Successfully")
-              this.router.navigateByUrl('/login').then(() => window.location.reload());
-          }, error: error => {
-            this.notificationService.onError("Register False")
-            this.form.reset()
+    this.activatedRoute.queryParams.subscribe({
+      next: value => {
+        this.router.navigate(['otp-checker'],{
+          queryParams:{
+            url: value['url'],
+            encryptedEmail: this.cryptoService.set('06052000',val.email),
+            encryptedPassword: this.cryptoService.set('06052000',val.password),
+            encryptedUsername: this.cryptoService.set('06052000',val.username),
           }
         })
+      }
+    })
 
   }
 

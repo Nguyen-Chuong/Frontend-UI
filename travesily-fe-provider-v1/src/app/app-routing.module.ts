@@ -1,3 +1,4 @@
+import { RoomImageComponent } from './components/room-image/room-image.component';
 import { UpdateFacilitiesComponent } from './components/update-facilities/update-facilities.component';
 import { UpdateBenefitsComponent } from './components/update-benefits/update-benefits.component';
 import { UpdateRoomComponent } from './components/update-room/update-room.component';
@@ -14,6 +15,8 @@ import { LoginComponent } from './components/authentication/login/login.componen
 import { RegisterComponent } from './components/authentication/register/register.component';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
+import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
+import { OtpCheckerComponent } from './components/authentication/otp-checker/otp-checker.component';
 
 const routes: Routes = [
   {
@@ -29,12 +32,20 @@ const routes: Routes = [
     component: ChangePasswordComponent
   },
   {
+    path: 'new-password',
+    component: NewPasswordComponent
+  },
+  {
     path: 'register',
     component: RegisterComponent
   },
   {
     path: 'forgot-password',
     component: ForgotPasswordComponent
+  },
+  {
+    path: 'otp-checker',
+    component: OtpCheckerComponent
   },
   {
     path: 'profile',
@@ -75,6 +86,10 @@ const routes: Routes = [
   {
     path: 'hotel-detail',
     component: HotelDetailComponent
+  },
+  {
+    path: 'room-image',
+    component: RoomImageComponent
   },
 ];
 

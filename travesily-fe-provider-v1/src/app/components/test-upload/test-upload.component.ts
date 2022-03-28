@@ -1,6 +1,6 @@
 import { NotificationService } from 'src/app/_services/notification.service';
 import { RoomService } from 'src/app/_services/room.service';
-import { ImageRequest } from './../../_models/image-request';
+import { ImageRequest } from '../../_models/image-request';
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUpload } from 'src/app/_models/file-upload';
 import { FirebaseService } from 'src/app/_services/firebase.service';
