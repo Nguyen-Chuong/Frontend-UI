@@ -67,6 +67,5 @@ export class BookingService {
   cancelBooking(bookingId: string){
     const params = new HttpParams().append('bookingId', bookingId)
     return this.http.patch(`${this.baseUrl}/cancel-booking`,undefined, {params: params})
-
   }
 }

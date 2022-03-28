@@ -14,14 +14,7 @@ import {StorageService} from '../../../../../_services/storage.service';
 export class LoginComponent implements OnInit {
   form: FormGroup;
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService,
-    private alertService: AlertService,
-    private storage: StorageService,
-    private activatedRoute: ActivatedRoute
-  ) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private alertService: AlertService, private storage: StorageService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -39,34 +32,27 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     const val = this.form.value;
     if (val.email && val.password) {
-      this.authService
-        .login(val.email, val.password)
-        .pipe(first())
-        .subscribe({
-          next: () => {
-            if (this.storage.accountType === 0) {
-              this.form.reset();
-              this.activatedRoute.queryParams.subscribe({
-                next: value => {
-                  this.router
-                    .navigateByUrl(value['url'] ? value['url'] : '/home')
-                    .then(() => window.location.reload());
-                }
-              })
-            } else if (
-              this.storage.accountType === 1 ||
-              this.storage.accountType === 2
-            ) {
-              this.form.reset();
-              window.location.href =
-                'http://localhost:4300/taskbar';
-            }
-          },
-          error: (error) => {
+      this.authService.login(val.email, val.password).subscribe({
+        next: () => {
+          if (this.storage.accountType === 0) {
             this.form.reset();
-            this.alertService.error('Login Failed');
-          },
-        });
+            this.activatedRoute.queryParams.subscribe({
+              next: value => {
+                this.router.navigateByUrl(value['url'] ? value['url'] : '/home').then(() => window.location.reload());
+              }
+            })
+          } else if (
+            this.storage.accountType === 1 ||
+            this.storage.accountType === 2) {
+            this.form.reset();
+            window.location.href = 'http://localhost:4300/taskbar';
+          }
+        },
+        error: (error) => {
+          this.form.reset();
+          this.alertService.error('Login Failed');
+        },
+      });
     }
   }
 }

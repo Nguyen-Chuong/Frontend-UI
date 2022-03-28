@@ -12,18 +12,12 @@ export class FirebaseService {
   private basePath = '/travesily';
   storageUrlSubject: Subject<string> = new Subject<string>()
 
-  constructor(
-    private db: AngularFireDatabase,
-    private storage: AngularFireStorage,
-    private cryptoService: CryptoService
-  ) {
+  constructor(private db: AngularFireDatabase,
+              private storage: AngularFireStorage,
+              private cryptoService: CryptoService) {
   }
 
-  pushFileToStorage(
-    fileUpload: FileUpload,
-    folder: string,
-    id: number
-  ) {
+  pushFileToStorage(fileUpload: FileUpload, folder: string, id: number) {
     const encryptedId = this.cryptoService.set('06052000', id);
     const filePath = `${this.basePath}/${folder}/${encryptedId}`;
     const storageRef = this.storage.ref(filePath);

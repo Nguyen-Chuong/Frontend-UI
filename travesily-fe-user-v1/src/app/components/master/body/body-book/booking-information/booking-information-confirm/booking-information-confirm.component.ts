@@ -25,12 +25,7 @@ export class BookingInformationConfirmComponent implements OnInit {
   isShow: boolean = false
   bookingForm
 
-  constructor(private fb: FormBuilder,
-              private cartService: CartService,
-              private bookingService: BookingService,
-              private cryptoService: CryptoService,
-              private router: Router,
-              private storageService: StorageService) {
+  constructor(private fb: FormBuilder, private cartService: CartService, private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -69,8 +64,7 @@ export class BookingInformationConfirmComponent implements OnInit {
     this.cartService.clearCart().subscribe({
       next: value => {
         this.router.navigate(['/book/booking-payment-info'], {
-          queryParams: {
-          }
+          queryParams: {}
         })
       }
     })

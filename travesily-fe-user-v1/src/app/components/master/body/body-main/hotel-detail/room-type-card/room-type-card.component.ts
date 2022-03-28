@@ -23,11 +23,7 @@ export class RoomTypeCardComponent implements OnInit {
   modal = ''
   carts: Cart[] = []
 
-  constructor(private roomTypeService: RoomTypeService,
-              private cryptoService: CryptoService,
-              private cartService: CartService,
-              private storageService: StorageService,
-              private router: Router) {
+  constructor(private roomTypeService: RoomTypeService, private cryptoService: CryptoService, private cartService: CartService, private storageService: StorageService, private router: Router) {
     this.modal = `#room-type-image-modal-${this.roomType?.id}`
     this.filter = this.storageService.searchFilter
     this.roomDetail.listImage = []
@@ -43,8 +39,7 @@ export class RoomTypeCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', this.roomType.id))
-      .subscribe(rs => {
+    this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', this.roomType.id)).subscribe(rs => {
         this.roomDetail = rs['data']
       })
   }
@@ -61,9 +56,7 @@ export class RoomTypeCardComponent implements OnInit {
           this.cartService.updateCarts()
           alert('An item has been added to your cart!')
         },
-        err => {
-          alert('You can not add more than 2 item!')
-        })
+        err => alert('You can not add more than 2 item!'))
   }
 
   bookNow() {
@@ -80,9 +73,7 @@ export class RoomTypeCardComponent implements OnInit {
               this.cartService.updateCarts()
               this.router.navigateByUrl('/book/booking-info')
             },
-            err => {
-              alert('You can not add more than 2 item!')
-            })
+            err => alert('You can not add more than 2 item!'))
         }
       })
   }

@@ -18,16 +18,11 @@ export class CartService {
   }
 
   //Add to cart
-  addToCart(hotelId: number, roomTypeId: number, quantity: number,bookedQuantity: number, dateIn: Date, dateOut: Date) {
+  addToCart(hotelId: number, roomTypeId: number, quantity: number, bookedQuantity: number, dateIn: Date, dateOut: Date) {
     const dateInString = this.datePipe.transform(new Date(dateIn), 'yyyy-MM-dd');
     const dateOutString = this.datePipe.transform(new Date(dateOut), 'yyyy-MM-dd');
-    const params = new HttpParams()
-      .append('hotelId', hotelId)
-      .append('roomTypeId', roomTypeId)
-      .append('quantity', quantity)
-      .append('bookedQuantity', bookedQuantity)
-      .append('dateIn', dateInString)
-      .append('dateOut', dateOutString)
+    const params = new HttpParams().append('hotelId', hotelId).append('roomTypeId', roomTypeId).append('quantity', quantity)
+      .append('bookedQuantity', bookedQuantity).append('dateIn', dateInString).append('dateOut', dateOutString)
     return this.http.patch(`${this.baseUrl}/add-to-cart`, undefined, {params: params})
   }
 

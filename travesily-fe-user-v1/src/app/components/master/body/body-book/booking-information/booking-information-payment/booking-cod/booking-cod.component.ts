@@ -22,15 +22,9 @@ export class BookingCodComponent implements OnInit {
   account: Account = new Account()
   totalPaid: number = 0
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private bookingService: BookingService,
-              private cryptoService: CryptoService,
-              private router: Router,
-              private authService: AuthService,
-              private storageService: StorageService,
-              private hotelService: HotelService) {
+  constructor(private activatedRoute: ActivatedRoute, private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private authService: AuthService, private storageService: StorageService, private hotelService: HotelService) {
     this.bookingRequest = this.storageService.bookingRequest
-    if(!this.bookingRequest){
+    if (!this.bookingRequest) {
       this.router.navigateByUrl('/home')
     }
     this.authService.getProfile().subscribe({
@@ -40,9 +34,7 @@ export class BookingCodComponent implements OnInit {
           next: hotel => {
             this.hotel = hotel['data']
             this.bookingRequest.bookingDetail.forEach(bookingDetail => {
-              this.totalPaid += bookingDetail.paid
-                * bookingDetail.quantity
-                * (new Date(this.bookingRequest.checkOut).getDate() - new Date(this.bookingRequest.checkIn).getDate())
+              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getDate() - new Date(this.bookingRequest.checkIn).getDate())
             })
             this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
           }

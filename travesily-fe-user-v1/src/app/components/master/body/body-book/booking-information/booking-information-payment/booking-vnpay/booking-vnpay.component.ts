@@ -26,17 +26,9 @@ export class BookingVnpayComponent implements OnInit {
   totalPaid: number = 0
 
 
-  constructor(private fb: FormBuilder,
-              private paymentService: PaymentService,
-              private activatedRoute: ActivatedRoute,
-              private bookingService: BookingService,
-              private router: Router,
-              private cryptoService: CryptoService,
-              private storageService: StorageService,
-              private hotelService: HotelService,
-              private authService: AuthService) {
+  constructor(private fb: FormBuilder, private paymentService: PaymentService, private activatedRoute: ActivatedRoute, private bookingService: BookingService, private router: Router, private cryptoService: CryptoService, private storageService: StorageService, private hotelService: HotelService, private authService: AuthService) {
     this.bookingRequest = this.storageService.bookingRequest
-    if(!this.bookingRequest){
+    if (!this.bookingRequest) {
       this.router.navigateByUrl('/home')
     }
     this.authService.getProfile().subscribe({
@@ -46,9 +38,7 @@ export class BookingVnpayComponent implements OnInit {
           next: hotel => {
             this.hotel = hotel['data']
             this.bookingRequest.bookingDetail.forEach(bookingDetail => {
-              this.totalPaid += bookingDetail.paid
-                * bookingDetail.quantity
-                * (new Date(this.bookingRequest.checkOut).getDate() - new Date(this.bookingRequest.checkIn).getDate())
+              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getDate() - new Date(this.bookingRequest.checkIn).getDate())
             })
             this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
           }

@@ -39,17 +39,13 @@ export class CartComponent implements OnInit {
               this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', cart.roomTypeId)).subscribe(
                 rs => {
                   this.roomDetails.push(rs['data'])
-                }
-              )
+                })
             })
           }
         },
-        error: err => {
-          console.error(err)
-        }
+        error: err => console.error(err)
       }
     )
-
   }
 
   ngOnInit(): void {

@@ -52,24 +52,12 @@ export class MaxRangeSelectionStrategy<D>
     return new DateRange<D>(start, end);
   }
 
-  createPreview(
-    activeDate: D | null,
-    currentRange: DateRange<D>
-  ): DateRange<D> {
+  createPreview(activeDate: D | null,currentRange: DateRange<D>): DateRange<D> {
     if (currentRange.start && !currentRange.end) {
-      const maxDate = this._dateAdapter.addCalendarDays(
-        currentRange.start,
-        this.delta
-      );
-      const rangeEnd = activeDate
-        ? activeDate > maxDate
-          ? maxDate
-          : activeDate
-        : null;
-
+      const maxDate = this._dateAdapter.addCalendarDays(currentRange.start,this.delta);
+      const rangeEnd = activeDate? activeDate > maxDate? maxDate : activeDate : null;
       return new DateRange(currentRange.start, rangeEnd);
     }
-
     return new DateRange<D>(null, null);
   }
 }
@@ -92,28 +80,15 @@ export class MinRangeSelectionStrategy<D>
       const minDate = this._dateAdapter.addCalendarDays(start, this.delta);
       end = date ? (date < minDate ? minDate : date) : null;
     }
-
     return new DateRange<D>(start, end);
   }
 
-  createPreview(
-    activeDate: D | null,
-    currentRange: DateRange<D>
-  ): DateRange<D> {
+  createPreview(activeDate: D | null, currentRange: DateRange<D>): DateRange<D> {
     if (currentRange.start && !currentRange.end) {
-      const minDate = this._dateAdapter.addCalendarDays(
-        currentRange.start,
-        this.delta
-      );
-      const rangeEnd = activeDate
-        ? activeDate < minDate
-          ? minDate
-          : activeDate
-        : null;
-
+      const minDate = this._dateAdapter.addCalendarDays(currentRange.start,this.delta);
+      const rangeEnd = activeDate ? activeDate < minDate ? minDate : activeDate : null;
       return new DateRange(currentRange.start, rangeEnd);
     }
-
     return new DateRange<D>(null, null);
   }
 }
@@ -129,10 +104,7 @@ export class MinRangeSelectionStrategy<D>
   ]
 })
 export class MaxRangeDirective {
-  constructor(
-    @Inject(MAT_DATE_RANGE_SELECTION_STRATEGY)
-    private maxRangeStrategy: MaxRangeSelectionStrategy<any>
-  ) {
+  constructor( @Inject(MAT_DATE_RANGE_SELECTION_STRATEGY) private maxRangeStrategy: MaxRangeSelectionStrategy<any>) {
   }
 
   @Input() set maxRange(value: number) {
@@ -174,9 +146,7 @@ export class MinRangeDirective {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
-    },
-
-    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+    },{provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
 export class HotelHomeComponent implements OnInit {
@@ -194,10 +164,7 @@ export class HotelHomeComponent implements OnInit {
     roomNumber: new FormControl(0, [Validators.required, Validators.min(1)])
   })
 
-  constructor(private hotelService: HotelService,
-              private router: Router,
-              private locationService: LocationService,
-              private storage: StorageService) {
+  constructor(private hotelService: HotelService, private router: Router, private locationService: LocationService, private storage: StorageService) {
   }
 
   ngOnInit(): void {

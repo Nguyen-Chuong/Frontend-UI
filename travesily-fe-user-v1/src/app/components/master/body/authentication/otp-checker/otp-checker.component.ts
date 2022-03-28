@@ -17,13 +17,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
   isRegister: boolean = false
   @ViewChild('ngOtpInput') ngOtpInputRef: any;
 
-  constructor(private authService: AuthService,
-              private router: Router,
-              private alertService: AlertService,
-              private cryptoService: CryptoService,
-              private activatedRoute: ActivatedRoute
-  ) {
-
+  constructor(private authService: AuthService, private router: Router, private alertService: AlertService, private cryptoService: CryptoService, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -42,9 +36,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
           rs => {
             this.alertService.success('We have sent you an email with OTP code')
           },
-          error => {
-            this.alertService.error(error)
-          }
+          error => this.alertService.error(error)
         )
       }
     )
@@ -55,41 +47,33 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
 
   onOtpChange($event: string) {
     if ($event.length === 6) {
-      console.log(this.encryptedEmail)
-      this.authService.verifyOtp(this.encryptedEmail, this.cryptoService.set('06052000', $event)).pipe(first()).subscribe(
+      this.authService.verifyOtp(this.encryptedEmail, this.cryptoService.set('06052000', $event)).subscribe(
         rs => {
           if (this.isRegister) {
-            this.authService.register(this.account)
-              .subscribe({
-                  next: () => {
-                    this.authService.login(this.account.email, this.account.password)
-                      .subscribe(() => {
-                        this.activatedRoute.queryParams.subscribe({
-                          next: value => {
-                            this.router.navigateByUrl(value['url'] ? value['url'] : '/user/profile').then(() => {
-                              this.alertService.success('Register Successful')
-                              window.location.reload()
-                            })
-                          }
+            this.authService.register(this.account).subscribe({
+                next: () => {
+                  this.authService.login(this.account.email, this.account.password).subscribe(() => {
+                    this.activatedRoute.queryParams.subscribe({
+                      next: value => {
+                        this.router.navigateByUrl(value['url'] ? value['url'] : '/user/profile').then(() => {
+                          this.alertService.success('Register Successful')
+                          window.location.reload()
                         })
-
-                      })
-                  }, error: error => {
-                    this.alertService.error('Register Failed')
-                  }
+                      }
+                    })
+                  })
+                }, error: error => {
+                  this.alertService.error('Register Failed')
                 }
-              )
+              }
+            )
           } else {
             this.router.navigate(['/authentication/new-password'], {
-              queryParams: {
-                encryptedEmail: this.encryptedEmail
-              }
+              queryParams: {encryptedEmail: this.encryptedEmail}
             })
           }
         },
-        error => {
-          this.alertService.error(error)
-        }
+        error => this.alertService.error(error)
       )
       this.ngOtpInputRef.otpForm.disable()
     }
@@ -102,9 +86,8 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
       rs => {
         this.alertService.success('We have sent you a new email with OTP code')
       },
-      error => {
-        this.alertService.error(error)
-      }
+      error => this.alertService.error(error)
+
     )
   }
 }

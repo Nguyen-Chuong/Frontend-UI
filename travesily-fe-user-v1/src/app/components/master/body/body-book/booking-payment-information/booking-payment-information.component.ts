@@ -30,16 +30,8 @@ export class BookingPaymentInformationComponent implements OnInit {
   searchFilter: SearchFilter = new SearchFilter()
   bookingInformationDetails: BookingInformationDetail[] = []
 
-  constructor(private fb: FormBuilder,
-              private activatedRoute: ActivatedRoute,
-              private cartService: CartService,
-              private authService: AuthService,
-              private hotelService: HotelService,
-              private cryptoService: CryptoService,
-              private roomTypeService: RoomTypeService,
-              private storageService: StorageService,
-              private bookingService: BookingService,
-              private router: Router) {
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
+              private storageService: StorageService, private bookingService: BookingService, private router: Router) {
     this.activatedRoute.queryParams.subscribe({
       next: value => {
         this.bookingRequest = storageService.bookingRequest

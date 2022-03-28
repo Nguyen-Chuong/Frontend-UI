@@ -26,12 +26,7 @@ export class BookingTransactionInformationComponent implements OnInit {
   account: Account
   isCod: boolean = true
 
-  constructor(private paymentService: PaymentService,
-              private activatedRoute: ActivatedRoute,
-              private bookingService: BookingService,
-              private cryptoService: CryptoService,
-              private authService: AuthService,
-              private storageService: StorageService) {
+  constructor(private paymentService: PaymentService, private activatedRoute: ActivatedRoute, private bookingService: BookingService, private cryptoService: CryptoService, private authService: AuthService, private storageService: StorageService) {
     this.storageService.clearBookingRequest()
     this.authService.getProfile().subscribe({
       next: account => {
@@ -60,11 +55,7 @@ export class BookingTransactionInformationComponent implements OnInit {
           })
         } else {
           this.isCod = false
-          this.bookingService.updateVipStatus().subscribe({
-            next: value => {
-
-            }
-          })
+          this.bookingService.updateVipStatus().subscribe()
           const transaction: TransactionInfo = new TransactionInfo()
           transaction.amount = value['vnp_Amount']
           transaction.bankCode = value['vnp_BankCode']
@@ -87,27 +78,19 @@ export class BookingTransactionInformationComponent implements OnInit {
                 }
               )
               this.bookingService.getBookingById(this.cryptoService.set('06052000', bookingId)).subscribe({
-                  next: booking => {
-                    this.booking = booking['data']
-                    this.booking.checkIn = new Date(this.booking.checkIn)
-                    this.booking.checkOut = new Date(this.booking.checkOut)
-                    this.booking.totalDays = new Date(this.booking.checkOut).getDate() - new Date(this.booking.checkIn).getDate()
-                    this.hotel = this.booking.hotel
-                    if (this.booking.status === 1) {
-                      this.paymentService.getTransactionInfo(transaction).subscribe({
-                        next: tran => {
-
-                        }, error: err => {
-
-                        }
-                      })
-                    }
+                next: booking => {
+                  this.booking = booking['data']
+                  this.booking.checkIn = new Date(this.booking.checkIn)
+                  this.booking.checkOut = new Date(this.booking.checkOut)
+                  this.booking.totalDays = new Date(this.booking.checkOut).getDate() - new Date(this.booking.checkIn).getDate()
+                  this.hotel = this.booking.hotel
+                  if (this.booking.status === 1) {
+                    this.paymentService.getTransactionInfo(transaction).subscribe()
                   }
                 }
-              )
+              })
             }
           })
-
         }
       }
     })

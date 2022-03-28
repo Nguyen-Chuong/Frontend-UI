@@ -12,9 +12,7 @@ export class StorageService {
 
   //Save login info
   setSession(loginInfo) {
-    const jwtToken = JSON.parse(
-      atob(loginInfo['data']['jwttoken'].split('.')[1])
-    );
+    const jwtToken = JSON.parse(atob(loginInfo['data']['jwttoken'].split('.')[1]));
     const expiresAt = moment().add(jwtToken.exp, 'second');
     localStorage.setItem('token', loginInfo['data']['jwttoken']);
     localStorage.setItem('account-type', loginInfo['data']['type']);
@@ -72,7 +70,7 @@ export class StorageService {
     return JSON.parse(localStorage.getItem('bookingRequest'))
   }
 
-  clearBookingRequest(){
+  clearBookingRequest() {
     localStorage.removeItem('bookingRequest')
   }
 }

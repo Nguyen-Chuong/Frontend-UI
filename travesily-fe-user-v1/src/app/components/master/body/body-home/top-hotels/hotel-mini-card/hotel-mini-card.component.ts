@@ -14,9 +14,7 @@ import {District} from "../../../../../../_models/district";
 export class HotelMiniCardComponent implements OnInit {
   @Input() hotel: Hotel
 
-  constructor(private router: Router,
-              private cryptoService: CryptoService,
-              private storageService: StorageService) {
+  constructor(private router: Router, private cryptoService: CryptoService, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
