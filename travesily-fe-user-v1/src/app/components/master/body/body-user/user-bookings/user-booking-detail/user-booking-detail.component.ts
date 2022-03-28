@@ -59,4 +59,15 @@ export class UserBookingDetailComponent implements OnInit {
   bookAgain() {
 
   }
+
+  cancel() {
+    this.bookingService.cancelBooking(this.cryptoService.set('06052000',this.booking.id)).subscribe({
+      next: value => {
+        document.getElementById("btnCloseModal").click();
+        this.router.navigateByUrl('/user/bookings/cancelled').then(() =>{
+          alert('Cancel booking completed!')
+        })
+      }
+    })
+  }
 }
