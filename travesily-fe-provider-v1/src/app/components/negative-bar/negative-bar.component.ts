@@ -57,11 +57,10 @@ export class NegativeBarComponent implements OnInit {
     this.router.navigate(['/update-facility']);
   }
 
-  openProviderList(){
-    this.router.navigate(['provider'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openRoomImage(): void{
+    this.router.navigate(['/room-image']);
   }
+
 
   toggleSidebar(){
     this.opened = !this.opened
