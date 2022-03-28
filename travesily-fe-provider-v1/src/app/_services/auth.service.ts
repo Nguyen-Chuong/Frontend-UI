@@ -95,6 +95,53 @@ export class AuthService {
       );
   }
 
+  //Reset password with given email and newPass
+  resetPassword(email: string, newPass: string) {
+    const params = new HttpParams()
+      .append('email', email)
+      .append('newPass', newPass);
+    return this.http.patch(
+      `${this.baseUrl}/authenticate/provider/forgot-password`,
+      undefined,
+      {
+        params: params,
+        withCredentials: false,
+      }
+    );
+  }
+
+  //Generate random OTP send to an email
+  generateOtp(email: string) {
+    const params = new HttpParams().append('email', email);
+    return this.http.post(
+      `${this.baseUrl}/authenticate/generateOtp`,
+      undefined,
+      {
+        params: params,
+        withCredentials: false,
+      }
+    );
+  }
+
+  //Verify if OTP is correct
+  verifyOtp(email: string, otp: string) {
+    const params = new HttpParams()
+      .append('email', email)
+      .append('otpEncrypted', otp);
+    return this.http
+      .post(`${this.baseUrl}/authenticate/verifyOtp`, undefined, {
+        params: params,
+        withCredentials: false,
+      })
+      .pipe(
+        tap((rs) => {
+          if (rs['status'] === 400) {
+            throw new Error(rs['error_message']);
+          }
+        })
+      );
+  }
+
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('expires_at');

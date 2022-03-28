@@ -1,0 +1,74 @@
+<div class="update-room">
+  <div class="menu-list">
+    <app-negative-bar></app-negative-bar>
+  </div>
+  <simple-notifications></simple-notifications>
+  <div class="room">
+    <div class="room-detail-infor">
+      <h1>Update Room Images</h1>
+      <div class="group-input">
+        <mat-form-field appearance="fill" class="select">
+          <mat-label>Hotel</mat-label>
+          <mat-select [formControl]="hotelControl" required (selectionChange)="changeHotel($event.value)">
+            <mat-option *ngFor="let hotel of hotels" [value]="hotel">
+              {{hotel.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="hotelControl.hasError('required')">Please choose a hotel</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="select select-room">
+          <mat-label>Room</mat-label>
+          <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)">
+            <mat-option *ngFor="let roomType of roomTypes" [value]="roomType">
+              {{roomType.name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="roomControl.hasError('required')">Please choose a room</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="room-list-image">
+      <div class="group-input">
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="m-auto">Add Images</button>
+        <button class="m-auto" (click)="deleteListImageForRoomType()">Delete Images</button>
+      </div>
+      <h2 class="m-auto">List images of room</h2>
+      <div class="list-image">
+        <div class="room-image" *ngFor="let image of roomType.listImage">
+          <img src={{image.src}} alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade w-100 h-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Image picker</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row shadow p-5 m-5">
+          <label>
+            <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" multiple="multiple" />
+          </label>
+        </div>
+        <img id="preview-image" class="img-fluid item-center m-auto" src="#" alt="H">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="upload()">Upload
+        </button>
+        <button type="button" class="btn btn-primary m-3" (click)="addListImageForRoomType()"
+          data-bs-dismiss="modal">Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
