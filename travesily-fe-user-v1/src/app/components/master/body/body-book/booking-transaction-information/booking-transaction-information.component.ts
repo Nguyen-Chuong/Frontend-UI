@@ -10,6 +10,7 @@ import {BookingDetail} from "../../../../../_models/booking-detail";
 import {Hotel} from "../../../../../_models/hotel";
 import {AuthService} from "../../../../../_services/auth.service";
 import {Account} from "../../../../../_models/account";
+import {StorageService} from "../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-booking-transaction-information',
@@ -29,7 +30,9 @@ export class BookingTransactionInformationComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private bookingService: BookingService,
               private cryptoService: CryptoService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private storageService: StorageService) {
+    this.storageService.clearBookingRequest()
     this.authService.getProfile().subscribe({
       next: account => {
         this.account = account['data']
@@ -40,13 +43,13 @@ export class BookingTransactionInformationComponent implements OnInit {
         if (value['bookingId'] !== undefined) {
           this.isCod = true
           const bookingId = value['bookingId']
-          this.bookingService.getBookingDetail(this.cryptoService.set('06052000', bookingId)).subscribe({
+          this.bookingService.getBookingDetail(bookingId).subscribe({
               next: bookingDetails => {
                 this.bookingDetails = bookingDetails['data']
               }
             }
           )
-          this.bookingService.getBookingById(this.cryptoService.set('06052000', bookingId)).subscribe({
+          this.bookingService.getBookingById(bookingId).subscribe({
             next: booking => {
               this.booking = booking['data']
               this.booking.checkIn = new Date(this.booking.checkIn)

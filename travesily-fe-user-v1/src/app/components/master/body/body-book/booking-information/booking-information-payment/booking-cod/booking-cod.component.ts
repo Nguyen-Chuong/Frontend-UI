@@ -3,6 +3,12 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BookingService} from "../../../../../../../_services/booking.service";
 import {Booking} from "../../../../../../../_models/booking";
 import {CryptoService} from "../../../../../../../_services/crypto.service";
+import {BookingRequest} from "../../../../../../../_models/booking-request";
+import {AuthService} from "../../../../../../../_services/auth.service";
+import {Hotel} from "../../../../../../../_models/hotel";
+import {Account} from "../../../../../../../_models/account";
+import {StorageService} from "../../../../../../../_services/storage.service";
+import {HotelService} from "../../../../../../../_services/hotel.service";
 
 @Component({
   selector: 'app-booking-cod',
@@ -11,19 +17,34 @@ import {CryptoService} from "../../../../../../../_services/crypto.service";
 })
 export class BookingCodComponent implements OnInit {
   booking: Booking = new Booking()
+  bookingRequest: BookingRequest = new BookingRequest()
+  hotel: Hotel = new Hotel()
+  account: Account = new Account()
+  totalPaid: number = 0
 
   constructor(private activatedRoute: ActivatedRoute,
               private bookingService: BookingService,
               private cryptoService: CryptoService,
-              private router: Router) {
-    this.activatedRoute.queryParams.subscribe({
-      next: value => {
-        this.bookingService.getBookingById(value['bookingId']).subscribe({
-          next: booking => {
-            this.booking = booking['data']
-            if(this.booking.type!==0){
-              this.router.navigateByUrl('/home')
-            }
+              private router: Router,
+              private authService: AuthService,
+              private storageService: StorageService,
+              private hotelService: HotelService) {
+    this.bookingRequest = this.storageService.bookingRequest
+    if(!this.bookingRequest){
+      this.router.navigateByUrl('/home')
+    }
+    this.authService.getProfile().subscribe({
+      next: account => {
+        this.account = account['data']
+        this.hotelService.getHotelById(this.cryptoService.set('06052000', this.bookingRequest.hotelId)).subscribe({
+          next: hotel => {
+            this.hotel = hotel['data']
+            this.bookingRequest.bookingDetail.forEach(bookingDetail => {
+              this.totalPaid += bookingDetail.paid
+                * bookingDetail.quantity
+                * (new Date(this.bookingRequest.checkOut).getDate() - new Date(this.bookingRequest.checkIn).getDate())
+            })
+            this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
           }
         })
       }
@@ -35,11 +56,14 @@ export class BookingCodComponent implements OnInit {
   }
 
   proceed() {
-    this.bookingService.updateBookingType(this.cryptoService.set('06052000', this.booking.id), 2).subscribe({
+    this.bookingRequest.type = 1
+    this.bookingService.addBooking(this.bookingRequest).subscribe({
       next: value => {
-        this.router.navigate(['book/transaction-info'],{queryParams:{
-          bookingId: this.booking.id
-          }})
+        this.router.navigate(['book/transaction-info'], {
+          queryParams: {
+            bookingId: this.cryptoService.set('06052000', value['data'])
+          }
+        })
       }
     })
   }
