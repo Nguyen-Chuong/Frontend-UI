@@ -14,6 +14,7 @@ export class BookingInformationDetailComponent implements OnInit {
   @Input() roomDetails: RoomDetail[] = []
   @Input() hotel: Hotel = new Hotel()
   @Input() bookingInformationDetails: BookingInformationDetail[] = []
+  @Input() account: Account = new Account()
   constructor() { }
 
   ngOnInit(): void {

@@ -101,9 +101,10 @@
         <h3>
           <b>{{((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100)
             * bookingInformationDetails[0]?.quantity + (roomDetails[1]?.price * bookingInformationDetails[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100))
-          * (bookingInformationDetails[0]?.dateOut?.getDate() - bookingInformationDetails[0]?.dateIn?.getDate()) * (100 + hotel.taxPercentage) / 100 | number}}
+          * (bookingInformationDetails[0]?.dateOut?.getDate() - bookingInformationDetails[0]?.dateIn?.getDate()) * (100-account.vip?.discount)/100 * (100 + hotel.taxPercentage) / 100 | number}}
             đ</b></h3>
       </div>
+      <h5><b>Discounts: </b>VIP discount {{account.vip?.discount}}%</h5>
       <h5><b>Applied fees: </b>Tax {{hotel.taxPercentage}}%</h5>
     </div>
   </div>
