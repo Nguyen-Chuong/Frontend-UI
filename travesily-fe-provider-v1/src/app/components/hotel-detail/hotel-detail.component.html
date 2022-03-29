@@ -5,12 +5,24 @@
   <div class="hotel">
     <mat-tab-group mat-align-tabs="start">
       <mat-tab label="Bookings">
-        <app-booking [bookings]="bookings"></app-booking>
+        <app-booking [hotelId]="hotelId"></app-booking>
       </mat-tab>
       <mat-tab label="Review">
         <div class="review-card" *ngFor="let review of reviews">
           <app-review [review]="review"></app-review>
         </div>
+        <nav aria-label="Page navigation example">
+          <ul class="pagination justify-content-end">
+            <li class="page-item" [attr.disabled]="currentPage == 1 ? true : null">
+              <a class="page-link" (click)="previousPage()" >Previous</a>
+            </li>
+            <li class="page-item" *ngFor="let page of pages"><a class="page-link" (click)="changePage(page)">{{page}}</a></li>
+
+            <li class="page-item">
+              <a class="page-link" [attr.disabled]="currentPage == maxPage ? true : null" (click)="nextPage()">Next</a>
+            </li>
+          </ul>
+        </nav>
       </mat-tab>
       <mat-tab label="Up Coming">
         <app-up-coming-booking [bookings]="upComingBookings" ></app-up-coming-booking>

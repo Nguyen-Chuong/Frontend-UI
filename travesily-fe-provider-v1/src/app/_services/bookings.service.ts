@@ -11,7 +11,7 @@ export class BookingsService {
 
   getBookingOfHotel(hotelId: any, page: number, pageSize: number) {
     const params = new HttpParams()
-      .append('hotelId', hotelId).append('status', 1)
+      .append('hotelId', hotelId).append('status', 0)
       .append('page', page)
       .append('pageSize', pageSize);
     return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
@@ -30,5 +30,10 @@ export class BookingsService {
   completeBooking(bookingId: string){
     const params = new HttpParams().append('bookingId', bookingId);
     return this.http.patch(`${this.baseUrl}/complete-booking`, undefined, { params: params });
+  }
+
+  sendMailResponseFeedback(email: string) {
+    const params = new HttpParams().append('email', email);
+    return this.http.post(`${this.baseUrl}/mail/send-response`, { params: params });
   }
 }
