@@ -42,6 +42,7 @@ import { RoomImageComponent } from './components/room-image/room-image.component
 import { OtpCheckerComponent } from './components/authentication/otp-checker/otp-checker.component';
 import { NgOtpInputModule } from  'ng-otp-input';
 import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
+import { UpComingBookingComponent } from './components/up-coming-booking/up-coming-booking.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { NewPasswordComponent } from './components/authentication/new-password/n
     RoomImageComponent,
     OtpCheckerComponent,
     NewPasswordComponent,
+    UpComingBookingComponent,
   ],
   imports: [
     BrowserModule,

@@ -22,6 +22,7 @@ export class HotelDetailComponent implements OnInit {
   maxpage: number
   bookings: Booking[]
   reviews: Review[]
+  upComingBookings: Booking[]
   constructor(private bookingsService: BookingsService,
     private reviewsService: ReviewsService,
     private router: Router,
@@ -56,6 +57,11 @@ export class HotelDetailComponent implements OnInit {
 
       }
     )
+    this.bookingsService.getAllBookingUpComingOfHotel(this.hotelId).pipe(first()).subscribe(
+      rs => {
+        this.upComingBookings = rs['data']['items']
+
+      })
 
     this.reviewsService.getReviewOfHotel(this.hotelId, this.currentPage, this.pageSize).pipe(first()).subscribe(
       rs => {
