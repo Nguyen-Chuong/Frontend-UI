@@ -34,15 +34,8 @@ export class BookingInformationComponent implements OnInit {
   searchFilter: SearchFilter = new SearchFilter()
   bookingInformationDetails: BookingInformationDetail[] = []
 
-  constructor(private fb: FormBuilder,
-              private activatedRoute: ActivatedRoute,
-              private cartService: CartService,
-              private authService: AuthService,
-              private hotelService: HotelService,
-              private cryptoService: CryptoService,
-              private roomTypeService: RoomTypeService,
-              private storageService: StorageService,
-              private router: Router) {
+  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
+              private storageService: StorageService, private router: Router) {
     //Get user search filter
     this.searchFilter = storageService.searchFilter
     this.authService.getProfile().subscribe({

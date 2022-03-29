@@ -1,13 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { BenefitType } from 'src/app/_models/benefitType';
 import { Facility } from 'src/app/_models/facility';
 import { FacilityRequest } from 'src/app/_models/facilityRequest';
 import { FacilityType } from 'src/app/_models/facilityType';
+import { OtherFacilityRequest } from 'src/app/_models/other-facility-request';
+import { CryptoService } from 'src/app/_services/crypto.service';
 import { FacilitiesService } from 'src/app/_services/facilities.service';
 import { NotificationService } from 'src/app/_services/notification.service';
-import { CryptoService } from '../../../../../travesily-fe-admin-v1/src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-add-facilities',
@@ -22,11 +23,17 @@ export class AddFacilitiesComponent implements OnInit {
   facilities: Facility[]
   selectedItemsList = [];
   checkedList = [];
+  isOtherType = false
+  form: FormGroup
   constructor(private facilitiesService: FacilitiesService,
     private cryptoService: CryptoService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private fb: FormBuilder
   ) {
     this.facilityTypeControl = new FormControl('', Validators.required);
+    this.form = fb.group({
+      name: ['', [Validators.required]]
+    })
   }
 
   ngOnInit(): void {
@@ -35,7 +42,12 @@ export class AddFacilitiesComponent implements OnInit {
     })
   }
 
-  changeFacilityType(type: BenefitType) {
+  changeFacilityType(type: FacilityType) {
+    if (type.name === "Other") {
+      this.isOtherType = true
+    } else {
+      this.isOtherType = false
+    }
     const encryptedId = this.cryptoService.set('06052000', type.id)
     this.facilitiesService.getFacilitiesByType(encryptedId).pipe(first()).subscribe(res => {
       this.facilities = res['data']
@@ -54,11 +66,31 @@ export class AddFacilitiesComponent implements OnInit {
     }
   }
 
+  addFacilityOtherType() {
+    const val = this.form.value
+    const otherFacilityRequest = new OtherFacilityRequest
+    otherFacilityRequest.name = val.name
+    this.facilitiesService.addFacilityOtherType(otherFacilityRequest).pipe(first())
+      .subscribe({
+        next: (res) => {
+          this.notificationService.onSuccess("Add Successfully")
+          const encryptedId = this.cryptoService.set('06052000', 1)
+          this.facilitiesService.getFacilitiesByType(encryptedId).pipe(first()).subscribe(res => {
+            this.facilities = res['data']
+          })
+          this.form.reset()
+        }, error: error => {
+          console.log(error)
+          this.notificationService.onError(error['message'])
+        }
+      })
+  }
+
   submit() {
     let roomTypeId
-    if(this.roomTypeId){
+    if (this.roomTypeId) {
       roomTypeId = this.roomTypeId
-    }else{
+    } else {
       roomTypeId = Number(localStorage.getItem('room-id'))
     }
     const facilityRequest = new FacilityRequest
@@ -70,8 +102,6 @@ export class AddFacilitiesComponent implements OnInit {
           this.notificationService.onSuccess("Add Hotel Successfully")
         }, error: error => {
           this.notificationService.onError(error['message'])
-          console.log(error['error'])
-          console.log(this.checkedList)
         }
       })
   }

@@ -4,7 +4,7 @@ import { AngularFireModule } from '@angular/fire/compat';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationInputComponent } from './shared/components/authentication-input/authentication-input.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LoginComponent } from './components/authentication/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './material.module';
@@ -33,11 +33,17 @@ import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.com
 import { AddFacilitiesComponent } from './components/add-facilities/add-facilities.component';
 import { UpdateBenefitsComponent } from './components/update-benefits/update-benefits.component';
 import { UpdateFacilitiesComponent } from './components/update-facilities/update-facilities.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { TestUploadComponent } from './components/test-upload/test-upload.component';
+import { RoomImageComponent } from './components/room-image/room-image.component';
+import { OtpCheckerComponent } from './components/authentication/otp-checker/otp-checker.component';
+import { NgOtpInputModule } from  'ng-otp-input';
+import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
+import { UpComingBookingComponent } from './components/up-coming-booking/up-coming-booking.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +71,10 @@ import { TestUploadComponent } from './components/test-upload/test-upload.compon
     UpdateBenefitsComponent,
     UpdateFacilitiesComponent,
     TestUploadComponent,
+    RoomImageComponent,
+    OtpCheckerComponent,
+    NewPasswordComponent,
+    UpComingBookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +85,7 @@ import { TestUploadComponent } from './components/test-upload/test-upload.compon
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    NgOtpInputModule,
     SimpleNotificationsModule.forRoot(),
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),
@@ -82,9 +93,11 @@ import { TestUploadComponent } from './components/test-upload/test-upload.compon
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS,
-      useClass:AuthInterceptor,
-      multi: true}
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

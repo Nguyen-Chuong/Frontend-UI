@@ -62,4 +62,10 @@ export class BookingService {
   updateVipStatus(){
     return this.http.patch(`${this.baseUrl}/update-vip-status`,undefined)
   }
+
+  //Cancel booking
+  cancelBooking(bookingId: string){
+    const params = new HttpParams().append('bookingId', bookingId)
+    return this.http.patch(`${this.baseUrl}/cancel-booking`,undefined, {params: params})
+  }
 }

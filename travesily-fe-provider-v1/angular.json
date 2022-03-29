@@ -38,7 +38,8 @@
               "src/styles.scss"
             ],
             "scripts": [
-              "node_modules/crypto-js/crypto-js.js"
+              "node_modules/crypto-js/crypto-js.js",
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {

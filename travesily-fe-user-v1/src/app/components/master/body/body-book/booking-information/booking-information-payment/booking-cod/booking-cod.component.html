@@ -1,13 +1,8 @@
 <div class="row">
   <div class="card p-0">
     <div class="card-body p-5">
-
-      <h3><span
-        class="material-icons me-3 text-orange-2">warning</span> You have chosen to pay at <strong> hotel</strong></h3>
-      <h3><span
-        class="material-icons me-3 text-orange-2">warning</span> Please pay the total amount of <strong>{{booking.totalPaid| number}} đ</strong> when you come to the hotel
-        </h3>
-
+      <h3><span class="material-icons me-3 text-orange-2">warning</span> You have chosen to pay at <strong> hotel</strong></h3>
+      <h3><span class="material-icons me-3 text-orange-2">warning</span> Please pay the total amount of <strong>{{totalPaid| number}} đ</strong> when you come to the hotel</h3>
       <button class="btn btn-primary float-end" (click)="proceed()">COMPLETE BOOKING</button>
     </div>
     <div class="card-footer">

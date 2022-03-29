@@ -1,3 +1,4 @@
+import { OtherBenefitRequest } from './../_models/other-benefit-request';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -33,5 +34,9 @@ export class BenefitsService {
   deleteRoomBenefit(roomBenefitId: any){
     const params = new HttpParams().append('roomBenefitId', roomBenefitId)
     return this.http.delete(`${this.baseUrl}/delete-room-benefit`, {params: params})
+  }
+
+  addBenefitOtherType(otherBenefitRequest: OtherBenefitRequest) {
+    return this.http.post(`${this.baseUrl}/add-other-benefit`, otherBenefitRequest);
   }
 }

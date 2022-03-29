@@ -34,7 +34,6 @@ export class CryptoService {
       mode: CryptoJS.mode.ECB,
       padding: CryptoJS.pad.Pkcs7,
     });
-
     return decrypted.toString(CryptoJS.enc.Utf8);
   }
 }

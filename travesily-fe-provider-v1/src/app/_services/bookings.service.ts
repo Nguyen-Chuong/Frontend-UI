@@ -11,14 +11,24 @@ export class BookingsService {
 
   getBookingOfHotel(hotelId: any, page: number, pageSize: number) {
     const params = new HttpParams()
-      .append('hotelId', hotelId)
+      .append('hotelId', hotelId).append('status', 1)
       .append('page', page)
       .append('pageSize', pageSize);
     return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
   }
 
   getAllBookingOfHotel(hotelId: any) {
-    const params = new HttpParams().append('hotelId', hotelId);
+    const params = new HttpParams().append('hotelId', hotelId).append('status', 0);
     return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
+  }
+
+  getAllBookingUpComingOfHotel(hotelId: any) {
+    const params = new HttpParams().append('hotelId', hotelId).append('status', 1);
+    return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
+  }
+
+  completeBooking(bookingId: string){
+    const params = new HttpParams().append('bookingId', bookingId);
+    return this.http.patch(`${this.baseUrl}/complete-booking`, undefined, { params: params });
   }
 }

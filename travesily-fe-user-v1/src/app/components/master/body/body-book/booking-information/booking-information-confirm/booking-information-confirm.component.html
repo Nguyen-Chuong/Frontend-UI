@@ -1,8 +1,7 @@
 <div class="row shadow mb-3">
   <div class="card">
     <div class="card-body">
-      <h3 class="m-0 text-primary d-flex align-items-center"><span
-        class="material-icons me-3">account_box</span> Welcome, {{account.firstname}} {{account.lastname}}</h3>
+      <h3 class="m-0 text-primary d-flex align-items-center"><span class="material-icons me-3">account_box</span> Welcome, {{account.firstname}} {{account.lastname}}</h3>
     </div>
   </div>
 </div>
@@ -10,9 +9,7 @@
 <div class="row shadow mb-3">
   <div class="card">
     <div class="card-body">
-      <h3 class="text-success">
-        <i class="fa fa-check"></i>Great choice of property
-      </h3>
+      <h3 class="text-success"><i class="fa fa-check"></i>Great choice of property </h3>
     </div>
   </div>
 </div>
@@ -36,61 +33,37 @@
         <div class="card-body">
           <form [formGroup]="bookingForm">
             <h3>Do you prefer any smoking configuration?</h3>
-            <div class="form-check d-flex align-items-center">
-                      <span><input class="form-check-input" type="radio" value="Smoking" formControlName="smoking"
-                                   name="radioSmoking"
-                                   id="radioSmoking"></span>
-              <label class="form-check-label" for="radioSmoking">
-                <h3 class="m-0 d-flex align-items-center text-primary"><span class="material-icons">smoking_rooms</span>
-                  Smoking</h3>
-              </label>
+            <div class="form-check d-flex align-items-center"><span><input class="form-check-input" type="radio" value="Smoking" formControlName="smoking" name="radioSmoking" id="radioSmoking"></span>
+              <label class="form-check-label" for="radioSmoking"><h3 class="m-0 d-flex align-items-center text-primary"><span class="material-icons">smoking_rooms</span>Smoking</h3></label>
             </div>
-            <div class="form-check d-flex align-items-center">
-                      <span><input class="form-check-input" type="radio" value="Non-Smoking" formControlName="smoking"
-                                   name="radioSmoking"
-                                   id="radioNonSmoking" checked></span>
+            <div class="form-check d-flex align-items-center"><span><input class="form-check-input" type="radio" value="Non-Smoking" formControlName="smoking" name="radioSmoking" id="radioNonSmoking" checked></span>
               <label class="form-check-label" for="radioNonSmoking">
-                <h3 class="m-0 d-flex align-items-center text-danger"><span
-                  class="material-icons">smoke_free</span>
-                  Non-smoking</h3>
+                <h3 class="m-0 d-flex align-items-center text-danger"><span class="material-icons">smoke_free</span> Non-smoking</h3>
               </label>
             </div>
             <hr>
             <h3>Do you have any bed configuration?</h3>
             <div class="form-check d-flex align-items-center">
-                      <span><input class="form-check-input" type="radio" value="1 large bed" formControlName="bed"
-                                   name="radioBed"
-                                   id="radioBed"></span>
+                      <span><input class="form-check-input" type="radio" value="1 large bed" formControlName="bed" name="radioBed" id="radioBed"></span>
               <label class="form-check-label" for="radioBed">
-                <h3 class="m-0 d-flex align-items-center text-primary"><span class="material-icons">bed</span> 1
-                  large bed
-                </h3>
+                <h3 class="m-0 d-flex align-items-center text-primary"><span class="material-icons">bed</span> 1 large bed </h3>
               </label>
             </div>
             <div class="form-check d-flex align-items-center">
-                      <span><input class="form-check-input" type="radio" value="Twin bed" formControlName="bed"
-                                   name="radioBed"
-                                   id="radioBedTwin" checked></span>
+                      <span><input class="form-check-input" type="radio" value="Twin bed" formControlName="bed" name="radioBed" id="radioBedTwin" checked></span>
               <label class="form-check-label" for="radioBedTwin">
-                <h3 class="m-0 d-flex align-items-center text-success"><span
-                  class="material-icons">single_bed</span><span
-                  class="material-icons">single_bed</span> Twin bed</h3>
+                <h3 class="m-0 d-flex align-items-center text-success"><span class="material-icons">single_bed</span><span class="material-icons">single_bed</span> Twin bed</h3>
               </label>
             </div>
             <hr>
             <div class="dropdown">
-              <a class="text-primary" (click)="toggleTextArea()">
-                <h4><i *ngIf="!isShow" class="fa fa-plus-circle"></i><i *ngIf="isShow"
-                                                                        class="fa fa-minus-circle"></i> Click
-                  here for more request</h4>
-              </a>
+              <a class="text-primary" (click)="toggleTextArea()"> <h4><i *ngIf="!isShow" class="fa fa-plus-circle"></i><i *ngIf="isShow" class="fa fa-minus-circle"></i> Click here for more request</h4> </a>
               <div *ngIf="isShow" class="border p-3">
                 <textarea formControlName="additional" class="item-fullwidth p-3"></textarea>
               </div>
             </div>
           </form>
         </div>
-
       </div>
     </div>
   </div>
@@ -99,13 +72,8 @@
   <div class="card">
     <div class="card-body">
       <h4>By proceeding this booking, I agree to Travesily's terms of use and Privacy Policy</h4>
-
-      <h3 class="text-success d-block float-end">RISK FREE! No cancellation fee before 23:59 hrs. on April 7,
-        2022 (property local time)</h3>
-      <button type="button" class="btn btn-primary d-block float-end" [disabled]="carts.length ===0"
-              (click)="checkOut()">PROCEED TO
-        CHECKOUT!
-      </button>
+      <h3 class="text-success d-block float-end">RISK FREE! No cancellation fee before 23:59 hrs. on April 7, 2022 (property local time)</h3>
+      <button type="button" class="btn btn-primary d-block float-end" [disabled]="carts.length ===0" (click)="checkOut()">PROCEED TO CHECKOUT!</button>
     </div>
   </div>
 </div>

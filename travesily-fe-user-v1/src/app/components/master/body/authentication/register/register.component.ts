@@ -26,14 +26,7 @@ export class RegisterComponent implements OnInit {
 
   form: FormGroup
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private authService: AuthService,
-    private alertService: AlertService,
-    private cryptoService: CryptoService,
-    private activatedRoute: ActivatedRoute
-  ) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private alertService: AlertService, private cryptoService: CryptoService, private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
@@ -51,14 +44,14 @@ export class RegisterComponent implements OnInit {
     const val = this.form.value
     this.activatedRoute.queryParams.subscribe({
       next: value => {
-        this.router.navigate(['/authentication/otp-checker'],{
-          queryParams:{
+        this.router.navigate(['/authentication/otp-checker'], {
+          queryParams: {
             url: value['url'],
             firstname: val.firstname,
             lastname: val.lastname,
-            encryptedEmail: this.cryptoService.set('06052000',val.email),
-            encryptedPassword: this.cryptoService.set('06052000',val.password),
-            encryptedUsername: this.cryptoService.set('06052000',val.username),
+            encryptedEmail: this.cryptoService.set('06052000', val.email),
+            encryptedPassword: this.cryptoService.set('06052000', val.password),
+            encryptedUsername: this.cryptoService.set('06052000', val.username),
           }
         })
       }
@@ -74,12 +67,7 @@ export class RegisterComponent implements OnInit {
         }
         return null
       }
-      return !!control.parent &&
-      !!control.parent.value &&
-      control.value ===
-      (control.parent?.controls as any)[matchTo].value
-        ? null
-        : {matching: true};
+      return !!control.parent && !!control.parent.value && control.value === (control.parent?.controls as any)[matchTo].value ? null : {matching: true};
     }
   }
 

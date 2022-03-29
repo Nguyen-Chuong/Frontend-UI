@@ -1,3 +1,4 @@
+import { OtherFacilityRequest } from './../_models/other-facility-request';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -31,8 +32,12 @@ export class FacilitiesService {
     return this.http.get(`${this.baseUrl}/get-room-facility`, {params: params})
   }
 
-  deleteRoomFacilities(roomBenefitId: any){
-    const params = new HttpParams().append('roomFacilityId', roomBenefitId)
+  deleteRoomFacilities(roomFacilityId: any){
+    const params = new HttpParams().append('roomFacilityId', roomFacilityId)
     return this.http.delete(`${this.baseUrl}/delete-room-facility`, {params: params})
+  }
+
+  addFacilityOtherType(otherFacilityRequest: OtherFacilityRequest) {
+    return this.http.post(`${this.baseUrl}/add-other-facility`, otherFacilityRequest);
   }
 }

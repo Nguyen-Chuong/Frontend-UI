@@ -21,17 +21,11 @@ export class PaymentService {
 
   //Get transaction information
   getTransactionInfo(transaction: TransactionInfo) {
-    const params = new HttpParams()
-      .append('vnp_Amount', transaction.amount)
-      .append('vnp_BankCode', transaction.bankCode)
-      .append('vnp_BankTranNo', transaction.bankTranNo)
-      .append('vnp_CardType', transaction.cardType)
-      .append('vnp_OrderInfo', transaction.orderInfo)
-      .append('vnp_PayDate', transaction.payDate)
-      .append('vnp_ResponseCode', transaction.responseCode)
-      .append('vnp_TransactionNo', transaction.transactionNo)
+    const params = new HttpParams().append('vnp_Amount', transaction.amount).append('vnp_BankCode', transaction.bankCode)
+      .append('vnp_BankTranNo', transaction.bankTranNo).append('vnp_CardType', transaction.cardType)
+      .append('vnp_OrderInfo', transaction.orderInfo).append('vnp_PayDate', transaction.payDate)
+      .append('vnp_ResponseCode', transaction.responseCode).append('vnp_TransactionNo', transaction.transactionNo)
       .append('vnp_TxnRef', transaction.idService)
-
     return this.http.get(`${this.baseUrl}/get-transaction-info`, {params: params})
   }
 }

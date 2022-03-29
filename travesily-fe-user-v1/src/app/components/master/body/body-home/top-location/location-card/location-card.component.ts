@@ -13,9 +13,7 @@ import {CryptoService} from "../../../../../../_services/crypto.service";
 export class LocationCardComponent implements OnInit {
   @Input() district: District
 
-  constructor(private router: Router,
-              private storageService: StorageService,
-              private cryptoService: CryptoService) {
+  constructor(private router: Router, private storageService: StorageService, private cryptoService: CryptoService) {
   }
 
   ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -6,10 +6,10 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
-import { AuthService } from '../_services/auth.service';
-import { Router } from '@angular/router';
-import { StorageService } from '../_services/storage.service';
+import {catchError, Observable, throwError} from 'rxjs';
+import {AuthService} from '../_services/auth.service';
+import {Router} from '@angular/router';
+import {StorageService} from '../_services/storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -17,19 +17,14 @@ export class AuthInterceptor implements HttpInterceptor {
     private authService: AuthService,
     private router: Router,
     private storage: StorageService
-  ) {}
+  ) {
+  }
 
-  intercept(
-    request: HttpRequest<unknown>,
-    next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.storage.authToken;
-
     if (token) {
       request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`,
-        },
+        setHeaders: {Authorization: `Bearer ${token}`},
       });
     }
     return next.handle(request).pipe(

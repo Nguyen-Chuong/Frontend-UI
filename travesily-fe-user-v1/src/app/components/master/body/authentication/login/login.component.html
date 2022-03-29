@@ -3,19 +3,14 @@
 <form class="form-body" [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="form-control">
     <label>Email</label>
-    <app-authentication-input type="text" placeholder="Email"
-                              [control]="form?.controls['email']!"></app-authentication-input>
-
+    <app-authentication-input type="text" placeholder="Email" [control]="form?.controls['email']!"></app-authentication-input>
   </div>
   <div class="form-control">
     <label>Password</label>
-    <app-authentication-input type="password" placeholder="Password"
-                              [control]="form?.controls['password']!"></app-authentication-input>
+    <app-authentication-input type="password" placeholder="Password" [control]="form?.controls['password']!"></app-authentication-input>
   </div>
   <div class="form-submit">
-    <button  class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">
-      Login
-    </button>
+    <button  class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">Login</button>
   </div>
   <div class="form-redirection">
     <a routerLink="../register" queryParamsHandling="preserve" class="register">Register</a>

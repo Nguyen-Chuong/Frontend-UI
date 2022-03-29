@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 import {Cart} from "../../../../../../_models/cart";
 import {RoomDetail} from "../../../../../../_models/room-detail";
 import {Hotel} from "../../../../../../_models/hotel";
+import {StorageService} from "../../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-booking-information-confirm',
@@ -24,11 +25,7 @@ export class BookingInformationConfirmComponent implements OnInit {
   isShow: boolean = false
   bookingForm
 
-  constructor(private fb: FormBuilder,
-              private cartService: CartService,
-              private bookingService: BookingService,
-              private cryptoService: CryptoService,
-              private router: Router) {
+  constructor(private fb: FormBuilder, private cartService: CartService, private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -63,21 +60,14 @@ export class BookingInformationConfirmComponent implements OnInit {
     })
     booking.bookingDetail = bookingDetails
     booking.type = 0
-    this.bookingService.addBooking(booking).subscribe({
-      next: booking => {
-        this.cartService.clearCart().subscribe({
-          next: value => {
-            this.router.navigate(['/book/booking-payment-info'], {
-              queryParams: {
-                bookingId: this.cryptoService.set('06052000', booking['data'])
-              }
-            })
-          }
+    this.storageService.bookingRequest = booking
+    this.cartService.clearCart().subscribe({
+      next: value => {
+        this.router.navigate(['/book/booking-payment-info'], {
+          queryParams: {}
         })
-      },
-      error: err => {
-        console.error(err)
       }
     })
+
   }
 }

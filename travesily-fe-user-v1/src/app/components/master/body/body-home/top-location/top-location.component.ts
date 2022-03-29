@@ -11,8 +11,7 @@ import {District} from "../../../../../_models/district";
 export class TopLocationComponent implements OnInit {
   districts: District[] = []
 
-  constructor(private locationService: LocationService,
-              private cryptoService: CryptoService) {
+  constructor(private locationService: LocationService, private cryptoService: CryptoService) {
   }
 
   ngOnInit(): void {

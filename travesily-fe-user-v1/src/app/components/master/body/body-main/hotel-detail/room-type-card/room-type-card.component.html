@@ -16,9 +16,7 @@
               <img class="room-type-img" [src]="roomDetail.listImage?roomDetail.listImage[2]?.src:''" alt="">
             </div>
           </div>
-        <a data-bs-toggle="modal"
-           [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id"><h4 class="text-primary mb-1">Room photos and
-          details</h4></a>
+        <a data-bs-toggle="modal" [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id"><h4 class="text-primary mb-1">Room photos and details</h4></a>
         <ul class="list-inline">
           <li *ngFor="let item of roomDetail?.listFacility">
             <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>
@@ -26,9 +24,7 @@
         </ul>
         <div class="room-facilities position-relative">
           <div class="see-all-hover">
-            <a><h4 class="card-text text-primary small room-facilities__button"><i class="fa fa-plus-circle"
-                                                                                   aria-hidden="true"></i> See all
-              room facilities</h4></a>
+            <a><h4 class="card-text text-primary small room-facilities__button"><i class="fa fa-plus-circle" aria-hidden="true"></i> See all room facilities</h4></a>
           </div>
           <div class="detail-list-facility container position-absolute bg-white shadow border p-5">
             <div class="row">
@@ -72,8 +68,7 @@
             <h2 class="card-title bg-light-grey p-3 item-center">{{filter.roomNumber}}</h2>
           </div>
           <div class="col-md-3" *ngIf="roomType.availableRooms>=filter.roomNumber">
-            <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()"><strong>Add to
-              cart</strong>
+            <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()"><strong>Add to cart</strong>
             </button>
             <button type="button" class="btn btn-primary d-block w-100 p-3" (click)="bookNow()"><strong>Book now</strong></button>
             <h3 *ngIf="roomType.availableRooms > 1" class="text-danger float-end"><strong>Our last {{roomType.availableRooms}} rooms!</strong></h3>
@@ -94,24 +89,18 @@
     <div class="row">
       <div class="col-md-9">
         <!-- Modal -->
-        <div class="modal fade" id="room-type-image-modal-{{roomType.id}}" tabindex="-1"
-             aria-labelledby="room-type-image-modal-label"
-             aria-hidden="true">
+        <div class="modal fade" id="room-type-image-modal-{{roomType.id}}" tabindex="-1" aria-labelledby="room-type-image-modal-label" aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
               <div id="carouselImageRoomTypeControls" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                   <app-images-carousel [listImage]="roomType.listImage"></app-images-carousel>
                 </div>
-                <button class="carousel-control-prev" type="button"
-                        data-bs-target="#carouselImageRoomTypeControls"
-                        data-bs-slide="prev">
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImageRoomTypeControls" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
-                <button class="carousel-control-next" type="button"
-                        data-bs-target="#carouselImageRoomTypeControls"
-                        data-bs-slide="next">
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselImageRoomTypeControls" data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>

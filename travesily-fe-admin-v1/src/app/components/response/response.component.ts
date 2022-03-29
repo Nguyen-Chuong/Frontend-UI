@@ -1,3 +1,4 @@
+import { FeedbackRequest } from './../../_models/feedback-request';
 import { AdminResponse } from './../../_models/admin-response';
 import { Feedback } from './../../_models/feedback';
 import { Component, Input, OnInit } from '@angular/core';
@@ -19,7 +20,7 @@ export class ResponseComponent implements OnInit {
   responses: AdminResponse[]
   response: AdminResponse = new AdminResponse
   feedbackId: any
-  isAdmin= false
+  isAdmin = false
   idAdmin: number
   constructor(
     private notificationService: NotificationService,
@@ -47,7 +48,7 @@ export class ResponseComponent implements OnInit {
     this.feedbackService.getResponseByFeedbackId(this.feedbackId).pipe(first()).subscribe(
       rs => {
         this.responses = rs['data']
-        if(this.responses.length % 2 === 1 || this.formGroup.value.message_response === null){
+        if (this.responses.length % 2 === 1 || this.formGroup.value.message_response === null) {
           this.isAdmin = true
         }
         console.log(this.isAdmin)
@@ -58,21 +59,31 @@ export class ResponseComponent implements OnInit {
   }
 
   saveResponse() {
-    console.log(this.formGroup.value.message_response)
-
-
     this.response.adminId = Number(localStorage.getItem('admin-id'))
     this.response.feedbackId = Number(this.cryptoService.get('06052000', this.feedbackId))
     this.response.username = this.feedback.senderName
     this.response.message = this.formGroup.value.message_response
-    console.log(this.response)
+    const feedBackRequest: FeedbackRequest = new FeedbackRequest
+    feedBackRequest.message = this.formGroup.value.message_response
+    console.log(this.feedback.email)
     this.feedbackService.sendResponse(this.response).pipe(first()).subscribe({
+      next: () => {
+        this.sendMailResponseFeedback(this.cryptoService.set('06052000', this.feedback.email), feedBackRequest)
+      },
+      error: err => {
+        this.notificationService.onError('Send response false ' + err)
+      }
+    })
+  }
+
+  sendMailResponseFeedback(email: string, feedBackRequest: FeedbackRequest) {
+    this.feedbackService.sendMailResponseFeedback(email, feedBackRequest).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Send response successfully');
         window.location.reload()
       },
       error: err => {
-        this.notificationService.onError('Send response false '+ err )
+        this.notificationService.onError('Send response false ' + err)
       }
     })
   }

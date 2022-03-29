@@ -14,11 +14,7 @@ export class NewPasswordComponent implements OnInit {
   encryptedEmail: string
   form: FormGroup
 
-  constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private alertService: AlertService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+  constructor(private fb: FormBuilder, private authService: AuthService, private alertService: AlertService, private router: Router, private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -40,26 +36,19 @@ export class NewPasswordComponent implements OnInit {
         }
         return null
       }
-      return !!control.parent &&
-      !!control.parent.value &&
-      control.value ===
-      (control.parent?.controls as any)[matchTo].value
-        ? null
-        : {matching: true};
+      return !!control.parent && !!control.parent.value && control.value === (control.parent?.controls as any)[matchTo].value ? null : {matching: true};
     }
   }
 
   onSave() {
     if (this.form.value.newPass && this.form.value.confirmNewPass) {
-      this.authService.resetPassword(this.encryptedEmail, this.form.value.newPass).pipe(first()).subscribe(
-        rs => {
-          this.router.navigateByUrl('/authentication/login').then(() => {
-            this.alertService.success('Change password successfully')
-          })
-
-        },
-        error => {
-          this.alertService.error(error)
+      this.authService.resetPassword(this.encryptedEmail, this.form.value.newPass).subscribe({
+          next: rs => {
+            this.router.navigateByUrl('/authentication/login').then(() => {
+              this.alertService.success('Change password successfully')
+            })
+          },
+          error: err => this.alertService.error(err)
         }
       )
     }

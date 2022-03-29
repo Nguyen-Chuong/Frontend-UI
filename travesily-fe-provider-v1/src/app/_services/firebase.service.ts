@@ -23,11 +23,10 @@ export class FirebaseService {
   pushFileToStorage(
     fileUpload: FileUpload,
     folder: string,
-    subFolder: number,
+    subFolder: string,
     id: any
   ) {
-    const encryptedId = this.cryptoService.set('06052000', subFolder);
-    const filePath = `${this.basePath}/${folder}/${encryptedId}/${id}`;
+    const filePath = `${this.basePath}/${folder}/${subFolder}/${id}`;
     const storageRef = this.storage.ref(filePath);
     const uploadTask = this.storage.upload(filePath, fileUpload.file);
     uploadTask.snapshotChanges().pipe(
@@ -50,6 +49,19 @@ export class FirebaseService {
       `${this.basePath}/${avatarUrl}/${encryptedId}`
     );
     return storageRef.getDownloadURL();
+  }
+
+  deleteFile(folder: string,
+    subFolder: number) {
+    const encryptedId = this.cryptoService.set('06052000', subFolder);
+    const folderPath = `${this.basePath}/${folder}/${encryptedId}`;
+    this.storage.storage.ref(folderPath).listAll().then(
+      data => {
+        data.items.forEach(
+          item => {
+            item.delete()
+          });
+      })
   }
 
   // // private saveFileData(fileUpload: FileUpload): void {
