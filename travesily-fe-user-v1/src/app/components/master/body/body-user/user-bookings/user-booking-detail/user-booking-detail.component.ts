@@ -7,6 +7,7 @@ import {Booking} from "../../../../../../_models/booking";
 import {Account} from "../../../../../../_models/account";
 import {AuthService} from "../../../../../../_services/auth.service";
 import {CryptoService} from "../../../../../../_services/crypto.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-user-booking-detail',
@@ -64,8 +65,8 @@ export class UserBookingDetailComponent implements OnInit {
     this.bookingService.cancelBooking(this.cryptoService.set('06052000', this.booking.id)).subscribe({
       next: value => {
         document.getElementById("btnCloseModal").click();
-        this.router.navigateByUrl('/user/bookings/cancelled').then(() => {
-          alert('Cancel booking completed!')
+        Swal.fire('Cancel booking completed!', '', 'success').then(() => {
+          this.router.navigateByUrl('/user/bookings/cancelled')
         })
       }
     })

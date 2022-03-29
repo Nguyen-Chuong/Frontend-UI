@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ReviewService} from "../../../../../_services/review.service";
 import {ReviewRequest} from "../../../../../_models/review-request";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-review-box',
@@ -48,11 +49,12 @@ export class ReviewBoxComponent implements OnInit {
       reviewRequest.reviewDetail = val.reviewDetail
       this.reviewService.addReview(reviewRequest).subscribe({
         next: value => {
-          alert('Thank you for reviewing! Your review has been recorded!')
-          this.router.navigateByUrl('/user/bookings/completed')
+          Swal.fire('Thank you for reviewing! Your review has been recorded!','','success').then(() => {
+            this.router.navigateByUrl('/user/bookings/completed')
+          })
         },
         error: err => {
-          alert('You have already reviewed this booking!')
+          Swal.fire('You have already reviewed this booking!','','error')
         }
       })
     }
