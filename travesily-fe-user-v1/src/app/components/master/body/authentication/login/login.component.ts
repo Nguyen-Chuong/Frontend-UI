@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
             this.form.reset();
             this.activatedRoute.queryParams.subscribe({
               next: value => {
-                this.router.navigateByUrl(value['url'] ? value['url'] : '/home').then(() => window.location.reload());
+                this.router.navigateByUrl(value['url'] ? value['url'] : '/').then(() => window.location.reload());
               }
             })
           } else if (

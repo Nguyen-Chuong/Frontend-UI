@@ -44,7 +44,7 @@ export class BookingInformationComponent implements OnInit {
     this.cartService.getCarts().subscribe({
       next: value => {
         if (value.length === 0)
-          this.router.navigateByUrl('/home')
+          this.router.navigateByUrl('/')
         this.carts = value
         this.carts.forEach(cart => {
           cart.dateIn = new Date(cart.dateIn)

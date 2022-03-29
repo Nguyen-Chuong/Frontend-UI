@@ -87,7 +87,7 @@ export class AuthService {
   //Logout remove account info from local storage
   logout() {
     this.storage.removeSession();
-    this.router.navigateByUrl('/home').then(() => {
+    this.router.navigateByUrl('/').then(() => {
       window.location.reload();
     });
   }

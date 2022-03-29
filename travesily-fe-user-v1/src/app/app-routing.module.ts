@@ -73,7 +73,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'home', component: BodyHomeComponent,
+        path: '', component: BodyHomeComponent,
         children: [
           {path: '', component: HotelHomeComponent},
           {path: 'hotelAndHome', component: HotelHomeComponent},

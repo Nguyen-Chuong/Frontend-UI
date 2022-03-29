@@ -20,7 +20,7 @@ export class UserBookingDetailCardComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.bookingDetail.id) {
-      this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000',this.bookingDetail?.roomTypeId) ).pipe(first()).subscribe(
+      this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000',this.bookingDetail?.roomTypeId) ).subscribe(
         rs => {
           this.roomDetail = rs['data']
         }

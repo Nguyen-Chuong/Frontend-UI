@@ -25,7 +25,7 @@ export class BookingCodComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private authService: AuthService, private storageService: StorageService, private hotelService: HotelService) {
     this.bookingRequest = this.storageService.bookingRequest
     if (!this.bookingRequest) {
-      this.router.navigateByUrl('/home')
+      this.router.navigateByUrl('/')
     }
     this.authService.getProfile().subscribe({
       next: account => {

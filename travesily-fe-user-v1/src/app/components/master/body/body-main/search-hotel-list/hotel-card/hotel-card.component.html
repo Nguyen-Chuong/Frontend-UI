@@ -24,7 +24,7 @@
       <div class="card-text"></div>
     </div>
     <div class="col-md-3">
-      <div class="row">
+      <div *ngIf="hotel.rating.totalReview>0" class="row">
         <div class="col-md-8">
           <h2 class="m-0 ms-auto text-end">{{ratingTitle}}</h2>
           <p class="text-primary text-end">{{hotel.rating.totalReview}}

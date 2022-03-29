@@ -29,7 +29,7 @@ export class BookingVnpayComponent implements OnInit {
   constructor(private fb: FormBuilder, private paymentService: PaymentService, private activatedRoute: ActivatedRoute, private bookingService: BookingService, private router: Router, private cryptoService: CryptoService, private storageService: StorageService, private hotelService: HotelService, private authService: AuthService) {
     this.bookingRequest = this.storageService.bookingRequest
     if (!this.bookingRequest) {
-      this.router.navigateByUrl('/home')
+      this.router.navigateByUrl('/')
     }
     this.authService.getProfile().subscribe({
       next: account => {
