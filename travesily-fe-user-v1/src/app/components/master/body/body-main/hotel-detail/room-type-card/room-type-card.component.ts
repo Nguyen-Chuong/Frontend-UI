@@ -8,7 +8,7 @@ import {StorageService} from "../../../../../../_services/storage.service";
 import {SearchFilter} from "../../../../../../_models/search-filter";
 import {Router} from "@angular/router";
 import {Cart} from "../../../../../../_models/cart";
-
+import Swal from "sweetalert2";
 @Component({
   selector: 'app-room-type-card',
   templateUrl: './room-type-card.component.html',
@@ -54,9 +54,9 @@ export class RoomTypeCardComponent implements OnInit {
     else
       this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
           this.cartService.updateCarts()
-          alert('An item has been added to your cart!')
+        Swal.fire('An item has been added to your cart!','','success')
         },
-        err => alert('You can not add more than 2 item!'))
+        err => Swal.fire('You can not add more than 2 item!','','error'))
   }
 
   bookNow() {
@@ -73,7 +73,7 @@ export class RoomTypeCardComponent implements OnInit {
               this.cartService.updateCarts()
               this.router.navigateByUrl('/book/booking-info')
             },
-            err => alert('You can not add more than 2 item!'))
+            err => Swal.fire('You can not add more than 2 item!','','error'))
         }
       })
   }

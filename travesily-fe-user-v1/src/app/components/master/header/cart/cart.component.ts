@@ -7,6 +7,7 @@ import {RoomDetail} from "../../../../_models/room-detail";
 import {Router} from "@angular/router";
 import {HotelService} from "../../../../_services/hotel.service";
 import {Hotel} from "../../../../_models/hotel";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-cart',
@@ -54,10 +55,10 @@ export class CartComponent implements OnInit {
 
   clearCart() {
     if (this.carts.length === 0) {
-      alert('Your cart is empty!')
+      Swal.fire('Your cart is empty!','','warning')
     } else {
       this.cartService.clearCart().subscribe(rs => {
-        alert('Your booking cart has been cleared!')
+        Swal.fire('Your booking cart has been cleared!','','success')
         this.cartService.updateCarts()
         this.roomDetails = []
         this.hotel = new Hotel()
