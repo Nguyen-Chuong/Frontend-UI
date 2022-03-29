@@ -46,6 +46,15 @@ export class HotelDetailComponent implements OnInit {
         $(self).popover('hide');
       });
     })
+
+    $(document).on("click","a",function(e){
+      e.preventDefault();
+      var id = $(this).attr("href"),
+        topSpace = 30;
+      $('html, body').animate({
+        scrollTop: $(id).offset().top - topSpace
+      }, 100);
+    });
     //   .on('mouseleave', function () {
     //   var self = this;
     //   setTimeout(function () {
