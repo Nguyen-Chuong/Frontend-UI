@@ -5,4 +5,5 @@ export class Feedback {
   message: string;
   modifyDate: Date;
   isProcessed: number;
+  email: string
 }
