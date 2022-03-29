@@ -34,7 +34,7 @@ export class BookingCodComponent implements OnInit {
           next: hotel => {
             this.hotel = hotel['data']
             this.bookingRequest.bookingDetail.forEach(bookingDetail => {
-              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getDate() - new Date(this.bookingRequest.checkIn).getDate())
+              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getTime()/ (1000 * 3600 * 24) - new Date(this.bookingRequest.checkIn).getTime()/ (1000 * 3600 * 24))
             })
             this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
           }

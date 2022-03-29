@@ -68,8 +68,8 @@ export class BookingInformationComponent implements OnInit {
             }
           })
           const bookingInformationDetail = new BookingInformationDetail()
-          bookingInformationDetail.dateIn = cart.dateIn
-          bookingInformationDetail.dateOut = cart.dateOut
+          bookingInformationDetail.dateIn = new Date(cart.dateIn)
+          bookingInformationDetail.dateOut = new Date(cart.dateOut)
           bookingInformationDetail.quantity = cart.quantity
           this.bookingInformationDetails.push(bookingInformationDetail)
         })
