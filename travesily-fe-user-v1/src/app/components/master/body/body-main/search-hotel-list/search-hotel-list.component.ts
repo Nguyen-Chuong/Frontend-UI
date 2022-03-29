@@ -9,6 +9,8 @@ import {District} from "../../../../../_models/district";
 import {DatePipe} from "@angular/common";
 import {StorageService} from "../../../../../_services/storage.service";
 import {RatingAverage} from "../../../../../_models/rating-average";
+import {PageEvent} from "@angular/material/paginator";
+import {SearchFilter} from "../../../../../_models/search-filter";
 
 @Component({
   selector: 'app-search-hotel-list',
@@ -22,6 +24,8 @@ export class SearchHotelListComponent implements OnInit {
   isRatingLowToHigh: boolean = null
   isReviewLowToHigh: boolean = null
   isDealLowToHigh: boolean = null
+  filter: SearchFilter = new SearchFilter()
+  pageSize: number = 0
   hotelForm = new FormGroup({
     destination: new FormControl('abc', [Validators.required]),
     from: new FormControl(new Date(), [Validators.required]),
@@ -36,16 +40,16 @@ export class SearchHotelListComponent implements OnInit {
               private router: Router,
               private storageService: StorageService
   ) {
-    const filter = this.storageService.searchFilter
-    hotelService.searchHotel(filter.destination.id, filter.from, filter.to, filter.guestNumber, filter.roomNumber, 0, 10)
-      .pipe(first())
-      .subscribe(
-        rs => {
+    this.filter = this.storageService.searchFilter
+    hotelService.searchHotel(this.filter.destination.id, this.filter.from, this.filter.to, this.filter.guestNumber, this.filter.roomNumber, 0, 5)
+      .subscribe({
+        next: rs => {
           this.hotels = rs['data']['items']
+          this.pageSize = rs['data']['pageSize']
         },
-        error => {
-          console.log(error)
-        }
+        error: err => {
+          console.log(err)
+        }}
       )
 
 
@@ -146,5 +150,18 @@ export class SearchHotelListComponent implements OnInit {
     }
     this.isDealLowToHigh = !this.isDealLowToHigh
     this.sortHotels(this.isDealLowToHigh, 'salePercent')
+  }
+
+  getPaginatorData(event: PageEvent) {
+    this.hotelService.searchHotel(this.filter.destination.id, this.filter.from, this.filter.to, this.filter.guestNumber, this.filter.roomNumber, event.pageIndex, event.pageSize)
+      .pipe(first())
+      .subscribe(
+        rs => {
+          this.hotels = rs['data']['items']
+        },
+        error => {
+          console.log(error)
+        }
+      )
   }
 }
