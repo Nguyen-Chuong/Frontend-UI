@@ -3,6 +3,7 @@ import {Account} from "../../../../../../../_models/account";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-dropdown-add-phone',
@@ -28,10 +29,10 @@ export class EditDropdownAddPhoneComponent implements OnInit {
       this.account.phone = val.phone
       this.authService.update(this.account).pipe(first()).subscribe({
         next: () => {
-          console.log('success')
+          Swal.fire('Add phone successfully!','','success')
         },
         error: err => {
-          console.log(err)
+          Swal.fire('Add phone failed!','','error')
         }
       })
     }

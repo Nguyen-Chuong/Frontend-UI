@@ -4,6 +4,7 @@ import {Account} from "../../../../../../../_models/account";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
 import {AlertService} from "../../../../../../../_services/alert.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-edit-dropdown-name',
@@ -32,11 +33,11 @@ export class EditDropdownNameComponent implements OnInit {
       this.account.lastname = val.lastname
       this.authService.update(this.account).pipe(first()).subscribe({
         next: () => {
-          this.alertService.success('Change Name Successfully')
+          Swal.fire('Change name successfully!','','success')
           this.dropdown.emit()
         },
         error: err => {
-          this.alertService.error(err)
+          Swal.fire('Change name failed!','','error')
         }
       })
     }

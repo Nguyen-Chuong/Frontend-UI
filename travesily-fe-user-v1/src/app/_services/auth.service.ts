@@ -50,7 +50,7 @@ export class AuthService {
   //Change user password
   changePassword(oldPass: string, newPass: string) {
     const params = new HttpParams().append('oldPass', oldPass).append('newPass', newPass);
-    return this.http.patch(`${this.baseUrl}/change-password`, undefined, {params: params}).pipe(
+    return this.http.patch(`${this.baseUrl}/change-password/user`, undefined, {params: params}).pipe(
       first(),
       tap((rs) => {
         if (rs['status'] !== 200) {

@@ -4,6 +4,7 @@ import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, 
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
 import {AlertService} from "../../../../../../../_services/alert.service";
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-edit-dropdown-password',
@@ -49,13 +50,12 @@ export class EditDropdownPasswordComponent implements OnInit {
     if (val.oldPass && val.newPass) {
       this.authService.changePassword(val.oldPass, val.newPass).pipe(first()).subscribe({
         next: () => {
-          console.log('Change pass success')
           this.form.reset()
-          this.alertService.success('Change Password Successfully')
+          Swal.fire('Change password successfully!','','success')
           this.dropdown.emit()
         },
         error: err => {
-          this.alertService.error(err)
+          Swal.fire('Change password failed!','Please check your old password!','error')
           this.form.reset()
         }
       })
