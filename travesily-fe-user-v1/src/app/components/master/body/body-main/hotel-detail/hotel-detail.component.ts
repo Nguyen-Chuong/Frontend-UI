@@ -47,7 +47,7 @@ export class HotelDetailComponent implements OnInit {
       });
     })
 
-    $(document).on("click","a",function(e){
+    $(document).on("click",".hotel-nav-link",function(e){
       e.preventDefault();
       var id = $(this).attr("href"),
         topSpace = 30;
