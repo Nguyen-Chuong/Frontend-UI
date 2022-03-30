@@ -58,6 +58,7 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UpdateVipComponent } from './components/update-vip/update-vip.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
+import { ImportFileComponent } from './components/import-file/import-file.component';
 
 
 @NgModule({
@@ -92,7 +93,8 @@ import { VipInfoComponent } from './components/vip-info/vip-info.component';
     AddBenefitComponent,
     AddFacilityComponent,
     UpdateVipComponent,
-    VipInfoComponent
+    VipInfoComponent,
+    ImportFileComponent
   ],
   imports: [
     BrowserModule,

@@ -1,3 +1,4 @@
+import { ImportFileComponent } from './components/import-file/import-file.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { FacilityComponent } from './components/facility/facility.component';
 import { BenefitComponent } from './components/benefit/benefit.component';
@@ -86,6 +87,10 @@ const routes: Routes = [
   {
     path: 'user-detail',
     component: UserDetailComponent,
+  },
+  {
+    path: 'add-district',
+    component: ImportFileComponent,
   },
 ];
 
