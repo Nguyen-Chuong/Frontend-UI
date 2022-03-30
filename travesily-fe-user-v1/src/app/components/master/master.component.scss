@@ -1,15 +1,23 @@
 @import "main";
 
-//.main {
-//  display: flex;
-//  flex-direction: column;
-//}
+.main {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
 .header, .footer {
   box-shadow: 0 5px 5px -5px rgba($color-grey-dark-2, .3);
   position: relative;
   z-index: 3;
   //flex: none;
+}
+
+.footer{
+  //margin-top: auto;
+}
+.body{
+  flex-grow: 1;
 }
 
 //html, body {
@@ -28,3 +36,4 @@
 //main {
 //
 //}
+

@@ -1,4 +1,6 @@
-<div class="container-fluid p-0">
-<app-main-search-bar></app-main-search-bar>
-<router-outlet></router-outlet>
+<div class="container-fluid p-0 d-flex flex-column">
+  <app-main-search-bar></app-main-search-bar>
+  <div class="flex-grow-1">
+    <router-outlet></router-outlet>
+  </div>
 </div>

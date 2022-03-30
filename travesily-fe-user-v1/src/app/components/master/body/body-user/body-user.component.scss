@@ -1,7 +1,7 @@
 @import "main";
 
-.container-fluid {
-  background-color: #fff;
+.container-fluid{
+  height: 100%;
 }
 
 .nav-user-active {
@@ -13,5 +13,7 @@
   box-shadow: 1rem 0 1rem -1rem rgba($color-grey-dark-2, .3)!important;
 }
 
-
+.inner-container{
+  height: 100%;
+}
 
