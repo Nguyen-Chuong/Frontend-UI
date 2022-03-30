@@ -4,6 +4,7 @@ import {AuthService} from "../../../../../_services/auth.service";
 import {AlertService} from "../../../../../_services/alert.service";
 import {first} from "rxjs";
 import {ActivatedRoute, Route, Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-new-password',
@@ -45,7 +46,7 @@ export class NewPasswordComponent implements OnInit {
       this.authService.resetPassword(this.encryptedEmail, this.form.value.newPass).subscribe({
           next: rs => {
             this.router.navigateByUrl('/authentication/login').then(() => {
-              this.alertService.success('Change password successfully')
+              Swal.fire('Change password successfully','','success')
             })
           },
           error: err => this.alertService.error(err)

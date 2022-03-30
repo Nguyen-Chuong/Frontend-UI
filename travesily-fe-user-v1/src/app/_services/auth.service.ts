@@ -63,7 +63,7 @@ export class AuthService {
   //Reset password with given email and newPass
   resetPassword(email: string, newPass: string) {
     const params = new HttpParams().append('email', email).append('newPass', newPass);
-    return this.http.patch(`${this.baseUrl}/authenticate/forgot-password`, undefined, {
+    return this.http.patch(`${this.baseUrl}/authenticate/user/forgot-password`, undefined, {
       params: params,
       withCredentials: false,
     });

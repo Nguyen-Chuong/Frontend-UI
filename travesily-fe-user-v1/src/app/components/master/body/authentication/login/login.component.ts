@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
         },
         error: (error) => {
           this.form.reset();
-          this.alertService.error('Login Failed');
+          this.alertService.error('Please check your username and password!');
         },
       });
     }

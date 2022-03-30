@@ -5,6 +5,7 @@ import {first} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AlertService} from "../../../../../_services/alert.service";
 import {CryptoService} from "../../../../../_services/crypto.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-otp-checker',
@@ -56,7 +57,9 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
                     this.activatedRoute.queryParams.subscribe({
                       next: value => {
                         this.router.navigateByUrl(value['url'] ? value['url'] : '/user/profile').then(() => {
-                          this.alertService.success('Register Successful')
+                          Swal.fire('Register Successfully!').then(() => {
+                            this.alertService.success('Register Successful')
+                          })
                           window.location.reload()
                         })
                       }
@@ -82,12 +85,11 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
   resend() {
     this.ngOtpInputRef.otpForm.enable()
     this.ngOtpInputRef.otpForm.reset()
-    this.authService.generateOtp(this.encryptedEmail).pipe(first()).subscribe(
+    this.authService.generateOtp(this.encryptedEmail).subscribe(
       rs => {
         this.alertService.success('We have sent you a new email with OTP code')
       },
       error => this.alertService.error(error)
-
     )
   }
 }
