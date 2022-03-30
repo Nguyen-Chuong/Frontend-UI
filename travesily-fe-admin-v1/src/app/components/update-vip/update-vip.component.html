@@ -1,0 +1,22 @@
+<form class="col-md-10 w-100" [formGroup]="formGroup">
+  <simple-notifications></simple-notifications>
+  <div class="p-1 py-3">
+    <div class="row mt-5 ">
+      <div class="col-md-3"><label class="labels"></label>
+        <input type="text" class="form-control" value={{vip.nameVip}} readonly>
+      </div>
+      <div class="col-md-3"><label class="labels">Range Start</label>
+        <input type="number" class="form-control" formControlName="rangeStart">
+      </div>
+      <div class="col-md-3"><label class="labels">Range End</label>
+        <input type="number" class="form-control" formControlName="rangeEnd">
+      </div>
+      <div class="col-md-3"><label class="labels">Discount</label>
+        <input type="number" class="form-control" formControlName="discount">
+      </div>
+      <div class="col-md-3"><label class="labels"></label>
+        <button class=" btn btn-outline-success m-3" [disabled]="!formGroup.valid" (click)="updateVip()">Save</button>
+      </div>
+    </div>
+  </div>
+</form>

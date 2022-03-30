@@ -1,10 +1,10 @@
-import { CryptoService } from './../../../../../travesily-fe-user-v1/src/app/_services/crypto.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { BookingsService } from 'src/app/_services/bookings.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Booking } from 'src/app/_models/booking';
 import { first } from 'rxjs';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-up-coming-booking',

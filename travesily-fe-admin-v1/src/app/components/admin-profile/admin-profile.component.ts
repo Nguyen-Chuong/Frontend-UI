@@ -15,7 +15,7 @@ import { FirebaseService } from 'src/app/_services/firebase.service';
 })
 export class AdminProfileComponent implements OnInit {
   account: Account = new Account;
-  formGroup!: FormGroup;
+  formGroup: FormGroup;
   isPhone = false
   selectedFiles: FileList;
   currentFileUpload: FileUpload;

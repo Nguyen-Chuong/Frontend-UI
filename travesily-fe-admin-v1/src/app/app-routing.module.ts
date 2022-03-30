@@ -1,3 +1,4 @@
+import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { FacilityComponent } from './components/facility/facility.component';
 import { BenefitComponent } from './components/benefit/benefit.component';
 import { ResponseComponent } from './components/response/response.component';
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: 'new-admin',
     component: NewAdminComponent,
+  },
+  {
+    path: 'vip-info',
+    component: VipInfoComponent,
   },
   {
     path: 'user',

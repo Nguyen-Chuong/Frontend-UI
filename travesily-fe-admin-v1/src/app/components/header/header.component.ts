@@ -30,6 +30,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/admin-profile');
   }
 
+  public openVip(){
+    this.router.navigateByUrl('/vip-info');
+  }
+
   public logout(){
     this.authService.logout()
     window.location.href = 'http://localhost:4200'
