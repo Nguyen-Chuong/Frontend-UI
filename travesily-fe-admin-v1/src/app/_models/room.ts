@@ -1,3 +1,5 @@
+import { BenefitType } from './benefitType';
+import { FacilityType } from './facilityType';
 import { Image } from './image';
 export class Room {
   id: number;
@@ -9,4 +11,6 @@ export class Room {
   dealPercentage: number;
   dealExpire: Date;
   listImage: Image[];
+  listFacility: FacilityType[];
+  listBenefit: BenefitType[];
 }

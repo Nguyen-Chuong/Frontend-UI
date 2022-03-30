@@ -80,6 +80,10 @@ export class TaskbarComponent implements OnInit {
     this.router.navigate(['/facility']);
   }
 
+  openAddDistrict(){
+    this.router.navigate(['/add-district']);
+  }
+
   toggleSidebar(){
     this.opened = !this.opened
   }

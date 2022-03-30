@@ -1,0 +1,21 @@
+
+<div class="d-flex">
+  <div class="menu-list">
+    <app-taskbar></app-taskbar>
+  </div>
+  <simple-notifications></simple-notifications>
+  <div class="add-district">
+    <mat-form-field appearance="fill" class="select">
+      <mat-label>City</mat-label>
+      <mat-select [formControl]="cityControl" required (selectionChange)="changeCityID($event.value)">
+        <mat-option *ngFor="let city of cities" [value]="city">
+          {{city.nameCity}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="cityControl.hasError('required')">Please choose a city</mat-error>
+    </mat-form-field>
+    <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" />
+    <button type="button" class="btn btn-primary" (click)="upload()">Save changes
+    </button>
+  </div>
+</div>

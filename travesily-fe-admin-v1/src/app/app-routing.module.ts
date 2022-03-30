@@ -1,3 +1,5 @@
+import { ImportFileComponent } from './components/import-file/import-file.component';
+import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { FacilityComponent } from './components/facility/facility.component';
 import { BenefitComponent } from './components/benefit/benefit.component';
 import { ResponseComponent } from './components/response/response.component';
@@ -71,6 +73,10 @@ const routes: Routes = [
     component: NewAdminComponent,
   },
   {
+    path: 'vip-info',
+    component: VipInfoComponent,
+  },
+  {
     path: 'user',
     component: UserComponent,
   },
@@ -81,6 +87,10 @@ const routes: Routes = [
   {
     path: 'user-detail',
     component: UserDetailComponent,
+  },
+  {
+    path: 'add-district',
+    component: ImportFileComponent,
   },
 ];
 
