@@ -90,8 +90,8 @@ export class HotelDetailComponent implements OnInit {
               this.ratingTitle = 'Average'
             else if (avgRating < 5)
               this.ratingTitle = 'Below Average'
-          }
-
+          },
+          err => console.error(err)
         )
 
         this.hotelService.listBenefitsByHotelId(hotelId).subscribe(

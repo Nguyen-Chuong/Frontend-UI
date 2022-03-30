@@ -60,7 +60,8 @@ export class BookingPaymentInformationComponent implements OnInit {
                 })
               }
             })
-          }
+          },
+          error: err =>console.error(err)
         })
 
 

@@ -33,7 +33,8 @@ export class CartComponent implements OnInit {
             this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0]?.hotelId)).subscribe(
               rs => {
                 this.hotel = rs['data']
-              }
+              },
+              err => console.error(err)
             )
             this.roomDetails = []
             this.carts.forEach(cart => {
@@ -55,14 +56,12 @@ export class CartComponent implements OnInit {
 
   clearCart() {
     if (this.carts.length === 0) {
-      Swal.fire('Your cart is empty!','','warning')
+      Swal.fire('Your cart is empty!', '', 'warning')
     } else {
       this.cartService.clearCart().subscribe(rs => {
-        Swal.fire('Your booking cart has been cleared!','','success')
-        this.cartService.updateCarts()
-        this.roomDetails = []
-        this.hotel = new Hotel()
-
+        Swal.fire('Your booking cart has been cleared!', '', 'success').then(() => {
+          this.cartService.updateCarts()
+        })
       })
     }
   }

@@ -9,6 +9,7 @@ import {SearchFilter} from "../../../../../../_models/search-filter";
 import {Router} from "@angular/router";
 import {Cart} from "../../../../../../_models/cart";
 import Swal from "sweetalert2";
+
 @Component({
   selector: 'app-room-type-card',
   templateUrl: './room-type-card.component.html',
@@ -40,8 +41,8 @@ export class RoomTypeCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', this.roomType.id)).subscribe(rs => {
-        this.roomDetail = rs['data']
-      })
+      this.roomDetail = rs['data']
+    })
   }
 
   addToCart() {
@@ -54,9 +55,9 @@ export class RoomTypeCardComponent implements OnInit {
     else
       this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
           this.cartService.updateCarts()
-        Swal.fire('An item has been added to your cart!','','success')
+          Swal.fire('An item has been added to your cart!', '', 'success')
         },
-        err => Swal.fire('You can not add more than 2 item!','','error'))
+        err => Swal.fire('You can not add more than 2 item!', '', 'error'))
   }
 
   bookNow() {
@@ -69,11 +70,13 @@ export class RoomTypeCardComponent implements OnInit {
     else
       this.cartService.clearCart().subscribe({
         next: value => {
-          this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
+          this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe({
+            next: rs => {
               this.cartService.updateCarts()
               this.router.navigateByUrl('/book/booking-info')
             },
-            err => Swal.fire('You can not add more than 2 item!','','error'))
+            error: err => Swal.fire('You can not add more than 2 item!', '', 'error')
+          })
         }
       })
   }

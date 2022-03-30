@@ -43,36 +43,41 @@ export class BookingInformationComponent implements OnInit {
     })
     this.cartService.getCarts().subscribe({
       next: value => {
-        if (value.length === 0)
-          this.router.navigateByUrl('/')
-        this.carts = value
-        this.carts.forEach(cart => {
-          cart.dateIn = new Date(cart.dateIn)
-          cart.dateOut = new Date(cart.dateOut)
-        })
-        this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0]?.hotelId)).subscribe({
-          next: value => {
-            this.hotel = value['data']
-          }
-        })
-        this.bookingInformationDetails = []
-        const tempRoomDetails = []
-
-        this.carts.forEach(cart => {
-          this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', cart.roomTypeId)).subscribe({
-            next: value => {
-              tempRoomDetails.push(value['data'])
-            },
-            complete: () => {
-              this.roomDetails = tempRoomDetails
-            }
+        if (value.length === 0 && this.router.url === '/book/booking-info')
+          this.router.navigate(['/']).then(() => {
+            window.location.reload()
           })
-          const bookingInformationDetail = new BookingInformationDetail()
-          bookingInformationDetail.dateIn = new Date(cart.dateIn)
-          bookingInformationDetail.dateOut = new Date(cart.dateOut)
-          bookingInformationDetail.quantity = cart.quantity
-          this.bookingInformationDetails.push(bookingInformationDetail)
-        })
+        if (value.length !== 0) {
+          this.carts = value
+          this.carts.forEach(cart => {
+            cart.dateIn = new Date(cart.dateIn)
+            cart.dateOut = new Date(cart.dateOut)
+          })
+          this.hotelService.getHotelById(this.cryptoService.set('06052000', this.carts[0]?.hotelId)).subscribe({
+            next: value => {
+              this.hotel = value['data']
+            },
+            error: err => console.error(err)
+          })
+          this.bookingInformationDetails = []
+          const tempRoomDetails = []
+
+          this.carts.forEach(cart => {
+            this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', cart.roomTypeId)).subscribe({
+              next: value => {
+                tempRoomDetails.push(value['data'])
+              },
+              complete: () => {
+                this.roomDetails = tempRoomDetails
+              }
+            })
+            const bookingInformationDetail = new BookingInformationDetail()
+            bookingInformationDetail.dateIn = new Date(cart.dateIn)
+            bookingInformationDetail.dateOut = new Date(cart.dateOut)
+            bookingInformationDetail.quantity = cart.quantity
+            this.bookingInformationDetails.push(bookingInformationDetail)
+          })
+        }
       }
     })
   }
