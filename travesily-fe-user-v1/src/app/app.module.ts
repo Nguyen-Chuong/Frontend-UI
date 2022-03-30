@@ -37,9 +37,6 @@ import { EditDropdownEditPhoneComponent } from './components/master/body/body-us
 import {UsernameValidatorDirective} from "./_validators/username.validator";
 import {EmailValidatorDirective} from "./_validators/email.validator";
 import {UserVipComponent} from "./components/master/body/body-user/user-vip/user-vip.component";
-import { UserBookingsCompletedComponent } from './components/master/body/body-user/user-bookings/user-bookings-completed/user-bookings-completed.component';
-import { UserBookingsUpcomingComponent } from './components/master/body/body-user/user-bookings/user-bookings-upcoming/user-bookings-upcoming.component';
-import { UserBookingsCancelledComponent } from './components/master/body/body-user/user-bookings/user-bookings-cancelled/user-bookings-cancelled.component';
 import { ForgotPasswordComponent } from './components/master/body/authentication/forgot-password/forgot-password.component';
 import { OtpCheckerComponent } from './components/master/body/authentication/otp-checker/otp-checker.component';
 import {NgOtpInputModule} from "ng-otp-input";
@@ -115,9 +112,6 @@ import { FooterComponent } from './components/master/footer/footer.component';
     UsernameValidatorDirective,
     EmailValidatorDirective,
     UserVipComponent,
-    UserBookingsCompletedComponent,
-    UserBookingsUpcomingComponent,
-    UserBookingsCancelledComponent,
     ForgotPasswordComponent,
     OtpCheckerComponent,
     BookingCardComponent,

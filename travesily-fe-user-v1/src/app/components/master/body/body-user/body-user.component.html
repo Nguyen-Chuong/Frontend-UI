@@ -1,14 +1,23 @@
 <div class="container-fluid">
   <div class="row bg-light-grey">
     <div class="col-md-1"></div>
-      <div class="nav-column col-md-3 p-0 pt-3">
-        <ul class="nav flex-column bg-light-grey">
-          <li class="nav-item" *ngFor="let item of navItems">
-            <a routerLinkActive="nav-user-active" class="nav-link p-3"
-               [routerLink]="['/user'+item.id]">{{item.name}}</a>
-          </li>
-        </ul>
-      </div>
+    <div class="nav-column col-md-3 p-0 pt-3">
+      <ul class="nav flex-column bg-light-grey">
+        <li class="nav-item">
+          <a routerLinkActive="nav-user-active" class="nav-link p-3" [routerLink]="['/user','bookings']" [queryParams]="{status: 1}" queryParamsHandling="preserve">My Bookings</a>
+        </li>
+        <li class="nav-item">
+          <a routerLinkActive="nav-user-active" class="nav-link p-3" [routerLink]="['/user','reviews']">My Reviews</a>
+        </li>
+        <li class="nav-item">
+          <a routerLinkActive="nav-user-active" class="nav-link p-3" [routerLink]="['/user','profile']">Profile</a>
+        </li>
+        <li class="nav-item">
+          <a routerLinkActive="nav-user-active" class="nav-link p-3" [routerLink]="['/user','vip']">Vip Status</a>
+        </li>
+
+      </ul>
+    </div>
     <div class="user-detail col-md-7 p-5">
       <router-outlet></router-outlet>
     </div>

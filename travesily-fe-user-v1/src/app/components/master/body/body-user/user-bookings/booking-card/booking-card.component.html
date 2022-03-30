@@ -28,8 +28,7 @@
         </div>
         <div class="row">
           <!--          <div class="col-md-8">{{booking.bookedQuantity}} x</div>-->
-          <div class="col-md-8"></div>
-          <div class="col-md-4"><h1 class="text-danger">đ {{booking.totalPaid | number}}</h1></div>
+          <h1 class="text-danger text-end">đ {{booking.totalPaid | number:'1.0-0'}}</h1>
         </div>
       </div>
     </div>

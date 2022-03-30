@@ -14,15 +14,6 @@ import {
   UserVipComponent
 } from "./components/master/body/body-user/user-vip/user-vip.component";
 import {
-  UserBookingsCompletedComponent
-} from "./components/master/body/body-user/user-bookings/user-bookings-completed/user-bookings-completed.component";
-import {
-  UserBookingsUpcomingComponent
-} from "./components/master/body/body-user/user-bookings/user-bookings-upcoming/user-bookings-upcoming.component";
-import {
-  UserBookingsCancelledComponent
-} from "./components/master/body/body-user/user-bookings/user-bookings-cancelled/user-bookings-cancelled.component";
-import {
   ForgotPasswordComponent
 } from "./components/master/body/authentication/forgot-password/forgot-password.component";
 import {OtpCheckerComponent} from "./components/master/body/authentication/otp-checker/otp-checker.component";
@@ -88,14 +79,7 @@ const routes: Routes = [
       {
         path: 'user', component: BodyUserComponent, children: [
           {path: 'profile', component: UserProfileComponent},
-          {
-            path: 'bookings', component: UserBookingsComponent, children: [
-              {path: '', component: UserBookingsUpcomingComponent},
-              {path: 'completed', component: UserBookingsCompletedComponent},
-              {path: 'upcoming', component: UserBookingsUpcomingComponent},
-              {path: 'cancelled', component: UserBookingsCancelledComponent}
-            ]
-          },
+          {path: 'bookings', component: UserBookingsComponent},
           {path: 'reviews', component: UserReviewsComponent},
           {path: 'vip', component: UserVipComponent},
           {path: 'booking-detail', component: UserBookingDetailComponent}

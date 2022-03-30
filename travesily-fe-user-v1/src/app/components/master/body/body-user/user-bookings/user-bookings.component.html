@@ -1,9 +1,44 @@
-<ul class="nav">
-  <li class="nav-item" *ngFor="let item of navItems">
-    <a routerLinkActive="nav-active" class="nav-link p-3"
-       [routerLink]="['/user','bookings',item.id]">{{item.name}}</a>
-  </li>
-</ul>
-<div class="bookings__body">
-  <router-outlet></router-outlet>
+<div class="row">
+  <div class="col-md-auto p-0">
+    <ul class="list-inline nav nav-pills border">
+      <li class="nav-item">
+        <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
+           [queryParams]="{status: 1}">Upcoming</a>
+      </li>
+      <li class="nav-item">
+        <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
+           [queryParams]="{status: 2}">Completed</a>
+      </li>
+      <li class="nav-item">
+        <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
+           [queryParams]="{status: 3}">Canceled</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-auto ms-auto p-0">
+    <ul class="nav nav-pills list-inline border">
+      <li class="nav-item">
+        <a class="nav-link p-3 disabled" routerLinkActive="active" tabindex="-1" aria-disabled="true">Sort by</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link p-3" routerLinkActive="active" [routerLink]="['/user','bookings']"
+           [queryParams]="{sort: 'booking-date'}" queryParamsHandling="merge">Booking date</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link p-3" routerLinkActive="active" [routerLink]="['/user','bookings']"
+           [queryParams]="{sort: 'check-in-date'}" queryParamsHandling="merge">Check-in date</a>
+      </li>
+      <li class="nav-item" *ngIf="status==2">
+        <a class="nav-link p-3" routerLinkActive="active" [routerLink]="['/user','bookings']"
+           [queryParams]="{sort: 'is-reviewed'}" queryParamsHandling="merge">Not Reviewed</a>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row p-0">
+    <ul class="list-inline booking-list p-0">
+      <li class="booking-list__item" *ngFor="let booking of bookings">
+        <app-booking-card [booking]="booking"></app-booking-card>
+      </li>
+    </ul>
 </div>

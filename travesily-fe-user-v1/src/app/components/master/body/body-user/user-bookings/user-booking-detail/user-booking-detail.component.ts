@@ -66,7 +66,7 @@ export class UserBookingDetailComponent implements OnInit {
       next: value => {
         document.getElementById("btnCloseModal").click();
         Swal.fire('Cancel booking completed!', '', 'success').then(() => {
-          this.router.navigateByUrl('/user/bookings/cancelled')
+          this.router.navigate(['/user/bookings'],{queryParams:{status: 3}})
         })
       }
     })
