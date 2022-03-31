@@ -49,6 +49,7 @@ import {
   BookingTransactionInformationComponent
 } from "./components/master/body/body-book/booking-transaction-information/booking-transaction-information.component";
 import {UserAddReviewComponent} from "./components/master/body/user-add-review/user-add-review.component";
+import {BodyFeedbackComponent} from "./components/master/body/body-feedback/body-feedback.component";
 
 const routes: Routes = [
   {
@@ -98,6 +99,7 @@ const routes: Routes = [
         ]
       },
       {path: 'review', component: UserAddReviewComponent},
+      {path: 'feedback',component: BodyFeedbackComponent}
     ]
   }
 

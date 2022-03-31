@@ -7,12 +7,11 @@ import {FormControl} from "@angular/forms";
 })
 export class InputComponent implements OnInit {
 
-  @Input() inputType: string | any
-  @Input() itemName: string | any
-  @Input() placeholder: string | any
   @Input() control: FormControl | any
+  @Input() type: string | any
+  @Input() placeholder: string | any
+  @Input() classes: string | any
   @Input() label: string | any
-  @Input() detectChange: boolean
 
   constructor() {
   }

@@ -1,0 +1,40 @@
+<div class="container-fluid bg-white p-0 pt-5">
+  <div class="row">
+    <div class="col-md-8 m-auto">
+      <div class="card">
+        <div class="card-body">
+          <form [formGroup]="feedbackForm">
+            <div class="mb-3">
+              <p class="text-secondary">Select a Reason</p>
+              <select class="form-select form-select-lg" formControlName="reason" (ngModelChange)="selectOption()">
+                <option selected value="0"><h3>Select an Option</h3></option>
+                <option value="1">I want to cancel a booking and get a refund</option>
+                <option value="2">I want to complaint about the app service</option>
+                <option value="3">Others</option>
+              </select>
+              <div class="control-error text-danger" *ngIf="feedbackForm.controls['reason'].errors">
+                Please select a reason
+              </div>
+            </div>
+            <app-input type="text" [control]="feedbackForm.controls['email']" placeholder="Email"
+                       label="Contact email"></app-input>
+            <app-input type="text" [control]="feedbackForm.controls['phone']" placeholder="Phone"
+                       label="Contact phone"></app-input>
+            <app-input *ngIf="feedbackForm.controls['reason'].value ==1" type="text"
+                       [control]="feedbackForm.controls['bookingId']" placeholder="Booking ID" label="Booking ID"
+                       aria-label=".form-control-lg example"></app-input>
+            <div class="mb-3">
+              <p for="request-detail-textarea" class="form-label text-secondary">Request Details</p>
+              <textarea class="form-control" [formControl]="convertToFormControl(feedbackForm.get('requestDetail'))" id="request-detail-textarea" rows="5"
+                        placeholder="Please write a few words about your situation"></textarea>
+              <div class="control-error text-danger" *ngIf="convertToFormControl(feedbackForm.get('requestDetail')).errors">
+                This field is required
+              </div>
+            </div>
+            <button class="btn btn-primary item-fullwidth" [disabled]="feedbackForm.invalid" (click)="submit()">Submit Feedback</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

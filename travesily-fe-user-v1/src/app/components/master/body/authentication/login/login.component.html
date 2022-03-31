@@ -1,18 +1,20 @@
 <h2>Sign in</h2>
-<div class="alert"><app-alert></app-alert></div>
-<form class="form-body" [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div class="form-control">
-    <label>Email</label>
-    <app-authentication-input type="text" placeholder="Email" [control]="form?.controls['email']!"></app-authentication-input>
+<div class="alert">
+  <app-alert></app-alert>
+</div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div class="mb-5">
+    <app-authentication-input type="text" placeholder="Email" label="Email"
+                              [control]="form?.controls['email']!"></app-authentication-input>
   </div>
-  <div class="form-control">
-    <label>Password</label>
-    <app-authentication-input type="password" placeholder="Password" [control]="form?.controls['password']!"></app-authentication-input>
+  <div class="mb-5">
+    <app-authentication-input type="password" placeholder="Password" label="Password"
+                              [control]="form?.controls['password']!"></app-authentication-input>
   </div>
-  <div class="form-submit">
-    <button  class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">Login</button>
+  <div class="form-submit mb-5">
+    <button class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">Login</button>
   </div>
-  <div class="form-redirection">
+  <div class="d-flex justify-content-between">
     <a routerLink="../register" queryParamsHandling="preserve" class="register">Register</a>
     <a routerLink="../forgot-password" queryParamsHandling="preserve" class="forgot">Forgot Password?</a>
   </div>

@@ -1,26 +1,27 @@
-<div class="field">
-  <label class="form-label">{{label}}</label>
+<div class="field border-0">
   <div class="mb-3">
-    <input
-      class="form-control form-control-lg"
-      [type]="inputType"
-      [ngClass]="{'is-danger': control.dirty&&control.touched&&control.errors}"
-      placeholder="{{placeholder}}"
-      [formControl]="control"
-    >
+    <p for="input" class="text-secondary">{{label}}</p>
+    <input [type]="type" [formControl]="control" class="form-control" [placeholder]="placeholder??''"
+           [ngClass]="{'is-invalid': control.errors}" id="input">
   </div>
-  <ng-container *ngIf="control.touched&&control.dirty">
-    <div class="text-danger" *ngIf="control.errors?.required">
-      {{itemName}} is required
+  <ng-container *ngIf="control.dirty&&control.touched">
+    <div class="control-error text-danger" *ngIf="control.errors?.required">
+      This field is required
     </div>
-    <div class="text-danger" *ngIf="control.errors?.minlength">
-      {{itemName}} must be more than {{control.errors?.minlength.requiredLength}} characters
+    <div class="control-error text-danger" *ngIf="control.errors?.email">
+      Email must be a valid email address
     </div>
-    <div class="text-danger" *ngIf="control.errors?.maxlength">
-      {{itemName}} must be below {{control.errors?.maxlength.requiredLength}} characters
+    <div class="control-error text-danger" *ngIf="control.errors?.minlength">
+      This field must be at least {{control.errors?.minlength.requiredLength}}
     </div>
-    <div class="text-danger" *ngIf="control.errors?.pattern">
-      Invalid {{inputType}} format
+    <div class="control-error text-danger" *ngIf="control.errors?.matching">
+      Confirm Password not match
+    </div>
+    <div class="control-error text-danger" *ngIf="control.errors?.duplicateUsername">
+      Username existed
+    </div>
+    <div class="control-error text-danger" *ngIf="control.errors?.duplicateEmail">
+      This email has been registered
     </div>
   </ng-container>
 </div>

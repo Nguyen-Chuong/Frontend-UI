@@ -4,7 +4,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/master/header/header.component';
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {UserComponent} from './components/master/header/user/user.component';
 import {UserLoginComponent} from './components/master/header/user-login/user-login.component';
 import {BodyComponent} from './components/master/body/body.component';
@@ -80,6 +80,7 @@ import { ReviewBoxComponent } from './components/master/body/user-add-review/rev
 import { TopLocationComponent } from './components/master/body/body-home/top-location/top-location.component';
 import { LocationCardComponent } from './components/master/body/body-home/top-location/location-card/location-card.component';
 import { FooterComponent } from './components/master/footer/footer.component';
+import { BodyFeedbackComponent } from './components/master/body/body-feedback/body-feedback.component';
 
 @NgModule({
   declarations: [
@@ -148,6 +149,7 @@ import { FooterComponent } from './components/master/footer/footer.component';
     TopLocationComponent,
     LocationCardComponent,
     FooterComponent,
+    BodyFeedbackComponent,
   ],
   imports: [
     BrowserModule,
@@ -163,6 +165,7 @@ import { FooterComponent } from './components/master/footer/footer.component';
     provideStorage(() => getStorage()),
     AngularFireModule.initializeApp(environment.firebase),
     provideDatabase(() => getDatabase()),
+    FormsModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
