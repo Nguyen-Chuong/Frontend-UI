@@ -1,0 +1,29 @@
+
+
+
+.detail-list-facility{
+  display: none;
+  min-width: 40rem;
+}
+
+.see-all-hover:hover + .detail-list-facility, .detail-list-facility:hover{
+  display: block !important;
+  z-index: 2;
+}
+
+.flex-list{
+  flex-basis: 15rem;
+  min-width: 15rem;
+}
+
+.btn{
+  font-size: 1.6rem;
+}
+
+.room-type-img{
+  width: 100%;
+  height: 100%;
+}
+
+
+

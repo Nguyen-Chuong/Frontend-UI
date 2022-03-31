@@ -1,1 +1,120 @@
-<p>booking-detail works!</p>
+<div class="d-flex">
+  <div class="menu-list">
+    <app-taskbar></app-taskbar>
+  </div>
+  <div class="container">
+    <div class="card p-5 shadow mb-3">
+      <div class="card-header bg-dark">
+        <h3 class="text-white item-center m-0">{{booking.status === 1 ? 'Processing' : booking.status === 2 ?
+          'Completed' : 'Cancelled'}}</h3>
+      </div>
+      <div class="card-body text-center">
+        <p>Booking ID: {{booking?.id}}</p>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <img [src]="booking.hotel?.avatar" class="card-img-top" alt="Hotel Image">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-9">
+            <div class="row border-bottom border-end">
+              <a>
+                <h2 class="text-primary">{{booking.hotel?.name}}</h2>
+              </a>
+              <h2>
+                <span class="fa fa-star {{booking.hotel?.star>=1?'checked':''}}"></span>
+                <span class="fa fa-star {{booking.hotel?.star>=2?'checked':''}}"></span>
+                <span class="fa fa-star {{booking.hotel?.star>=3?'checked':''}}"></span>
+                <span class="fa fa-star {{booking.hotel?.star>=4?'checked':''}}"></span>
+                <span class="fa fa-star {{booking.hotel?.star>=5?'checked':''}}"></span>
+              </h2>
+              <h3 class="text-blue-1">{{booking.hotel?.address}}, {{booking.hotel?.district.nameDistrict}}
+                , {{booking.hotel?.district.city.nameCity}}</h3>
+            </div>
+            <div class="row border-end d-flex align-items-center justify-content-between">
+              <div class="col-md-4">
+                <h3>Check in</h3>
+                <h2 class="text-success">{{booking.checkIn | date: 'dd/MM/yyyy'}}</h2>
+              </div>
+              <div class="col-md-4">
+                <span class="bg-grey rounded p-3">{{booking.totalDays}} night(s)</span>
+              </div>
+              <div class="col-md-4">
+                <h3>Check out</h3>
+                <h2 class="text-danger">{{booking.checkOut | date: 'dd/MM/yyyy'}}</h2>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <a class="text-blue-1">
+              <h3><i class="fa fa-paper-plane" aria-hidden="true"></i>
+                Get booking confirmation</h3>
+            </a>
+            <a class="text-blue-1">
+              <h3><i class="fa fa-calendar" aria-hidden="true"></i>
+                Change dates</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-detail__room-info">
+      <ng-container *ngFor="let bookingDetail of bookingDetails">
+        <app-booking-detail-card [bookingDetail]="bookingDetail"></app-booking-detail-card>
+      </ng-container>
+    </div>
+    <div class="card mb-5">
+      <div class="card-header">
+        <h2>Guest Info</h2>
+      </div>
+      <div class="row g-0">
+        <div class="col-md-10 ps-3 pt-3 border-end">
+          <h4 class="card-title">Lead guess</h4>
+          <h3 class="card-title text-primary">{{booking.username}}</h3>
+        </div>
+        <div class="col-md-2">
+          <div class="card-body">
+            <a class="booking-detail__guest-info--function--confirm">
+              <h3><i class="fa-solid fa-users"></i> Manage guests
+              </h3>
+            </a>
+          </div>
+        </div>
+        <div class="card-footer">
+          <h4>Capacity</h4>
+          <h3 class="text-secondary">{{booking.bookedQuantity}} adults</h3>
+        </div>
+      </div>
+    </div>
+    <div class="card mb-5 booking-detail__payment-info">
+      <div class="card-header">
+        <h2>Payment information</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-8 border-end">
+          <div class="card-body row border-bottom">
+            <div class="col-md-9">
+              <h3>Total Price</h3>
+            </div>
+            <div class="col-md-3">
+              <h3>{{booking.totalPaid | number}} đ</h3>
+            </div>
+          </div>
+          <div class="card-body row border-bottom">
+            <p>Payment method</p>
+
+          </div>
+          <div class="card-body row">
+            <p>Earn from this trip</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

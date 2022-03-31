@@ -1,3 +1,4 @@
+import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
 import { ImportFileComponent } from './components/import-file/import-file.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { FacilityComponent } from './components/facility/facility.component';
@@ -91,6 +92,10 @@ const routes: Routes = [
   {
     path: 'add-district',
     component: ImportFileComponent,
+  },
+  {
+    path: 'booking-detail',
+    component: BookingDetailComponent,
   },
 ];
 

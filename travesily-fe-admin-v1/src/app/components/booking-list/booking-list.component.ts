@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingService } from 'src/app/_services/booking.service';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-booking-list',
@@ -19,8 +20,10 @@ export class BookingListComponent implements OnInit {
   pages: any[]
   total: number
   maxpage: number
-  constructor(private bookingService: BookingService, private router: Router,
-    private route: ActivatedRoute) {
+  constructor(private bookingService: BookingService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private cryptoService: CryptoService) {
   }
   displayedColumns: string[] = ['id', 'username', 'hotel', 'checkIn', 'checkOut', 'status'];
 
@@ -53,12 +56,13 @@ export class BookingListComponent implements OnInit {
   }
 
   openBookingDetail(id) {
+    this.router.navigate(['/booking-detail'], { queryParams: { bookingId: this.cryptoService.set('06052000', id) } })
 
   }
 
   openPage(page) {
     this.router.navigate(['booking'], {
-      queryParams: { page: JSON.stringify(page-1), size: JSON.stringify(Number(this.pageSize)) }
+      queryParams: { page: JSON.stringify(page - 1), size: JSON.stringify(Number(this.pageSize)) }
     });
   }
 
