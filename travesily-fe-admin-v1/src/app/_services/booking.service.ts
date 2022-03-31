@@ -25,4 +25,16 @@ export class BookingService {
   getAllBooking() {
     return this.http.get(`${this.baseUrl}/get-all-booking`);
   }
+
+  //Get User booking details
+  getBookingDetail(bookingId: string) {
+    const params = new HttpParams().append('bookingId', bookingId);
+    return this.http.get(`${this.baseUrl}/booking-detail`, { params: params });
+  }
+
+  //Get Booking By id
+  getBookingById(bookingId: string) {
+    const params = new HttpParams().append('bookingId', bookingId);
+    return this.http.get(`${this.baseUrl}/booking`, { params: params });
+  }
 }

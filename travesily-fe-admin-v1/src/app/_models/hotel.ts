@@ -12,4 +12,5 @@ export class Hotel {
   provider: Provider;
   email: string;
   phone: string;
+  star: number
 }

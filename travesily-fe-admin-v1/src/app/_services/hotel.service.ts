@@ -51,7 +51,7 @@ export class HotelService {
     });
   }
 
-  getRoomDetailById(id: number) {
+  getRoomDetailById(id: string) {
     return this.http.get(`${this.baseUrl}/room-detail/${id}`);
   }
 

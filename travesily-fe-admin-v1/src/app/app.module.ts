@@ -59,7 +59,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UpdateVipComponent } from './components/update-vip/update-vip.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { ImportFileComponent } from './components/import-file/import-file.component';
-
+import { BookingDetailCardComponent } from './components/booking-detail/booking-detail-card/booking-detail-card.component';
+import { ImageSliderComponent } from './components/image-slider/image-slider.component';
+import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
 
 @NgModule({
   declarations: [
@@ -94,7 +96,10 @@ import { ImportFileComponent } from './components/import-file/import-file.compon
     AddFacilityComponent,
     UpdateVipComponent,
     VipInfoComponent,
-    ImportFileComponent
+    ImportFileComponent,
+    BookingDetailCardComponent,
+    ImageSliderComponent,
+    ImagesCarouselComponent
   ],
   imports: [
     BrowserModule,
