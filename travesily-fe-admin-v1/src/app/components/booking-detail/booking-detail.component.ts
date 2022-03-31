@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from 'express';
 import { Booking } from 'src/app/_models/booking';
 import { BookingDetail } from 'src/app/_models/booking-detail';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
@@ -20,7 +19,6 @@ export class BookingDetailComponent implements OnInit {
   constructor(private authService: AuthServiceService,
               private bookingService: BookingService,
               private activatedRoute: ActivatedRoute,
-              private router: Router,
               private cryptoService: CryptoService
   ) {
 

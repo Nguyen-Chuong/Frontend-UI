@@ -56,7 +56,7 @@ export class BookingListComponent implements OnInit {
   }
 
   openBookingDetail(id) {
-    this.router.navigate(['/user/booking-detail'], { queryParams: { bookingId: this.cryptoService.set('06052000', id) } })
+    this.router.navigate(['/booking-detail'], { queryParams: { bookingId: this.cryptoService.set('06052000', id) } })
 
   }
 
