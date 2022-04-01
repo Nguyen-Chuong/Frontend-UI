@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
           ) {
             this.form.reset();
             window.location.href =
-              'https://travesily-admin.herokuapp.com/taskbar';
+              'https://admin.travesily.software/taskbar';
           }
         },
         error: (error) => {
