@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { UserService } from 'src/app/_services/user.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-user',
@@ -27,24 +28,16 @@ export class UserComponent {
   displayedColumns: string[] = ['username', 'email', 'phone', 'vip'];
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((param) => {
-      this.currentPage = param['page']
-      this.pageSize = param['size']
-    })
 
     this.userService.getAllUser().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        this.maxpage = this.total / this.pageSize
-        if (this.total % this.pageSize != 0) {
-          this.maxpage++
-        }
-        this.pages = Array.from({ length: this.maxpage }, (_, i) => i + 1)
       }
     )
-    this.userService.getAllUserPage(this.currentPage, this.pageSize).pipe(first()).subscribe(
+    this.userService.getAllUserPage(0, 5).pipe(first()).subscribe(
       rs => {
         this.users = rs['data']['items']
+        this.pageSize = rs['data']['pageSize']
       }
     )
     this.dataSource = new MatTableDataSource<Account>(this.users);
@@ -57,9 +50,11 @@ export class UserComponent {
     });
   }
 
-  openPage(page) {
-    this.router.navigate(['user'], {
-      queryParams: { page: JSON.stringify(page - 1), size: JSON.stringify(Number(this.pageSize)) }
-    });
+  getPaginatorData(event: PageEvent) {
+    this.userService.getAllUserPage(event.pageIndex, event.pageSize).pipe(first()).subscribe(
+      rs => {
+        this.users = rs['data']['items']
+      }
+    )
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingService } from 'src/app/_services/booking.service';
@@ -15,38 +16,25 @@ import { CryptoService } from 'src/app/_services/crypto.service';
 export class BookingListComponent implements OnInit {
   bookings: Booking[]
   dataSource
-  currentPage: number
-  pageSize: number
-  pages: any[]
+  pageSize: number = 0
   total: number
-  maxpage: number
   constructor(private bookingService: BookingService,
     private router: Router,
-    private route: ActivatedRoute,
     private cryptoService: CryptoService) {
   }
   displayedColumns: string[] = ['id', 'username', 'hotel', 'checkIn', 'checkOut', 'status'];
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((param) => {
-      this.currentPage = param['page']
-      this.pageSize = param['size']
-    })
 
     this.bookingService.getAllBooking().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        this.maxpage = this.total / this.pageSize
-        if (this.total % this.pageSize != 0) {
-          this.maxpage++
-        }
-        this.pages = Array.from({ length: this.maxpage }, (_, i) => i + 1)
       }
     )
-    this.bookingService.getAllBookingPage(this.currentPage, this.pageSize).pipe(first()).subscribe(
+    this.bookingService.getAllBookingPage(0, 5).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']['items']
-
+        this.pageSize = rs['data']['pageSize']
       }
     )
 
@@ -60,10 +48,13 @@ export class BookingListComponent implements OnInit {
 
   }
 
-  openPage(page) {
-    this.router.navigate(['booking'], {
-      queryParams: { page: JSON.stringify(page - 1), size: JSON.stringify(Number(this.pageSize)) }
-    });
+  getPaginatorData(event: PageEvent) {
+    this.bookingService.getAllBookingPage(event.pageIndex, event.pageSize).pipe(first()).subscribe(
+      rs => {
+        this.bookings = rs['data']['items']
+        this.pageSize = rs['data'['pageSize']]
+      }
+    )
   }
 
 }

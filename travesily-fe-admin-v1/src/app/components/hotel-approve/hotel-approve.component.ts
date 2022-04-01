@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { Hotel } from 'src/app/_models/hotel';
 import { CryptoService } from 'src/app/_services/crypto.service';
-import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { RequestService } from 'src/app/_services/request.service';
 import { DialogComponent } from '../dialog/dialog.component';
@@ -18,18 +17,14 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class HotelApproveComponent implements OnInit {
   message: string
   checked: boolean
-  currentPage: number
-  pageSize: number
-  pages: any[]
+  pageSize: number = 0
   total: number
-  maxpage: number
   requests: Request[]
   dataSource
   isAdmin = true
 
   constructor(private requestsService: RequestService,
     private router: Router,
-    private route: ActivatedRoute,
     private notificationService: NotificationService,
     public dialog: MatDialog,
     private cryptoService: CryptoService
@@ -37,25 +32,17 @@ export class HotelApproveComponent implements OnInit {
 
   displayedColumns: string[] = ['hotelName', 'requestDate', 'providerName', 'request', ' '];
   ngOnInit(): void {
-    this.route.queryParams.subscribe((param) => {
-      this.currentPage = param['page']
-      this.pageSize = param['size']
-    })
 
     this.requestsService.getAllRequest(1).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        this.maxpage = this.total / this.pageSize
-        if (this.total % this.pageSize !== 0) {
-          this.maxpage++
-        }
-        this.pages = Array.from({ length: this.maxpage }, (_, i) => i + 1)
       }
     )
 
-    this.requestsService.getPageRequest(1, this.currentPage, this.pageSize).pipe(first()).subscribe(
+    this.requestsService.getPageRequest(1, 0, 5).pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']['items']
+        this.pageSize = rs['data'['pageSize']]
       }
     )
     this.dataSource = new MatTableDataSource<Request>(this.requests);
@@ -121,5 +108,13 @@ export class HotelApproveComponent implements OnInit {
         })
       }
     });
+  }
+
+  getPaginatorData(event: PageEvent) {
+    this.requestsService.getPageRequest(1, event.pageIndex, event.pageSize).pipe(first()).subscribe(
+      rs => {
+        this.requests = rs['data']['items']
+      }
+    )
   }
 }

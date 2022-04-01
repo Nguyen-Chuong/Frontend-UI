@@ -5,10 +5,10 @@
   <div class="feedback">
     <div class="mat-elevation-z8">
       <app-feedback-table [feedbacks] = "feedbacks"></app-feedback-table>
-      <div class="paging">
-        <div *ngFor="let page of pages" class="pagination">
-          <li (click)="openPage(page)" [ngClass]="{'pagination-active' : [currentPage + 1] == page}">{{page}}</li>
-        </div>
+      <div class="row">
+        <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)"
+          aria-label="Select page">
+        </mat-paginator>
       </div>
     </div>
   </div>

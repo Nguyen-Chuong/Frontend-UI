@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
@@ -17,11 +18,8 @@ import { DialogComponent } from '../dialog/dialog.component';
 export class HotelListComponent {
   message: string
   checked: boolean
-  currentPage: number
   pageSize: number
-  pages: any[]
   total: number
-  maxpage: number
   hotels: Hotel[]
   dataSource
   isAdmin = false
@@ -34,28 +32,18 @@ export class HotelListComponent {
   displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', ' ', 'detail'];
 
   ngOnInit(): void {
-    if(localStorage.getItem('type') === '2'){
+    if (localStorage.getItem('type') === '2') {
       this.isAdmin = true
     }
-    this.route.queryParams.subscribe((param) => {
-      this.currentPage = param['page']
-      this.pageSize = param['size']
-    })
-
     this.hotelsService.getAllHotelByStatus(1).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        this.maxpage = this.total / this.pageSize
-        if (this.total % this.pageSize != 0) {
-          this.maxpage++
-        }
-        this.pages = Array.from({ length: this.maxpage }, (_, i) => i + 1)
       }
     )
-    this.hotelsService.getHotelByStatus(1, this.currentPage, this.pageSize).pipe(first()).subscribe(
+    this.hotelsService.getHotelByStatus(1, 0, 5).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
-
+        this.pageSize = rs['data']['pageSize']
       }
     )
     this.dataSource = new MatTableDataSource<Hotel>(this.hotels);
@@ -63,21 +51,21 @@ export class HotelListComponent {
   }
 
   openHotelDetail(id) {
-    const encryptedId = this.cryptoService.set('06052000',id)
+    const encryptedId = this.cryptoService.set('06052000', id)
     this.router.navigate(['hotel-detail'], {
-      queryParams: { id: JSON.stringify(encryptedId)}
+      queryParams: { id: JSON.stringify(encryptedId) }
     });
   }
 
-  deleteHotel(id){
+  deleteHotel(id) {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: this.message, isAdmin : this.isAdmin},
+      data: { checked: this.checked, message: this.message, isAdmin: this.isAdmin },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
-      if(this.checked){
+      if (this.checked) {
         this.hotelsService.deleteHotel(id).pipe(first()).subscribe({
           next: () => {
             this.notificationService.onSuccess('Removed successfully');
@@ -91,10 +79,12 @@ export class HotelListComponent {
     });
   }
 
-  openPage(page) {
-    this.router.navigate(['hotel-list'], {
-      queryParams: { page: JSON.stringify(page-1), size: JSON.stringify(Number(this.pageSize)) }
-    });
+  getPaginatorData(event: PageEvent) {
+    this.hotelsService.getHotelByStatus(1, event.pageIndex, event.pageSize).pipe(first()).subscribe(
+      rs => {
+        this.hotels = rs['data']['items']
+      }
+    )
   }
 
 }

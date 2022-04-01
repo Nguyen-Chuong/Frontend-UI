@@ -1,8 +1,8 @@
-import { Account } from 'src/app/_models/account';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/_services/auth-service.service';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
+import { Account } from 'src/app/_models/account';
+import { AuthServiceService } from 'src/app/_services/auth-service.service';
 
 
 @Component({
@@ -14,7 +14,6 @@ export class TaskbarComponent implements OnInit {
   opened = true;
   account: Account
   constructor(private router: Router,
-    private route: ActivatedRoute,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     authService.getProfile().pipe(first()).subscribe(account => {
@@ -22,69 +21,57 @@ export class TaskbarComponent implements OnInit {
       localStorage.setItem('type', String(this.account.type))
       localStorage.setItem('admin-id', String(this.account.id))
     })
-   }
+  }
 
   ngOnInit(): void {
     this.authService.getToken()
 
   }
 
-  openApprovingHotels(): void{
-    this.router.navigate(['hotel-approve'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openApprovingHotels(): void {
+    this.router.navigate(['hotel-approve'])
   }
 
-  openListHotels(): void{
-    this.router.navigate(['hotel-list'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openListHotels(): void {
+    this.router.navigate(['hotel-list'])
   }
 
-  openListManager(): void{
+  openListManager(): void {
     this.router.navigateByUrl('/manager-list');
   }
 
-  openHistory(): void{
+  openHistory(): void {
     this.router.navigate(['/history']);
   }
 
-  openFeedbackList(): void{
-    this.router.navigate(['feedback'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openFeedbackList(): void {
+    this.router.navigate(['feedback'])
   }
 
-  openBookingList(): void{
-    this.router.navigate(['booking'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openBookingList(): void {
+    this.router.navigate(['booking'])
   }
 
-  openUserList(): void{
-    this.router.navigate(['user'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openUserList(): void {
+    this.router.navigate(['user'])
   }
 
-  openProviderList(){
-    this.router.navigate(['provider'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
+  openProviderList() {
+    this.router.navigate(['provider'])
   }
-  openBenefit(){
+  openBenefit() {
     this.router.navigate(['/benefit']);
   }
 
-  openFacility(){
+  openFacility() {
     this.router.navigate(['/facility']);
   }
 
-  openAddDistrict(){
+  openAddDistrict() {
     this.router.navigate(['/add-district']);
   }
 
-  toggleSidebar(){
+  toggleSidebar() {
     this.opened = !this.opened
   }
 }
