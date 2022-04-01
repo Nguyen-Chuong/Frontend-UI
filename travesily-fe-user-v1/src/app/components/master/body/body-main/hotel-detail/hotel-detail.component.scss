@@ -46,3 +46,14 @@ span{
 .review{
   min-height: 15rem;
 }
+
+mat-paginator {
+  background-color: white;
+  color: #2D31FA;
+  display: flex;
+  justify-content: center;
+}
+
+::ng-deep .mat-paginator-page-size{
+  display: none !important;
+}

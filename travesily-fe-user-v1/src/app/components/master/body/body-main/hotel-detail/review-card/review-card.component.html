@@ -1,0 +1,29 @@
+<div class="card mb-5 border-0">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">
+        <h1 class="text-primary m-0">{{calcAvgRatingReview(review)|number:'1.0-1'}} - {{ratingTitle}}</h1>
+        <div class="d-flex align-items-center">
+          <ng-container *ngIf="review.avatar">
+            <img class="profile-image me-3" [src]="review.avatar" alt="">
+          </ng-container>
+          <ng-container *ngIf="!review.avatar">
+            <div class="profile-image me-3">
+              <div id="profileImage">{{review?.username?.charAt(0).toUpperCase()}}</div>
+            </div>
+          </ng-container>
+          <h3 class="text-primary m-0">{{review.username}}</h3>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div *ngIf="review.reviewTitle&&review.reviewDetail" class="card rounded bg-orange border-0">
+          <div class="card-body">
+            <h2 class="text-yellow"><strong>{{review.reviewTitle}}</strong></h2>
+            <p class="text-yellow">{{review.reviewDetail}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<hr>

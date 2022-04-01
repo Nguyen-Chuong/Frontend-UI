@@ -25,7 +25,8 @@ export class SearchHotelListComponent implements OnInit {
   isReviewLowToHigh: boolean = null
   isDealLowToHigh: boolean = null
   filter: SearchFilter = new SearchFilter()
-  pageSize: number = 0
+  totalItems: number = 0
+
   hotelForm = new FormGroup({
     destination: new FormControl('abc', [Validators.required]),
     from: new FormControl(new Date(), [Validators.required]),
@@ -45,7 +46,7 @@ export class SearchHotelListComponent implements OnInit {
       .subscribe({
         next: rs => {
           this.hotels = rs['data']['items']
-          this.pageSize = rs['data']['pageSize']
+          this.totalItems = rs['data']['total']
         },
         error: err => {
           console.log(err)

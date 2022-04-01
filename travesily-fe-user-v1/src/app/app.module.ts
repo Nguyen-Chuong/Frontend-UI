@@ -81,6 +81,8 @@ import { TopLocationComponent } from './components/master/body/body-home/top-loc
 import { LocationCardComponent } from './components/master/body/body-home/top-location/location-card/location-card.component';
 import { FooterComponent } from './components/master/footer/footer.component';
 import { BodyFeedbackComponent } from './components/master/body/body-feedback/body-feedback.component';
+import { ReviewCardComponent } from './components/master/body/body-main/hotel-detail/review-card/review-card.component';
+import {Nl2BrPipeModule} from "nl2br-pipe";
 
 @NgModule({
   declarations: [
@@ -150,6 +152,7 @@ import { BodyFeedbackComponent } from './components/master/body/body-feedback/bo
     LocationCardComponent,
     FooterComponent,
     BodyFeedbackComponent,
+    ReviewCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -166,6 +169,7 @@ import { BodyFeedbackComponent } from './components/master/body/body-feedback/bo
     AngularFireModule.initializeApp(environment.firebase),
     provideDatabase(() => getDatabase()),
     FormsModule,
+    Nl2BrPipeModule,
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
