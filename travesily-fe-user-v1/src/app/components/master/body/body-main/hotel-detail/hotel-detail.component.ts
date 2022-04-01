@@ -101,7 +101,6 @@ export class HotelDetailComponent implements OnInit {
               this.ratingTitle = 'Below Average'
             this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), 0, 5).subscribe({
               next: reviews => {
-                console.log(reviews)
                 this.reviews = reviews['data']['items']
                 this.totalItems = reviews['data']['total']
               }
