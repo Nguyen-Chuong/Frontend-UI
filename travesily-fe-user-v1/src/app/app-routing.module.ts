@@ -9,7 +9,6 @@ import {MasterComponent} from "./components/master/master.component";
 import {BodyUserComponent} from "./components/master/body/body-user/body-user.component";
 import {UserProfileComponent} from "./components/master/body/body-user/user-profile/user-profile.component";
 import {UserBookingsComponent} from "./components/master/body/body-user/user-bookings/user-bookings.component";
-import {UserReviewsComponent} from "./components/master/body/body-user/user-reviews/user-reviews.component";
 import {
   UserVipComponent
 } from "./components/master/body/body-user/user-vip/user-vip.component";
@@ -50,6 +49,10 @@ import {
 } from "./components/master/body/body-book/booking-transaction-information/booking-transaction-information.component";
 import {UserAddReviewComponent} from "./components/master/body/user-add-review/user-add-review.component";
 import {BodyFeedbackComponent} from "./components/master/body/body-feedback/body-feedback.component";
+import {UserFeedbackComponent} from "./components/master/body/body-user/user-feedback/user-feedback.component";
+import {
+  FeedbackDetailComponent
+} from "./components/master/body/body-user/user-feedback/feedback-detail/feedback-detail.component";
 
 const routes: Routes = [
   {
@@ -81,7 +84,8 @@ const routes: Routes = [
         path: 'user', component: BodyUserComponent, children: [
           {path: 'profile', component: UserProfileComponent},
           {path: 'bookings', component: UserBookingsComponent},
-          {path: 'reviews', component: UserReviewsComponent},
+          {path: 'user-feedback', component: UserFeedbackComponent},
+          {path: 'feedback-detail', component: FeedbackDetailComponent},
           {path: 'vip', component: UserVipComponent},
           {path: 'booking-detail', component: UserBookingDetailComponent}
         ]

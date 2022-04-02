@@ -1,0 +1,6 @@
+<div class="card {{response.sendBy === 1?'bg-white: ':'bg-user'}}">
+  <div class="card-body">
+    <p class="text-secondary">{{response.modifyDate | date:'short'}}</p>
+     <p><strong>{{response.sendBy === 1?'Admin: ':'User: '}}</strong> {{response.message}}</p>
+  </div>
+</div>

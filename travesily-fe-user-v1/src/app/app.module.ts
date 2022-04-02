@@ -26,7 +26,6 @@ import { AlertComponent } from './components/master/body/authentication/alert/al
 import { BodyUserComponent } from './components/master/body/body-user/body-user.component';
 import { UserProfileComponent } from './components/master/body/body-user/user-profile/user-profile.component';
 import { UserBookingsComponent } from './components/master/body/body-user/user-bookings/user-bookings.component';
-import { UserReviewsComponent } from './components/master/body/body-user/user-reviews/user-reviews.component';
 import { UserProfileDetailsComponent } from './components/master/body/body-user/user-profile/user-profile-details/user-profile-details.component';
 import {AuthInterceptor} from "./_helper/auth.interceptor";
 import { UserProfileDetailsInfoComponent } from './components/master/body/body-user/user-profile/user-profile-details/user-profile-details-info/user-profile-details-info.component';
@@ -83,6 +82,10 @@ import { FooterComponent } from './components/master/footer/footer.component';
 import { BodyFeedbackComponent } from './components/master/body/body-feedback/body-feedback.component';
 import { ReviewCardComponent } from './components/master/body/body-main/hotel-detail/review-card/review-card.component';
 import {Nl2BrPipeModule} from "nl2br-pipe";
+import { UserFeedbackComponent } from './components/master/body/body-user/user-feedback/user-feedback.component';
+import { FeedbackCardComponent } from './components/master/body/body-user/user-feedback/feedback-card/feedback-card.component';
+import { FeedbackDetailComponent } from './components/master/body/body-user/user-feedback/feedback-detail/feedback-detail.component';
+import { ResponseMessageComponent } from './components/master/body/body-user/user-feedback/feedback-detail/response-message/response-message.component';
 
 @NgModule({
   declarations: [
@@ -105,7 +108,6 @@ import {Nl2BrPipeModule} from "nl2br-pipe";
     BodyUserComponent,
     UserProfileComponent,
     UserBookingsComponent,
-    UserReviewsComponent,
     UserProfileDetailsComponent,
     UserProfileDetailsInfoComponent,
     EditDropdownNameComponent,
@@ -153,6 +155,10 @@ import {Nl2BrPipeModule} from "nl2br-pipe";
     FooterComponent,
     BodyFeedbackComponent,
     ReviewCardComponent,
+    UserFeedbackComponent,
+    FeedbackCardComponent,
+    FeedbackDetailComponent,
+    ResponseMessageComponent,
   ],
   imports: [
     BrowserModule,

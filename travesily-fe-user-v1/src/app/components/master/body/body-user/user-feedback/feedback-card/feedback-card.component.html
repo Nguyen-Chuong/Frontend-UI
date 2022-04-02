@@ -1,0 +1,23 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <div class="d-flex justify-content-between">
+      <h3 class="text-blue-1"><strong>FEEDBACK ID: {{feedback.id}}</strong></h3>
+      <h3 class="{{feedback.isProcessed === 0 ? 'text-primary' : feedback.isProcessed === 1 ? 'text-success' : feedback.isProcessed === 3 ? 'text-danger' : ''}}">
+        <strong>Status: {{feedback.isProcessed === 0 ? 'Processing' : feedback.isProcessed === 1 ? 'Answered' : feedback.isProcessed === 3 ? 'Closed' : ''}}</strong></h3>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-10">
+        <p><strong>Feedback message:</strong> {{feedback.message}}</p>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-sm item-fullwidth" (click)="viewDetail()">DETAIL</button>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-between">
+    <h3 class="text-orange-2"><strong>Booking ID: {{feedback.bookingId}}</strong></h3>
+    <h3><strong>Update date: {{feedback.modifyDate| date}}</strong></h3>
+  </div>
+</div>

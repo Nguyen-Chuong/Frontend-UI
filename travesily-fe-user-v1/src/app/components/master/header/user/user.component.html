@@ -19,7 +19,7 @@
   <ul class="dropdown-menu dropdown-menu-xl-end p-3" aria-labelledby="user-dropdown">
     <li><a class="dropdown-item p-3" [routerLink]="['/user/profile']">Profile</a></li>
     <li><a class="dropdown-item p-3" [routerLink]="['/user','bookings']" [queryParams]="{status: 1}">My Bookings</a></li>
-    <li><a class="dropdown-item p-3" [routerLink]="['/user/reviews']">Reviews</a></li>
+    <li><a class="dropdown-item p-3" [routerLink]="['/user/user-feedback']">My Feedbacks</a></li>
     <li><a class="dropdown-item p-3" [routerLink]="['/user/vip']">VIP Status</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><button class="btn btn-outline-danger item-fullwidth mt-2" (click)="logout()">Logout</button></li>
