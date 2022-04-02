@@ -1,3 +1,4 @@
+@import "src/app/shared/scss/_main";
 *{
   font-style: inherit;
   font-size: 1.5rem;
@@ -22,6 +23,7 @@
 }
 
 a{
+  color: blue;
   &:hover{
     text-decoration: underline;
   }

@@ -38,7 +38,7 @@ export class UpdateRoomComponent implements OnInit {
   folder = "roomType"
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private hotelService: HotelService,
     private citiesService: CitiesService,
@@ -46,7 +46,7 @@ export class UpdateRoomComponent implements OnInit {
     public dialog: MatDialog,
     private roomService: RoomService,
     private notificationService: NotificationService) {
-    this.form = fb.group({
+    this.form = this.fb.group({
       name: [''],
       quantity: [''],
       availableRooms: [''],
@@ -55,35 +55,26 @@ export class UpdateRoomComponent implements OnInit {
       dealPercentage: [''],
       dealExpire: ['']
     })
-
     this.hotelControl = new FormControl('', Validators.required);
     this.roomControl = new FormControl('', Validators.required);
   }
 
   ngOnInit(): void {
-
     this.hotelService.getAllHotel().pipe(first()).subscribe(res => {
       this.hotels = res['data']
     })
+
   }
 
   submit() {
     const val = this.form.value
-    if (val.name)
-      this.room.name = val.name
-    if (val.quantity)
-      this.room.quantity = val.quantity
-    if (val.availableRooms)
-      this.room.availableRooms = val.availableRooms
-    if (val.numberOfPeople)
-      this.room.numberOfPeople = val.numberOfPeople
-    if (val.price)
-      this.room.price = val.price
-    if (val.dealPercentage)
-      this.room.dealPercentage = val.dealPercentage
-    if (val.dealExpire)
-      this.room.dealExpire = val.dealExpire
-    console.log(this.room)
+    this.room.name = val.name
+    this.room.quantity = val.quantity
+    this.room.availableRooms = val.availableRooms
+    this.room.numberOfPeople = val.numberOfPeople
+    this.room.price = val.price
+    this.room.dealPercentage = val.dealPercentage
+    this.room.dealExpire = val.dealExpire
     if (this.roomControl.value === "newRoom") {
       this.room.hotelId = this.hotelId
       this.room.status = 1
@@ -122,17 +113,28 @@ export class UpdateRoomComponent implements OnInit {
   }
 
   changeRoom(room: Room) {
-    const encryptedId = this.cryptoService.set('06052000', room.id)
-    if(this.roomControl.value === "newRoom"){
+    if (this.roomControl.value === "newRoom") {
       this.form.reset()
-    }else{
+    } else {
+      const encryptedId = this.cryptoService.set('06052000', room.id)
       this.roomService.getRoomDetail(encryptedId).pipe(first()).subscribe(res => {
         this.room = res['data']
         if (this.room.status === 1)
           this.isDisable = false
         if (this.room.status === 2)
           this.isEnable = false
+
+        this.form = this.fb.group({
+          name: [this.room.name],
+          quantity: [this.room.quantity],
+          availableRooms: [this.room.availableRooms],
+          numberOfPeople: [this.room.numberOfPeople],
+          price: [this.room.price],
+          dealPercentage: [this.room.dealPercentage],
+          dealExpire: [this.room.dealExpire]
+        })
       })
+
     }
   }
 

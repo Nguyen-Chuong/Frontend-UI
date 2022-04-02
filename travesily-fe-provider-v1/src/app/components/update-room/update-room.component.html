@@ -32,33 +32,30 @@
         <form class="col-md-10 border-right" [formGroup]="form" aria-readonly="true">
           <div class="p-3 py-5">
             <div class="col-md-12"><label class="labels">Room name</label>
-              <input type="text" class="form-control" value={{room.name}} formControlName="name" [disabled]>
+              <input type="text" class="form-control" formControlName="name" [disabled]>
             </div>
             <div class="row mt-2">
               <div class="col-md-6"><label class="labels">Quantity room</label>
-                <input type="number" class="form-control" value={{room.quantity}} formControlName="quantity">
+                <input type="number" class="form-control" formControlName="quantity">
               </div>
               <div class="col-md-6"><label class="labels">Available Room</label>
-                <input type="number" class="form-control" value={{room.availableRooms}}
-                  formControlName="availableRooms">
+                <input type="number" class="form-control" formControlName="availableRooms">
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-md-6"><label class="labels">Number of People</label>
-                <input type="number" class="form-control" value={{room.numberOfPeople}}
-                  formControlName="numberOfPeople">
+                <input type="number" class="form-control" formControlName="numberOfPeople">
               </div>
               <div class="col-md-6"><label class="labels">Price</label>
-                <input type="number" class="form-control" value={{room.price}} formControlName="price">
+                <input type="number" class="form-control" formControlName="price">
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-md-6"><label class="labels">Deal Percentage</label>
-                <input type="number" class="form-control" value={{room.dealPercentage}}
-                  formControlName="dealPercentage">
+                <input type="number" class="form-control" formControlName="dealPercentage">
               </div>
               <div class="col-md-6"><label class="labels">Deal Expire</label>
-                <input type="datetime" class="form-control" value={{room.dealExpire}} formControlName="dealExpire">
+                <input type="datetime-local" class="form-control" value={{room.dealExpire}} formControlName="dealExpire">
               </div>
             </div>
             <div class="col-md-6"><label class="labels">Room Images</label>

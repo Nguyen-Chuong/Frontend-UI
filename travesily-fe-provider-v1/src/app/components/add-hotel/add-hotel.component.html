@@ -2,17 +2,19 @@
   <simple-notifications></simple-notifications>
   <h1>New Hotel</h1>
   <form class="form-body" [formGroup]="form" (ngSubmit)="submit()">
-
-    <div class="form-control">
-      <label>Hotel</label>
-      <app-authentication-input type="text" placeholder="Hotel name" [control]="form.controls['hotelName']">
-      </app-authentication-input>
+    <div class="group-input">
+      <div class="form-control">
+        <label>Hotel</label>
+        <app-authentication-input type="text" placeholder="Hotel name" [control]="form.controls['hotelName']">
+        </app-authentication-input>
+      </div>
+      <div class="form-control">
+        <label>Email</label>
+        <app-authentication-input type="text" placeholder="Email" [control]="form.controls['email']">
+        </app-authentication-input>
+      </div>
     </div>
-    <div class="form-control">
-      <label>Email</label>
-      <app-authentication-input type="text" placeholder="Email" [control]="form.controls['email']">
-      </app-authentication-input>
-    </div>
+    <div class="group-input">
     <div class="form-control">
       <label>Phone</label>
       <app-authentication-input type="text" placeholder="Phone number" [control]="form.controls['phone']">
@@ -23,6 +25,7 @@
       <app-authentication-input type="text" placeholder="Hotel address" [control]="form.controls['address']">
       </app-authentication-input>
     </div>
+  </div>
     <div class="group-input">
       <mat-form-field appearance="fill" class="select">
         <mat-label>City</mat-label>
@@ -44,10 +47,16 @@
         <mat-error *ngIf="districtControl.hasError('required')">Please choose a district</mat-error>
       </mat-form-field>
     </div>
+
     <div class="form-control">
-      <label>Description</label>
-      <app-authentication-input type="text" placeholder="Hotel description" [control]="form.controls['description']">
+      <label>Description title</label>
+      <app-authentication-input type="text" placeholder="Description title" [control]="form.controls['descriptionTitle']">
       </app-authentication-input>
+    </div>
+    <div class="description">
+      <label>Description</label> <br><br>
+      <textarea name="description" id="" cols="70" rows="5"
+        formControlName="description"></textarea>
     </div>
     <div class="form-submit">
       <button class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">Save</button>

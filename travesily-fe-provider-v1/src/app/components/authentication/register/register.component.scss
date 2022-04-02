@@ -1,11 +1,16 @@
+@import "src/app/shared/scss/_main";
 *{
   font-style: inherit;
   font-size: 1.5rem;
 
 }
 
+.form{
+  margin-top: 100px;
+
+}
+
 .form-body{
-  transform: translateY(100px);
   display: grid;
   grid-row-gap: 2rem;
   width: 35%;

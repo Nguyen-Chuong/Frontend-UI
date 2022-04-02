@@ -8,12 +8,14 @@ import { first } from 'rxjs';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { City } from 'src/app/_models/city';
 import { District } from 'src/app/_models/district';
-import { Hotel } from 'src/app/_models/hotel';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { CitiesService } from './../../_services/cities.service';
 import { HotelRequest } from 'src/app/_models/hotelRequest';
+import { Hotel } from 'src/app/_models/hotel';
+import { FileUpload } from 'src/app/_models/file-upload';
+import { FirebaseService } from 'src/app/_services/firebase.service';
 
 @Component({
   selector: 'app-update-hotel',
@@ -35,26 +37,20 @@ export class UpdateHotelComponent implements OnInit {
   isPending = true
   checked: boolean
   encryptedHotelId: string
+  selectedFiles: FileList
+  currentFileUpload: FileUpload
+  imageUrl: string
 
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private route: ActivatedRoute,
     private hotelService: HotelService,
     private citiesService: CitiesService,
     private cryptoService: CryptoService,
     public dialog: MatDialog,
+    private firebaseService: FirebaseService,
     private requestService: RequestService,
     private notificationService: NotificationService) {
-    this.form = fb.group({
-      name: [''],
-      email: ['', [Validators.email]],
-      phone: ['', [Validators.minLength(10), Validators.maxLength(11)]],
-      address: [''],
-      description: [''],
-    })
-
-    this.cityControl = new FormControl(this.city, Validators.required);
-    this.districtControl = new FormControl('', Validators.required);
   }
 
   ngOnInit(): void {
@@ -67,50 +63,49 @@ export class UpdateHotelComponent implements OnInit {
       if (this.hotel.status === 1) {
         this.isDisable = false
       }
-
       if (this.hotel.status === 2) {
         this.isEnable = false
-
       }
-
       if (this.hotel.status === 3) {
         this.isPending = false
-
       }
-
+      this.form = this.fb.group({
+        name: [this.hotel.name],
+        email: [this.hotel.email, [Validators.email]],
+        phone: [this.hotel.phone, [Validators.minLength(10), Validators.maxLength(11)]],
+        address: [this.hotel.address],
+        description: [this.hotel.description],
+      })
       this.encryptedHotelId = this.cryptoService.set('06052000', this.hotel.id)
+      this.cityControl = new FormControl(this.city, Validators.required);
+      this.districtControl = new FormControl(this.hotel.district, Validators.required);
     })
     this.citiesService.getAllCities().pipe(first()).subscribe(res => {
       this.cities = res['data']
     })
+
   }
 
   submit() {
+
     const val = this.form.value
     const hotelRequest = new HotelRequest
-    if (val.name) {
-      hotelRequest.name = val.name
-    }
-    if (val.email) {
-      hotelRequest.email = val.email
-    }
-    if (val.phone) {
-      hotelRequest.phone = val.phone
-    }
-    if (val.address) {
-      hotelRequest.address = val.address
-    }
-    if (val.description) {
-      hotelRequest.description = val.description
-    }
+
+    hotelRequest.id = this.hotel.id
+    hotelRequest.name = val.name
+    hotelRequest.email = val.email
+    hotelRequest.phone = val.phone
+    hotelRequest.address = val.address
+    hotelRequest.description = val.description
     this.district.id = this.districtControl.value.id
     this.district.nameDistrict = this.districtControl.value.nameDistrict
-    console.log(this.districtControl.value)
     if (this.districtControl.value.id) {
       hotelRequest.districtId = this.district.id
     }
-
-
+    console.log(this.imageUrl)
+    if (this.selectedFiles) {
+      hotelRequest.avatar = this.imageUrl
+    }
     this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
       next: () => {
         console.log(this.hotel)
@@ -133,10 +128,10 @@ export class UpdateHotelComponent implements OnInit {
     })
   }
 
-  addRequestHotel(){
+  addRequestHotel() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: "Are you sure wanna add this hotel to request list"},
+      data: { checked: this.checked, message: "Are you sure wanna add this hotel to request list" },
     });
 
     const postRequest: PostRequest = new PostRequest
@@ -144,7 +139,7 @@ export class UpdateHotelComponent implements OnInit {
     console.log(postRequest)
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
-      if(this.checked){
+      if (this.checked) {
         this.requestService.addRequest(postRequest).pipe(first()).subscribe({
           next: () => {
             this.notificationService.onSuccess('Add successfully');
@@ -159,15 +154,15 @@ export class UpdateHotelComponent implements OnInit {
     });
   }
 
-  disableHotel(){
+  disableHotel() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: "Are you sure wanna Disable this hotel"},
+      data: { checked: this.checked, message: "Are you sure wanna Disable this hotel" },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
-      if(this.checked){
+      if (this.checked) {
         this.hotelService.disableHotel(this.encryptedHotelId).pipe(first()).subscribe({
           next: () => {
             this.notificationService.onSuccess('Disable successfully');
@@ -181,15 +176,15 @@ export class UpdateHotelComponent implements OnInit {
     });
   }
 
-  enableHotel(){
+  enableHotel() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: "Are you sure wanna Enable this hotel"},
+      data: { checked: this.checked, message: "Are you sure wanna Enable this hotel" },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
-      if(this.checked){
+      if (this.checked) {
         this.hotelService.enableHotel(this.encryptedHotelId).pipe(first()).subscribe({
           next: () => {
             this.notificationService.onSuccess('Enable successfully');
@@ -201,6 +196,24 @@ export class UpdateHotelComponent implements OnInit {
         })
       }
     });
+  }
+
+  selectFile(event): void {
+    this.selectedFiles = event.target.files;
+    this.upload()
+  }
+
+  upload(): void {
+    if (this.selectedFiles) {
+      const file = this.selectedFiles.item(0);
+      this.currentFileUpload = new FileUpload(file);
+      this.firebaseService.pushFileToStorage(this.currentFileUpload, 'hotel', this.encryptedHotelId, this.encryptedHotelId)
+      this.firebaseService.getStorageUrl().subscribe(
+        rs => {
+          this.imageUrl = rs
+        }
+      )
+    }
   }
 
 }

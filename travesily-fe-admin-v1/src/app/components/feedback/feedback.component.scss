@@ -25,26 +25,4 @@ table{
   border-color: currentColor;
 }
 
-.pagination {
-  display: inline-block;
-
-  cursor: pointer;
-
-  &-active {
-    background-color: #4caf50;
-    color: white;
-  }
-}
-
-.pagination li {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-}
-
-.paging{
-  text-align: center;
-  justify-content: center;
-  padding-top: 50px;
-}
 

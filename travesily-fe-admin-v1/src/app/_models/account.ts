@@ -1,14 +1,16 @@
+import { Vip } from "./vip";
+
 export class Account {
-  id: number | undefined;
-  username: string | undefined;
-  firstname: string | undefined;
-  lastname: string | undefined;
-  email: string | undefined;
-  phone: string | undefined;
-  address: string | undefined;
-  type: number | undefined;
-  avatar: string | undefined;
-  spend: number | undefined;
-  idVip: number | undefined;
-  password: string | undefined;
+  id: number;
+  username: string;
+  firstname: string;
+  lastname: string;
+  email: string;
+  phone: string;
+  address: string;
+  type: number;
+  avatar: string;
+  spend: number;
+  vip: Vip;
+  password: string;
 }

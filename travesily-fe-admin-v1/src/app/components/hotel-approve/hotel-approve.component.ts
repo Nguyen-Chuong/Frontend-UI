@@ -42,7 +42,7 @@ export class HotelApproveComponent implements OnInit {
     this.requestsService.getPageRequest(1, 0, 5).pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']['items']
-        this.pageSize = rs['data'['pageSize']]
+        this.pageSize = rs['data']['pageSize']
       }
     )
     this.dataSource = new MatTableDataSource<Request>(this.requests);
@@ -75,6 +75,7 @@ export class HotelApproveComponent implements OnInit {
             window.location.reload()
           },
           error: err => {
+            console.log(err)
             this.notificationService.onError('Accept false')
           }
         })

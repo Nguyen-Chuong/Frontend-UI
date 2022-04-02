@@ -18,8 +18,8 @@ export class RequestService {
 
   acceptHotel(id: string) {
     const params = new HttpParams().append('requestId', id);
-    return this.http.patch(`${this.baseUrl}/accept-request`, {
-      params: params,
+    return this.http.patch(`${this.baseUrl}/accept-request`,undefined, {
+      params: params
     });
   }
 

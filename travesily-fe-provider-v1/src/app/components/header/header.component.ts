@@ -43,6 +43,7 @@ export class HeaderComponent implements OnInit {
   public logout(){
     this.authService.logout()
     this.router.navigateByUrl('/login');
+    this.isLogin = !this.isLogin
   }
 
   // // To open the url in the blank page.

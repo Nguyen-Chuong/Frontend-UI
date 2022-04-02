@@ -1,16 +1,15 @@
-import { CitiesService } from 'src/app/_services/cities.service';
-import { HotelRequest } from './../../_models/hotelRequest';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
+import { City } from 'src/app/_models/city';
+import { District } from 'src/app/_models/district';
 import { AuthService } from 'src/app/_services/auth.service';
+import { CitiesService } from 'src/app/_services/cities.service';
+import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { EmailValidator } from 'src/app/_validators/email.validator';
-import { City } from 'src/app/_models/city';
-import { District } from 'src/app/_models/district';
-import { CryptoService } from 'src/app/_services/crypto.service';
+import { HotelRequest } from './../../_models/hotelRequest';
 
 @Component({
   selector: 'app-add-hotel',
@@ -25,9 +24,9 @@ export class AddHotelComponent implements OnInit {
   cities: City[]
   districts: District[]
   city: City
+
   constructor(
     private fb: FormBuilder,
-    private router: Router,
     private hotelService: HotelService,
     private authService: AuthService,
     private notificationService: NotificationService,
@@ -39,6 +38,7 @@ export class AddHotelComponent implements OnInit {
       email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
       phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
       address: ['', [Validators.required]],
+      descriptionTitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
     })
 
@@ -59,7 +59,7 @@ export class AddHotelComponent implements OnInit {
     hotel.address = val.address
     hotel.email = val.email
     hotel.phone = val.phone
-    hotel.description = val.description
+    hotel.description = "<strong> "+val.descriptionTitle +"</strong> <br/>" + val.description
     hotel.districtId = this.districtControl.value.id
     this.hotelService.newHotel(hotel)
       .pipe(first())
@@ -72,8 +72,9 @@ export class AddHotelComponent implements OnInit {
 
         }
       })
-
   }
+
+
 
   changeCityID(city: City) {
     const encryptedId = this.cryptoService.set('06052000', city.id)
@@ -81,4 +82,6 @@ export class AddHotelComponent implements OnInit {
       this.districts = res['data']
     })
   }
+
+
 }

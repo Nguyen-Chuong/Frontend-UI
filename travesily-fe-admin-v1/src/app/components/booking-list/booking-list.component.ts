@@ -45,14 +45,12 @@ export class BookingListComponent implements OnInit {
 
   openBookingDetail(id) {
     this.router.navigate(['/booking-detail'], { queryParams: { bookingId: this.cryptoService.set('06052000', id) } })
-
   }
 
   getPaginatorData(event: PageEvent) {
     this.bookingService.getAllBookingPage(event.pageIndex, event.pageSize).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']['items']
-        this.pageSize = rs['data'['pageSize']]
       }
     )
   }

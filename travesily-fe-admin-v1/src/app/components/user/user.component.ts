@@ -16,11 +16,8 @@ import { PageEvent } from '@angular/material/paginator';
 export class UserComponent {
   users: Account[]
   dataSource
-  currentPage: number
-  pageSize: number
-  pages: any[]
+  pageSize: number = 0
   total: number
-  maxpage: number
   constructor(private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
