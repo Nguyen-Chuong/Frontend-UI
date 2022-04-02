@@ -14,8 +14,8 @@ export const environment = {
     messagingSenderId: '1022240410262',
     measurementId: 'G-PN4KKHYTQJ',
   },
-  // API_URL: 'https://capstone-hbts.herokuapp.com/api/v1',
-  API_URL: 'http://localhost:8080/api/v1',
+  API_URL: 'https://capstone-hbts.herokuapp.com/api/v1',
+  // API_URL: 'http://localhost:8080/api/v1',
   production: true,
 };
 

@@ -1,17 +1,16 @@
 import { CitiesService } from 'src/app/_services/cities.service';
-import { CryptoService } from './../../../../../travesily-fe-admin-v1/src/app/_services/crypto.service';
 import { HotelRequest } from './../../_models/hotelRequest';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { Hotel } from 'src/app/_models/hotel';
 import { AuthService } from 'src/app/_services/auth.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { EmailValidator } from 'src/app/_validators/email.validator';
 import { City } from 'src/app/_models/city';
 import { District } from 'src/app/_models/district';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-add-hotel',
