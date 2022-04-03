@@ -22,6 +22,7 @@ export class FeedbackDetailComponent implements OnInit {
   decryptedFeedbackId: number
   account: Account = new Account()
   messageForm: FormGroup
+
   constructor(private activatedRoute: ActivatedRoute,
               private feedbackService: FeedbackService,
               private authService: AuthService,
@@ -51,29 +52,39 @@ export class FeedbackDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.messageForm = this.fb.group({
-      message: ['',Validators.required]
+      message: ['', Validators.required]
     })
   }
 
+  checkOverload() {
+    if (this.responses[this.responses.length - 1].sendBy === 2 && this.responses[this.responses.length - 2].sendBy === 2 && this.responses[this.responses.length - 3].sendBy === 2 && this.responses[this.responses.length - 4].sendBy === 2 && this.responses[this.responses.length - 5].sendBy === 2) {
+      return true
+    } else return false
+  }
+
   sendMessage() {
-    if (this.messageForm.value.message) {
-      const responseRequest: ResponseRequest = new ResponseRequest()
-      responseRequest.feedbackId = this.decryptedFeedbackId
-      responseRequest.userId = this.account.id
-      responseRequest.message = this.messageForm.value.message
-      this.feedbackService.sendResponse(responseRequest).subscribe({
-        next: value => {
-          this.feedbackService.getFeedbackResponses(this.feedbackId).subscribe({
-            next: responses => {
-              this.responses = responses['data']
-              this.responses = this.responses.sort((n1, n2) => {
-                return new Date(n1.modifyDate).getTime() - new Date(n2.modifyDate).getTime()
-              })
-              this.messageForm.reset()
-            }
-          })
-        }
-      })
+    if (this.checkOverload())
+      Swal.fire('You can not send more than 5 consecutive message.\nPlease wait for our admin to response!', '', 'error')
+    else {
+      if (this.messageForm.value.message) {
+        const responseRequest: ResponseRequest = new ResponseRequest()
+        responseRequest.feedbackId = this.decryptedFeedbackId
+        responseRequest.userId = this.account.id
+        responseRequest.message = this.messageForm.value.message
+        this.feedbackService.sendResponse(responseRequest).subscribe({
+          next: value => {
+            this.feedbackService.getFeedbackResponses(this.feedbackId).subscribe({
+              next: responses => {
+                this.responses = responses['data']
+                this.responses = this.responses.sort((n1, n2) => {
+                  return new Date(n1.modifyDate).getTime() - new Date(n2.modifyDate).getTime()
+                })
+                this.messageForm.reset()
+              }
+            })
+          }
+        })
+      }
     }
   }
 }
