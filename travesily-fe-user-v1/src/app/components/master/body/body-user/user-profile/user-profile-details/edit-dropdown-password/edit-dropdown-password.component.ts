@@ -22,7 +22,7 @@ export class EditDropdownPasswordComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       oldPass: ['', Validators.required],
-      newPass: ['', [Validators.required, this.matchValidator('confirmNewPass', true)]],
+      newPass: ['', [Validators.required, this.matchValidator('confirmNewPass', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmNewPass: ['', [Validators.required, this.matchValidator('newPass')]]
     })
   }
@@ -51,11 +51,11 @@ export class EditDropdownPasswordComponent implements OnInit {
       this.authService.changePassword(val.oldPass, val.newPass).pipe(first()).subscribe({
         next: () => {
           this.form.reset()
-          Swal.fire('Change password successfully!','','success')
+          Swal.fire('Change password successfully!', '', 'success')
           this.dropdown.emit()
         },
         error: err => {
-          Swal.fire('Change password failed!','Please check your old password!','error')
+          Swal.fire('Change password failed!', 'Please check your old password!', 'error')
           this.form.reset()
         }
       })
