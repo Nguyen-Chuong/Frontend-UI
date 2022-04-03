@@ -58,11 +58,18 @@ export class BookingVnpayComponent implements OnInit {
         const paymentDto = new PaymentDto()
         paymentDto.amount = this.totalPaid * 100
         paymentDto.description = `${value['data']}-Travesily booking payment`
-        this.paymentService.createPayment(paymentDto).subscribe({
-          next: value => {
-            window.location.href = value['data']['url']
+        this.paymentService.getIpaddress().subscribe({
+          next: data => {
+            paymentDto.ipAddress = data['ip']
+            this.paymentService.createPayment(paymentDto).subscribe({
+              next: value => {
+                window.location.href = value['data']['url']
+
+              }
+            })
           }
         })
+
       }
     })
   }

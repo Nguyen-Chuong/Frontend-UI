@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
-import {HttpClient, HttpParams} from "@angular/common/http";
+import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
 import {PaymentDto} from "../_models/payment-dto";
 import {TransactionDto} from "../_models/transaction-dto";
 import {TransactionInfo} from "../_models/transaction-info";
@@ -10,8 +10,14 @@ import {TransactionInfo} from "../_models/transaction-info";
 })
 export class PaymentService {
   baseUrl = environment.API_URL;
+  private httpClient: HttpClient
+  constructor(private http: HttpClient, handler: HttpBackend) {
+    this.httpClient = new HttpClient(handler)
+  }
 
-  constructor(private http: HttpClient) {
+  //Get client ip address
+  getIpaddress() {
+    return this.httpClient.get('https://jsonip.com')
   }
 
   //Create payment

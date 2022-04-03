@@ -123,7 +123,6 @@ export class HotelDetailComponent implements OnInit {
         )
       }
     )
-
   }
 
   calcAvgRating(rating: RatingAverage) {
