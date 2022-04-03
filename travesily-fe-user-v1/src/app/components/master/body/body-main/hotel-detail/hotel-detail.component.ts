@@ -148,12 +148,14 @@ export class HotelDetailComponent implements OnInit {
           this.reviews = reviews['data']['items']
         }
       })
+    } else if (event.target['value'] == 3) {
+      this.currentCriteria = 3
+      this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), this.currentPageIndex, this.currentPageSize, this.currentCriteria).subscribe({
+        next: reviews => {
+          this.reviews = reviews['data']['items']
+        }
+      })
     }
-    // else if(event.target['value'] == 3){
-    //   this.reviews.sort((r1, r2)=>{
-    //     return this.calcAvgRatingReview(r2) - this.calcAvgRatingReview(r1)
-    //   })
-    // }
   }
 
   getPaginatorData(event: PageEvent) {
