@@ -55,7 +55,6 @@ export class BookingTransactionInformationComponent implements OnInit {
           })
         } else {
           this.isCod = false
-          this.bookingService.updateVipStatus().subscribe()
           const transaction: TransactionInfo = new TransactionInfo()
           transaction.amount = value['vnp_Amount']
           transaction.bankCode = value['vnp_BankCode']
@@ -71,6 +70,7 @@ export class BookingTransactionInformationComponent implements OnInit {
           const bookingId = +this.transactionInfo.orderInfo.split('-')[0]
           this.bookingService.completeBooking(this.cryptoService.set('06052000', bookingId)).subscribe({
             next: value => {
+              this.bookingService.updateVipStatus().subscribe()
               this.bookingService.getBookingDetail(this.cryptoService.set('06052000', bookingId)).subscribe({
                   next: bookingDetails => {
                     this.bookingDetails = bookingDetails['data']
