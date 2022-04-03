@@ -20,6 +20,9 @@
     <div class="control-error text-danger" *ngIf="control.errors?.duplicateUsername">
       Username existed
     </div>
+    <div class="control-error text-danger" *ngIf="control.errors?.pattern">
+      Invalid phone number
+    </div>
     <div class="control-error text-danger" *ngIf="control.errors?.duplicateEmail">
       This email has been registered
     </div>

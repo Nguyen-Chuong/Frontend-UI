@@ -19,7 +19,7 @@ export class EditDropdownAddPhoneComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]]
+      phone: ['', [Validators.required,Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]]
     })
   }
 

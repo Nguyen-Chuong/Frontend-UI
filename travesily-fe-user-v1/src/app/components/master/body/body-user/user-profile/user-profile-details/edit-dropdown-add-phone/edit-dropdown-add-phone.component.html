@@ -1,8 +1,8 @@
 <form [formGroup]="form" class="add-phone-form">
   <div class="form-control">
     <label>Phone</label>
-    <app-authentication-input type="text" placeholder="Phone number"
-                              [control]="form.controls['phone']"></app-authentication-input>
+    <app-input type="text" placeholder="Phone number"
+                              [control]="form.controls['phone']"></app-input>
   </div>
-  <button class="btn btn-success col-1" (click)="onSubmit()">Add</button>
+  <button class="btn btn-primary ps-3 pe-3" (click)="onSubmit()">Add</button>
 </form>
