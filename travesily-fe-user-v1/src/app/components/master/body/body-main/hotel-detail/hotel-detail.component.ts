@@ -13,6 +13,7 @@ import {ReviewService} from "../../../../../_services/review.service";
 import {CryptoService} from "../../../../../_services/crypto.service";
 import {PageEvent} from "@angular/material/paginator";
 import {Nl2BrPipeModule} from "nl2br-pipe";
+
 declare var $: any;
 
 
@@ -30,6 +31,9 @@ export class HotelDetailComponent implements OnInit {
   ratingTitle: string = ''
   reviews: Review[] = []
   totalItems: number = 0
+  currentPageIndex: number
+  currentPageSize: number
+  currentCriteria: number
 
   constructor(private activatedRoute: ActivatedRoute,
               private roomTypeService: RoomTypeService,
@@ -65,13 +69,13 @@ export class HotelDetailComponent implements OnInit {
       }, 100);
     })
       .on('mouseleave', function () {
-      var self = this;
-      setTimeout(function () {
-        if (!$('.popover:hover').length) {
-          $(self).popover('hide');
-        }
-      }, 3000);
-    });
+        var self = this;
+        setTimeout(function () {
+          if (!$('.popover:hover').length) {
+            $(self).popover('hide');
+          }
+        }, 3000);
+      });
     this.activatedRoute.queryParams.subscribe(
       rs => {
         const hotelId = rs['hotelId']
@@ -99,7 +103,10 @@ export class HotelDetailComponent implements OnInit {
               this.ratingTitle = 'Average'
             else if (avgRating < 5)
               this.ratingTitle = 'Below Average'
-            this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), 0, 5).subscribe({
+            this.currentPageIndex = 0
+            this.currentPageSize = 5
+            this.currentCriteria = 1
+            this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), this.currentPageIndex, this.currentPageSize, this.currentCriteria).subscribe({
               next: reviews => {
                 this.reviews = reviews['data']['items']
                 this.totalItems = reviews['data']['total']
@@ -112,7 +119,6 @@ export class HotelDetailComponent implements OnInit {
         this.hotelService.listBenefitsByHotelId(hotelId).subscribe(
           rs => {
             this.benefitTypes = rs['data']
-
           }
         )
       }
@@ -129,28 +135,34 @@ export class HotelDetailComponent implements OnInit {
   }
 
   filterReviews(event: Event) {
-    if(event.target['value'] == 1){
-      this.reviews.sort((r1, r2) => {
-        return new Date(r1.reviewDate).getMilliseconds() - new Date(r2.reviewDate).getMilliseconds()
+    if (event.target['value'] == 1) {
+      this.currentCriteria = 1
+      this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), this.currentPageIndex, this.currentPageSize, this.currentCriteria).subscribe({
+        next: reviews => {
+          this.reviews = reviews['data']['items']
+        }
+      })
+    } else if (event.target['value'] == 2) {
+      this.currentCriteria = 2
+      this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), this.currentPageIndex, this.currentPageSize, this.currentCriteria).subscribe({
+        next: reviews => {
+          this.reviews = reviews['data']['items']
+        }
       })
     }
-    else if(event.target['value'] == 2){
-      this.reviews.sort((r1, r2)=>{
-        return this.calcAvgRatingReview(r1) - this.calcAvgRatingReview(r2)
-      })
-    }
-    else if(event.target['value'] == 3){
-      this.reviews.sort((r1, r2)=>{
-        return this.calcAvgRatingReview(r2) - this.calcAvgRatingReview(r1)
-      })
-    }
+    // else if(event.target['value'] == 3){
+    //   this.reviews.sort((r1, r2)=>{
+    //     return this.calcAvgRatingReview(r2) - this.calcAvgRatingReview(r1)
+    //   })
+    // }
   }
 
   getPaginatorData(event: PageEvent) {
-    this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), event.pageIndex, event.pageSize).subscribe({
+    this.currentPageIndex = event.pageIndex
+    this.currentPageSize = event.pageSize
+    this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), event.pageIndex, event.pageSize, this.currentCriteria).subscribe({
       next: reviews => {
         this.reviews = reviews['data']['items']
-
       }
     })
   }
