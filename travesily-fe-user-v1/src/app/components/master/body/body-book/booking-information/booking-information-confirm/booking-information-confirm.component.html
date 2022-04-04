@@ -59,7 +59,10 @@
             <div class="dropdown">
               <a class="text-primary" (click)="toggleTextArea()"> <h4><i *ngIf="!isShow" class="fa fa-plus-circle"></i><i *ngIf="isShow" class="fa fa-minus-circle"></i> Click here for more request</h4> </a>
               <div *ngIf="isShow" class="border p-3">
-                <textarea formControlName="additional" class="item-fullwidth p-3"></textarea>
+                <textarea formControlName="additional" class="item-fullwidth p-3" placeholder="Write your request here"></textarea>
+              </div>
+              <div *ngIf="bookingForm.controls['additional'].errors" class="alert alert-danger border p-3" role="alert">
+                Your request can not exceed 200 words
               </div>
             </div>
           </form>
@@ -72,8 +75,8 @@
   <div class="card">
     <div class="card-body">
       <h4>By proceeding this booking, I agree to Travesily's terms of use and Privacy Policy</h4>
-      <h3 class="text-success d-block float-end">RISK FREE! No cancellation fee before 23:59 hrs. on April 7, 2022 (property local time)</h3>
-      <button type="button" class="btn btn-primary d-block float-end" [disabled]="carts.length ===0" (click)="checkOut()">PROCEED TO CHECKOUT!</button>
+<!--      <h3 class="text-success d-block float-end">RISK FREE! No cancellation fee before 23:59 hrs. on April 7, 2022 (property local time)</h3>-->
+      <button type="button" class="btn btn-primary d-block float-end" [disabled]="carts.length ===0 || bookingForm.invalid" (click)="checkOut()">PROCEED TO CHECKOUT!</button>
     </div>
   </div>
 </div>

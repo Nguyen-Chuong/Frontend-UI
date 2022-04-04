@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Account} from "../../../../../../_models/account";
-import {FormBuilder} from "@angular/forms";
+import {FormBuilder, Validators} from "@angular/forms";
 import {BookingRequest} from "../../../../../../_models/booking-request";
 import {BookingDetail} from "../../../../../../_models/booking-detail";
 import {CartService} from "../../../../../../_services/cart.service";
@@ -32,7 +32,7 @@ export class BookingInformationConfirmComponent implements OnInit {
     this.bookingForm = this.fb.group({
       smoking: [''],
       bed: [''],
-      additional: ['']
+      additional: ['',[Validators.maxLength(200)]]
     })
   }
 
