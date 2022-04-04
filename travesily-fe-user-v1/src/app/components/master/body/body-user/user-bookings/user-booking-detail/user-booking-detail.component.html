@@ -5,7 +5,7 @@
         class="text-white item-center m-0">{{booking.status === 1 ? 'Processing' : booking.status === 2 ? 'Completed' : 'Cancelled'}}</h3>
     </div>
     <div class="card-body text-center">
-      <p>Booking ID: {{booking?.id}}</p>
+      <p class="text-primary"><strong>Booking ID: {{booking?.id}}</strong></p>
       <div class="row">
         <button *ngIf="booking.status===2" class="btn btn-fill" (click)="review()"
                 [disabled]="booking.reviewStatus !==0">{{booking.reviewStatus === 0 ? 'Review your stay' : 'Reviewed'}}</button>
@@ -75,10 +75,16 @@
           </div>
         </div>
         <div class="col-md-3">
-          <a class="text-blue-1"><h3><i class="fa fa-paper-plane" aria-hidden="true"></i>
-            Get booking confirmation</h3></a>
-          <a class="text-blue-1"><h3><i class="fa fa-calendar" aria-hidden="true"></i>
-            Change dates</h3></a>
+          <h2 class="text-primary">Contact</h2>
+<!--          <a class="text-blue-1"><h3><i class="fa fa-paper-plane" aria-hidden="true"></i>-->
+<!--            Get booking confirmation</h3></a>-->
+<!--          <a class="text-blue-1"><h3><i class="fa fa-calendar" aria-hidden="true"></i>-->
+<!--            Change dates</h3></a>-->
+          <p class="text-secondary">Email</p>
+          <h3><strong>{{booking.hotel.email}}</strong></h3>
+          <p class="text-secondary">Phone</p>
+          <h3><strong>{{booking.hotel.phone}}</strong></h3>
+
         </div>
       </div>
     </div>
@@ -94,14 +100,14 @@
       <h2>Guest Info</h2>
     </div>
     <div class="row g-0">
-      <div class="col-md-10 ps-3 pt-3 border-end">
+      <div class="col-md-8 ps-3 pt-3 border-end">
         <h4 class="card-title">Lead guess</h4>
         <h3 class="card-title text-primary">{{account.firstname}} {{account.lastname}}</h3>
       </div>
-      <div class="col-md-2">
+      <div class="col-md-4">
         <div class="card-body">
-          <a class="booking-detail__guest-info--function--confirm"><h3><i class="fa-solid fa-users"></i> Manage guests
-          </h3></a>
+          <h4 class="text-secondary">User request</h4>
+          <p>{{booking.otherRequirement}}</p>
         </div>
       </div>
       <div class="card-footer">
@@ -116,24 +122,21 @@
     </div>
     <div class="row">
       <div class="col-md-8 border-end">
-        <div class="card-body row border-bottom">
-          <div class="col-md-9">
+        <div class="card-body border-bottom">
+          <div class="d-flex justify-content-between">
             <h3>Total Price</h3>
-          </div>
-          <div class="col-md-3">
-            <h3>{{booking.totalPaid | number}} đ</h3>
+            <h3 class="text-danger"><strong>{{booking.totalPaid | number:'1.0-0'}} đ</strong></h3>
           </div>
         </div>
-        <div class="card-body row border-bottom">
+        <div class="card-body border-bottom">
+          <div class="d-flex justify-content-between">
           <p>Payment method</p>
-
-        </div>
-        <div class="card-body row">
-          <p>Earn from this trip</p>
+          <h3 class="text-primary"><strong>{{booking.type===1?'VNPAY':'Pay at hotel'}}</strong></h3>
+          </div>
         </div>
       </div>
-      <div class="col-md-4">
-
+      <div class="col-md-4 pt-3">
+        <a class="text-primary"><h3><i class="fa fa-envelope"></i> Send e-receipt by email</h3></a>
       </div>
     </div>
 
