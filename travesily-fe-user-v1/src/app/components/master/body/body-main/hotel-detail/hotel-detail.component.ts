@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {RoomTypeService} from "../../../../../_services/room-type.service";
 import {RoomType} from "../../../../../_models/room-type";
@@ -22,7 +22,7 @@ declare var $: any;
   templateUrl: './hotel-detail.component.html',
   styleUrls: ['./hotel-detail.component.scss']
 })
-export class HotelDetailComponent implements OnInit {
+export class HotelDetailComponent implements OnInit, OnDestroy {
   roomTypes: RoomType[] = []
   hotel: Hotel = new Hotel()
   benefitTypes: BenefitType[]
@@ -46,6 +46,10 @@ export class HotelDetailComponent implements OnInit {
     this.currentUrl = this.router.url
   }
 
+  ngOnDestroy(): void {
+    $('[data-toggle="popover"]').popover("hide")
+  }
+
   ngOnInit(): void {
     $('[data-toggle="popover"]').popover({
       trigger: "manual", container: 'body', placement: "bottom", sanitize: false, html: true, content: function () {
@@ -58,6 +62,8 @@ export class HotelDetailComponent implements OnInit {
       $(".popover").on('mouseleave', function () {
         $(self).popover('hide');
       });
+    }).on('mouseleave', function () {
+      $(this).popover("hide");
     })
 
     $(document).on("click", ".hotel-nav-link", function (e) {
@@ -68,14 +74,14 @@ export class HotelDetailComponent implements OnInit {
         scrollTop: $(id).offset().top - topSpace
       }, 100);
     })
-      .on('mouseleave', function () {
-        var self = this;
-        setTimeout(function () {
-          if (!$('.popover:hover').length) {
-            $(self).popover('hide');
-          }
-        }, 3000);
-      });
+      // .on('mouseleave', function () {
+      //   var self = this;
+      //   setTimeout(function () {
+      //     if (!$('.popover:hover').length) {
+      //       $(self).popover('hide');
+      //     }
+      //   }, 3000);
+      // });
     this.activatedRoute.queryParams.subscribe(
       rs => {
         const hotelId = rs['hotelId']
@@ -124,6 +130,7 @@ export class HotelDetailComponent implements OnInit {
       }
     )
   }
+
 
   calcAvgRating(rating: RatingAverage) {
     return (rating?.averageService + rating?.averageCleanliness + rating?.averageFacilities + rating?.averageLocation + rating?.averageValueForMoney) / 5 * 2
