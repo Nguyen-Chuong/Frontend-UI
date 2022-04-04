@@ -51,10 +51,7 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent
   },
-  {
-    path: 'home',
-    component: NegativeBarComponent
-  },
+
   {
     path: 'hotel-list',
     component: HotelListComponent

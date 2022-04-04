@@ -1,13 +1,11 @@
-import { NotificationService } from './../../../_services/notification.service';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
-import { Account } from 'src/app/_models/account';
 import { AuthService } from 'src/app/_services/auth.service';
+import { CryptoService } from 'src/app/_services/crypto.service';
 import { EmailValidator } from 'src/app/_validators/email.validator';
 import { UsernameValidator } from 'src/app/_validators/username.validator';
-import { CryptoService } from 'src/app/_services/crypto.service';
+import { NotificationService } from './../../../_services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -29,7 +27,7 @@ export class RegisterComponent implements OnInit {
     this.form = fb.group({
       username: ['', [Validators.required], [UsernameValidator(this.authService)]],
       email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-      password: ['', [Validators.required, this.matchValidator('confirmPassword', true)]],
+      password: ['', [Validators.required, Validators.minLength(8), this.matchValidator('confirmPassword', true)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],
     })
   }
@@ -41,12 +39,12 @@ export class RegisterComponent implements OnInit {
     const val = this.form.value
     this.activatedRoute.queryParams.subscribe({
       next: value => {
-        this.router.navigate(['otp-checker'],{
-          queryParams:{
+        this.router.navigate(['otp-checker'], {
+          queryParams: {
             url: value['url'],
-            encryptedEmail: this.cryptoService.set('06052000',val.email),
-            encryptedPassword: this.cryptoService.set('06052000',val.password),
-            encryptedUsername: this.cryptoService.set('06052000',val.username),
+            encryptedEmail: this.cryptoService.set('06052000', val.email),
+            encryptedPassword: this.cryptoService.set('06052000', val.password),
+            encryptedUsername: this.cryptoService.set('06052000', val.username),
           }
         })
       }
@@ -64,11 +62,11 @@ export class RegisterComponent implements OnInit {
         return null
       }
       return !!control.parent &&
-      !!control.parent.value &&
-      control.value ===
-      (control.parent?.controls as any)[matchTo].value
+        !!control.parent.value &&
+        control.value ===
+        (control.parent?.controls as any)[matchTo].value
         ? null
-        : {matching: true};
+        : { matching: true };
     }
   }
 

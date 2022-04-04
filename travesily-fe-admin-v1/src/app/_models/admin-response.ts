@@ -6,4 +6,5 @@ export class AdminResponse {
   modifyDate: Date;
   userId: number;
   username: string;
+  sendBy: number
 }

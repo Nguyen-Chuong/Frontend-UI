@@ -6,4 +6,5 @@ export class Feedback {
   modifyDate: Date;
   isProcessed: number;
   email: string
+  bookingId: number
 }

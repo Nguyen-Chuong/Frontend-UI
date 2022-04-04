@@ -21,7 +21,6 @@ export class ResponseComponent implements OnInit {
   response: AdminResponse = new AdminResponse
   feedbackId: any
   isAdmin = false
-  idAdmin: number
   constructor(
     private notificationService: NotificationService,
     private feedbackService: FeedbackService,
@@ -36,7 +35,6 @@ export class ResponseComponent implements OnInit {
 
     this.route.queryParams.subscribe((param) => {
       this.feedbackId = param['id'].slice(1, -1);
-      console.log(this.feedbackId)
     })
 
     this.feedbackService.getFeedbackById(this.feedbackId).pipe(first()).subscribe(
@@ -48,10 +46,9 @@ export class ResponseComponent implements OnInit {
     this.feedbackService.getResponseByFeedbackId(this.feedbackId).pipe(first()).subscribe(
       rs => {
         this.responses = rs['data']
-        if (this.responses.length % 2 === 1 || this.formGroup.value.message_response === null) {
+        if (this.responses[0].adminId === Number(localStorage.getItem('admin-id')) || this.formGroup.value.message_response === null) {
           this.isAdmin = true
         }
-        console.log(this.isAdmin)
       }
     )
 

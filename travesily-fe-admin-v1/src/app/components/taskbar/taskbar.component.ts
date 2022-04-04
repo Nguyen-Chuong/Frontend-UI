@@ -16,16 +16,15 @@ export class TaskbarComponent implements OnInit {
   constructor(private router: Router,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-    authService.getProfile().pipe(first()).subscribe(account => {
-      this.account = account['data']
-      localStorage.setItem('type', String(this.account.type))
-      localStorage.setItem('admin-id', String(this.account.id))
-    })
   }
 
   ngOnInit(): void {
     this.authService.getToken()
-
+    this.authService.getProfile().pipe(first()).subscribe(account => {
+      this.account = account['data']
+      localStorage.setItem('type', String(this.account.type))
+      localStorage.setItem('admin-id', String(this.account.id))
+    })
   }
 
   openApprovingHotels(): void {

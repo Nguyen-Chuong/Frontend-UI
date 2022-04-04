@@ -26,7 +26,7 @@ export class AddHotelComponent implements OnInit {
   city: City
 
   constructor(
-    private fb: FormBuilder,
+    fb: FormBuilder,
     private hotelService: HotelService,
     private authService: AuthService,
     private notificationService: NotificationService,
@@ -59,7 +59,7 @@ export class AddHotelComponent implements OnInit {
     hotel.address = val.address
     hotel.email = val.email
     hotel.phone = val.phone
-    hotel.description = "<strong> "+val.descriptionTitle +"</strong> <br/>" + val.description
+    hotel.description = "<strong> " + val.descriptionTitle + "</strong> <br/>" + val.description
     hotel.districtId = this.districtControl.value.id
     this.hotelService.newHotel(hotel)
       .pipe(first())

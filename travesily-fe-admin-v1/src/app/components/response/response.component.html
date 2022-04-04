@@ -22,15 +22,19 @@
           <textarea rows="5" type="text" class="form-control message" value={{feedback.message}} readonly>
           </textarea>
         </div>
-        <div class="response-list" *ngFor="let response of responses; let indexOfelement=index">
+        <div class="response-list" *ngFor="let response of responses">
           <div class="col-md-12">
-            <textarea rows="5" type="text" [ngClass]="{'admin-response': indexOfelement%2 == 0}" class="form-control message-response" value={{response.message}} readonly>
+            <textarea [rows]="response.message.length/50 + 1" type="text" [ngClass]="{'admin-response': response.sendBy == 1}"
+              class="form-control message-response" value={{response.message}} readonly>
             </textarea>
+
+
           </div>
         </div>
         <br>
         <div class="col-md-12">
-          <textarea rows="5" type="text" placeholder="Admin response" class="form-control message" formControlName="message_response" required>
+          <textarea rows="5" type="text" placeholder="Admin response" class="form-control message"
+            formControlName="message_response" required>
           </textarea>
         </div>
 

@@ -12,14 +12,10 @@ export class RoomDetailComponent implements OnInit {
 
   images: Image[]
   image: Image
-  constructor() {
-
-  }
-
+  constructor() { }
   ngOnInit(): void {
     this.images = this.room.listImage
     this.image = this.images[0]
-    console.log(this.image)
-    console.log('get image')
+
   }
 }

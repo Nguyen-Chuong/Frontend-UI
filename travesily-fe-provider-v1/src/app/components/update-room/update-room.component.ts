@@ -181,6 +181,4 @@ export class UpdateRoomComponent implements OnInit {
       }
     });
   }
-
-
 }

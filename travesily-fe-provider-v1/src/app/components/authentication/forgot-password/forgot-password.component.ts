@@ -33,8 +33,7 @@ export class ForgotPasswordComponent implements OnInit {
     this.authService.checkEmailDuplicated(this.form.value.email).pipe(first()).subscribe(
       rs => {
         if (rs['data'] === true) {
-
-          this.router.navigate(['otp-checker'], {
+          this.router.navigate(['/otp-checker'], {
             queryParams: {
               encryptedEmail: this.cryptoService.set('06052000', this.form.value.email)
             }

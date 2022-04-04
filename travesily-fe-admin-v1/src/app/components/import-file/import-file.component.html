@@ -14,8 +14,9 @@
       </mat-select>
       <mat-error *ngIf="cityControl.hasError('required')">Please choose a city</mat-error>
     </mat-form-field>
-    <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" [disabled]="!CityId"/>
-    <button type="button" class="btn btn-primary" (click)="upload()" [disabled]="!selectedFiles">Save changes
+    <br>
+    <input type="file" class="text-nowrap text-truncate m-3" (change)="selectFile($event)" [disabled]="!CityId"/>
+    <button type="button" class="btn btn-primary m-3" (click)="upload()" [disabled]="!selectedFiles">Save changes
     </button>
   </div>
 </div>

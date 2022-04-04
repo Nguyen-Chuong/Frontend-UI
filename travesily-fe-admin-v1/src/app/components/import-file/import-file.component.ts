@@ -53,7 +53,7 @@ export class ImportFileComponent implements OnInit {
         },
         error: err => {
           console.log(err)
-          this.notificationService.onError('Upload false')
+          this.notificationService.onError(err['error']['error_message'])
         }
       })
     }

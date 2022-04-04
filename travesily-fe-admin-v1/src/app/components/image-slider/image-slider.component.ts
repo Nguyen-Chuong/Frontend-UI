@@ -11,6 +11,7 @@ export class ImageSliderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
