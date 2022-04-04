@@ -57,14 +57,19 @@ export class FeedbackDetailComponent implements OnInit {
   }
 
   checkOverload() {
-    if (this.responses[this.responses.length - 1].sendBy === 2 && this.responses[this.responses.length - 2].sendBy === 2 && this.responses[this.responses.length - 3].sendBy === 2 && this.responses[this.responses.length - 4].sendBy === 2 && this.responses[this.responses.length - 5].sendBy === 2) {
+    if (this.responses[this.responses.length - 1].sendBy === 2
+      && this.responses[this.responses.length - 2].sendBy === 2
+      && this.responses[this.responses.length - 3].sendBy === 2
+      && this.responses[this.responses.length - 4].sendBy === 2
+      && this.responses[this.responses.length - 5].sendBy === 2) {
       return true
     } else return false
   }
 
   sendMessage() {
     if (this.checkOverload())
-      Swal.fire('You can not send more than 5 consecutive message.\nPlease wait for our admin to response!', '', 'error')
+      Swal.fire('You can not send more than 5 consecutive message.\n' +
+        'Please wait for our admin to response!', '', 'error')
     else {
       if (this.messageForm.value.message) {
         const responseRequest: ResponseRequest = new ResponseRequest()

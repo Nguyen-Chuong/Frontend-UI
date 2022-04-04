@@ -16,18 +16,18 @@ input::placeholder{
 }
 
 
-::ng-deep .mat-form-field-wrapper{
+:host ::ng-deep .mat-form-field-wrapper{
   margin-bottom: 0;
 }
 
-::ng-deep .mat-form-field-flex{
+:host ::ng-deep .mat-form-field-flex{
   padding: 1.35rem 1.35rem 0 1.35rem!important;
 }
 
-::ng-deep .mat-date-range-input{
+:host ::ng-deep .mat-date-range-input{
   border: 0 !important;
 }
 
-::ng-deep .mat-date-range-input-start-wrapper{
+:host ::ng-deep .mat-date-range-input-start-wrapper{
   width: 50%;
 }
