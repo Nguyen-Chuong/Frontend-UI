@@ -30,10 +30,12 @@
     </div>
     <div class="room-list-image">
       <div class="group-input">
-        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="m-auto">Add Images</button>
-        <button class="m-auto" (click)="deleteListImageForRoomType()">Delete Images</button>
+        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="m-auto btn btn-outline-success">Add Images</button>
+        <button class="m-auto btn btn-outline-danger" (click)="deleteListImageForRoomType()">Delete Images</button>
       </div>
-      <h2 class="m-auto">List images of room</h2>
+      <br>
+      <small class="text-danger d-inline-block">*should upload photos with 16:9 resolution for best quality content</small>
+      <br>
       <div class="list-image">
         <div class="room-image" *ngFor="let image of roomType.listImage">
           <img src={{image.src}} alt="">
@@ -57,6 +59,7 @@
           <label>
             <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" multiple="multiple" />
           </label>
+
         </div>
         <img id="preview-image" class="img-fluid item-center m-auto" src="#" alt="H">
 

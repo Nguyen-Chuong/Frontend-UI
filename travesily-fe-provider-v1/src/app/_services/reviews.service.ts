@@ -9,16 +9,17 @@ export class ReviewsService {
   baseUrl = environment.API_URL;
   constructor(private http: HttpClient) {}
 
-  getReviewOfHotel(hotelId: any, page: number, pageSize: number) {
+  getReviewOfHotel(hotelId: any, page: number, pageSize: number, criteria: number) {
     const params = new HttpParams()
       .append('hotelId', hotelId)
       .append('page', page)
-      .append('pageSize', pageSize);
+      .append('pageSize', pageSize)
+      .append('criteria', criteria);
     return this.http.get(`${this.baseUrl}/reviews`, { params: params });
   }
 
-  getAllReviewOfHotel(hotelId: any) {
-    const params = new HttpParams().append('hotelId', hotelId);
+  getAllReviewOfHotel(hotelId: any, criteria: number) {
+    const params = new HttpParams().append('hotelId', hotelId).append('criteria', criteria);
     return this.http.get(`${this.baseUrl}/reviews`, { params: params });
   }
 }

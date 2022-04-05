@@ -24,11 +24,10 @@
         </div>
         <div class="response-list" *ngFor="let response of responses">
           <div class="col-md-12">
-            <textarea [rows]="response.message.length/50 + 1" type="text" [ngClass]="{'admin-response': response.sendBy == 1}"
-              class="form-control message-response" value={{response.message}} readonly>
+            <textarea [rows]="response.message.length/60 + 1" type="text"
+              [ngClass]="{'admin-response': response.sendBy == 1}" class="form-control message-response"
+              value={{response.message}} readonly>
             </textarea>
-
-
           </div>
         </div>
         <br>
@@ -37,8 +36,6 @@
             formControlName="message_response" required>
           </textarea>
         </div>
-
-
         <div class="mt-5 text-center">
           <button class="btn btn-primary response-button" type="submit" [disabled]="isAdmin">Save Response</button>
         </div>

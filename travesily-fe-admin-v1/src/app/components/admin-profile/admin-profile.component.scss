@@ -1,32 +1,33 @@
-.menu-list{
+.menu-list {
   width: 20%;
   height: 100%;
 }
 
-.profile{
+.profile {
   display: flex;
 
-  &-detail{
-    border: 1px solid red;
+  &-detail {
     width: 75%;
     display: flex;
     margin-top: 90px;
+    box-shadow: 20px 20px 50px 15px grey;
+    border-radius: 10px;
+    padding: 10px;
 
-    &-avatar{
+    &-avatar {
       width: 300px;
       height: 300px;
 
-      &-image{
+      &-image {
         width: 80%;
         height: 80%;
         margin-top: 30px;
       }
     }
 
-    &-infor{
+    &-infor {
       padding-left: 10px;
     }
-
   }
 
   &-button {
@@ -39,17 +40,16 @@
       background: #ede8ee;
       box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
     }
-
   }
 }
 .form-control:focus {
   box-shadow: none;
-  border-color: #BA68C8
+  border-color: #ba68c8;
 }
 
 .back:hover {
   color: #682773;
-  cursor: pointer
+  cursor: pointer;
 }
 
 .labels {

@@ -7,6 +7,7 @@ import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { Hotel } from 'src/app/_models/hotel';
 import { BookingsService } from 'src/app/_services/bookings.service';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -15,14 +16,13 @@ import { BookingsService } from 'src/app/_services/bookings.service';
 })
 export class HotelDetailComponent implements OnInit {
   hotelId: any
-  currentPage: number
-  pageSize: number
+  pageSize: number = 0
   pages: any[]
   total: number
-  maxPage: number
   bookings: Booking[]
   reviews: Review[]
   upComingBookings: Booking[]
+  criteria: number = 1
   constructor(private bookingsService: BookingsService,
     private reviewsService: ReviewsService,
     private router: Router,
@@ -30,8 +30,6 @@ export class HotelDetailComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.pageSize = 5
-    this.currentPage = 0
     this.route.queryParams.subscribe((param) => {
       this.hotelId = param['id'].slice(1, -1);
     })
@@ -41,48 +39,22 @@ export class HotelDetailComponent implements OnInit {
         this.upComingBookings = rs['data']['items']
 
       })
-    this.reviewsService.getAllReviewOfHotel(this.hotelId).pipe(first()).subscribe(
+    this.reviewsService.getAllReviewOfHotel(this.hotelId, this.criteria).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        this.maxPage = this.total / this.pageSize
-        if (this.total % this.pageSize != 0) {
-          this.maxPage++
-        }
-        console.log(this.total)
-        this.pages = Array.from({ length: this.maxPage }, (_, i) => i + 1)
-
       }
     )
 
-    this.reviewsService.getReviewOfHotel(this.hotelId, this.currentPage, this.pageSize).pipe(first()).subscribe(
+    this.reviewsService.getReviewOfHotel(this.hotelId, 0, 5, this.criteria).pipe(first()).subscribe(
       rs => {
         this.reviews = rs['data']['items']
-
+        this.pageSize = rs['data']['pageSize']
       }
     )
   }
 
-  changePage(page: number){
-    this.currentPage = page - 1
-    this.reviewsService.getReviewOfHotel(this.hotelId, this.currentPage, this.pageSize).pipe(first()).subscribe(
-      rs => {
-        this.reviews = rs['data']['items']
-      }
-    )
-  }
-
-  previousPage() {
-    this.currentPage = this.currentPage - 1
-    this.reviewsService.getReviewOfHotel(this.hotelId, this.currentPage, this.pageSize).pipe(first()).subscribe(
-      rs => {
-        this.reviews = rs['data']['items']
-      }
-    )
-  }
-
-  nextPage() {
-    this.currentPage = this.currentPage + 1
-    this.reviewsService.getReviewOfHotel(this.hotelId, this.currentPage, this.pageSize).pipe(first()).subscribe(
+  getPaginatorData(event: PageEvent) {
+    this.reviewsService.getReviewOfHotel(this.hotelId, event.pageIndex, event.pageSize, this.criteria).pipe(first()).subscribe(
       rs => {
         this.reviews = rs['data']['items']
       }

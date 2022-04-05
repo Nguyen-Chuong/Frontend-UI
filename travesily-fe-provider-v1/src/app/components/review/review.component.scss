@@ -3,27 +3,33 @@
   font-size: 1rem;
 }
 
-.review{
+.review {
   display: flex;
   height: 200px;
   border: 1px solid green;
   border-radius: 10px;
   padding: 10px;
-  &-rate{
+  position: relative;
+  &-rate {
     width: 25%;
 
-    &-value{
+    &-value {
       margin-top: 5px;
       display: inline-flex;
       width: 100%;
-      justify-content: space-between
-
+      justify-content: space-between;
     }
   }
 
-  &-content{
+  &-content {
     width: 70%;
     margin-left: 20px;
-  }
 
+    &-date {
+    position:absolute;
+    bottom:10px;
+    right: 10px;
+    color: gray;
+    }
+  }
 }

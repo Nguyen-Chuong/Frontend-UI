@@ -1,3 +1,4 @@
+// @import "../../../app/scss/main";
 .menu-list {
   width: 20%;
   height: 100%;
@@ -8,32 +9,16 @@
 
 .new-admin {
   width: 60%;
-  padding-top: 90px;
-  &-button {
-    margin-top: 30px;
-    text-align: center;
-  }
-
+  margin-top: 90px;
+  margin-left: 7%;
+  text-align: center;
+  box-shadow: 20px 20px 50px 15px grey;
+  border-radius: 10px;
+  padding: 10px;
   &-labels {
-    font-size: 15px;
-    padding-top: 10px;
+    font-size: 18px;
     padding-bottom: 5px;
   }
-}
-.form-control:focus {
-  box-shadow: none;
-  border-color: #ba68c8;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
-
-.labels {
-  font-size: 15px;
-  padding-top: 10px;
-  padding-bottom: 5px;
 }
 
 .full-width {
@@ -46,15 +31,7 @@
   grid-row-gap: 2rem;
 }
 
-.header {
-  color: black;
-}
-
-.input {
-  margin-bottom: 1rem;
-}
-
-.form-control{
+.form-control {
   padding-bottom: 0;
   border: none;
 }

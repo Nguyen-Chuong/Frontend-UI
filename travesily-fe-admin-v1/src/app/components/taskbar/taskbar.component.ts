@@ -16,15 +16,17 @@ export class TaskbarComponent implements OnInit {
   constructor(private router: Router,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+
+    this.authService.getProfile().pipe(first()).subscribe(account => {
+      this.account = account['data']
+      console.log(this.account.type)
+      localStorage.setItem('type', String(this.account.type))
+      localStorage.setItem('admin-id', String(this.account.id))
+    })
   }
 
   ngOnInit(): void {
     this.authService.getToken()
-    this.authService.getProfile().pipe(first()).subscribe(account => {
-      this.account = account['data']
-      localStorage.setItem('type', String(this.account.type))
-      localStorage.setItem('admin-id', String(this.account.id))
-    })
   }
 
   openApprovingHotels(): void {
@@ -68,9 +70,5 @@ export class TaskbarComponent implements OnInit {
 
   openAddDistrict() {
     this.router.navigate(['/add-district']);
-  }
-
-  toggleSidebar() {
-    this.opened = !this.opened
   }
 }

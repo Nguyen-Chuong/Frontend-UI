@@ -1,10 +1,15 @@
-//@import "main";
+@import "../../src/app/scss/_main";
 
-.input{
+.form-control{
   font-style: inherit;
   font-weight: 400;
   font-size: 2rem;
   padding: .5rem;
   border-radius: .5rem;
-  height: 50px;
+}
+
+.control-error{
+  font-style: inherit;
+  font-weight: 300;
+  font-size: 1.5rem;
 }

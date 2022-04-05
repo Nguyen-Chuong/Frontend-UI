@@ -5,26 +5,30 @@
   <div class="new-admin">
     <simple-notifications></simple-notifications>
     <form *ngIf="isAdmin" class="form-body" [formGroup]="form" (ngSubmit)="addAdmin()">
-      <h2 class="form-header">NEW MANAGER</h2>
-      <div class="form-control">
-        <label class="new-admin-labels">Username</label>
-        <app-authentication-input type="text" placeholder="Username" [control]="form?.controls['username']">
-        </app-authentication-input>
+      <h2 class="form-header p-3">NEW MANAGER</h2>
+      <div class="d-flex">
+        <div class="form-control">
+          <label class="new-admin-labels">Username</label>
+          <app-authentication-input type="text" placeholder="Username" [control]="form?.controls['username']">
+          </app-authentication-input>
+        </div>
+        <div class="form-control">
+          <label class="new-admin-labels">Email</label>
+          <app-authentication-input type="text" placeholder="Email" [control]="form?.controls['email']">
+          </app-authentication-input>
+        </div>
       </div>
-      <div class="form-control">
-        <label class="new-admin-labels">Email</label>
-        <app-authentication-input type="text" placeholder="Email" [control]="form?.controls['email']">
-        </app-authentication-input>
-      </div>
-      <div class="form-control">
-        <label class="new-admin-labels">Password</label>
-        <app-authentication-input type="password" placeholder="Password" [control]="form?.controls['password']">
-        </app-authentication-input>
-      </div>
-      <div class="form-control">
-        <label class="new-admin-labels">Confirm Password</label>
-        <app-authentication-input type="password" placeholder="Confirm Password"
-          [control]="form?.controls['confirmPassword']"></app-authentication-input>
+      <div class="d-flex">
+        <div class="form-control">
+          <label class="new-admin-labels">Password</label>
+          <app-authentication-input type="password" placeholder="Password" [control]="form?.controls['password']">
+          </app-authentication-input>
+        </div>
+        <div class="form-control">
+          <label class="new-admin-labels">Confirm Password</label>
+          <app-authentication-input type="password" placeholder="Confirm Password"
+            [control]="form?.controls['confirmPassword']"></app-authentication-input>
+        </div>
       </div>
       <div class="form-submit">
         <button class="new-admin-button" [disabled]="form.invalid">Save</button>
