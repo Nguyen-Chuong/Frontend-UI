@@ -1,17 +1,17 @@
-  <div class="card" (click)="redirectHotelDetail()">
+<div class="card mb-4" (click)="redirectHotelDetail()">
+  <div class="card-body">
     <div class="img-container">
-    <img [src]="hotel?.avatar" class="card-img-top" alt="">
+      <img [src]="hotel?.avatar" class="card-img-top" alt="">
     </div>
-    <div class="card-body">
-      <h2 class="card-title">{{hotel.name}}</h2>
-      <h4 class="m-0">
-        <span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=2?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=3?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
-      </h4>
-      <h4 class="text-primary">{{hotel.address}}, {{hotel.district.nameDistrict}}, {{hotel.district.city.nameCity}}</h4>
-      <h2 class="text-orange-2">{{hotel.price - hotel.price * hotel.salePercent / 100 | number}} đ</h2>
-    </div>
+    <h2 class="card-title m-0">{{hotel.name}}</h2>
+    <h4 class="m-0">
+      <span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=2?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=3?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
+      <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
+    </h4>
+    <h4 class="text-primary">{{hotel.address}}, {{hotel.district.nameDistrict}}, {{hotel.district.city.nameCity}}</h4>
+    <h2 class="text-orange-2">{{hotel.price - hotel.price * hotel.salePercent / 100 | number}} đ</h2>
   </div>
+</div>

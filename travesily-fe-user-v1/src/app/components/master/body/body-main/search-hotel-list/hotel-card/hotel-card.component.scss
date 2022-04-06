@@ -1,12 +1,21 @@
-
 .checked{
   color: gold;
 }
 
+.card{
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+  transition: all .2s;
+  &:hover{
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+  }
+}
+
 
 .img-fluid{
-  width: 30rem;
-  height: 30rem;
+  width: 100%;
+  height: 25rem;
+
 }
 
 .button-span {
@@ -15,8 +24,8 @@
 }
 
 #profileImage {
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   border-radius: 50%;
   background: #512DA8;
   color: #fff;
@@ -27,7 +36,7 @@
 
 .profile-image{
   border-radius: 50%;
-  width: 4rem;
-  height: 4rem;
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
 }

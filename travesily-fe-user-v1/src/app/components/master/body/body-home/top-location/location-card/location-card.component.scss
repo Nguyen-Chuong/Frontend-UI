@@ -2,6 +2,10 @@
 
 .card{
   cursor: pointer;
+  transition: all .5s;
+  &:hover{
+    transform: scale(1.05);
+  }
 }
 
 .card-img-top{

@@ -1,14 +1,11 @@
-<div class="card shadow mb-3">
-  <div class="row">
-    <div class="col-md-4">
-      <div class="row">
+<div class="card mb-3" (click)="selectRoom()">
+  <div class="card-body p-0">
+  <div class="row m-0">
+    <div class="col-md-4 p-0">
         <img [src]="hotel.avatar" alt="..." class="img-fluid rounded-start">
-      </div>
-      <div class="row">
-      </div>
     </div>
-    <div class="col-md-5 border-end">
-      <h1 class="card-title m-0">{{hotel.name}}</h1>
+    <div class="col-md-5 border-end pt-3 ps-4">
+      <h2 class="card-title m-0">{{hotel.name}}</h2>
       <h4 class="m-0">
         <span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span>
         <span class="fa fa-star {{hotel.star>=2?'checked':''}}"></span>
@@ -19,38 +16,38 @@
       <p class="card-text m-0 text-primary">{{hotel.address}}, {{hotel.district.nameDistrict}}
         , {{hotel.district.city.nameCity}}</p>
       <ul class="d-flex p-0">
-        <li class="fw-bold me-3 text-success border p-1 rounded" *ngFor="let benefit of benefits">{{benefit.name}}</li>
+        <li class="fw-bold me-3 text-success border p-1 rounded" *ngFor="let benefit of benefits"><h5 class="m-0"><strong>{{benefit.name}}</strong></h5></li>
       </ul>
-      <div class="card-text"></div>
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3 pt-3">
       <div *ngIf="hotel.rating.totalReview>0" class="row">
         <div class="col-md-8">
-          <h2 class="m-0 ms-auto text-end">{{ratingTitle}}</h2>
+          <h3 class="m-0 ms-auto text-end">{{ratingTitle}}</h3>
           <p class="text-primary text-end">{{hotel.rating.totalReview}}
             review{{hotel.rating.totalReview > 1 ? 's' : ''}}</p>
         </div>
         <div class="col-md-4">
-          <h2
-            class="bg-success text-center m-0 me-4 mt-2 ps-1 pe-1 rounded text-white">{{calcAvgRating(hotel.rating) | number: '1.0-1'}}</h2>
+          <h3
+            class="bg-success text-center m-0 me-4 mt-2 ps-1 pe-1 rounded text-white">{{calcAvgRating(hotel.rating) | number: '1.0-1'}}</h3>
         </div>
       </div>
       <div *ngIf="hotel.salePercent > 0" class="row">
-        <h2 class="text-danger bg-light-red text-end">{{hotel.salePercent}}% OFF TODAY</h2>
+        <h3 class="text-danger bg-light-red text-end"><strong>{{hotel.salePercent}}% OFF TODAY</strong></h3>
       </div>
       <div class="row">
         <ng-container *ngIf="hotel.salePercent !== 0">
-          <h1 class="text-danger text-center">
+          <h1 class="text-danger text-end mb-2">
             <del>₫ {{hotel.price | number}}</del>
           </h1>
         </ng-container>
-        <h1 class="text-success text-center">₫ {{hotel.price - hotel.price * hotel.salePercent / 100 | number}}</h1>
+        <h1 class="text-success text-end mb-2">₫ {{hotel.price - hotel.price * hotel.salePercent / 100 | number}}</h1>
       </div>
-      <div class="col-md-10 float-end me-3 d-block">
+      <div class="row float-end me-3 d-block">
         <a class="btn btn-primary btn-lg item-fullwidth" (click)="selectRoom()"><span
           class="button-span">Select room </span><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
       </div>
     </div>
+  </div>
   </div>
   <div *ngIf="hotel.review.id" class="card-footer p-4">
     <div class="d-flex justify-content-between align-items-center">
@@ -63,10 +60,9 @@
           <div id="profileImage">{{hotel.review?.username?.charAt(0).toUpperCase()}}</div>
         </div>
       </ng-container>
-      <h3 class="text-primary m-0">{{hotel.review.username}}</h3>
+      <h4 class="text-primary m-0">{{hotel.review.username}}</h4>
       </div>
-      <h3
-        class="text-primary m-0"><strong>{{calcAvgRatingReview(hotel.review)}}{{(hotel.review.reviewTitle ? ' - ' : '') + hotel.review.reviewTitle}}</strong></h3>
+      <h4 class="text-primary m-0"><strong>{{calcAvgRatingReview(hotel.review)}}{{(hotel.review.reviewTitle ? ' - ' : '') + hotel.review.reviewTitle}}</strong></h4>
     </div>
   </div>
 </div>

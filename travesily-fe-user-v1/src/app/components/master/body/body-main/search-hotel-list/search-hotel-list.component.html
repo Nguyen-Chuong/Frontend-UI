@@ -1,50 +1,50 @@
 <div class="container-fluid bg-white p-0 d-flex flex-column justify-content-between">
 <!--  <div class="row"></div>-->
   <div class="row">
-    <div class="col-md-3">
-    </div>
-    <div class="col-md-9 pt-3">
+<!--    <div class="col-md-3">-->
+<!--    </div>-->
+    <div class="col-md-9 pt-3 m-auto list-hotel">
       <div class="row mb-3">
         <div class="btn-group rounded" role="group" aria-label="Filter group">
           <button type="button" class="btn btn-outline-secondary btn-lg {{isDealLowToHigh!==null?'filter-active':''}}" (click)="toggleHotDeal()">
-            <h2 class="m-0">Hot deal
+            <h4 class="m-0">Hot deal
               <ng-container
                 *ngIf="isDealLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
               </ng-container>
               <ng-container
                 *ngIf="isDealLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
               </ng-container>
-            </h2>
+            </h4>
           </button>
           <button type="button" class="btn btn-outline-secondary btn-lg {{isReviewLowToHigh!==null?'filter-active':''}}" (click)="toggleReview()">
-            <h2 class="m-0">Top review
+            <h4 class="m-0">Top review
               <ng-container
                 *ngIf="isReviewLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
               </ng-container>
               <ng-container
                 *ngIf="isReviewLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
               </ng-container>
-            </h2>
+            </h4>
           </button>
           <button type="button" class="btn btn-outline-secondary btn-lg {{isRatingLowToHigh!==null?'filter-active':''}}" (click)="toggleRating()">
-            <h2 class="m-0">Rating
+            <h4 class="m-0">Rating
               <ng-container
                 *ngIf="isRatingLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
               </ng-container>
               <ng-container
                 *ngIf="isRatingLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
               </ng-container>
-            </h2>
+            </h4>
           </button>
           <button type="button" class="btn btn-outline-secondary btn-lg {{isPriceLowToHigh!==null?'filter-active':''}}" (click)="togglePrice()">
-            <h2 class="m-0">Price
+            <h4 class="m-0">Price
               <ng-container
                 *ngIf="isPriceLowToHigh"><i class="fa fa-caret-up" aria-hidden="true"></i>
               </ng-container>
               <ng-container
                 *ngIf="isPriceLowToHigh===false"><i class="fa fa-caret-down" aria-hidden="true"></i>
               </ng-container>
-            </h2>
+            </h4>
           </button>
         </div>
       </div>
