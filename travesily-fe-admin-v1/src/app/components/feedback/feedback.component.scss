@@ -1,3 +1,4 @@
+@import "../../scss/_main";
 .feedback-list{
   display: flex;
 }
@@ -17,12 +18,5 @@ table{
   width: 100%;
 }
 
-.mat-elevation-z8{
-  width: 100%;
-}
-
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
-}
 
 

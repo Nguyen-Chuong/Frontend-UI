@@ -1,25 +1,28 @@
 @import "src/app/shared/scss/_main";
 *{
   font-style: inherit;
-  font-size: 1.5rem;
+}
+.login{
+  font-size: 1rem;
 }
 
 .form-body{
-  transform: translateY(100px);
+  box-shadow: 20px 20px 50px 15px grey;
+  transform: translateY(8rem);
   display: grid;
-  grid-row-gap: 2rem;
+  grid-row-gap: .9rem;
   width: 35%;
   margin: 0 auto;
-  border: 1px solid red;
-  border-radius: 5px;
+  border-radius: .5rem;
   text-align: left;
-  padding: 20px;
+  padding: 2rem;
   background-color: aliceblue;
 }
 
-.form-redirection{
+.form-redirections{
   display: flex;
   justify-content: space-between;
+  font-size: 1rem;
 }
 
 a{
@@ -30,12 +33,13 @@ a{
 }
 
 .form-header{
-  font-size: 25px;
+  font-size: 2rem;
   font-weight: 700;
   text-align: center;
 }
 
 .form-control{
+  font-size: 0.5rem;
   background-color: aliceblue;
   border: none;
 }

@@ -48,3 +48,16 @@ button{
   border: none;
 }
 
+
+.mat-elevation-z8 {
+  width: 100%;
+  & th{
+    background-color: aqua;
+  }
+}
+.mat-row:hover{
+  background-color: rgb(196, 194, 194);
+}
+.mat-paginator-container{
+  width: 95%;
+}

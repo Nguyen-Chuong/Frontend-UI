@@ -13,6 +13,7 @@ export class AuthenticationInputComponent implements OnInit {
   @Input() placeholder: string | any
   @Input() classes: string | any
   @Input() value: string | any
+  @Input() label: string | any
 
   constructor() {
   }

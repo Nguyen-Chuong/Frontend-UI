@@ -5,7 +5,7 @@
   <div class="feedback">
     <div class="mat-elevation-z8">
       <app-feedback-table [feedbacks] = "feedbacks"></app-feedback-table>
-      <div class="row">
+      <div>
         <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)"
           aria-label="Select page">
         </mat-paginator>

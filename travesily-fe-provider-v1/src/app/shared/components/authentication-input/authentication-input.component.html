@@ -1,31 +1,31 @@
-<div class="field">
-  <div class="control">
-    <input [type]="type"
-           [formControl]="control"
-           class="input item-fullwidth"
-           [placeholder]="placeholder??''"
-           [value]="value??''"
-           [ngClass]="{'is-invalid': control.errors}"
 
-    >
+<div class="field border-0">
+  <div class="mb-2">
+    <label for="input" class="col-form-label">{{label}}</label>
+
+    <input [type]="type" [formControl]="control" [value]="value??''" class="form-control" [placeholder]="placeholder??''"
+             [ngClass]="{'is-invalid': control.errors}" id="input">
   </div>
   <ng-container *ngIf="control.dirty&&control.touched">
-    <div class="text-danger" *ngIf="control.errors?.required">
+    <div class="control-error text-danger" *ngIf="control.errors?.required">
       This field is required
     </div>
-    <div class="text-danger" *ngIf="control.errors?.email">
+    <div class="control-error text-danger" *ngIf="control.errors?.email">
       Email must be a valid email address
     </div>
-    <div class="text-danger" *ngIf="control.errors?.minlength">
-      This field must be at least {{control.errors?.minlength.requiredLength}}
+    <div class="control-error text-danger" *ngIf="control.errors?.minlength">
+      This field must be at least {{control.errors?.minlength.requiredLength}} characters
     </div>
-    <div class="text-danger" *ngIf="control.errors?.matching">
+    <div class="control-error text-danger" *ngIf="control.errors?.pattern">
+      Password must contains at least 1 uppercase letter, 1 number and 1 special character!
+    </div>
+    <div class="control-error text-danger" *ngIf="control.errors?.matching">
       Confirm Password not match
     </div>
-    <div class="text-danger" *ngIf="control.errors?.duplicateUsername">
+    <div class="control-error text-danger" *ngIf="control.errors?.duplicateUsername">
       Username existed
     </div>
-    <div class="text-danger" *ngIf="control.errors?.duplicateEmail">
+    <div class="control-error text-danger" *ngIf="control.errors?.duplicateEmail">
       This email has been registered
     </div>
   </ng-container>
