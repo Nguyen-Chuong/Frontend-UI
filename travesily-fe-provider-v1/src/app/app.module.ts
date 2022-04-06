@@ -37,7 +37,6 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
-import { TestUploadComponent } from './components/test-upload/test-upload.component';
 import { RoomImageComponent } from './components/room-image/room-image.component';
 import { OtpCheckerComponent } from './components/authentication/otp-checker/otp-checker.component';
 import { NgOtpInputModule } from  'ng-otp-input';
@@ -70,7 +69,6 @@ import { UpComingBookingComponent } from './components/up-coming-booking/up-comi
     AddFacilitiesComponent,
     UpdateBenefitsComponent,
     UpdateFacilitiesComponent,
-    TestUploadComponent,
     RoomImageComponent,
     OtpCheckerComponent,
     NewPasswordComponent,
