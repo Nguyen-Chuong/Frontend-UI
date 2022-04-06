@@ -2,7 +2,10 @@
 
 .filter-active{
   background-color: $color-blue-1;
-  color: white;
+  & > *{
+    color: white!important;
+
+  }
 }
 
 .container-fluid{
@@ -24,3 +27,13 @@ mat-paginator {
 .list-hotel{
   max-width: 120rem;
 }
+
+.btn-outline-secondary{
+  &:hover{
+    background-color: inherit;
+    & > *{
+      color: rgba(0, 81, 255, 0.89) !important;
+    }
+  }
+}
+
