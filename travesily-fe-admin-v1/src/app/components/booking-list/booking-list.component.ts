@@ -14,6 +14,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
 
 })
 export class BookingListComponent implements OnInit {
+  currentTask="Bookings"
   bookings: Booking[]
   dataSource
   pageSize: number = 0

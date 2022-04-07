@@ -13,6 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./manager-list.component.scss']
 })
 export class ManagerListComponent implements OnInit {
+  currentTask="Managers"
   message: string
   checked: boolean
   managers: Account[]

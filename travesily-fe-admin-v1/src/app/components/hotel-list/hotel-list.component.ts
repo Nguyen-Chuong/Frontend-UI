@@ -16,6 +16,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./hotel-list.component.scss']
 })
 export class HotelListComponent {
+  currentTask = "Hotels"
   message: string
   checked: boolean
   pageSize: number
