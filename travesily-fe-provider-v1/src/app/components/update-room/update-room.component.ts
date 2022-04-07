@@ -20,7 +20,7 @@ import { Room } from 'src/app/_models/room';
   styleUrls: ['./update-room.component.scss']
 })
 export class UpdateRoomComponent implements OnInit {
-
+  currentTask= "My Room"
   hotelControl: FormControl
   roomControl: FormControl
   form: FormGroup

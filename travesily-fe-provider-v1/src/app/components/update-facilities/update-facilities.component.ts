@@ -19,7 +19,7 @@ import { RoomService } from 'src/app/_services/room.service';
   styleUrls: ['./update-facilities.component.scss']
 })
 export class UpdateFacilitiesComponent implements OnInit {
-
+  currentTask= "Facilities"
   hotelControl: FormControl
   roomControl: FormControl
   hotel: Hotel = new Hotel
