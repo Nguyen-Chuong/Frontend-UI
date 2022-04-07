@@ -42,6 +42,7 @@ import { OtpCheckerComponent } from './components/authentication/otp-checker/otp
 import { NgOtpInputModule } from  'ng-otp-input';
 import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
 import { UpComingBookingComponent } from './components/up-coming-booking/up-coming-booking.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { UpComingBookingComponent } from './components/up-coming-booking/up-comi
     OtpCheckerComponent,
     NewPasswordComponent,
     UpComingBookingComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

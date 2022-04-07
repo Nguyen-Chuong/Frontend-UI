@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { Account } from 'src/app/_models/account';
-import { NotificationService } from 'src/app/_services/notification.service';
 import { FileUpload } from 'src/app/_models/file-upload';
+import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { FirebaseService } from 'src/app/_services/firebase.service';
+import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-admin-profile',
@@ -20,38 +19,30 @@ export class AdminProfileComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   constructor(private authService: AuthServiceService,
-    private router: Router,
     private notificationService: NotificationService,
     private firebaseService: FirebaseService) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
+      this.formGroup = new FormGroup({
+        firstname: new FormControl(this.account.firstname, [Validators.required]),
+        lastname: new FormControl(this.account.lastname, [Validators.required]),
+        phone: new FormControl(this.account.phone, [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]),
+        address: new FormControl(this.account.address, [Validators.required])
+      })
     })
+
   }
 
   ngOnInit(): void {
-    this.formGroup = new FormGroup({
-      firstname: new FormControl('', [Validators.required]),
-      lastname: new FormControl('', [Validators.required]),
-      phone: new FormControl('', [Validators.minLength(10), Validators.maxLength(11)]),
-      address: new FormControl('', [Validators.required])
-    })
+
   }
 
   updateProfile() {
     const val = this.formGroup.value
-    if (val.firstname) {
-      this.account.firstname = val.firstname
-    }
-    if (val.lastname) {
-      this.account.lastname = val.lastname
-    }
-    if (val.phone) {
-      this.account.phone = val.phone
-    }
-
-    if (val.address) {
-      this.account.address = val.address
-    }
+    this.account.firstname = val.firstname
+    this.account.lastname = val.lastname
+    this.account.phone = val.phone
+    this.account.address = val.address
     this.authService.update(this.account).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Update profile successfully');
@@ -61,6 +52,15 @@ export class AdminProfileComponent implements OnInit {
       }
     })
 
+
+
+  }
+
+  checkPhone() {
+    if (!this.formGroup.valid) {
+      this.isPhone = true
+    } else
+      this.isPhone = false
   }
 
   upload(): void {

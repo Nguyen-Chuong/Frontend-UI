@@ -3,7 +3,7 @@
     <app-taskbar></app-taskbar>
   </div>
   <div class="hotel">
-    <simple-notifications></simple-notifications>
+
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="hotels">
         <!-- Name Column -->
@@ -42,7 +42,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    <div class="row">
+    <div class="rows">
       <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)" aria-label="Select page">
       </mat-paginator>
     </div>

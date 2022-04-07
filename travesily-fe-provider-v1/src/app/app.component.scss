@@ -5,4 +5,11 @@
   background-size: cover;
   height: auto;
   min-height: 100%;
+  position: relative;
+}
+.footer {
+  box-shadow: 0 5px 5px -5px #0c1e2b;
+  position: relative;
+  z-index: 3;
+  //flex: none;
 }

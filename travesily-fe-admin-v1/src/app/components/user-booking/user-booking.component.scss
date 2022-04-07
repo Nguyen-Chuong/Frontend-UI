@@ -5,7 +5,6 @@ table{
 .mat-elevation-z8{
   width: 100%;
 }
-
-.mat-row:hover .mat-cell {
-  border-color: currentColor;
+.mat-row:hover{
+  background-color: rgb(196, 194, 194);
 }
