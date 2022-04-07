@@ -8,6 +8,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./new-hotel.component.scss']
 })
 export class NewHotelComponent implements OnInit {
+  currentTask= "New Hotel"
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;

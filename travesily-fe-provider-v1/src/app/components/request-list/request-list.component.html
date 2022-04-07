@@ -1,9 +1,8 @@
 <div class="requests">
   <div class="menu-list">
-    <app-negative-bar></app-negative-bar>
+    <app-negative-bar [currentTask]="currentTask"></app-negative-bar>
   </div>
   <div class="request mb-5">
-
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="requests">
         <!-- Name Column -->

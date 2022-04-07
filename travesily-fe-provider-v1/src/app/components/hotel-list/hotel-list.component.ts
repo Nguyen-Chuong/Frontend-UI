@@ -15,7 +15,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class HotelListComponent implements OnInit {
   hotels: Hotel[]
   dataSource
-
+  currentTask ="My Hotel"
   constructor(private hotelService: HotelService, private router: Router,
     private route: ActivatedRoute,
     private notificationService: NotificationService,

@@ -36,7 +36,8 @@ export class HeaderComponent implements OnInit {
 
   public logout(){
     this.authService.logout()
-    window.location.href = 'http://localhost:4200'
+    //window.location.href = 'http://localhost:4200'
+    window.location.href ='https://travesily.software/authentication/login'
   }
 
   // To open the url in the blank page.

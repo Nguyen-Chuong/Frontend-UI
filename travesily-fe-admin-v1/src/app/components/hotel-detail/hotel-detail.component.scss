@@ -4,10 +4,12 @@
 }
 .menu-list {
   width: 13rem;
-  height: 100%;
 }
 
 .hotel {
+  &-detail {
+    margin: 0 auto;
+  }
   &-banner {
     height: 500px;
     width: 100%;
@@ -32,7 +34,6 @@
     top: -100px;
     width: 80%;
     margin: 0 auto;
-
   }
 
   &-name {
@@ -56,7 +57,7 @@
   }
 }
 
-.room-detail{
+.room-detail {
   margin-bottom: 20px;
   margin-top: 20px;
 }
