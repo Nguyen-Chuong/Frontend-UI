@@ -13,6 +13,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./import-file.component.scss']
 })
 export class ImportFileComponent implements OnInit {
+  currentTask= "District"
   cityControl: FormControl
   cities: City[]
   CityId: number

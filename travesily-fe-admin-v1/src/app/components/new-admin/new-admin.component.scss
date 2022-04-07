@@ -1,6 +1,6 @@
 // @import "../../../app/scss/main";
 .menu-list {
-  width: 20%;
+  width: 13rem;
   height: 100%;
 }
 .add-admin {
@@ -9,12 +9,13 @@
 
 .new-admin {
   width: 60%;
-  margin-top: 90px;
+  margin: 90px auto;
   margin-left: 7%;
   text-align: center;
   box-shadow: 20px 20px 50px 15px grey;
   border-radius: 10px;
   padding: 10px;
+  background-color: rgb(255, 255, 255);
   &-labels {
     font-size: 18px;
     padding-bottom: 5px;

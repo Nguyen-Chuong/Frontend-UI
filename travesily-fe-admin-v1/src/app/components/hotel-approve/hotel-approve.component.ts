@@ -15,6 +15,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./hotel-approve.component.scss']
 })
 export class HotelApproveComponent implements OnInit {
+  currentTask= "Approve"
   message: string
   checked: boolean
   pageSize: number = 0

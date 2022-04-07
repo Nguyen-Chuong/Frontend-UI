@@ -1,5 +1,5 @@
 .menu-list {
-  width: 20%;
+  width: 13rem;
   height: 100%;
 }
 
@@ -9,10 +9,11 @@
   &-detail {
     width: 75%;
     display: flex;
-    margin-top: 90px;
+    margin: 90px auto;
     box-shadow: 20px 20px 50px 15px grey;
     border-radius: 10px;
     padding: 10px;
+    background-color: rgb(255, 255, 255);
 
     &-avatar {
       width: 300px;

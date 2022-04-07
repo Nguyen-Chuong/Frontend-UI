@@ -13,6 +13,7 @@ import { BenefitRequest } from 'src/app/_models/benefitRequest';
   styleUrls: ['./benefit.component.scss']
 })
 export class BenefitComponent implements OnInit {
+  currentTask = "Benefit"
   formGroup: FormGroup;
   benefitGroup: FormGroup;
   inputs: any[]

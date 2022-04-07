@@ -15,6 +15,7 @@ import { Provider } from './../../_models/provider';
   styleUrls: ['./provider.component.scss']
 })
 export class ProviderComponent implements OnInit {
+  currentTask = "Providers"
   message: string
   checked: boolean
   providers: Provider[]

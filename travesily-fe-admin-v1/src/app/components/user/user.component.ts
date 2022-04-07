@@ -14,6 +14,7 @@ import { PageEvent } from '@angular/material/paginator';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent {
+  currentTask= "Users"
   users: Account[]
   dataSource
   pageSize: number = 0

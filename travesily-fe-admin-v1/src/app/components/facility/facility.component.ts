@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./facility.component.scss']
 })
 export class FacilityComponent implements OnInit {
-
+  currentTask= "Facility"
   formGroup: FormGroup;
   inputs: any[]
   max: number

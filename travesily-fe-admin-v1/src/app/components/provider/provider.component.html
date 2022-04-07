@@ -1,6 +1,6 @@
 <div class="provider-list">
   <div class="menu-list">
-    <app-taskbar></app-taskbar>
+    <app-taskbar [currentTask]="currentTask"></app-taskbar>
   </div>
   <div class="provider">
     <div class="mat-elevation-z8">
@@ -8,43 +8,43 @@
 
         <!-- id -->
         <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
-          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          <th width="100" mat-header-cell *matHeaderCellDef> ID </th>
+          <td width="100" mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
 
         <!-- username -->
         <ng-container matColumnDef="username">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+          <th width="300" mat-header-cell *matHeaderCellDef> Name </th>
+          <td width="300" mat-cell *matCellDef="let element"> {{element.username}} </td>
         </ng-container>
 
         <!-- providerName Column -->
         <ng-container matColumnDef="providerName">
-          <th mat-header-cell *matHeaderCellDef> Provider Name </th>
-          <td mat-cell *matCellDef="let element"> {{element.providerName}} </td>
+          <th width="300" mat-header-cell *matHeaderCellDef> Provider Name </th>
+          <td width="300" mat-cell *matCellDef="let element"> {{element.providerName}} </td>
         </ng-container>
 
         <!-- email Column -->
         <ng-container matColumnDef="email">
-          <th mat-header-cell *matHeaderCellDef> Email </th>
-          <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+          <th width="300" mat-header-cell *matHeaderCellDef> Email </th>
+          <td width="300" mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
 
         <!-- phone Column -->
         <ng-container matColumnDef="phone">
-          <th mat-header-cell *matHeaderCellDef> Phone </th>
-          <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+          <th width="300" mat-header-cell *matHeaderCellDef> Phone </th>
+          <td width="300" mat-cell *matCellDef="let element"> {{element.phone}} </td>
         </ng-container>
 
         <!-- address Column -->
         <ng-container matColumnDef="address">
-          <th mat-header-cell *matHeaderCellDef> Address </th>
-          <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+          <th width="300" mat-header-cell *matHeaderCellDef> Address </th>
+          <td width="300" mat-cell *matCellDef="let element"> {{element.address}} </td>
         </ng-container>
 
         <ng-container matColumnDef=" ">
-          <th mat-header-cell *matHeaderCellDef>  </th>
-          <td mat-cell *matCellDef="let element">
+          <th width="200" mat-header-cell *matHeaderCellDef>  </th>
+          <td width="200" mat-cell *matCellDef="let element">
             <button class="btn btn-outline-danger" (click)="banProvider(element.id)">Ban</button>
           </td>
         </ng-container>

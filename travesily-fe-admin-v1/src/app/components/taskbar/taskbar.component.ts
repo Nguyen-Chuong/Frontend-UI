@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
@@ -11,8 +11,10 @@ import { AuthServiceService } from 'src/app/_services/auth-service.service';
   styleUrls: ['./taskbar.component.scss']
 })
 export class TaskbarComponent implements OnInit {
+  @Input() currentTask: string
   opened = true;
   account: Account
+  negativeBar = []
   constructor(private router: Router,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -27,48 +29,80 @@ export class TaskbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getToken()
+    this.negativeBar = [
+      {
+        name: "Approve", url: "/hotel-approve"
+      },
+      {
+        name: "Hotels", url: "/hotel-list"
+      },
+      {
+        name: "Bookings", url: "/booking"
+      },
+      {
+        name: "Providers", url: "/provider"
+      },
+      {
+        name: "Users", url: "/user"
+      },
+      {
+        name: "Feedback", url: "/feedback"
+      },
+      {
+        name: "Managers", url: "/manager-list"
+      },
+      {
+        name: "Benefit", url: "/benefit"
+      },
+      {
+        name: "Facility", url: "/facility"
+      },
+      {
+        name: "District", url: "/add-district"
+      }
+    ]
   }
 
-  openApprovingHotels(): void {
-    this.router.navigate(['hotel-approve'])
-  }
+  // openApprovingHotels(): void {
+  //   this.router.navigate(['hotel-approve'])
+  // }
 
-  openListHotels(): void {
-    this.router.navigate(['hotel-list'])
-  }
+  // openListHotels(): void {
+  //   this.router.navigate(['hotel-list'])
+  // }
 
-  openListManager(): void {
-    this.router.navigateByUrl('/manager-list');
-  }
+  // openListManager(): void {
+  //   this.router.navigateByUrl('/manager-list');
+  // }
 
-  openHistory(): void {
-    this.router.navigate(['/history']);
-  }
+  // openHistory(): void {
+  //   this.router.navigate(['/history']);
+  // }
 
-  openFeedbackList(): void {
-    this.router.navigate(['feedback'])
-  }
+  // openFeedbackList(): void {
+  //   this.router.navigate(['feedback'])
+  // }
 
-  openBookingList(): void {
-    this.router.navigate(['booking'])
-  }
+  // openBookingList(): void {
+  //   this.router.navigate(['booking'])
+  // }
 
-  openUserList(): void {
-    this.router.navigate(['user'])
-  }
+  // openUserList(): void {
+  //   this.router.navigate(['user'])
+  // }
 
-  openProviderList() {
-    this.router.navigate(['provider'])
-  }
-  openBenefit() {
-    this.router.navigate(['/benefit']);
-  }
+  // openProviderList() {
+  //   this.router.navigate(['provider'])
+  // }
+  // openBenefit() {
+  //   this.router.navigate(['/benefit']);
+  // }
 
-  openFacility() {
-    this.router.navigate(['/facility']);
-  }
+  // openFacility() {
+  //   this.router.navigate(['/facility']);
+  // }
 
-  openAddDistrict() {
-    this.router.navigate(['/add-district']);
-  }
+  // openAddDistrict() {
+  //   this.router.navigate(['/add-district']);
+  // }
 }

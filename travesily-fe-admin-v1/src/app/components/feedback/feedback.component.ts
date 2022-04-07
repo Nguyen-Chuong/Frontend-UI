@@ -10,7 +10,7 @@ import { Feedback } from './../../_models/feedback';
   styleUrls: ['./feedback.component.scss']
 })
 export class FeedbackComponent implements OnInit {
-
+  currentTask = "Feedback"
   feedbacks: Feedback[]
   pageSize: number = 0
   total: number
