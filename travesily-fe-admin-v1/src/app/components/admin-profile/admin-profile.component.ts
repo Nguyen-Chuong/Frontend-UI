@@ -14,7 +14,12 @@ import { NotificationService } from 'src/app/_services/notification.service';
 })
 export class AdminProfileComponent implements OnInit {
   account: Account = new Account;
-  formGroup: FormGroup;
+  formGroup = new FormGroup({
+    firstname: new FormControl('', [Validators.required]),
+    lastname: new FormControl('', [Validators.required]),
+    phone: new FormControl('', [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]),
+    address: new FormControl('', [Validators.required])
+  })
   isPhone = false
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
@@ -24,10 +29,10 @@ export class AdminProfileComponent implements OnInit {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
       this.formGroup = new FormGroup({
-        firstname: new FormControl(this.account.firstname, [Validators.required]),
-        lastname: new FormControl(this.account.lastname, [Validators.required]),
+        firstname: new FormControl(this.account.firstname),
+        lastname: new FormControl(this.account.lastname),
         phone: new FormControl(this.account.phone, [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]),
-        address: new FormControl(this.account.address, [Validators.required])
+        address: new FormControl(this.account.address)
       })
     })
 
@@ -51,9 +56,6 @@ export class AdminProfileComponent implements OnInit {
         this.notificationService.onError('Update profile false')
       }
     })
-
-
-
   }
 
   checkPhone() {

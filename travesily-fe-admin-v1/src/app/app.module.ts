@@ -62,6 +62,7 @@ import { ImportFileComponent } from './components/import-file/import-file.compon
 import { BookingDetailCardComponent } from './components/booking-detail/booking-detail-card/booking-detail-card.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,8 @@ import { ImagesCarouselComponent } from './components/images-carousel/images-car
     ImportFileComponent,
     BookingDetailCardComponent,
     ImageSliderComponent,
-    ImagesCarouselComponent
+    ImagesCarouselComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
