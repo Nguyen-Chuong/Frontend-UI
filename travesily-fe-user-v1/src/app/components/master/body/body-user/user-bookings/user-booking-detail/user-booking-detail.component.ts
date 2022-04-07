@@ -8,6 +8,8 @@ import {Account} from "../../../../../../_models/account";
 import {AuthService} from "../../../../../../_services/auth.service";
 import {CryptoService} from "../../../../../../_services/crypto.service";
 import Swal from "sweetalert2";
+import {SearchFilter} from "../../../../../../_models/search-filter";
+import {StorageService} from "../../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-user-booking-detail',
@@ -23,7 +25,8 @@ export class UserBookingDetailComponent implements OnInit {
               private bookingService: BookingService,
               private activatedRoute: ActivatedRoute,
               private router: Router,
-              private cryptoService: CryptoService
+              private cryptoService: CryptoService,
+              private storageService: StorageService
   ) {
     authService.getProfile().pipe(first()).subscribe(rs => {
       this.account = rs['data']
@@ -58,7 +61,22 @@ export class UserBookingDetailComponent implements OnInit {
   }
 
   bookAgain() {
-
+    const defaultFilter = new SearchFilter()
+    const today = new Date()
+    defaultFilter.from = new Date(today.setDate(today.getDate() + 1))
+    defaultFilter.to = new Date(today.setDate(today.getDate() + 1))
+    defaultFilter.guestNumber = this.booking.bookedQuantity
+    defaultFilter.roomNumber = this.bookingDetails[0].quantity + (this.bookingDetails[1] ? this.bookingDetails[1]?.quantity:0)
+    defaultFilter.destination = {
+      id: this.booking.hotel.district.id,
+      resultSearch: `${this.booking.hotel.district.nameDistrict} District, ${this.booking.hotel.district.city.nameCity}`
+    }
+    this.storageService.searchFilter = defaultFilter
+    this.router.navigate(['/main/hotel-detail'], {
+      queryParams: {
+        hotelId: this.cryptoService.set('06052000', this.booking.hotel.id)
+      }
+    })
   }
 
   cancel() {
@@ -66,7 +84,7 @@ export class UserBookingDetailComponent implements OnInit {
       next: value => {
         document.getElementById("btnCloseModal").click();
         Swal.fire('Cancel booking completed!', '', 'success').then(() => {
-          this.router.navigate(['/user/bookings'],{queryParams:{status: 3}})
+          this.router.navigate(['/user/bookings'], {queryParams: {status: 3}})
         })
       }
     })
