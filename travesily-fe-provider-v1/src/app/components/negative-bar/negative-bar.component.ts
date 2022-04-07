@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -10,7 +9,8 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./negative-bar.component.scss']
 })
 export class NegativeBarComponent implements OnInit {
-
+  @Input() currentTask : string
+  negativeBar = []
   opened = true;
   account: Account
   constructor(private router: Router,
@@ -19,51 +19,29 @@ export class NegativeBarComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
   ngOnInit(): void {
-  }
-
-  openApprovingHotels(): void{
-    this.router.navigate(['hotel-approve'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
-  }
-
-  openListHotels(): void{
-    this.router.navigateByUrl('/hotel-list');
-  }
-
-  openListRequest(): void{
-    this.router.navigateByUrl('/request-list');
-  }
-
-  openNewHotel(): void{
-    this.router.navigate(['/new-hotel']);
-  }
-
-  openUpdateRoom(): void{
-    this.router.navigate(['/update-room']);
-  }
-
-  openFeedbackList(): void{
-    this.router.navigate(['feedback'], {
-      queryParams: { page: JSON.stringify(0), size: JSON.stringify(5) }
-    });
-  }
-
-  openUpdateBenefit(): void{
-    this.router.navigate(['/update-benefit']);
-  }
-
-  openUpdateFacility(): void{
-    this.router.navigate(['/update-facility']);
-  }
-
-  openRoomImage(): void{
-    this.router.navigate(['/room-image']);
-  }
-
-
-  toggleSidebar(){
-    this.opened = !this.opened
+    this.negativeBar = [
+      {
+        name: "My Hotel", url: "/hotel-list", icon: "fa fa-hotel"
+      },
+      {
+        name: "Requests", url: "/request-list", icon: "fa fa-list-check-f"
+      },
+      {
+        name: "New Hotel", url: "/new-hotel", icon: "fa fa-album-circle-plus"
+      },
+      {
+        name: "My Room", url: "/update-room", icon: "fa fa-wrench"
+      },
+      {
+        name: "Benefits", url: "/update-benefit", icon: "fa fa-hands-holding-dollar"
+      },
+      {
+        name: "Facilities", url: "/update-facility", icon: "fa fa-umbrella-beach"
+      },
+      {
+        name: "Images", url: "/room-image", icon: "fa fa-images"
+      }
+    ]
   }
 
 }

@@ -32,10 +32,6 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/register');
   }
 
-  public openAddAdmin(){
-    this.router.navigateByUrl('/new-admin');
-  }
-
   public openProfile(){
     this.router.navigateByUrl('/profile');
   }
