@@ -1,9 +1,12 @@
-
+@import "../../scss/_main";
 .mat-elevation-z8{
   width: 100%;
 
   & th{
-    background-color: aqua;
+    font-size: 1.3rem;
+    color: rgb(249, 250, 249);
+    font-weight: 500;
+    background-color: rgb(85, 87, 87);
   }
 }
 .mat-row:hover{
