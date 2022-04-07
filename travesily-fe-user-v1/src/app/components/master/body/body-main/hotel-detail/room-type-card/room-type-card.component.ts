@@ -47,10 +47,12 @@ export class RoomTypeCardComponent implements OnInit {
 
   addToCart() {
     if (!this.storageService.authToken)
-      this.router.navigate(['/authentication/login'], {
-        queryParams: {
-          url: this.router.url
-        }
+      Swal.fire('Please login before booking!', '', 'error').then(() => {
+        this.router.navigate(['/authentication/login'], {
+          queryParams: {
+            url: this.router.url
+          }
+        })
       })
     else
       this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
@@ -62,10 +64,12 @@ export class RoomTypeCardComponent implements OnInit {
 
   bookNow() {
     if (!this.storageService.authToken)
-      this.router.navigate(['/authentication/login'], {
-        queryParams: {
-          url: this.router.url
-        }
+      Swal.fire('Please login before booking!', '', 'error').then(() => {
+        this.router.navigate(['/authentication/login'], {
+          queryParams: {
+            url: this.router.url
+          }
+        })
       })
     else
       this.cartService.clearCart().subscribe({
