@@ -4,9 +4,10 @@
 }
 
 .profile{
+
   &-detail{
     border: 1px solid red;
-    width: 90%;
+    width: 100%;
     margin-top: 50px;
     border-radius: 10px;
     background-color: aliceblue;
@@ -14,6 +15,10 @@
     &-infor{
       padding-left: 10px;
       width: 100%;
+
+      & form{
+        margin-left: 3.5rem;
+      }
     }
 
   }

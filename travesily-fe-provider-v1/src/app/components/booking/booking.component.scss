@@ -1,3 +1,4 @@
+@import "../../shared/scss/main";
 * {
   font-style: inherit;
   font-size: 0.9rem;
@@ -6,12 +7,3 @@ table{
   width: 100%;
 }
 
-.mat-elevation-z8{
-  width: 100%;
-  & th{
-    background-color: aqua;
-  }
-}
-.mat-row:hover{
-  background-color: rgb(196, 194, 194);
-}

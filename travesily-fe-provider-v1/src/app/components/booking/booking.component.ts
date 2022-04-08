@@ -26,7 +26,7 @@ export class BookingComponent implements OnInit {
         this.total = rs['data']['total']
       }
     )
-    this.bookingsService.getBookingOfHotel(this.hotelId, 0, 5).pipe(first()).subscribe(
+    this.bookingsService.getBookingOfHotel(this.hotelId, 0, 10).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']['items']
         this.pageSize = rs['data']['pageSize']

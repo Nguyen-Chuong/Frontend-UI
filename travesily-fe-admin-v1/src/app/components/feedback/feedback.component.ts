@@ -24,7 +24,7 @@ export class FeedbackComponent implements OnInit {
         this.total = rs['data']['total']
       }
     )
-    this.feedbackService.getFeedback(0, 5).pipe(first()).subscribe(
+    this.feedbackService.getFeedback(0, 10).pipe(first()).subscribe(
       rs => {
         this.feedbacks = rs['data']['items']
         this.pageSize = rs['data']['pageSize']

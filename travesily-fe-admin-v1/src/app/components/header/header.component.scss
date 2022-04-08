@@ -41,12 +41,23 @@
 }
 
 .logo {
-  width: 60px;
-  height: 60px;
+  width: 3.7rem;
+  height: 3.7rem;
   margin: 0;
   float: left;
   & img {
     width: 100%;
+  }
+
+  &-title{
+    font-size: 1.5rem;
+    width: 3.7rem;
+    height:3.7rem;
+    margin: 0;
+    float: left;
+    line-height: 3.7rem;
+    font-weight: 600;
+    cursor: pointer;
   }
 }
 .profile-menu{

@@ -32,7 +32,7 @@ export class UserComponent {
         this.total = rs['data']['total']
       }
     )
-    this.userService.getAllUserPage(0, 5).pipe(first()).subscribe(
+    this.userService.getAllUserPage(0, 10).pipe(first()).subscribe(
       rs => {
         this.users = rs['data']['items']
         this.pageSize = rs['data']['pageSize']

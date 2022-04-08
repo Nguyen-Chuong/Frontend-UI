@@ -32,7 +32,7 @@ export class BookingListComponent implements OnInit {
         this.total = rs['data']['total']
       }
     )
-    this.bookingService.getAllBookingPage(0, 5).pipe(first()).subscribe(
+    this.bookingService.getAllBookingPage(0, 10).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
