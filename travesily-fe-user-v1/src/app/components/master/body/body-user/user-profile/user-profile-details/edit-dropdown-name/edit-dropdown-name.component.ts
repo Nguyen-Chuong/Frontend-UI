@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {Account} from "../../../../../../../_models/account";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
@@ -46,4 +46,16 @@ export class EditDropdownNameComponent implements OnInit {
   onClear() {
     this.form.reset()
   }
+  getErrorMessage(field: string) {
+    if (field === 'firstname' && this.form.controls['firstname'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.form.controls['lastname'].hasError('required') ? 'You must enter a value' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
+  }
+
 }

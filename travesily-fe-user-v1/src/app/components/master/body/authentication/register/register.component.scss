@@ -1,4 +1,10 @@
-@import "../../../../../shared/scss/main";
+@import "main";
+
+*{
+  font-style: inherit;
+  font-size: 1.5rem;
+}
+
 .form-body{
   display: grid;
   grid-row-gap: 2rem;
@@ -11,3 +17,19 @@
 .input{
    margin-bottom: 1rem;
 }
+
+/* default and hover color */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ced0d4;
+}
+
+/* focused color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #0289fa;
+}
+
+/* floating label color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: green;
+}
+

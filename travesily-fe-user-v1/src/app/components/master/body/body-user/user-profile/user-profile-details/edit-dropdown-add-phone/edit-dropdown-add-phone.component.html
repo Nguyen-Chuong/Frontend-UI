@@ -1,8 +1,10 @@
 <form [formGroup]="form" class="add-phone-form">
-  <div class="form-control">
-    <label>Phone</label>
-    <app-input type="text" placeholder="Phone number"
-                              [control]="form.controls['phone']"></app-input>
+  <div class="row mb-4">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter phone number</mat-label>
+      <input matInput placeholder="Enter phone number" type="text" [formControl]="convertToFormControl(form?.controls['phone'])" required>
+      <mat-error *ngIf="form?.controls['phone'].invalid">{{getErrorMessage('phone')}}</mat-error>
+    </mat-form-field>
   </div>
   <button class="btn btn-primary ps-3 pe-3" (click)="onSubmit()">Add</button>
 </form>

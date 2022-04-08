@@ -1,6 +1,14 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Account} from "../../../../../../../_models/account";
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
 import {AlertService} from "../../../../../../../_services/alert.service";
@@ -21,7 +29,7 @@ export class EditDropdownPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      oldPass: ['', Validators.required],
+      oldPass: ['', [Validators.required,Validators.minLength(8)]],
       newPass: ['', [Validators.required, this.matchValidator('confirmNewPass', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmNewPass: ['', [Validators.required, this.matchValidator('newPass')]]
     })
@@ -61,4 +69,35 @@ export class EditDropdownPasswordComponent implements OnInit {
       })
     }
   }
+
+  getErrorMessage(field: string) {
+    if (field === 'oldPass' && this.form.controls['oldPass'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'newPass' && this.form.controls['newPass'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'confirmNewPass' && this.form.controls['confirmNewPass'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'oldPass' && this.form.controls['oldPass'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'newPass' && this.form.controls['newPass'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'newPass' && this.form.controls['newPass'].hasError('pattern')) {
+      return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
+    }
+    if (field === 'confirmNewPass' && this.form.controls['confirmNewPass'].hasError('matching')) {
+      return 'Confirm password not match! Please re-check!';
+    }
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
+  }
+
 }

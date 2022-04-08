@@ -1,5 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators
+} from "@angular/forms";
 import {AuthService} from "../../../../../_services/auth.service";
 import {AlertService} from "../../../../../_services/alert.service";
 import {first} from "rxjs";
@@ -54,4 +62,29 @@ export class NewPasswordComponent implements OnInit {
       )
     }
   }
+
+  getErrorMessage(field: string) {
+    if (field === 'newPass' && this.form.controls['newPass'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'confirmNewPass' && this.form.controls['confirmNewPass'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'newPass' && this.form.controls['newPass'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'newPass' && this.form.controls['newPass'].hasError('pattern')) {
+      return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
+    }
+    if (field === 'confirmNewPass' && this.form.controls['confirmNewPass'].hasError('matching')) {
+      return 'Confirm password not match! Please re-check!';
+    }
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
+  }
+
 }

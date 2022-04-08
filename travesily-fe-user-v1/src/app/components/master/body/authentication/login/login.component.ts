@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../../../../../_services/auth.service';
-import { first } from 'rxjs';
-import { AlertService } from '../../../../../_services/alert.service';
-import { StorageService } from '../../../../../_services/storage.service';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../../../../../_services/auth.service';
+import {first} from 'rxjs';
+import {AlertService} from '../../../../../_services/alert.service';
+import {StorageService} from '../../../../../_services/storage.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +21,8 @@ export class LoginComponent implements OnInit {
     private alertService: AlertService,
     private storage: StorageService,
     private activatedRoute: ActivatedRoute
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.form = this.fb.group({
@@ -60,9 +61,25 @@ export class LoginComponent implements OnInit {
         },
         error: (error) => {
           this.form.reset();
-          this.alertService.error('Please check your username and password!');
+          this.alertService.error('Please check your email and password!');
         },
       });
     }
+  }
+
+  getErrorMessage(field: string) {
+    if (field === 'email' && this.form.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    } else if (field === 'password' &&this.form.controls['password'].hasError('required')) {
+      return 'You must enter a value';
+    } else if (field === 'password' &&this.form.controls['password'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
   }
 }

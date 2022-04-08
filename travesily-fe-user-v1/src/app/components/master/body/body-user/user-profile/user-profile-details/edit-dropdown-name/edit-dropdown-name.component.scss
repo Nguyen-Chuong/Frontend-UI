@@ -1,7 +1,21 @@
-@import "src/app/shared/scss/main";
+@import "main";
 
-.edit-name-form{
-  & *{
-    margin: 1rem 0;
-  }
+*{
+  font-style: inherit;
+  font-size: 1.5rem;
+}
+
+/* default and hover color */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #ced0d4;
+}
+
+/* focused color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: #0289fa;
+}
+
+/* floating label color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+  color: green;
 }

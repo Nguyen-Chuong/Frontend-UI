@@ -4,12 +4,18 @@
 </div>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
   <div class="row mb-5">
-    <app-authentication-input type="text" placeholder="Email" label="Email"
-                              [control]="form?.controls['email']!"></app-authentication-input>
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your email</mat-label>
+      <input matInput placeholder="Enter your email" type="email" [formControl]="convertToFormControl(form?.controls['email'])" required>
+      <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+    </mat-form-field>
   </div>
   <div class="row mb-5">
-    <app-authentication-input type="password" placeholder="Password" label="Password"
-                              [control]="form?.controls['password']!"></app-authentication-input>
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your password</mat-label>
+      <input matInput placeholder="pat@example.com" type="password" [formControl]="convertToFormControl(form?.controls['password'])" required>
+      <mat-error *ngIf="form?.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+    </mat-form-field>
   </div>
   <div class="form-submit row mb-5">
     <button class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">Login</button>

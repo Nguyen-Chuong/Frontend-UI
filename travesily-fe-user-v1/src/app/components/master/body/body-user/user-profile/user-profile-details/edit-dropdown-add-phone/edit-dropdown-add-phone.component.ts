@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Account} from "../../../../../../../_models/account";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
 import Swal from "sweetalert2";
@@ -37,4 +37,17 @@ export class EditDropdownAddPhoneComponent implements OnInit {
       })
     }
   }
+
+  getErrorMessage(field: string) {
+    if (field === 'phone' && this.form.controls['phone'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.form.controls['phone'].hasError('pattern') ? 'Wrong phone format!' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
+  }
+
 }

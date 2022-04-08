@@ -1,12 +1,48 @@
 <h2>Sign up</h2>
 <div class="alert"><app-alert></app-alert></div>
 <form class="form-body" [formGroup]="form" (ngSubmit)="submit()">
-    <app-authentication-input type="text" placeholder="First Name" label="First Name" [control]="form?.controls['firstname']"></app-authentication-input>
-    <app-authentication-input type="text" placeholder="Last Name" label="Last Name" [control]="form?.controls['lastname']"></app-authentication-input>
-    <app-authentication-input type="text" placeholder="Username" label="Username" [control]="form?.controls['username']"></app-authentication-input>
-    <app-authentication-input type="text" placeholder="Email" label="Email" [control]="form?.controls['email']"></app-authentication-input>
-    <app-authentication-input type="password" placeholder="Password" label="Password" [control]="form?.controls['password']"></app-authentication-input>
-    <app-authentication-input type="password" placeholder="Confirm Password" label="Confirm Password" [control]="form?.controls['confirmPassword']"></app-authentication-input>
+  <div class="row mb-1">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your first name</mat-label>
+      <input matInput placeholder="Enter your first name" type="text" [formControl]="convertToFormControl(form?.controls['firstname'])" required>
+      <mat-error *ngIf="form?.controls['firstname'].invalid">{{getErrorMessage('firstname')}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row mb-1">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your last name</mat-label>
+      <input matInput placeholder="Enter your last name" type="text" [formControl]="convertToFormControl(form?.controls['lastname'])" required>
+      <mat-error *ngIf="form?.controls['lastname'].invalid">{{getErrorMessage('lastname')}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row mb-1">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your username</mat-label>
+      <input matInput placeholder="Enter your username" type="text" [formControl]="convertToFormControl(form?.controls['username'])" required>
+      <mat-error *ngIf="form?.controls['username'].invalid">{{getErrorMessage('username')}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row mb-1">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your email</mat-label>
+      <input matInput placeholder="Enter your email" type="email" [formControl]="convertToFormControl(form?.controls['email'])" required>
+      <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row mb-1">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your password</mat-label>
+      <input matInput placeholder="Enter your password" type="password" [formControl]="convertToFormControl(form?.controls['password'])" required>
+      <mat-error *ngIf="form?.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+    </mat-form-field>
+  </div>
+  <div class="row mb-1">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Confirm your password</mat-label>
+      <input matInput placeholder="Confirm your password" type="password" [formControl]="convertToFormControl(form?.controls['confirmPassword'])" required>
+      <mat-error *ngIf="form?.controls['confirmPassword'].invalid">{{getErrorMessage('confirmPassword')}}</mat-error>
+    </mat-form-field>
+  </div>
   <div class="form-submit">
     <button class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">Sign up</button>
   </div>

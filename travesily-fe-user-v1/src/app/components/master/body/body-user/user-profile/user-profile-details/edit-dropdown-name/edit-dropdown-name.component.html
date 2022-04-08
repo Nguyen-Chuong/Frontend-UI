@@ -1,9 +1,17 @@
 <form [formGroup]="form" class="edit-name-form">
-  <div class="form-control p-4">
-    <app-authentication-input type="text" placeholder="First name" label="First name" [control]="form.controls['firstname']"></app-authentication-input>
+  <div class="row mb-4">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your first name</mat-label>
+      <input matInput placeholder="Enter your first name" type="text" [formControl]="convertToFormControl(form?.controls['firstname'])" required>
+      <mat-error *ngIf="form?.controls['firstname'].invalid">{{getErrorMessage('firstname')}}</mat-error>
+    </mat-form-field>
   </div>
-  <div class="form-control p-4">
-    <app-authentication-input type="text" placeholder="Last name" label="Last name" [control]="form.controls['lastname']"></app-authentication-input>
+  <div class="row mb-4">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter your last name</mat-label>
+      <input matInput placeholder="Enter your last name" type="text" [formControl]="convertToFormControl(form?.controls['lastname'])" required>
+      <mat-error *ngIf="form?.controls['lastname'].invalid">{{getErrorMessage('lastname')}}</mat-error>
+    </mat-form-field>
   </div>
   <button class="btn btn-md btn-outline-danger border-0 col-1 me-5" (click)="onClear()">Cancel</button>
   <button class="btn btn-md btn-primary col-1" (click)="onSubmit()">Save</button>
