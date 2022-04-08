@@ -1,6 +1,6 @@
 * {
   font-style: inherit;
-  font-size: 1.5rem;
+  font-size: 0.9rem;
 }
 
 .hotel {
@@ -48,25 +48,32 @@ a {
   margin: 0 auto;
 }
 
-.group-input{
-  display: flex;
+.group{
+  width: 40%;
+  &-input{
+    display: flex;
+  }
+
 }
 
 .description{
   display: inline-block;
-  padding-left: 10px;
+  padding-left: 2.6rem;
 
   & textarea{
     border-radius: 10px;
   }
+
+  &-title{
+    width: 98%;
+    padding-left: 2.6rem;
+  }
 }
 
 .select{
-  width: 45%;
-  padding: 10px;
-  background-color: aliceblue;
+  width:40%;
+  border: 1px solid rgb(196, 194, 194);
+  padding-bottom: .3rem;
 }
 
-.district{
-  margin-left: 40px;
-}
+

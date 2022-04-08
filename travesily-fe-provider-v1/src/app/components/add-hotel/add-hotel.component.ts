@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { City } from 'src/app/_models/city';
 import { District } from 'src/app/_models/district';
@@ -36,7 +36,7 @@ export class AddHotelComponent implements OnInit {
     this.form = fb.group({
       hotelName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-      phone: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]],
+      phone: ['', [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
       address: ['', [Validators.required]],
       descriptionTitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
@@ -81,6 +81,37 @@ export class AddHotelComponent implements OnInit {
     this.citiesService.getDistrictInCity(encryptedId).pipe(first()).subscribe(res => {
       this.districts = res['data']
     })
+  }
+
+  getErrorMessage(field: string) {
+    if (field === 'hotelName' && this.form.controls['hotelName'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'email' && this.form.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'address' && this.form.controls['address'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'phone' && this.form.controls['phone'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'description' && this.form.controls['description'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'descriptionTitle' && this.form.controls['descriptionTitle'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'phone' && this.form.controls['phone'].hasError('pattern')) {
+      return 'Your phone number is not correct format! Please re-check!';
+    }
+
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
   }
 
 
