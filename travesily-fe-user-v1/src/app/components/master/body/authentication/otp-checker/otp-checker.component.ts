@@ -56,11 +56,10 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
                   this.authService.login(this.account.email, this.account.password).subscribe(() => {
                     this.activatedRoute.queryParams.subscribe({
                       next: value => {
-                        this.router.navigateByUrl(value['url'] ? value['url'] : '/user/profile').then(() => {
-                          Swal.fire('Register Successfully!').then(() => {
-                            this.alertService.success('Register Successful')
+                        Swal.fire('Register Successfully!','','success').then(() => {
+                          this.router.navigateByUrl(value['url'] ? value['url'] : '/user/profile').then(() => {
+                            window.location.reload()
                           })
-                          window.location.reload()
                         })
                       }
                     })
