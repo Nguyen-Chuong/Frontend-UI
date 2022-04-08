@@ -24,10 +24,10 @@
         </ng-container>
 
         <ng-container matColumnDef="request">
-          <th mat-header-cell *matHeaderCellDef> Request </th>
-          <td width="400" mat-cell *matCellDef="let element">
-            <button class="btn btn-outline-success" (click)="acceptHotel(element.id)">Accept</button>
-            <button class="btn btn-outline-danger" (click)="denyHotel(element.id)">Deny</button>
+          <th class="text-center" mat-header-cell *matHeaderCellDef> Request </th>
+          <td width="300" mat-cell *matCellDef="let element">
+            <button class="btn btn-outline-success ms-5" (click)="acceptHotel(element.id)">Accept</button>
+            <button class="btn btn-outline-danger ms-4" (click)="denyHotel(element.id)">Deny</button>
           </td>
         </ng-container>
 

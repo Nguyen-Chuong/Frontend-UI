@@ -39,3 +39,20 @@ button{
   cursor: pointer;
 }
 
+.mat-elevation-z8 {
+  width: 100%;
+  box-shadow: none;
+  & th{
+    background-color: #323a45;
+    color: #fff;
+  }
+}
+.mat-row:hover{
+  background-color: rgb(196, 194, 194);
+}
+
+.mat-table{
+  border-radius: 1rem;
+  overflow:hidden !important;
+  box-shadow: 20px 20px 50px 15px grey;
+}

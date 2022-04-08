@@ -17,7 +17,7 @@ import { RoomBenefit } from 'src/app/_models/roomBenefit';
   styleUrls: ['./update-benefits.component.scss']
 })
 export class UpdateBenefitsComponent implements OnInit {
-
+  currentTask= "Benefits"
   hotelControl: FormControl
   roomControl: FormControl
   hotel: Hotel = new Hotel

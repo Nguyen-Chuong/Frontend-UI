@@ -41,7 +41,7 @@ export class HotelListComponent {
         this.total = rs['data']['total']
       }
     )
-    this.hotelsService.getHotelByStatus(1, 0, 5).pipe(first()).subscribe(
+    this.hotelsService.getHotelByStatus(1, 0, 10).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
         this.pageSize = rs['data']['pageSize']

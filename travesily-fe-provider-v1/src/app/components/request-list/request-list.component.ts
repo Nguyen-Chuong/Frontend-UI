@@ -14,7 +14,7 @@ import { RequestService } from 'src/app/_services/request.service';
   styleUrls: ['./request-list.component.scss']
 })
 export class RequestListComponent implements OnInit {
-
+  currentTask= "Requests"
   requests: Request[]
   dataSource
   checked

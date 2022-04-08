@@ -1,3 +1,4 @@
+@import "../../shared/scss/main";
 * {
   font-style: inherit;
   font-size: 1.5rem;
@@ -13,8 +14,7 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 75%;
-  margin: 20px auto;
-  padding-top: 90px;
+  margin: 7rem auto;
 
   &-cancel {
     background: rgb(99, 39, 120);
@@ -34,15 +34,4 @@ table {
   width: 100%;
   border-radius: 10px;
   background-color: aliceblue;
-}
-
-.mat-elevation-z8 {
-  width: 100%;
-  & th{
-    background-color: aqua;
-  }
-}
-
-.mat-row:hover{
-  background-color: rgb(196, 194, 194);
 }

@@ -1,9 +1,8 @@
 <div class="taskbar">
-  <li class="taskbar-choice" (click)="openListHotels()">My Hotel</li>
-  <li class="taskbar-choice" (click)="openNewHotel()">New Hotel</li>
-  <li class="taskbar-choice" (click)="openListRequest()">Request</li>
-  <li class="taskbar-choice" (click)="openUpdateRoom()">My Room</li>
-  <li class="taskbar-choice" (click)="openUpdateBenefit()">Benefits</li>
-  <li class="taskbar-choice" (click)="openUpdateFacility()">Facilities</li>
-  <li class="taskbar-choice" (click)="openRoomImage()">Images</li>
+  <ul class="taskbar-menu">
+    <li *ngFor="let item of negativeBar" [ngClass]="currentTask == item.name?'active':''" class="taskbar-choice"
+      [routerLink]="item.url"> <i class="{{item.icon}}"></i>   {{item.name}}
+    </li>
+  </ul>
+
 </div>

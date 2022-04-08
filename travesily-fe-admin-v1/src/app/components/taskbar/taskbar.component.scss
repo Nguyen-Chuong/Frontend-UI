@@ -1,7 +1,9 @@
+@import "../../scss/main";
+$fa-font-path: "~font-awesome/fonts";
+ @import '~font-awesome/scss/font-awesome';
 .taskbar {
   display: block;
-  position: fixed;
-  height: 100%;
+  min-height: 100%;
   width: 200px;
   background-color: #323a45;
   margin-top: 60px;
@@ -13,6 +15,9 @@
     padding: 0 auto;
     & li {
       list-style: none;
+      & i{
+        width: 1.4rem;
+      }
     }
   }
 

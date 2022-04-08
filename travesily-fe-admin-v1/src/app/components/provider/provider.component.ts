@@ -38,7 +38,7 @@ export class ProviderComponent implements OnInit {
         this.total = rs['data']['total']
       }
     )
-    this.providerService.getAllProviderPage(0, 5).pipe(first()).subscribe(
+    this.providerService.getAllProviderPage(0, 10).pipe(first()).subscribe(
       rs => {
         this.providers = rs['data']['items']
         this.pageSize = rs['data']['pageSize']

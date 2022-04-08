@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
           ) {
             this.form.reset();
             window.location.href =
-              'https://admin.travesily.software/taskbar';
+              'https://admin.travesily.software/hotel-approve';
           }
         },
         error: (error) => {

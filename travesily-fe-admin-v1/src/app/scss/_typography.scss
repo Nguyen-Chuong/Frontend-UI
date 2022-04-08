@@ -51,8 +51,14 @@ button{
 
 .mat-elevation-z8 {
   width: 100%;
+  box-shadow: none;
+  & table{
+  }
   & th{
-    background-color: aqua;
+    font-size: 1rem;
+    color: rgb(249, 250, 249);
+    font-weight: 500;
+    background-color: #323a45;
   }
 }
 .mat-row:hover{
@@ -60,4 +66,14 @@ button{
 }
 .mat-paginator-container{
   width: 95%;
+}
+.mat-paginator{
+  border-radius: 0 0 .5rem .5rem;
+  overflow:hidden !important;
+  box-shadow: 5px 5px 8px 0px grey;
+}
+.mat-table{
+  border-radius: .5rem .5rem 0 0;
+  overflow:hidden !important;
+  box-shadow: 20px 20px 50px 15px grey;
 }

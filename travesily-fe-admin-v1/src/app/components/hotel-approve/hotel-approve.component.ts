@@ -40,7 +40,7 @@ export class HotelApproveComponent implements OnInit {
       }
     )
 
-    this.requestsService.getPageRequest(1, 0, 5).pipe(first()).subscribe(
+    this.requestsService.getPageRequest(1, 0, 10).pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']['items']
         this.pageSize = rs['data']['pageSize']

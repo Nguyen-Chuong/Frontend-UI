@@ -23,7 +23,7 @@ import { RoomType } from 'src/app/_models/room-type';
   styleUrls: ['./room-image.component.scss']
 })
 export class RoomImageComponent implements OnInit {
-
+  currentTask= "Images"
   hotelControl: FormControl
   roomControl: FormControl
   form: FormGroup
