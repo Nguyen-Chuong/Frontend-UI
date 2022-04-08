@@ -30,7 +30,7 @@
             <input type="text" class="form-control" formControlName="address">
           </div>
           <div class="col-md-12"><label class="labels">Phone number</label>
-            <input type="text" class="form-control" formControlName="phone" (ngModelChange)="checkPhone()" required>
+            <input matInput type="text" class="form-control" formControlName="phone" (ngModelChange)="checkPhone()" required>
             <small *ngIf="isPhone" class="text-danger">Phone number is not valid</small>
           </div>
           <div class="mt-5 text-center">

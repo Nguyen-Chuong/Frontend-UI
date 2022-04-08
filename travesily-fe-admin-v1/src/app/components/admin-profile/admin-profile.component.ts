@@ -59,6 +59,7 @@ export class AdminProfileComponent implements OnInit {
   }
 
   checkPhone() {
+    this.formGroup.markAllAsTouched();
     if (!this.formGroup.valid) {
       this.isPhone = true
     } else

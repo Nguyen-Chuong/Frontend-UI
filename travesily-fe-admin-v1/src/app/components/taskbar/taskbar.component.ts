@@ -31,10 +31,10 @@ export class TaskbarComponent implements OnInit {
     this.authService.getToken()
     this.negativeBar = [
       {
-        name: "Approve", url: "/hotel-approve"
+        name: "Approve", url: "/hotel-approve", icon: "fa fa-arrow-up-from-bracket"
       },
       {
-        name: "Hotels", url: "/hotel-list"
+        name: "Hotels", url: "/hotel-list", icon: "fa fa-hotel"
       },
       {
         name: "Bookings", url: "/booking"

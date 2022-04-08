@@ -53,14 +53,12 @@ button{
   width: 100%;
   box-shadow: none;
   & table{
-  border-radius: .5rem;
-
   }
   & th{
-    font-size: 1.3rem;
+    font-size: 1rem;
     color: rgb(249, 250, 249);
     font-weight: 500;
-    background-color: rgb(85, 87, 87);
+    background-color: #323a45;
   }
 }
 .mat-row:hover{
@@ -70,12 +68,12 @@ button{
   width: 95%;
 }
 .mat-paginator{
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0 0 .5rem .5rem;
   overflow:hidden !important;
   box-shadow: 5px 5px 8px 0px grey;
 }
 .mat-table{
-  border-radius: 1rem 1rem 0 0;
+  border-radius: .5rem .5rem 0 0;
   overflow:hidden !important;
   box-shadow: 20px 20px 50px 15px grey;
 }
