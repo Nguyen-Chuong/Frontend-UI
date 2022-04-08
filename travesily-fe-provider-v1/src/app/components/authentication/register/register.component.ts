@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     this.form = fb.group({
       username: ['', [Validators.required], [UsernameValidator(this.authService)]],
       email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-      password: ['', [Validators.required, Validators.minLength(8), this.matchValidator('confirmPassword', true)]],
+      password: ['', [Validators.required, Validators.minLength(8), this.matchValidator('confirmPassword', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],
     })
   }
