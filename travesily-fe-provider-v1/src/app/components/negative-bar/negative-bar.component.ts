@@ -24,22 +24,22 @@ export class NegativeBarComponent implements OnInit {
         name: "My Hotel", url: "/hotel-list", icon: "fa fa-hotel"
       },
       {
-        name: "Requests", url: "/request-list", icon: "fa fa-list-check-f"
+        name: "Requests", url: "/request-list", icon: "fa fa-check"
       },
       {
-        name: "New Hotel", url: "/new-hotel", icon: "fa fa-album-circle-plus"
+        name: "New Hotel", url: "/new-hotel", icon: "fa fa-plus"
       },
       {
         name: "My Room", url: "/update-room", icon: "fa fa-wrench"
       },
       {
-        name: "Benefits", url: "/update-benefit", icon: "fa fa-hands-holding-dollar"
+        name: "Benefits", url: "/update-benefit", icon: "fa fa-rebel"
       },
       {
-        name: "Facilities", url: "/update-facility", icon: "fa fa-umbrella-beach"
+        name: "Facilities", url: "/update-facility", icon: "fa fa-gift"
       },
       {
-        name: "Images", url: "/room-image", icon: "fa fa-images"
+        name: "Images", url: "/room-image", icon: "fa fa-picture-o"
       }
     ]
   }
