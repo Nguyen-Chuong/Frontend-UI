@@ -5,15 +5,16 @@
 }
 
 .form-body{
+  box-shadow: 20px 20px 50px 15px grey;
+  transform: translateY(8rem);
   display: grid;
-  grid-row-gap: 2rem;
+  grid-row-gap: .9rem;
   width: 35%;
-  margin: 7rem auto;
-  border: 1px solid red;
-  border-radius: 5px;
+  margin: 0 auto 15rem auto;
+  border-radius: .5rem;
   text-align: left;
-  padding: 20px;
-  background-color: aliceblue;
+  padding: 2rem;
+  background-color: #fff;
 }
 
 .form-redirection{
