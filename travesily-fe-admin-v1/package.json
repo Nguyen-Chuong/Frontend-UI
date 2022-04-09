@@ -36,6 +36,7 @@
     "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "ng-image-slider": "^2.8.0",
+    "ngx-spinner": "^13.1.1",
     "rxjs": "~7.4.0",
     "typescript": "~4.5.2",
     "zone.js": "~0.11.4"
