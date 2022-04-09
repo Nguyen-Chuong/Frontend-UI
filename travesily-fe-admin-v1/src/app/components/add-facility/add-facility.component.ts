@@ -62,4 +62,8 @@ export class AddFacilityComponent implements OnInit {
     this.facilityGroup.markAllAsTouched();
   }
 
+  deleteFacility(index) {
+    let facilities = this.facilityGroup.get('facilities') as FormArray;
+    facilities.removeAt(index)
+  }
 }
