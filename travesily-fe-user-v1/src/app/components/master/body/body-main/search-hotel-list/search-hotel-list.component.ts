@@ -6,11 +6,11 @@ import {Hotel} from "../../../../../_models/hotel";
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LocationService} from "../../../../../_services/location.service";
 import {District} from "../../../../../_models/district";
-import {DatePipe} from "@angular/common";
 import {StorageService} from "../../../../../_services/storage.service";
 import {RatingAverage} from "../../../../../_models/rating-average";
 import {PageEvent} from "@angular/material/paginator";
 import {SearchFilter} from "../../../../../_models/search-filter";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-search-hotel-list',
@@ -39,7 +39,8 @@ export class SearchHotelListComponent implements OnInit {
               private activatedRoute: ActivatedRoute,
               private locationService: LocationService,
               private router: Router,
-              private storageService: StorageService
+              private storageService: StorageService,
+              private spinner: NgxSpinnerService
   ) {
     this.filter = this.storageService.searchFilter
     hotelService.searchHotel(this.filter.destination.id, this.filter.from, this.filter.to, this.filter.guestNumber, this.filter.roomNumber, 0, 20)
@@ -47,6 +48,9 @@ export class SearchHotelListComponent implements OnInit {
         next: rs => {
           this.hotels = rs['data']['items']
           this.totalItems = rs['data']['total']
+          if(rs){
+            this.spinner.hide();
+          }
         },
         error: err => {
           console.log(err)
@@ -57,6 +61,8 @@ export class SearchHotelListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
   }
 
   search() {

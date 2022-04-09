@@ -21,7 +21,6 @@ export class TaskbarComponent implements OnInit {
 
     this.authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
-      console.log(this.account.type)
       localStorage.setItem('type', String(this.account.type))
       localStorage.setItem('admin-id', String(this.account.id))
     })

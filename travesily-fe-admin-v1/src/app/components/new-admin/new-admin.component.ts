@@ -34,8 +34,8 @@ export class NewAdminComponent implements OnInit {
   ) {
     this.form = fb.group({
       username: ['', [Validators.required], [UsernameValidator(this.authService)]],
-      email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-      password: ['', [Validators.required, this.matchValidator('confirmPassword', true)]],
+      email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)] ],
+      password: ['', [Validators.required, this.matchValidator('confirmPassword', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],
     })
   }
@@ -81,5 +81,49 @@ export class NewAdminComponent implements OnInit {
         this.notificationService.onError('Add new manager false')
       }
     })
+  }
+
+
+  getErrorMessage(field: string) {
+    if (field === 'username' && this.form.controls['username'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'email' && this.form.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'username' && this.form.controls['username'].hasError('duplicateUsername')) {
+      return 'Username existed! Please choose another username!';
+    }
+    if (field === 'email' && this.form.controls['email'].hasError('duplicateEmail')) {
+      return 'This email has been registered!';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('pattern')) {
+      return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('pattern')) {
+      return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
+    }
+    if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('matching')) {
+      return 'Confirm password not match! Please re-check!';
+    }
+
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
   }
 }

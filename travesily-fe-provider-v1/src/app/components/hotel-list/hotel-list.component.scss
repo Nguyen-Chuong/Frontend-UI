@@ -1,7 +1,7 @@
 @import "../../shared/scss/main";
 * {
   font-style: inherit;
-  font-size: 1.5rem;
+  font-size: 1rem;
 }
 .hotels {
   display: flex;
@@ -41,4 +41,12 @@ table {
   border-radius: 10px;
   background-color: aliceblue;
 
+}
+.noData{
+  background-color: aliceblue;
+  text-align: center;
+  padding: 1rem;
+  & span{
+    font-size: 1.5rem;
+  }
 }

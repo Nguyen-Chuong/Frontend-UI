@@ -34,6 +34,7 @@
     "jquery": "^3.6.0",
     "moment": "^2.29.1",
     "ng-otp-input": "^1.8.1",
+    "ngx-spinner": "^13.1.1",
     "nl2br-pipe": "^1.2.3",
     "popper.js": "^1.16.1",
     "rxfire": "^6.0.0",

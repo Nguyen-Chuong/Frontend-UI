@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { FileUpload } from 'src/app/_models/file-upload';
@@ -100,4 +100,24 @@ export class AdminProfileComponent implements OnInit {
     }
   }
 
+  getErrorMessage(field: string) {
+    if (field === 'firstname' && this.formGroup.controls['firstname'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'lastname' && this.formGroup.controls['lastname'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'address' && this.formGroup.controls['address'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'phone' && this.formGroup.controls['phone'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.formGroup.controls['phone'].hasError('pattern') ? 'Phone is not correct format' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
+  }
 }

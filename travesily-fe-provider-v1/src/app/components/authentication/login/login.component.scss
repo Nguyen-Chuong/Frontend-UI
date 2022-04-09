@@ -12,11 +12,11 @@
   display: grid;
   grid-row-gap: .9rem;
   width: 35%;
-  margin: 0 auto 10rem auto;
+  margin: 0 auto 15rem auto;
   border-radius: .5rem;
   text-align: left;
   padding: 2rem;
-  background-color: aliceblue;
+  background-color: #fff;
 }
 
 .form-redirections{
@@ -38,8 +38,6 @@ a{
   text-align: center;
 }
 
-.form-control{
-  font-size: 0.5rem;
-  background-color: aliceblue;
-  border: none;
+.mat-input{
+  background-color: #fff;
 }

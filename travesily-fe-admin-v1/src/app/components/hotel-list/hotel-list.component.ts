@@ -9,6 +9,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { DialogComponent } from '../dialog/dialog.component';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-hotel-list',
@@ -28,17 +29,25 @@ export class HotelListComponent {
     private route: ActivatedRoute,
     private notificationService: NotificationService,
     public dialog: MatDialog,
-    private cryptoService: CryptoService) { }
+    private cryptoService: CryptoService,
+    private spinner: NgxSpinnerService) { }
 
   displayedColumns: string[] = ['hotelName', 'lowestPrice', 'address', ' ', 'detail'];
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+
     if (localStorage.getItem('type') === '2') {
       this.isAdmin = true
     }
     this.hotelsService.getAllHotelByStatus(1).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
+        // check if data is loaded, hide it 
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
     this.hotelsService.getHotelByStatus(1, 0, 10).pipe(first()).subscribe(

@@ -86,6 +86,7 @@ import { UserFeedbackComponent } from './components/master/body/body-user/user-f
 import { FeedbackCardComponent } from './components/master/body/body-user/user-feedback/feedback-card/feedback-card.component';
 import { FeedbackDetailComponent } from './components/master/body/body-user/user-feedback/feedback-detail/feedback-detail.component';
 import { ResponseMessageComponent } from './components/master/body/body-user/user-feedback/feedback-detail/response-message/response-message.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -176,6 +177,7 @@ import { ResponseMessageComponent } from './components/master/body/body-user/use
     provideDatabase(() => getDatabase()),
     FormsModule,
     Nl2BrPipeModule,
+    NgxSpinnerModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,

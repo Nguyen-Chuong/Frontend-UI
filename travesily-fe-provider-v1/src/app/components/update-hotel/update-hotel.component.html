@@ -5,40 +5,48 @@
 
   <div class="hotel mb-5">
 
-    <h1>New Hotel</h1>
+
     <form class="form-body" [formGroup]="form">
-
-      <div class="group-input">
-
-        <div class="form-control">
-          <label>Hotel</label>
-          <app-authentication-input type="text" value={{hotel.name}} [control]="form.controls['name']">
-          </app-authentication-input>
+      <h1 class="text-center">New Hotel</h1>
+      <div class="d-flex justify-content-around">
+        <div class=" group">
+          <div class="row mb-2">
+          <mat-form-field class=" mb-1" appearance="outline">
+            <mat-label class="text-secondary">Hotel name</mat-label>
+            <input matInput placeholder="Enter your hotel name" type="text" [formControl]="convertToFormControl(form?.controls['hotelName'])" required>
+            <mat-error *ngIf="form?.controls['hotelName'].invalid">{{getErrorMessage('hotelName')}}</mat-error>
+          </mat-form-field>
         </div>
-        <div class="form-control">
-          <label>Email</label>
-          <app-authentication-input type="text" value={{hotel.email}} [control]="form.controls['email']">
-          </app-authentication-input>
+        <div class="row mb-1">
+          <mat-form-field appearance="outline">
+            <mat-label class="text-secondary">Email</mat-label>
+            <input matInput placeholder="Enter your email" type="email" [formControl]="convertToFormControl(form?.controls['email'])" required>
+            <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+          </mat-form-field>
+        </div>
+        </div>
+        <div class=" group">
+          <div class="row mb-2">
+          <mat-form-field class=" mb-1" appearance="outline">
+            <mat-label class="text-secondary">Phone number</mat-label>
+            <input matInput placeholder="Enter your phone" type="text" [formControl]="convertToFormControl(form?.controls['phone'])" required>
+            <mat-error *ngIf="form?.controls['phone'].invalid">{{getErrorMessage('phone')}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row mb-1">
+          <mat-form-field appearance="outline">
+            <mat-label class="text-secondary">Address</mat-label>
+            <input matInput placeholder="Enter your address" type="text" [formControl]="convertToFormControl(form?.controls['address'])" required>
+            <mat-error *ngIf="form?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
+          </mat-form-field>
+        </div>
         </div>
       </div>
-      <div class="group-input">
-        <div class="form-control">
-          <label>Phone</label>
-          <app-authentication-input type="text" value={{hotel.phone}} [control]="form.controls['phone']">
-          </app-authentication-input>
-        </div>
-        <div class="form-control">
-          <label>Address</label>
-          <app-authentication-input type="text" value={{hotel.address}} [control]="form.controls['address']">
-          </app-authentication-input>
-        </div>
-      </div>
-
-      <div class="group-input">
+      <div class="d-flex justify-content-around">
         <mat-form-field appearance="fill" class="select">
           <mat-label>City</mat-label>
-          <mat-select [(ngModel)]="city.nameCity" [formControl]="cityControl" required (selectionChange)="changeCityID($event.value)">
-            <mat-option *ngFor="let city of cities" [value]="city" >
+          <mat-select [formControl]="cityControl" required (selectionChange)="changeCityID($event.value)">
+            <mat-option *ngFor="let city of cities" [value]="city">
               {{city.nameCity}}
             </mat-option>
           </mat-select>
@@ -47,7 +55,7 @@
 
         <mat-form-field appearance="fill" class="select district">
           <mat-label>District</mat-label>
-          <mat-select [formControl]="districtControl" required>
+          <mat-select [formControl]="districtControl" required >
             <mat-option *ngFor="let district of districts" [value]="district">
               {{district.nameDistrict}}
             </mat-option>
@@ -55,15 +63,9 @@
           <mat-error *ngIf="districtControl.hasError('required')">Please choose a district</mat-error>
         </mat-form-field>
       </div>
-      <div class="form-control">
-        <label>Hotel avatar</label><br>
-        <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)"/>
-        <small class="text-danger d-inline-block">*should upload photos with 16:9 resolution for best quality content</small>
-      </div>
-      <div class="description">
+      <div class="description ">
         <label>Description</label> <br><br>
-        <textarea name="description" id="" cols="70" rows="5" [value]="hotel.description"
-          formControlName="description"></textarea>
+        <textarea name="description" id="" cols="105" rows="5" formControlName="description"></textarea>
       </div>
       <div class="form-submit">
         <button class="update-hotel-btn update-hotel-btn-enable" [disabled]="isEnable"

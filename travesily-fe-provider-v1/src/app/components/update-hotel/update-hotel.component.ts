@@ -1,7 +1,7 @@
 import { PostRequest } from './../../_models/postRequest';
 import { RequestService } from 'src/app/_services/request.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
@@ -16,6 +16,8 @@ import { HotelRequest } from 'src/app/_models/hotelRequest';
 import { Hotel } from 'src/app/_models/hotel';
 import { FileUpload } from 'src/app/_models/file-upload';
 import { FirebaseService } from 'src/app/_services/firebase.service';
+import { EmailValidator } from 'src/app/_validators/email.validator';
+import { AuthService } from 'src/app/_services/auth.service';
 
 @Component({
   selector: 'app-update-hotel',
@@ -42,6 +44,7 @@ export class UpdateHotelComponent implements OnInit {
   imageUrl: string
 
   constructor(
+    private authService: AuthService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private hotelService: HotelService,
@@ -70,9 +73,9 @@ export class UpdateHotelComponent implements OnInit {
         this.isPending = false
       }
       this.form = this.fb.group({
-        name: [this.hotel.name],
-        email: [this.hotel.email, [Validators.email]],
-        phone: [this.hotel.phone, [Validators.minLength(10), Validators.maxLength(11)]],
+        hotelName: [this.hotel.name],
+        email: [this.hotel.email, [Validators.required, Validators.email], [EmailValidator(this.authService)]],
+        phone: [this.hotel.phone, [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
         address: [this.hotel.address],
         description: [this.hotel.description],
       })
@@ -92,7 +95,7 @@ export class UpdateHotelComponent implements OnInit {
     const hotelRequest = new HotelRequest
 
     hotelRequest.id = this.hotel.id
-    hotelRequest.name = val.name
+    hotelRequest.name = val.hotelName
     hotelRequest.email = val.email
     hotelRequest.phone = val.phone
     hotelRequest.address = val.address
@@ -214,6 +217,38 @@ export class UpdateHotelComponent implements OnInit {
         }
       )
     }
+  }
+
+
+  getErrorMessage(field: string) {
+    if (field === 'hotelName' && this.form.controls['hotelName'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'email' && this.form.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'address' && this.form.controls['address'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'phone' && this.form.controls['phone'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'description' && this.form.controls['description'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'descriptionTitle' && this.form.controls['descriptionTitle'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'phone' && this.form.controls['phone'].hasError('pattern')) {
+      return 'Your phone number is not correct format! Please re-check!';
+    }
+
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
   }
 
 }

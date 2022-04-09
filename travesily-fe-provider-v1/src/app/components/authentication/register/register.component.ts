@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
     this.form = fb.group({
       username: ['', [Validators.required], [UsernameValidator(this.authService)]],
       email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-      password: ['', [Validators.required, Validators.minLength(8), this.matchValidator('confirmPassword', true)]],
+      password: ['', [Validators.required, Validators.minLength(8), this.matchValidator('confirmPassword', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],
     })
   }
@@ -69,5 +69,43 @@ export class RegisterComponent implements OnInit {
         : { matching: true };
     }
   }
+
+  getErrorMessage(field: string) {
+    if (field === 'username' && this.form.controls['username'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'email' && this.form.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'username' && this.form.controls['username'].hasError('duplicateUsername')) {
+      return 'Username existed! Please choose another username!';
+    }
+    if (field === 'email' && this.form.controls['email'].hasError('duplicateEmail')) {
+      return 'This email has been registered!';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'password' && this.form.controls['password'].hasError('pattern')) {
+      return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
+    }
+    if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('matching')) {
+      return 'Confirm password not match! Please re-check!';
+    }
+
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
+  }
+
 
 }

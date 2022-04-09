@@ -10,5 +10,5 @@ import { AuthServiceService } from './_services/auth-service.service';
 export class AppComponent {
   title = 'travesily-admin';
 
-  constructor(public authService: AuthServiceService,) {}
+  constructor(public authService: AuthServiceService) {}
 }

@@ -1,25 +1,20 @@
 @import "src/app/shared/scss/_main";
 *{
   font-style: inherit;
-  font-size: 1.5rem;
-
-}
-
-.form{
-  margin-top: 100px;
-
+  font-size: .9rem;
 }
 
 .form-body{
+  box-shadow: 20px 20px 50px 15px grey;
+  transform: translateY(8rem);
   display: grid;
-  grid-row-gap: 2rem;
+  grid-row-gap: .9rem;
   width: 35%;
-  margin: 0 auto;
-  border: 1px solid red;
-  border-radius: 5px;
+  margin: 0 auto 15rem auto;
+  border-radius: .5rem;
   text-align: left;
-  padding: 20px;
-  background-color: aliceblue;
+  padding: 2rem;
+  background-color: #fff;
 }
 
 .form-redirection{
@@ -38,8 +33,25 @@ a{
   font-weight: 700;
   text-align: center;
 }
-.form-control{
-  background-color: aliceblue;
-  border: none;
 
+
+.input{
+  margin-bottom: 1rem;
 }
+
+/* default and hover color */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+ color: #ced0d4;
+}
+
+/* focused color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+ color: #0289fa;
+}
+
+/* floating label color */
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-label {
+ color: green;
+}
+
+

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -50,4 +50,15 @@ export class ForgotPasswordComponent implements OnInit {
 
   }
 
+  getErrorMessage(field: string) {
+    if (field === 'email' && this.form.controls['email'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
+  }
 }

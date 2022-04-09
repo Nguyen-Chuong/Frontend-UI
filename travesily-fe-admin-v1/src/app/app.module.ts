@@ -63,6 +63,7 @@ import { BookingDetailCardComponent } from './components/booking-detail/booking-
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -130,7 +131,8 @@ import { FooterComponent } from './components/footer/footer.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    NgxSpinnerModule
   ],
   providers: [
     {

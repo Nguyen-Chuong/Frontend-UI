@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
@@ -14,10 +14,10 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class ChangePasswordComponent implements OnInit {
 
   account: Account = new Account;
-  formGroup!: FormGroup;
-  passNotMatch= false
+  formGroup: FormGroup;
+  passNotMatch = false
   constructor(private authService: AuthServiceService,
-    private router: Router,
+    private fb: FormBuilder,
     private notificationService: NotificationService) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
@@ -25,28 +25,74 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formGroup = new FormGroup({
-      password: new FormControl('', [Validators.required]),
-      newPassword: new FormControl('', [Validators.required]),
-      confirmNewPassword: new FormControl('', [Validators.required]),
+    this.formGroup = this.fb.group({
+      oldPass: ['', Validators.required],
+      password: ['', [Validators.required, this.matchValidator('confirmPassword', true)]],
+      confirmPassword: ['', [Validators.required, this.matchValidator('password')]]
     })
   }
 
   changePassword() {
     const val = this.formGroup.value
-      if (val.newPassword === val.confirmNewPassword) {
-        this.authService.changePassword(val.password, val.newPassword).pipe(first()).subscribe({
-          next: () => {
-            this.notificationService.onSuccess('Change Password successfully');
-            window.location.reload()
-          }, error: err => {
-            console.log(err)
-            this.notificationService.onError('Change Password false')
-          }
-        })
-      }else{
-        this.passNotMatch = !this.passNotMatch
+    this.authService.changePassword(val.oldPass, val.password).pipe(first()).subscribe({
+      next: () => {
+        this.notificationService.onSuccess('Change Password successfully');
+        window.location.reload()
+      }, error: err => {
+        console.log(err)
+        this.notificationService.onError('Change Password false')
       }
+    })
 
+  }
+
+
+  matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      if (control.parent && reverse) {
+        const c = (control.parent?.controls as any)[matchTo] as AbstractControl;
+        if (c) {
+          c.updateValueAndValidity()
+        }
+        return null
+      }
+      return !!control.parent &&
+        !!control.parent.value &&
+        control.value ===
+        (control.parent?.controls as any)[matchTo].value
+        ? null
+        : { matching: true };
+    }
+  }
+
+
+  getErrorMessage(field: string) {
+    if (field === 'oldPass' && this.formGroup.controls['oldPass'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'oldPass' && this.formGroup.controls['oldPass'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'password' && this.formGroup.controls['password'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'confirmPassword' && this.formGroup.controls['confirmPassword'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'password' && this.formGroup.controls['password'].hasError('minlength')) {
+      return 'Password must be at least 8 characters long';
+    }
+    if (field === 'password' && this.formGroup.controls['password'].hasError('pattern')) {
+      return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
+    }
+    if (field === 'confirmPassword' && this.formGroup.controls['confirmPassword'].hasError('matching')) {
+      return 'Confirm password not match! Please re-check!';
+    }
+    return ''
+  }
+
+  convertToFormControl(absCtrl: AbstractControl | null): FormControl {
+    const ctrl = absCtrl as FormControl;
+    return ctrl;
   }
 }
