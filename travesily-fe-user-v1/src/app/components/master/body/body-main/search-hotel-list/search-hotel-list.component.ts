@@ -43,7 +43,7 @@ export class SearchHotelListComponent implements OnInit {
               private spinner: NgxSpinnerService
   ) {
     this.filter = this.storageService.searchFilter
-    hotelService.searchHotel(this.filter.destination.id, this.filter.from, this.filter.to, this.filter.guestNumber, this.filter.roomNumber, 0, 5)
+    hotelService.searchHotel(this.filter.destination.id, this.filter.from, this.filter.to, this.filter.guestNumber, this.filter.roomNumber, 0, 20)
       .subscribe({
         next: rs => {
           this.hotels = rs['data']['items']

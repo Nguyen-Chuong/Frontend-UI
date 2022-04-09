@@ -3,15 +3,15 @@
     <ul class="list-inline nav nav-pills border">
       <li class="nav-item">
         <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
-           [queryParams]="{status: 1}">Upcoming</a>
+           [queryParams]="{status: 1}" queryParamsHandling="merge">Upcoming</a>
       </li>
       <li class="nav-item">
         <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
-           [queryParams]="{status: 2}">Completed</a>
+           [queryParams]="{status: 2}" queryParamsHandling="merge">Completed</a>
       </li>
       <li class="nav-item">
         <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
-           [queryParams]="{status: 3}">Canceled</a>
+           [queryParams]="{status: 3}" queryParamsHandling="merge">Canceled</a>
       </li>
     </ul>
   </div>

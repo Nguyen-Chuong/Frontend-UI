@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Booking} from "../../../../../_models/booking";
 import {BookingService} from "../../../../../_services/booking.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Params, Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-bookings',
@@ -18,11 +18,24 @@ export class UserBookingsComponent implements OnInit {
   ]
 
   constructor(private bookingService: BookingService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {
     this.activatedRoute.queryParams.subscribe({
       next: params => {
-        this.status = params['status']
-        this.bookingService.getBookingByStatus(params['status']).subscribe({
+        if (params['status'] == undefined) {
+          const queryParams: Params = {status: 1};
+          this.router.navigate(
+            [],
+            {
+              relativeTo: activatedRoute,
+              queryParams: queryParams,
+              queryParamsHandling: 'merge', // remove to replace all query params by provided
+            });
+          this.status = 1
+        } else {
+          this.status = params['status']
+        }
+        this.bookingService.getBookingByStatus(this.status).subscribe({
           next: value => {
             this.bookings = value['data']
             this.sortBookings(params['sort'])

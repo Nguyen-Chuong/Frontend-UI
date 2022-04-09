@@ -4,7 +4,7 @@
   height: 100%;
 }
 
-.nav-user-active {
+.active {
   background-color: $color-tertiary;
   color: #fff;
 }
@@ -15,5 +15,7 @@
 
 .inner-container{
   height: 100%;
+  max-width: 120rem;
+  margin: auto;
 }
 
