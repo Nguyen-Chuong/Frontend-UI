@@ -25,10 +25,11 @@ export class HotelListComponent implements OnInit {
   displayedColumns: string[] = ['hotelName', 'address', 'status', 'update', 'detail'];
 
   ngOnInit(): void {
+    if(!localStorage.getItem('token'))
+      this.router.navigate(['/login'])
     this.hotelService.getAllHotel().pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']
-
       }
     )
     this.dataSource = new MatTableDataSource<Hotel>(this.hotels);

@@ -21,7 +21,7 @@ import { OtpCheckerComponent } from './components/authentication/otp-checker/otp
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: HotelListComponent
   },
   {
     path: 'login',

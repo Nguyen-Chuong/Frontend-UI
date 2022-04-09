@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private notificationService: NotificationService
   ) {
-    this.authService.logout()
+    localStorage.clear()
   }
 
   ngOnInit() {
