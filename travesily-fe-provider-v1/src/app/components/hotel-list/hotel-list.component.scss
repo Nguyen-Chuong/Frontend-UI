@@ -5,17 +5,15 @@
 }
 .hotels {
   display: flex;
+
 }
-.menu-list {
-  width: 210px;
-}
+
 .hotel {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   width: 75%;
   margin: 7rem auto;
-
   &-detail {
     width: 90%;
     margin: 0;

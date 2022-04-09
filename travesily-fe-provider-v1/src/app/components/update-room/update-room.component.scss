@@ -1,6 +1,7 @@
+@import "../../shared/scss/main";
 * {
   font-style: inherit;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 .room {
   border-radius: 10px;
@@ -73,9 +74,7 @@
     }
   }
 }
-.menu-list {
-  width: 210px;
-}
+
 
 
 // .form-body {
