@@ -7,6 +7,7 @@ import { Account } from 'src/app/_models/account';
 import { UserService } from 'src/app/_services/user.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { PageEvent } from '@angular/material/paginator';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-user',
@@ -22,14 +23,21 @@ export class UserComponent {
   constructor(private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
-    private cryptoService: CryptoService) { }
+    private cryptoService: CryptoService,
+    private spinner: NgxSpinnerService) { }
   displayedColumns: string[] = ['username', 'email', 'phone', 'vip'];
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
 
     this.userService.getAllUser().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
+        // check if data is loaded, hide it 
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
     this.userService.getAllUserPage(0, 10).pipe(first()).subscribe(

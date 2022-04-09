@@ -3,6 +3,9 @@
     <app-taskbar [currentTask]="currentTask"></app-taskbar>
   </div>
   <div class="user">
+    <ngx-spinner type="ball-scale-multiple">
+      <p style="font-size: 20px; color: white;">Loading...</p>
+    </ngx-spinner>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="users" class="user-table">
         <!-- Position Column -->

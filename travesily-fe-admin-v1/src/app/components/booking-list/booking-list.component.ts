@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingService } from 'src/app/_services/booking.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-booking-list',
@@ -21,15 +22,22 @@ export class BookingListComponent implements OnInit {
   total: number
   constructor(private bookingService: BookingService,
     private router: Router,
-    private cryptoService: CryptoService) {
+    private cryptoService: CryptoService,
+    private spinner: NgxSpinnerService) {
   }
   displayedColumns: string[] = ['id', 'username', 'hotel', 'checkIn', 'checkOut', 'status'];
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
 
     this.bookingService.getAllBooking().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
+        // check if data is loaded, hide it 
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
     this.bookingService.getAllBookingPage(0, 10).pipe(first()).subscribe(
