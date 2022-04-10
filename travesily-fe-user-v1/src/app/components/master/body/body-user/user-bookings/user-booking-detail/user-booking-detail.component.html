@@ -121,23 +121,18 @@
       <h2>Payment information</h2>
     </div>
     <div class="row">
-      <div class="col-md-8 border-end">
         <div class="card-body border-bottom">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between p-3">
             <h3>Total Price</h3>
             <h3 class="text-danger"><strong>{{booking.totalPaid | number:'1.0-0'}} đ</strong></h3>
           </div>
         </div>
         <div class="card-body border-bottom">
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between p-3">
           <p>Payment method</p>
           <h3 class="text-primary"><strong>{{booking.type===1?'VNPAY':'Pay at hotel'}}</strong></h3>
           </div>
         </div>
-      </div>
-      <div class="col-md-4 pt-3">
-        <a class="text-primary"><h3><i class="fa fa-envelope"></i> Send e-receipt by email</h3></a>
-      </div>
     </div>
 
   </div>
