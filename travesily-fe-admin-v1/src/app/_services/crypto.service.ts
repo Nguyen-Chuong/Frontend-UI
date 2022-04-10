@@ -27,7 +27,7 @@ export class CryptoService {
   get(keys, value) {
     var key = CryptoJS.enc.Utf8.parse(keys);
     var iv = CryptoJS.enc.Utf8.parse(keys);
-    var decrypted = CryptoJS.DES.decrypt(value, key, {
+    var decrypted = CryptoJS.DES.decrypt(decodeURIComponent(value), key, {
       keySize: 64,
       iv: iv,
       mode: CryptoJS.mode.ECB,

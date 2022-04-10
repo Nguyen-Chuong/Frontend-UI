@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
-import { BenefitType } from 'src/app/_models/benefitType';
+import { FacilityType } from 'src/app/_models/facilityType';
 import { FacilityAddRequest } from 'src/app/_models/facilityAddRequest';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { FacilityService } from 'src/app/_services/facility.service';
@@ -15,7 +15,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class AddFacilityComponent implements OnInit {
   facilityGroup: FormGroup;
   facilityTypeControl: FormControl
-  facilityTypes: BenefitType[]
+  facilityTypes: FacilityType[]
 
   constructor(private formBuilder: FormBuilder,
     private facilityService: FacilityService,

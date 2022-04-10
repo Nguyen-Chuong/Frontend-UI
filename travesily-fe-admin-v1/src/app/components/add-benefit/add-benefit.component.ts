@@ -61,6 +61,7 @@ export class AddBenefitComponent implements OnInit {
     })
     this.benefitGroup.markAllAsTouched();
   }
+
   deleteBenefit(index) {
     let benefits = this.benefitGroup.get('benefits') as FormArray;
     benefits.removeAt(index)

@@ -86,6 +86,7 @@ import { FeedbackCardComponent } from './components/master/body/body-user/user-f
 import { FeedbackDetailComponent } from './components/master/body/body-user/user-feedback/feedback-detail/feedback-detail.component';
 import { ResponseMessageComponent } from './components/master/body/body-user/user-feedback/feedback-detail/response-message/response-message.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import {NgxScrollTopModule} from "ngx-scrolltop";
 
 @NgModule({
   declarations: [
@@ -176,7 +177,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     provideDatabase(() => getDatabase()),
     FormsModule,
     Nl2BrPipeModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgxScrollTopModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
