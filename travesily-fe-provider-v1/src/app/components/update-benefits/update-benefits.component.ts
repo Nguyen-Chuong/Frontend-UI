@@ -1,5 +1,4 @@
 import { NotificationService } from 'src/app/_services/notification.service';
-import { Benefit } from 'src/app/_models/benefit';
 import { BenefitsService } from './../../_services/benefits.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { RoomService } from './../../_services/room.service';
@@ -38,7 +37,6 @@ export class UpdateBenefitsComponent implements OnInit {
   ngOnInit(): void {
     this.hotelControl = new FormControl('', Validators.required);
     this.roomControl = new FormControl('', Validators.required);
-
     this.hotelService.getAllHotel().pipe(first()).subscribe(res => {
       this.hotels = res['data']
     })
@@ -61,7 +59,6 @@ export class UpdateBenefitsComponent implements OnInit {
   }
   deleteBenefit(id) {
     const encryptedId = this.cryptoService.set('06052000', id)
-
     this.benefitsService.deleteRoomBenefit(encryptedId).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Delete successfully');
@@ -71,12 +68,10 @@ export class UpdateBenefitsComponent implements OnInit {
         this.notificationService.onError('Delete false')
       }
     })
-
   }
 
   openAddBenefit(){
     this.isAddBenefit = !this.isAddBenefit
   }
-
 
 }

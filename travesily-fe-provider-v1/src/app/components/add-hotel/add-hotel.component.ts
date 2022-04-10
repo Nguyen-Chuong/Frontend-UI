@@ -74,8 +74,6 @@ export class AddHotelComponent implements OnInit {
       })
   }
 
-
-
   changeCityID(city: City) {
     const encryptedId = this.cryptoService.set('06052000', city.id)
     this.citiesService.getDistrictInCity(encryptedId).pipe(first()).subscribe(res => {
@@ -113,6 +111,4 @@ export class AddHotelComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
-
 }

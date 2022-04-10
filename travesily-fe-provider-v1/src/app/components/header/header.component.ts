@@ -42,7 +42,7 @@ export class HeaderComponent implements OnInit {
     this.isLogin = !this.isLogin
   }
 
-  // // To open the url in the blank page.
+  // To open the url in the blank page.
   // public itemBeforeEvent(args: MenuEventArgs) {
   //   args.element.getElementsByTagName('a')[0].setAttribute('target', '_blank');
   // }

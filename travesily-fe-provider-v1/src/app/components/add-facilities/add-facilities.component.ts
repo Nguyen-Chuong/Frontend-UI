@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
-import { BenefitType } from 'src/app/_models/benefitType';
 import { Facility } from 'src/app/_models/facility';
 import { FacilityRequest } from 'src/app/_models/facilityRequest';
 import { FacilityType } from 'src/app/_models/facilityType';

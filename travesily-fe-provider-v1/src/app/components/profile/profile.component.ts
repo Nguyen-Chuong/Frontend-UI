@@ -63,6 +63,7 @@ export class ProfileComponent implements OnInit {
     })
 
   }
+  
   getErrorMessage(field: string) {
     if (field === 'providerName' && this.form.controls['providerName'].hasError('required')) {
       return 'You must enter a value';

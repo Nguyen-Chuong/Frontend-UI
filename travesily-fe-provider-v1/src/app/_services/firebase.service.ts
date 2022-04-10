@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { finalize, Observable, Subject } from 'rxjs';
+import { finalize, Subject } from 'rxjs';
 import { CryptoService } from './crypto.service';
-import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { FileUpload } from '../_models/file-upload';
 
@@ -64,25 +64,25 @@ export class FirebaseService {
       })
   }
 
-  // // private saveFileData(fileUpload: FileUpload): void {
-  // //   this.db.list(this.basePath).push(fileUpload);
-  // // }
-  // // getFiles(numberItems): AngularFireList<FileUpload> {
-  // //   return this.db.list(this.basePath, ref =>
-  // //     ref.limitToLast(numberItems));
-  // // }
-  // // deleteFile(fileUpload: FileUpload): void {
-  // //   this.deleteFileDatabase(fileUpload.key)
-  // //     .then(() => {
-  // //       this.deleteFileStorage(fileUpload.name);
-  // //     })
-  // //     .catch(error => console.log(error));
-  // // }
-  // // private deleteFileDatabase(key: string): Promise<void> {
-  // //   return this.db.list(this.basePath).remove(key);
-  // // }
-  // // private deleteFileStorage(name: string): void {
-  // //   const storageRef = this.storage.ref(this.basePath);
-  // //   storageRef.child(name).delete();
-  // // }
+  // private saveFileData(fileUpload: FileUpload): void {
+  //   this.db.list(this.basePath).push(fileUpload);
+  // }
+  // getFiles(numberItems): AngularFireList<FileUpload> {
+  //   return this.db.list(this.basePath, ref =>
+  //     ref.limitToLast(numberItems));
+  // }
+  // deleteFile(fileUpload: FileUpload): void {
+  //   this.deleteFileDatabase(fileUpload.key)
+  //     .then(() => {
+  //       this.deleteFileStorage(fileUpload.name);
+  //     })
+  //     .catch(error => console.log(error));
+  // }
+  // private deleteFileDatabase(key: string): Promise<void> {
+  //   return this.db.list(this.basePath).remove(key);
+  // }
+  // private deleteFileStorage(name: string): void {
+  //   const storageRef = this.storage.ref(this.basePath);
+  //   storageRef.child(name).delete();
+  // }
 }

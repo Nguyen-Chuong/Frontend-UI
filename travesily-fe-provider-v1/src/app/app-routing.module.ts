@@ -50,7 +50,6 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent
   },
-
   {
     path: 'hotel-list',
     component: HotelListComponent

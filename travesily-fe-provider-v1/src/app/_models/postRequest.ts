@@ -1,5 +1,4 @@
 
-
 export class PostRequest {
   hotelId: number
   requestDate: Date

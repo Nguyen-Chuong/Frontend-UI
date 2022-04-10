@@ -23,9 +23,7 @@ export class OtpCheckerComponent implements OnInit {
     private notificationService: NotificationService,
     private cryptoService: CryptoService,
     private activatedRoute: ActivatedRoute
-  ) {
-
-  }
+  ) { }
 
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(
@@ -67,16 +65,13 @@ export class OtpCheckerComponent implements OnInit {
                         next: value => {
                           this.notificationService.onSuccess('Register Successful')
                           this.router.navigate(['/login']);
-
                         }
                       })
-
                     })
                 }, error: error => {
                   this.notificationService.onError('Register Failed')
                 }
-              }
-              )
+              })
           } else {
             this.router.navigate(['/new-password'], {
               queryParams: {

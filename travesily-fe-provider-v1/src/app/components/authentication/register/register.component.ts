@@ -49,7 +49,6 @@ export class RegisterComponent implements OnInit {
         })
       }
     })
-
   }
 
   matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {
@@ -98,7 +97,6 @@ export class RegisterComponent implements OnInit {
     if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('matching')) {
       return 'Confirm password not match! Please re-check!';
     }
-
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
@@ -106,6 +104,5 @@ export class RegisterComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 
 }

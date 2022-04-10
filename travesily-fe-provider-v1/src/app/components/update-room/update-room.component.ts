@@ -63,7 +63,6 @@ export class UpdateRoomComponent implements OnInit {
     this.hotelService.getAllHotel().pipe(first()).subscribe(res => {
       this.hotels = res['data']
     })
-
   }
 
   submit() {
@@ -100,8 +99,6 @@ export class UpdateRoomComponent implements OnInit {
         }
       })
     }
-
-
   }
 
   changeHotel(hotel: Hotel) {
@@ -123,8 +120,7 @@ export class UpdateRoomComponent implements OnInit {
           this.isDisable = false
         if (this.room.status === 2)
           this.isEnable = false
-
-        this.form = this.fb.group({
+          this.form = this.fb.group({
           name: [this.room.name],
           quantity: [this.room.quantity],
           availableRooms: [this.room.availableRooms],
@@ -134,7 +130,6 @@ export class UpdateRoomComponent implements OnInit {
           dealExpire: [this.room.dealExpire]
         })
       })
-
     }
   }
 
@@ -143,7 +138,6 @@ export class UpdateRoomComponent implements OnInit {
       width: '400px',
       data: { checked: this.checked, message: "Are you sure wanna Disable this Room" },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {
@@ -165,7 +159,6 @@ export class UpdateRoomComponent implements OnInit {
       width: '400px',
       data: { checked: this.checked, message: "Are you sure wanna Enable this Room" },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {

@@ -3,7 +3,6 @@ import { AbstractControl, AsyncValidator, AsyncValidatorFn, NG_ASYNC_VALIDATORS,
 import { map, Observable, switchMap, timer } from "rxjs";
 import { Directive } from "@angular/core";
 
-
 export function EmailValidator(authService: AuthService): AsyncValidatorFn {
   return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
     let debounceTime = 1000

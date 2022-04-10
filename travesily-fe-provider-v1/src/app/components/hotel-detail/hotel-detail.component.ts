@@ -1,11 +1,9 @@
 import { Review } from './../../_models/review';
 import { ReviewsService } from './../../_services/reviews.service';
 import { Component, OnInit } from '@angular/core';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
-import { Hotel } from 'src/app/_models/hotel';
 import { BookingsService } from 'src/app/_services/bookings.service';
 import { PageEvent } from '@angular/material/paginator';
 
@@ -27,7 +25,6 @@ export class HotelDetailComponent implements OnInit {
     private reviewsService: ReviewsService,
     private router: Router,
     private route: ActivatedRoute) { }
-
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {

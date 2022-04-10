@@ -3,9 +3,7 @@ import {
   AsyncValidator,
   AsyncValidatorFn,
   NG_ASYNC_VALIDATORS,
-  ValidationErrors,
-  ValidatorFn
-} from '@angular/forms';
+  ValidationErrors} from '@angular/forms';
 import { AuthService } from "../_services/auth.service";
 import { map, Observable, switchMap, timer } from "rxjs";
 import { Directive } from "@angular/core";

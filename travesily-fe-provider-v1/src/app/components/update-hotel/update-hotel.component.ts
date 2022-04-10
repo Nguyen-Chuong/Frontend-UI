@@ -90,10 +90,8 @@ export class UpdateHotelComponent implements OnInit {
   }
 
   submit() {
-
     const val = this.form.value
     const hotelRequest = new HotelRequest
-
     hotelRequest.id = this.hotel.id
     hotelRequest.name = val.hotelName
     hotelRequest.email = val.email
@@ -120,7 +118,6 @@ export class UpdateHotelComponent implements OnInit {
         this.notificationService.onError('Update Hotel false')
       }
     })
-
   }
 
   changeCityID(city: City) {
@@ -136,7 +133,6 @@ export class UpdateHotelComponent implements OnInit {
       width: '400px',
       data: { checked: this.checked, message: "Are you sure wanna add this hotel to request list" },
     });
-
     const postRequest: PostRequest = new PostRequest
     postRequest.hotelId = this.hotel.id
     console.log(postRequest)
@@ -162,7 +158,6 @@ export class UpdateHotelComponent implements OnInit {
       width: '400px',
       data: { checked: this.checked, message: "Are you sure wanna Disable this hotel" },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {
@@ -184,7 +179,6 @@ export class UpdateHotelComponent implements OnInit {
       width: '400px',
       data: { checked: this.checked, message: "Are you sure wanna Enable this hotel" },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {
@@ -219,7 +213,6 @@ export class UpdateHotelComponent implements OnInit {
     }
   }
 
-
   getErrorMessage(field: string) {
     if (field === 'hotelName' && this.form.controls['hotelName'].hasError('required')) {
       return 'You must enter a value';
@@ -242,7 +235,6 @@ export class UpdateHotelComponent implements OnInit {
     if (field === 'phone' && this.form.controls['phone'].hasError('pattern')) {
       return 'Your phone number is not correct format! Please re-check!';
     }
-
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
