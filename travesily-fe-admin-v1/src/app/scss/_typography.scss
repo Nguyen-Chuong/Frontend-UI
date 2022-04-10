@@ -52,8 +52,6 @@ button{
 .mat-elevation-z8 {
   width: 100%;
   box-shadow: none;
-  & table{
-  }
   & th{
     font-size: 1rem;
     color: rgb(249, 250, 249);
@@ -76,4 +74,8 @@ button{
   border-radius: .5rem .5rem 0 0;
   overflow:hidden !important;
   box-shadow: 20px 20px 50px 15px grey;
+}
+.menu-list{
+  width: 13rem;
+  min-height: 100vh;
 }

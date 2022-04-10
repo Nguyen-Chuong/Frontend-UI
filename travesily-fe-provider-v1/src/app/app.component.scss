@@ -7,11 +7,16 @@ $fa-font-path: "~font-awesome/fonts";
   background-size: cover;
   height: auto;
   min-height: 100%;
-  position: relative;
+  // position: relative;
 }
-.footer {
+.footer .header{
   box-shadow: 0 5px 5px -5px #0c1e2b;
   position: relative;
   z-index: 3;
   //flex: none;
+}
+.body{
+  flex-grow: 1;
+  min-height: 100vh;
+
 }

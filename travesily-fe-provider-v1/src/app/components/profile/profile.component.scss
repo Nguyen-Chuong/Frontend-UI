@@ -1,3 +1,4 @@
+@import "../../shared/scss/main";
 * {
   font-style: inherit;
   font-size: 0.9rem;
@@ -5,9 +6,7 @@
 .account{
   display: flex;
 }
-.menu-list{
-  width: 15rem;
-}
+
 .profile {
   width: 70%;
   display: flex;

@@ -2,9 +2,7 @@
 .hotels-approve {
   display: flex;
 }
-.menu-list {
-  width: 13rem;
-}
+
 .hotels {
   display: flex;
   flex-wrap: wrap;
@@ -19,4 +17,12 @@
 }
 table {
   width: 100%;
+}
+.noData{
+  background-color: aliceblue;
+  text-align: center;
+  padding: 1rem;
+  & span{
+    font-size: 1.5rem;
+  }
 }
