@@ -52,7 +52,6 @@ export class OtpCheckerComponent implements OnInit {
 
   onOtpChange($event: string) {
     if ($event.length === 6) {
-      console.log(this.encryptedEmail)
       this.authService.verifyOtp(this.encryptedEmail, this.cryptoService.set('06052000', $event)).pipe(first()).subscribe(
         rs => {
           if (this.isRegister) {

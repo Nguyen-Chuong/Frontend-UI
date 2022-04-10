@@ -103,13 +103,11 @@ export class UpdateHotelComponent implements OnInit {
     if (this.districtControl.value.id) {
       hotelRequest.districtId = this.district.id
     }
-    console.log(this.imageUrl)
     if (this.selectedFiles) {
       hotelRequest.avatar = this.imageUrl
     }
     this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
       next: () => {
-        console.log(this.hotel)
         this.notificationService.onSuccess('Update Hotel successfully');
         //window.location.reload()
       },
@@ -135,7 +133,6 @@ export class UpdateHotelComponent implements OnInit {
     });
     const postRequest: PostRequest = new PostRequest
     postRequest.hotelId = this.hotel.id
-    console.log(postRequest)
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {

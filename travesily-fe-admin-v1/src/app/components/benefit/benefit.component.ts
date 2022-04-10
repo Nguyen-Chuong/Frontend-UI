@@ -15,10 +15,6 @@ import { BenefitRequest } from 'src/app/_models/benefitRequest';
 export class BenefitComponent implements OnInit {
   currentTask = "Benefit"
   formGroup: FormGroup;
-  benefitGroup: FormGroup;
-  inputs: any[]
-  max: number
-  benefitTypeControl: FormControl
   benefitTypes: BenefitType[]
   benefitRequests: BenefitRequest[]
 
@@ -34,15 +30,10 @@ export class BenefitComponent implements OnInit {
       benefitType: new FormControl('', [Validators.required]),
       icon: new FormControl('', [Validators.required])
     })
-    this.benefitGroup = new FormGroup({
-      benefit: new FormControl('', [Validators.required]),
-      icon: new FormControl('', [Validators.required])
-    })
     this.benefitService.getBenefitType().pipe(first()).subscribe(
       rs => {
         this.benefitTypes = rs['data']
       })
-    this.benefitTypeControl = new FormControl('', Validators.required);
   }
 
   addBenefitType() {

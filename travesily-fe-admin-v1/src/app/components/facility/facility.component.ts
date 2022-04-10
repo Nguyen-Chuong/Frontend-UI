@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
-import { BenefitType } from 'src/app/_models/benefitType';
+import { FacilityType } from 'src/app/_models/facilityType';
 import { FacilityTypeRequest } from 'src/app/_models/facilityTypeRequest';
 import { FacilityService } from 'src/app/_services/facility.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -14,10 +14,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 export class FacilityComponent implements OnInit {
   currentTask= "Facility"
   formGroup: FormGroup;
-  inputs: any[]
-  max: number
-  facilityTypeControl: FormControl
-  facilityTypes: BenefitType[]
+  facilityTypes: FacilityType[]
   constructor(
     private facilityService: FacilityService,
     private notificationService: NotificationService
@@ -32,10 +29,7 @@ export class FacilityComponent implements OnInit {
       rs => {
         this.facilityTypes = rs['data']
       })
-    this.max = 1
-    this.inputs = Array.from({ length: this.max }, (_, i) => i + 1)
-    console.log(this.inputs.length)
-    this.facilityTypeControl = new FormControl('', Validators.required);
+
   }
 
   addFacilityType() {
@@ -54,8 +48,4 @@ export class FacilityComponent implements OnInit {
     })
   }
 
-  moreInput(){
-    this.max = this.max + 1
-    this.inputs = Array.from({ length: this.max }, (_, i) => i + 1)
-  }
 }

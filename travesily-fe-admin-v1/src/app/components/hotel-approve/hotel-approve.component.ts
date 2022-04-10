@@ -83,7 +83,6 @@ export class HotelApproveComponent implements OnInit {
 
   denyHotel(id) {
     const encryptedId = this.cryptoService.set('06052000',id)
-    console.log(encryptedId)
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {

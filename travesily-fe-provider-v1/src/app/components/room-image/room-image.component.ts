@@ -117,7 +117,6 @@ export class RoomImageComponent implements OnInit {
   }
 
   addListImageForRoomType() {
-    console.log(this.imageRequest)
     this.roomService.addListImageForRoomType(this.imageRequest)
       .pipe(first())
       .subscribe({

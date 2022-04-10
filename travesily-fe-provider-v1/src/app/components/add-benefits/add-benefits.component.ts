@@ -52,7 +52,7 @@ export class AddBenefitsComponent implements OnInit {
     })
     this.checkedList.length = 0
   }
-  
+
   onCheckboxChange(benefit: Benefit, event) {
     if (event.target.checked) {
       this.checkedList.push(benefit.id);
@@ -91,7 +91,6 @@ export class AddBenefitsComponent implements OnInit {
     } else {
       roomTypeId = Number(localStorage.getItem('room-id'))
     }
-    console.log(this.checkedList)
     const benefitRequest = new BenefitRequest
     benefitRequest.roomTypeId = roomTypeId
     benefitRequest.benefitIds = this.checkedList

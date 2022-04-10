@@ -57,7 +57,6 @@ export class ResponseComponent implements OnInit {
     this.response.message = this.formGroup.value.message_response
     const feedBackRequest: FeedbackRequest = new FeedbackRequest
     feedBackRequest.message = this.formGroup.value.message_response
-    console.log(this.feedback.email)
     this.feedbackService.sendResponse(this.response).pipe(first()).subscribe({
       next: () => {
         this.sendMailResponseFeedback(this.cryptoService.set('06052000', this.feedback.email), feedBackRequest)
