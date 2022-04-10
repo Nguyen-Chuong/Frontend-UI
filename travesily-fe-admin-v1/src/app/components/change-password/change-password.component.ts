@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
@@ -12,10 +11,10 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
-
   account: Account = new Account;
   formGroup: FormGroup;
   passNotMatch = false
+
   constructor(private authService: AuthServiceService,
     private fb: FormBuilder,
     private notificationService: NotificationService) {
@@ -46,7 +45,6 @@ export class ChangePasswordComponent implements OnInit {
 
   }
 
-
   matchValidator(matchTo: string, reverse?: boolean): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       if (control.parent && reverse) {
@@ -64,7 +62,6 @@ export class ChangePasswordComponent implements OnInit {
         : { matching: true };
     }
   }
-
 
   getErrorMessage(field: string) {
     if (field === 'oldPass' && this.formGroup.controls['oldPass'].hasError('required')) {

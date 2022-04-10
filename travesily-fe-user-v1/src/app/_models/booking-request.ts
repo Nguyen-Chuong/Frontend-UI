@@ -1,4 +1,3 @@
-import {Hotel} from "./hotel";
 import {BookingDetail} from "./booking-detail";
 
 export class BookingRequest {

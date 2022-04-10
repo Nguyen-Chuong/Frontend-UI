@@ -10,8 +10,6 @@ import {
 } from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../../../_services/auth.service";
-import {Account} from "../../../../../_models/account";
-import {concatMap, first} from "rxjs";
 import {AlertService} from "../../../../../_services/alert.service";
 import {UsernameValidator} from "../../../../../_validators/username.validator";
 import {EmailValidator} from "../../../../../_validators/email.validator";
@@ -23,7 +21,6 @@ import {CryptoService} from "../../../../../_services/crypto.service";
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   form: FormGroup
 
   constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private alertService: AlertService, private cryptoService: CryptoService, private activatedRoute: ActivatedRoute) {
@@ -102,10 +99,9 @@ export class RegisterComponent implements OnInit {
     if (field === 'password' && this.form.controls['password'].hasError('pattern')) {
       return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
     }
-if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('matching')) {
+    if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('matching')) {
       return 'Confirm password not match! Please re-check!';
     }
-
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
@@ -113,5 +109,4 @@ if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasErro
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

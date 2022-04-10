@@ -11,7 +11,7 @@ import {CryptoService} from "../../../../../../_services/crypto.service";
 export class FeedbackCardComponent implements OnInit {
   @Input() feedback: Feedback
   constructor(private router: Router,
-              private cryptoService: CryptoService) { }
+    private cryptoService: CryptoService) { }
 
   ngOnInit(): void {
   }

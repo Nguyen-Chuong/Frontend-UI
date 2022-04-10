@@ -1,10 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {HotelService} from "../../../../_services/hotel.service";
 import {BookingService} from "../../../../_services/booking.service";
 import {ActivatedRoute} from "@angular/router";
 import {Booking} from "../../../../_models/booking";
-import {CryptoService} from "../../../../_services/crypto.service";
-import {Hotel} from "../../../../_models/hotel";
 
 @Component({
   selector: 'app-user-add-review',
@@ -15,7 +12,7 @@ export class UserAddReviewComponent implements OnInit {
   booking: Booking = new Booking()
 
   constructor(private bookingService: BookingService,
-              private activatedRoute: ActivatedRoute,) {
+    private activatedRoute: ActivatedRoute,) {
     this.activatedRoute.queryParams.subscribe({
       next: params => {
         const bookingId = params['bookingId']
@@ -30,5 +27,4 @@ export class UserAddReviewComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

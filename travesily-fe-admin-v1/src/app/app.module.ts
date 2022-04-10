@@ -34,7 +34,7 @@ import { UserDetailComponent } from './components/user-detail/user-detail.compon
 import { UserBookingComponent } from './components/user-booking/user-booking.component';
 import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
 import { UserFeedbackComponent } from './components/user-feedback/user-feedback.component';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AboutHotelComponent } from './components/about-hotel/about-hotel.component';

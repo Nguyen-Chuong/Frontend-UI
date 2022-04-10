@@ -66,9 +66,7 @@ export class NewPasswordComponent implements OnInit {
     }
   }
 
-
   getErrorMessage(field: string) {
-
     if (field === 'password' && this.form.controls['password'].hasError('required')) {
       return 'You must enter a value';
     }
@@ -91,6 +89,5 @@ export class NewPasswordComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 
 }

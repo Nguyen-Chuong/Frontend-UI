@@ -72,7 +72,6 @@ export class HotelListComponent {
       width: '400px',
       data: { checked: this.checked, message: this.message, isAdmin: this.isAdmin },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {
@@ -96,5 +95,4 @@ export class HotelListComponent {
       }
     )
   }
-
 }

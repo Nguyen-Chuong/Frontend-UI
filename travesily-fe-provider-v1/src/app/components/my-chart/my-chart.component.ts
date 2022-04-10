@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Chart, registerables  } from 'chart.js';
+import { HotelService } from 'src/app/_services/hotel.service';
+import { first } from 'rxjs';
+import { ChartModel } from 'src/app/_models/chart';
+// import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 Chart.register(...registerables);
 
@@ -9,44 +13,44 @@ Chart.register(...registerables);
   styleUrls: ['./my-chart.component.scss']
 })
 export class MyChartComponent implements OnInit {
+  chart: ChartModel
 
-  constructor() { }
+  constructor(private hotelService: HotelService) { }
 
   ngOnInit() {
-    var myChart = new Chart("myChart", {
-      type: 'bar',
-      data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-          datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
-              backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)',
-                  'rgba(255, 206, 86, 0.2)',
-                  'rgba(75, 192, 192, 0.2)',
-                  'rgba(153, 102, 255, 0.2)',
-                  'rgba(255, 159, 64, 0.2)'
-              ],
-              borderColor: [
-                  'rgba(255, 99, 132, 1)',
-                  'rgba(54, 162, 235, 1)',
-                  'rgba(255, 206, 86, 1)',
-                  'rgba(75, 192, 192, 1)',
-                  'rgba(153, 102, 255, 1)',
-                  'rgba(255, 159, 64, 1)'
-              ],
-              borderWidth: 1
-          }]
-      },
-      options: {
-          scales: {
+
+    this.hotelService.getChartData(new Date('2022-03-09'), new Date('2022-03-18')).pipe(first()).subscribe(
+      rs => {
+        this.chart = rs['data']
+      
+        // draw chart
+        var myChart = new Chart("myChart", {
+          type: 'line',
+          data: {
+            labels: this.chart.labels,
+            datasets: [{
+                label: 'Booking Statistic',
+                data: this.chart.data,
+                fill: false,
+                borderColor: 'rgb(75, 192, 192)',
+                tension: 0.1,
+                borderWidth: 2,
+                spanGaps: 1
+            }]
+          },
+          options: {
+            scales: {
               y: {
-                  beginAtZero: true
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1  
+                }
               }
+            }
           }
+        });
       }
-    });
+    )
   }
 
 }

@@ -40,7 +40,6 @@ export class BookingComponent implements OnInit {
     this.bookingsService.getBookingOfHotel(this.hotelId, event.pageIndex, event.pageSize).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']['items']
-
       }
     )
   }

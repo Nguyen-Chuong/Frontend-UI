@@ -12,5 +12,4 @@ export class ImagesCarouselComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -1,7 +1,4 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {FormControl} from "@angular/forms";
-import {GuestNumber} from "../../../_models/guest-number";
-import {typeofExpr} from "@angular/compiler/src/output/output_ast";
 
 @Component({
   selector: 'app-dropdown',
@@ -23,7 +20,6 @@ export class DropdownComponent implements OnInit {
     this.guestNum = this.inputGuestNum
     this.roomNum = this.inputRoomNum
   }
-
 
 // 1 = guestNumber, 2 = roomNumber
   toggleNumberPlus(type: number) {
@@ -51,6 +47,5 @@ export class DropdownComponent implements OnInit {
       this.roomNum = this.roomNum - 1
       this.roomNumberEvent.emit(this.roomNum)
     }
-
   }
 }

@@ -17,9 +17,7 @@ export class UpdateVipComponent implements OnInit {
   constructor(
     private vipService: VipService,
     private notificationService: NotificationService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({
@@ -40,5 +38,4 @@ export class UpdateVipComponent implements OnInit {
       }
     })
   }
-
 }

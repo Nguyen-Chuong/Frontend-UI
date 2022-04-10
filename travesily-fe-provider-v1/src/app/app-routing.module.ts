@@ -5,7 +5,6 @@ import { UpdateRoomComponent } from './components/update-room/update-room.compon
 import { UpdateHotelComponent } from './components/update-hotel/update-hotel.component';
 import { NewHotelComponent } from './components/new-hotel/new-hotel.component';
 import { RequestListComponent } from './components/request-list/request-list.component';
-import { NegativeBarComponent } from './components/negative-bar/negative-bar.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -51,7 +50,6 @@ const routes: Routes = [
     path: 'profile',
     component: ProfileComponent
   },
-
   {
     path: 'hotel-list',
     component: HotelListComponent

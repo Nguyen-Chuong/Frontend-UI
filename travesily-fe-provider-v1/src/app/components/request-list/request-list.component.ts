@@ -32,7 +32,6 @@ export class RequestListComponent implements OnInit {
     this.requestService.getAllRequest().pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']
-
       }
     )
     this.dataSource = new MatTableDataSource<Request>(this.requests);
@@ -43,9 +42,7 @@ export class RequestListComponent implements OnInit {
       width: '400px',
       data: {checked: this.checked, message: "Are you sure wanna Cancel this Request"},
     });
-
     const encryptedId = this.cryptoService.set('06052000', id)
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if(this.checked){

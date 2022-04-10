@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './components/master/header/header.component';
@@ -54,7 +53,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { provideStorage,getStorage } from '@angular/fire/storage';
-import {AngularFireModule} from "@angular/fire/compat";
+import { AngularFireModule } from "@angular/fire/compat";
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ImagesCarouselComponent } from './shared/components/images-carousel/images-carousel.component';
 import { MainSearchBarComponent } from './components/master/body/body-main/main-search-bar/main-search-bar.component';
@@ -81,7 +80,7 @@ import { LocationCardComponent } from './components/master/body/body-home/top-lo
 import { FooterComponent } from './components/master/footer/footer.component';
 import { BodyFeedbackComponent } from './components/master/body/body-feedback/body-feedback.component';
 import { ReviewCardComponent } from './components/master/body/body-main/hotel-detail/review-card/review-card.component';
-import {Nl2BrPipeModule} from "nl2br-pipe";
+import { Nl2BrPipeModule } from "nl2br-pipe";
 import { UserFeedbackComponent } from './components/master/body/body-user/user-feedback/user-feedback.component';
 import { FeedbackCardComponent } from './components/master/body/body-user/user-feedback/feedback-card/feedback-card.component';
 import { FeedbackDetailComponent } from './components/master/body/body-user/user-feedback/feedback-detail/feedback-detail.component';

@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../../../_services/auth.service";
-import {Vip} from "../../../../../_models/vip";
 import {first} from "rxjs";
 import {AlertService} from "../../../../../_services/alert.service";
 import {Account} from "../../../../../_models/account";
@@ -33,5 +32,4 @@ export class UserVipComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

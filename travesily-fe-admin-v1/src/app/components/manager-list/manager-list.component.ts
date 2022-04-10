@@ -31,7 +31,7 @@ export class ManagerListComponent implements OnInit {
       }
     )
     this.dataSource = new MatTableDataSource<Account>(this.managers);
-    this.message = 'Are you sure wanna removed this manager!'
+    this.message = 'Are you sure to remove this manager!'
   }
 
   deleteManager(id){
@@ -42,7 +42,6 @@ export class ManagerListComponent implements OnInit {
       width: '400px',
       data: {checked: this.checked, message: this.message, isAdmin: this.isAdmin},
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if(this.checked){

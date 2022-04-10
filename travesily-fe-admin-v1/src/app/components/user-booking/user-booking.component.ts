@@ -19,8 +19,6 @@ export class UserBookingComponent {
 
   displayedColumns: string[] = ['id', 'hotel', 'totalPaid', 'checkIn', 'checkOut', 'status'];
 
-
-
   openBookingDetail(id) {
     this.router.navigate(['/booking-detail'], { queryParams: { bookingId: this.cryptoService.set('06052000', id) } })
   }

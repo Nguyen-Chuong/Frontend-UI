@@ -5,7 +5,6 @@ export class Alert {
   autoClose: boolean | undefined;
   keepAfterRouteChange: boolean | undefined;
   fade: boolean | undefined;
-
   constructor(init?: Partial<Alert>) {
     Object.assign(this, init);
   }

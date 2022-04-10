@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { Hotel } from 'src/app/_models/hotel';
 import { AuthService } from 'src/app/_services/auth.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -57,7 +56,6 @@ export class AddRoomComponent implements OnInit {
           this.notificationService.onError("Add room False")
         }
       })
-
   }
 
 }

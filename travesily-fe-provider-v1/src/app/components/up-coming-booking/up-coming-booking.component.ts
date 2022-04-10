@@ -1,6 +1,6 @@
 import { NotificationService } from 'src/app/_services/notification.service';
 import { BookingsService } from 'src/app/_services/bookings.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Booking } from 'src/app/_models/booking';
 import { first } from 'rxjs';

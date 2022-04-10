@@ -6,7 +6,6 @@ export interface DialogData {
   checked: boolean;
 }
 
-
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',

@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {BookingDetail} from "../../../../../../../_models/booking-detail";
 import {RoomTypeService} from "../../../../../../../_services/room-type.service";
-import {first} from "rxjs";
 import {RoomDetail} from "../../../../../../../_models/room-detail";
 import {CryptoService} from "../../../../../../../_services/crypto.service";
 
@@ -15,7 +14,6 @@ export class UserBookingDetailCardComponent implements OnInit {
   roomDetail: RoomDetail = new RoomDetail()
 
   constructor(private roomTypeService: RoomTypeService, private cryptoService: CryptoService) {
-
   }
 
   ngOnInit(): void {
@@ -31,5 +29,4 @@ export class UserBookingDetailCardComponent implements OnInit {
   filterFacility(ele){
     return ele['name']
   }
-
 }

@@ -15,8 +15,8 @@ export class ReviewBoxComponent implements OnInit {
   @Input() bookingId: number
 
   constructor(private fb: FormBuilder,
-              private reviewService: ReviewService,
-              private router: Router) {
+    private reviewService: ReviewService,
+    private router: Router) {
   }
 
   ngOnInit(): void {

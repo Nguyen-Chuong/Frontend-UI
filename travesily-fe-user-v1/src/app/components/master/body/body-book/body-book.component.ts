@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body-book.component.scss']
 })
 export class BodyBookComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

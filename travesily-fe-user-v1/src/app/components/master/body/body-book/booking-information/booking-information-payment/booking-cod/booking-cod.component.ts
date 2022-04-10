@@ -44,7 +44,6 @@ export class BookingCodComponent implements OnInit {
     })
   }
 
-
   ngOnInit(): void {
   }
 

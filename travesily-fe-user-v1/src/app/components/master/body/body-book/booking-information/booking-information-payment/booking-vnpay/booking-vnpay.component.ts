@@ -25,7 +25,6 @@ export class BookingVnpayComponent implements OnInit {
   account: Account = new Account()
   totalPaid: number = 0
 
-
   constructor(private fb: FormBuilder, private paymentService: PaymentService, private activatedRoute: ActivatedRoute, private bookingService: BookingService, private router: Router, private cryptoService: CryptoService, private storageService: StorageService, private hotelService: HotelService, private authService: AuthService) {
     this.bookingRequest = this.storageService.bookingRequest
     if (!this.bookingRequest) {
@@ -69,7 +68,6 @@ export class BookingVnpayComponent implements OnInit {
             })
           }
         })
-
       }
     })
   }

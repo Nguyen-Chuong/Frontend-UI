@@ -16,17 +16,16 @@ export class ForgotPasswordComponent implements OnInit {
   form: FormGroup
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService,
-              private router: Router,
-              private notificationService: NotificationService,
-              private cryptoService: CryptoService) {
+    private authService: AuthService,
+    private router: Router,
+    private notificationService: NotificationService,
+    private cryptoService: CryptoService) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
     })
   }
 
   ngOnInit(): void {
-
   }
 
   click() {

@@ -21,5 +21,4 @@ export class TopHotelsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

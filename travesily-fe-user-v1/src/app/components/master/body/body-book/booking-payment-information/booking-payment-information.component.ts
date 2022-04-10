@@ -31,7 +31,7 @@ export class BookingPaymentInformationComponent implements OnInit {
   bookingInformationDetails: BookingInformationDetail[] = []
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
-              private storageService: StorageService, private bookingService: BookingService, private router: Router) {
+    private storageService: StorageService, private bookingService: BookingService, private router: Router) {
     this.activatedRoute.queryParams.subscribe({
       next: value => {
         this.bookingRequest = storageService.bookingRequest
@@ -64,7 +64,6 @@ export class BookingPaymentInformationComponent implements OnInit {
           error: err =>console.error(err)
         })
 
-
         // this.bookingService.getBookingDetail(value['bookingId']).subscribe({
         //   next: bookingDetail => {
         //     this.bookingDetails = bookingDetail['data']
@@ -86,5 +85,4 @@ export class BookingPaymentInformationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -20,6 +20,4 @@ export class EditDropdownEditPhoneComponent implements OnInit {
       newPass: ['', Validators.required],
     })
   }
-
-
 }

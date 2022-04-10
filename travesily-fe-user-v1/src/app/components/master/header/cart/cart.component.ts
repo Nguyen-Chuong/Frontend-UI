@@ -20,10 +20,10 @@ export class CartComponent implements OnInit {
   hotel: Hotel = new Hotel()
 
   constructor(private cartService: CartService,
-              private roomTypeService: RoomTypeService,
-              private cryptoService: CryptoService,
-              private router: Router,
-              private hotelService: HotelService) {
+    private roomTypeService: RoomTypeService,
+    private cryptoService: CryptoService,
+    private router: Router,
+    private hotelService: HotelService) {
     this.cartService.getCarts().subscribe({
         next: value => {
           this.hotel = new Hotel()
@@ -52,7 +52,6 @@ export class CartComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 
   clearCart() {
     if (this.carts.length === 0) {

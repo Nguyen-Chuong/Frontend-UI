@@ -4,11 +4,8 @@ import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
-import { City } from 'src/app/_models/city';
-import { District } from 'src/app/_models/district';
 import { Hotel } from 'src/app/_models/hotel';
 import { Room } from 'src/app/_models/room';
-import { CitiesService } from 'src/app/_services/cities.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -35,7 +32,6 @@ export class RoomImageComponent implements OnInit {
   roomTypes: RoomType[]
   roomType: RoomType = new RoomType
   roomTypeId: string
-
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   imageRequest: ImageRequest = new ImageRequest
@@ -58,13 +54,11 @@ export class RoomImageComponent implements OnInit {
       dealPercentage: [''],
       dealExpire: ['']
     })
-
     this.hotelControl = new FormControl('', Validators.required);
     this.roomControl = new FormControl('', Validators.required);
   }
 
   ngOnInit(): void {
-
     this.hotelService.getAllHotel().pipe(first()).subscribe(res => {
       this.hotels = res['data']
     })
@@ -92,7 +86,6 @@ export class RoomImageComponent implements OnInit {
     this.roomService.getRoomDetail(this.roomTypeId).pipe(first()).subscribe(res => {
       this.roomType = res['data']
     })
-
   }
 
   upload(): void {

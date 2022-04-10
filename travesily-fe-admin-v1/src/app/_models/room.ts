@@ -1,6 +1,7 @@
 import { BenefitType } from './benefitType';
 import { FacilityType } from './facilityType';
 import { Image } from './image';
+
 export class Room {
   id: number;
   name: string;

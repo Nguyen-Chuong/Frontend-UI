@@ -42,6 +42,7 @@ export class AuthService {
         })
       );
   }
+  
   //Register new account
   register(account: Account) {
     return this.http.post(

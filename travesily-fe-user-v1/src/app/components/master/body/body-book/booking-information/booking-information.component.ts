@@ -11,14 +11,7 @@ import {RoomDetail} from "../../../../../_models/room-detail";
 import {RoomTypeService} from "../../../../../_services/room-type.service";
 import {StorageService} from "../../../../../_services/storage.service";
 import {SearchFilter} from "../../../../../_models/search-filter";
-import {first} from "rxjs";
-import {BenefitType} from "../../../../../_models/benefit-type";
-import {Benefit} from "../../../../../_models/benefit";
 import {FormBuilder} from "@angular/forms";
-import {Booking} from "../../../../../_models/booking";
-import {BookingService} from "../../../../../_services/booking.service";
-import {BookingRequest} from "../../../../../_models/booking-request";
-import {BookingDetail} from "../../../../../_models/booking-detail";
 import {BookingInformationDetail} from "../../../../../_models/booking-information-detail";
 
 @Component({
@@ -35,7 +28,7 @@ export class BookingInformationComponent implements OnInit {
   bookingInformationDetails: BookingInformationDetail[] = []
 
   constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
-              private storageService: StorageService, private router: Router) {
+    private storageService: StorageService, private router: Router) {
     //Get user search filter
     this.searchFilter = storageService.searchFilter
     this.authService.getProfile().subscribe({
@@ -61,7 +54,6 @@ export class BookingInformationComponent implements OnInit {
           })
           this.bookingInformationDetails = []
           const tempRoomDetails = []
-
           this.carts.forEach(cart => {
             this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', cart.roomTypeId)).subscribe({
               next: value => {
@@ -83,8 +75,5 @@ export class BookingInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
-
-
 }

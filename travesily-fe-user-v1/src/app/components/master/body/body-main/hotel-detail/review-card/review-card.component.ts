@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Review} from "../../../../../../_models/review";
-import {PageEvent} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-review-card',
@@ -29,5 +28,4 @@ export class ReviewCardComponent implements OnInit {
   calcAvgRatingReview(review: Review) {
     return (review?.service + review?.cleanliness + review?.facilities + review?.location + review?.valueForMoney) / 5 * 2
   }
-
 }

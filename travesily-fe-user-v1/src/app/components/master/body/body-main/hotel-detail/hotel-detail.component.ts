@@ -4,7 +4,6 @@ import {RoomTypeService} from "../../../../../_services/room-type.service";
 import {RoomType} from "../../../../../_models/room-type";
 import {Hotel} from "../../../../../_models/hotel";
 import {HotelService} from "../../../../../_services/hotel.service";
-import {Benefit} from "../../../../../_models/benefit";
 import {BenefitType} from "../../../../../_models/benefit-type";
 import {StorageService} from "../../../../../_services/storage.service";
 import {RatingAverage} from "../../../../../_models/rating-average";
@@ -12,10 +11,8 @@ import {Review} from "../../../../../_models/review";
 import {ReviewService} from "../../../../../_services/review.service";
 import {CryptoService} from "../../../../../_services/crypto.service";
 import {PageEvent} from "@angular/material/paginator";
-import {Nl2BrPipeModule} from "nl2br-pipe";
 
 declare var $: any;
-
 
 @Component({
   selector: 'app-hotel-detail',
@@ -36,12 +33,12 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
   currentCriteria: number
 
   constructor(private activatedRoute: ActivatedRoute,
-              private roomTypeService: RoomTypeService,
-              private hotelService: HotelService,
-              private router: Router,
-              private storageService: StorageService,
-              private reviewService: ReviewService,
-              private cryptoService: CryptoService
+    private roomTypeService: RoomTypeService,
+    private hotelService: HotelService,
+    private router: Router,
+    private storageService: StorageService,
+    private reviewService: ReviewService,
+    private cryptoService: CryptoService
   ) {
     this.currentUrl = this.router.url
   }
@@ -65,7 +62,6 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
     }).on('mouseleave', function () {
       $(this).popover("hide");
     })
-
     $(document).on("click", ".hotel-nav-link", function (e) {
       e.preventDefault();
       var id = $(this).attr("href"),
@@ -109,10 +105,10 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
               this.ratingTitle = 'Average'
             else if (avgRating < 5)
               this.ratingTitle = 'Below Average'
-            this.currentPageIndex = 0
-            this.currentPageSize = 5
-            this.currentCriteria = 1
-            this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), this.currentPageIndex, this.currentPageSize, this.currentCriteria).subscribe({
+              this.currentPageIndex = 0
+              this.currentPageSize = 5
+              this.currentCriteria = 1
+              this.reviewService.getReviews(this.cryptoService.set('06052000', this.hotel.id), this.currentPageIndex, this.currentPageSize, this.currentCriteria).subscribe({
               next: reviews => {
                 this.reviews = reviews['data']['items']
                 this.totalItems = reviews['data']['total']
@@ -121,7 +117,6 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
           },
           err => console.error(err)
         )
-
         this.hotelService.listBenefitsByHotelId(hotelId).subscribe(
           rs => {
             this.benefitTypes = rs['data']

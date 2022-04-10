@@ -22,11 +22,11 @@ export class UserBookingDetailComponent implements OnInit {
   bookingDetails: BookingDetail[] = []
 
   constructor(authService: AuthService,
-              private bookingService: BookingService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router,
-              private cryptoService: CryptoService,
-              private storageService: StorageService
+    private bookingService: BookingService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private cryptoService: CryptoService,
+    private storageService: StorageService
   ) {
     authService.getProfile().pipe(first()).subscribe(rs => {
       this.account = rs['data']

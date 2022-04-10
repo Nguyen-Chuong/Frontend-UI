@@ -16,15 +16,10 @@ import { EmailValidator } from 'src/app/_validators/email.validator';
 })
 export class NewAdminComponent implements OnInit {
   isAdmin = false
-
   isManager = false
-
   manager = new Account
-
   matchingPasswordsGroup: FormGroup;
-
   parentErrorStateMatcher = new ParentErrorStateMatcher();
-
   form: FormGroup
 
   constructor(private fb: FormBuilder,
@@ -83,7 +78,6 @@ export class NewAdminComponent implements OnInit {
     })
   }
 
-
   getErrorMessage(field: string) {
     if (field === 'username' && this.form.controls['username'].hasError('required')) {
       return 'You must enter a value';
@@ -118,7 +112,6 @@ export class NewAdminComponent implements OnInit {
     if (field === 'confirmPassword' && this.form.controls['confirmPassword'].hasError('matching')) {
       return 'Confirm password not match! Please re-check!';
     }
-
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 

@@ -10,7 +10,7 @@ export class HotelService {
   baseUrl = environment.API_URL;
 
   constructor(private http: HttpClient,
-              @Inject(LOCALE_ID) private _locale: string) {
+    @Inject(LOCALE_ID) private _locale: string) {
   }
 
   datePipe = new DatePipe('en-US');

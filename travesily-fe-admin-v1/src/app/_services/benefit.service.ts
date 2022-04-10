@@ -2,14 +2,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { BenefitAddRequest } from '../_models/benefitAddRequest';
-import { BenefitRequest } from '../_models/benefitRequest';
 import { BenefitTypeRequest } from '../_models/benefitTypeRequest';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BenefitService {
-
   baseUrl = environment.API_URL;
   constructor(private http: HttpClient) {}
 

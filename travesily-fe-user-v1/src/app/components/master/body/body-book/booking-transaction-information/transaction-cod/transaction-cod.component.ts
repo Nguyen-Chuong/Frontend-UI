@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./transaction-cod.component.scss']
 })
 export class TransactionCodComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

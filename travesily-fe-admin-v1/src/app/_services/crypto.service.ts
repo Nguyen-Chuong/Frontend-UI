@@ -20,7 +20,6 @@ export class CryptoService {
         padding: CryptoJS.pad.Pkcs7,
       }
     );
-
     return encrypted.toString();
   }
 
@@ -34,7 +33,6 @@ export class CryptoService {
       mode: CryptoJS.mode.ECB,
       padding: CryptoJS.pad.Pkcs7,
     });
-
     return decrypted.toString(CryptoJS.enc.Utf8);
   }
 }

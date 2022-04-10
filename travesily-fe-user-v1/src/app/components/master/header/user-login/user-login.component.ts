@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginInfo} from "../../../../_models/login-info";
 import {AuthService} from "../../../../_services/auth.service";
 import {first} from "rxjs";
 import {Account} from "../../../../_models/account";

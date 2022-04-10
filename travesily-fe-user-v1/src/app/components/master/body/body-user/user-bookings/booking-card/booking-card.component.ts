@@ -16,7 +16,6 @@ export class BookingCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
   }
 
   viewDetail() {

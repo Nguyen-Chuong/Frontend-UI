@@ -36,11 +36,11 @@ export class SearchHotelListComponent implements OnInit {
   })
 
   constructor(private hotelService: HotelService,
-              private activatedRoute: ActivatedRoute,
-              private locationService: LocationService,
-              private router: Router,
-              private storageService: StorageService,
-              private spinner: NgxSpinnerService
+    private activatedRoute: ActivatedRoute,
+    private locationService: LocationService,
+    private router: Router,
+    private storageService: StorageService,
+    private spinner: NgxSpinnerService
   ) {
     this.filter = this.storageService.searchFilter
     hotelService.searchHotel(this.filter.destination.id, this.filter.from, this.filter.to, this.filter.guestNumber, this.filter.roomNumber, 0, 20)
@@ -56,8 +56,6 @@ export class SearchHotelListComponent implements OnInit {
           console.log(err)
         }}
       )
-
-
   }
 
   ngOnInit(): void {

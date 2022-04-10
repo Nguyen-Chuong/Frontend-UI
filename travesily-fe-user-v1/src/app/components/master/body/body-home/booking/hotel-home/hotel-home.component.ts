@@ -16,7 +16,6 @@ import {SearchFilter} from "../../../../../../_models/search-filter";
 import {ResultSearch} from "../../../../../../_models/result-search";
 import {StorageService} from "../../../../../../_services/storage.service";
 
-
 export const MY_FORMATS = {
   parse: {
     dateInput: 'LL',
@@ -28,7 +27,6 @@ export const MY_FORMATS = {
     monthYearA11yLabel: 'MMMM YYYY',
   },
 };
-
 
 @Injectable()
 export class MaxRangeSelectionStrategy<D>
@@ -48,7 +46,6 @@ export class MaxRangeSelectionStrategy<D>
       const maxDate = this._dateAdapter.addCalendarDays(start, this.delta);
       end = date ? (date > maxDate ? maxDate : date) : null;
     }
-
     return new DateRange<D>(start, end);
   }
 
@@ -133,7 +130,6 @@ export class MinRangeDirective {
   }
 }
 
-
 @Component({
   selector: 'app-hotel-home',
   templateUrl: './hotel-home.component.html',
@@ -153,7 +149,6 @@ export class HotelHomeComponent implements OnInit {
   results: ResultSearch[]
   todayDate: Date = new Date();
   tomorrowDate: Date = new Date(new Date().setDate(this.todayDate.getDate() + 1))
-
   // someDate: Date = new Date(anydate);
 
   hotelForm = new FormGroup({
@@ -207,5 +202,4 @@ export class HotelHomeComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

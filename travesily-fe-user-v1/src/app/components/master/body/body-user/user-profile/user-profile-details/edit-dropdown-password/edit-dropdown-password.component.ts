@@ -1,14 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Account} from "../../../../../../../_models/account";
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ValidationErrors,
-  ValidatorFn,
-  Validators
-} from "@angular/forms";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
 import {AlertService} from "../../../../../../../_services/alert.service";
@@ -94,10 +86,8 @@ export class EditDropdownPasswordComponent implements OnInit {
     }
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
-
   convertToFormControl(absCtrl: AbstractControl | null): FormControl {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }
