@@ -16,5 +16,4 @@ export class TransactionVnpayComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

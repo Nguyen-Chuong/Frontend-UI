@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./body-user.component.scss']
 })
 export class BodyUserComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

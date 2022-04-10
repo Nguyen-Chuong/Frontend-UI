@@ -18,8 +18,8 @@ export class UserBookingsComponent implements OnInit {
   ]
 
   constructor(private bookingService: BookingService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {
+    private activatedRoute: ActivatedRoute,
+    private router: Router) {
     this.activatedRoute.queryParams.subscribe({
       next: params => {
         if (params['status'] == undefined) {
@@ -43,7 +43,6 @@ export class UserBookingsComponent implements OnInit {
         })
       }
     })
-
   }
 
   ngOnInit(): void {
@@ -64,5 +63,4 @@ export class UserBookingsComponent implements OnInit {
       )
     }
   }
-
 }

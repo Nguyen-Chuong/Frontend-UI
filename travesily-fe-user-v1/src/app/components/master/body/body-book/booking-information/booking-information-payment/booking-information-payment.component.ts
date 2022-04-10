@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {PaymentService} from "../../../../../../_services/payment.service";
 import {BookingService} from "../../../../../../_services/booking.service";
 
 @Component({
@@ -17,5 +16,4 @@ bookingCount: number = 0
 
   ngOnInit(): void {
   }
-
 }

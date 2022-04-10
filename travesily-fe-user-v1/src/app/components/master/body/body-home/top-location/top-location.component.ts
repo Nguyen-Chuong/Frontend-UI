@@ -21,5 +21,4 @@ export class TopLocationComponent implements OnInit {
       }
     })
   }
-
 }

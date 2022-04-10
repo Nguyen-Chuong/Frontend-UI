@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpBackend, HttpClient, HttpParams} from "@angular/common/http";
 import {PaymentDto} from "../_models/payment-dto";
-import {TransactionDto} from "../_models/transaction-dto";
 import {TransactionInfo} from "../_models/transaction-info";
 
 @Injectable({

@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { CryptoService } from './crypto.service';
 import { environment } from '../../environments/environment';
-import {Booking} from "../_models/booking";
 import {DatePipe} from "@angular/common";
-import {BookingDetail} from "../_models/booking-detail";
 import {BookingRequest} from "../_models/booking-request";
 
 @Injectable({

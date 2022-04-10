@@ -14,10 +14,10 @@ import {Router} from "@angular/router";
 export class BodyFeedbackComponent implements OnInit {
   feedbackForm: FormGroup
   constructor(private fb: FormBuilder,
-              private feedbackService: FeedbackService,
-              private authService: AuthService,
-              private storageService: StorageService,
-              private router: Router) {
+    private feedbackService: FeedbackService,
+    private authService: AuthService,
+    private storageService: StorageService,
+    private router: Router) {
     console.log(this.storageService.authToken)
     if(this.storageService.authToken===null){
       Swal.fire('You must login first to access help center!','','warning').then(() => {
@@ -36,7 +36,6 @@ export class BodyFeedbackComponent implements OnInit {
       ]],
       requestDetail: ['', [Validators.required]]
     })
-
   }
 
   selectOption() {
@@ -71,7 +70,6 @@ export class BodyFeedbackComponent implements OnInit {
           })
         }
       })
-
     }
   }
 

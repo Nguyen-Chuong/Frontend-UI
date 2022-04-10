@@ -8,7 +8,7 @@ import {Feedback} from "../../../../../_models/feedback";
   styleUrls: ['./user-feedback.component.scss']
 })
 export class UserFeedbackComponent implements OnInit {
-   feedbacks: Feedback[] = []
+  feedbacks: Feedback[] = []
 
   constructor(private feedbackService: FeedbackService) {
     this.feedbackService.listFeedback().subscribe({
@@ -20,5 +20,4 @@ export class UserFeedbackComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

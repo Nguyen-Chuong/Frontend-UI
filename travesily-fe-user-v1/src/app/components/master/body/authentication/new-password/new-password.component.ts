@@ -10,8 +10,7 @@ import {
 } from "@angular/forms";
 import {AuthService} from "../../../../../_services/auth.service";
 import {AlertService} from "../../../../../_services/alert.service";
-import {first} from "rxjs";
-import {ActivatedRoute, Route, Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import Swal from "sweetalert2";
 
 @Component({
@@ -81,10 +80,8 @@ export class NewPasswordComponent implements OnInit {
     }
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
-
   convertToFormControl(absCtrl: AbstractControl | null): FormControl {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

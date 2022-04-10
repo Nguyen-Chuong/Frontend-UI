@@ -18,5 +18,4 @@ export class TransactionBookingDetailComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

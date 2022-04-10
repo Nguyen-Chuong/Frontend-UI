@@ -1,12 +1,7 @@
-import {Component, Directive, Inject, Injectable, Input, OnInit} from '@angular/core';
-import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormControl, Validators} from "@angular/forms";
 import {first} from "rxjs";
 import {Router} from "@angular/router";
-import {
-  DateRange,
-  MAT_DATE_RANGE_SELECTION_STRATEGY,
-  MatDateRangeSelectionStrategy
-} from "@angular/material/datepicker";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import * as _moment from 'moment';
@@ -32,7 +27,6 @@ export const MY_FORMATS = {
   },
 };
 
-
 @Component({
   selector: 'app-main-search-bar',
   templateUrl: './main-search-bar.component.html',
@@ -46,32 +40,28 @@ export const MY_FORMATS = {
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-
     {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
   ],
 })
-
 
 export class MainSearchBarComponent implements OnInit {
   results: ResultSearch[] = []
   todayDate: Date = new Date();
   tomorrowDate: Date = new Date(new Date().setDate(this.todayDate.getDate() + 1))
   filter: SearchFilter = new SearchFilter()
-
   // someDate: Date = new Date(anydate);
-
   hotelForm
 
   constructor(private hotelService: HotelService,
-              private router: Router,
-              private locationService: LocationService,
-              private fb: FormBuilder,
-              private storage: StorageService) {
+    private router: Router,
+    private locationService: LocationService,
+    private fb: FormBuilder,
+    private storage: StorageService) {
     this.filter = this.storage.searchFilter
     this.results?.push(this.filter.destination)
     // this.hotelForm.controls['destination'].setValue(this.filter.destination.resultSearch)
-    // // this.hotelForm.controls['from'].setValue(new Date(this.filter.from))
-    // // this.hotelForm.controls['to'].setValue(this.filter.to)
+    // this.hotelForm.controls['from'].setValue(new Date(this.filter.from))
+    // this.hotelForm.controls['to'].setValue(this.filter.to)
     // this.hotelForm.controls['guestNumber'].setValue(this.filter.guestNumber)
     // this.hotelForm.controls['roomNumber'].setValue(this.filter.roomNumber)
     this.hotelForm = fb.group({
@@ -131,5 +121,4 @@ export class MainSearchBarComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

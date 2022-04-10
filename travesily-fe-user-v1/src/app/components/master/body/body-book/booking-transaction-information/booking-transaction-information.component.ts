@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PaymentService} from "../../../../../_services/payment.service";
 import {ActivatedRoute} from "@angular/router";
-import {TransactionDto} from "../../../../../_models/transaction-dto";
 import {TransactionInfo} from "../../../../../_models/transaction-info";
 import {BookingService} from "../../../../../_services/booking.service";
 import {CryptoService} from "../../../../../_services/crypto.service";
@@ -98,5 +97,4 @@ export class BookingTransactionInformationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

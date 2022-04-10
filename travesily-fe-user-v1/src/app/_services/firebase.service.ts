@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from '@angular/fire/compat/database';
 import {AngularFireStorage} from '@angular/fire/compat/storage';
-import {finalize, Observable, Subject} from 'rxjs';
+import {finalize, Subject} from 'rxjs';
 import {FileUpload} from '../_models/file-upload';
 import {CryptoService} from './crypto.service';
 
@@ -13,8 +13,8 @@ export class FirebaseService {
   storageUrlSubject: Subject<string> = new Subject<string>()
 
   constructor(private db: AngularFireDatabase,
-              private storage: AngularFireStorage,
-              private cryptoService: CryptoService) {
+    private storage: AngularFireStorage,
+    private cryptoService: CryptoService) {
   }
 
   pushFileToStorage(fileUpload: FileUpload, folder: string, id: number) {

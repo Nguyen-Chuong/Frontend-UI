@@ -33,12 +33,6 @@ import {
   BookingPaymentInformationComponent
 } from "./components/master/body/body-book/booking-payment-information/booking-payment-information.component";
 import {
-  BookingInformationConfirmComponent
-} from "./components/master/body/body-book/booking-information/booking-information-confirm/booking-information-confirm.component";
-import {
-  BookingInformationPaymentComponent
-} from "./components/master/body/body-book/booking-information/booking-information-payment/booking-information-payment.component";
-import {
   BookingVnpayComponent
 } from "./components/master/body/body-book/booking-information/booking-information-payment/booking-vnpay/booking-vnpay.component";
 import {
@@ -106,8 +100,6 @@ const routes: Routes = [
       {path: 'feedback',component: BodyFeedbackComponent}
     ]
   }
-
-
 ];
 
 @NgModule({

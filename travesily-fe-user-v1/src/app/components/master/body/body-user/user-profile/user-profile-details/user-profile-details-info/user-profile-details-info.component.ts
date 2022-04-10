@@ -19,7 +19,6 @@ export class UserProfileDetailsInfoComponent implements OnInit {
   @Input() isAdd: boolean | undefined
   @Input() editType: string | undefined
   isEditShow: boolean = false
-
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   showImage: string
@@ -48,7 +47,6 @@ export class UserProfileDetailsInfoComponent implements OnInit {
       this.selectedFiles = undefined;
       this.currentFileUpload = new FileUpload(file);
       this.firebaseService.pushFileToStorage(this.currentFileUpload, 'accounts', this.account.id)
-
       this.firebaseService.getStorageUrl().subscribe({
         next: rs => {
           this.account.avatar = rs
@@ -60,7 +58,6 @@ export class UserProfileDetailsInfoComponent implements OnInit {
           console.log(err);
         }
       });
-
     }
   }
 }

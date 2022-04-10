@@ -20,9 +20,9 @@ export class HotelCardComponent implements OnInit {
   ratingTitle: string = ''
 
   constructor(private hotelService: HotelService,
-              private router: Router,
-              private cryptoService: CryptoService,
-              private activatedRoute: ActivatedRoute) {
+    private router: Router,
+    private cryptoService: CryptoService,
+    private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -64,6 +64,4 @@ export class HotelCardComponent implements OnInit {
   calcAvgRatingReview(review: Review) {
     return (review.service + review.cleanliness + review.facilities + review.location + review.valueForMoney) / 5 * 2
   }
-
-
 }

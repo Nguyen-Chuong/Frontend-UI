@@ -10,7 +10,6 @@ import {DatePipe} from "@angular/common";
 })
 export class CartService {
   baseUrl = environment.API_URL;
-
   datePipe = new DatePipe('en-US')
   private cartsSubject: Subject<Cart[]> = new Subject<Cart[]>()
 

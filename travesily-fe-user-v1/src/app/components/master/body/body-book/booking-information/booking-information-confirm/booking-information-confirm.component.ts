@@ -68,6 +68,5 @@ export class BookingInformationConfirmComponent implements OnInit {
         })
       }
     })
-
   }
 }

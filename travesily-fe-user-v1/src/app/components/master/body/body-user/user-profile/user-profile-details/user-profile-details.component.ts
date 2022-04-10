@@ -18,6 +18,4 @@ export class UserProfileDetailsComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
-
 }

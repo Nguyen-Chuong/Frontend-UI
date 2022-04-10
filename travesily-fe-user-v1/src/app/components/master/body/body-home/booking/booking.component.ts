@@ -6,10 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent implements OnInit {
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
 }

@@ -1,10 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Feedback} from "../../../../../../_models/feedback";
 import {FeedbackService} from "../../../../../../_services/feedback.service";
 import Swal from "sweetalert2";
 import {Response} from "../../../../../../_models/response";
-import {FeedbackRequest} from "../../../../../../_models/feedback-request";
 import {ResponseRequest} from "../../../../../../_models/response-request";
 import {AuthService} from "../../../../../../_services/auth.service";
 import {Account} from "../../../../../../_models/account";
@@ -24,10 +22,10 @@ export class FeedbackDetailComponent implements OnInit {
   messageForm: FormGroup
 
   constructor(private activatedRoute: ActivatedRoute,
-              private feedbackService: FeedbackService,
-              private authService: AuthService,
-              private fb: FormBuilder,
-              private cryptoService: CryptoService) {
+    private feedbackService: FeedbackService,
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private cryptoService: CryptoService) {
     this.activatedRoute.queryParams.subscribe({
       next: params => {
         this.feedbackId = params['feedbackId']
@@ -48,7 +46,6 @@ export class FeedbackDetailComponent implements OnInit {
       }
     })
   }
-
 
   ngOnInit(): void {
     this.messageForm = this.fb.group({

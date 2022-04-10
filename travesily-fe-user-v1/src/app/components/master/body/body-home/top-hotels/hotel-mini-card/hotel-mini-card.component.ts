@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {CryptoService} from "../../../../../../_services/crypto.service";
 import {StorageService} from "../../../../../../_services/storage.service";
 import {SearchFilter} from "../../../../../../_models/search-filter";
-import {District} from "../../../../../../_models/district";
 
 @Component({
   selector: 'app-hotel-mini-card',
