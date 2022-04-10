@@ -28,5 +28,4 @@ export class FeedbackTableComponent implements OnInit {
       queryParams: { id: JSON.stringify(encryptedId) }
     });
   }
-
 }

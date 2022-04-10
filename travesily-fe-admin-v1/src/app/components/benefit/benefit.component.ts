@@ -1,6 +1,6 @@
 import { BenefitService } from './../../_services/benefit.service';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BenefitTypeRequest } from 'src/app/_models/benefitTypeRequest';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { first } from 'rxjs';
@@ -27,7 +27,6 @@ export class BenefitComponent implements OnInit {
     private notificationService: NotificationService,
     private fb: FormBuilder
   ) {
-
   }
 
   ngOnInit(): void {
@@ -39,13 +38,11 @@ export class BenefitComponent implements OnInit {
       benefit: new FormControl('', [Validators.required]),
       icon: new FormControl('', [Validators.required])
     })
-
     this.benefitService.getBenefitType().pipe(first()).subscribe(
       rs => {
         this.benefitTypes = rs['data']
       })
     this.benefitTypeControl = new FormControl('', Validators.required);
-
   }
 
   addBenefitType() {

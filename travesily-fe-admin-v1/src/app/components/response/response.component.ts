@@ -1,7 +1,7 @@
 import { FeedbackRequest } from './../../_models/feedback-request';
 import { AdminResponse } from './../../_models/admin-response';
 import { Feedback } from './../../_models/feedback';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FeedbackService } from 'src/app/_services/feedback.service';
@@ -32,17 +32,14 @@ export class ResponseComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = new FormGroup({ message_response: new FormControl('', [Validators.required]) })
-
     this.route.queryParams.subscribe((param) => {
       this.feedbackId = param['id'].slice(1, -1);
     })
-
     this.feedbackService.getFeedbackById(this.feedbackId).pipe(first()).subscribe(
       rs => {
         this.feedback = rs['data']
       }
     )
-
     this.feedbackService.getResponseByFeedbackId(this.feedbackId).pipe(first()).subscribe(
       rs => {
         this.responses = rs['data']
@@ -51,8 +48,6 @@ export class ResponseComponent implements OnInit {
         }
       }
     )
-
-
   }
 
   saveResponse() {

@@ -33,13 +33,11 @@ export class HotelApproveComponent implements OnInit {
 
   displayedColumns: string[] = ['hotelName', 'requestDate', 'providerName', 'request', ' '];
   ngOnInit(): void {
-
     this.requestsService.getAllRequest(1).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
       }
     )
-
     this.requestsService.getPageRequest(1, 0, 10).pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']['items']
@@ -48,7 +46,6 @@ export class HotelApproveComponent implements OnInit {
     )
     this.dataSource = new MatTableDataSource<Request>(this.requests);
   }
-
 
   openHotelDetail(id) {
     const encryptedId =this.cryptoService.set('06052000',id)

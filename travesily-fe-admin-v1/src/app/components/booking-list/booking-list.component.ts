@@ -46,10 +46,7 @@ export class BookingListComponent implements OnInit {
         this.pageSize = rs['data']['pageSize']
       }
     )
-
-
     this.dataSource = new MatTableDataSource<Booking>(this.bookings);
-
   }
 
   openBookingDetail(id) {

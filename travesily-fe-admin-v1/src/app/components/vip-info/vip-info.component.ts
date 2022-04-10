@@ -19,5 +19,4 @@ export class VipInfoComponent implements OnInit {
       this.vips = rs['data']
     })
   }
-
 }

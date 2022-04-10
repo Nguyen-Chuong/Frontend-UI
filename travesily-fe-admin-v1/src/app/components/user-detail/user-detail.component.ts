@@ -27,11 +27,9 @@ export class UserDetailComponent implements OnInit {
     this.route.queryParams.subscribe((param) =>{
       this.username = param['username'].slice(1, -1);
     })
-
   }
 
   ngOnInit(): void {
-
     this.bookingService.getUserBooking(this.username).pipe(first()).subscribe(
       rs => {
         this.bookings = rs['data']
@@ -43,5 +41,4 @@ export class UserDetailComponent implements OnInit {
       }
     )
   }
-
 }

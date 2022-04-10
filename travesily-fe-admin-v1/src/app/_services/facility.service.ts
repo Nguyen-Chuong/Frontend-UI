@@ -2,14 +2,12 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { FacilityAddRequest } from '../_models/facilityAddRequest';
-import { FacilityRequest } from '../_models/facilityRequest';
 import { FacilityTypeRequest } from '../_models/facilityTypeRequest';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FacilityService {
-
   baseUrl = environment.API_URL;
   constructor(private http: HttpClient) { }
 

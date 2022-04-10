@@ -20,7 +20,6 @@ export class ParentErrorStateMatcher implements ErrorStateMatcher {
       control.parent.invalid &&
       (control.parent.dirty || control.parent.touched)
     );
-
     return isSubmitted || (controlTouched && (controlInvalid || parentInvalid));
   }
 }
@@ -29,7 +28,6 @@ export class PasswordValidator {
   static areEqual(formGroup: FormGroup) {
     let val;
     let valid = true;
-
     for (let key in formGroup.controls) {
       if (formGroup.controls.hasOwnProperty(key)) {
         let control: FormControl = <FormControl>formGroup.controls[key];
@@ -44,11 +42,9 @@ export class PasswordValidator {
         }
       }
     }
-
     if (valid) {
       return null;
     }
-
     return {
       areEqual: true,
     };

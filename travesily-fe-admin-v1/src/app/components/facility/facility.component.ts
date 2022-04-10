@@ -43,7 +43,6 @@ export class FacilityComponent implements OnInit {
     const val = this.formGroup.value
     facilityTypeRequest.name = val.benefitType
     facilityTypeRequest.icon = val.icon
-
     this.facilityService.addFacilityType(facilityTypeRequest).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Add successfully');
@@ -59,5 +58,4 @@ export class FacilityComponent implements OnInit {
     this.max = this.max + 1
     this.inputs = Array.from({ length: this.max }, (_, i) => i + 1)
   }
-
 }

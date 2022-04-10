@@ -17,8 +17,8 @@ export class FeedbackComponent implements OnInit {
 
   constructor(
     private feedbackService: FeedbackService) { }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.feedbackService.getAllFeedback().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
@@ -31,6 +31,7 @@ export class FeedbackComponent implements OnInit {
       }
     )
   }
+
   getPaginatorData(event: PageEvent) {
     this.feedbackService.getFeedback(event.pageIndex, event.pageSize).pipe(first()).subscribe(
       rs => {
@@ -38,5 +39,4 @@ export class FeedbackComponent implements OnInit {
       }
     )
   }
-
 }

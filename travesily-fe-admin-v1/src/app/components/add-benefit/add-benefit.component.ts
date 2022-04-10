@@ -13,7 +13,6 @@ import { BenefitService } from './../../_services/benefit.service';
   styleUrls: ['./add-benefit.component.scss']
 })
 export class AddBenefitComponent implements OnInit {
-
   benefitGroup: FormGroup;
   benefitTypeControl: FormControl
   benefitTypes: BenefitType[]
@@ -35,8 +34,6 @@ export class AddBenefitComponent implements OnInit {
     this.benefitGroup = this.formBuilder.group({
       benefits: this.formBuilder.array([])
     })
-
-
   }
 
   addProduct(name = "", icon = "") {

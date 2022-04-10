@@ -16,6 +16,5 @@ export class RoomDetailComponent implements OnInit {
   ngOnInit(): void {
     this.images = this.room.listImage
     this.image = this.images[0]
-
   }
 }

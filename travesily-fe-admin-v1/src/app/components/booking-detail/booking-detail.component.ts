@@ -17,11 +17,10 @@ export class BookingDetailComponent implements OnInit {
   bookingDetails: BookingDetail[] = []
 
   constructor(private authService: AuthServiceService,
-              private bookingService: BookingService,
-              private activatedRoute: ActivatedRoute,
-              private cryptoService: CryptoService
+    private bookingService: BookingService,
+    private activatedRoute: ActivatedRoute,
+    private cryptoService: CryptoService
   ) {
-
   }
 
   ngOnInit(): void {

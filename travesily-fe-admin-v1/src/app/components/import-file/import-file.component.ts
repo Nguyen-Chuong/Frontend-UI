@@ -27,7 +27,6 @@ export class ImportFileComponent implements OnInit {
 
   ngOnInit(): void {
     this.cityControl = new FormControl('', Validators.required);
-
     this.citiesService.getAllCities().pipe(first()).subscribe(res => {
       this.cities = res['data']
     })
@@ -39,7 +38,6 @@ export class ImportFileComponent implements OnInit {
 
   selectFile(event): void {
     this.selectedFiles = event.target.files;
-
   }
 
   upload(): void {
@@ -59,5 +57,4 @@ export class ImportFileComponent implements OnInit {
       })
     }
   }
-
 }

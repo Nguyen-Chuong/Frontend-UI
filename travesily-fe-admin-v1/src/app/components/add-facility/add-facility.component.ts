@@ -13,7 +13,6 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./add-facility.component.scss']
 })
 export class AddFacilityComponent implements OnInit {
-
   facilityGroup: FormGroup;
   facilityTypeControl: FormControl
   facilityTypes: BenefitType[]

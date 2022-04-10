@@ -35,11 +35,9 @@ export class AdminProfileComponent implements OnInit {
         address: new FormControl(this.account.address)
       })
     })
-
   }
 
   ngOnInit(): void {
-
   }
 
   updateProfile() {

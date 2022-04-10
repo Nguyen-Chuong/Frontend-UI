@@ -15,7 +15,6 @@ export class BookingDetailCardComponent implements OnInit {
   room: Room = new Room()
 
   constructor(private hotelService: HotelService, private cryptoService: CryptoService) {
-
   }
 
   ngOnInit(): void {
@@ -31,5 +30,4 @@ export class BookingDetailCardComponent implements OnInit {
   filterFacility(ele){
     return ele['name']
   }
-
 }

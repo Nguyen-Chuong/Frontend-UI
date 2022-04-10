@@ -51,5 +51,4 @@ export class FeedbackService {
     return this.http.post(`${this.baseUrl}/mail/send-response`, feedbackRequest, { params: params });
   }
 
-
 }

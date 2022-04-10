@@ -1,11 +1,10 @@
 <div class="field">
   <div class="control">
     <input [type]="type"
-           [formControl]="control"
-           class="input item-fullwidth"
-           [placeholder]="placeholder??''"
-           [ngClass]="{'is-invalid': control.errors}"
-
+      [formControl]="control"
+      class="input item-fullwidth"
+      [placeholder]="placeholder??''"
+      [ngClass]="{'is-invalid': control.errors}"
     >
   </div>
   <ng-container *ngIf="control.dirty&&control.touched">

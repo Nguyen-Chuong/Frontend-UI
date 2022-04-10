@@ -7,7 +7,6 @@ export interface DialogData {
   isAdmin: boolean
 }
 
-
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -23,5 +22,4 @@ export class DialogComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }

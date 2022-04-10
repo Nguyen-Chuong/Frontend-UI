@@ -31,8 +31,6 @@ export class ProviderComponent implements OnInit {
   displayedColumns: string[] = ['id', 'username','providerName', 'email', 'phone', 'address', ' '];
 
   ngOnInit(): void {
-
-
     this.providerService.getAllProvider().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
@@ -62,7 +60,6 @@ export class ProviderComponent implements OnInit {
       width: '400px',
       data: {checked: this.checked, message: this.message, isAdmin: this.isAdmin},
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if(this.checked){
@@ -86,5 +83,4 @@ export class ProviderComponent implements OnInit {
       }
     )
   }
-
 }

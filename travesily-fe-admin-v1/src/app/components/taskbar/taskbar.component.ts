@@ -4,7 +4,6 @@ import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
 
-
 @Component({
   selector: 'app-taskbar',
   templateUrl: './taskbar.component.html',
@@ -18,7 +17,6 @@ export class TaskbarComponent implements OnInit {
   constructor(private router: Router,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-
     this.authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
       localStorage.setItem('type', String(this.account.type))

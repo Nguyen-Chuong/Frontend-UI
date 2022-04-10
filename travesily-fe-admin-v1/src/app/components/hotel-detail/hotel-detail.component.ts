@@ -11,7 +11,6 @@ import { HotelService } from 'src/app/_services/hotel.service';
   styleUrls: ['./hotel-detail.component.scss']
 })
 export class HotelDetailComponent implements OnInit {
-
   hotel: Hotel
   hotelId: any
   rooms: Room[]
@@ -25,19 +24,16 @@ export class HotelDetailComponent implements OnInit {
       this.hotelId = param['id'].slice(1, -1);
       console.log(this.hotelId)
     })
-
     this.hotelsService.getHotelById(this.hotelId).pipe(first()).subscribe(
       rs => {
         this.hotel = rs['data']
 
       }
     )
-
     this.hotelsService.getRoomByHotelId(this.hotelId).pipe(first()).subscribe(
       rs => {
         this.rooms = rs['data']
       }
     )
   }
-
 }
