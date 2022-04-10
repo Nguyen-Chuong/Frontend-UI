@@ -11,10 +11,14 @@ export class RoomDetailComponent implements OnInit {
   @Input() room: Room
 
   images: Image[]
-  image: Image
+  imageSrc: string
   constructor() { }
   ngOnInit(): void {
     this.images = this.room.listImage
-    this.image = this.images[0]
+    if (this.images.length === 0) {
+      this.imageSrc = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt1R-elWRjhm7X8oDey-GQJeZa9fiPCT_QkA&usqp=CAU'
+    } else {
+      this.imageSrc = this.images[0].src
+    }
   }
 }
