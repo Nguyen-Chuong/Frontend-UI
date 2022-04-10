@@ -10,7 +10,7 @@
                 {{benefitType.name}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="benefitTypeControl.hasError('required')">Please choose a hotel</mat-error>
+            <mat-error *ngIf="benefitTypeControl.hasError('required')">Please choose a type of benefit</mat-error>
           </mat-form-field>
         </div>
         <form [formGroup]="benefitGroup" class="needs-validation">
