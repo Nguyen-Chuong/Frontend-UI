@@ -2,7 +2,6 @@ import { FirebaseService } from 'src/app/_services/firebase.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { Hotel } from 'src/app/_models/hotel';
 import { Room } from 'src/app/_models/room';
@@ -38,7 +37,6 @@ export class RoomImageComponent implements OnInit {
 
   constructor(
     fb: FormBuilder,
-    private route: ActivatedRoute,
     private hotelService: HotelService,
     private cryptoService: CryptoService,
     public dialog: MatDialog,
@@ -120,13 +118,13 @@ export class RoomImageComponent implements OnInit {
     this.roomService.addListImageForRoomType(this.imageRequest)
       .pipe(first())
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.roomService.getRoomDetail(this.roomTypeId).pipe(first()).subscribe(res => {
             this.roomType = res['data']
           })
           this.notificationService.onSuccess("Add images for room Successfully")
         }, error: error => {
-          this.notificationService.onError("Add images for room False")
+          this.notificationService.onError("Add images for room Fail")
           console.log(error)
         }
       })
@@ -139,8 +137,8 @@ export class RoomImageComponent implements OnInit {
         this.notificationService.onSuccess('Delete successfully');
           this.roomType = new RoomType
       },
-      error: err => {
-        this.notificationService.onError('Delete false')
+      error: () => {
+        this.notificationService.onError('Delete fail')
       }
     })
   }

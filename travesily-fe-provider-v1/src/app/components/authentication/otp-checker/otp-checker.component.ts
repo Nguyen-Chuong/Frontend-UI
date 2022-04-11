@@ -67,7 +67,7 @@ export class OtpCheckerComponent implements OnInit {
                         }
                       })
                     })
-                }, error: error => {
+                }, error: () => {
                   this.notificationService.onError('Register Failed')
                 }
               })
@@ -99,5 +99,4 @@ export class OtpCheckerComponent implements OnInit {
       }
     )
   }
-
 }

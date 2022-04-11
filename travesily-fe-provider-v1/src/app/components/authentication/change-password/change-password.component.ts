@@ -57,14 +57,13 @@ export class ChangePasswordComponent implements OnInit {
           this.notificationService.onSuccess('Change password successfully');
           this.form.reset()
         },
-        error: err => {
-          this.notificationService.onError('Change password false');
+        error: () => {
+          this.notificationService.onError('Change password fail');
           this.form.reset()
         }
       })
     }
   }
-
 
   getErrorMessage(field: string) {
     if (field === 'oldPass' && this.form.controls['oldPass'].hasError('required')) {
@@ -95,5 +94,4 @@ export class ChangePasswordComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

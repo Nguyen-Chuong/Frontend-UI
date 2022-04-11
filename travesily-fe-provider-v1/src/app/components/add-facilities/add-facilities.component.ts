@@ -27,7 +27,7 @@ export class AddFacilitiesComponent implements OnInit {
   constructor(private facilitiesService: FacilitiesService,
     private cryptoService: CryptoService,
     private notificationService: NotificationService,
-    private fb: FormBuilder
+    fb: FormBuilder
   ) {
     this.facilityTypeControl = new FormControl('', Validators.required);
     this.form = fb.group({
@@ -71,7 +71,7 @@ export class AddFacilitiesComponent implements OnInit {
     otherFacilityRequest.name = val.name
     this.facilitiesService.addFacilityOtherType(otherFacilityRequest).pipe(first())
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.notificationService.onSuccess("Add Successfully")
           const encryptedId = this.cryptoService.set('06052000', 1)
           this.facilitiesService.getFacilitiesByType(encryptedId).pipe(first()).subscribe(res => {
@@ -97,7 +97,7 @@ export class AddFacilitiesComponent implements OnInit {
     facilityRequest.facilityIds = this.checkedList
     this.facilitiesService.addListFacilities(facilityRequest).pipe(first())
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.notificationService.onSuccess("Add Hotel Successfully")
         }, error: error => {
           this.notificationService.onError(error['message'])

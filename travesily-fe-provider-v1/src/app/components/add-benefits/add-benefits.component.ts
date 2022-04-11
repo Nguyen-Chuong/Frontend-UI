@@ -26,7 +26,7 @@ export class AddBenefitsComponent implements OnInit {
   constructor(private benefitsService: BenefitsService,
     private cryptoService: CryptoService,
     private notificationService: NotificationService,
-    private fb: FormBuilder
+    fb: FormBuilder
   ) {
     this.benefitTypeControl = new FormControl('', Validators.required);
     this.form = fb.group({
@@ -71,7 +71,7 @@ export class AddBenefitsComponent implements OnInit {
     otherBenefitRequest.name = val.name
     this.benefitsService.addBenefitOtherType(otherBenefitRequest).pipe(first())
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.notificationService.onSuccess("Add Successfully")
           const encryptedId = this.cryptoService.set('06052000', 1)
           this.benefitsService.getBenefitByType(encryptedId).pipe(first()).subscribe(res => {
@@ -96,7 +96,7 @@ export class AddBenefitsComponent implements OnInit {
     benefitRequest.benefitIds = this.checkedList
     this.benefitsService.addListBenefit(benefitRequest).pipe(first())
       .subscribe({
-        next: (res) => {
+        next: () => {
           this.notificationService.onSuccess("Add Hotel Successfully")
         }, error: error => {
           this.notificationService.onError(error['message'])

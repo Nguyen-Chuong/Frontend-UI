@@ -67,8 +67,8 @@ export class AddHotelComponent implements OnInit {
         next: (res) => {
           localStorage.setItem('hotel-id', res['data'])
           this.notificationService.onSuccess("Add Hotel Successfully")
-        }, error: error => {
-          this.notificationService.onError("Add Hotel False")
+        }, error: () => {
+          this.notificationService.onError("Add Hotel Fail")
 
         }
       })

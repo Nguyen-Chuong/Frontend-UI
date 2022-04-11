@@ -5,7 +5,6 @@ import { AuthService } from 'src/app/_services/auth.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { EmailValidator } from 'src/app/_validators/email.validator';
 import { UsernameValidator } from 'src/app/_validators/username.validator';
-import { NotificationService } from './../../../_services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -17,10 +16,9 @@ export class RegisterComponent implements OnInit {
   form: FormGroup
 
   constructor(
-    private fb: FormBuilder,
+    fb: FormBuilder,
     private router: Router,
     private authService: AuthService,
-    private notificationService: NotificationService,
     private cryptoService: CryptoService,
     private activatedRoute: ActivatedRoute
   ) {
@@ -104,5 +102,4 @@ export class RegisterComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

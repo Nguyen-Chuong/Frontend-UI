@@ -2,13 +2,11 @@ import { RoomService } from './../../_services/room.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { City } from 'src/app/_models/city';
 import { District } from 'src/app/_models/district';
 import { Hotel } from 'src/app/_models/hotel';
-import { CitiesService } from 'src/app/_services/cities.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -39,9 +37,7 @@ export class UpdateRoomComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
     private hotelService: HotelService,
-    private citiesService: CitiesService,
     private cryptoService: CryptoService,
     public dialog: MatDialog,
     private roomService: RoomService,
@@ -84,7 +80,7 @@ export class UpdateRoomComponent implements OnInit {
         },
         error: err => {
           console.log(err)
-          this.notificationService.onError('Update Room false')
+          this.notificationService.onError('Update Room fail')
         }
       })
     } else {
@@ -95,7 +91,7 @@ export class UpdateRoomComponent implements OnInit {
         },
         error: err => {
           console.log(err)
-          this.notificationService.onError('Update Room false')
+          this.notificationService.onError('Update Room fail')
         }
       })
     }
@@ -136,7 +132,7 @@ export class UpdateRoomComponent implements OnInit {
   disableRoom() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: { checked: this.checked, message: "Are you sure wanna Disable this Room" },
+      data: { checked: this.checked, message: "Are you sure you want to Disable this Room" },
     });
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
@@ -146,8 +142,8 @@ export class UpdateRoomComponent implements OnInit {
             this.notificationService.onSuccess('Disable successfully');
             window.location.reload()
           },
-          error: err => {
-            this.notificationService.onError('Disable false')
+          error: () => {
+            this.notificationService.onError('Disable fail')
           }
         })
       }
@@ -157,7 +153,7 @@ export class UpdateRoomComponent implements OnInit {
   enableRoom() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: { checked: this.checked, message: "Are you sure wanna Enable this Room" },
+      data: { checked: this.checked, message: "Are you sure you want to Enable this Room" },
     });
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
@@ -167,8 +163,8 @@ export class UpdateRoomComponent implements OnInit {
             this.notificationService.onSuccess('Enable successfully');
             window.location.reload()
           },
-          error: err => {
-            this.notificationService.onError('Enable false')
+          error: () => {
+            this.notificationService.onError('Enable fail')
           }
         })
       }

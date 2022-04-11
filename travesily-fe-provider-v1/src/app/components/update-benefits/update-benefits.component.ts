@@ -64,8 +64,8 @@ export class UpdateBenefitsComponent implements OnInit {
         this.notificationService.onSuccess('Delete successfully');
         this.changeRoom(this.room)
       },
-      error: err => {
-        this.notificationService.onError('Delete false')
+      error: () => {
+        this.notificationService.onError('Delete fail')
       }
     })
   }
@@ -73,5 +73,4 @@ export class UpdateBenefitsComponent implements OnInit {
   openAddBenefit(){
     this.isAddBenefit = !this.isAddBenefit
   }
-
 }

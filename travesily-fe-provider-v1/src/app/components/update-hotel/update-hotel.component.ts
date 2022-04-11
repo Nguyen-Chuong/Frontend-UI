@@ -109,11 +109,10 @@ export class UpdateHotelComponent implements OnInit {
     this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Update Hotel successfully');
-        //window.location.reload()
       },
       error: err => {
         console.log(err)
-        this.notificationService.onError('Update Hotel false')
+        this.notificationService.onError('Update Hotel fail')
       }
     })
   }
@@ -129,7 +128,7 @@ export class UpdateHotelComponent implements OnInit {
   addRequestHotel() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: { checked: this.checked, message: "Are you sure wanna add this hotel to request list" },
+      data: { checked: this.checked, message: "Are you sure you want to add this hotel to request list" },
     });
     const postRequest: PostRequest = new PostRequest
     postRequest.hotelId = this.hotel.id
@@ -153,7 +152,7 @@ export class UpdateHotelComponent implements OnInit {
   disableHotel() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: { checked: this.checked, message: "Are you sure wanna Disable this hotel" },
+      data: { checked: this.checked, message: "Are you sure you want to Disable this hotel" },
     });
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
@@ -163,8 +162,8 @@ export class UpdateHotelComponent implements OnInit {
             this.notificationService.onSuccess('Disable successfully');
             window.location.reload()
           },
-          error: err => {
-            this.notificationService.onError('Disable false')
+          error: () => {
+            this.notificationService.onError('Disable fail')
           }
         })
       }
@@ -174,7 +173,7 @@ export class UpdateHotelComponent implements OnInit {
   enableHotel() {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: { checked: this.checked, message: "Are you sure wanna Enable this hotel" },
+      data: { checked: this.checked, message: "Are you sure you want to Enable this hotel" },
     });
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
@@ -184,8 +183,8 @@ export class UpdateHotelComponent implements OnInit {
             this.notificationService.onSuccess('Enable successfully');
             window.location.reload()
           },
-          error: err => {
-            this.notificationService.onError('Enable false')
+          error: () => {
+            this.notificationService.onError('Enable fail')
           }
         })
       }
@@ -239,5 +238,4 @@ export class UpdateHotelComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

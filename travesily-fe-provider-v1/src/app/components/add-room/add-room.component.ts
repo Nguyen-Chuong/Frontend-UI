@@ -1,10 +1,7 @@
 import { RoomService } from './../../_services/room.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { first } from 'rxjs';
-import { AuthService } from 'src/app/_services/auth.service';
-import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { Room } from 'src/app/_models/room';
 
@@ -18,10 +15,7 @@ export class AddRoomComponent implements OnInit {
   form: FormGroup
 
   constructor(
-    private fb: FormBuilder,
-    private router: Router,
-    private hotelService: HotelService,
-    private authService: AuthService,
+    fb: FormBuilder,
     private roomService: RoomService,
     private notificationService: NotificationService
   ) {
@@ -52,7 +46,7 @@ export class AddRoomComponent implements OnInit {
         next: (res) => {
           localStorage.setItem('room-id', res['data'])
           this.notificationService.onSuccess("Add room Successfully")
-        }, error: error => {
+        }, error: () => {
           this.notificationService.onError("Add room False")
         }
       })

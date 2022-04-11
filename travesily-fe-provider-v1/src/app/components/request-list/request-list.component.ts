@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
 import { CryptoService } from 'src/app/_services/crypto.service';
@@ -19,8 +18,7 @@ export class RequestListComponent implements OnInit {
   dataSource
   checked
 
-  constructor(private requestService: RequestService, private router: Router,
-    private route: ActivatedRoute,
+  constructor(private requestService: RequestService, 
     private cryptoService: CryptoService,
     public dialog: MatDialog,
     private notificationService: NotificationService
@@ -40,7 +38,7 @@ export class RequestListComponent implements OnInit {
   cancelRequest(id){
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
-      data: {checked: this.checked, message: "Are you sure wanna Cancel this Request"},
+      data: {checked: this.checked, message: "Are you sure you want to Cancel this Request"},
     });
     const encryptedId = this.cryptoService.set('06052000', id)
     dialogRef.afterClosed().subscribe(result => {
@@ -51,12 +49,11 @@ export class RequestListComponent implements OnInit {
             this.notificationService.onSuccess('Cancel successfully');
             window.location.reload()
           },
-          error: err => {
-            this.notificationService.onError('Cancel false')
+          error: () => {
+            this.notificationService.onError('Cancel fail')
           }
         })
       }
     });
   }
-
 }

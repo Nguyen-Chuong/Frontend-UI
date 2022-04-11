@@ -1,7 +1,7 @@
 import { Review } from './../../_models/review';
 import { ReviewsService } from './../../_services/reviews.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingsService } from 'src/app/_services/bookings.service';
@@ -23,7 +23,6 @@ export class HotelDetailComponent implements OnInit {
   criteria: number = 1
   constructor(private bookingsService: BookingsService,
     private reviewsService: ReviewsService,
-    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -57,5 +56,4 @@ export class HotelDetailComponent implements OnInit {
       }
     )
   }
-
 }

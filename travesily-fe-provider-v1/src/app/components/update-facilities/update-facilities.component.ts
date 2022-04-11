@@ -63,8 +63,8 @@ export class UpdateFacilitiesComponent implements OnInit {
         this.notificationService.onSuccess('Delete successfully');
         this.changeRoom(this.room)
       },
-      error: err => {
-        this.notificationService.onError('Delete false')
+      error: () => {
+        this.notificationService.onError('Delete fail')
       }
     })
   }
@@ -72,5 +72,4 @@ export class UpdateFacilitiesComponent implements OnInit {
   openAddFacility(){
     this.isAddFacility = !this.isAddFacility
   }
-
 }

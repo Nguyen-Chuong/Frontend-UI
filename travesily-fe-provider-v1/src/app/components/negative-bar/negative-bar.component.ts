@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Account } from 'src/app/_models/account';
 import { AuthService } from 'src/app/_services/auth.service';
 
@@ -14,7 +14,6 @@ export class NegativeBarComponent implements OnInit {
   opened = true;
   account: Account
   constructor(private router: Router,
-    private route: ActivatedRoute,
     public authService: AuthService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
    }
@@ -43,5 +42,4 @@ export class NegativeBarComponent implements OnInit {
       }
     ]
   }
-
 }

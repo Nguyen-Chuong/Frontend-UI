@@ -1,11 +1,10 @@
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Hotel } from 'src/app/_models/hotel';
 import { HotelService } from 'src/app/_services/hotel.service';
-import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-hotel-list',
@@ -17,8 +16,6 @@ export class HotelListComponent implements OnInit {
   dataSource
   currentTask ="My Hotel"
   constructor(private hotelService: HotelService, private router: Router,
-    private route: ActivatedRoute,
-    private notificationService: NotificationService,
     private cryptoService: CryptoService
     ) { }
 
@@ -48,5 +45,4 @@ export class HotelListComponent implements OnInit {
       queryParams: { id: JSON.stringify(encryptedId)}
     });
   }
-
 }
