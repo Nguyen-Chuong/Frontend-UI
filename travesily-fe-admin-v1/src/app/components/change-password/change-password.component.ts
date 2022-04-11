@@ -39,7 +39,7 @@ export class ChangePasswordComponent implements OnInit {
         window.location.reload()
       }, error: err => {
         console.log(err)
-        this.notificationService.onError('Change Password false')
+        this.notificationService.onError('Change Password fail')
       }
     })
 

@@ -51,7 +51,7 @@ export class ManagerListComponent implements OnInit {
             window.location.reload()
           },
           error: () => {
-            this.notificationService.onError('Removed false')
+            this.notificationService.onError('Removed fail')
           }
         })
       }

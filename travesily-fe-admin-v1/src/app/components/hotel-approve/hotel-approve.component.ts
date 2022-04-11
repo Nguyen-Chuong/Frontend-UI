@@ -74,7 +74,7 @@ export class HotelApproveComponent implements OnInit {
           },
           error: err => {
             console.log(err)
-            this.notificationService.onError('Accept false')
+            this.notificationService.onError('Accept fail')
           }
         })
       }
@@ -101,7 +101,7 @@ export class HotelApproveComponent implements OnInit {
           },
           error: err => {
             console.log(err)
-            this.notificationService.onError('Denied false')
+            this.notificationService.onError('Denied fail')
           }
         })
       }

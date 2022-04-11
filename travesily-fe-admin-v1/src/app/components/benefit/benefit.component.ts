@@ -46,7 +46,7 @@ export class BenefitComponent implements OnInit {
         window.location.reload()
       },
       error: () => {
-        this.notificationService.onError('Add false')
+        this.notificationService.onError('Add fail')
       }
     })
   }

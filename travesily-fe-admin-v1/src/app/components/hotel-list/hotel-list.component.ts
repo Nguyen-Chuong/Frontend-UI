@@ -80,7 +80,7 @@ export class HotelListComponent {
             window.location.reload()
           },
           error: () => {
-            this.notificationService.onError('Removed false')
+            this.notificationService.onError('Removed fail')
           }
         })
       }

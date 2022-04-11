@@ -34,7 +34,7 @@ export class UpdateVipComponent implements OnInit {
         this.notificationService.onSuccess('Update Vip successfully');
       },
       error: () => {
-        this.notificationService.onError('Update Vip false')
+        this.notificationService.onError('Update Vip fail')
       }
     })
   }

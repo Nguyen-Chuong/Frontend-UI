@@ -51,7 +51,7 @@ export class AdminProfileComponent implements OnInit {
         this.notificationService.onSuccess('Update profile successfully');
       },
       error: () => {
-        this.notificationService.onError('Update profile false')
+        this.notificationService.onError('Update profile fail')
       }
     })
   }
@@ -82,7 +82,7 @@ export class AdminProfileComponent implements OnInit {
             },
             error: err => {
               console.log(err)
-              this.notificationService.onError('Update profile false')
+              this.notificationService.onError('Update profile fail')
             }
           })
         }

@@ -61,7 +61,7 @@ export class ResponseComponent implements OnInit {
         this.sendMailResponseFeedback(this.cryptoService.set('06052000', this.feedback.email), feedBackRequest)
       },
       error: err => {
-        this.notificationService.onError('Send response false ' + err)
+        this.notificationService.onError('Send response fail ' + err)
       }
     })
   }
@@ -73,7 +73,7 @@ export class ResponseComponent implements OnInit {
         window.location.reload()
       },
       error: err => {
-        this.notificationService.onError('Send response false ' + err)
+        this.notificationService.onError('Send response fail ' + err)
       }
     })
   }

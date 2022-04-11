@@ -71,7 +71,7 @@ export class NewAdminComponent implements OnInit {
         window.location.reload()
       },
       error: () => {
-        this.notificationService.onError('Add new manager false')
+        this.notificationService.onError('Add new manager fail')
       }
     })
   }

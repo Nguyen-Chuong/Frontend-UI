@@ -42,7 +42,7 @@ export class ProviderComponent implements OnInit {
       }
     )
     this.dataSource = new MatTableDataSource<Provider>(this.providers);
-    this.message = 'Are you sure wanna ban this provider!'
+    this.message = 'Are you sure you want to ban this provider!'
   }
 
   openUserDetail(id): void {
@@ -68,7 +68,7 @@ export class ProviderComponent implements OnInit {
             window.location.reload()
           },
           error: () => {
-            this.notificationService.onError('Removed false')
+            this.notificationService.onError('Removed fail')
           }
         })
       }
