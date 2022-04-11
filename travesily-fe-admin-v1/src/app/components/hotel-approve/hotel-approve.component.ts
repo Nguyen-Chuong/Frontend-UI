@@ -23,6 +23,7 @@ export class HotelApproveComponent implements OnInit {
   requests: Request[]
   dataSource
   isAdmin = true
+  status: number = 1
 
   constructor(private requestsService: RequestService,
     private router: Router,
@@ -33,12 +34,12 @@ export class HotelApproveComponent implements OnInit {
 
   displayedColumns: string[] = ['hotelName', 'requestDate', 'providerName', 'request', ' '];
   ngOnInit(): void {
-    this.requestsService.getAllRequest(1).pipe(first()).subscribe(
+    this.requestsService.getAllRequest(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
       }
     )
-    this.requestsService.getPageRequest(1, 0, 10).pipe(first()).subscribe(
+    this.requestsService.getPageRequest(this.status, 0, 10).pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
@@ -109,9 +110,20 @@ export class HotelApproveComponent implements OnInit {
   }
 
   getPaginatorData(event: PageEvent) {
-    this.requestsService.getPageRequest(1, event.pageIndex, event.pageSize).pipe(first()).subscribe(
+    this.requestsService.getPageRequest(this.status, event.pageIndex, event.pageSize).pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']['items']
+      }
+    )
+  }
+
+  filterHotel(status){
+    console.log(status.target['value'])
+    this.status = status.target['value']
+    this.requestsService.getPageRequest(this.status, 0, 10).pipe(first()).subscribe(
+      rs => {
+        this.requests = rs['data']['items']
+        this.pageSize = rs['data']['pageSize']
       }
     )
   }

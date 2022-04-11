@@ -25,6 +25,7 @@ export class HotelListComponent {
   hotels: Hotel[]
   dataSource
   isAdmin = false
+  status: number = 1
   constructor(private hotelsService: HotelService, private router: Router,
     private notificationService: NotificationService,
     public dialog: MatDialog,
@@ -40,16 +41,16 @@ export class HotelListComponent {
     if (localStorage.getItem('type') === '2') {
       this.isAdmin = true
     }
-    this.hotelsService.getAllHotelByStatus(1).pipe(first()).subscribe(
+    this.hotelsService.getAllHotelByStatus(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        // check if data is loaded, hide it 
+        // check if data is loaded, hide it
         if(rs){
           this.spinner.hide();
         }
       }
     )
-    this.hotelsService.getHotelByStatus(1, 0, 10).pipe(first()).subscribe(
+    this.hotelsService.getHotelByStatus(this.status, 0, 10).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
@@ -88,7 +89,18 @@ export class HotelListComponent {
   }
 
   getPaginatorData(event: PageEvent) {
-    this.hotelsService.getHotelByStatus(1, event.pageIndex, event.pageSize).pipe(first()).subscribe(
+    this.hotelsService.getHotelByStatus(this.status, event.pageIndex, event.pageSize).pipe(first()).subscribe(
+      rs => {
+        this.hotels = rs['data']['items']
+      }
+    )
+  }
+
+
+  filterHotel(status){
+    console.log(status.target['value'])
+    this.status = status.target['value']
+    this.hotelsService.getHotelByStatus(this.status, 0, this.pageSize).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
       }

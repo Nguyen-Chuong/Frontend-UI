@@ -25,29 +25,37 @@
 
         <ng-container matColumnDef="request">
           <th class="text-center" mat-header-cell *matHeaderCellDef> Request </th>
-          <td width="300" mat-cell *matCellDef="let element">
-            <button class="btn btn-outline-success ms-5" (click)="acceptHotel(element.id)">Accept</button>
-            <button class="btn btn-outline-danger ms-4" (click)="denyHotel(element.id)">Deny</button>
+          <td  width="300" mat-cell *matCellDef="let element">
+            <button *ngIf="element.status === 1" class="btn btn-outline-success ms-5" (click)="acceptHotel(element.id)">Accept</button>
+            <button *ngIf="element.status === 1" class="btn btn-outline-danger ms-4" (click)="denyHotel(element.id)">Deny</button>
           </td>
         </ng-container>
 
         <ng-container matColumnDef=" ">
-          <th mat-header-cell *matHeaderCellDef>  </th>
+          <th mat-header-cell *matHeaderCellDef>
+              <select class="form-select form-select-sm" (change)="filterHotel($event)">
+                <option selected value="1">Pending</option>
+                <option value="2">Accepted</option>
+                <option value="3">Denied</option>
+                <option value="4">Cancel</option>
+              </select>
+          </th>
           <td width="200" mat-cell *matCellDef="let element">
             <button class="hotels-btn-detail" (click)="openHotelDetail(element.hotel.id)">Detail>></button>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <div *ngIf="requests">
-        <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)" aria-label="Select page">
+        <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)"
+          aria-label="Select page">
         </mat-paginator>
       </div>
       <div *ngIf="!requests" class="noData">
         <span class="text-center text-danger">
-        There are no hotel request yet!</span>
+          There are no hotel request yet!</span>
       </div>
     </div>
   </div>
