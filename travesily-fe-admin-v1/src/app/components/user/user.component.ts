@@ -32,7 +32,8 @@ export class UserComponent {
     this.userService.getAllUser().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        // check if data is loaded, hide it 
+        // check if data is loaded, hide it
+        console.log(this.total)
         if(rs){
           this.spinner.hide();
         }

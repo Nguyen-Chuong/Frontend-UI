@@ -43,19 +43,25 @@
         </ng-container>
 
         <ng-container matColumnDef=" ">
-          <th width="200" mat-header-cell *matHeaderCellDef>  </th>
+          <th width="200" mat-header-cell *matHeaderCellDef>
+            <select class="form-select form-select-sm" (change)="filterProvider($event)">
+              <option selected value="1">Active</option>
+              <option value="0">Banned</option>
+            </select>
+          </th>
           <td width="200" mat-cell *matCellDef="let element">
             <button class="btn btn-outline-danger" (click)="banProvider(element.id)">Ban</button>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"  ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <div>
-        <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)" aria-label="Select page">
+        <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)"
+          aria-label="Select page">
         </mat-paginator>
-        </div>
+      </div>
     </div>
   </div>
 </div>

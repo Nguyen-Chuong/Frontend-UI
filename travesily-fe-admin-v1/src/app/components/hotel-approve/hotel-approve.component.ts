@@ -118,8 +118,12 @@ export class HotelApproveComponent implements OnInit {
   }
 
   filterHotel(status){
-    console.log(status.target['value'])
     this.status = status.target['value']
+    this.requestsService.getAllRequest(this.status).pipe(first()).subscribe(
+      rs => {
+        this.total = rs['data']['total']
+      }
+    )
     this.requestsService.getPageRequest(this.status, 0, 10).pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']['items']

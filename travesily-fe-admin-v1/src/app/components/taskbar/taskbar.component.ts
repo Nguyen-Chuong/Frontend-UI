@@ -34,6 +34,9 @@ export class TaskbarComponent implements OnInit {
         name: "Hotels", url: "/hotel-list", icon: "fa fa-hotel"
       },
       {
+        name: "Transaction", url: "", icon: "fa fa-usd"
+      },
+      {
         name: "Bookings", url: "/booking", icon: "fa fa-clock-o"
       },
       {
@@ -58,5 +61,10 @@ export class TaskbarComponent implements OnInit {
         name: "District", url: "/add-district", icon: "fa fa-plus"
       }
     ]
+  }
+
+  transaction(name) {
+    if (name === 'Transaction')
+      window.location.href = 'https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm'
   }
 }

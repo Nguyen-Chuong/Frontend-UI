@@ -9,17 +9,17 @@ export class ProviderService {
   baseUrl = environment.API_URL;
   constructor(private http: HttpClient) {}
 
-  getAllProviderPage(page: number, pageSize: number) {
+  getAllProviderPage(status: number, page: number, pageSize: number) {
     const params = new HttpParams()
       .append('page', page)
       .append('pageSize', pageSize);
-    return this.http.get(`${this.baseUrl}/get-all-provider`, {
+    return this.http.get(`${this.baseUrl}/get-all-provider/${status}`, {
       params: params,
     });
   }
 
-  getAllProvider() {
-    return this.http.get(`${this.baseUrl}/get-all-provider`);
+  getAllProvider(status: number) {
+    return this.http.get(`${this.baseUrl}/get-all-provider/${status}`);
   }
 
   deleteProvider(id: number) {

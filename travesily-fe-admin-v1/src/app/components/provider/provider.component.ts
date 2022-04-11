@@ -23,6 +23,7 @@ export class ProviderComponent implements OnInit {
   pageSize: number = 0
   total: number
   isAdmin= false
+  status: number = 1
   constructor(private providerService: ProviderService,
     private router: Router,
     private notificationService: NotificationService,
@@ -30,12 +31,12 @@ export class ProviderComponent implements OnInit {
   displayedColumns: string[] = ['id', 'username','providerName', 'email', 'phone', 'address', ' '];
 
   ngOnInit(): void {
-    this.providerService.getAllProvider().pipe(first()).subscribe(
+    this.providerService.getAllProvider(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
       }
     )
-    this.providerService.getAllProviderPage(0, 10).pipe(first()).subscribe(
+    this.providerService.getAllProviderPage(this.status, 0, 10).pipe(first()).subscribe(
       rs => {
         this.providers = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
@@ -76,9 +77,24 @@ export class ProviderComponent implements OnInit {
   }
 
   getPaginatorData(event: PageEvent) {
-    this.providerService.getAllProviderPage(event.pageIndex, event.pageSize).pipe(first()).subscribe(
+    this.providerService.getAllProviderPage(this.status, event.pageIndex, event.pageSize).pipe(first()).subscribe(
       rs => {
         this.providers = rs['data']['items']
+      }
+    )
+  }
+
+  filterProvider(status){
+    this.status = status.target['value']
+    this.providerService.getAllProvider(this.status).pipe(first()).subscribe(
+      rs => {
+        this.total = rs['data']['total']
+      }
+    )
+    this.providerService.getAllProviderPage(this.status, 0, 10).pipe(first()).subscribe(
+      rs => {
+        this.providers = rs['data']['items']
+        this.pageSize = rs['data']['pageSize']
       }
     )
   }

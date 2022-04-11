@@ -41,16 +41,16 @@ export class HotelListComponent {
     if (localStorage.getItem('type') === '2') {
       this.isAdmin = true
     }
-    this.hotelsService.getAllHotelByStatus(this.status).pipe(first()).subscribe(
+    this.hotelsService.getAllHotelByStatus(1).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
         // check if data is loaded, hide it
-        if(rs){
+        if (rs) {
           this.spinner.hide();
         }
       }
     )
-    this.hotelsService.getHotelByStatus(this.status, 0, 10).pipe(first()).subscribe(
+    this.hotelsService.getHotelByStatus(1, 0, 10).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
@@ -88,7 +88,7 @@ export class HotelListComponent {
     });
   }
 
-  getPaginatorData(event: PageEvent) {
+  getPaginatorData(event) {
     this.hotelsService.getHotelByStatus(this.status, event.pageIndex, event.pageSize).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
@@ -96,13 +96,19 @@ export class HotelListComponent {
     )
   }
 
-
-  filterHotel(status){
-    console.log(status.target['value'])
+  filterHotel(status) {
     this.status = status.target['value']
-    this.hotelsService.getHotelByStatus(this.status, 0, this.pageSize).pipe(first()).subscribe(
+    this.hotelsService.getAllHotelByStatus(this.status).pipe(first()).subscribe(
+      rs => {
+        this.total = rs['data']['total']
+        console.log(rs['data']['total'])
+        console.log(this.total)
+      }
+    )
+    this.hotelsService.getHotelByStatus(this.status, 0, 10).pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']['items']
+        this.pageSize = rs['data']['pageSize']
       }
     )
   }
