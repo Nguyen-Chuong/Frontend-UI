@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Chart, registerables  } from 'chart.js';
-import { HotelService } from 'src/app/_services/hotel.service';
-import { first } from 'rxjs';
-import { ChartModel } from 'src/app/_models/chart';
+import {Component, OnInit} from '@angular/core';
+import {Chart, registerables} from 'chart.js';
+import {HotelService} from 'src/app/_services/hotel.service';
+import {first} from 'rxjs';
+import {ChartModel} from 'src/app/_models/chart';
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 // import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 Chart.register(...registerables);
@@ -14,28 +15,38 @@ Chart.register(...registerables);
 })
 export class MyChartComponent implements OnInit {
   chart: ChartModel
+  form: FormGroup
+  todayDate: Date = new Date();
+  lastWeekDate: Date = new Date(new Date().setDate(this.todayDate.getDate() - 7))
+  myChart: Chart
+  totalBooking: number = 0
 
-  constructor(private hotelService: HotelService) { }
+  constructor(private hotelService: HotelService,
+              private fb: FormBuilder) {
+  }
 
   ngOnInit() {
-
-    this.hotelService.getChartData(new Date('2022-03-09'), new Date('2022-03-18')).pipe(first()).subscribe(
+    this.form = this.fb.group({
+      from: [this.lastWeekDate, [Validators.required]],
+      to: [this.todayDate, [Validators.required]]
+    })
+    this.hotelService.getChartData(new Date(this.lastWeekDate), new Date(this.todayDate)).pipe(first()).subscribe(
       rs => {
         this.chart = rs['data']
-      
+        this.totalBooking = this.chart.data.reduce((a, b) => a + b)
         // draw chart
-        var myChart = new Chart("myChart", {
+        this.myChart = new Chart("myChart", {
           type: 'line',
           data: {
             labels: this.chart.labels,
             datasets: [{
-                label: 'Booking Statistic',
-                data: this.chart.data,
-                fill: false,
-                borderColor: 'rgb(75, 192, 192)',
-                tension: 0.1,
-                borderWidth: 2,
-                spanGaps: 1
+              label: 'Booking Statistic',
+              data: this.chart.data,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1,
+              borderWidth: 2,
+              spanGaps: 1
             }]
           },
           options: {
@@ -43,7 +54,43 @@ export class MyChartComponent implements OnInit {
               y: {
                 beginAtZero: true,
                 ticks: {
-                  stepSize: 1  
+                  stepSize: 1
+                }
+              }
+            }
+          }
+        });
+      }
+    )
+  }
+
+  filterChange() {
+    this.myChart.destroy()
+    this.hotelService.getChartData(new Date(this.form.value.from), new Date(this.form.value.to)).subscribe(
+      rs => {
+        this.chart = rs['data']
+        this.totalBooking = this.chart.data.reduce((a, b) => a + b)
+        // draw chart
+        this.myChart = new Chart("myChart", {
+          type: 'line',
+          data: {
+            labels: this.chart.labels,
+            datasets: [{
+              label: 'Booking Statistic',
+              data: this.chart.data,
+              fill: false,
+              borderColor: 'rgb(75, 192, 192)',
+              tension: 0.1,
+              borderWidth: 2,
+              spanGaps: 1
+            }]
+          },
+          options: {
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  stepSize: 1
                 }
               }
             }
