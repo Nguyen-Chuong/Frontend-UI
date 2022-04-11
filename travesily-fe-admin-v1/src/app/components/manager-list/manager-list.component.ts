@@ -31,7 +31,7 @@ export class ManagerListComponent implements OnInit {
       }
     )
     this.dataSource = new MatTableDataSource<Account>(this.managers);
-    this.message = 'Are you sure to remove this manager!'
+    this.message = 'Are you sure you want to remove this manager!'
   }
 
   deleteManager(id){

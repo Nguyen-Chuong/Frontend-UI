@@ -47,7 +47,7 @@ export class AddRoomComponent implements OnInit {
           localStorage.setItem('room-id', res['data'])
           this.notificationService.onSuccess("Add room Successfully")
         }, error: () => {
-          this.notificationService.onError("Add room False")
+          this.notificationService.onError("Add room Fail")
         }
       })
   }

@@ -31,7 +31,7 @@ export class UpComingBookingComponent{
         window.location.reload()
       },
       error: () => {
-        this.notificationService.onError('Confirm booking false')
+        this.notificationService.onError('Confirm booking fail')
       }
     })
   }

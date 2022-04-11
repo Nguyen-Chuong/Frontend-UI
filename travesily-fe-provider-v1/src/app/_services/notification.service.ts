@@ -19,7 +19,7 @@ export class NotificationService {
   }
 
   onError(message: any){
-    this.service.error('False', message, {
+    this.service.error('Fail', message, {
       position: ["top", "left"],
       timeOut: 2000,
       animate: 'fade',

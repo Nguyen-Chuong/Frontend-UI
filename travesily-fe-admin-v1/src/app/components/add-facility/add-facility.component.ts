@@ -55,7 +55,7 @@ export class AddFacilityComponent implements OnInit {
         window.location.reload()
       },
       error: () => {
-        this.notificationService.onError('Add false')
+        this.notificationService.onError('Add fail')
       }
     })
     this.facilityGroup.markAllAsTouched();

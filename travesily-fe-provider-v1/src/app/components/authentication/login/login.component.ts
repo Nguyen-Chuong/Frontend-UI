@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
               this.notificationService.onSuccess("Login Successfully")
               this.router.navigateByUrl('/hotel-list').then(() => window.location.reload());
           }, error: () => {
-            this.notificationService.onError("Login False")
+            this.notificationService.onError("Login Fail")
             this.form.reset()
           }
         })
