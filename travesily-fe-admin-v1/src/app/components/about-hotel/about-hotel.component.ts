@@ -12,5 +12,4 @@ export class AboutHotelComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

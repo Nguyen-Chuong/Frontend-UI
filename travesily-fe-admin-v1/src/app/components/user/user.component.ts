@@ -1,4 +1,3 @@
-import { ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
@@ -22,7 +21,6 @@ export class UserComponent {
   total: number
   constructor(private userService: UserService,
     private router: Router,
-    private route: ActivatedRoute,
     private cryptoService: CryptoService,
     private spinner: NgxSpinnerService) { }
   displayedColumns: string[] = ['username', 'email', 'phone', 'vip'];

@@ -4,8 +4,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { first } from 'rxjs';
-import { ParentErrorStateMatcher, PasswordValidator } from 'src/app/_validators/password.validator';
-import { Router } from '@angular/router';
+import { ParentErrorStateMatcher } from 'src/app/_validators/password.validator';
 import { UsernameValidator } from 'src/app/_validators/username.validator';
 import { EmailValidator } from 'src/app/_validators/email.validator';
 
@@ -22,10 +21,9 @@ export class NewAdminComponent implements OnInit {
   parentErrorStateMatcher = new ParentErrorStateMatcher();
   form: FormGroup
 
-  constructor(private fb: FormBuilder,
+  constructor(fb: FormBuilder,
     private authService: AuthServiceService,
     private notificationService: NotificationService,
-    private router: Router,
   ) {
     this.form = fb.group({
       username: ['', [Validators.required], [UsernameValidator(this.authService)]],
@@ -72,7 +70,7 @@ export class NewAdminComponent implements OnInit {
         this.form.reset()
         window.location.reload()
       },
-      error: err => {
+      error: () => {
         this.notificationService.onError('Add new manager false')
       }
     })

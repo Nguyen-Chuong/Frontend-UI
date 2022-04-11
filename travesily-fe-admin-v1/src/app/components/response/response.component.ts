@@ -3,7 +3,7 @@ import { AdminResponse } from './../../_models/admin-response';
 import { Feedback } from './../../_models/feedback';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { FeedbackService } from 'src/app/_services/feedback.service';
 import { first } from 'rxjs';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -24,7 +24,6 @@ export class ResponseComponent implements OnInit {
   constructor(
     private notificationService: NotificationService,
     private feedbackService: FeedbackService,
-    private router: Router,
     private route: ActivatedRoute,
     private cryptoService: CryptoService
   ) {
@@ -78,5 +77,4 @@ export class ResponseComponent implements OnInit {
       }
     })
   }
-
 }

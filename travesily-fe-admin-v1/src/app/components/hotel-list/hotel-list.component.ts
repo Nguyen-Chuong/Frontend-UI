@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Hotel } from 'src/app/_models/hotel';
 import { CryptoService } from 'src/app/_services/crypto.service';
@@ -26,7 +26,6 @@ export class HotelListComponent {
   dataSource
   isAdmin = false
   constructor(private hotelsService: HotelService, private router: Router,
-    private route: ActivatedRoute,
     private notificationService: NotificationService,
     public dialog: MatDialog,
     private cryptoService: CryptoService,
@@ -57,7 +56,7 @@ export class HotelListComponent {
       }
     )
     this.dataSource = new MatTableDataSource<Hotel>(this.hotels);
-    this.message = 'Are you sure wanna ban this hotel!'
+    this.message = 'Are you sure you want to ban this hotel!'
   }
 
   openHotelDetail(id) {
@@ -80,7 +79,7 @@ export class HotelListComponent {
             this.notificationService.onSuccess('Removed successfully');
             window.location.reload()
           },
-          error: err => {
+          error: () => {
             this.notificationService.onError('Removed false')
           }
         })

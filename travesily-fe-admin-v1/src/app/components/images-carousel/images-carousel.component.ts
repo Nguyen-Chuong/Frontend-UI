@@ -6,7 +6,6 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./images-carousel.component.scss']
 })
 export class ImagesCarouselComponent implements OnInit {
-
   @Input() listImage = []
   constructor() { }
 

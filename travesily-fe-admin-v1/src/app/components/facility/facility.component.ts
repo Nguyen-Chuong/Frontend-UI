@@ -29,7 +29,6 @@ export class FacilityComponent implements OnInit {
       rs => {
         this.facilityTypes = rs['data']
       })
-
   }
 
   addFacilityType() {
@@ -42,10 +41,9 @@ export class FacilityComponent implements OnInit {
         this.notificationService.onSuccess('Add successfully');
         window.location.reload()
       },
-      error: err => {
+      error: () => {
         this.notificationService.onError('Add false')
       }
     })
   }
-
 }

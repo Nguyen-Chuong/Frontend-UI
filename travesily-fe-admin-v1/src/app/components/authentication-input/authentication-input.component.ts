@@ -7,7 +7,6 @@ import {FormControl} from "@angular/forms";
   styleUrls: ['./authentication-input.component.scss']
 })
 export class AuthenticationInputComponent implements OnInit {
-
   @Input() control: FormControl | any
   @Input() type: string | any
   @Input() placeholder: string | any
@@ -18,5 +17,4 @@ export class AuthenticationInputComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -1,6 +1,6 @@
 import { FileService } from './../../_services/file.service';
 import { CityService } from './../../_services/city.service';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { City } from 'src/app/_models/city';
 import { first } from 'rxjs';

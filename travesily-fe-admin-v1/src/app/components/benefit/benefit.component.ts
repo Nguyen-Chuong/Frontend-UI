@@ -1,6 +1,6 @@
 import { BenefitService } from './../../_services/benefit.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BenefitTypeRequest } from 'src/app/_models/benefitTypeRequest';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { first } from 'rxjs';
@@ -20,9 +20,7 @@ export class BenefitComponent implements OnInit {
 
   constructor(
     private benefitService: BenefitService,
-    private notificationService: NotificationService,
-    private fb: FormBuilder
-  ) {
+    private notificationService: NotificationService ) {
   }
 
   ngOnInit(): void {
@@ -47,7 +45,7 @@ export class BenefitComponent implements OnInit {
         this.notificationService.onSuccess('Add successfully');
         window.location.reload()
       },
-      error: err => {
+      error: () => {
         this.notificationService.onError('Add false')
       }
     })

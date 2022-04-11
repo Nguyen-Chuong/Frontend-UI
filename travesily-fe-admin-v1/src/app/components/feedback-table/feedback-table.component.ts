@@ -1,6 +1,6 @@
 import { Feedback } from './../../_models/feedback';
 import { Component, Input, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { CryptoService } from 'src/app/_services/crypto.service';
 
@@ -13,7 +13,6 @@ export class FeedbackTableComponent implements OnInit {
   @Input() feedbacks : Feedback[]
   dataSource
   constructor(private router: Router,
-    private route: ActivatedRoute,
     private cryptoService: CryptoService) { }
 
   displayedColumns: string[] = ['id', 'type', 'senderName', 'message', 'modifyDate'];

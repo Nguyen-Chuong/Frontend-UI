@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Booking } from 'src/app/_models/booking';
 import { BookingDetail } from 'src/app/_models/booking-detail';
-import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { BookingService } from 'src/app/_services/booking.service';
-import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-booking-detail',
@@ -16,11 +14,8 @@ export class BookingDetailComponent implements OnInit {
   booking: Booking = new Booking()
   bookingDetails: BookingDetail[] = []
 
-  constructor(private authService: AuthServiceService,
-    private bookingService: BookingService,
-    private activatedRoute: ActivatedRoute,
-    private cryptoService: CryptoService
-  ) {
+  constructor(private bookingService: BookingService,
+    private activatedRoute: ActivatedRoute  ) {
   }
 
   ngOnInit(): void {

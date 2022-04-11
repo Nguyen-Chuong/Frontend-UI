@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { ProviderService } from 'src/app/_services/provider.service';
@@ -25,7 +25,6 @@ export class ProviderComponent implements OnInit {
   isAdmin= false
   constructor(private providerService: ProviderService,
     private router: Router,
-    private route: ActivatedRoute,
     private notificationService: NotificationService,
     public dialog: MatDialog) { }
   displayedColumns: string[] = ['id', 'username','providerName', 'email', 'phone', 'address', ' '];
@@ -68,7 +67,7 @@ export class ProviderComponent implements OnInit {
             this.notificationService.onSuccess('Removed successfully');
             window.location.reload()
           },
-          error: err => {
+          error: () => {
             this.notificationService.onError('Removed false')
           }
         })

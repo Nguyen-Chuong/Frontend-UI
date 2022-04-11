@@ -59,7 +59,7 @@ export class HotelApproveComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {
-        checked: this.checked, message: "Are you sure wanna to Accept this hotel",
+        checked: this.checked, message: "Are you sure you want to Accept this hotel",
         isAdmin: this.isAdmin
       },
     });
@@ -86,7 +86,7 @@ export class HotelApproveComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {
-        checked: this.checked, message: "Are you sure wanna to Denied this hotel",
+        checked: this.checked, message: "Are you sure you want to Denied this hotel",
         isAdmin: this.isAdmin
       },
     });
@@ -101,7 +101,7 @@ export class HotelApproveComponent implements OnInit {
           },
           error: err => {
             console.log(err)
-            this.notificationService.onError('Deny false')
+            this.notificationService.onError('Denied false')
           }
         })
       }

@@ -50,7 +50,7 @@ export class AdminProfileComponent implements OnInit {
       next: () => {
         this.notificationService.onSuccess('Update profile successfully');
       },
-      error: err => {
+      error: () => {
         this.notificationService.onError('Update profile false')
       }
     })

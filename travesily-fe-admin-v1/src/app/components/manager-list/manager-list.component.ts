@@ -50,7 +50,7 @@ export class ManagerListComponent implements OnInit {
             this.notificationService.onSuccess('Removed successfully');
             window.location.reload()
           },
-          error: err => {
+          error: () => {
             this.notificationService.onError('Removed false')
           }
         })
