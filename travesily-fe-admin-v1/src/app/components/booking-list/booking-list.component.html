@@ -39,7 +39,16 @@
 
       <!-- status Column -->
       <ng-container matColumnDef="status">
-        <th mat-header-cell *matHeaderCellDef> Status </th>
+        < mat-header-cell *matHeaderCellDef>
+        <th mat-header-cell *matHeaderCellDef>
+          <!-- <select class="form-select form-select-sm" (change)="filterBooking($event)">
+            <option selected value="1">Pending</option>
+            <option value="2">Accepted</option>
+            <option value="3">Denied</option>
+            <option value="4">Cancel</option>
+          </select> -->
+        </th>
+
         <td width="100" mat-cell *matCellDef="let element">
           {{element?.status == 0 ? 'Upcoming' : element?.status == 1 ? 'Completed' : 'Cancelled'}}
         </td>

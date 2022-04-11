@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  constructor(private router: Router) {
 
-  ngOnInit(): void {}
+  }
+
+  ngOnInit(): void {
+    this.router.navigate(['/hotel-approve']).then(() => {
+      window.location.reload()
+    })
+  }
 }

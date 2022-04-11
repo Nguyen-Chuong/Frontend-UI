@@ -1,3 +1,4 @@
+import { HomeComponent } from './components/home/home.component';
 import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
 import { ImportFileComponent } from './components/import-file/import-file.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
@@ -14,13 +15,17 @@ import { AdminProfileComponent } from './components/admin-profile/admin-profile.
 import { TaskbarComponent } from './components/taskbar/taskbar.component';
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
 import { BookingListComponent } from './components/booking-list/booking-list.component';
-import { HotelApproveComponent } from './components/hotel-approve/hotel-approve.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { UserComponent } from './components/user/user.component';
+import { HotelApproveComponent } from './components/hotel-approve/hotel-approve.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: HotelApproveComponent
+  },
   {
     path: 'taskbar',
     component: TaskbarComponent

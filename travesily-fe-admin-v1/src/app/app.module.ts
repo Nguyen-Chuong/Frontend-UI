@@ -1,4 +1,3 @@
-import { AngularFireModule } from '@angular/fire/compat';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -64,6 +63,7 @@ import { ImageSliderComponent } from './components/image-slider/image-slider.com
 import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { AngularFireModule } from '@angular/fire/compat';
 
 @NgModule({
   declarations: [

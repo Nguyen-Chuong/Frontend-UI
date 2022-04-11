@@ -20,6 +20,7 @@ export class BookingListComponent implements OnInit {
   dataSource
   pageSize: number = 0
   total: number
+  status: number = 1
   constructor(private bookingService: BookingService,
     private router: Router,
     private cryptoService: CryptoService,
@@ -34,7 +35,7 @@ export class BookingListComponent implements OnInit {
     this.bookingService.getAllBooking().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        // check if data is loaded, hide it 
+        // check if data is loaded, hide it
         if(rs){
           this.spinner.hide();
         }
@@ -60,4 +61,5 @@ export class BookingListComponent implements OnInit {
       }
     )
   }
+
 }

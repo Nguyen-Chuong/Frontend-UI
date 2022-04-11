@@ -30,12 +30,20 @@
         <ng-container matColumnDef=" ">
           <th mat-header-cell *matHeaderCellDef> </th>
           <td width="200" mat-cell *matCellDef="let element">
-            <button class="btn btn-outline-danger" (click)="deleteHotel(element.id)">Ban</button>
+            <button *ngIf="element.status === 1" class="btn btn-outline-danger" (click)="deleteHotel(element.id)">Ban</button>
           </td>
         </ng-container>
 
         <ng-container matColumnDef="detail">
-          <th mat-header-cell *matHeaderCellDef> </th>
+          <th mat-header-cell *matHeaderCellDef>
+            <select class="form-select form-select-sm" (change)="filterHotel($event)">
+              <option selected value="1">Active</option>
+              <option value="2">Deactivated</option>
+              <option value="3">Pending</option>
+              <option value="4">Banned</option>
+              <option value="5">Denied</option>
+            </select>
+          </th>
           <td width="200" mat-cell *matCellDef="let element">
             <button class="hotel-detail" (click)="openHotelDetail(element.id)">Detail>></button>
           </td>
