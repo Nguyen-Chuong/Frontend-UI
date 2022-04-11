@@ -60,22 +60,6 @@ export class BookingPaymentInformationComponent implements OnInit {
           },
           error: err =>console.error(err)
         })
-
-        // this.bookingService.getBookingDetail(value['bookingId']).subscribe({
-        //   next: bookingDetail => {
-        //     this.bookingDetails = bookingDetail['data']
-        //     this.bookingInformationDetails = []
-        //     const tempRoomDetails = []
-        //     this.bookingDetails.forEach(item => {
-        //       this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', item.roomTypeId)).subscribe({
-        //         next: value => {
-        //           tempRoomDetails.push(value['data'])
-        //         },
-        //         complete: () => {
-        //           this.roomDetails = tempRoomDetails
-        //         }
-        //       })
-
       }
     })
   }

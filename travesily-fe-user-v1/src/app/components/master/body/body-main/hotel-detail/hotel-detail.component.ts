@@ -70,14 +70,7 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
         scrollTop: $(id).offset().top - topSpace
       }, 100);
     })
-      // .on('mouseleave', function () {
-      //   var self = this;
-      //   setTimeout(function () {
-      //     if (!$('.popover:hover').length) {
-      //       $(self).popover('hide');
-      //     }
-      //   }, 3000);
-      // });
+
     this.activatedRoute.queryParams.subscribe(
       rs => {
         const hotelId = rs['hotelId']

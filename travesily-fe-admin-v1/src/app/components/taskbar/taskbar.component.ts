@@ -59,47 +59,4 @@ export class TaskbarComponent implements OnInit {
       }
     ]
   }
-
-  // openApprovingHotels(): void {
-  //   this.router.navigate(['hotel-approve'])
-  // }
-
-  // openListHotels(): void {
-  //   this.router.navigate(['hotel-list'])
-  // }
-
-  // openListManager(): void {
-  //   this.router.navigateByUrl('/manager-list');
-  // }
-
-  // openHistory(): void {
-  //   this.router.navigate(['/history']);
-  // }
-
-  // openFeedbackList(): void {
-  //   this.router.navigate(['feedback'])
-  // }
-
-  // openBookingList(): void {
-  //   this.router.navigate(['booking'])
-  // }
-
-  // openUserList(): void {
-  //   this.router.navigate(['user'])
-  // }
-
-  // openProviderList() {
-  //   this.router.navigate(['provider'])
-  // }
-  // openBenefit() {
-  //   this.router.navigate(['/benefit']);
-  // }
-
-  // openFacility() {
-  //   this.router.navigate(['/facility']);
-  // }
-
-  // openAddDistrict() {
-  //   this.router.navigate(['/add-district']);
-  // }
 }

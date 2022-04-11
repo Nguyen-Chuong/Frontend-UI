@@ -46,7 +46,6 @@ export class MainSearchBarComponent implements OnInit {
   todayDate: Date = new Date();
   tomorrowDate: Date = new Date(new Date().setDate(this.todayDate.getDate() + 1))
   filter: SearchFilter = new SearchFilter()
-  // someDate: Date = new Date(anydate);
   hotelForm
 
   constructor(private router: Router,
@@ -55,11 +54,6 @@ export class MainSearchBarComponent implements OnInit {
     private storage: StorageService) {
     this.filter = this.storage.searchFilter
     this.results?.push(this.filter.destination)
-    // this.hotelForm.controls['destination'].setValue(this.filter.destination.resultSearch)
-    // this.hotelForm.controls['from'].setValue(new Date(this.filter.from))
-    // this.hotelForm.controls['to'].setValue(this.filter.to)
-    // this.hotelForm.controls['guestNumber'].setValue(this.filter.guestNumber)
-    // this.hotelForm.controls['roomNumber'].setValue(this.filter.roomNumber)
     this.hotelForm = fb.group({
       destination: new FormControl(this.filter.destination.resultSearch, [Validators.required]),
       from: new FormControl(this.filter.from, [Validators.required]),
