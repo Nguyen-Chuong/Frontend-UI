@@ -3,8 +3,7 @@ import {Chart, registerables} from 'chart.js';
 import {HotelService} from 'src/app/_services/hotel.service';
 import {first} from 'rxjs';
 import {ChartModel} from 'src/app/_models/chart';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-// import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 Chart.register(...registerables);
 
@@ -22,7 +21,7 @@ export class MyChartComponent implements OnInit {
   totalBooking: number = 0
 
   constructor(private hotelService: HotelService,
-              private fb: FormBuilder) {
+    private fb: FormBuilder) {
   }
 
   ngOnInit() {
@@ -34,34 +33,38 @@ export class MyChartComponent implements OnInit {
       rs => {
         this.chart = rs['data']
         this.totalBooking = this.chart.data.reduce((a, b) => a + b)
-        // draw chart
-        this.myChart = new Chart("myChart", {
-          type: 'line',
-          data: {
-            labels: this.chart.labels,
-            datasets: [{
-              label: 'Booking Statistic',
-              data: this.chart.data,
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1,
-              borderWidth: 2,
-              spanGaps: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: {
-                  stepSize: 1
-                }
-              }
-            }
-          }
-        });
+        this.drawChart()
       }
     )
+  }
+
+  drawChart(){
+    // draw chart
+    this.myChart = new Chart("myChart", {
+      type: 'line',
+      data: {
+        labels: this.chart.labels,
+        datasets: [{
+          label: 'Booking Statistic',
+          data: this.chart.data,
+          fill: false,
+          borderColor: 'rgb(75, 192, 192)',
+          tension: 0.1,
+          borderWidth: 2,
+          spanGaps: 1
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            ticks: {
+              stepSize: 1
+            }
+          }
+        }
+      }
+    });
   }
 
   filterChange() {
@@ -70,32 +73,7 @@ export class MyChartComponent implements OnInit {
       rs => {
         this.chart = rs['data']
         this.totalBooking = this.chart.data.reduce((a, b) => a + b)
-        // draw chart
-        this.myChart = new Chart("myChart", {
-          type: 'line',
-          data: {
-            labels: this.chart.labels,
-            datasets: [{
-              label: 'Booking Statistic',
-              data: this.chart.data,
-              fill: false,
-              borderColor: 'rgb(75, 192, 192)',
-              tension: 0.1,
-              borderWidth: 2,
-              spanGaps: 1
-            }]
-          },
-          options: {
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: {
-                  stepSize: 1
-                }
-              }
-            }
-          }
-        });
+        this.drawChart()
       }
     )
   }

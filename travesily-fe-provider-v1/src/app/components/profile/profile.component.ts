@@ -58,7 +58,6 @@ export class ProfileComponent implements OnInit {
         this.notificationService.onError('Update profile fail')
       }
     })
-
   }
   
   getErrorMessage(field: string) {
