@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {first} from "rxjs";
 import {HotelService} from "../../../../../_services/hotel.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Hotel} from "../../../../../_models/hotel";
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
 import {LocationService} from "../../../../../_services/location.service";
@@ -36,7 +36,6 @@ export class SearchHotelListComponent implements OnInit {
   })
 
   constructor(private hotelService: HotelService,
-    private activatedRoute: ActivatedRoute,
     private locationService: LocationService,
     private router: Router,
     private storageService: StorageService,

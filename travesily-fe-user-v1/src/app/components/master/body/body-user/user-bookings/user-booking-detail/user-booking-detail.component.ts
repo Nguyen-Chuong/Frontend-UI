@@ -81,7 +81,7 @@ export class UserBookingDetailComponent implements OnInit {
 
   cancel() {
     this.bookingService.cancelBooking(this.cryptoService.set('06052000', this.booking.id)).subscribe({
-      next: value => {
+      next: () => {
         document.getElementById("btnCloseModal").click();
         Swal.fire('Cancel booking completed!', '', 'success').then(() => {
           this.router.navigate(['/user/bookings'], {queryParams: {status: 3}})

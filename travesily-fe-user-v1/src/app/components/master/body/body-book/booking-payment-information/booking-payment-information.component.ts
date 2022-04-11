@@ -1,12 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {BookingService} from "../../../../../_services/booking.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 import {Account} from "../../../../../_models/account";
 import {Hotel} from "../../../../../_models/hotel";
 import {RoomDetail} from "../../../../../_models/room-detail";
 import {SearchFilter} from "../../../../../_models/search-filter";
-import {FormBuilder} from "@angular/forms";
-import {CartService} from "../../../../../_services/cart.service";
 import {AuthService} from "../../../../../_services/auth.service";
 import {HotelService} from "../../../../../_services/hotel.service";
 import {CryptoService} from "../../../../../_services/crypto.service";
@@ -30,10 +27,10 @@ export class BookingPaymentInformationComponent implements OnInit {
   searchFilter: SearchFilter = new SearchFilter()
   bookingInformationDetails: BookingInformationDetail[] = []
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
-    private storageService: StorageService, private bookingService: BookingService, private router: Router) {
+  constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
+    storageService: StorageService) {
     this.activatedRoute.queryParams.subscribe({
-      next: value => {
+      next: () => {
         this.bookingRequest = storageService.bookingRequest
         //CHECK IF USER TRY TO BACKWARD AFTER COMPLETED PAYMENT
         // if(this.bookingRequest.status !== 1)

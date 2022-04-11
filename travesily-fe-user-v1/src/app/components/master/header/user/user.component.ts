@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Account } from '../../../../_models/account';
 import { AuthService } from '../../../../_services/auth.service';
@@ -12,7 +11,7 @@ import { AuthService } from '../../../../_services/auth.service';
 export class UserComponent implements OnInit {
   account: Account = new Account();
 
-  constructor(private authService: AuthService, private router: Router) {
+  constructor(private authService: AuthService) {
     authService
       .getProfile()
       .pipe(first())

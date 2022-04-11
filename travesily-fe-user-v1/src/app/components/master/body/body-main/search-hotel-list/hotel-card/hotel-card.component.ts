@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Hotel} from "../../../../../../_models/hotel";
 import {first} from "rxjs";
 import {HotelService} from "../../../../../../_services/hotel.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {CryptoService} from "../../../../../../_services/crypto.service";
 import {Benefit} from "../../../../../../_models/benefit";
 import {BenefitType} from "../../../../../../_models/benefit-type";
@@ -21,8 +21,7 @@ export class HotelCardComponent implements OnInit {
 
   constructor(private hotelService: HotelService,
     private router: Router,
-    private cryptoService: CryptoService,
-    private activatedRoute: ActivatedRoute) {
+    private cryptoService: CryptoService) {
   }
 
   ngOnInit(): void {

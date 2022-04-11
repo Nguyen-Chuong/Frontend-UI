@@ -3,7 +3,6 @@ import {Account} from "../../../../../../../_models/account";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
-import {AlertService} from "../../../../../../../_services/alert.service";
 import Swal from 'sweetalert2'
 
 @Component({
@@ -16,7 +15,7 @@ export class EditDropdownPasswordComponent implements OnInit {
   @Output() dropdown = new EventEmitter()
   form: FormGroup
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private alertService: AlertService) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -54,7 +53,7 @@ export class EditDropdownPasswordComponent implements OnInit {
           Swal.fire('Change password successfully!', '', 'success')
           this.dropdown.emit()
         },
-        error: err => {
+        error: () => {
           Swal.fire('Change password failed!', 'Please check your old password!', 'error')
           this.form.reset()
         }

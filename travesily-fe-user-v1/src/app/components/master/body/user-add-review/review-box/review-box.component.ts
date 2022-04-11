@@ -48,12 +48,12 @@ export class ReviewBoxComponent implements OnInit {
       reviewRequest.reviewTitle = val.reviewTitle
       reviewRequest.reviewDetail = val.reviewDetail
       this.reviewService.addReview(reviewRequest).subscribe({
-        next: value => {
+        next: () => {
           Swal.fire('Thank you for reviewing! Your review has been recorded!', '', 'success').then(() => {
             this.router.navigate(['/user/bookings'], {queryParams: {status: 2}})
           })
         },
-        error: err => {
+        error: () => {
           Swal.fire('You have already reviewed this booking!', '', 'error')
         }
       })

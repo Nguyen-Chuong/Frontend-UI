@@ -8,12 +8,9 @@ import * as _moment from 'moment';
 // tslint:disable-next-line:no-duplicate-imports
 import * as _rollupMoment from 'moment';
 import {ResultSearch} from "../../../../../_models/result-search";
-import {HotelService} from "../../../../../_services/hotel.service";
 import {LocationService} from "../../../../../_services/location.service";
 import {SearchFilter} from "../../../../../_models/search-filter";
 import {StorageService} from "../../../../../_services/storage.service";
-
-const moment = _rollupMoment || _moment;
 
 export const MY_FORMATS = {
   parse: {
@@ -52,10 +49,9 @@ export class MainSearchBarComponent implements OnInit {
   // someDate: Date = new Date(anydate);
   hotelForm
 
-  constructor(private hotelService: HotelService,
-    private router: Router,
+  constructor(private router: Router,
     private locationService: LocationService,
-    private fb: FormBuilder,
+    fb: FormBuilder,
     private storage: StorageService) {
     this.filter = this.storage.searchFilter
     this.results?.push(this.filter.destination)

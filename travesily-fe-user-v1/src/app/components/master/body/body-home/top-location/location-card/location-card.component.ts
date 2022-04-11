@@ -3,7 +3,6 @@ import {District} from "../../../../../../_models/district";
 import {Router} from "@angular/router";
 import {StorageService} from "../../../../../../_services/storage.service";
 import {SearchFilter} from "../../../../../../_models/search-filter";
-import {CryptoService} from "../../../../../../_services/crypto.service";
 
 @Component({
   selector: 'app-location-card',
@@ -13,7 +12,7 @@ import {CryptoService} from "../../../../../../_services/crypto.service";
 export class LocationCardComponent implements OnInit {
   @Input() district: District
 
-  constructor(private router: Router, private storageService: StorageService, private cryptoService: CryptoService) {
+  constructor(private router: Router, private storageService: StorageService) {
   }
 
   ngOnInit(): void {

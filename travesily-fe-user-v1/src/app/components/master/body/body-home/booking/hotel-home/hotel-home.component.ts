@@ -1,6 +1,5 @@
 import {Component, Directive, Inject, Injectable, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/forms";
-import {HotelService} from "../../../../../../_services/hotel.service";
 import {first} from "rxjs";
 import {Router} from "@angular/router";
 import {LocationService} from "../../../../../../_services/location.service";
@@ -90,7 +89,6 @@ export class MinRangeSelectionStrategy<D>
   }
 }
 
-
 @Directive({
   selector: "[maxRange]",
   providers: [
@@ -159,7 +157,7 @@ export class HotelHomeComponent implements OnInit {
     roomNumber: new FormControl(0, [Validators.required, Validators.min(1)])
   })
 
-  constructor(private hotelService: HotelService, private router: Router, private locationService: LocationService, private storage: StorageService) {
+  constructor(private router: Router, private locationService: LocationService, private storage: StorageService) {
   }
 
   ngOnInit(): void {

@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Account} from "../../../../../../../_models/account";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {AuthService} from "../../../../../../../_services/auth.service";
 
 @Component({
   selector: 'app-edit-dropdown-edit-phone',
@@ -11,7 +10,7 @@ import {AuthService} from "../../../../../../../_services/auth.service";
 export class EditDropdownEditPhoneComponent implements OnInit {
   @Input() account: Account
   form: FormGroup
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {

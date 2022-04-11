@@ -3,7 +3,6 @@ import {Account} from "../../../../../../../_models/account";
 import {FileUpload} from "../../../../../../../_models/file-upload";
 import {FirebaseService} from "../../../../../../../_services/firebase.service";
 import {AuthService} from "../../../../../../../_services/auth.service";
-import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-user-profile-details-info',
@@ -23,7 +22,7 @@ export class UserProfileDetailsInfoComponent implements OnInit {
   currentFileUpload: FileUpload;
   showImage: string
 
-  constructor(private firebaseService: FirebaseService, private authService: AuthService, private router: Router) {
+  constructor(private firebaseService: FirebaseService, private authService: AuthService) {
   }
 
   ngOnInit(): void {

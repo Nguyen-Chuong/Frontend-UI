@@ -68,7 +68,7 @@ export class BookingTransactionInformationComponent implements OnInit {
           // this.transactionInfo = tran['data']
           const bookingId = +this.transactionInfo.orderInfo.split('-')[0]
           this.bookingService.completeBooking(this.cryptoService.set('06052000', bookingId)).subscribe({
-            next: value => {
+            next: () => {
               this.bookingService.updateVipStatus().subscribe()
               this.bookingService.getBookingDetail(this.cryptoService.set('06052000', bookingId)).subscribe({
                   next: bookingDetails => {

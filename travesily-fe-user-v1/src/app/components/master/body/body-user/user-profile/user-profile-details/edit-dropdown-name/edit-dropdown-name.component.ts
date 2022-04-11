@@ -3,7 +3,6 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "
 import {Account} from "../../../../../../../_models/account";
 import {AuthService} from "../../../../../../../_services/auth.service";
 import {first} from "rxjs";
-import {AlertService} from "../../../../../../../_services/alert.service";
 import Swal from "sweetalert2";
 
 @Component({
@@ -16,7 +15,7 @@ export class EditDropdownNameComponent implements OnInit {
   @Input() account: Account
   @Output() dropdown = new EventEmitter()
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private alertService: AlertService) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -36,7 +35,7 @@ export class EditDropdownNameComponent implements OnInit {
           Swal.fire('Change name successfully!','','success')
           this.dropdown.emit()
         },
-        error: err => {
+        error: () => {
           Swal.fire('Change name failed!','','error')
         }
       })

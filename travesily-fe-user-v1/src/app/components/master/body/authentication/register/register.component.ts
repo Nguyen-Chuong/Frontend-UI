@@ -10,7 +10,6 @@ import {
 } from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {AuthService} from "../../../../../_services/auth.service";
-import {AlertService} from "../../../../../_services/alert.service";
 import {UsernameValidator} from "../../../../../_validators/username.validator";
 import {EmailValidator} from "../../../../../_validators/email.validator";
 import {CryptoService} from "../../../../../_services/crypto.service";
@@ -23,7 +22,7 @@ import {CryptoService} from "../../../../../_services/crypto.service";
 export class RegisterComponent implements OnInit {
   form: FormGroup
 
-  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private alertService: AlertService, private cryptoService: CryptoService, private activatedRoute: ActivatedRoute) {
+  constructor(fb: FormBuilder, private router: Router, private authService: AuthService, private cryptoService: CryptoService, private activatedRoute: ActivatedRoute) {
     this.form = fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],

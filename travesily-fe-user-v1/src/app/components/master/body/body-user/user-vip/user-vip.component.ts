@@ -14,7 +14,7 @@ export class UserVipComponent implements OnInit {
   account: Account = new Account()
   bookingCount: number = 0
 
-  constructor(private authService: AuthService, private alertService: AlertService, private bookingService: BookingService) {
+  constructor(authService: AuthService, private alertService: AlertService, bookingService: BookingService) {
     authService.getProfile().pipe(first()).subscribe(rs => {
         this.account = rs['data']
         bookingService.getCompletedBooking().pipe(first()).subscribe(rs => {

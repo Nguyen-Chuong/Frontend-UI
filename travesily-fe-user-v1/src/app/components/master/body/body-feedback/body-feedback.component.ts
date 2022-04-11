@@ -18,7 +18,6 @@ export class BodyFeedbackComponent implements OnInit {
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router) {
-    console.log(this.storageService.authToken)
     if(this.storageService.authToken===null){
       Swal.fire('You must login first to access help center!','','warning').then(() => {
         this.router.navigate(['/authentication/login'],{queryParams: {
@@ -61,7 +60,7 @@ export class BodyFeedbackComponent implements OnInit {
           if(this.feedbackForm.contains('bookingId'))
             feedbackRequest.bookingId = val.bookingId
           this.feedbackService.sendFeedback(feedbackRequest).subscribe({
-            next: feedback => {
+            next: () => {
               Swal.fire('Your feedback has been recorded!','','success').then(() => {
                 this.feedbackForm.reset()
                 this.feedbackForm.get('reason').setValue(0)

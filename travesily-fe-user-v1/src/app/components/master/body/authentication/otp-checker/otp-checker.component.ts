@@ -64,7 +64,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
                       }
                     })
                   })
-                }, error: error => {
+                }, error: () => {
                   this.alertService.error('Register Failed')
                 }
               }

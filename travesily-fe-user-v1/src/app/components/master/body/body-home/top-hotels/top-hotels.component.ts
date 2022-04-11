@@ -11,7 +11,7 @@ import {Hotel} from "../../../../../_models/hotel";
 export class TopHotelsComponent implements OnInit {
   hotels: Hotel[] = []
   constructor(private hotelService: HotelService,
-              private cryptoService: CryptoService) {
+    private cryptoService: CryptoService) {
     this.hotelService.getTopHotel(this.cryptoService.set('06052000',8)).subscribe({
       next: value => {
         this.hotels = value['data']

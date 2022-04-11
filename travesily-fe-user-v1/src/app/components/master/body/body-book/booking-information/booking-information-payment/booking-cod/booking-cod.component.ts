@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {BookingService} from "../../../../../../../_services/booking.service";
 import {Booking} from "../../../../../../../_models/booking";
 import {CryptoService} from "../../../../../../../_services/crypto.service";
@@ -22,7 +22,7 @@ export class BookingCodComponent implements OnInit {
   account: Account = new Account()
   totalPaid: number = 0
 
-  constructor(private activatedRoute: ActivatedRoute, private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private authService: AuthService, private storageService: StorageService, private hotelService: HotelService) {
+  constructor(private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private authService: AuthService, private storageService: StorageService, private hotelService: HotelService) {
     this.bookingRequest = this.storageService.bookingRequest
     if (!this.bookingRequest) {
       this.router.navigateByUrl('/')

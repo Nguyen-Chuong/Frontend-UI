@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Cart} from "../../../../../_models/cart";
 import {CartService} from "../../../../../_services/cart.service";
 import {AuthService} from "../../../../../_services/auth.service";
@@ -11,7 +11,6 @@ import {RoomDetail} from "../../../../../_models/room-detail";
 import {RoomTypeService} from "../../../../../_services/room-type.service";
 import {StorageService} from "../../../../../_services/storage.service";
 import {SearchFilter} from "../../../../../_models/search-filter";
-import {FormBuilder} from "@angular/forms";
 import {BookingInformationDetail} from "../../../../../_models/booking-information-detail";
 
 @Component({
@@ -27,8 +26,8 @@ export class BookingInformationComponent implements OnInit {
   searchFilter: SearchFilter = new SearchFilter()
   bookingInformationDetails: BookingInformationDetail[] = []
 
-  constructor(private fb: FormBuilder, private activatedRoute: ActivatedRoute, private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
-    private storageService: StorageService, private router: Router) {
+  constructor(private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
+    storageService: StorageService, private router: Router) {
     //Get user search filter
     this.searchFilter = storageService.searchFilter
     this.authService.getProfile().subscribe({

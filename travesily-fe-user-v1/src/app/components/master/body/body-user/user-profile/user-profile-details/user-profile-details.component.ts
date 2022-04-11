@@ -10,7 +10,7 @@ import {Account} from "../../../../../../_models/account";
 })
 export class UserProfileDetailsComponent implements OnInit {
   account : Account = new Account()
-  constructor(private authService: AuthService) {
+  constructor(authService: AuthService) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
     })

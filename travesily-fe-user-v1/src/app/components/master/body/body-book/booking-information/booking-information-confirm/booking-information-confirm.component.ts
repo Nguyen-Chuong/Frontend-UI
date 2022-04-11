@@ -4,8 +4,6 @@ import {FormBuilder, Validators} from "@angular/forms";
 import {BookingRequest} from "../../../../../../_models/booking-request";
 import {BookingDetail} from "../../../../../../_models/booking-detail";
 import {CartService} from "../../../../../../_services/cart.service";
-import {BookingService} from "../../../../../../_services/booking.service";
-import {CryptoService} from "../../../../../../_services/crypto.service";
 import {Router} from "@angular/router";
 import {Cart} from "../../../../../../_models/cart";
 import {RoomDetail} from "../../../../../../_models/room-detail";
@@ -25,7 +23,7 @@ export class BookingInformationConfirmComponent implements OnInit {
   isShow: boolean = false
   bookingForm
 
-  constructor(private fb: FormBuilder, private cartService: CartService, private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private storageService: StorageService) {
+  constructor(private fb: FormBuilder, private cartService: CartService, private router: Router, private storageService: StorageService) {
   }
 
   ngOnInit(): void {
@@ -62,7 +60,7 @@ export class BookingInformationConfirmComponent implements OnInit {
     booking.type = 0
     this.storageService.bookingRequest = booking
     this.cartService.clearCart().subscribe({
-      next: value => {
+      next: () => {
         this.router.navigate(['/book/booking-payment-info'], {
           queryParams: {}
         })

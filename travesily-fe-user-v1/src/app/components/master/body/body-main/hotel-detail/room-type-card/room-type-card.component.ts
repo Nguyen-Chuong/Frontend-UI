@@ -59,7 +59,7 @@ export class RoomTypeCardComponent implements OnInit {
           this.cartService.updateCarts()
           Swal.fire('An item has been added to your cart!', '', 'success')
         },
-        err => Swal.fire('You can not add more than 2 item!', '', 'error'))
+        () => Swal.fire('You can not add more than 2 item!', '', 'error'))
   }
 
   bookNow() {
@@ -73,13 +73,13 @@ export class RoomTypeCardComponent implements OnInit {
       })
     else
       this.cartService.clearCart().subscribe({
-        next: value => {
+        next: () => {
           this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe({
-            next: rs => {
+            next: () => {
               this.cartService.updateCarts()
               this.router.navigateByUrl('/book/booking-info')
             },
-            error: err => Swal.fire('You can not add more than 2 item!', '', 'error')
+            error: () => Swal.fire('You can not add more than 2 item!', '', 'error')
           })
         }
       })
