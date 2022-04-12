@@ -41,8 +41,12 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
   </div>
-  <div class="m-auto">
+  <div *ngIf="bookings.length > 0" class="m-auto">
     <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)" aria-label="Select page">
     </mat-paginator>
+  </div>
+  <div *ngIf="bookings.length === 0" class="noData">
+    <span class="text-center text-danger">
+      This hotel don't have any booking yet!</span>
   </div>
 </div>

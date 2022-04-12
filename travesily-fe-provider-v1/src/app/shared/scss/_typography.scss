@@ -60,3 +60,11 @@ button{
   width: 13rem;
   min-height: 100vh;
 }
+.noData{
+  background-color: aliceblue;
+  text-align: center;
+  padding: 1rem;
+  & span{
+    font-size: 1.5rem;
+  }
+}

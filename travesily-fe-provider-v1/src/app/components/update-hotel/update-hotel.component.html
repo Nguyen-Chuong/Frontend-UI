@@ -56,6 +56,10 @@
           <option *ngFor="let district of districts" [value]="district.id">{{district.nameDistrict}}</option>
         </select>
       </div>
+      <div class="addAvatar">
+        <label>Hotel avatar</label><br/>
+        <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)">
+      </div>
       <div class="description ">
         <label>Description</label> <br><br>
         <textarea name="description" id="" cols="105" rows="5" formControlName="description"></textarea>

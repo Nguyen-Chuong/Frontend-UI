@@ -43,7 +43,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <div *ngIf="!hotels" class="noData">
+      <div *ngIf="hotels.length === 0" class="noData">
         <span class="text-center text-danger">
           you don't have any hotel yet, please add new your first hotel!</span>
       </div>

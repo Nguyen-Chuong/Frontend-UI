@@ -81,10 +81,13 @@ a {
   }
 
 }
+.addAvatar{
+  padding-left: 2.9rem;
+}
 
 .description{
   display: inline-block;
-  padding-left: 2.6rem;
+  padding-left: 3rem;
 
   & textarea{
     border-radius: 10px;

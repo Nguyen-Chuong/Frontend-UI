@@ -35,7 +35,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <div *ngIf="!requests" class="noData">
+      <div *ngIf="requests.length === 0" class="noData">
         <span class="text-center text-danger">
           you don't have any request yet, please push new your first request!</span>
       </div>
