@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.form = fb.group({
-      username: ['', [Validators.required], [UsernameValidator(this.authService)]],
+      username: ['', [Validators.required], [UsernameValidator(this.authService), Validators.minLength(6), Validators.maxLength(12)]],
       email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
       password: ['', [Validators.required, Validators.minLength(8), this.matchValidator('confirmPassword', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],
@@ -88,6 +88,12 @@ export class RegisterComponent implements OnInit {
     }
     if (field === 'password' && this.form.controls['password'].hasError('minlength')) {
       return 'Password must be at least 8 characters long';
+    }
+    if (field === 'username' && this.form.controls['username'].hasError('minlength')) {
+      return 'username must be at least 6 characters long';
+    }
+    if (field === 'username' && this.form.controls['username'].hasError('maxLength')) {
+      return 'username must be maximum 12 characters long';
     }
     if (field === 'password' && this.form.controls['password'].hasError('pattern')) {
       return 'Password must contains at least 1 lowercase letter, 1 uppercase letter, 1 number and 1 special character!';
