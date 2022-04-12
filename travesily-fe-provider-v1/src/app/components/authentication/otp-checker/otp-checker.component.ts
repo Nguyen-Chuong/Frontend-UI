@@ -41,6 +41,7 @@ export class OtpCheckerComponent implements OnInit {
           },
           error => {
             this.notificationService.onError(error)
+            console.log(error)
           }
         )
       }
