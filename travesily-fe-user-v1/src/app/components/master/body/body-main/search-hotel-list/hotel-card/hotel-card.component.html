@@ -1,5 +1,9 @@
 <div class="card mb-3" (click)="selectRoom()">
-  <div class="card-body p-0">
+  <div [ngClass]="hotel.star >= 5 ? 'border-top border-primary border-5 rounded-top' 
+    : ( hotel.star >=4 ? 'border-top border-secondary border-5 rounded-top' 
+    : ( hotel.star >=3 ? 'border-top border-success border-5 rounded-top' 
+    : ( hotel.star >=2 ? 'border-top border-danger border-5 rounded-top' 
+    : 'border-top border-warning border-5 rounded-top')))" class="card-body p-0">
   <div class="row m-0">
     <div class="col-md-4 p-0">
         <img [src]="hotel.avatar" alt="..." class="img-fluid rounded-start">

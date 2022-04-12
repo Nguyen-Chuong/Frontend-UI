@@ -16,7 +16,7 @@ export class MyChartComponent implements OnInit {
   chart: ChartModel
   form: FormGroup
   todayDate: Date = new Date();
-  lastWeekDate: Date = new Date(new Date().setDate(this.todayDate.getDate() - 7))
+  lastWeekDate: Date = new Date(new Date().setDate(this.todayDate.getDate() - 14))
   myChart: Chart
   totalBooking: number = 0
 
