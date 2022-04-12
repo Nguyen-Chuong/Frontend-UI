@@ -26,7 +26,7 @@ export class RegisterComponent implements OnInit {
     this.form = fb.group({
       firstname: ['', [Validators.required]],
       lastname: ['', [Validators.required]],
-      username: ['', [Validators.required], [UsernameValidator(this.authService)]],
+      username: ['', [Validators.required, Validators.maxLength(12)], [UsernameValidator(this.authService)]],
       email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
       password: ['', [Validators.required, this.matchValidator('confirmPassword', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]],
@@ -88,6 +88,9 @@ export class RegisterComponent implements OnInit {
     }
     if (field === 'username' && this.form.controls['username'].hasError('duplicateUsername')) {
       return 'Username existed! Please choose another username!';
+    }
+    if (field === 'username' && this.form.controls['username'].hasError('maxlength')) {
+      return 'Username can not have more than 12 character!';
     }
     if (field === 'email' && this.form.controls['email'].hasError('duplicateEmail')) {
       return 'This email has been registered!';

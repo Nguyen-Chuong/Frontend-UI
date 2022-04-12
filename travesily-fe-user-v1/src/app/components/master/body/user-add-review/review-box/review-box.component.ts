@@ -26,7 +26,7 @@ export class ReviewBoxComponent implements OnInit {
       location: [0, [Validators.required, Validators.min(1)]],
       service: [0, [Validators.required, Validators.min(1)]],
       valueMoney: [0, [Validators.required, Validators.min(1)]],
-      reviewTitle: ['', []],
+      reviewTitle: ['', [Validators.maxLength(100)]],
       reviewDetail: ['', []],
     })
   }
