@@ -33,7 +33,6 @@ export class UserComponent {
       rs => {
         this.total = rs['data']['total']
         // check if data is loaded, hide it
-        console.log(this.total)
         if(rs){
           this.spinner.hide();
         }
