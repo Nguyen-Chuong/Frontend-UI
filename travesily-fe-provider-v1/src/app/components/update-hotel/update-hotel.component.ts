@@ -87,7 +87,11 @@ export class UpdateHotelComponent implements OnInit {
         this.districts = res['data']
       })
       this.districtControl = new FormControl(this.district, Validators.required);
-    })
+    },
+    err =>{
+      console.log(err)
+    }
+    )
     this.citiesService.getAllCities().pipe(first()).subscribe(res => {
       this.cities = res['data']
     })
@@ -103,14 +107,14 @@ export class UpdateHotelComponent implements OnInit {
     hotelRequest.phone = val.phone
     hotelRequest.address = val.address
     hotelRequest.description = val.description
-    if (this.districtControl.value.id) {
-      hotelRequest.districtId = this.districtControl.value.id
-    }
+      hotelRequest.districtId = this.district.id
+      console.log(hotelRequest.districtId)
     if (this.selectedFiles) {
       hotelRequest.avatar = this.imageUrl
     }
     this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
       next: () => {
+        console.log(hotelRequest)
         this.notificationService.onSuccess('Update Hotel successfully');
       },
       error: err => {
@@ -122,12 +126,14 @@ export class UpdateHotelComponent implements OnInit {
 
   changeCityID(event) {
     this.city.id = event.target['value']
-    console.log(event.target['value'])
     const encryptedId = this.cryptoService.set('06052000', this.city.id)
     this.citiesService.getDistrictInCity(encryptedId).pipe(first()).subscribe(res => {
       this.districts = res['data']
-      console.log(this.districts)
     })
+  }
+
+  changeDistrictID(event) {
+    this.district.id = event.target['value']
   }
 
   addRequestHotel() {

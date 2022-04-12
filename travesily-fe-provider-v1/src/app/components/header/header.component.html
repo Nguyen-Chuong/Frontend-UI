@@ -6,13 +6,12 @@
   </div>
   <span class="logo-title">Travesily</span>
   <div class="header-right" *ngIf="isLogin">
-    <mat-icon class="header-right-notifications">notifications</mat-icon>
     <div class="header-right-avatar" [matMenuTriggerFor]="profile">
-      {{account.username.slice(2)}}
+      <p>{{account.username.slice(2)}}</p>
     </div>
 
     <mat-menu #profile="matMenu" class="profile-menu">
-      <p class="profile-menu-name">{{account.username.slice(2)}}</p>
+      <p class="profile-menu-name bg-primary">{{account.username.slice(2)}}</p>
       <button mat-menu-item (click)="openProfile()">
         <mat-icon>account_circle</mat-icon>
         <span>Profile</span>

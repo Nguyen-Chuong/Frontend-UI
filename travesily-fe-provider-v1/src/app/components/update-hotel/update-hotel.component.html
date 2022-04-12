@@ -51,7 +51,7 @@
           <option selected value={{city}} disabled>{{city.nameCity}}</option>
           <option *ngFor="let city of cities" [value]="city.id">{{city.nameCity}}</option>
         </select>
-        <select [formControl]="districtControl" class="form-select form-select-lg select district">
+        <select [formControl]="districtControl" class="form-select form-select-lg select district" (change)="changeDistrictID($event)">
           <option selected value={{district}} disabled>{{district.nameDistrict}}</option>
           <option *ngFor="let district of districts" [value]="district.id">{{district.nameDistrict}}</option>
         </select>

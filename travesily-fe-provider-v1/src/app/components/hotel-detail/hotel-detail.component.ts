@@ -29,17 +29,20 @@ export class HotelDetailComponent implements OnInit {
     this.route.queryParams.subscribe((param) => {
       this.hotelId = param['id'].slice(1, -1);
     })
+    this.reviewsService.getAllReviewOfHotel(this.hotelId, this.criteria).pipe(first()).subscribe(
+      rs => {
+        this.total = rs['data']['total']
+      }, err => {
+        console.log(err)
+      }
+    )
 
     this.bookingsService.getAllBookingUpComingOfHotel(this.hotelId).pipe(first()).subscribe(
       rs => {
         this.upComingBookings = rs['data']['items']
 
       })
-    this.reviewsService.getAllReviewOfHotel(this.hotelId, this.criteria).pipe(first()).subscribe(
-      rs => {
-        this.total = rs['data']['total']
-      }
-    )
+
 
     this.reviewsService.getReviewOfHotel(this.hotelId, 0, 5, this.criteria).pipe(first()).subscribe(
       rs => {
