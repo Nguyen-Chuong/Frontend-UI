@@ -12,13 +12,16 @@ import { Account } from 'src/app/_models/account';
 })
 export class HeaderComponent implements OnInit {
   account: Account = new Account;
+  username: string
   ngOnInit(): void {
+
   }
 
   constructor(private authService: AuthServiceService,
     private router: Router,) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
+      this.username = this.account.username.slice(2)
     })
   }
 

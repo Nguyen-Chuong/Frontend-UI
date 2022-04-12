@@ -26,6 +26,7 @@ export class HotelListComponent {
   dataSource
   isAdmin = false
   status: number = 1
+  isNoData = false
   constructor(private hotelsService: HotelService, private router: Router,
     private notificationService: NotificationService,
     public dialog: MatDialog,
@@ -54,6 +55,10 @@ export class HotelListComponent {
       rs => {
         this.hotels = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        if (!this.hotels || this.hotels.length === 0)
+          this.isNoData = true
+        else
+          this.isNoData = false
       }
     )
     this.dataSource = new MatTableDataSource<Hotel>(this.hotels);
@@ -109,6 +114,10 @@ export class HotelListComponent {
       rs => {
         this.hotels = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        if (!this.hotels || this.hotels.length === 0)
+          this.isNoData = true
+        else
+          this.isNoData = false
         // check if data is loaded, hide it
         if (rs) {
           this.spinner.hide();

@@ -12,12 +12,17 @@ import { CryptoService } from 'src/app/_services/crypto.service';
 export class FeedbackTableComponent implements OnInit {
   @Input() feedbacks : Feedback[]
   dataSource
+  isNoData = false
   constructor(private router: Router,
     private cryptoService: CryptoService) { }
 
   displayedColumns: string[] = ['id', 'type', 'senderName', 'message', 'modifyDate'];
 
   ngOnInit(): void {
+    if (!this.feedbacks || this.feedbacks.length === 0)
+          this.isNoData = true
+        else
+          this.isNoData = false
     this.dataSource = new MatTableDataSource<Feedback>(this.feedbacks);
   }
 

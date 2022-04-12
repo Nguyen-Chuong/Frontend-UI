@@ -14,6 +14,8 @@ export class HotelDetailComponent implements OnInit {
   hotel: Hotel
   hotelId: any
   rooms: Room[]
+  url: string
+  name: string
 
   constructor(private hotelsService: HotelService,
     private route: ActivatedRoute) { }
@@ -25,7 +27,8 @@ export class HotelDetailComponent implements OnInit {
     this.hotelsService.getHotelById(this.hotelId).pipe(first()).subscribe(
       rs => {
         this.hotel = rs['data']
-
+        this.url = this.hotel.avatar
+        this.name = this.hotel.name
       }
     )
     this.hotelsService.getRoomByHotelId(this.hotelId).pipe(first()).subscribe(

@@ -15,7 +15,7 @@ import { DialogComponent } from '../dialog/dialog.component';
   styleUrls: ['./hotel-approve.component.scss']
 })
 export class HotelApproveComponent implements OnInit {
-  currentTask= "Approve"
+  currentTask = "Approve"
   message: string
   checked: boolean
   pageSize: number = 0
@@ -24,6 +24,7 @@ export class HotelApproveComponent implements OnInit {
   dataSource
   isAdmin = true
   status: number = 1
+  isNoData = false
 
   constructor(private requestsService: RequestService,
     private router: Router,
@@ -43,20 +44,24 @@ export class HotelApproveComponent implements OnInit {
       rs => {
         this.requests = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        if (!this.requests || this.requests.length === 0)
+          this.isNoData = true
+        else
+          this.isNoData = false
       }
     )
     this.dataSource = new MatTableDataSource<Request>(this.requests);
   }
 
   openHotelDetail(id) {
-    const encryptedId =this.cryptoService.set('06052000',id)
+    const encryptedId = this.cryptoService.set('06052000', id)
     this.router.navigate(['hotel-detail'], {
-      queryParams: { id: JSON.stringify(encryptedId)}
+      queryParams: { id: JSON.stringify(encryptedId) }
     });
   }
 
   acceptHotel(id) {
-    const encryptedId = this.cryptoService.set('06052000',id)
+    const encryptedId = this.cryptoService.set('06052000', id)
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {
@@ -83,7 +88,7 @@ export class HotelApproveComponent implements OnInit {
   }
 
   denyHotel(id) {
-    const encryptedId = this.cryptoService.set('06052000',id)
+    const encryptedId = this.cryptoService.set('06052000', id)
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '400px',
       data: {
@@ -117,7 +122,7 @@ export class HotelApproveComponent implements OnInit {
     )
   }
 
-  filterHotel(status){
+  filterHotel(status) {
     this.status = status.target['value']
     this.requestsService.getAllRequest(this.status).pipe(first()).subscribe(
       rs => {
@@ -128,6 +133,10 @@ export class HotelApproveComponent implements OnInit {
       rs => {
         this.requests = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        if (!this.requests || this.requests.length === 0)
+          this.isNoData = true
+        else
+          this.isNoData = false
       }
     )
   }
