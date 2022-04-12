@@ -97,11 +97,11 @@ export class HotelListComponent {
   }
 
   filterHotel(status) {
+    this.spinner.show();
     this.status = status.target['value']
     this.hotelsService.getAllHotelByStatus(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        console.log(rs['data']['total'])
         console.log(this.total)
       }
     )
@@ -109,6 +109,10 @@ export class HotelListComponent {
       rs => {
         this.hotels = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        // check if data is loaded, hide it
+        if (rs) {
+          this.spinner.hide();
+        }
       }
     )
   }
