@@ -1,8 +1,8 @@
 <div class="header">
   <div class="logo">
-     <a routerLink="/hotel-approve">
+    <a routerLink="/hotel-approve">
       <img src="\assets\img\logo.png" alt="">
-     </a>
+    </a>
   </div>
   <span routerLink="/hotel-approve" class="logo-title">HBTS</span>
   <div class="header-right">
@@ -10,12 +10,19 @@
       <input class="form-control" type="text" placeholder="Search..">
     </div>
     <mat-icon class="header-right-notifications">notifications</mat-icon>
-    <div class="header-right-avatar" [matMenuTriggerFor]="profile">
-        <img src={{account.avatar}} alt=""  class="header-right-avatar-img">
-    </div>
+    <ng-container *ngIf="account.avatar">
+      <div class="header-right-avatar" [matMenuTriggerFor]="profile">
+        <img src={{account.avatar}} alt="" class="header-right-avatar-img">
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!account.avatar">
+      <div class="profile-image me-3">
+        <div id="profileImage">{{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
+      </div>
+    </ng-container>
 
     <mat-menu #profile="matMenu" class="profile-menu">
-      <p class="profile-menu-name" >{{username}}</p>
+      <p class="profile-menu-name">{{username}}</p>
       <button mat-menu-item (click)="openProfile()">
         <mat-icon>account_circle</mat-icon>
         <span>Profile</span>
@@ -35,4 +42,3 @@
     </mat-menu>
   </div>
 </div>
-

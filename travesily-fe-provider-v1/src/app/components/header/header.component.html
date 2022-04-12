@@ -7,7 +7,9 @@
   <span class="logo-title">Travesily</span>
   <div class="header-right" *ngIf="isLogin">
     <div class="header-right-avatar" [matMenuTriggerFor]="profile">
-      <p>{{account.username.slice(2)}}</p>
+      <div class="header-right-avatar-image me-3">
+        <div id="profileImage">{{username?.charAt(2)}}</div>
+      </div>
     </div>
 
     <mat-menu #profile="matMenu" class="profile-menu">

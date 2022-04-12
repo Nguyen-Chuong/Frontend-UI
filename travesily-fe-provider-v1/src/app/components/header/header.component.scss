@@ -13,10 +13,15 @@
     width: 8rem;
     &-avatar {
       text-align: center;
-
       height: 55px;
       line-height: 60px;
       cursor: pointer;
+      &-image{
+        border-radius: 50%;
+        width: 3.7rem;
+        height: 3.7rem;
+        cursor: pointer;
+      }
     }
   }
 
@@ -56,6 +61,25 @@
       }
     }
   }
+}
+
+#profileImage {
+  width: 3.7rem;
+  height: 3.7rem;
+  margin-left: 2.5rem;
+  line-height: 3.7rem;
+  border-radius: 50%;
+  background: #512DA8;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.profile-image{
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  cursor: pointer;
 }
 
 .logo {
