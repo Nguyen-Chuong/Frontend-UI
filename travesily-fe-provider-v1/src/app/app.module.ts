@@ -44,6 +44,7 @@ import { NewPasswordComponent } from './components/authentication/new-password/n
 import { UpComingBookingComponent } from './components/up-coming-booking/up-coming-booking.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MyChartComponent } from './components/my-chart/my-chart.component';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { MyChartComponent } from './components/my-chart/my-chart.component';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    NgxSpinnerModule
   ],
   providers: [
     {

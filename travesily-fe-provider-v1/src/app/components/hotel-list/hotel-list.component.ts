@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Hotel } from 'src/app/_models/hotel';
 import { HotelService } from 'src/app/_services/hotel.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-hotel-list',
@@ -16,17 +17,24 @@ export class HotelListComponent implements OnInit {
   dataSource
   currentTask ="My Hotel"
   constructor(private hotelService: HotelService, private router: Router,
-    private cryptoService: CryptoService
+    private cryptoService: CryptoService, private spinner: NgxSpinnerService
     ) { }
 
   displayedColumns: string[] = ['hotelName', 'address', 'status', 'update', 'detail'];
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+
     if(!localStorage.getItem('token'))
       this.router.navigate(['/login'])
     this.hotelService.getAllHotel().pipe(first()).subscribe(
       rs => {
         this.hotels = rs['data']
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
     this.dataSource = new MatTableDataSource<Hotel>(this.hotels);
