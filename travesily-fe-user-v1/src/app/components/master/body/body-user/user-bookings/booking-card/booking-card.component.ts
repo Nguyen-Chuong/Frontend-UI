@@ -10,11 +10,13 @@ import {CryptoService} from "../../../../../../_services/crypto.service";
 })
 export class BookingCardComponent implements OnInit {
   @Input() booking: Booking = new Booking()
-
+  todayDate = new Date()
   constructor(private router: Router, private cryptoService: CryptoService) {
   }
 
   ngOnInit(): void {
+    this.booking.checkIn = new Date(this.booking.checkIn)
+    this.booking.checkOut = new Date(this.booking.checkOut)
   }
 
   viewDetail() {

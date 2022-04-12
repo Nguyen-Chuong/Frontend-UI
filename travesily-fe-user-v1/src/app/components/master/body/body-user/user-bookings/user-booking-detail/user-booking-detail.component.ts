@@ -20,6 +20,7 @@ export class UserBookingDetailComponent implements OnInit {
   account: Account = new Account()
   booking: Booking = new Booking()
   bookingDetails: BookingDetail[] = []
+  todayDate = new Date()
 
   constructor(authService: AuthService,
     private bookingService: BookingService,

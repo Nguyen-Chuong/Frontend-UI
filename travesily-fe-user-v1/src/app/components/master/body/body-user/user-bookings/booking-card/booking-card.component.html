@@ -35,7 +35,7 @@
   </div>
   <div class="card-footer bg-white">
     <div class="d-flex justify-content-between">
-      <button *ngIf="booking.status===2&&booking.reviewStatus===0" class="btn-review btn-plain border-0" (click)="review()">Submit Your Review</button>
+      <button *ngIf="(booking.status===2&&booking.reviewStatus===0)&&booking.checkIn.getTime()<todayDate.getTime()" class="btn-review btn-plain border-0" (click)="review()">Submit Your Review</button>
       <a class="ms-auto btn-details btn-fill" (click)="viewDetail()">View Booking Details</a>
     </div>
   </div>

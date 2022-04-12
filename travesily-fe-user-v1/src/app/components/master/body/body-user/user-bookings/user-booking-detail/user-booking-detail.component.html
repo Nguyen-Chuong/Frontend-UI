@@ -8,7 +8,7 @@
       <p class="text-primary"><strong>Booking ID: {{booking?.id}}</strong></p>
       <div class="row">
         <button *ngIf="booking.status===2" class="btn btn-fill" (click)="review()"
-                [disabled]="booking.reviewStatus !==0">{{booking.reviewStatus === 0 ? 'Review your stay' : 'Reviewed'}}</button>
+                [disabled]="booking.reviewStatus !==0||booking.checkIn.getTime()>todayDate.getTime()">{{booking.reviewStatus === 0 ? 'Review your stay' : 'Reviewed'}}</button>
         <button *ngIf="booking.status === 1" class="btn btn-danger" data-bs-toggle="modal"
                 data-bs-target="#cancelModal">Cancel this booking
         </button>
