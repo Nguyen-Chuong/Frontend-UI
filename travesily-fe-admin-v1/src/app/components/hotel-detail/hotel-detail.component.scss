@@ -1,6 +1,5 @@
 @import "../../scss/_main";
 .hotel-detail {
-  padding-top: 60px;
   width: 70%;
 }
 
@@ -10,15 +9,19 @@
     margin: 0 auto;
   }
   &-banner {
-    height: 500px;
+    background-color: none;
+    height: auto;
     width: 100%;
     overflow: hidden;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
+    margin: 7rem auto 0 auto;
+    box-shadow: 20px 20px 50px 15px grey;
 
     &-image {
       width: 100%;
+      border-radius: .5rem;
+
     }
 
     &-img {
@@ -30,13 +33,13 @@
   &-infor {
     text-align: center;
     position: relative;
-    top: -100px;
+    top: -7rem;
     width: 80%;
     margin: 0 auto;
   }
 
   &-name {
-    font-size: 70px;
+    font-size: 3rem;
     color: rgb(10, 10, 10);
     font-weight: 700;
     line-height: 70px;
@@ -45,7 +48,7 @@
 
   &-content {
     box-shadow: 20px 20px 50px 15px grey;
-    border-radius: 10px;
+    border-radius: .5rem;
     background-color: aliceblue;
     color: rgb(10, 10, 10);
     text-align: left;

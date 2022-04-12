@@ -15,11 +15,11 @@ export class ReviewsService {
       .append('page', page)
       .append('pageSize', pageSize)
       .append('criteria', criteria);
-    return this.http.get(`${this.baseUrl}/reviews`, { params: params });
+    return this.http.get(`${this.baseUrl}/public/reviews`, { params: params });
   }
 
   getAllReviewOfHotel(hotelId: any, criteria: number) {
     const params = new HttpParams().append('hotelId', hotelId).append('criteria', criteria);
-    return this.http.get(`${this.baseUrl}/reviews`, { params: params });
+    return this.http.get(`${this.baseUrl}/public/reviews`, { params: params });
   }
 }

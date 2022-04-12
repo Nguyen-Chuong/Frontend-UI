@@ -11,9 +11,13 @@
         <div class="review-card" *ngFor="let review of reviews">
           <app-review [review]="review"></app-review>
         </div>
-        <div class="m-auto">
+        <div *ngIf="reviews.length > 0" class="m-auto">
           <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)" aria-label="Select page">
           </mat-paginator>
+        </div>
+        <div *ngIf="reviews.length === 0" class="noData">
+          <span class="text-center text-danger">
+            This hotel don't have any review yet!</span>
         </div>
       </mat-tab>
       <mat-tab label="Up Coming">

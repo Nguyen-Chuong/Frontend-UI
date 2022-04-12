@@ -62,6 +62,7 @@ export class UpdateHotelComponent implements OnInit {
     })
     this.hotelService.getHotelById(this.hotelId).pipe(first()).subscribe(res => {
       this.hotel = res['data']
+      this.district = this.hotel.district
       this.city = this.hotel.district.city
       if (this.hotel.status === 1) {
         this.isDisable = false
@@ -81,8 +82,16 @@ export class UpdateHotelComponent implements OnInit {
       })
       this.encryptedHotelId = this.cryptoService.set('06052000', this.hotel.id)
       this.cityControl = new FormControl(this.city, Validators.required);
-      this.districtControl = new FormControl(this.hotel.district, Validators.required);
-    })
+      const encryptedId = this.cryptoService.set('06052000', this.city.id)
+      this.citiesService.getDistrictInCity(encryptedId).pipe(first()).subscribe(res => {
+        this.districts = res['data']
+      })
+      this.districtControl = new FormControl(this.district, Validators.required);
+    },
+    err =>{
+      console.log(err)
+    }
+    )
     this.citiesService.getAllCities().pipe(first()).subscribe(res => {
       this.cities = res['data']
     })
@@ -98,16 +107,14 @@ export class UpdateHotelComponent implements OnInit {
     hotelRequest.phone = val.phone
     hotelRequest.address = val.address
     hotelRequest.description = val.description
-    this.district.id = this.districtControl.value.id
-    this.district.nameDistrict = this.districtControl.value.nameDistrict
-    if (this.districtControl.value.id) {
       hotelRequest.districtId = this.district.id
-    }
+      console.log(hotelRequest.districtId)
     if (this.selectedFiles) {
       hotelRequest.avatar = this.imageUrl
     }
     this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
       next: () => {
+        console.log(hotelRequest)
         this.notificationService.onSuccess('Update Hotel successfully');
       },
       error: err => {
@@ -117,12 +124,16 @@ export class UpdateHotelComponent implements OnInit {
     })
   }
 
-  changeCityID(city: City) {
-    this.district.city = city
-    const encryptedId = this.cryptoService.set('06052000', city.id)
+  changeCityID(event) {
+    this.city.id = event.target['value']
+    const encryptedId = this.cryptoService.set('06052000', this.city.id)
     this.citiesService.getDistrictInCity(encryptedId).pipe(first()).subscribe(res => {
       this.districts = res['data']
     })
+  }
+
+  changeDistrictID(event) {
+    this.district.id = event.target['value']
   }
 
   addRequestHotel() {

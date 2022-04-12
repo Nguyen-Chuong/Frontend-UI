@@ -6,6 +6,7 @@ import { DialogComponent } from 'src/app/shared/components/dialog/dialog.compone
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { RequestService } from 'src/app/_services/request.service';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-request-list',
@@ -21,15 +22,23 @@ export class RequestListComponent implements OnInit {
   constructor(private requestService: RequestService, 
     private cryptoService: CryptoService,
     public dialog: MatDialog,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private spinner: NgxSpinnerService
     ) { }
 
   displayedColumns: string[] = ['hotelName', 'requestDate', 'status', 'detail'];
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+
     this.requestService.getAllRequest().pipe(first()).subscribe(
       rs => {
         this.requests = rs['data']
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
     this.dataSource = new MatTableDataSource<Request>(this.requests);

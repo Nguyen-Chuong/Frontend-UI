@@ -2,6 +2,9 @@
   <div class="menu-list">
     <app-negative-bar [currentTask]="currentTask"></app-negative-bar>
   </div>
+  <ngx-spinner type="ball-fussion">
+    <p style="font-size: 20px; color: white;">Loading...</p>
+  </ngx-spinner>
   <div class="request mb-5">
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="requests">
@@ -35,7 +38,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <div *ngIf="!requests" class="noData">
+      <div *ngIf="requests.length === 0" class="noData">
         <span class="text-center text-danger">
           you don't have any request yet, please push new your first request!</span>
       </div>
