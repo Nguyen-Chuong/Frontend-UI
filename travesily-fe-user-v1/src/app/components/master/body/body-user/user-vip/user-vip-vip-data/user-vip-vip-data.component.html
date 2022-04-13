@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <h2>What are the benefits of our VIP system?</h2>
+    <p>Every times you make a booking, you will have a special discount corresponding to your VIP level</p>
+  </div>
+  <table class="table table-bordered mytable">
+    <thead class="table-dark">
+    <tr>
+      <th scope="col">Name VIP</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Bookings required</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let vip of vips">
+      <th scope="row" class="vip-{{vip.id}}">{{vip.nameVip}}</th>
+      <td>{{vip.discount}}%</td>
+      <td>{{vip.rangeStart}} bookings</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+

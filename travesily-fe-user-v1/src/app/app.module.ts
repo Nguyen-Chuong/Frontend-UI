@@ -87,6 +87,7 @@ import { FeedbackDetailComponent } from './components/master/body/body-user/user
 import { ResponseMessageComponent } from './components/master/body/body-user/user-feedback/feedback-detail/response-message/response-message.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import {NgxScrollTopModule} from "ngx-scrolltop";
+import { UserVipVipDataComponent } from './components/master/body/body-user/user-vip/user-vip-vip-data/user-vip-vip-data.component';
 
 @NgModule({
   declarations: [
@@ -160,6 +161,7 @@ import {NgxScrollTopModule} from "ngx-scrolltop";
     FeedbackCardComponent,
     FeedbackDetailComponent,
     ResponseMessageComponent,
+    UserVipVipDataComponent,
   ],
   imports: [
     BrowserModule,
