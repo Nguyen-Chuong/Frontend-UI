@@ -11,7 +11,14 @@
       <div class="hotel-content">
         <mat-tab-group mat-align-tabs="start" backgroundColor="primary">
           <mat-tab label="About">
-            <app-about-hotel [hotel]="hotel"></app-about-hotel>
+            <div class="about-hotel">
+              <P>Hotel name: {{name}}</P>
+              <P>Hotel address: {{address}} - {{nameDistrict}}</P>
+              <P>Description: {{description}}</P>
+              <P>LowestPrice: {{lowestPrice}}</P>
+              <P>Provider name: {{providerName}}</P>
+            </div>
+
           </mat-tab>
           <mat-tab label="Room">
             <div *ngFor="let room of rooms" class="room-detail">
