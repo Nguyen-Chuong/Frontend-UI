@@ -16,7 +16,7 @@ export class AddFacilityComponent implements OnInit {
   facilityGroup: FormGroup;
   facilityTypeControl: FormControl
   facilityTypes: FacilityType[]
-
+  isDisable: boolean
   constructor(private formBuilder: FormBuilder,
     private facilityService: FacilityService,
     private notificationService: NotificationService,
@@ -27,6 +27,7 @@ export class AddFacilityComponent implements OnInit {
         this.facilityTypes = rs['data']
       })
     this.facilityTypeControl = new FormControl('', Validators.required);
+    this.isDisable = true
   }
 
   ngOnInit() {
@@ -41,6 +42,10 @@ export class AddFacilityComponent implements OnInit {
       name: [name, [Validators.required]],
       icon: [icon, [Validators.required]]
     }));
+    if (facilities.length === 0)
+      this.isDisable = true
+    else
+      this.isDisable = false
   }
 
   saveFacility() {
@@ -64,5 +69,9 @@ export class AddFacilityComponent implements OnInit {
   deleteFacility(index) {
     let facilities = this.facilityGroup.get('facilities') as FormArray;
     facilities.removeAt(index)
+    if (facilities.length === 0)
+      this.isDisable = true
+    else
+      this.isDisable = false
   }
 }

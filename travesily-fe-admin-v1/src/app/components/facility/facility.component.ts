@@ -23,7 +23,7 @@ export class FacilityComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       facilityType: new FormControl('', [Validators.required]),
-      icon: new FormControl('', [Validators.required])
+      icon: new FormControl('')
     })
     this.facilityService.getFacilityType().pipe(first()).subscribe(
       rs => {
