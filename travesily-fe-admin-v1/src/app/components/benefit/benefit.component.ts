@@ -26,7 +26,7 @@ export class BenefitComponent implements OnInit {
   ngOnInit(): void {
     this.formGroup = new FormGroup({
       benefitType: new FormControl('', [Validators.required]),
-      icon: new FormControl('', [Validators.required])
+      icon: new FormControl('')
     })
     this.benefitService.getBenefitType().pipe(first()).subscribe(
       rs => {

@@ -17,6 +17,7 @@ export class AddBenefitComponent implements OnInit {
   benefitTypeControl: FormControl
   benefitTypes: BenefitType[]
   benefitRequests = []
+  isDisable: boolean
 
   constructor(private formBuilder: FormBuilder,
     private benefitService: BenefitService,
@@ -28,6 +29,7 @@ export class AddBenefitComponent implements OnInit {
         this.benefitTypes = rs['data']
       })
     this.benefitTypeControl = new FormControl('', Validators.required);
+    this.isDisable = true
   }
 
   ngOnInit() {
@@ -42,6 +44,10 @@ export class AddBenefitComponent implements OnInit {
       name: [name, [Validators.required]],
       icon: [icon, [Validators.required]]
     }));
+    if (benefits.length === 0)
+      this.isDisable = true
+    else
+      this.isDisable = false
   }
 
   saveBenefit() {
@@ -65,5 +71,9 @@ export class AddBenefitComponent implements OnInit {
   deleteBenefit(index) {
     let benefits = this.benefitGroup.get('benefits') as FormArray;
     benefits.removeAt(index)
+    if (benefits.length === 0)
+      this.isDisable = true
+    else
+      this.isDisable = false
   }
 }

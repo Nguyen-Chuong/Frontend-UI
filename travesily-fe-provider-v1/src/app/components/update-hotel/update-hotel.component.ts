@@ -88,9 +88,9 @@ export class UpdateHotelComponent implements OnInit {
       })
       this.districtControl = new FormControl(this.district, Validators.required);
     },
-    err =>{
-      console.log(err)
-    }
+      err => {
+        console.log(err)
+      }
     )
     this.citiesService.getAllCities().pipe(first()).subscribe(res => {
       this.cities = res['data']
@@ -107,8 +107,8 @@ export class UpdateHotelComponent implements OnInit {
     hotelRequest.phone = val.phone
     hotelRequest.address = val.address
     hotelRequest.description = val.description
-      hotelRequest.districtId = this.district.id
-      console.log(hotelRequest.districtId)
+    hotelRequest.districtId = this.district.id
+    console.log(hotelRequest.districtId)
     if (this.selectedFiles) {
       hotelRequest.avatar = this.imageUrl
     }
