@@ -1,6 +1,7 @@
 <div class="container p-0 rounded overflow-hidden bg-white">
   <div class="d-flex justify-content-between bg-white align-items-center">
-  <h3 class="p-2"><strong>Total: {{totalBooking}} bookings</strong></h3>
+    <div class="grid"><h3 class="p-4"><strong>Total bookings: {{totalBooking}} booking</strong></h3></div>
+    <div class="grid"><h3 class="p-0"><strong>Total revenue: {{totalRevenue}} VND</strong></h3></div>
   <form [formGroup]="form" class="p-2">
     <mat-form-field appearance="fill">
       <mat-label>Enter a date range</mat-label>

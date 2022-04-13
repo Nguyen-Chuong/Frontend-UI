@@ -1,4 +1,5 @@
 export class ChartModel {
     labels : Array<string>
-    data : Array<number>
+    dataBooking : Array<number>
+    dataAmount : Array<number>
 }
