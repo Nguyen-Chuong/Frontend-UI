@@ -48,12 +48,12 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <div *ngIf="requests.length > 0">
+      <div *ngIf="!isNoData">
         <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)"
           aria-label="Select page">
         </mat-paginator>
       </div>
-      <div *ngIf="requests.length === 0" class="noData">
+      <div *ngIf="isNoData" class="noData">
         <span class="text-center text-danger">
           There are no hotel request yet!</span>
       </div>

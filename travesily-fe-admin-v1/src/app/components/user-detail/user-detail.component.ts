@@ -15,12 +15,12 @@ export class UserDetailComponent implements OnInit {
   bookings: Booking[]
   feedbacks: Feedback[]
   username: string
-
+  isNoData = false
   constructor(
     private route: ActivatedRoute,
     private bookingService: BookingService,
-    private feedbackService : FeedbackService    ) {
-    this.route.queryParams.subscribe((param) =>{
+    private feedbackService: FeedbackService) {
+    this.route.queryParams.subscribe((param) => {
       this.username = param['username'].slice(1, -1);
     })
   }
@@ -34,6 +34,11 @@ export class UserDetailComponent implements OnInit {
     this.feedbackService.getFeedbackByName(this.username).pipe(first()).subscribe(
       rs => {
         this.feedbacks = rs['data']
+        if (!this.feedbacks || this.feedbacks.length === 0)
+
+          this.isNoData = true
+        else
+          this.isNoData = false
       }
     )
   }

@@ -10,10 +10,12 @@ import { CryptoService } from 'src/app/_services/crypto.service';
   styleUrls: ['./feedback-table.component.scss']
 })
 export class FeedbackTableComponent implements OnInit {
-  @Input() feedbacks : Feedback[]
+  @Input() feedbacks: Feedback[]
   dataSource
+  isNoData = false
   constructor(private router: Router,
-    private cryptoService: CryptoService) { }
+    private cryptoService: CryptoService) {
+  }
 
   displayedColumns: string[] = ['id', 'type', 'senderName', 'message', 'modifyDate'];
 
@@ -22,7 +24,7 @@ export class FeedbackTableComponent implements OnInit {
   }
 
   openResponse(id): void {
-    const encryptedId = this.cryptoService.set('06052000',id)
+    const encryptedId = this.cryptoService.set('06052000', id)
     this.router.navigate(['response'], {
       queryParams: { id: JSON.stringify(encryptedId) }
     });

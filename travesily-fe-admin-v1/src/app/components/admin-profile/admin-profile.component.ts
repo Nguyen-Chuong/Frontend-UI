@@ -14,6 +14,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 })
 export class AdminProfileComponent implements OnInit {
   account: Account = new Account;
+  username: string
   formGroup = new FormGroup({
     firstname: new FormControl('', [Validators.required]),
     lastname: new FormControl('', [Validators.required]),
@@ -28,6 +29,7 @@ export class AdminProfileComponent implements OnInit {
     private firebaseService: FirebaseService) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
+      this.username = this.account.username.slice(2)
       this.formGroup = new FormGroup({
         firstname: new FormControl(this.account.firstname),
         lastname: new FormControl(this.account.lastname),

@@ -6,7 +6,6 @@ export class Hotel {
   address: string;
   avatar: string;
   description: string;
-  lowestPrice: number;
   status: number;
   district: District;
   provider: Provider;

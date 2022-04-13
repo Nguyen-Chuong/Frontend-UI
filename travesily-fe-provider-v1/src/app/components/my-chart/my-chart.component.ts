@@ -19,6 +19,7 @@ export class MyChartComponent implements OnInit {
   lastWeekDate: Date = new Date(new Date().setDate(this.todayDate.getDate() - 14))
   myChart: Chart
   totalBooking: number = 0
+  totalRevenue: number = 0
 
   constructor(private hotelService: HotelService,
     private fb: FormBuilder) {
@@ -32,7 +33,8 @@ export class MyChartComponent implements OnInit {
     this.hotelService.getChartData(new Date(this.lastWeekDate), new Date(this.todayDate)).pipe(first()).subscribe(
       rs => {
         this.chart = rs['data']
-        this.totalBooking = this.chart.data.reduce((a, b) => a + b)
+        this.totalBooking = this.chart.dataBooking.reduce((a, b) => a + b) / 1000
+        this.totalRevenue = this.chart.dataAmount.reduce((a, b) => a + b) * 1000
         this.drawChart()
       }
     )
@@ -44,22 +46,33 @@ export class MyChartComponent implements OnInit {
       type: 'line',
       data: {
         labels: this.chart.labels,
-        datasets: [{
-          label: 'Booking Statistic',
-          data: this.chart.data,
-          fill: false,
-          borderColor: 'rgb(75, 192, 192)',
-          tension: 0.1,
-          borderWidth: 2,
-          spanGaps: 1
-        }]
+        datasets: [
+          {
+            label: 'Booking Statistic',
+            data: this.chart.dataBooking,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1,
+            borderWidth: 2,
+            spanGaps: 1
+          },
+          {
+            label: 'Revenue Statistic',
+            data: this.chart.dataAmount,
+            fill: false,
+            borderColor: 'rgb(245, 96, 66)',
+            tension: 0.1,
+            borderWidth: 2,
+            spanGaps: 1
+          }
+        ]
       },
       options: {
         scales: {
           y: {
             beginAtZero: true,
             ticks: {
-              stepSize: 1
+              stepSize: 1000
             }
           }
         }
@@ -72,7 +85,8 @@ export class MyChartComponent implements OnInit {
     this.hotelService.getChartData(new Date(this.form.value.from), new Date(this.form.value.to)).subscribe(
       rs => {
         this.chart = rs['data']
-        this.totalBooking = this.chart.data.reduce((a, b) => a + b)
+        this.totalBooking = this.chart.dataBooking.reduce((a, b) => a + b) / 1000
+        this.totalRevenue = this.chart.dataAmount.reduce((a, b) => a + b) * 1000
         this.drawChart()
       }
     )
