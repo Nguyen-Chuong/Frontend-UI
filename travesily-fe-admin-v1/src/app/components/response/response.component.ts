@@ -15,7 +15,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
   styleUrls: ['./response.component.scss']
 })
 export class ResponseComponent implements OnInit {
-  formGroup!: FormGroup;
+  formGroup: FormGroup;
   feedback: Feedback
   responses: AdminResponse[]
   response: AdminResponse = new AdminResponse

@@ -41,7 +41,6 @@ export class HotelDetailComponent implements OnInit {
         this.nameDistrict = this.hotel.district.nameDistrict
         this.providerName = this.hotel.provider.providerName
         this.description = this.hotel.description
-        this.lowestPrice = this.hotel.lowestPrice
       }
     )
     this.hotelsService.getRoomByHotelId(this.hotelId).pipe(first()).subscribe(

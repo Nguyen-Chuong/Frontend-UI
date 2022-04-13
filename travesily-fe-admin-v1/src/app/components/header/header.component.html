@@ -17,7 +17,7 @@
     </ng-container>
     <ng-container *ngIf="!account.avatar">
       <div class="profile-image me-3">
-        <div id="profileImage">{{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
+        <div id="profileImage" [matMenuTriggerFor]="profile">{{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
       </div>
     </ng-container>
 
