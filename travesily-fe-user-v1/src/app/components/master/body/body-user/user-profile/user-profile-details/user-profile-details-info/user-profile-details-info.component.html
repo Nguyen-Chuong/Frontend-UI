@@ -68,10 +68,10 @@
           <app-edit-dropdown-password [account]="account" (dropdown)="dropdown()"></app-edit-dropdown-password>
         </ng-container>
         <ng-container *ngIf="editType==='edit-phone'">
-          <app-edit-dropdown-edit-phone [account]="account"></app-edit-dropdown-edit-phone>
+          <app-edit-dropdown-edit-phone [account]="account" (dropdown)="dropdown()"></app-edit-dropdown-edit-phone>
         </ng-container>
         <ng-container *ngIf="editType==='add-phone'">
-          <app-edit-dropdown-add-phone [account]="account"></app-edit-dropdown-add-phone>
+          <app-edit-dropdown-add-phone [account]="account" (dropdown)="dropdown()"></app-edit-dropdown-add-phone>
         </ng-container>
       </div>
     </ng-container>
