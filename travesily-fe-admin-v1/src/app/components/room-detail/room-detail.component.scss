@@ -48,9 +48,24 @@
     }
   }
 }
-
-.carousel-inner{
-  width: 100% !important;
-  height: 64rem !important;
-  overflow: hidden;
+.modal-body{
+  transform: translateX(-20rem);
+  background: none;
+  width: 70rem;
+  height:auto;
+  max-height: 37rem;
+  padding: 0;
+}
+.modal-content{
+  background: none;
+}
+.picsum-img-wrapper{
+  width: 100%;
+  height: 100%;
+  & img{
+    object-fit: fill !important;
+    width: 70rem;
+    max-height: 37rem;
+    border-radius: .5rem;
+  }
 }
