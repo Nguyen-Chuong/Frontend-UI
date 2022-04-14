@@ -6,7 +6,7 @@
 
 .active {
   background-color: $color-tertiary;
-  color: #fff;
+  color: #fff!important;
 }
 
 .nav-column{
@@ -18,5 +18,9 @@
   max-width: 120rem;
   margin: auto;
   min-height: 80vh;
+}
+
+.nav-link{
+  color: black;
 }
 
