@@ -18,6 +18,7 @@ export class BookingInformationDetailComponent implements OnInit {
   @Input() hotel: Hotel = new Hotel()
   @Input() bookingInformationDetails: BookingInformationDetail[] = []
   @Input() account: Account = new Account()
+  @Input() hasCouponApply: boolean = false
   @Output() setHasCoupon: EventEmitter<number> = new EventEmitter<number>()
   code: string
   discount: number
