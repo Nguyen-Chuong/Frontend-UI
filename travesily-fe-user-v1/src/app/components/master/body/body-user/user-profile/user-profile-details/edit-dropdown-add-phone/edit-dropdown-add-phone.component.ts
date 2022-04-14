@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Account} from "../../../../../../../_models/account";
 import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../../../../../../_services/auth.service";
@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 })
 export class EditDropdownAddPhoneComponent implements OnInit {
   @Input() account: Account
+  @Output() dropdown = new EventEmitter()
   form: FormGroup
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
@@ -30,6 +31,8 @@ export class EditDropdownAddPhoneComponent implements OnInit {
       this.authService.update(this.account).pipe(first()).subscribe({
         next: () => {
           Swal.fire('Add phone successfully!','','success')
+          this.dropdown.emit()
+          this.form.reset()
         },
         error: err => {
           Swal.fire('Add phone failed!','','error')

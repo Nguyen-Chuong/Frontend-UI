@@ -33,6 +33,7 @@ export class EditDropdownNameComponent implements OnInit {
       this.authService.update(this.account).pipe(first()).subscribe({
         next: () => {
           Swal.fire('Change name successfully!','','success')
+          this.form.reset()
           this.dropdown.emit()
         },
         error: () => {

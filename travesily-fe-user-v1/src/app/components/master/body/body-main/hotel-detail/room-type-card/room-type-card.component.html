@@ -87,29 +87,33 @@
 </div>
 <div class="modal-body">
   <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-9">
         <!-- Modal -->
         <div class="modal fade" id="room-type-image-modal-{{roomType.id}}" tabindex="-1" aria-labelledby="room-type-image-modal-label" aria-hidden="true">
-          <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-              <div id="carouselImageRoomTypeControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <app-images-carousel [listImage]="roomType.listImage"></app-images-carousel>
+          <div class="row bg-white bg-opacity-75">
+            <div class="col-md-8">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div id="carouselImageRoomTypeControls" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                      <app-images-carousel [listImage]="roomType.listImage"></app-images-carousel>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselImageRoomTypeControls" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselImageRoomTypeControls" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselImageRoomTypeControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselImageRoomTypeControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
               </div>
             </div>
+            <div class="col-md-4">
+              <app-hotel-rating [hotel]="hotel"></app-hotel-rating>
+            </div>
           </div>
+
         </div>
-      </div>
-    </div>
   </div>
 </div>

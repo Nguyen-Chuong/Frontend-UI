@@ -1,1 +1,10 @@
-<p>edit-dropdown-edit-phone works!</p>
+<form [formGroup]="form" class="edit-phone-form">
+  <div class="row mb-4">
+    <mat-form-field appearance="outline">
+      <mat-label class="text-secondary">Enter new phone number</mat-label>
+      <input matInput placeholder="Enter new phone number" type="text" [formControl]="convertToFormControl(form?.controls['phone'])" required>
+      <mat-error *ngIf="form?.controls['phone'].invalid">{{getErrorMessage('phone')}}</mat-error>
+    </mat-form-field>
+  </div>
+  <button class="btn btn-primary ps-3 pe-3" (click)="onSubmit()">Save</button>
+</form>
