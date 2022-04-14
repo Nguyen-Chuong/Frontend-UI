@@ -89,7 +89,7 @@
                 <h3><strong>Payment method</strong></h3>
               </div>
               <div class="col-md-3">
-                <h3><strong>{{booking.type === 1 ? 'VNPAY' : booking.type === 2 ? 'Pay at hotel' : 'NOT PAID'}}</strong>
+                <h3><strong>{{booking.type==1?'Pay at hotel':booking.type==2?'VNPAY':'Undefined'}}</strong>
                 </h3>
               </div>
             </div>

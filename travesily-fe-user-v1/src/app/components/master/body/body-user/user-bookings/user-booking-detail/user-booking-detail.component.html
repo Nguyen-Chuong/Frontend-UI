@@ -130,7 +130,7 @@
         <div class="card-body border-bottom">
           <div class="d-flex justify-content-between p-3">
           <p>Payment method</p>
-          <h3 class="text-primary"><strong>{{booking.type===1?'VNPAY':'Pay at hotel'}}</strong></h3>
+          <h3 class="text-primary"><strong>{{booking.type==1?'Pay at hotel':booking.type==2?'VNPAY':'Undefined'}}</strong></h3>
           </div>
         </div>
     </div>
