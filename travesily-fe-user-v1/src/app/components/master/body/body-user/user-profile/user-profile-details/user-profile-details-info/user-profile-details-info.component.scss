@@ -1,7 +1,4 @@
 @import "main";
-.card-body{
-  box-shadow: .1rem .1rem .1rem .1rem rgba($color-grey-dark-2, .3);
-}
 
 .user-info{
   display: flex;
@@ -55,6 +52,14 @@
   padding: 1rem;
   border-radius: .5rem;
   margin: 1rem 0;
-  box-shadow: .2rem .2rem .2rem .2rem rgba($color-grey-dark-2, .5);
+}
+
+.rounded{
+  border-radius: 1rem!important;
+}
+
+.card{
+  box-shadow: .1rem .1rem .1rem .1rem rgba($color-grey-dark-2, .3);
+
 }
 
