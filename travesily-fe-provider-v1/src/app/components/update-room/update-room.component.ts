@@ -18,7 +18,7 @@ import { Room } from 'src/app/_models/room';
   styleUrls: ['./update-room.component.scss']
 })
 export class UpdateRoomComponent implements OnInit {
-  currentTask= "My Room"
+  currentTask = "My Room"
   hotelControl: FormControl
   roomControl: FormControl
   form: FormGroup
@@ -43,11 +43,11 @@ export class UpdateRoomComponent implements OnInit {
     private roomService: RoomService,
     private notificationService: NotificationService) {
     this.form = this.fb.group({
-      name: [''],
-      quantity: [''],
-      availableRooms: [''],
-      numberOfPeople: [''],
-      price: [''],
+      name: ['', Validators.required],
+      quantity: ['', Validators.required],
+      availableRooms: ['', Validators.required],
+      numberOfPeople: ['', Validators.required],
+      price: ['', Validators.required],
       dealPercentage: [''],
       dealExpire: ['']
     })
@@ -110,13 +110,16 @@ export class UpdateRoomComponent implements OnInit {
       this.form.reset()
     } else {
       const encryptedId = this.cryptoService.set('06052000', room.id)
+      console.log(encryptedId)
+
       this.roomService.getRoomDetail(encryptedId).pipe(first()).subscribe(res => {
         this.room = res['data']
         if (this.room.status === 1)
           this.isDisable = false
         if (this.room.status === 2)
           this.isEnable = false
-          this.form = this.fb.group({
+        console.log(this.room.name)
+        this.form = this.fb.group({
           name: [this.room.name],
           quantity: [this.room.quantity],
           availableRooms: [this.room.availableRooms],

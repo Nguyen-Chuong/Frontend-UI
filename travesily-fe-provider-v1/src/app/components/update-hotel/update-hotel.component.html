@@ -10,7 +10,7 @@
       <h1 class="text-center">Update Hotel</h1>
       <div class="d-flex justify-content-around">
         <div class=" group">
-          <div class="row mb-2">
+          <div class="row mb-1">
             <mat-form-field class=" mb-1" appearance="outline">
               <mat-label class="text-secondary">Hotel name</mat-label>
               <input matInput placeholder="Enter your hotel name" type="text"
@@ -28,7 +28,7 @@
           </div>
         </div>
         <div class=" group">
-          <div class="row mb-2">
+          <div class="row mb-1">
             <mat-form-field class=" mb-1" appearance="outline">
               <mat-label class="text-secondary">Phone number</mat-label>
               <input matInput placeholder="Enter your phone" type="text"
@@ -45,19 +45,24 @@
             </mat-form-field>
           </div>
         </div>
+
       </div>
       <div class="d-flex justify-content-around">
-        <select [formControl]="cityControl" class="form-select form-select-lg select" (change)="changeCityID($event)">
-          <option selected value={{city}} disabled>{{city.nameCity}}</option>
-          <option *ngFor="let city of cities" [value]="city.id">{{city.nameCity}}</option>
-        </select>
-        <select [formControl]="districtControl" class="form-select form-select-lg select district" (change)="changeDistrictID($event)">
-          <option selected value={{district}} disabled>{{district.nameDistrict}}</option>
-          <option *ngFor="let district of districts" [value]="district.id">{{district.nameDistrict}}</option>
-        </select>
+        <div class="row mb-1 group">
+          <mat-form-field class="p-0" appearance="outline">
+            <mat-label class="text-secondary">City</mat-label>
+            <input matInput type="text" value="{{hotel.district.city.nameCity}}" readonly>
+          </mat-form-field>
+        </div>
+        <div class="row mb-1 group">
+          <mat-form-field appearance="outline" class="p-0">
+            <mat-label class="text-secondary">District</mat-label>
+            <input matInput  type="text" value="{{hotel.district.nameDistrict}}" readonly>
+          </mat-form-field>
+        </div>
       </div>
       <div class="addAvatar">
-        <label>Hotel avatar</label><br/>
+        <label>Hotel avatar</label><br />
         <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)">
       </div>
       <div class="description ">
@@ -65,13 +70,13 @@
         <textarea name="description" id="" cols="105" rows="5" formControlName="description"></textarea>
       </div>
       <div class="form-submit">
-        <button class="update-hotel-btn update-hotel-btn-enable" [disabled]="isEnable"
+        <button class="update-hotel-btn btn-outline-success" [disabled]="isEnable"
           (click)="enableHotel()">Enable</button>
-        <button class="update-hotel-btn update-hotel-btn-save" [disabled]="form.invalid"
+        <button class="update-hotel-btn btn-outline-warning" [disabled]="form.invalid"
           (click)="submit()">Save</button>
-        <button class="update-hotel-btn update-hotel-btn-disable" [disabled]="isDisable"
+        <button class="update-hotel-btn  btn-outline-danger" [disabled]="isDisable"
           (click)="disableHotel()">Disable</button>
-        <button class="update-hotel-btn update-hotel-btn-request" [disabled]="isPending"
+        <button class="update-hotel-btn btn-outline-primary" [disabled]="isPending"
           (click)="addRequestHotel()">Request</button>
       </div>
     </form>

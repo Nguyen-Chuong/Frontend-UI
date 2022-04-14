@@ -32,7 +32,7 @@
         <form class="col-md-10 border-right" [formGroup]="form" aria-readonly="true">
           <div class="p-3 py-5">
             <div class="col-md-12"><label class="labels">Room name</label>
-              <input type="text" class="form-control" formControlName="name" [disabled]>
+              <input type="text" class="form-control" formControlName="name">
             </div>
             <div class="row mt-2">
               <div class="col-md-6"><label class="labels">Quantity room</label>
@@ -59,12 +59,12 @@
               </div>
             </div>
             <div class="mt-5 text-center">
-              <button class="btn btn-primary room-button update-room-btn update-room-btn-enable" [disabled]="isEnable"
+              <button class="update-room-btn btn-outline-danger" [disabled]="isEnable"
                 (click)="enableRoom()">Enable</button>
 
-              <button class="btn btn-primary room-button" type="submit" (click)="submit()">Save</button>
+              <button class="update-room-btn btn-outline-primary" type="submit" (click)="submit()" [disabled]="!form.valid">Save</button>
 
-              <button class="btn btn-primary room-button update-room-btn update-room-btn-disable" [disabled]="isDisable"
+              <button class="update-room-btn btn-outline-success" [disabled]="isDisable"
                 (click)="disableRoom()">Disable</button>
             </div>
           </div>

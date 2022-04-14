@@ -23,7 +23,7 @@ export class RoomService {
   getRoomDetail(roomId: any) {
     const params = new HttpParams().append('roomTypeId', roomId);
     return this.http.get(`${this.baseUrl}/public/room-detail`, {
-      params: params,
+      params: params
     });
   }
 

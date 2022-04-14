@@ -20,9 +20,12 @@
     font-style: 700;
   }
 
-  &-detail-infor {
-    padding-left: 10px;
-    width: 100%;
+  &-detail {
+    margin-left: 7rem;
+    &-infor {
+      padding-left: 10px;
+      width: 100%;
+    }
   }
 
   &-button {
@@ -62,16 +65,6 @@
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 5px;
-
-    &-save {
-      background-color: rgb(13, 55, 243);
-    }
-    &-enable {
-      background-color: rgb(13, 196, 44);
-    }
-    &-disable {
-      background-color: rgb(230, 34, 8);
-    }
   }
 }
 
