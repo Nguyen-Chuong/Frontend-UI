@@ -9,7 +9,7 @@ import {Review} from "../../../../../../_models/review";
   styleUrls: ['./hotel-rating.component.scss']
 })
 export class HotelRatingComponent implements OnInit {
-  @Input() hotel: Hotel = new Hotel()
+  @Input() hotel: Hotel
 
   ratingTitle: string = ''
   constructor() { }
