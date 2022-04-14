@@ -1,33 +1,27 @@
-<div class="dropdown me-5">
-  <button class="dropdown-toggle btn btn-secondary" type="button"
-          id="cart-dropdown" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false"><i class="fa fa-shopping-cart"></i>
-    <span *ngIf="carts.length!==0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    {{carts.length}}
-    <span class="visually-hidden">Cart items</span>
-  </span>
-  </button>
-  <div class="dropdown-menu dropdown-menu-xl-end p-5">
-    <h3 class="text-orange-1"><b>Here's your booking cart</b></h3>
-    <h3 class="text-orange-1"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-       You can pick up to 2 rooms within an hotel</h3>
-    <h2 class="text-success">{{hotel?.name}}</h2>
-    <ul class="list-inline">
-      <li *ngFor="let roomDetail of roomDetails;let i = index">
-        <div *ngIf="carts[i]" class="card rounded mb-3">
-          <div class="card-body">
-            <h2 class="text-blue-2">{{carts[i]?.quantity}} x {{roomDetail?.name}}</h2>
-            <h3 class="text-danger">
-              {{roomDetail?.price - roomDetail?.price * roomDetail?.dealPercentage / 100 | number}} đ</h3>
-            <h4 class="text-success">{{roomDetail?.numberOfPeople}} x <i class="fa fa-user"></i></h4>
-          </div>
-        </div>
-      </li>
-      <li><hr class="dropdown-divider"></li>
-    </ul>
-    <div class="d-flex justify-content-between">
-      <button class="btn btn-warning float-end" (click)="clearCart()">Clear cart</button>
-      <button class="btn btn-primary float-end" [disabled]="carts.length === 0" (click)="checkOut()">Proceed to checkout</button>
+<h3 class="text-orange-1"><b>Here's your booking cart</b></h3>
+<h3 class="text-orange-1"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+  You can pick up to 2 rooms within a hotel</h3>
+<h1 class="text-primary"><strong>{{hotel?.name}}</strong></h1>
+<!--<img [src]="hotel.avatar" class="img-fluid mb-3" alt="">-->
+<ul class="list-inline">
+  <li *ngFor="let roomDetail of roomDetails;let i = index">
+    <div *ngIf="carts[i]" class="card rounded mb-3">
+      <img [src]="roomDetail.listImage[0]?.src" alt="" class="card-img-top img-fluid">
+      <div class="card-body">
+        <h2 class="text-blue-2">{{carts[i]?.quantity}} x {{roomDetail?.name}}</h2>
+        <h3 class="text-danger"><strong>
+          {{roomDetail?.price - roomDetail?.price * roomDetail?.dealPercentage / 100 | number}} đ</strong></h3>
+        <h4 class="text-success"><strong>{{roomDetail?.numberOfPeople}} x <i class="fa fa-user"></i></strong></h4>
+      </div>
     </div>
-  </div>
+  </li>
+  <li>
+    <hr class="dropdown-divider">
+  </li>
+</ul>
+<div class="d-flex justify-content-between">
+  <button class="btn btn-warning float-end" (click)="clearCart()">Clear cart</button>
+  <button class="btn btn-primary float-end" [disabled]="carts.length === 0" (click)="checkOut()">Proceed to checkout
+  </button>
 </div>
 

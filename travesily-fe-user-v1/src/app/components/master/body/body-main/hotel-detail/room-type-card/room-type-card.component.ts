@@ -59,7 +59,10 @@ export class RoomTypeCardComponent implements OnInit {
           this.cartService.updateCarts()
           Swal.fire('An item has been added to your cart!', '', 'success')
         },
-        () => Swal.fire('You can not add more than 2 item!', '', 'error'))
+        error => {
+          Swal.fire(error['error']['error_message'], '', 'error')
+        }
+      )
   }
 
   bookNow() {

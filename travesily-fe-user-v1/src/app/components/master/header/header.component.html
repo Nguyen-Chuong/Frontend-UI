@@ -13,8 +13,22 @@
       </ul>
     </div>
   </div>
-  <div class="container-fluid">
-    <app-user-login class="ms-auto"></app-user-login>
+  <div class="d-flex align-items-center ms-auto">
+    <button *ngIf="account" class="btn btn-cart btn-secondary position-relative h-75 ps-4 pe-4" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasRight"
+            aria-controls="offcanvasRight">
+      <i class="fa fa-shopping-cart"></i>
+      <span *ngIf="carts?.length!==0"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+    {{carts?.length}}
+        <span class="visually-hidden">Cart items</span>
+  </span>
+    </button>
+    <app-user-login></app-user-login>
   </div>
 </nav>
-
+<div *ngIf="account" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+  <div class="offcanvas-body">
+    <app-cart></app-cart>
+  </div>
+</div>

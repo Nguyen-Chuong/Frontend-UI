@@ -15,7 +15,6 @@ export class UserLoginComponent implements OnInit {
   constructor(private authService: AuthService, private storage: StorageService) {
     if (this.storage.authToken)
       this.authService.getProfile()
-        .pipe(first())
         .subscribe(account => {
           this.account = account['data']
         })
