@@ -21,6 +21,7 @@ export class BookingCodComponent implements OnInit {
   hotel: Hotel = new Hotel()
   account: Account = new Account()
   totalPaid: number = 0
+  isProceeded: boolean = false
 
   constructor(private bookingService: BookingService, private cryptoService: CryptoService, private router: Router, private authService: AuthService, private storageService: StorageService, private hotelService: HotelService) {
     this.bookingRequest = this.storageService.bookingRequest
@@ -34,7 +35,7 @@ export class BookingCodComponent implements OnInit {
           next: hotel => {
             this.hotel = hotel['data']
             this.bookingRequest.bookingDetail.forEach(bookingDetail => {
-              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getTime()/ (1000 * 3600 * 24) - new Date(this.bookingRequest.checkIn).getTime()/ (1000 * 3600 * 24))
+              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getTime() / (1000 * 3600 * 24) - new Date(this.bookingRequest.checkIn).getTime() / (1000 * 3600 * 24))
             })
             this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
           },
@@ -48,15 +49,19 @@ export class BookingCodComponent implements OnInit {
   }
 
   proceed() {
-    this.bookingRequest.type = 1
-    this.bookingService.addBooking(this.bookingRequest).subscribe({
-      next: value => {
-        this.router.navigate(['book/transaction-info'], {
-          queryParams: {
-            bookingId: this.cryptoService.set('06052000', value['data'])
-          }
-        })
-      }
-    })
+    if (!this.isProceeded) {
+      this.bookingRequest.type = 1
+      this.isProceeded = true
+      this.bookingService.addBooking(this.bookingRequest).subscribe({
+        next: value => {
+          this.storageService.clearBookingRequest()
+          this.router.navigate(['book/transaction-info'], {
+            queryParams: {
+              bookingId: this.cryptoService.set('06052000', value['data'])
+            }
+          })
+        }
+      })
+    }
   }
 }

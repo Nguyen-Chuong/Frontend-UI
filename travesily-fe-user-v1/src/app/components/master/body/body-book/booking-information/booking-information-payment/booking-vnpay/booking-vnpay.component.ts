@@ -23,6 +23,7 @@ export class BookingVnpayComponent implements OnInit {
   hotel: Hotel = new Hotel()
   account: Account = new Account()
   totalPaid: number = 0
+  isProceeded: boolean = false
 
   constructor(private paymentService: PaymentService, private bookingService: BookingService, private router: Router, private cryptoService: CryptoService, private storageService: StorageService, private hotelService: HotelService, private authService: AuthService) {
     this.bookingRequest = this.storageService.bookingRequest
@@ -36,7 +37,7 @@ export class BookingVnpayComponent implements OnInit {
           next: hotel => {
             this.hotel = hotel['data']
             this.bookingRequest.bookingDetail.forEach(bookingDetail => {
-              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getTime()/ (1000 * 3600 * 24) - new Date(this.bookingRequest.checkIn).getTime()/ (1000 * 3600 * 24))
+              this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getTime() / (1000 * 3600 * 24) - new Date(this.bookingRequest.checkIn).getTime() / (1000 * 3600 * 24))
             })
             this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
           },
@@ -50,23 +51,27 @@ export class BookingVnpayComponent implements OnInit {
   }
 
   proceed() {
-    this.bookingRequest.type = 2
-    this.bookingService.addBooking(this.bookingRequest).subscribe({
-      next: value => {
-        const paymentDto = new PaymentDto()
-        paymentDto.amount = this.totalPaid * 100
-        paymentDto.description = `${value['data']}-Travesily booking payment`
-        this.paymentService.getIpaddress().subscribe({
-          next: data => {
-            paymentDto.ipAddress = data['ip']
-            this.paymentService.createPayment(paymentDto).subscribe({
-              next: value => {
-                window.location.href = value['data']['url']
-              }
-            })
-          }
-        })
-      }
-    })
+    if (!this.isProceeded) {
+      this.bookingRequest.type = 2
+      this.isProceeded = true
+      this.bookingService.addBooking(this.bookingRequest).subscribe({
+        next: value => {
+          this.storageService.clearBookingRequest()
+          const paymentDto = new PaymentDto()
+          paymentDto.amount = this.totalPaid * 100
+          paymentDto.description = `${value['data']}-Travesily booking payment`
+          this.paymentService.getIpaddress().subscribe({
+            next: data => {
+              paymentDto.ipAddress = data['ip']
+              this.paymentService.createPayment(paymentDto).subscribe({
+                next: value => {
+                  window.location.href = value['data']['url']
+                }
+              })
+            }
+          })
+        }
+      })
+    }
   }
 }
