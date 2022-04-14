@@ -33,4 +33,8 @@ export class PaymentService {
       .append('vnp_TxnRef', transaction.idService)
     return this.http.get(`${this.baseUrl}/get-transaction-info`, {params: params})
   }
+
+  getCouponInfo(){
+    return this.http.get(`${this.baseUrl}/get-coupon`)
+  }
 }

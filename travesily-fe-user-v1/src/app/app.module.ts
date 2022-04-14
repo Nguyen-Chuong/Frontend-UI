@@ -88,7 +88,8 @@ import { ResponseMessageComponent } from './components/master/body/body-user/use
 import { NgxSpinnerModule } from "ngx-spinner";
 import {NgxScrollTopModule} from "ngx-scrolltop";
 import { UserVipVipDataComponent } from './components/master/body/body-user/user-vip/user-vip-vip-data/user-vip-vip-data.component';
-import { HotelRatingComponent } from './components/master/body/body-main/hotel-detail/hotel-rating/hotel-rating.component';
+import { CouponDialogComponent } from './shared/components/coupon-dialog/coupon-dialog.component';
+import { MatDialogModule } from '@angular/material/dialog'
 
 @NgModule({
   declarations: [
@@ -163,7 +164,7 @@ import { HotelRatingComponent } from './components/master/body/body-main/hotel-d
     FeedbackDetailComponent,
     ResponseMessageComponent,
     UserVipVipDataComponent,
-    HotelRatingComponent,
+    CouponDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -182,7 +183,8 @@ import { HotelRatingComponent } from './components/master/body/body-main/hotel-d
     FormsModule,
     Nl2BrPipeModule,
     NgxSpinnerModule,
-    NgxScrollTopModule
+    NgxScrollTopModule,
+    MatDialogModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS,
