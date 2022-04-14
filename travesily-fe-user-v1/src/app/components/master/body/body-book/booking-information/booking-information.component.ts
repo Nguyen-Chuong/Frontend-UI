@@ -25,9 +25,10 @@ export class BookingInformationComponent implements OnInit {
   roomDetails: RoomDetail[] = []
   searchFilter: SearchFilter = new SearchFilter()
   bookingInformationDetails: BookingInformationDetail[] = []
+  hasCoupon: number = 0
 
   constructor(private cartService: CartService, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
-    storageService: StorageService, private router: Router) {
+              storageService: StorageService, private router: Router) {
     //Get user search filter
     this.searchFilter = storageService.searchFilter
     this.authService.getProfile().subscribe({
@@ -74,5 +75,9 @@ export class BookingInformationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  setHasCoupon($event: number) {
+    this.hasCoupon = $event
   }
 }

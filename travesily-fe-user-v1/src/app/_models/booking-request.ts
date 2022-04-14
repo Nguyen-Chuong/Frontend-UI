@@ -12,4 +12,5 @@ export class BookingRequest {
   bookingDetail: BookingDetail[]
   otherRequirement: string
   type: number
+  hasCoupon: number
 }

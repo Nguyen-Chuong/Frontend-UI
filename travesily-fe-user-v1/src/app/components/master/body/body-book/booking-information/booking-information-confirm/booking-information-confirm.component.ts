@@ -20,6 +20,7 @@ export class BookingInformationConfirmComponent implements OnInit {
   @Input() carts: Cart[] = []
   @Input() roomDetails: RoomDetail[] = []
   @Input() hotel: Hotel = new Hotel()
+  @Input() hasCoupon: number
   isShow: boolean = false
   bookingForm
 
@@ -30,7 +31,7 @@ export class BookingInformationConfirmComponent implements OnInit {
     this.bookingForm = this.fb.group({
       smoking: [''],
       bed: [''],
-      additional: ['',[Validators.maxLength(200)]]
+      additional: ['', [Validators.maxLength(200)]]
     })
   }
 
@@ -58,6 +59,7 @@ export class BookingInformationConfirmComponent implements OnInit {
     })
     booking.bookingDetail = bookingDetails
     booking.type = 0
+    booking.hasCoupon = this.hasCoupon
     this.storageService.bookingRequest = booking
     this.cartService.clearCart().subscribe({
       next: () => {
