@@ -88,6 +88,7 @@ import { ResponseMessageComponent } from './components/master/body/body-user/use
 import { NgxSpinnerModule } from "ngx-spinner";
 import {NgxScrollTopModule} from "ngx-scrolltop";
 import { UserVipVipDataComponent } from './components/master/body/body-user/user-vip/user-vip-vip-data/user-vip-vip-data.component';
+import { HotelRatingComponent } from './components/master/body/body-main/hotel-detail/hotel-rating/hotel-rating.component';
 
 @NgModule({
   declarations: [
@@ -162,6 +163,7 @@ import { UserVipVipDataComponent } from './components/master/body/body-user/user
     FeedbackDetailComponent,
     ResponseMessageComponent,
     UserVipVipDataComponent,
+    HotelRatingComponent,
   ],
   imports: [
     BrowserModule,

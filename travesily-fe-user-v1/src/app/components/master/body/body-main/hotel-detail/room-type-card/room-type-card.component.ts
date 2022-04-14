@@ -9,6 +9,7 @@ import {SearchFilter} from "../../../../../../_models/search-filter";
 import {Router} from "@angular/router";
 import {Cart} from "../../../../../../_models/cart";
 import Swal from "sweetalert2";
+import {Hotel} from "../../../../../../_models/hotel";
 
 @Component({
   selector: 'app-room-type-card',
@@ -16,8 +17,8 @@ import Swal from "sweetalert2";
   styleUrls: ['./room-type-card.component.scss']
 })
 export class RoomTypeCardComponent implements OnInit {
-  @Input() roomType: RoomType
-  @Input() hotelId: number
+  @Input() roomType: RoomType = new RoomType()
+  @Input() hotel: Hotel = new Hotel()
   roomDetail: RoomDetail = new RoomDetail()
   iconMale = 'fa fa-male'
   filter: SearchFilter = new SearchFilter()
@@ -55,7 +56,7 @@ export class RoomTypeCardComponent implements OnInit {
         })
       })
     else
-      this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
+      this.cartService.addToCart(this.hotel?.id, this.roomType?.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe(rs => {
           this.cartService.updateCarts()
           Swal.fire('An item has been added to your cart!', '', 'success')
         },
@@ -77,7 +78,7 @@ export class RoomTypeCardComponent implements OnInit {
     else
       this.cartService.clearCart().subscribe({
         next: () => {
-          this.cartService.addToCart(this.hotelId, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe({
+          this.cartService.addToCart(this.hotel?.id, this.roomType.id, this.filter.roomNumber, this.filter.guestNumber, this.filter.from, this.filter.to).subscribe({
             next: () => {
               this.cartService.updateCarts()
               this.router.navigateByUrl('/book/booking-info')
