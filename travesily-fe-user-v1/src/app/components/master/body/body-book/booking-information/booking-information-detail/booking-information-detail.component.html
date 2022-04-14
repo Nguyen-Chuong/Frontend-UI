@@ -115,10 +115,10 @@
       <div class="d-flex justify-content-between">
         <h3><b>Price</b></h3>
         <h3>
-          <b>{{((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100) * bookingInformationDetails[0]?.quantity + (roomDetails[1]?.price * bookingInformationDetails[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) * (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) * (100 - account.vip?.discount) / 100 * (100 + hotel.taxPercentage) / 100 | number}}
+          <b>{{(((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100) * bookingInformationDetails[0]?.quantity + (roomDetails[1]?.price * bookingInformationDetails[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) * (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) - discount) * (100 - account.vip?.discount) / 100 * (100 + hotel.taxPercentage) / 100 | number}}
             đ</b></h3>
       </div>
-      <h5><b>Discounts: </b>VIP discount {{account.vip?.discount}}%</h5>
+      <h5><b>Discounts: </b>VIP discount {{account.vip?.discount}}% {{code?'| Coupon applied: ':''}} {{code}}</h5>
       <h5><b>Applied fees: </b>Tax {{hotel.taxPercentage}}%</h5>
     </div>
   </div>

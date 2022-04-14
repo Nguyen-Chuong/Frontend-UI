@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {BookingService} from "../../../../../../_services/booking.service";
 
 @Component({
@@ -7,11 +7,12 @@ import {BookingService} from "../../../../../../_services/booking.service";
   styleUrls: ['./booking-information-payment.component.scss']
 })
 export class BookingInformationPaymentComponent implements OnInit {
-bookingCount: number = 0
+  bookingCount: number = 0
+
   constructor(private bookingService: BookingService) {
-  this.bookingService.getCompletedBooking().subscribe({
-    next: value => this.bookingCount = value['data']
-  })
+    this.bookingService.getCompletedBooking().subscribe({
+      next: value => this.bookingCount = value['data']
+    })
   }
 
   ngOnInit(): void {

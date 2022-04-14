@@ -20,8 +20,8 @@ export class BookingInformationDetailComponent implements OnInit {
   @Input() account: Account = new Account()
   @Input() hasCouponApply: boolean = false
   @Output() setHasCoupon: EventEmitter<number> = new EventEmitter<number>()
-  code: string
-  discount: number
+  @Input() code: string
+  @Input() discount: number = 0
   dateExpired: Date
   form: FormGroup
 
@@ -44,6 +44,9 @@ export class BookingInformationDetailComponent implements OnInit {
         if (this.form.value.coupon == this.code) {
           if (this.dateExpired.getTime() < new Date().getTime()) {
             Swal.fire('Your coupon has expired!', '', 'error').then(() => {
+              this.code = undefined
+              this.discount = 0
+              this.dateExpired = undefined
               this.form.reset()
               this.setHasCoupon.emit(0)
             })
@@ -53,6 +56,9 @@ export class BookingInformationDetailComponent implements OnInit {
           }
         } else {
           Swal.fire('Your coupon does not existed!', '', 'error').then(() => {
+            this.code = undefined
+            this.discount = 0
+            this.dateExpired = undefined
             this.form.reset()
             this.setHasCoupon.emit(0)
           })

@@ -39,7 +39,17 @@ export class BookingVnpayComponent implements OnInit {
             this.bookingRequest.bookingDetail.forEach(bookingDetail => {
               this.totalPaid += bookingDetail.paid * bookingDetail.quantity * (new Date(this.bookingRequest.checkOut).getTime() / (1000 * 3600 * 24) - new Date(this.bookingRequest.checkIn).getTime() / (1000 * 3600 * 24))
             })
-            this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
+            if (this.bookingRequest.hasCoupon == 1){
+              this.paymentService.getCouponInfo().subscribe({
+                next: coupon => {
+                  const discount = coupon['data']['discount']
+                  this.totalPaid -= discount
+                  this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
+                }
+              })
+            }
+            else
+              this.totalPaid *= ((100 - this.account.vip.discount) / 100 * (100 + this.hotel.taxPercentage) / 100)
           },
           error: err => console.error(err)
         })

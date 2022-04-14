@@ -12,6 +12,7 @@ import {StorageService} from "../../../../../_services/storage.service";
 import {BookingDetail} from "../../../../../_models/booking-detail";
 import {BookingInformationDetail} from "../../../../../_models/booking-information-detail";
 import {BookingRequest} from "../../../../../_models/booking-request";
+import {PaymentService} from "../../../../../_services/payment.service";
 
 @Component({
   selector: 'app-booking-payment-information',
@@ -26,40 +27,50 @@ export class BookingPaymentInformationComponent implements OnInit {
   roomDetails: RoomDetail[] = []
   searchFilter: SearchFilter = new SearchFilter()
   bookingInformationDetails: BookingInformationDetail[] = []
+  code: string
+  discount: number = 0
 
   constructor(private activatedRoute: ActivatedRoute, private authService: AuthService, private hotelService: HotelService, private cryptoService: CryptoService, private roomTypeService: RoomTypeService,
-    storageService: StorageService) {
+              private storageService: StorageService, private paymentService: PaymentService) {
     this.activatedRoute.queryParams.subscribe({
       next: () => {
         this.bookingRequest = storageService.bookingRequest
-        //CHECK IF USER TRY TO BACKWARD AFTER COMPLETED PAYMENT
-        // if(this.bookingRequest.status !== 1)
-        //   this.router.navigateByUrl('/home')
-        this.hotelService.getHotelById(this.cryptoService.set('06052000', this.bookingRequest.hotelId)).subscribe({
-          next: hotel => {
-            this.hotel = hotel['data']
-            this.authService.getProfile().subscribe({
-              next: value => {
-                this.account = value['data']
-                this.bookingInformationDetails = []
-                this.roomDetails = []
-                this.bookingRequest.bookingDetail.forEach(bookingDetail => {
-                  this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', bookingDetail.roomTypeId)).subscribe({
-                    next: roomDetail => {
-                      this.roomDetails.push(roomDetail['data'])
-                      const bookingInformationDetail = new BookingInformationDetail()
-                      bookingInformationDetail.dateIn = new Date(this.bookingRequest.checkIn)
-                      bookingInformationDetail.dateOut = new Date(this.bookingRequest.checkOut)
-                      bookingInformationDetail.quantity = bookingDetail.quantity
-                      this.bookingInformationDetails.push(bookingInformationDetail)
-                    }
+        if (this.bookingRequest.hasCoupon == 1){
+          this.paymentService.getCouponInfo().subscribe({
+            next: value => {
+              this.code = value['data']['code']
+              this.discount = value['data']['discount']
+            }
+          })
+        }
+          //CHECK IF USER TRY TO BACKWARD AFTER COMPLETED PAYMENT
+          // if(this.bookingRequest.status !== 1)
+          //   this.router.navigateByUrl('/home')
+          this.hotelService.getHotelById(this.cryptoService.set('06052000', this.bookingRequest.hotelId)).subscribe({
+            next: hotel => {
+              this.hotel = hotel['data']
+              this.authService.getProfile().subscribe({
+                next: value => {
+                  this.account = value['data']
+                  this.bookingInformationDetails = []
+                  this.roomDetails = []
+                  this.bookingRequest.bookingDetail.forEach(bookingDetail => {
+                    this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', bookingDetail.roomTypeId)).subscribe({
+                      next: roomDetail => {
+                        this.roomDetails.push(roomDetail['data'])
+                        const bookingInformationDetail = new BookingInformationDetail()
+                        bookingInformationDetail.dateIn = new Date(this.bookingRequest.checkIn)
+                        bookingInformationDetail.dateOut = new Date(this.bookingRequest.checkOut)
+                        bookingInformationDetail.quantity = bookingDetail.quantity
+                        this.bookingInformationDetails.push(bookingInformationDetail)
+                      }
+                    })
                   })
-                })
-              }
-            })
-          },
-          error: err =>console.error(err)
-        })
+                }
+              })
+            },
+            error: err => console.error(err)
+          })
       }
     })
   }
