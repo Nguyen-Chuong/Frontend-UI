@@ -15,7 +15,7 @@
           <h3>Expire: <strong  class="text-success">{{activeExpire| date:'medium'}}</strong></h3>
         </div>
       </div>
-      <form [formGroup]="form">
+      <form [formGroup]="form" (ngSubmit)="setCoupon()">
         <div class="mb-3">
           <input type="text" formControlName="code" placeholder="New coupon code" class="form-control">
           <mat-error *ngIf="form?.controls['code']?.invalid">{{getErrorMessage('code')}}</mat-error>

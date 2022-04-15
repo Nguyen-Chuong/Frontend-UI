@@ -61,6 +61,17 @@ export class EditCouponComponent implements OnInit {
     this.couponService.setCoupon(val.code, val.discount, val.expire).subscribe({
       next: value => {
         alert('Set coupon successfully!')
+        this.couponService.getCoupon().subscribe({
+          next: coupon => {
+            this.couponExisted = true
+            this.activeCode = coupon['data']['code']
+            this.activeDiscount = coupon['data']['discount']
+            this.activeExpire = coupon['data']['dateExpired']
+          },
+          error: err => {
+            this.couponExisted = false
+          }
+        })
       },
       error: err => {
         alert('Set coupon failed!')
