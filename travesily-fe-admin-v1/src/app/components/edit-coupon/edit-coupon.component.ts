@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CouponService} from "../../_services/coupon.service";
+import {DatePipe} from "@angular/common";
 
 @Component({
   selector: 'app-edit-coupon',
@@ -9,19 +10,20 @@ import {CouponService} from "../../_services/coupon.service";
 })
 export class EditCouponComponent implements OnInit {
   form: FormGroup
+  todayDate = new Date().toISOString().slice(0, 16)
   couponExisted: boolean = false
-  code: string
-  discount: number
-  expire: Date
+  activeCode: string
+  activeDiscount: number
+  activeExpire: Date
 
   constructor(private fb: FormBuilder,
               private couponService: CouponService) {
     this.couponService.getCoupon().subscribe({
       next: coupon => {
         this.couponExisted = true
-        this.code = coupon['data']['code']
-        this.discount = coupon['data']['discount']
-        this.expire = coupon['data']['dateExpired']
+        this.activeCode = coupon['data']['code']
+        this.activeDiscount = coupon['data']['discount']
+        this.activeExpire = coupon['data']['dateExpired']
       },
       error: err => {
         this.couponExisted = false
@@ -30,11 +32,10 @@ export class EditCouponComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    var today = new Date().toISOString().slice(0, 16);
-    document.getElementsByName("expire")[0]['min'] = today;
+    document.getElementById('expire')
     this.form = this.fb.group({
       code: ['', Validators.required],
-      discount: ['', [Validators.required,Validators.pattern("^[0-9]*$"), Validators.min(0)]],
+      discount: ['', [Validators.required, Validators.pattern("^[0-9]*$"), Validators.min(0)]],
       expire: [null, [Validators.required]]
     })
   }
@@ -42,13 +43,13 @@ export class EditCouponComponent implements OnInit {
   getErrorMessage(field: string) {
     if (field === 'code' && this.form.controls['code'].hasError('required')) {
       return 'You must enter a coupon code!';
-    } else if (field === 'discount' &&this.form.controls['discount'].hasError('required')) {
+    } else if (field === 'discount' && this.form.controls['discount'].hasError('required')) {
       return 'You must enter a discount value!';
-    } else if (field === 'discount' &&this.form.controls['discount'].hasError('min')) {
+    } else if (field === 'discount' && this.form.controls['discount'].hasError('min')) {
       return 'Discount amount can not be less than 0!';
-    }else if (field === 'discount' &&this.form.controls['discount'].hasError('pattern')) {
+    } else if (field === 'discount' && this.form.controls['discount'].hasError('pattern')) {
       return 'Discount must be a number!';
-    }else if (field === 'expire' &&this.form.controls['expire'].hasError('required')) {
+    } else if (field === 'expire' && this.form.controls['expire'].hasError('required')) {
       return 'An expire date must be specified!';
     }
 

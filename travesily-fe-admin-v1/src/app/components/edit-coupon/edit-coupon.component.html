@@ -10,12 +10,12 @@
       <div class="card mb-5">
         <div class="card-body">
           <h1><strong>Active coupon</strong></h1>
-          <h3>Code: <strong class="text-primary">{{code}}</strong></h3>
-          <h3>Discount: <strong class="text-danger">{{discount | number}}đ</strong></h3>
-          <h3>Expire: <strong  class="text-success">{{expire| date:'medium'}}</strong></h3>
+          <h3>Code: <strong class="text-primary">{{activeCode}}</strong></h3>
+          <h3>Discount: <strong class="text-danger">{{activeDiscount | number}}đ</strong></h3>
+          <h3>Expire: <strong  class="text-success">{{activeExpire| date:'medium'}}</strong></h3>
         </div>
       </div>
-      <form [formGroup]="form" (submit)="setCoupon()">
+      <form [formGroup]="form">
         <div class="mb-3">
           <input type="text" formControlName="code" placeholder="New coupon code" class="form-control">
           <mat-error *ngIf="form?.controls['code']?.invalid">{{getErrorMessage('code')}}</mat-error>
@@ -25,7 +25,7 @@
           <mat-error *ngIf="form?.controls['discount']?.invalid">{{getErrorMessage('discount')}}</mat-error>
         </div>
         <div class="mb-3">
-          <input type="datetime-local" formControlName="expire" name="expire" placeholder="New coupon expire"
+          <input type="datetime-local" formControlName="expire" id="inputExpire" [min]="todayDate" placeholder="New coupon expire"
                  class="form-control">
           <mat-error *ngIf="form?.controls['expire']?.invalid">{{getErrorMessage('expire')}}</mat-error>
         </div>
