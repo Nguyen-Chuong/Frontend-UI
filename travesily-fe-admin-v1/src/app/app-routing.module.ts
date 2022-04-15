@@ -1,4 +1,3 @@
-import { HomeComponent } from './components/home/home.component';
 import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
 import { ImportFileComponent } from './components/import-file/import-file.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
