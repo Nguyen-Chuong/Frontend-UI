@@ -19,6 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RoomDetailComponent } from './components/room-detail/room-detail.component';
 import { UserComponent } from './components/user/user.component';
 import { HotelApproveComponent } from './components/hotel-approve/hotel-approve.component';
+import {EditCouponComponent} from "./components/edit-coupon/edit-coupon.component";
 
 const routes: Routes = [
   {
@@ -101,6 +102,11 @@ const routes: Routes = [
     path: 'booking-detail',
     component: BookingDetailComponent,
   },
+  {
+    path: 'edit-coupon',
+    component: EditCouponComponent,
+  },
+
 ];
 
 @NgModule({

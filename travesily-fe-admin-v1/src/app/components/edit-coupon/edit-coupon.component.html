@@ -1,0 +1,38 @@
+<div class="container-fluid d-flex p-0">
+  <div class="menu-list">
+    <app-taskbar></app-taskbar>
+  </div>
+  <div *ngIf="couponExisted" class="card w-100">
+    <div class="card-header">
+      <h2 class="m-0 text-success">Add new coupon</h2>
+    </div>
+    <div class="card-body">
+      <div class="card mb-5">
+        <div class="card-body">
+          <h1><strong>Active coupon</strong></h1>
+          <h3>Code: <strong class="text-primary">{{code}}</strong></h3>
+          <h3>Discount: <strong class="text-danger">{{discount | number}}đ</strong></h3>
+          <h3>Expire: <strong  class="text-success">{{expire| date:'medium'}}</strong></h3>
+        </div>
+      </div>
+      <form [formGroup]="form" (submit)="setCoupon()">
+        <div class="mb-3">
+          <input type="text" formControlName="code" placeholder="New coupon code" class="form-control">
+          <mat-error *ngIf="form?.controls['code']?.invalid">{{getErrorMessage('code')}}</mat-error>
+        </div>
+        <div class="mb-3">
+          <input type="text" formControlName="discount" placeholder="New coupon discount" class="form-control">
+          <mat-error *ngIf="form?.controls['discount']?.invalid">{{getErrorMessage('discount')}}</mat-error>
+        </div>
+        <div class="mb-3">
+          <input type="datetime-local" formControlName="expire" name="expire" placeholder="New coupon expire"
+                 class="form-control">
+          <mat-error *ngIf="form?.controls['expire']?.invalid">{{getErrorMessage('expire')}}</mat-error>
+        </div>
+        <div class="mb-3">
+          <button type="submit" class="btn btn-primary" [disabled]="form?.invalid">Add coupon</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
