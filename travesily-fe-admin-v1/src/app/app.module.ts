@@ -63,6 +63,7 @@ import { ImagesCarouselComponent } from './components/images-carousel/images-car
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AngularFireModule } from '@angular/fire/compat';
+import { EditCouponComponent } from './components/edit-coupon/edit-coupon.component';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { AngularFireModule } from '@angular/fire/compat';
     BookingDetailCardComponent,
     ImageSliderComponent,
     ImagesCarouselComponent,
-    FooterComponent
+    FooterComponent,
+    EditCouponComponent,
   ],
   imports: [
     BrowserModule,

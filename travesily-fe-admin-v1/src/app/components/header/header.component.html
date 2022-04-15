@@ -1,7 +1,7 @@
 <div class="header">
   <div class="logo">
     <a routerLink="/hotel-approve">
-      <img src="\assets\img\HBTS.png" alt="">
+      <img src="\assets\img\HBTS.png" class="img-fluid h-100" alt="">
     </a>
   </div>
   <span routerLink="/hotel-approve" class="logo-title">HBTS</span>
@@ -13,7 +13,7 @@
     <mat-icon class="header-right-notifications">notifications</mat-icon>
     <ng-container *ngIf="account.avatar">
       <div class="header-right-avatar" [matMenuTriggerFor]="profile">
-        <img src={{account.avatar}} alt="" class="header-right-avatar-img">
+        <img [src]="account.avatar" alt="" class="header-right-avatar-img">
       </div>
     </ng-container>
     <ng-container *ngIf="!account.avatar">
@@ -35,6 +35,10 @@
       <button mat-menu-item (click)="openVip()">
         <mat-icon>edit</mat-icon>
         <span>Vip</span>
+      </button>
+      <button mat-menu-item (click)="openCoupon()">
+        <mat-icon>edit</mat-icon>
+        <span>Edit coupon</span>
       </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>logout</mat-icon>

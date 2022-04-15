@@ -1,8 +1,12 @@
 <div class="containers">
-  <app-header></app-header>
+  <section class="header">
+    <app-header></app-header>
+  </section>
   <simple-notifications></simple-notifications>
-  <router-outlet></router-outlet>
-  <footer class="footer">
+  <section class="body">
+    <router-outlet></router-outlet>
+  </section>
+  <section class="footer">
     <app-footer></app-footer>
-  </footer>
+  </section>
 </div>

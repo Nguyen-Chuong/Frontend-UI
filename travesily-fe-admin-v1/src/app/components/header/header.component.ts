@@ -47,4 +47,8 @@ export class HeaderComponent implements OnInit {
   public itemBeforeEvent(args: MenuEventArgs) {
     args.element.getElementsByTagName('a')[0].setAttribute('target', '_blank');
   }
+
+  openCoupon() {
+    this.router.navigateByUrl('/edit-coupon')
+  }
 }
