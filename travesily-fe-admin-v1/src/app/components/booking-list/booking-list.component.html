@@ -1,5 +1,4 @@
 <div class="booking">
-
   <div class="booking-table">
     <ngx-spinner type="ball-scale-multiple">
       <p style="font-size: 20px; color: white;">Loading...</p>
@@ -8,13 +7,13 @@
       <!-- id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
-        <td width="100" mat-cell *matCellDef="let element"> {{element.id}} </td>
+        <td width="80" mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
 
       <!-- username Column -->
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef> Username </th>
-        <td width="100" mat-cell *matCellDef="let element"> {{element.username}} </td>
+        <td width="150" mat-cell *matCellDef="let element"> {{element.username}} </td>
       </ng-container>
 
       <!-- hotel Column -->
@@ -26,33 +25,26 @@
       <!-- hotel Column -->
       <ng-container matColumnDef="checkIn">
         <th mat-header-cell *matHeaderCellDef> Check In </th>
-        <td width="300" mat-cell *matCellDef="let element"> {{element.checkIn}} </td>
+        <td width="280" mat-cell *matCellDef="let element"> {{element.checkIn}} </td>
       </ng-container>
 
       <!-- paid Column -->
       <ng-container matColumnDef="checkOut">
         <th mat-header-cell *matHeaderCellDef> Check Out </th>
-        <td width="300" mat-cell *matCellDef="let element"> {{element.checkOut}}</td>
+        <td width="280" mat-cell *matCellDef="let element"> {{element.checkOut}}</td>
       </ng-container>
 
       <!-- status Column -->
       <ng-container matColumnDef="status">
-        < mat-header-cell *matHeaderCellDef>
         <th mat-header-cell *matHeaderCellDef>
-          <!-- <select class="form-select form-select-sm" (change)="filterBooking($event)">
-            <option selected value="1">Pending</option>
-            <option value="2">Accepted</option>
-            <option value="3">Denied</option>
-            <option value="4">Cancel</option>
-          </select> -->
+          Status
         </th>
 
         <td width="100" mat-cell *matCellDef="let element">
           {{element?.status == 0 ? 'Cancelled' : element?.status == 1 ? 'Processing' : 'Completed'}}
         </td>
       </ng-container>
-
-
+      
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openBookingDetail(row.id)"></tr>
     </table>

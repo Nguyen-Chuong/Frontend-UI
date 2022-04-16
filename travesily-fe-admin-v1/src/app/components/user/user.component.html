@@ -1,5 +1,4 @@
 <div class="user-list">
-
   <div class="user">
     <ngx-spinner type="ball-scale-multiple">
       <p style="font-size: 20px; color: white;">Loading...</p>
@@ -9,13 +8,13 @@
         <!-- Position Column -->
         <ng-container matColumnDef="username">
           <th mat-header-cell *matHeaderCellDef> Username </th>
-          <td width="200" mat-cell *matCellDef="let element"> {{element.username.slice(2)}} </td>
+          <td width="300" mat-cell *matCellDef="let element"> {{element.username.slice(2)}} </td>
         </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef> Email </th>
-          <td width="300" mat-cell *matCellDef="let element"> {{element.email}} </td>
+          <td width="400" mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
 
         <!-- Weight Column -->
@@ -27,7 +26,7 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="vip">
           <th mat-header-cell *matHeaderCellDef> Vip </th>
-          <td width="300" mat-cell *matCellDef="let element"> {{element.vip.nameVip}} </td>
+          <td width="200" mat-cell *matCellDef="let element"> {{element.vip.nameVip}} </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

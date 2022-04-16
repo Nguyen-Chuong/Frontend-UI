@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {CouponService} from "../../_services/coupon.service";
-import {DatePipe} from "@angular/common";
+import { NotificationService } from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-edit-coupon',
@@ -17,7 +17,8 @@ export class EditCouponComponent implements OnInit {
   activeExpire: Date
 
   constructor(private fb: FormBuilder,
-              private couponService: CouponService) {
+    private couponService: CouponService,
+    private notificationService: NotificationService) {
     this.couponService.getCoupon().subscribe({
       next: coupon => {
         this.couponExisted = true
@@ -25,7 +26,7 @@ export class EditCouponComponent implements OnInit {
         this.activeDiscount = coupon['data']['discount']
         this.activeExpire = coupon['data']['dateExpired']
       },
-      error: err => {
+      error: () => {
         this.couponExisted = false
       }
     })
@@ -52,15 +53,14 @@ export class EditCouponComponent implements OnInit {
     } else if (field === 'expire' && this.form.controls['expire'].hasError('required')) {
       return 'An expire date must be specified!';
     }
-
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 
   setCoupon() {
     const val = this.form?.value
     this.couponService.setCoupon(val.code, val.discount, val.expire).subscribe({
-      next: value => {
-        alert('Set coupon successfully!')
+      next: () => {
+        this.notificationService.onSuccess('Edit coupon successfully');
         this.couponService.getCoupon().subscribe({
           next: coupon => {
             this.couponExisted = true
@@ -68,13 +68,13 @@ export class EditCouponComponent implements OnInit {
             this.activeDiscount = coupon['data']['discount']
             this.activeExpire = coupon['data']['dateExpired']
           },
-          error: err => {
+          error: () => {
             this.couponExisted = false
           }
         })
       },
       error: err => {
-        alert('Set coupon failed!')
+        this.notificationService.onError('Edit coupon fail');
         console.error(err)
       }
     })
