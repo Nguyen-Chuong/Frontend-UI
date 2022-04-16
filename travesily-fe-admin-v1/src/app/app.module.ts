@@ -63,7 +63,7 @@ import { ImagesCarouselComponent } from './components/images-carousel/images-car
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AngularFireModule } from '@angular/fire/compat';
-import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { EditCouponComponent } from './components/edit-coupon/edit-coupon.component';
 
 @NgModule({
   declarations: [
@@ -101,7 +101,8 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     BookingDetailCardComponent,
     ImageSliderComponent,
     ImagesCarouselComponent,
-    FooterComponent
+    FooterComponent,
+    EditCouponComponent,
   ],
   imports: [
     BrowserModule,

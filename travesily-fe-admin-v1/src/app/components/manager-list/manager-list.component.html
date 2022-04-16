@@ -1,5 +1,7 @@
 <div class="manager-list">
-
+  <div class="menu-list">
+    <app-taskbar [currentTask]="currentTask"></app-taskbar>
+  </div>
   <div class="manager">
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="managers" class="manager-table">
