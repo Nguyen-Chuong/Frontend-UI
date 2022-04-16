@@ -26,12 +26,11 @@
 
   & h1 {
     text-align: center;
-    font-size: 2rem;
-    font-style: 700;
+    font-size: 1.5rem;
   }
 
   &-detail-infor {
-    padding-left: 10px;
+    padding-left: 3rem;
     width: 100%;
   }
 
@@ -55,15 +54,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-.form-control:focus {
-  box-shadow: none;
-  border-color: #ba68c8;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
 
 .labels {
   font-size: 15px;
@@ -73,6 +63,7 @@
 
 .update-room {
   display: flex;
+  height: 27rem;
 
   &-btn {
     text-align: center;
@@ -95,6 +86,7 @@
 
 .group-input {
   display: flex;
+  padding-top: 1rem;
 }
 
 .select {

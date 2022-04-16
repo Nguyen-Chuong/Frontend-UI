@@ -11,9 +11,8 @@
         <div id="profileImage">{{username?.charAt(2)}}</div>
       </div>
     </div>
-
     <mat-menu #profile="matMenu" class="profile-menu">
-      <p class="profile-menu-name bg-primary">{{account.username.slice(2)}}</p>
+      <p class="profile-menu-name">{{account.username.slice(2)}}</p>
       <button mat-menu-item (click)="openProfile()">
         <mat-icon>account_circle</mat-icon>
         <span>Profile</span>

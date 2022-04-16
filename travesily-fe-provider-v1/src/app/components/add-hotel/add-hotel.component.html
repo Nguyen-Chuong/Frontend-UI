@@ -1,5 +1,5 @@
 <div class="hotel">
-  <h1>New Hotel</h1>
+  <h2>New Hotel</h2>
   <form class="form-body" [formGroup]="form" (ngSubmit)="submit()">
     <div class="d-flex justify-content-around">
       <div class="group">
@@ -65,8 +65,8 @@
       </mat-form-field>
     </div>
     <div class="description">
-      <label>Description</label> <br><br>
-      <textarea name="description" id="" cols="129" rows="5" formControlName="description"></textarea>
+      <label style="font-size: 1.2rem;">Description</label> <br><br>
+      <textarea name="description" id="" cols="126" rows="5" formControlName="description"></textarea>
     </div>
     <div class="form-submit text-center">
       <button class="mt-20 w-20  btn-outline-primary btn-lg" [disabled]="form.invalid && districtControl.valid">Save</button>

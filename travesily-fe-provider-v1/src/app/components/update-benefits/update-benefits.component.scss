@@ -15,12 +15,11 @@
 
   & h1 {
     text-align: center;
-    font-size: 2rem;
-    font-style: 700;
+    font-size: 1.5rem;
   }
 
   &-detail-infor {
-    padding-left: 10px;
+    padding-left: 3rem;
     width: 100%;
     padding-top: 20px;
   }
@@ -51,24 +50,8 @@
     }
   }
 }
-.form-control:focus {
-  box-shadow: none;
-  border-color: #ba68c8;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
-
-.labels {
-  font-size: 15px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-}
 
 .update-benefit {
-
   &-btn {
     text-align: center;
     padding: 10px;
