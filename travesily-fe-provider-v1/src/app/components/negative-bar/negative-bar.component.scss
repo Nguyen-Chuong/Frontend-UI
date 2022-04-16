@@ -1,51 +1,56 @@
 @import "../../shared/scss/main";
 $fa-font-path: "~font-awesome/fonts";
- @import '~font-awesome/scss/font-awesome';
- .taskbar {
+@import "~font-awesome/scss/font-awesome";
+.taskbar {
   display: block;
   min-height: 100%;
-  width: 13rem;
+  width: 12.5rem;
   background-color: #323a45;
+  transition: all 0.5s;
   position: relative;
   & ul {
     padding-left: 0;
+    transition: all 0.5s;
   }
   & li {
     list-style: none;
-    padding: 20px 30px 20px 30px;
-    width: 13rem;
+    padding: 1rem 0.8rem 1rem 0.8rem;
+    width: 200px;
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
     & i {
-      width: 2rem;
+      width: 1.4rem;
     }
     &:hover {
+      transition-duration: 0.5s;
       color: #3f51b5;
-      background-color: #fff;
+      background-color: rgba(255, 255, 255, 0.863);
     }
   }
 }
 
 .active {
   color: #3f51b5;
-  background-color: rgb(40, 18, 236);
+  background-color: rgb(104, 87, 255);
 }
 
 .taskbar-sub {
   display: block;
   min-height: 100%;
-  width: 2.5rem;
-  margin-right: 4rem;
+  width: 3rem;
   background-color: #323a45;
   position: relative;
+  transition: all 0.5s;
   & ul {
     padding-left: 0;
+    transition: all 0.5s;
   }
   & li {
+    transition: all 0.5s;
     list-style: none;
-    padding: .8rem .8rem .8rem .8rem;
-    width: 2.5rem;
+    padding: 1rem 1rem 1rem 1rem;
+    width: 3rem;
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
@@ -56,5 +61,27 @@ $fa-font-path: "~font-awesome/fonts";
       color: #3f51b5;
       background-color: #fff;
     }
+  }
+}
+.menu-sub {
+  margin-right: 4rem;
+}
+
+.menu-icon {
+  transition: all 0.5s;
+  list-style: none;
+  padding: 1rem 1rem 1rem 1rem;
+  width: 3rem;
+  color: rgb(0, 0, 0);
+  height: 3rem;
+  cursor: pointer;
+  border-radius: 5px;
+  & i {
+    width: 1.4rem;
+  }
+  &:hover {
+    color: #3f51b5;
+    background-color: #fff;
+    box-shadow: 20px 20px 50px 15px grey;
   }
 }
