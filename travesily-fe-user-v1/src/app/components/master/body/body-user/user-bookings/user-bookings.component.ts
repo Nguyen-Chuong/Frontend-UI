@@ -24,6 +24,7 @@ export class UserBookingsComponent implements OnInit {
     private spinner: NgxSpinnerService) {
     this.activatedRoute.queryParams.subscribe({
       next: params => {
+        this.spinner.show();
         if (params['status'] == undefined) {
           const queryParams: Params = {status: 1};
           this.router.navigate(
@@ -52,8 +53,6 @@ export class UserBookingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     /** spinner starts on init */
-     this.spinner.show();
   }
 
   sortBookings(sortType: string) {
