@@ -14,6 +14,7 @@ export class TaskbarComponent implements OnInit {
   account: Account
   negativeBar = []
   isHidden = false
+  public isCollapsed = false
   constructor(private router: Router,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;

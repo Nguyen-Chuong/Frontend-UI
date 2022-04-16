@@ -1,8 +1,10 @@
-<div [ngClass]="isHidden?'taskbar-sub':'taskbar'">
-  <ul>
-    <li (click)="changeMenu()"><i class="fa fa-bars" aria-hidden="true" ></i></li>
-    <li *ngFor="let item of negativeBar" [ngClass]="currentTask == item.name?'active':''"
-      [routerLink]="item.url" (click)="transaction(item.name)"><i class="{{item.icon}}"></i> <span *ngIf="!isHidden">{{item.name}}</span>
-    </li>
-  </ul>
+<div class="d-flex h-100"[ngClass]="isHidden?'menu-sub':''">
+  <div [ngClass]="isHidden?'taskbar-sub':'taskbar'">
+    <ul>
+      <li *ngFor="let item of negativeBar" [ngClass]="currentTask == item.name?'active':''"
+        [routerLink]="item.url" (click)="transaction(item.name)"><i class="{{item.icon}}"></i> <span *ngIf="!isHidden">{{item.name}}</span>
+      </li>
+    </ul>
+  </div>
+  <li (click)="changeMenu()" class="menu-icon"><i class="fa fa-bars" aria-hidden="true" ></i></li>
 </div>
