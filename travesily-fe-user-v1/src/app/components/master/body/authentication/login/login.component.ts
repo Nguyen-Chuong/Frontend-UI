@@ -55,7 +55,8 @@ export class LoginComponent implements OnInit {
           ) {
             this.form.reset();
             window.location.href =
-              'https://admin.travesily.software/hotel-approve';
+              // 'https://admin.travesily.software/hotel-approve';
+              'http://localhost:4300/hotel-approve';
           }
         },
         error: (error) => {

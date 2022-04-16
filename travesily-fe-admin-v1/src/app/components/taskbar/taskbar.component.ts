@@ -10,10 +10,10 @@ import { AuthServiceService } from 'src/app/_services/auth-service.service';
   styleUrls: ['./taskbar.component.scss']
 })
 export class TaskbarComponent implements OnInit {
-  @Input() currentTask: string
-  opened = true;
+  currentTask: string
   account: Account
   negativeBar = []
+  isHidden = false
   constructor(private router: Router,
     public authService: AuthServiceService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -66,5 +66,11 @@ export class TaskbarComponent implements OnInit {
   transaction(name) {
     if (name === 'Transaction')
       window.location.href = 'https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm'
+    else
+    this.currentTask = name
+  }
+
+  changeMenu() {
+    this.isHidden = !this.isHidden
   }
 }

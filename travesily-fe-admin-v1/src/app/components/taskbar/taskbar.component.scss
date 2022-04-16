@@ -11,39 +11,52 @@ $fa-font-path: "~font-awesome/fonts";
   & ul {
     padding-left: 0;
   }
-  &-menu {
-    padding: 0 auto;
-    & li {
-      list-style: none;
-      & i {
-        width: 1.4rem;
-      }
-    }
-  }
-
-  &-choice {
+  & li {
+    list-style: none;
     padding: 20px 30px 20px 30px;
     width: 200px;
     color: #fff;
     cursor: pointer;
     border-radius: 5px;
-
-    &-span {
-      font-size: 20px;
-      margin: 0;
-      text-align: center;
+    & i {
+      width: 1.4rem;
     }
-
     &:hover {
       color: #3f51b5;
       background-color: #fff;
-      box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
     }
   }
+}
 
-  .active {
-    color: #3f51b5;
-    background-color: #fff;
-    box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
+.active {
+  color: #3f51b5;
+  background-color: rgb(40, 18, 236);
+}
+
+.taskbar-sub {
+  display: block;
+  min-height: 100%;
+  width: 2.5rem;
+  margin-right: 4rem;
+  background-color: #323a45;
+  //margin-top: 60px;
+  position: relative;
+  & ul {
+    padding-left: 0;
+  }
+  & li {
+    list-style: none;
+    padding: .8rem .8rem .8rem .8rem;
+    width: 2.5rem;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    & i {
+      width: 1.4rem;
+    }
+    &:hover {
+      color: #3f51b5;
+      background-color: #fff;
+    }
   }
 }
