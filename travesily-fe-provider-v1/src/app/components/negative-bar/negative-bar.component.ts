@@ -9,10 +9,10 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./negative-bar.component.scss']
 })
 export class NegativeBarComponent implements OnInit {
-  @Input() currentTask : string
+  currentTask : string
   negativeBar = []
-  opened = true;
   account: Account
+  isHidden = false
   constructor(private router: Router,
     public authService: AuthService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -41,5 +41,12 @@ export class NegativeBarComponent implements OnInit {
         name: "Images", url: "/room-image", icon: "fa fa-picture-o"
       }
     ]
+  }
+  changeCurrentTask(name){
+    this.currentTask = name
+  }
+
+  changeMenu() {
+    this.isHidden = !this.isHidden
   }
 }

@@ -2,11 +2,16 @@
   <section class="header">
     <app-header></app-header>
   </section>
-  <section class="body">
-    <simple-notifications></simple-notifications>
-    <router-outlet></router-outlet>
+  <simple-notifications></simple-notifications>
+  <section class="body d-flex">
+    <div class="menu-list">
+      <app-negative-bar></app-negative-bar>
+    </div>
+    <div class="body-detail">
+      <router-outlet></router-outlet>
+    </div>
   </section>
-  <footer class="footer">
+  <section class="footer">
     <app-footer></app-footer>
-  </footer>
+  </section>
 </div>

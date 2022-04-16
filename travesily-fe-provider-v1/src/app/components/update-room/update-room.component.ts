@@ -109,14 +109,12 @@ export class UpdateRoomComponent implements OnInit {
     if (this.roomControl.value === "newRoom") {
       this.form.reset()
     } else {
-      const encryptedId = this.cryptoService.set('06052000', room.id)
-      console.log(encryptedId)
-
-      this.roomService.getRoomDetail(encryptedId).pipe(first()).subscribe(res => {
+      this.encryptedRoomId = this.cryptoService.set('06052000', room.id)
+      this.roomService.getRoomDetail(this.encryptedRoomId).pipe(first()).subscribe(res => {
         this.room = res['data']
         if (this.room.status === 1)
           this.isDisable = false
-        if (this.room.status === 2)
+        if (this.room.status === 0)
           this.isEnable = false
         console.log(this.room.name)
         this.form = this.fb.group({

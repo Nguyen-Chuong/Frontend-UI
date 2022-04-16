@@ -102,7 +102,7 @@ import { EditCouponComponent } from './components/edit-coupon/edit-coupon.compon
     ImageSliderComponent,
     ImagesCarouselComponent,
     FooterComponent,
-    EditCouponComponent,
+    EditCouponComponent
   ],
   imports: [
     BrowserModule,

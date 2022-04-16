@@ -19,7 +19,7 @@ export class CryptoService {
         mode: CryptoJS.mode.ECB,
         padding: CryptoJS.pad.Pkcs7
       });
-    return encodeURIComponent(encrypted.toString());
+      return encodeURIComponent(encrypted.toString());
     // return encrypted.toString();
   }
 
