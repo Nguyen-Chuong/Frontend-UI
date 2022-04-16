@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Booking} from "../../../../../_models/booking";
 import {BookingService} from "../../../../../_services/booking.service";
 import {ActivatedRoute, Params, Router} from "@angular/router";
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-user-bookings',
@@ -19,7 +20,8 @@ export class UserBookingsComponent implements OnInit {
 
   constructor(private bookingService: BookingService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private spinner: NgxSpinnerService) {
     this.activatedRoute.queryParams.subscribe({
       next: params => {
         if (params['status'] == undefined) {
@@ -39,6 +41,10 @@ export class UserBookingsComponent implements OnInit {
           next: value => {
             this.bookings = value['data']
             this.sortBookings(params['sort'])
+            // if loaded, hide it
+            if(value){
+              this.spinner.hide()
+            }
           }
         })
       }
@@ -46,6 +52,8 @@ export class UserBookingsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+     /** spinner starts on init */
+     this.spinner.show();
   }
 
   sortBookings(sortType: string) {

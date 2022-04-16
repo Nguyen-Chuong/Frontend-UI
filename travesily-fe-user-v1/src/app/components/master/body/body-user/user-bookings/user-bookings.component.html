@@ -1,5 +1,8 @@
 <div class="row">
   <div class="col-md-auto p-0">
+    <ngx-spinner type="square-jelly-box">
+      <p style="font-size: 20px; color: white;">Loading...</p>
+    </ngx-spinner>
     <ul class="list-inline nav nav-pills border">
       <li class="nav-item">
         <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
@@ -11,7 +14,7 @@
       </li>
       <li class="nav-item">
         <a routerLinkActive="active" class="nav-link p-3" [routerLink]="['/user','bookings']"
-           [queryParams]="{status: 3}" queryParamsHandling="merge">Canceled</a>
+           [queryParams]="{status: 3}" queryParamsHandling="merge">Cancelled</a>
       </li>
     </ul>
   </div>
