@@ -4,10 +4,10 @@
   </section>
   <simple-notifications></simple-notifications>
   <section class="body d-flex">
-    <div class="menu-list">
+    <div *ngIf="isLogin" class="menu-list">
       <app-negative-bar></app-negative-bar>
     </div>
-    <div class="body-detail">
+    <div class="body-detail" [ngClass]="!isLogin ? 'w-100': ''">
       <router-outlet></router-outlet>
     </div>
   </section>

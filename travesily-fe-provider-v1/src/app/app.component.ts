@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'travesily-fe-provider-v1';
+  isLogin = false
+  constructor(){
+    if(window.localStorage.getItem('token')){
+      this.isLogin = true
+    }
+  }
 }
