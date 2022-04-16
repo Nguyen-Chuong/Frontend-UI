@@ -6,31 +6,31 @@
 .profile{
 
   &-detail{
-    border: 1px solid red;
+    border: 1px solid rgb(7, 7, 7);
     width: 100%;
-    margin-top: 50px;
+    margin-top: 3rem;
     border-radius: 10px;
-    background-color: aliceblue;
+    background-color: rgb(244, 248, 253);
 
     &-infor{
       padding-left: 10px;
       width: 100%;
 
       & form{
-        margin-left: 3.5rem;
+        margin-left: 5rem;
       }
     }
 
   }
-
 }
+
 .form-control:focus {
   box-shadow: none;
-  border-color: #BA68C8
+  border-color: #000000
 }
 
 .back:hover {
-  color: #682773;
+  color: #000000;
   cursor: pointer
 }
 

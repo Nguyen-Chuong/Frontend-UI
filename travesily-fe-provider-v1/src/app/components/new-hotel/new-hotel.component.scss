@@ -1,25 +1,22 @@
 *{
   font-style: inherit;
   font-size: .9rem;
-
 }
 
 .new-hotel{
   display: flex;
 }
 
-
 .hotel {
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  margin: 3rem auto 1rem auto;
+  margin: 1rem auto 1rem auto;
   box-shadow: 20px 20px 50px 15px grey;
   border-radius: 10px;
   background-color: aliceblue;
   & h1{
     text-align: center;
     font-size: 2rem;
-    font-style: 700;
   }
 }

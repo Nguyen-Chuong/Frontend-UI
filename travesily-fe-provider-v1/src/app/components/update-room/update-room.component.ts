@@ -76,7 +76,6 @@ export class UpdateRoomComponent implements OnInit {
       this.roomService.newRoom(this.room).pipe(first()).subscribe({
         next: () => {
           this.notificationService.onSuccess('Add Room successfully');
-          //window.location.reload()
         },
         error: err => {
           console.log(err)
@@ -87,7 +86,6 @@ export class UpdateRoomComponent implements OnInit {
       this.roomService.updateRoom(this.room).pipe(first()).subscribe({
         next: () => {
           this.notificationService.onSuccess('Update Room successfully');
-          //window.location.reload()
         },
         error: err => {
           console.log(err)
@@ -116,7 +114,6 @@ export class UpdateRoomComponent implements OnInit {
           this.isDisable = false
         if (this.room.status === 0)
           this.isEnable = false
-        console.log(this.room.name)
         this.form = this.fb.group({
           name: [this.room.name],
           quantity: [this.room.quantity],

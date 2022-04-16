@@ -20,7 +20,6 @@ export class CryptoService {
         padding: CryptoJS.pad.Pkcs7
       });
       return encodeURIComponent(encrypted.toString());
-    // return encrypted.toString();
   }
 
   //The get method is use for decrypt the value.

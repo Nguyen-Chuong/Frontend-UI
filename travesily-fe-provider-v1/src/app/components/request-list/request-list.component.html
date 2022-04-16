@@ -1,5 +1,4 @@
 <div class="requests">
-
   <ngx-spinner type="ball-fussion">
     <p style="font-size: 20px; color: white;">Loading...</p>
   </ngx-spinner>
@@ -27,7 +26,7 @@
         </ng-container>
 
         <ng-container matColumnDef="detail">
-          <th mat-header-cell *matHeaderCellDef>  </th>
+          <th mat-header-cell *matHeaderCellDef style="padding-left: 1rem;"> Action </th>
           <td mat-cell *matCellDef="let element">
             <button *ngIf="element.status === 1" class="btn btn-outline-danger" (click)="cancelRequest(element.id)">Cancel</button>
           </td>

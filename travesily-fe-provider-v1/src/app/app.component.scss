@@ -1,27 +1,28 @@
 $fa-font-path: "~font-awesome/fonts";
 @import "~font-awesome/scss/font-awesome";
 .containers {
-  width: 100%;
   background-image: url("https://climate.nasa.gov/system/news_items/main_images/2990_9827327865_98e0f0dc2d_o.jpg");
   background-repeat: repeat-y;
   background-size: cover;
   height: auto;
   min-height: 100%;
-  // position: relative;
 }
+
 .footer .header {
   box-shadow: 0 5px 5px -5px #0c1e2b;
   position: relative;
   z-index: 3;
-  //flex: none;
 }
+
 .menu-list {
-  min-height: 100vh;
+  min-height: 90vh;
 }
+
 .body {
   margin: 0;
+  width: 100%;
   &-detail {
-    margin-left: 9rem;
-    width: 100%;
+    margin-left: 5.5rem;
+    width: 75%;
   }
 }
