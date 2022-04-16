@@ -1,7 +1,5 @@
 <div class="update-room">
-  <div class="menu-list">
-    <app-negative-bar [currentTask]="currentTask"></app-negative-bar>
-  </div>
+
 
   <div class="room mb-5">
     <div class="room-detail-infor">
@@ -59,12 +57,12 @@
               </div>
             </div>
             <div class="mt-5 text-center">
-              <button class="update-room-btn btn-outline-danger" [disabled]="isEnable"
+              <button class="update-room-btn btn-outline-success" [disabled]="isEnable"
                 (click)="enableRoom()">Enable</button>
 
               <button class="update-room-btn btn-outline-primary" type="submit" (click)="submit()" [disabled]="!form.valid">Save</button>
 
-              <button class="update-room-btn btn-outline-success" [disabled]="isDisable"
+              <button class="update-room-btn btn-outline-danger" [disabled]="isDisable"
                 (click)="disableRoom()">Disable</button>
             </div>
           </div>

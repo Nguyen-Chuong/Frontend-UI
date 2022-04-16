@@ -2,7 +2,7 @@
   width: 100%;
   height: 60px;
   box-shadow: 0 0 2em rgba(85, 85, 85, 0.5);
-  position: fixed;
+  // position: fixed;
   top: 0;
   left: 0;
   z-index: 4;
@@ -16,7 +16,7 @@
       height: 55px;
       line-height: 60px;
       cursor: pointer;
-      &-image{
+      &-image {
         border-radius: 50%;
         width: 3.7rem;
         height: 3.7rem;
@@ -31,7 +31,6 @@
     text-align: center;
     width: 150px;
 
-
     &-signin {
       padding: 10px;
       margin-right: 15px;
@@ -39,7 +38,7 @@
       background: rgb(164, 75, 197);
       box-shadow: none;
       border: none;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       &:hover {
         color: #3513ca;
         background: #ede8ee;
@@ -53,7 +52,7 @@
       background: rgb(164, 75, 197);
       box-shadow: none;
       border: none;
-      border-radius: .5rem;
+      border-radius: 0.5rem;
       &:hover {
         color: #3513ca;
         background: #ede8ee;
@@ -65,18 +64,18 @@
 
 #profileImage {
   width: 2.65rem;
-  height:2.65rem;
+  height: 2.65rem;
   margin-left: 2.5rem;
   line-height: 2.65rem;
   border-radius: 50%;
-  background: #512DA8;
+  background: #512da8;
   color: #fff;
   font-size: 1.5rem;
-  margin-top: .45rem;
+  margin-top: 0.45rem;
   cursor: pointer;
 }
 
-.profile-image{
+.profile-image {
   border-radius: 50%;
   width: 4rem;
   height: 4rem;
@@ -84,22 +83,30 @@
 }
 
 .logo {
-  width: 5.0rem;
-  height:5.0rem;
-  margin: 0.5rem;
+  width: 6rem;
+  height: 100%;
+  //margin-top: 0.5rem;
   float: left;
-  & img {
-    width: 100%;
-  }
-  &-title{
-    font-size: 1.5rem;
+  //margin-left: 1rem;
+  //& img {
+  //  width: 100%;
+  //}
+
+  &-title {
+    font-size: 1.3rem;
     width: 3.7rem;
-    height:3.7rem;
-    margin: 0;
+    height: 3.7rem;
+    margin-left: 0.2rem;
     float: left;
     line-height: 3.7rem;
     font-weight: 600;
     cursor: pointer;
+  }
+  &-hello {
+    font-size: 1.1rem;
+    margin-left: 3rem;
+    line-height: 3.7rem;
+    font-weight: 500;
   }
 }
 .profile-menu {
