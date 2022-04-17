@@ -10,7 +10,7 @@ import {StorageService} from "../../../../../_services/storage.service";
 import {RatingAverage} from "../../../../../_models/rating-average";
 import {PageEvent} from "@angular/material/paginator";
 import {SearchFilter} from "../../../../../_models/search-filter";
-import { NgxSpinnerService } from "ngx-spinner";
+import {NgxSpinnerService} from "ngx-spinner";
 
 @Component({
   selector: 'app-search-hotel-list',
@@ -36,30 +36,42 @@ export class SearchHotelListComponent implements OnInit {
   })
 
   constructor(private hotelService: HotelService,
-    private locationService: LocationService,
-    private router: Router,
-    private storageService: StorageService,
-    private spinner: NgxSpinnerService
+              private locationService: LocationService,
+              private router: Router,
+              private storageService: StorageService,
+              private spinner: NgxSpinnerService,
   ) {
     this.filter = this.storageService.searchFilter
     hotelService.searchHotel(this.filter.destination.id, this.filter.from, this.filter.to, this.filter.guestNumber, this.filter.roomNumber, 0, 20)
       .subscribe({
-        next: rs => {
-          this.hotels = rs['data']['items']
-          this.totalItems = rs['data']['total']
-          if(rs){
-            this.spinner.hide();
+          next: rs => {
+            this.hotels = rs['data']['items']
+            this.totalItems = rs['data']['total']
+            if (rs) {
+              this.spinner.hide();
+            }
+          },
+          error: err => {
+            console.log(err)
           }
-        },
-        error: err => {
-          console.log(err)
-        }}
+        }
       )
   }
 
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
+    document.addEventListener('scroll', (event) => {
+      if(document.documentElement.scrollTop > 100){
+        document.querySelector('#ads-start').classList.add('trans-top')
+        document.querySelector('#ads-end').classList.add('trans-top')
+      }
+      if(document.documentElement.scrollTop < 100){
+        document.querySelector('#ads-start').classList.remove('trans-top')
+        document.querySelector('#ads-end').classList.remove('trans-top')
+      }
+
+    })
   }
 
   search() {
