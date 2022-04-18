@@ -98,7 +98,7 @@ export class AddFacilitiesComponent implements OnInit {
     this.facilitiesService.addListFacilities(facilityRequest).pipe(first())
       .subscribe({
         next: () => {
-          this.notificationService.onSuccess("Add Hotel Successfully")
+          this.notificationService.onSuccess("Add Facility Successfully")
         }, error: error => {
           this.notificationService.onError(error['message'])
         }
