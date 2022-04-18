@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/_models/account';
 import { AuthService } from 'src/app/_services/auth.service';
@@ -48,5 +48,13 @@ export class NegativeBarComponent implements OnInit {
 
   changeMenu() {
     this.isHidden = !this.isHidden
+  }
+
+  @HostListener('window:resize', ['$event'])
+
+  onResize(event) {
+    if(window.innerWidth <= 600)
+    this.isHidden = true
+
   }
 }

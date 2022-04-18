@@ -46,8 +46,8 @@
               <option value="0">Banned</option>
             </select>
           </th>
-          <td width="200" mat-cell *matCellDef="let element">
-            <button class="btn btn-outline-danger" (click)="banProvider(element.id)">Ban</button>
+          <td  width="200" mat-cell *matCellDef="let element">
+            <button *ngIf="element.status === 1" class="btn btn-outline-danger" (click)="banProvider(element.id)">Ban</button>
           </td>
         </ng-container>
 

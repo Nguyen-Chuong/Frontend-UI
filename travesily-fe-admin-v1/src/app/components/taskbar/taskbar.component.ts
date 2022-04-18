@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { Account } from 'src/app/_models/account';
@@ -68,10 +68,18 @@ export class TaskbarComponent implements OnInit {
     if (name === 'Transaction')
       window.location.href = 'https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm'
     else
-    this.currentTask = name
+      this.currentTask = name
   }
 
   changeMenu() {
     this.isHidden = !this.isHidden
+  }
+
+  @HostListener('window:resize', ['$event'])
+
+  onResize(event) {
+    if(window.innerWidth <= 600)
+    this.isHidden = true
+
   }
 }
