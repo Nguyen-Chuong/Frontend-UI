@@ -97,7 +97,7 @@ export class AddBenefitsComponent implements OnInit {
     this.benefitsService.addListBenefit(benefitRequest).pipe(first())
       .subscribe({
         next: () => {
-          this.notificationService.onSuccess("Add Hotel Successfully")
+          this.notificationService.onSuccess("Add Benefit Successfully")
         }, error: error => {
           this.notificationService.onError(error['message'])
         }
