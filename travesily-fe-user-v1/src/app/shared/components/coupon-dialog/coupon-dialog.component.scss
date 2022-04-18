@@ -1,0 +1,52 @@
+
+@keyframes text-animation {
+  0%   {transform: scale(1.2)}
+  //25%  {transform: translateY(-7.5rem)}
+  50%  {transform: scale(1.3)}
+  //75%  {transform: translateY(-2.5rem)}
+  100% {transform: translateY(0rem)}
+}
+
+*{
+  font-family: 'Bebas Neue', cursive;
+  color: black;
+  background-color: white;
+}
+
+.card-img-top{
+  height: 80vh;
+  width: 80vw;
+  background-image: url("/assets/img/coupon.jpg");
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.inner-text{
+  font-family: 'Bebas Neue', cursive;
+  text-transform: uppercase;
+  margin-top: 40rem;
+}
+
+.coupon-text{
+  color: #8724f1;
+  font-size: 4rem;
+  font-weight: 500;
+  font-family: sans-serif;
+  background: none;
+  animation-name: text-animation;
+  animation-duration: 2s;
+  transition: all .5s;
+}
+
+.text-strong{
+  font-weight: 600;
+  color: #eb1f28;
+}
+
+::ng-deep.mat-dialog-container {
+  padding: 0;
+}

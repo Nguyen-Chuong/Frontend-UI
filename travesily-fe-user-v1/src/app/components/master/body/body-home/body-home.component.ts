@@ -16,6 +16,7 @@ export class BodyHomeComponent implements OnInit {
     if(this.storage.authToken)
     this.authService.getProfile().subscribe({
       next: value => {
+        if (value['data'] !== null)
         this.dialog.open(CouponDialogComponent);
       }
     })
