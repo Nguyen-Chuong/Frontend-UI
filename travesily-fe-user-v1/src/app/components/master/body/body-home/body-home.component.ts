@@ -3,6 +3,7 @@ import {MatDialog} from '@angular/material/dialog';
 import {CouponDialogComponent} from 'src/app/shared/components/coupon-dialog/coupon-dialog.component';
 import {StorageService} from "../../../../_services/storage.service";
 import {AuthService} from "../../../../_services/auth.service";
+import {PaymentService} from "../../../../_services/payment.service";
 
 @Component({
   selector: 'app-body-home',
@@ -12,14 +13,22 @@ import {AuthService} from "../../../../_services/auth.service";
 export class BodyHomeComponent implements OnInit {
   constructor(private dialog: MatDialog,
               private storage: StorageService,
-              private authService: AuthService) {
-    if(this.storage.authToken)
-    this.authService.getProfile().subscribe({
-      next: value => {
-        if (value['data'] !== null)
-        this.dialog.open(CouponDialogComponent);
-      }
-    })
+              private authService: AuthService,
+              private paymentService: PaymentService) {
+    if (this.storage.authToken)
+      this.authService.getProfile().subscribe({
+        next: value => {
+          if (value['data'] !== null) {
+            this.paymentService.getCouponInfo().subscribe(
+              rs => {
+                if (new Date(rs['data']['dateExpired']).getTime() > new Date().getTime())
+                  this.dialog.open(CouponDialogComponent);
+              }
+            )
+          }
+
+        }
+      })
   }
 
   ngOnInit(): void {
