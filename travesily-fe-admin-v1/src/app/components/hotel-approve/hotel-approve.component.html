@@ -1,27 +1,27 @@
 <div class="hotels-approve">
   <div class="hotels">
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="requests">
+      <table mat-table [dataSource]="requests"  class="full-width-table" mat-sort>
         <!-- Name Column -->
         <ng-container matColumnDef="hotelName">
-          <th mat-header-cell *matHeaderCellDef> Hotel </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hotel </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.hotel.name}} </td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="requestDate">
-          <th mat-header-cell *matHeaderCellDef> Request Date </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Date </th>
           <td width="300" mat-cell *matCellDef="let element"> {{element.requestDate}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="providerName">
-          <th mat-header-cell *matHeaderCellDef> Provider </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Provider </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.provider.username}} </td>
         </ng-container>
 
         <ng-container matColumnDef="request">
-          <th class="text-center" mat-header-cell *matHeaderCellDef> Request </th>
+          <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Request </th>
           <td  width="300" mat-cell *matCellDef="let element">
             <button *ngIf="element.status === 1" class="btn btn-outline-success ms-5" (click)="acceptHotel(element.id)">Accept</button>
             <button *ngIf="element.status === 1" class="btn btn-outline-danger ms-4" (click)="denyHotel(element.id)">Deny</button>
@@ -29,7 +29,7 @@
         </ng-container>
 
         <ng-container matColumnDef=" ">
-          <th mat-header-cell *matHeaderCellDef>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
               <select class="form-select form-select-sm" (change)="filterHotel($event)">
                 <option selected value="1">Pending</option>
                 <option value="2">Accepted</option>

@@ -3,7 +3,7 @@
     <ngx-spinner type="ball-scale-multiple">
       <p style="font-size: 20px; color: white;">Loading...</p>
     </ngx-spinner>
-    <table class="mat-elevation-z8" mat-table [dataSource]="bookings">
+    <table class="mat-elevation-z8" mat-table [dataSource]="bookings" >
       <!-- id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -44,7 +44,7 @@
           {{element?.status == 0 ? 'Cancelled' : element?.status == 1 ? 'Processing' : 'Completed'}}
         </td>
       </ng-container>
-      
+
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openBookingDetail(row.id)"></tr>
     </table>

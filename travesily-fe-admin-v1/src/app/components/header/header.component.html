@@ -8,9 +8,9 @@
   <span class="logo-hello">Welcome, admin</span>
   <div class="header-right">
     <div class="header-right-search">
-      <input class="form-control" type="text" placeholder="Search..">
+      <input class="form-control" type="text" placeholder="Search.." [(ngModel)]="searchText">
     </div>
-    <mat-icon class="header-right-notifications">notifications</mat-icon>
+    <mat-icon class="header-right-notifications" (click)="searchUser()">search</mat-icon>
     <ng-container *ngIf="account.avatar">
       <div class="header-right-avatar" [matMenuTriggerFor]="profile">
         <img [src]="account.avatar" alt="" class="header-right-avatar-img">

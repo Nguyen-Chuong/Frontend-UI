@@ -27,4 +27,9 @@ export class UserService {
   deleteManage(id: number) {
     return this.http.patch(`${this.baseUrl}/delete-manager/${id}`, '');
   }
+
+  searchUserByUsername(userName: string){
+    const params = new HttpParams().append('text', userName)
+    return this.http.get(`${this.baseUrl}/search-user`, { params: params });
+  }
 }

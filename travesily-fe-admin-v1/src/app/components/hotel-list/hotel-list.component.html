@@ -1,29 +1,29 @@
 <div class="hotels">
   <div class="hotel">
-    <div class="mat-elevation-z8">
+    <div class="mat-elevation-z8" >
       <ngx-spinner type="ball-scale-multiple">
         <p style="font-size: 20px; color: white;">Loading...</p>
       </ngx-spinner>
-      <table mat-table [dataSource]="hotels">
+      <table mat-table [dataSource]="hotels" class="full-width-table" mat-sort>
         <!-- Name Column -->
         <ng-container matColumnDef="hotelName">
-          <th mat-header-cell *matHeaderCellDef> Hotel </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Hotel </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
         <!-- Weight Column -->
         <ng-container matColumnDef="lowestPrice">
-          <th mat-header-cell *matHeaderCellDef> Lowest Price </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Lowest Price </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.price}} </td>
         </ng-container>
 
         <ng-container matColumnDef="address">
-          <th mat-header-cell *matHeaderCellDef> Address </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.address}} </td>
         </ng-container>
 
         <ng-container matColumnDef=" ">
-          <th mat-header-cell *matHeaderCellDef>Action</th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td width="200" mat-cell *matCellDef="let element">
             <button *ngIf="element.status === 1" class="btn btn-outline-danger" (click)="deleteHotel(element.id)">Ban</button>
           </td>

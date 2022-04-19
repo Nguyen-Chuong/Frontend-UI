@@ -83,7 +83,7 @@ export class BookingTransactionInformationComponent implements OnInit {
                   this.booking.checkOut = new Date(this.booking.checkOut)
                   this.booking.totalDays = new Date(this.booking.checkOut).getTime() / (1000 * 3600 * 24) - new Date(this.booking.checkIn).getTime() / (1000 * 3600 * 24)
                   this.hotel = this.booking.hotel
-                  if (this.booking.status === 1) {
+                  if (this.booking.status === 2) {
                     this.paymentService.getTransactionInfo(transaction).subscribe()
                   }
                 }

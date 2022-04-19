@@ -1,3 +1,5 @@
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { Component, OnInit } from '@angular/core';
 import { MenuEventArgs } from '@syncfusion/ej2-angular-splitbuttons';
@@ -13,31 +15,36 @@ import { Account } from 'src/app/_models/account';
 export class HeaderComponent implements OnInit {
   account: Account = new Account;
   username: string
+  form: FormGroup
+  searchText: string
   ngOnInit(): void {
 
   }
 
-  constructor(private authService: AuthServiceService,
+  constructor(fb: FormBuilder, private authService: AuthServiceService,
     private router: Router,) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
       this.username = this.account.username.slice(2)
     })
+    this.form = fb.group({
+      search: ['', Validators.required]
+    })
   }
 
-  public openAddAdmin(){
+  public openAddAdmin() {
     this.router.navigateByUrl('/new-admin');
   }
 
-  public openProfile(){
+  public openProfile() {
     this.router.navigateByUrl('/admin-profile');
   }
 
-  public openVip(){
+  public openVip() {
     this.router.navigateByUrl('/vip-info');
   }
 
-  public logout(){
+  public logout() {
     this.authService.logout()
     window.location.href = 'http://localhost:4200'
     //window.location.href ='https://travesily.software/authentication/login'
@@ -50,5 +57,11 @@ export class HeaderComponent implements OnInit {
 
   openCoupon() {
     this.router.navigateByUrl('/edit-coupon')
+  }
+
+  searchUser(){
+    this.router.navigate(['user'], {
+      queryParams: { searchText: JSON.stringify(this.searchText) }
+    });
   }
 }
