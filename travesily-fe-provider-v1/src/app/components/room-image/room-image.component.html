@@ -63,7 +63,7 @@
         <button type="button" class="btn btn-primary" (click)="upload()">Upload
         </button>
         <button type="button" class="btn btn-primary m-3" (click)="addListImageForRoomType()"
-          data-bs-dismiss="modal">Save changes
+          data-bs-dismiss="modal" [disabled]="!isUploaded">Save changes
         </button>
       </div>
     </div>

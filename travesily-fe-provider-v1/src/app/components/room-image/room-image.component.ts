@@ -34,7 +34,7 @@ export class RoomImageComponent implements OnInit {
   selectedFiles: FileList;
   currentFileUpload: FileUpload;
   imageRequest: ImageRequest = new ImageRequest
-
+  isUploaded = false
   constructor(
     fb: FormBuilder,
     private hotelService: HotelService,
@@ -83,6 +83,7 @@ export class RoomImageComponent implements OnInit {
     this.roomTypeId = this.cryptoService.set('06052000', room.id)
     this.roomService.getRoomDetail(this.roomTypeId).pipe(first()).subscribe(res => {
       this.roomType = res['data']
+      console.log(this.roomType)
     })
   }
 
@@ -99,6 +100,7 @@ export class RoomImageComponent implements OnInit {
     this.firebaseService.getStorageUrl().subscribe({
       next: (rs) => {
         listUrl.push(rs)
+        this.isUploaded = true
       }
     })
     this.selectedFiles = undefined
@@ -122,6 +124,7 @@ export class RoomImageComponent implements OnInit {
           this.roomService.getRoomDetail(this.roomTypeId).pipe(first()).subscribe(res => {
             this.roomType = res['data']
           })
+          this.isUploaded = false
           this.notificationService.onSuccess("Add images for room Successfully")
         }, error: error => {
           this.notificationService.onError("Add images for room Fail")

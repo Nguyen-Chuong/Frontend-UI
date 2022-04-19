@@ -11,7 +11,7 @@
             <div class="about-hotel">
               <P>Hotel name: {{name}}</P>
               <P>Hotel address: {{address}} - {{nameDistrict}}</P>
-              <P>Description: {{description}}</P>
+              <P>Description:</P> <div class="about-hotel-desc" [innerHTML]="description"></div>
               <P>Provider name: {{providerName}}</P>
             </div>
 
