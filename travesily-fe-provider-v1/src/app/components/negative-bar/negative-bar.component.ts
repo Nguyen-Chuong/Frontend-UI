@@ -55,6 +55,5 @@ export class NegativeBarComponent implements OnInit {
   onResize(event) {
     if(window.innerWidth <= 600)
     this.isHidden = true
-
   }
 }
