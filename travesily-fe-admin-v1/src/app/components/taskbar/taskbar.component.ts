@@ -14,6 +14,7 @@ export class TaskbarComponent implements OnInit {
   account: Account
   negativeBar = []
   isHidden = false
+  isResize = false
   public isCollapsed = false
   constructor(private router: Router,
     public authService: AuthServiceService) {
@@ -76,10 +77,12 @@ export class TaskbarComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-
   onResize(event) {
-    if(window.innerWidth <= 600)
-    this.isHidden = true
+    if (window.innerWidth <= 600) {
+      this.isHidden = true
+      this.isResize = true
+    } else
+      this.isResize = false
 
   }
 }

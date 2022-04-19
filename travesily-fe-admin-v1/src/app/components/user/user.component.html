@@ -32,10 +32,14 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openUserDetail(row.username)"></tr>
       </table>
-      <div >
+      <div *ngIf="!isNotFound">
         <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)"
           aria-label="Select page">
         </mat-paginator>
+      </div>
+      <div *ngIf="isNotFound" class="noData">
+        <span class="text-center text-danger">
+          Searching user is not found! Please try again!</span>
       </div>
     </div>
   </div>
