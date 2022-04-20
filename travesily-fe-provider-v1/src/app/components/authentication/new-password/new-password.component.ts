@@ -24,7 +24,7 @@ export class NewPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      password: ['', [Validators.required, this.matchValidator('confirmPassword', true)]],
+      password: ['', [Validators.required, this.matchValidator('confirmPassword', true), Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]]
     })
     this.activatedRoute.queryParams.subscribe(rs => {
@@ -51,17 +51,15 @@ export class NewPasswordComponent implements OnInit {
   }
 
   onSave() {
-    if (this.form.value.newPass && this.form.value.confirmNewPass) {
-      this.authService.resetPassword(this.encryptedEmail, this.form.value.newPass).pipe(first()).subscribe(
-        rs => {
+    if (this.form.value.password && this.form.value.confirmPassword) {
+      this.authService.resetPassword(this.encryptedEmail, this.form.value.password).subscribe({
+        next: rs => {
           this.router.navigateByUrl('/login').then(() => {
             this.notificationService.onSuccess('Change password successfully')
           })
-
         },
-        error => {
-          this.notificationService.onError(error)
-        }
+        error: err => this.notificationService.onError(err)
+      }
       )
     }
   }
