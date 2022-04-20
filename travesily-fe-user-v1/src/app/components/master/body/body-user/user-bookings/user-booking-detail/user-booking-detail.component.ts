@@ -23,11 +23,11 @@ export class UserBookingDetailComponent implements OnInit {
   todayDate = new Date()
 
   constructor(authService: AuthService,
-    private bookingService: BookingService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private cryptoService: CryptoService,
-    private storageService: StorageService
+              private bookingService: BookingService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router,
+              private cryptoService: CryptoService,
+              private storageService: StorageService
   ) {
     authService.getProfile().pipe(first()).subscribe(rs => {
       this.account = rs['data']
@@ -62,22 +62,26 @@ export class UserBookingDetailComponent implements OnInit {
   }
 
   bookAgain() {
-    const defaultFilter = new SearchFilter()
-    const today = new Date()
-    defaultFilter.from = new Date(today.setDate(today.getDate() + 1))
-    defaultFilter.to = new Date(today.setDate(today.getDate() + 1))
-    defaultFilter.guestNumber = this.booking.bookedQuantity
-    defaultFilter.roomNumber = this.bookingDetails[0].quantity + (this.bookingDetails[1] ? this.bookingDetails[1]?.quantity:0)
-    defaultFilter.destination = {
-      id: this.booking.hotel.district.id,
-      resultSearch: `${this.booking.hotel.district.nameDistrict} District, ${this.booking.hotel.district.city.nameCity}`
-    }
-    this.storageService.searchFilter = defaultFilter
-    this.router.navigate(['/main/hotel-detail'], {
-      queryParams: {
-        hotelId: this.cryptoService.set('06052000', this.booking.hotel.id)
+    if (this.booking.hotel.status === 4) {
+      Swal.fire('This hotel has been disabled!','','error')
+    } else {
+      const defaultFilter = new SearchFilter()
+      const today = new Date()
+      defaultFilter.from = new Date(today.setDate(today.getDate() + 1))
+      defaultFilter.to = new Date(today.setDate(today.getDate() + 1))
+      defaultFilter.guestNumber = this.booking.bookedQuantity
+      defaultFilter.roomNumber = this.bookingDetails[0].quantity + (this.bookingDetails[1] ? this.bookingDetails[1]?.quantity : 0)
+      defaultFilter.destination = {
+        id: this.booking.hotel.district.id,
+        resultSearch: `${this.booking.hotel.district.nameDistrict} District, ${this.booking.hotel.district.city.nameCity}`
       }
-    })
+      this.storageService.searchFilter = defaultFilter
+      this.router.navigate(['/main/hotel-detail'], {
+        queryParams: {
+          hotelId: this.cryptoService.set('06052000', this.booking.hotel.id)
+        }
+      })
+    }
   }
 
   cancel() {
