@@ -1,5 +1,8 @@
 <div class="hotels-approve">
   <div class="hotels">
+    <ngx-spinner type="ball-scale-multiple">
+      <p style="font-size: 20px; color: white;">Loading...</p>
+    </ngx-spinner>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="requests"  class="full-width-table" mat-sort>
         <!-- Name Column -->
