@@ -8,6 +8,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { RequestService } from 'src/app/_services/request.service';
 import { DialogComponent } from '../dialog/dialog.component';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-hotel-approve',
@@ -30,14 +31,22 @@ export class HotelApproveComponent implements OnInit {
     private router: Router,
     private notificationService: NotificationService,
     public dialog: MatDialog,
-    private cryptoService: CryptoService
+    private cryptoService: CryptoService,
+    private spinner: NgxSpinnerService
   ) { }
 
   displayedColumns: string[] = ['hotelName', 'requestDate', 'providerName', 'request', ' '];
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+
     this.requestsService.getAllRequest(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
     this.requestsService.getPageRequest(this.status, 0, 10).pipe(first()).subscribe(

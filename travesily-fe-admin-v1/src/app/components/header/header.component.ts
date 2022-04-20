@@ -6,6 +6,7 @@ import { MenuEventArgs } from '@syncfusion/ej2-angular-splitbuttons';
 import { first } from 'rxjs';
 import { Router } from '@angular/router';
 import { Account } from 'src/app/_models/account';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-header',
@@ -18,11 +19,10 @@ export class HeaderComponent implements OnInit {
   form: FormGroup
   searchText: string
   ngOnInit(): void {
-
   }
 
   constructor(fb: FormBuilder, private authService: AuthServiceService,
-    private router: Router,) {
+    private router: Router, private spinner: NgxSpinnerService) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
       this.username = this.account.username.slice(2)
@@ -60,6 +60,9 @@ export class HeaderComponent implements OnInit {
   }
 
   searchUser(){
+    /** spinner starts on init */
+    this.spinner.show();
+
     this.router.navigate(['user'], {
       queryParams: { searchText: JSON.stringify(this.searchText) }
     });

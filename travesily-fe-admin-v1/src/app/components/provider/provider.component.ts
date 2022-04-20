@@ -8,6 +8,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
 import { ProviderService } from 'src/app/_services/provider.service';
 import { DialogComponent } from '../dialog/dialog.component';
 import { Provider } from './../../_models/provider';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-provider',
@@ -27,10 +28,14 @@ export class ProviderComponent implements OnInit {
   constructor(private providerService: ProviderService,
     private router: Router,
     private notificationService: NotificationService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private spinner: NgxSpinnerService) { }
   displayedColumns: string[] = ['id', 'username','providerName', 'email', 'phone', 'address', ' '];
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+
     this.providerService.getAllProvider(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
@@ -40,6 +45,10 @@ export class ProviderComponent implements OnInit {
       rs => {
         this.providers = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
     this.dataSource = new MatTableDataSource<Provider>(this.providers);

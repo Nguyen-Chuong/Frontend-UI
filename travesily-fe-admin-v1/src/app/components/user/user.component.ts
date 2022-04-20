@@ -31,11 +31,10 @@ export class UserComponent {
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
       this.username = param['searchText'].slice(1, -1);
-
     })
     /** spinner starts on init */
     this.spinner.show();
-    console.log(this.username)
+    
     if (this.username) {
       this.userService.searchUserByUsername(this.username).pipe(first()).subscribe(
         rs => {

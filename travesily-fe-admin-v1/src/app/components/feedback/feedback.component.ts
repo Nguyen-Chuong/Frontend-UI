@@ -3,6 +3,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { first } from 'rxjs';
 import { FeedbackService } from 'src/app/_services/feedback.service';
 import { Feedback } from './../../_models/feedback';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-feedback',
@@ -16,9 +17,13 @@ export class FeedbackComponent implements OnInit {
   total: number
 
   constructor(
-    private feedbackService: FeedbackService) { }
+    private feedbackService: FeedbackService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+    
     this.feedbackService.getAllFeedback().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
@@ -28,6 +33,10 @@ export class FeedbackComponent implements OnInit {
       rs => {
         this.feedbacks = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
   }
