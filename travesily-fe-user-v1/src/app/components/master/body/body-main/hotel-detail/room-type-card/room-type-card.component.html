@@ -20,7 +20,8 @@
           class="text-primary mb-1">Room photos and details</h4></a>
         <ul class="list-inline">
           <li *ngFor="let item of roomDetail?.listFacility">
-            <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>
+<!--            <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>-->
+            <p class="m-0 d-flex align-items-center text-grey-dark-1"><span class="material-icons">{{item.facilities[0].icon}}</span> {{item.facilities[0].name}}</p>
           </li>
         </ul>
         <div class="room-facilities position-relative">
@@ -36,7 +37,8 @@
                   <p><b>{{facilityType.name}}</b></p>
                   <ul class="list-inline">
                     <li class="" *ngFor="let facility of facilityType.facilities">
-                      <p><i class="{{facility.icon}} me-1"></i> {{facility.name}}</p>
+<!--                      <p><i class="{{facility.icon}} me-1"></i> {{facility.name}}</p>-->
+                      <p class="m-0 me-5 d-flex align-items-center"><span class="material-icons">{{facility.icon}}</span> {{facility.name}}</p>
                     </li>
                   </ul>
                 </li>
