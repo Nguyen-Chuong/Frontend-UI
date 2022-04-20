@@ -35,6 +35,8 @@ export class RoomImageComponent implements OnInit {
   currentFileUpload: FileUpload;
   imageRequest: ImageRequest = new ImageRequest
   isUploaded = false
+  isSelected = false
+  overLimit = false
   constructor(
     fb: FormBuilder,
     private hotelService: HotelService,
@@ -110,10 +112,15 @@ export class RoomImageComponent implements OnInit {
 
   selectFile(event): void {
     this.selectedFiles = event.target.files;
-    const [file] = event.target.files
-    if (file) {
-      document.getElementById('preview-image')['src'] = URL.createObjectURL(file)
+    const totalImage = this.roomType.listImage.length +  this.selectedFiles.length
+    if(totalImage> 10){
+      this.overLimit = true
+      this.isSelected = false
+    }else{
+      this.overLimit = false
+      this.isSelected = true
     }
+    event.clear()
   }
 
   addListImageForRoomType() {

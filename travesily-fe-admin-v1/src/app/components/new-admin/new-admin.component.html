@@ -1,4 +1,3 @@
-<div class="d-flex">
     <div class="new-admin">
       <form *ngIf="isAdmin" class="form-body" [formGroup]="form" (ngSubmit)="addAdmin()">
         <h2 class="form-header p-3">NEW MANAGER</h2>
@@ -41,4 +40,3 @@
       </form>
       <div *ngIf="isManager">you are not authorized to add manager</div>
     </div>
-</div>
