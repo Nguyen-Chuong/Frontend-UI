@@ -12,7 +12,7 @@ export class FacilityService {
   constructor(private http: HttpClient) { }
 
   addFacilityType(facilityTypeRequest: FacilityTypeRequest) {
-    return this.http.post(`${this.baseUrl}/add-benefit-type`, { ...facilityTypeRequest });
+    return this.http.post(`${this.baseUrl}/add-facility-type`, { ...facilityTypeRequest });
   }
 
   addFacility(facilityAddRequests: FacilityAddRequest, facilityTypeId: any){

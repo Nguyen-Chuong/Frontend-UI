@@ -36,12 +36,12 @@
                     <li class="list-group-item" formArrayName="facilities" *ngFor="let facility of facilityGroup.get('facilities')['controls']; let i = index;">
                       <div [formGroupName]="i" class="row">
                         <div class="col-4">
-                          <input type="text" formControlName="name" class="form-control" placeholder="Benefit name" value=""
+                          <input type="text" formControlName="name" class="form-control" placeholder="Facility name" value=""
                             required>
                           <span *ngIf="facility.get('name').errors && facility.get('name').hasError('required')" class="validation">* required</span>
                         </div>
                         <div class="col-6">
-                          <input type="text" formControlName="icon" class="form-control" placeholder="Benefit Icon"
+                          <input type="text" formControlName="icon" class="form-control" placeholder="Facility Icon"
                             value="" required>
                           <span *ngIf="facility.get('icon').errors && facility.get('icon').hasError('required')" class="validation">* required</span>
 

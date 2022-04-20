@@ -34,8 +34,8 @@ export class FacilityComponent implements OnInit {
   addFacilityType() {
     const facilityTypeRequest = new FacilityTypeRequest
     const val = this.formGroup.value
-    facilityTypeRequest.name = val.benefitType
-    facilityTypeRequest.icon = val.icon
+    facilityTypeRequest.name = val.facilityType
+    facilityTypeRequest.icon = val.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase( )
     this.facilityService.addFacilityType(facilityTypeRequest).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Add successfully');
@@ -46,4 +46,7 @@ export class FacilityComponent implements OnInit {
       }
     })
   }
+  goToLink(url: string){
+    window.open(url, "_blank");
+}
 }
