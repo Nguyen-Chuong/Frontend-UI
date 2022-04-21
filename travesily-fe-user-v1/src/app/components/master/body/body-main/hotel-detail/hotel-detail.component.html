@@ -4,7 +4,7 @@
       <img class="p-1 pe-0 pointer" [src]="hotel?.avatar" alt="" width="100%" height="100%" data-bs-toggle="modal"
            data-bs-target="#image-modal">
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 d-none d-sm-none d-md-flex">
       <ul class="row list-inline mb-0">
         <li class="col-md-4 p-1" *ngFor="let image of roomTypes[0]?.listImage | slice:0:6">
           <img [src]="image?.src" class="pointer" alt="" width="100%" height="100%" data-bs-toggle="modal"
