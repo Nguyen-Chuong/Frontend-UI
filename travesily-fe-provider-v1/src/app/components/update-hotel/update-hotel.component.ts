@@ -1,23 +1,20 @@
-import { PostRequest } from './../../_models/postRequest';
-import { RequestService } from 'src/app/_services/request.service';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { first } from 'rxjs';
 import { DialogComponent } from 'src/app/shared/components/dialog/dialog.component';
-import { City } from 'src/app/_models/city';
-import { District } from 'src/app/_models/district';
+import { FileUpload } from 'src/app/_models/file-upload';
+import { Hotel } from 'src/app/_models/hotel';
+import { HotelRequest } from 'src/app/_models/hotelRequest';
+import { AuthService } from 'src/app/_services/auth.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
+import { FirebaseService } from 'src/app/_services/firebase.service';
 import { HotelService } from 'src/app/_services/hotel.service';
 import { NotificationService } from 'src/app/_services/notification.service';
-import { CitiesService } from './../../_services/cities.service';
-import { HotelRequest } from 'src/app/_models/hotelRequest';
-import { Hotel } from 'src/app/_models/hotel';
-import { FileUpload } from 'src/app/_models/file-upload';
-import { FirebaseService } from 'src/app/_services/firebase.service';
+import { RequestService } from 'src/app/_services/request.service';
 import { EmailValidator } from 'src/app/_validators/email.validator';
-import { AuthService } from 'src/app/_services/auth.service';
+import { PostRequest } from './../../_models/postRequest';
 
 @Component({
   selector: 'app-update-hotel',
@@ -36,13 +33,12 @@ export class UpdateHotelComponent implements OnInit {
   selectedFiles: FileList
   currentFileUpload: FileUpload
   imageUrl: string
-
+  isUpload = false
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private hotelService: HotelService,
-    private citiesService: CitiesService,
     private cryptoService: CryptoService,
     public dialog: MatDialog,
     private firebaseService: FirebaseService,
@@ -76,8 +72,6 @@ export class UpdateHotelComponent implements OnInit {
 
     }
     )
-
-
   }
 
   submit() {
@@ -89,13 +83,13 @@ export class UpdateHotelComponent implements OnInit {
     hotelRequest.phone = val.phone
     hotelRequest.address = val.address
     hotelRequest.description = val.description
-    if (this.selectedFiles) {
-      hotelRequest.avatar = this.imageUrl
-    }
+    hotelRequest.star = this.hotel.star
+    hotelRequest.taxPercentage = this.hotel.taxPercentage
+    hotelRequest.avatar = this.hotel.avatar
     this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
       next: () => {
-        console.log(hotelRequest)
         this.notificationService.onSuccess('Update Hotel successfully');
+        window.location.reload()
       },
       error: err => {
         console.log(err)
@@ -182,7 +176,7 @@ export class UpdateHotelComponent implements OnInit {
       this.firebaseService.pushFileToStorage(this.currentFileUpload, 'hotel', this.encryptedHotelId, this.encryptedHotelId)
       this.firebaseService.getStorageUrl().subscribe(
         rs => {
-          this.imageUrl = rs
+          this.hotel.avatar = rs
         }
       )
     }

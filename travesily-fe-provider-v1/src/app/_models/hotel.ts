@@ -11,4 +11,6 @@ export class Hotel {
  status: number
  price: number
  district: District
+ star: number
+ taxPercentage: number
 }

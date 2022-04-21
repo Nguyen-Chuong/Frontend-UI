@@ -11,4 +11,6 @@ export class HotelRequest {
   price: number
   districtId: number
   providerId: number
+  star: number
+  taxPercentage: number
 }
