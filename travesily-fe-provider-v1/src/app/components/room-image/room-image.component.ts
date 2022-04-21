@@ -12,6 +12,7 @@ import { RoomService } from 'src/app/_services/room.service';
 import { FileUpload } from 'src/app/_models/file-upload';
 import { ImageRequest } from 'src/app/_models/image-request';
 import { RoomType } from 'src/app/_models/room-type';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-room-image',
@@ -43,6 +44,7 @@ export class RoomImageComponent implements OnInit {
     private cryptoService: CryptoService,
     public dialog: MatDialog,
     private roomService: RoomService,
+    private modalService: NgbModal,
     private notificationService: NotificationService,
     private firebaseService: FirebaseService) {
     this.form = fb.group({
@@ -151,6 +153,11 @@ export class RoomImageComponent implements OnInit {
         this.notificationService.onError('Delete fail')
       }
     })
+  }
+  open(content) {
+    this.overLimit = false
+
+    this.modalService.open(content);
   }
 
 }

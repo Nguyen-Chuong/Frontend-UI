@@ -26,7 +26,7 @@
     </div>
     <div class="room-list-image">
       <div class="group-input">
-        <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="m-auto btn btn-outline-success">Add Images</button>
+        <button (click)="open(content)" class="m-auto btn btn-outline-success">Add Images</button>
         <button class="m-auto btn btn-outline-danger" (click)="deleteListImageForRoomType()">Delete Images</button>
       </div>
       <br>
@@ -40,32 +40,26 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade w-100 h-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Image picker</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row shadow p-5 m-5">
-          <label>
-            <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" multiple="multiple" />
-          </label>
-        </div>
-        <small *ngIf="overLimit" class="text-danger">This hotel has over limited images, please remove old image first!</small>
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="upload()" [disabled]="!isSelected">Upload
-        </button>
-        <button type="button" class="btn btn-primary m-3" (click)="addListImageForRoomType()"
-          data-bs-dismiss="modal" [disabled]="!isUploaded">Save changes
-        </button>
-      </div>
-    </div>
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Image picker</h5>
+    <<button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
   </div>
-</div>
+  <div class="modal-body">
+    <div class="row shadow p-5 m-5">
+      <label>
+        <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" multiple="multiple" />
+        <small *ngIf="overLimit" class="text-danger">This hotel has over limited images, please remove old image first!</small>
+      </label>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="d('Cross click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="upload()" [disabled]="!isSelected">Upload
+    </button>
+    <button type="button" class="btn btn-primary m-3" (click)="c('Save click')" (click)="addListImageForRoomType()"
+      data-bs-dismiss="modal" [disabled]="!isUploaded">Save changes
+    </button>
+  </div>
+</ng-template>
