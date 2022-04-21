@@ -20,8 +20,9 @@
           class="text-primary mb-1">Room photos and details</h4></a>
         <ul class="list-inline">
           <li *ngFor="let item of roomDetail?.listFacility">
-<!--            <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>-->
-            <p class="m-0 d-flex align-items-center text-grey-dark-1"><span class="material-icons me-2">{{item.facilities[0].icon}}</span> {{item.facilities[0].name}}</p>
+            <!--            <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>-->
+            <p class="m-0 d-flex align-items-center text-grey-dark-1"><span
+              class="material-icons me-2">{{item.facilities[0].icon}}</span> {{item.facilities[0].name}}</p>
           </li>
         </ul>
         <div class="room-facilities position-relative">
@@ -37,8 +38,9 @@
                   <p><b>{{facilityType.name}}</b></p>
                   <ul class="list-inline">
                     <li class="" *ngFor="let facility of facilityType.facilities">
-<!--                      <p><i class="{{facility.icon}} me-1"></i> {{facility.name}}</p>-->
-                      <p class="m-0 d-flex align-items-center"><span class="material-icons me-3">{{facility.icon}}</span> {{facility.name}}</p>
+                      <!--                      <p><i class="{{facility.icon}} me-1"></i> {{facility.name}}</p>-->
+                      <p class="m-0 d-flex align-items-center"><span
+                        class="material-icons me-3">{{facility.icon}}</span> {{facility.name}}</p>
                     </li>
                   </ul>
                 </li>
@@ -56,8 +58,12 @@
           <div class="col-md-3 col-sm-3"><h3 class="card-title mb-0"><b>Most booked</b></h3></div>
         </div>
         <div class="row bg-white p-3">
-          <div class="d-none d-sm-none d-md-flex col-md-4 col-sm-0">
-            Benefit
+          <p *ngIf="roomDetail.listBenefit.length>0||roomDetail.dealPercentage>0"><strong>Your price includes:</strong></p>
+          <div class="d-none d-sm-none d-md-block col-md-4 col-sm-0">
+            <p *ngIf="roomDetail.listBenefit.length>0" class="text-success d-flex align-items-center m-0"><span
+              class="material-icons text-success">check</span>{{roomTypeBenefits}}</p>
+            <p *ngIf="roomDetail.dealPercentage>0" class="text-success d-flex align-items-center m-0"><span
+              class="material-icons text-success">check</span>Book right now to save {{roomDetail.price*roomDetail.dealPercentage/100 | number:'1.0-1'}}đ</p>
           </div>
           <div class="col-2 col-md-1 col-sm-1">
             <h2 class="card-text text-grey">{{roomType.numberOfPeople}} x <i [class]="iconMale" aria-hidden="true"></i>

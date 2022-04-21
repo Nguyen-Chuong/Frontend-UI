@@ -24,6 +24,7 @@ export class RoomTypeCardComponent implements OnInit {
   filter: SearchFilter = new SearchFilter()
   modal = ''
   carts: Cart[] = []
+  roomTypeBenefits: string = ''
 
   constructor(private roomTypeService: RoomTypeService, private cryptoService: CryptoService, private cartService: CartService, private storageService: StorageService, private router: Router) {
     this.modal = `#room-type-image-modal-${this.roomType?.id}`
@@ -43,6 +44,12 @@ export class RoomTypeCardComponent implements OnInit {
   ngOnInit(): void {
     this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', this.roomType.id)).subscribe(rs => {
       this.roomDetail = rs['data']
+      this.roomDetail.listBenefit.forEach((benefits) => {
+        benefits.benefits.forEach(benefit => {
+          this.roomTypeBenefits+= `${benefit.name}, `
+        })
+      })
+      this.roomTypeBenefits = this.roomTypeBenefits.slice(0, -2)
     })
   }
 
