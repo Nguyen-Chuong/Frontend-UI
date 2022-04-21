@@ -1,4 +1,4 @@
-<div class="d-flex h-100"[ngClass]="isHidden?'menu-sub':''">
+<div class="d-flex h-100" [ngClass]="isResize?'': isHidden?'menu-sub':''">
   <div [ngClass]="isHidden?'taskbar-sub':'taskbar'">
     <ul>
       <li *ngFor="let item of negativeBar" [ngClass]="currentTask == item.name?'active':''"

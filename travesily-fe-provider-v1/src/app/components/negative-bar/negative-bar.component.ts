@@ -13,6 +13,7 @@ export class NegativeBarComponent implements OnInit {
   negativeBar = []
   account: Account
   isHidden = false
+  isResize = false
   constructor(private router: Router,
     public authService: AuthService) {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
@@ -53,7 +54,10 @@ export class NegativeBarComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
 
   onResize(event) {
-    if(window.innerWidth <= 600)
-    this.isHidden = true
+    if (window.innerWidth <= 600) {
+      this.isHidden = true
+      this.isResize = true
+    } else
+      this.isResize = false
   }
 }

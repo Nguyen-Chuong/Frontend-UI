@@ -67,7 +67,7 @@ export class TaskbarComponent implements OnInit {
 
   transaction(name) {
     if (name === 'Transaction')
-      window.location.href = 'https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm'
+    window.open('https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm', "_blank");
     else
       this.currentTask = name
   }

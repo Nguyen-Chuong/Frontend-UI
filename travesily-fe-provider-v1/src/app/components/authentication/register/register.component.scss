@@ -1,7 +1,12 @@
 @import "src/app/shared/scss/_main";
 *{
   font-style: inherit;
-  font-size: .9rem;
+}
+.form{
+  width: 100%;
+  font-size: 1rem;
+  min-height: 100vh;
+  margin-bottom: 3rem;
 }
 
 .form-body{
