@@ -51,8 +51,8 @@ export class ChangePasswordComponent implements OnInit {
 
   onSave() {
     const val = this.form.value
-    if (val.oldPass && val.newPass) {
-      this.authService.changePassword(val.oldPass, val.newPass).pipe(first()).subscribe({
+    if (val.oldPass && val.password) {
+      this.authService.changePassword(val.oldPass, val.password).pipe(first()).subscribe({
         next: () => {
           this.notificationService.onSuccess('Change password successfully');
           this.form.reset()
