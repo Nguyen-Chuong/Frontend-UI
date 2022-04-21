@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs';
+import { BenefitRequest } from 'src/app/_models/benefitRequest';
 import { BenefitType } from 'src/app/_models/benefitType';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -53,7 +54,14 @@ export class AddBenefitComponent implements OnInit {
   saveBenefit() {
     const val = this.benefitGroup.value
     const benefitAddRequests: BenefitAddRequest = new BenefitAddRequest
-    benefitAddRequests.listBenefit = val.benefits
+    const listBenefitRequest = []
+    for (const benefit of val.benefits) {
+      const benefitRequest = new BenefitRequest()
+      benefitRequest.icon = benefit.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+      benefitRequest.name = benefit.name
+      listBenefitRequest.push(benefitRequest)
+    }
+    benefitAddRequests.listBenefit = listBenefitRequest
     const benefitTypeId = this.benefitTypeControl.value.id
     const encryptedId = this.cryptoService.set('06052000', benefitTypeId)
     this.benefitService.addBenefit(benefitAddRequests, encryptedId).pipe(first()).subscribe({

@@ -6,6 +6,7 @@ import { FacilityAddRequest } from 'src/app/_models/facilityAddRequest';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { FacilityService } from 'src/app/_services/facility.service';
 import { NotificationService } from 'src/app/_services/notification.service';
+import { FacilityRequest } from 'src/app/_models/facilityRequest';
 
 @Component({
   selector: 'app-add-facility',
@@ -51,7 +52,14 @@ export class AddFacilityComponent implements OnInit {
   saveFacility() {
     const val = this.facilityGroup.value
     const facilityAddRequests: FacilityAddRequest = new FacilityAddRequest
-    facilityAddRequests.listFacility = val.facilities
+    const listFacilityRequest = []
+    for (const facility of val.facilities) {
+      const facilityRequest = new FacilityRequest()
+      facilityRequest.icon = facility.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+      facilityRequest.name = facility.name
+      listFacilityRequest.push(facilityRequest)
+    }
+    facilityAddRequests.listFacility = listFacilityRequest
     const facilityTypeId = this.facilityTypeControl.value.id
     const encryptedId = this.cryptoService.set('06052000', facilityTypeId)
     this.facilityService.addFacility(facilityAddRequests, encryptedId).pipe(first()).subscribe({

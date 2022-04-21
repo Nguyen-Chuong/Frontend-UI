@@ -55,12 +55,12 @@
             <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" multiple="multiple" />
           </label>
         </div>
-        <img id="preview-image" class="img-fluid item-center m-auto" src="#" alt="H">
+        <small *ngIf="overLimit" class="text-danger">This hotel has over limited images, please remove old image first!</small>
 
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="upload()">Upload
+        <button type="button" class="btn btn-primary" (click)="upload()" [disabled]="!isSelected">Upload
         </button>
         <button type="button" class="btn btn-primary m-3" (click)="addListImageForRoomType()"
           data-bs-dismiss="modal" [disabled]="!isUploaded">Save changes

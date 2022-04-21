@@ -1,5 +1,5 @@
 <div class="benefit">
-  <div class="add-benefit d-flex justify-content-around">
+  <div class="add-benefit">
     <div class="add-benefit-type">
       <form class="col-md-12 border-right" [formGroup]="formGroup">
         <div class="p-3 py-5">
@@ -12,6 +12,9 @@
           </div>
           <div class="mt-5 text-center">
             <button class="mt-20 w-100 btn btn-outline-primary btn-lg" (click)="addBenefitType()" [disabled]="!formGroup.valid">Save</button>
+          </div>
+          <div class="mt-3 ">
+            <a class="search-icon" (click)="goToLink('https://mui.com/material-ui/material-icons/?fbclid=IwAR1lzZTN4giuaGr2Me8D_I4dIRon1jvrm8CobE6DqdGCH-bh_GF8i1igSxE')">Search Icon</a>
           </div>
         </div>
       </form>

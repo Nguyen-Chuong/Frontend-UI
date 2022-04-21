@@ -1,4 +1,4 @@
-.menu-list{
+.menu-list {
   width: 13rem;
   min-height: 100vh;
 }
@@ -10,16 +10,38 @@
   width: 100%;
   margin: 3rem auto;
   display: flex;
+  flex-direction: row;
+  justify-content: space-around !important;
   box-shadow: 20px 20px 50px 15px grey;
   border-radius: 10px;
   padding: 10px;
   background-color: rgb(255, 255, 255);
 
-  &-type{
+  &-type {
     width: 45%;
   }
 
-  &-of-type{
+  &-of-type {
     width: 45%;
   }
+}
+
+@media (max-width: 40rem) {
+  .add-benefit {
+    flex-direction: column;
+    &-type {
+      width: 90%;
+    }
+
+    &-of-type {
+      width: 90%;
+    }
+  }
+}
+
+.search-icon{
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-decoration: none;
 }

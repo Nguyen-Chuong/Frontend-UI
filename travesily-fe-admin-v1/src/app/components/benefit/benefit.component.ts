@@ -20,7 +20,7 @@ export class BenefitComponent implements OnInit {
 
   constructor(
     private benefitService: BenefitService,
-    private notificationService: NotificationService ) {
+    private notificationService: NotificationService) {
   }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class BenefitComponent implements OnInit {
     const benefitTypeRequest = new BenefitTypeRequest
     const val = this.formGroup.value
     benefitTypeRequest.name = val.benefitType
-    benefitTypeRequest.icon = val.icon
+    benefitTypeRequest.icon = val.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase( )
 
     this.benefitService.addBenefitType(benefitTypeRequest).pipe(first()).subscribe({
       next: () => {
@@ -49,5 +49,8 @@ export class BenefitComponent implements OnInit {
         this.notificationService.onError('Add fail')
       }
     })
+  }
+  goToLink(url: string) {
+    window.open(url, "_blank");
   }
 }
