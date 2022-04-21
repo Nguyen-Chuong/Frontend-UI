@@ -26,7 +26,7 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       oldPass: ['', Validators.required],
-      password: ['', [Validators.required, this.matchValidator('confirmPassword', true)]],
+      password: ['', [Validators.required, this.matchValidator('confirmPassword', true) , Validators.minLength(8), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%?&])[A-Za-z\d$@$!%?&]{8,}$/)]],
       confirmPassword: ['', [Validators.required, this.matchValidator('password')]]
     })
   }

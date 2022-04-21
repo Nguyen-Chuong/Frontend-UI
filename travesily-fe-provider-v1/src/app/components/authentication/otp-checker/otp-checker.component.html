@@ -1,12 +1,13 @@
-<div class="otp-checker">
-  <h3>Please check your email</h3>
-<h2 class="lable">
-  We've sent you an email with a 6-digit OTP
-  Please check your email and enter below
-</h2>
-<ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="{length:6, allowNumbersOnly:true}">
-</ng-otp-input>
-
-<button class="btn-resend btn-md btn-fill" (click)="resend()">Re-send</button>
+<div class="otp">
+  <div class="otp-checker">
+    <h3>Please check your email</h3>
+    <h2 class="lable">
+      We've sent you an email with a 6-digit OTP
+      Please check your email and enter below
+    </h2>
+    <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="{length:6, allowNumbersOnly:true}">
+    </ng-otp-input>
+    <button class="btn-resend btn-md btn-fill" (click)="resend()">Re-send</button>
+  </div>
 
 </div>

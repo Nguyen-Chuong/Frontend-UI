@@ -45,6 +45,7 @@ import { UpComingBookingComponent } from './components/up-coming-booking/up-comi
 import { FooterComponent } from './components/footer/footer.component';
 import { MyChartComponent } from './components/my-chart/my-chart.component';
 import { NgxSpinnerModule } from "ngx-spinner";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -94,7 +95,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
     AngularFireModule.initializeApp(environment.firebase),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgbModule
   ],
   providers: [
     {

@@ -53,18 +53,22 @@ a {
     display: flex;
   }
 }
+.input-group{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 .description{
   display: inline-block;
-  padding-left: 3.2rem;
-
+  padding-left: 5%;
   & textarea{
     border-radius: 0.5rem;
   }
 
   &-title{
-    padding-left: 3.2rem;
-    width: 62.5rem;
+    padding-left: 5%;
+    width: 97.5%;
   }
 }
 
@@ -74,4 +78,15 @@ a {
   padding-bottom: .1rem;
 }
 
+.textarea{
+  width: 97.5%;
+}
 
+
+@media (max-width: 40rem) {
+  .input-group{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
