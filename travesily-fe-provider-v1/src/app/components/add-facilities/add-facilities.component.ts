@@ -100,7 +100,7 @@ export class AddFacilitiesComponent implements OnInit {
         next: () => {
           this.notificationService.onSuccess("Add Facility Successfully")
         }, error: error => {
-          this.notificationService.onError(error['message'])
+          this.notificationService.onError('Some benefit has exist in this room, please try again!')
         }
       })
   }
