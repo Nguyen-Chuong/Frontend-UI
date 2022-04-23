@@ -1,4 +1,3 @@
-<div class="account">
 <div class="profile">
   <div class="profile-update">
     <h1>Update Profile</h1>
@@ -6,21 +5,24 @@
       <div class="row mb-1">
         <mat-form-field appearance="outline">
           <mat-label class="text-secondary">Provider name</mat-label>
-          <input matInput placeholder="Enter your username" type="text" [formControl]="convertToFormControl(form?.controls['providerName'])" required>
+          <input matInput placeholder="Enter your username" type="text"
+            [formControl]="convertToFormControl(form?.controls['providerName'])" required>
           <mat-error *ngIf="form?.controls['providerName'].invalid">{{getErrorMessage('providerName')}}</mat-error>
         </mat-form-field>
       </div>
       <div class="row mb-1">
         <mat-form-field appearance="outline">
           <mat-label class="text-secondary">Address</mat-label>
-          <input matInput placeholder="Enter your address" type="text" [formControl]="convertToFormControl(form?.controls['address'])" required>
+          <input matInput placeholder="Enter your address" type="text"
+            [formControl]="convertToFormControl(form?.controls['address'])" required>
           <mat-error *ngIf="form?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
         </mat-form-field>
       </div>
       <div class="row mb-1">
         <mat-form-field appearance="outline">
           <mat-label class="text-secondary">Phone number</mat-label>
-          <input matInput placeholder="Enter your phone" type="text" [formControl]="convertToFormControl(form?.controls['phone'])" required>
+          <input matInput placeholder="Enter your phone" type="text"
+            [formControl]="convertToFormControl(form?.controls['phone'])" required>
           <mat-error *ngIf="form?.controls['phone'].invalid">{{getErrorMessage('phone')}}</mat-error>
         </mat-form-field>
       </div>
@@ -33,5 +35,4 @@
     <h1>Change Password</h1>
     <app-change-password></app-change-password>
   </div>
-
-
+</div>

@@ -4,55 +4,59 @@
     <div class="input-group">
       <div class="group">
         <div class="row mb-0">
-          <mat-form-field class="mb-0" appearance="outline">
+          <mat-form-field class="mb-0 col-md-12" appearance="outline">
             <mat-label class="text-secondary">Hotel name</mat-label>
-            <input matInput placeholder="Enter your hotel name" type="text" [formControl]="convertToFormControl(form?.controls['hotelName'])" required>
+            <input matInput placeholder="Enter your hotel name" type="text"
+              [formControl]="convertToFormControl(form?.controls['hotelName'])" required>
             <mat-error *ngIf="form?.controls['hotelName'].invalid">{{getErrorMessage('hotelName')}}</mat-error>
           </mat-form-field>
         </div>
         <div class="row mb-0">
-          <mat-form-field class="mb-0" appearance="outline">
+          <mat-form-field class="mb-0 col-md-12" appearance="outline">
             <mat-label class="text-secondary">Email</mat-label>
-            <input matInput placeholder="Enter your email" type="email" [formControl]="convertToFormControl(form?.controls['email'])" required>
+            <input matInput placeholder="Enter your email" type="email"
+              [formControl]="convertToFormControl(form?.controls['email'])" required>
             <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
           </mat-form-field>
         </div>
       </div>
       <div class=" group">
         <div class="row mb-1">
-          <mat-form-field class=" mb-1" appearance="outline">
+          <mat-form-field class=" mb-1 col-md-12" appearance="outline">
             <mat-label class="text-secondary">Phone number</mat-label>
-            <input matInput placeholder="Enter your phone" type="text" [formControl]="convertToFormControl(form?.controls['phone'])" required>
+            <input matInput placeholder="Enter your phone" type="text"
+              [formControl]="convertToFormControl(form?.controls['phone'])" required>
             <mat-error *ngIf="form?.controls['phone'].invalid">{{getErrorMessage('phone')}}</mat-error>
           </mat-form-field>
-      </div>
-      <div class="row mb-1">
-        <mat-form-field appearance="outline">
-          <mat-label class="text-secondary">Address</mat-label>
-          <input matInput placeholder="Enter your address" type="text" [formControl]="convertToFormControl(form?.controls['address'])" required>
-          <mat-error *ngIf="form?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
-        </mat-form-field>
-      </div>
+        </div>
+        <div class="row mb-1">
+          <mat-form-field appearance="outline" class="col-md-12">
+            <mat-label class="text-secondary">Address</mat-label>
+            <input matInput placeholder="Enter your address" type="text"
+              [formControl]="convertToFormControl(form?.controls['address'])" required>
+            <mat-error *ngIf="form?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
+          </mat-form-field>
+        </div>
       </div>
     </div>
     <div class="input-group">
       <mat-form-field appearance="fill" class="select">
         <mat-label>City</mat-label>
-          <mat-select [formControl]="cityControl" required (selectionChange)="changeCityID($event.value)">
-            <mat-option *ngFor="let city of cities" [value]="city">
-              {{city.nameCity}}
-            </mat-option>
-          </mat-select>
+        <mat-select [formControl]="cityControl" required (selectionChange)="changeCityID($event.value)">
+          <mat-option *ngFor="let city of cities" [value]="city">
+            {{city.nameCity}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="cityControl.hasError('required')">Please choose a city</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill" class="select district">
         <mat-label>District</mat-label>
-          <mat-select [formControl]="districtControl" required >
-            <mat-option *ngFor="let district of districts" [value]="district">
-              {{district.nameDistrict}}
-            </mat-option>
-          </mat-select>
+        <mat-select [formControl]="districtControl" required>
+          <mat-option *ngFor="let district of districts" [value]="district">
+            {{district.nameDistrict}}
+          </mat-option>
+        </mat-select>
         <mat-error *ngIf="districtControl.hasError('required')">Please choose a district</mat-error>
       </mat-form-field>
     </div>
@@ -60,8 +64,10 @@
     <div class="row mb-1 description-title">
       <mat-form-field appearance="outline">
         <mat-label class="text-secondary">Description title</mat-label>
-        <input matInput placeholder="Enter hotel description title" type="text" [formControl]="convertToFormControl(form?.controls['descriptionTitle'])" required>
-        <mat-error *ngIf="form?.controls['descriptionTitle'].invalid">{{getErrorMessage('descriptionTitle')}}</mat-error>
+        <input matInput placeholder="Enter hotel description title" type="text"
+          [formControl]="convertToFormControl(form?.controls['descriptionTitle'])" required>
+        <mat-error *ngIf="form?.controls['descriptionTitle'].invalid">{{getErrorMessage('descriptionTitle')}}
+        </mat-error>
       </mat-form-field>
     </div>
     <div class="description">
@@ -69,7 +75,8 @@
       <textarea name="description" id="" cols="112" rows="5" formControlName="description"></textarea>
     </div>
     <div class="form-submit text-center">
-      <button class="mt-20 w-20  btn-outline-primary btn-lg" [disabled]="form.invalid && districtControl.valid">Save</button>
+      <button class="mt-20 w-20  btn-outline-primary btn-lg"
+        [disabled]="form.invalid && districtControl.valid">Save</button>
     </div>
   </form>
 </div>

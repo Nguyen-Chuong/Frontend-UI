@@ -28,7 +28,7 @@
       <!-- Weight Column -->
       <ng-container matColumnDef="totalPaid">
         <th mat-header-cell *matHeaderCellDef> Total Paid </th>
-        <td mat-cell *matCellDef="let element"> {{element.totalPaid}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.totalPaid | number:'1.0-1'}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
