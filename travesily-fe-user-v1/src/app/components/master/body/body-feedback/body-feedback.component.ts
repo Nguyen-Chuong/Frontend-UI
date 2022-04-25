@@ -33,7 +33,7 @@ export class BodyFeedbackComponent implements OnInit {
       email: ['',[Validators.required, Validators.email]],
       phone: ['',[Validators.required,Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)
       ]],
-      requestDetail: ['', [Validators.required]]
+      requestDetail: ['', [Validators.required, Validators.maxLength(1000)]]
     })
   }
 

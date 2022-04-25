@@ -27,8 +27,11 @@
               <p for="request-detail-textarea" class="form-label text-secondary">Request Details</p>
               <textarea class="form-control" [formControl]="convertToFormControl(feedbackForm.get('requestDetail'))" id="request-detail-textarea" rows="5"
                         placeholder="Please write a few words about your situation"></textarea>
-              <div class="control-error text-danger" *ngIf="convertToFormControl(feedbackForm.get('requestDetail')).errors">
+              <div class="control-error text-danger" *ngIf="convertToFormControl(feedbackForm.get('requestDetail')).hasError('required')">
                 This field is required
+              </div>
+              <div class="control-error text-danger" *ngIf="convertToFormControl(feedbackForm.get('requestDetail')).hasError('maxlength')">
+                You can not write more than 1000 words
               </div>
             </div>
             <button class="btn btn-primary item-fullwidth" [disabled]="feedbackForm.invalid" (click)="submit()">Submit Feedback</button>
