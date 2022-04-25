@@ -52,6 +52,7 @@
   height: auto;
   justify-content: space-around;
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
 }
 
@@ -93,7 +94,6 @@
   width: 45%;
   padding: 10px;
   background-color: aliceblue;
-
   &-room {
     margin-left: 40px;
   }
@@ -101,4 +101,14 @@
 
 .form-submit {
   text-align: center;
+}
+
+@media (max-width: 40rem) {
+  .list-image  {
+    flex-direction: column;
+  }
+
+  .room-image{
+    width: 100%;
+  }
 }

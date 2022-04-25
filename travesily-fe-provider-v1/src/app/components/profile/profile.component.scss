@@ -10,6 +10,7 @@
 .profile {
   width: 100%;
   display: flex;
+  flex-direction: row;
   background-color: aliceblue;
   box-shadow: 20px 20px 50px 15px grey;
   margin: 3rem auto;
@@ -39,7 +40,6 @@
   width: 100%;
   text-align: left;
   padding: 20px;
-  margin: 20px;
 }
 
 .form-redirection {
@@ -62,4 +62,16 @@ a {
 .form-control{
   background-color: aliceblue;
   border: none;
+}
+@media (max-width: 40rem) {
+  .profile {
+    flex-direction: column;
+    &-update {
+      width:100%;
+    }
+    &-change-pass{
+      width:100%;
+      margin-left: 0;
+    }
+  }
 }

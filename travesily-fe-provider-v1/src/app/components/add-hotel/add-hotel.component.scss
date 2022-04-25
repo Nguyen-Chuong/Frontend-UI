@@ -15,6 +15,7 @@
 }
 
 .form-body {
+  min-width: 30rem;
   display: grid;
   grid-row-gap: 0.5rem;
   width: 100%;
@@ -81,6 +82,9 @@ a {
 .textarea{
   width: 97.5%;
 }
+.mat-form-field-infix {
+  width: 90%;
+}
 
 
 @media (max-width: 40rem) {
@@ -88,5 +92,8 @@ a {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+  }
+  .group{
+    width: 90%;
   }
 }

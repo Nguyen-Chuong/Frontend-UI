@@ -20,10 +20,15 @@
   }
 
   &-detail {
-    margin-left: 8rem;
+    margin: 0 auto;
     &-infor {
       padding-left: 10px;
       width: 100%;
+    }
+
+    & form{
+      margin: 0 auto;
+
     }
   }
 
