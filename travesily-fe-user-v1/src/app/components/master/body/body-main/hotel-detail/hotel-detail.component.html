@@ -100,14 +100,14 @@
               <div class="row">
                 <ul class="d-flex flex-wrap">
                   <li class="flex-list" *ngFor="let benefitType of benefitTypes">
-                    <div class="">
-                      <p><b>{{benefitType.name}}</b></p>
-                      <ul class="list-inline">
-                        <li class="" *ngFor="let benefit of benefitType.benefits">
-                          <i class="fa fa-check text-success" aria-hidden="true"></i> {{benefit.name}}
-                        </li>
-                      </ul>
-                    </div>
+                    <h3 class="benefit-type m-0 d-flex align-items-center text-primary"><span
+                      class="material-icons me-2">{{benefitType.icon}}</span> {{benefitType.name}}</h3>
+                    <ul>
+                      <li class="" *ngFor="let benefit of benefitType.benefits">
+                        <h4 class="m-0 d-flex align-items-center"><span
+                          class="material-icons me-2">{{benefit.icon}}</span> {{benefit.name}}</h4>
+                      </li>
+                    </ul>
                   </li>
                 </ul>
               </div>
@@ -115,8 +115,6 @@
             </div>
           </div>
         </div>
-        <div class="row"></div>
-        <div class="row"></div>
         <div class="row">
           <ng-container>
             <ul>

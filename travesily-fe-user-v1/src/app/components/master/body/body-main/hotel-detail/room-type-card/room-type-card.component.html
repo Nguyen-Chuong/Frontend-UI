@@ -58,12 +58,14 @@
           <div class="col-md-3 col-sm-3"><h3 class="card-title mb-0"><b>Most booked</b></h3></div>
         </div>
         <div class="row bg-white p-3">
-          <p *ngIf="roomDetail.listBenefit.length>0||roomDetail.dealPercentage>0"><strong>Your price includes:</strong></p>
+          <p *ngIf="roomDetail.listBenefit?.length>0||roomDetail.dealPercentage>0"><strong>Your price includes:</strong>
+          </p>
           <div class="d-none d-sm-none d-md-block col-md-4 col-sm-0">
-            <p *ngIf="roomDetail.listBenefit.length>0" class="text-success d-flex align-items-center m-0"><span
+            <p *ngIf="roomDetail.listBenefit?.length>0" class="text-success d-flex align-items-center m-0"><span
               class="material-icons text-success">check</span>{{roomTypeBenefits}}</p>
             <p *ngIf="roomDetail.dealPercentage>0" class="text-success d-flex align-items-center m-0"><span
-              class="material-icons text-success">check</span>Book right now to save {{roomDetail.price*roomDetail.dealPercentage/100 | number:'1.0-1'}}đ</p>
+              class="material-icons text-success">check</span>Book right now to
+              save {{roomDetail.price * roomDetail.dealPercentage / 100 | number:'1.0-1'}}đ</p>
           </div>
           <div class="col-2 col-md-1 col-sm-1">
             <h2 class="card-text text-grey">{{roomType.numberOfPeople}} x <i [class]="iconMale" aria-hidden="true"></i>
