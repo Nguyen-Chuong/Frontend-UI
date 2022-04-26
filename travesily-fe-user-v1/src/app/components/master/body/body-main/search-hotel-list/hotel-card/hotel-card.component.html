@@ -1,72 +1,75 @@
 <div class="card mb-3" (click)="selectRoom()">
-  <div [ngClass]="hotel.star >= 5 ? 'border-top border-primary border-5 rounded-top' 
-    : ( hotel.star >=4 ? 'border-top border-secondary border-5 rounded-top' 
-    : ( hotel.star >=3 ? 'border-top border-success border-5 rounded-top' 
-    : ( hotel.star >=2 ? 'border-top border-danger border-5 rounded-top' 
+  <div [ngClass]="hotel.star >= 5 ? 'border-top border-primary border-5 rounded-top'
+    : ( hotel.star >=4 ? 'border-top border-secondary border-5 rounded-top'
+    : ( hotel.star >=3 ? 'border-top border-success border-5 rounded-top'
+    : ( hotel.star >=2 ? 'border-top border-danger border-5 rounded-top'
     : 'border-top border-warning border-5 rounded-top')))" class="card-body p-0">
-  <div class="row m-0">
-    <div class="col-md-4 p-0">
+    <div class="row m-0">
+      <div class="col-md-4 p-0">
         <img [src]="hotel.avatar" alt="..." class="img-fluid rounded-start">
-    </div>
-    <div class="col-md-5 border-end pt-3 ps-4">
-      <h2 class="card-title m-0">{{hotel.name}}</h2>
-      <h4 class="m-0">
-        <span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=2?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=3?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
-        <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
-      </h4>
-      <p class="card-text m-0 text-primary">{{hotel.address}}, {{hotel.district.nameDistrict}}
-        , {{hotel.district.city.nameCity}}</p>
-      <ul class="d-flex p-0">
-        <li class="fw-bold me-3 text-success border p-1 rounded" *ngFor="let benefit of benefits"><h5 class="m-0"><strong>{{benefit.name}}</strong></h5></li>
-      </ul>
-    </div>
-    <div class="col-md-3 pt-3">
-      <div *ngIf="hotel.rating.totalReview>0" class="row">
-        <div class="col-md-8">
-          <h3 class="m-0 ms-auto text-end">{{ratingTitle}}</h3>
-          <p class="text-primary text-end">{{hotel.rating.totalReview}}
-            review{{hotel.rating.totalReview > 1 ? 's' : ''}}</p>
+      </div>
+      <div class="col-md-5 border-end pt-3 ps-4">
+        <h2 class="card-title m-0">{{hotel.name}}</h2>
+        <h4 class="m-0">
+          <span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span>
+          <span class="fa fa-star {{hotel.star>=2?'checked':''}}"></span>
+          <span class="fa fa-star {{hotel.star>=3?'checked':''}}"></span>
+          <span class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
+          <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
+        </h4>
+        <p class="card-text m-0 text-primary">{{hotel.address}}, {{hotel.district.nameDistrict}}
+          , {{hotel.district.city.nameCity}}</p>
+          <ul class="list-inline p-0">
+            <li class="fw-bold me-3 text-success border p-1 rounded d-inline-block mb-3" *ngFor="let benefit of benefits"><h5
+              class="m-0"><strong>{{benefit.name}}</strong></h5></li>
+          </ul>
+      </div>
+      <div class="col-md-3 pt-3">
+        <div *ngIf="hotel.rating.totalReview>0" class="row">
+          <div class="col-md-8">
+            <h3 class="m-0 ms-auto text-end">{{ratingTitle}}</h3>
+            <p class="text-primary text-end">{{hotel.rating.totalReview}}
+              review{{hotel.rating.totalReview > 1 ? 's' : ''}}</p>
+          </div>
+          <div class="col-md-4">
+            <h3
+              class="bg-success text-center m-0 me-4 mt-2 ps-1 pe-1 rounded text-white">{{calcAvgRating(hotel.rating) | number: '1.0-1'}}</h3>
+          </div>
         </div>
-        <div class="col-md-4">
-          <h3
-            class="bg-success text-center m-0 me-4 mt-2 ps-1 pe-1 rounded text-white">{{calcAvgRating(hotel.rating) | number: '1.0-1'}}</h3>
+        <div *ngIf="hotel.salePercent > 0" class="row">
+          <h3 class="text-danger bg-light-red text-end"><strong>{{hotel.salePercent}}% OFF TODAY</strong></h3>
+        </div>
+        <div class="row">
+          <ng-container *ngIf="hotel.salePercent !== 0">
+            <h1 class="text-danger text-end mb-2">
+              <del>₫ {{hotel.price | number}}</del>
+            </h1>
+          </ng-container>
+          <h1 class="text-success text-end mb-2">₫ {{hotel.price - hotel.price * hotel.salePercent / 100 | number}}</h1>
+        </div>
+        <div class="row float-end me-3 d-block">
+          <a class="btn btn-primary btn-lg item-fullwidth" (click)="selectRoom()"><span
+            class="button-span">Select room </span><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
         </div>
       </div>
-      <div *ngIf="hotel.salePercent > 0" class="row">
-        <h3 class="text-danger bg-light-red text-end"><strong>{{hotel.salePercent}}% OFF TODAY</strong></h3>
-      </div>
-      <div class="row">
-        <ng-container *ngIf="hotel.salePercent !== 0">
-          <h1 class="text-danger text-end mb-2">
-            <del>₫ {{hotel.price | number}}</del>
-          </h1>
-        </ng-container>
-        <h1 class="text-success text-end mb-2">₫ {{hotel.price - hotel.price * hotel.salePercent / 100 | number}}</h1>
-      </div>
-      <div class="row float-end me-3 d-block">
-        <a class="btn btn-primary btn-lg item-fullwidth" (click)="selectRoom()"><span
-          class="button-span">Select room </span><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
-      </div>
     </div>
-  </div>
   </div>
   <div *ngIf="hotel.review.id" class="card-footer p-4">
     <div class="d-flex justify-content-between align-items-center">
       <div class="d-flex align-items-center">
-      <ng-container *ngIf="hotel.review.avatar">
-        <img class="profile-image me-3" [src]="hotel.review.avatar" alt="">
-      </ng-container>
-      <ng-container *ngIf="!hotel.review.avatar">
-        <div class="profile-image me-3">
-          <div id="profileImage">{{hotel.review?.username?.charAt(0).toUpperCase()}}</div>
-        </div>
-      </ng-container>
-      <h4 class="text-primary m-0">{{hotel.review.username}}</h4>
+        <ng-container *ngIf="hotel.review.avatar">
+          <img class="profile-image me-3" [src]="hotel.review.avatar" alt="">
+        </ng-container>
+        <ng-container *ngIf="!hotel.review.avatar">
+          <div class="profile-image me-3">
+            <div id="profileImage">{{hotel.review?.username?.charAt(0).toUpperCase()}}</div>
+          </div>
+        </ng-container>
+        <h4 class="text-primary m-0">{{hotel.review.username}}</h4>
       </div>
-      <h4 class="text-primary m-0"><strong>{{calcAvgRatingReview(hotel.review)}}{{(hotel.review.reviewTitle ? ' - ' : '') + hotel.review.reviewTitle}}</strong></h4>
+      <h4 class="text-primary m-0">
+        <strong>{{calcAvgRatingReview(hotel.review)}}{{(hotel.review.reviewTitle ? ' - ' : '') + hotel.review.reviewTitle}}</strong>
+      </h4>
     </div>
   </div>
 </div>

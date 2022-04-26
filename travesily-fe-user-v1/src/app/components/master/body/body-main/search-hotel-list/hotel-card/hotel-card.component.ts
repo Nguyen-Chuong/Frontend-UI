@@ -20,8 +20,8 @@ export class HotelCardComponent implements OnInit {
   ratingTitle: string = ''
 
   constructor(private hotelService: HotelService,
-    private router: Router,
-    private cryptoService: CryptoService) {
+              private router: Router,
+              private cryptoService: CryptoService) {
   }
 
   ngOnInit(): void {
@@ -36,15 +36,15 @@ export class HotelCardComponent implements OnInit {
       }
     )
     const avgRating = this.calcAvgRating(this.hotel.rating)
-    if(avgRating>=9)
+    if (avgRating >= 9)
       this.ratingTitle = 'Exceptional'
-    else if(avgRating<9 && avgRating >=8)
+    else if (avgRating < 9 && avgRating >= 8)
       this.ratingTitle = 'Very good'
-    else if(avgRating<8 && avgRating >=7)
+    else if (avgRating < 8 && avgRating >= 7)
       this.ratingTitle = 'Good'
-    else if(avgRating<7 && avgRating >=5)
+    else if (avgRating < 7 && avgRating >= 5)
       this.ratingTitle = 'Average'
-    else if(avgRating<5)
+    else if (avgRating < 5)
       this.ratingTitle = 'Below Average'
   }
 
