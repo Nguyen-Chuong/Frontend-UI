@@ -18,7 +18,7 @@
         </div>
         <a data-bs-toggle="modal" [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id"><h4
           class="text-primary mb-1">Room photos and details</h4></a>
-        <ul class="list-inline">
+        <ul class="list-inline d-none d-sm-none d-md-block">
           <li *ngFor="let item of roomDetail?.listFacility">
             <!--            <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i> {{item.facilities[0].name}}</p>-->
             <p class="m-0 d-flex align-items-center text-grey-dark-1"><span
@@ -60,18 +60,18 @@
         <div class="row bg-white p-3">
           <p *ngIf="roomDetail.listBenefit?.length>0||roomDetail.dealPercentage>0"><strong>Your price includes:</strong>
           </p>
-          <div class="d-none d-sm-none d-md-block col-md-4 col-sm-0">
+          <div class="d-none d-sm-none d-md-block col-0 col-md-4 col-sm-0">
             <p *ngIf="roomDetail.listBenefit?.length>0" class="text-success d-flex align-items-center m-0"><span
               class="material-icons text-success">check</span>{{roomTypeBenefits}}</p>
             <p *ngIf="roomDetail.dealPercentage>0" class="text-success d-flex align-items-center m-0"><span
               class="material-icons text-success">check</span>Book right now to
               save {{roomDetail.price * roomDetail.dealPercentage / 100 | number:'1.0-1'}}đ</p>
           </div>
-          <div class="col-2 col-md-1 col-sm-1">
+          <div class="col-2 col-md-1 col-sm-2">
             <h2 class="card-text text-grey">{{roomType.numberOfPeople}} x <i [class]="iconMale" aria-hidden="true"></i>
             </h2>
           </div>
-          <div class="col-4 col-md-3 col-sm-3">
+          <div class="col-6 col-md-3 col-sm-6">
             <ng-container *ngIf="roomType.dealPercentage !== 0">
               <h1 class="text-danger">
                 <del>₫ {{roomType.price | number}}</del>
@@ -79,10 +79,10 @@
             </ng-container>
             <h1 class="text-success">₫ {{roomType.price - roomType.price * roomType.dealPercentage / 100 | number}}</h1>
           </div>
-          <div class="col-1 col-md-1 col-sm-1">
+          <div class="d-none d-sm-none d-md-block col-1 col-md-1 col-sm-1">
             <h2 class="card-title bg-light-grey p-3 item-center">{{filter.roomNumber}}</h2>
           </div>
-          <div class="col-4 col-md-3 col-sm-3" *ngIf="roomType.availableRooms>=filter.roomNumber">
+          <div class="col-4 col-md-3 col-sm-4" *ngIf="roomType.availableRooms>=filter.roomNumber">
             <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()"><strong>Add
               to cart</strong>
             </button>
