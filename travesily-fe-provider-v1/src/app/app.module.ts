@@ -46,6 +46,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MyChartComponent } from './components/my-chart/my-chart.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -78,7 +79,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     NewPasswordComponent,
     UpComingBookingComponent,
     FooterComponent,
-    MyChartComponent
+    MyChartComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
