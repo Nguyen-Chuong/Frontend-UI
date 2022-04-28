@@ -11,6 +11,7 @@ import {Review} from "../../../../../_models/review";
 import {ReviewService} from "../../../../../_services/review.service";
 import {CryptoService} from "../../../../../_services/crypto.service";
 import {PageEvent} from "@angular/material/paginator";
+import {NgxSpinnerService} from "ngx-spinner";
 
 declare var $: any;
 
@@ -38,7 +39,8 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
     private router: Router,
     private storageService: StorageService,
     private reviewService: ReviewService,
-    private cryptoService: CryptoService
+    private cryptoService: CryptoService,
+    private spinner: NgxSpinnerService
   ) {
     this.currentUrl = this.router.url
   }
@@ -48,6 +50,8 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
     $('[data-toggle="popover"]').popover({
       trigger: "manual", container: 'body', placement: "bottom", sanitize: false, html: true, content: function () {
         var content = $(this).attr("data-bs-content");
@@ -107,6 +111,9 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
                 this.totalItems = reviews['data']['total']
               }
             })
+            if (rs) {
+              this.spinner.hide();
+            }
           },
           err => console.error(err)
         )
@@ -118,7 +125,6 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
       }
     )
   }
-
 
   calcAvgRating(rating: RatingAverage) {
     return (rating?.averageService + rating?.averageCleanliness + rating?.averageFacilities + rating?.averageLocation + rating?.averageValueForMoney) / 5 * 2
