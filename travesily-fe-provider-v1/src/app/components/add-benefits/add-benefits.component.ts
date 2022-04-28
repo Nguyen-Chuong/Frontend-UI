@@ -77,7 +77,8 @@ export class AddBenefitsComponent implements OnInit {
           this.benefitsService.getBenefitByType(encryptedId).pipe(first()).subscribe(res => {
             this.benefits = res['data']
           })
-        }, error: error => {
+          this.form.reset()
+        }, error: () => {
           this.notificationService.onError('Some benefit has exist in this room')
         }
       })
@@ -97,7 +98,7 @@ export class AddBenefitsComponent implements OnInit {
       .subscribe({
         next: () => {
           this.notificationService.onSuccess("Add Benefit Successfully")
-        }, error: error => {
+        }, error: () => {
           this.notificationService.onError('Some benefit has exist in this room, please try again!')
         }
       })

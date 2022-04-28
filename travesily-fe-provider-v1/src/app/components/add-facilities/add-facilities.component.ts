@@ -78,9 +78,8 @@ export class AddFacilitiesComponent implements OnInit {
             this.facilities = res['data']
           })
           this.form.reset()
-        }, error: error => {
-          console.log(error)
-          this.notificationService.onError(error['message'])
+        }, error: () => {
+          this.notificationService.onError('Some facility has exist in this room')
         }
       })
   }
@@ -99,8 +98,8 @@ export class AddFacilitiesComponent implements OnInit {
       .subscribe({
         next: () => {
           this.notificationService.onSuccess("Add Facility Successfully")
-        }, error: error => {
-          this.notificationService.onError('Some benefit has exist in this room, please try again!')
+        }, error: () => {
+          this.notificationService.onError('Some facility has exist in this room, please try again!')
         }
       })
   }
