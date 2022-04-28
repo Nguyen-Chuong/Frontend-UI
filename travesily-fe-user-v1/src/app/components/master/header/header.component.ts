@@ -4,6 +4,7 @@ import {Cart} from "../../../_models/cart";
 import {Account} from "../../../_models/account";
 import {StorageService} from "../../../_services/storage.service";
 import {AuthService} from "../../../_services/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -17,7 +18,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private cartService: CartService,
               private storage: StorageService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
     if (this.storage.authToken)
       this.authService.getProfile()
         .subscribe(account => {
@@ -32,5 +34,13 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  contact() {
+    this.router.navigate(['/feedback'])
+  }
+
+  redirectProvider() {
+    window.location.href = 'https://provider.travesily.software';
   }
 }
