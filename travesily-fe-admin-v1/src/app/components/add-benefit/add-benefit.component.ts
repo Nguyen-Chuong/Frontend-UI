@@ -43,7 +43,7 @@ export class AddBenefitComponent implements OnInit {
     let benefits = this.benefitGroup.get('benefits') as FormArray;
     benefits.push(this.formBuilder.group({
       name: [name, [Validators.required]],
-      icon: [icon, [Validators.required]]
+      icon: [icon]
     }));
     if (benefits.length === 0)
       this.isDisable = true
@@ -57,7 +57,11 @@ export class AddBenefitComponent implements OnInit {
     const listBenefitRequest = []
     for (const benefit of val.benefits) {
       const benefitRequest = new BenefitRequest()
-      benefitRequest.icon = benefit.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+      if(benefit.icon === null){
+        benefitRequest.icon = 'check'
+      }else{
+        benefitRequest.icon = benefit.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+      }
       benefitRequest.name = benefit.name
       listBenefitRequest.push(benefitRequest)
     }

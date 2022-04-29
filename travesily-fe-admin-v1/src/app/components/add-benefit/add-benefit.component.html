@@ -42,8 +42,8 @@
                         </div>
                         <div class="col-6">
                           <input type="text" formControlName="icon" class="form-control" placeholder="Benefit Icon"
-                            value="" required>
-                          <span *ngIf="benefit.get('icon').errors && benefit.get('icon').hasError('required')" class="validation">* required</span>
+                            value="">
+                          <span *ngIf="benefit.get('icon').errors" class="validation">* required</span>
 
                         </div>
                         <div class="col-2">

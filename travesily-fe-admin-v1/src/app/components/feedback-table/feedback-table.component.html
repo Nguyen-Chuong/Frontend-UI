@@ -19,14 +19,14 @@
 
   <!-- Weight Column -->
   <ng-container matColumnDef="message">
-    <th mat-header-cell *matHeaderCellDef> Message </th>
+    <th mat-header-cell *matHeaderCellDef class="text-center"> Message </th>
     <td width="400" mat-cell *matCellDef="let element"> {{element.message | slice: 0: 50}} ... </td>
   </ng-container>
 
   <!-- Symbol Column -->
   <ng-container matColumnDef="modifyDate">
     <th mat-header-cell *matHeaderCellDef> ModifyDate </th>
-    <td width="300" mat-cell *matCellDef="let element"> {{element.modifyDate}} </td>
+    <td width="300" mat-cell *matCellDef="let element"> {{element.modifyDate | date: 'dd/MM/yyyy'}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -40,6 +40,9 @@ export class NegativeBarComponent implements OnInit {
       },
       {
         name: "Images", url: "/room-image", icon: "fa fa-picture-o"
+      },
+      {
+        name: "Contact", url: "/contact", icon: "fa fa-address-book-o"
       }
     ]
   }

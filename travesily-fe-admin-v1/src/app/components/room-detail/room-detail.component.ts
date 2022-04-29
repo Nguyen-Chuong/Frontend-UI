@@ -26,6 +26,6 @@ export class RoomDetailComponent implements OnInit {
     }
   }
   open(content) {
-    this.modalService.open(content);
+    this.modalService.open(content, { size: 'lg'});
   }
 }

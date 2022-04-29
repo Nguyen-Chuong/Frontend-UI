@@ -41,7 +41,7 @@ export class AddFacilityComponent implements OnInit {
     let facilities = this.facilityGroup.get('facilities') as FormArray;
     facilities.push(this.formBuilder.group({
       name: [name, [Validators.required]],
-      icon: [icon, [Validators.required]]
+      icon: [icon]
     }));
     if (facilities.length === 0)
       this.isDisable = true
@@ -55,7 +55,11 @@ export class AddFacilityComponent implements OnInit {
     const listFacilityRequest = []
     for (const facility of val.facilities) {
       const facilityRequest = new FacilityRequest()
-      facilityRequest.icon = facility.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+      if (facility.icon === null) {
+        facilityRequest.icon = 'check'
+      } else {
+        facilityRequest.icon = facility.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+      }
       facilityRequest.name = facility.name
       listFacilityRequest.push(facilityRequest)
     }

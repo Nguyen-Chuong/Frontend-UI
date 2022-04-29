@@ -2,8 +2,9 @@
 .room{
   width: 100%;
   display: flex;
+  flex-direction: row;
   border: 1px solid rgb(89, 117, 240);
-
+  height: auto;
   &-image{
     width: 40%;
     padding: 5px;
@@ -49,11 +50,9 @@
   }
 }
 .modal-body{
-  transform: translateX(-20rem);
   background: none;
-  width: 70rem;
+  width: 100%;
   height:auto;
-  max-height: 37rem;
   padding: 0;
 }
 .modal-content{
@@ -64,8 +63,22 @@
   height: 100%;
   & img{
     object-fit: fill !important;
-    width: 70rem;
-    max-height: 37rem;
+    width: 100%;
+    max-height: 37%;
     border-radius: .5rem;
+  }
+}
+@media (max-width: 40rem) {
+  .room{
+    display: flex;
+    flex-direction: column;
+
+    &-image{
+      width: 100%;
+      height: auto;
+    }
+    &-info{
+      width: 100%;
+    }
   }
 }

@@ -16,6 +16,7 @@ import { HotelListComponent } from './components/hotel-list/hotel-list.component
 import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.component';
 import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
 import { OtpCheckerComponent } from './components/authentication/otp-checker/otp-checker.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   {
@@ -86,6 +87,10 @@ const routes: Routes = [
     path: 'room-image',
     component: RoomImageComponent
   },
+  {
+    path: 'contact',
+    component: ContactComponent
+  }
 ];
 
 @NgModule({

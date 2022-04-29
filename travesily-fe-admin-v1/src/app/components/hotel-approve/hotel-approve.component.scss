@@ -1,13 +1,13 @@
 @import "../../scss/_main";
 .hotels-approve {
   display: flex;
+  width: 100%;
 }
 
 .hotels {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%;
   margin: 3rem auto;
   &-btn-detail {
     background-color: #fff;
@@ -16,5 +16,5 @@
   }
 }
 table {
-  width: 100%;
+  width:100%;
 }

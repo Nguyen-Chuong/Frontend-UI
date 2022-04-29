@@ -5,7 +5,7 @@
 
 .review {
   display: flex;
-  height: 200px;
+  height: auto;
   border: 1px solid green;
   border-radius: 10px;
   padding: 10px;
@@ -24,12 +24,14 @@
   &-content {
     width: 70%;
     margin-left: 20px;
+    padding-bottom: 1rem;
 
     &-date {
     position:absolute;
     bottom:10px;
     right: 10px;
     color: gray;
+    padding-top: 1rem;
     }
   }
 }
