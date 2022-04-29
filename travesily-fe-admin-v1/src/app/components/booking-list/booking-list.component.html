@@ -13,7 +13,7 @@
       <!-- username Column -->
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef> Username </th>
-        <td width="150" mat-cell *matCellDef="let element"> {{element.username}} </td>
+        <td width="100" mat-cell *matCellDef="let element"> {{element.username}} </td>
       </ng-container>
 
       <!-- hotel Column -->
@@ -25,13 +25,13 @@
       <!-- hotel Column -->
       <ng-container matColumnDef="checkIn">
         <th mat-header-cell *matHeaderCellDef> Check In </th>
-        <td width="280" mat-cell *matCellDef="let element"> {{element.checkIn}} </td>
+        <td width="150" mat-cell *matCellDef="let element"> {{element.checkIn| date: 'dd/MM/yyyy'}} </td>
       </ng-container>
 
       <!-- paid Column -->
       <ng-container matColumnDef="checkOut">
         <th mat-header-cell *matHeaderCellDef> Check Out </th>
-        <td width="280" mat-cell *matCellDef="let element"> {{element.checkOut}}</td>
+        <td width="150" mat-cell *matCellDef="let element"> {{element.checkOut| date: 'dd/MM/yyyy'}}</td>
       </ng-container>
 
       <!-- status Column -->

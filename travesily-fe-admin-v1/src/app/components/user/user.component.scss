@@ -1,6 +1,7 @@
 @import "../../scss/_main";
 .user-list{
-  display: flex;
+  width: 100%;
+  min-width: 30rem;
 }
 
 .user {

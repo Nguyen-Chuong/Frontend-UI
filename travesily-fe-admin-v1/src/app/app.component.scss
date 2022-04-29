@@ -9,10 +9,17 @@
 }
 
 .body {
+  min-width: 30rem;
   margin: 0;
+  opacity: 0.97;
   width: 100%;
+  min-height: 90vh;
   &-detail {
     margin-left: 3%;
     width: 74%;
   }
+}
+
+.containers{
+  min-width: 40rem;
 }
