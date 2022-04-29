@@ -1,8 +1,5 @@
 <div *ngIf="alerts.length" class="container">
     <div *ngFor="let alert of alerts">
-<!--      <a class="me-3" (click)="removeAlert(alert)"><span class="close-btn ps-1 pe-1">&times;</span></a>-->
-<!--      <button type="button" class="btn-close" aria-label="Close" (click)="removeAlert(alert)"></button>-->
-<!--      <span [innerHTML]="alert.message"></span>-->
       <div class="alert {{cssClasses(alert)}}" role="alert">
         {{alert.message}}
       </div>

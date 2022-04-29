@@ -2,7 +2,6 @@
 <h3 class="text-orange-1"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
   You can pick up to 2 rooms within a hotel</h3>
 <h1 class="text-primary"><strong>{{hotel?.name}}</strong></h1>
-<!--<img [src]="hotel.avatar" class="img-fluid mb-3" alt="">-->
 <ul class="list-inline">
   <li *ngFor="let roomDetail of roomDetails;let i = index">
     <div *ngIf="carts[i]" class="card rounded mb-3">
