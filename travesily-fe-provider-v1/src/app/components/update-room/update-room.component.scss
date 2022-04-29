@@ -73,16 +73,12 @@
 
 .group-input {
   display: flex;
+  justify-content: space-around;
 }
 
 .select {
-  width: 45%;
-  padding-left: 2rem;
+  width: 31%;
   background-color: rgb(244, 248, 253);;
-
-  &-room {
-    margin-left: 3rem;
-  }
 }
 
 .form-submit {

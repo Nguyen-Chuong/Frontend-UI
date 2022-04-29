@@ -20,7 +20,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./room-image.component.scss']
 })
 export class RoomImageComponent implements OnInit {
-  currentTask= "Images"
+  currentTask = "Images"
   hotelControl: FormControl
   roomControl: FormControl
   form: FormGroup
@@ -38,6 +38,9 @@ export class RoomImageComponent implements OnInit {
   isUploaded = false
   isSelected = false
   overLimit = false
+  isRoom = false
+  canAdd = false
+  canDelete = false
   constructor(
     fb: FormBuilder,
     private hotelService: HotelService,
@@ -80,6 +83,7 @@ export class RoomImageComponent implements OnInit {
     const encryptedId = this.cryptoService.set('06052000', hotel.id)
     this.roomService.getAllRoomOfHotel(encryptedId).pipe(first()).subscribe(res => {
       this.roomTypes = res['data']
+      this.isRoom = false
     })
   }
 
@@ -87,14 +91,19 @@ export class RoomImageComponent implements OnInit {
     this.roomTypeId = this.cryptoService.set('06052000', room.id)
     this.roomService.getRoomDetail(this.roomTypeId).pipe(first()).subscribe(res => {
       this.roomType = res['data']
-      console.log(this.roomType)
+      this.isRoom = true
+      if(this.roomType.listImage.length > 0){
+        this.canDelete = true
+      }else{
+        this.canAdd = true
+      }
     })
   }
 
   upload(): void {
     const encryptedId = this.cryptoService.get('06052000', this.roomTypeId)
     this.imageRequest.roomTypeId = encryptedId
-    const listUrl= []
+    const listUrl = []
     for (var i = 0; i < this.selectedFiles.length; i++) {
       const file = this.selectedFiles.item(i);
       this.currentFileUpload = new FileUpload(file);
@@ -114,11 +123,11 @@ export class RoomImageComponent implements OnInit {
 
   selectFile(event): void {
     this.selectedFiles = event.target.files;
-    const totalImage = this.roomType.listImage.length +  this.selectedFiles.length
-    if(totalImage> 10){
+    const totalImage = this.roomType.listImage.length
+    if (totalImage > 10 || totalImage < 6) {
       this.overLimit = true
       this.isSelected = false
-    }else{
+    } else {
       this.overLimit = false
       this.isSelected = true
     }
@@ -130,9 +139,9 @@ export class RoomImageComponent implements OnInit {
       .pipe(first())
       .subscribe({
         next: () => {
-          this.roomService.getRoomDetail(this.roomTypeId).pipe(first()).subscribe(res => {
+          this.roomService.getRoomDetail(this.roomTypeId).pipe(first()).subscribe({next: res => {
             this.roomType = res['data']
-          })
+          }})
           this.isUploaded = false
           this.notificationService.onSuccess("Add images for room Successfully")
         }, error: error => {
@@ -147,7 +156,7 @@ export class RoomImageComponent implements OnInit {
     this.roomService.deleteImage(this.roomTypeId).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Delete successfully');
-          this.roomType = new RoomType
+        this.roomType = new RoomType
       },
       error: () => {
         this.notificationService.onError('Delete fail')

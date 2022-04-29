@@ -19,7 +19,6 @@
   }
 
   &-detail-infor {
-    padding-left: 3rem;
     width: 100%;
     padding-top: 20px;
   }
@@ -63,16 +62,12 @@
 
 .group-input {
   display: flex;
+  justify-content: space-around;
 }
 
 .select {
-  width: 45%;
-  padding: 10px;
-  background-color: rgb(244, 248, 253);
-
-  &-room {
-    margin-left: 40px;
-  }
+  width: 31%;
+  background-color: rgb(244, 248, 253);;
 }
 
 .form-submit {
