@@ -38,8 +38,11 @@ export class BenefitComponent implements OnInit {
     const benefitTypeRequest = new BenefitTypeRequest
     const val = this.formGroup.value
     benefitTypeRequest.name = val.benefitType
-    benefitTypeRequest.icon = val.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase( )
-
+    if (val.icon === null) {
+      benefitTypeRequest.icon = 'check'
+    } else {
+      benefitTypeRequest.icon = val.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+    }
     this.benefitService.addBenefitType(benefitTypeRequest).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Add successfully');

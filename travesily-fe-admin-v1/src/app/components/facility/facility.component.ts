@@ -12,7 +12,7 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./facility.component.scss']
 })
 export class FacilityComponent implements OnInit {
-  currentTask= "Facility"
+  currentTask = "Facility"
   formGroup: FormGroup;
   facilityTypes: FacilityType[]
   constructor(
@@ -35,7 +35,11 @@ export class FacilityComponent implements OnInit {
     const facilityTypeRequest = new FacilityTypeRequest
     const val = this.formGroup.value
     facilityTypeRequest.name = val.facilityType
-    facilityTypeRequest.icon = val.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase( )
+    if (val.icon === null) {
+      facilityTypeRequest.icon = 'check'
+    } else {
+      facilityTypeRequest.icon = val.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
+    }
     this.facilityService.addFacilityType(facilityTypeRequest).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Add successfully');
@@ -46,7 +50,7 @@ export class FacilityComponent implements OnInit {
       }
     })
   }
-  goToLink(url: string){
+  goToLink(url: string) {
     window.open(url, "_blank");
-}
+  }
 }
