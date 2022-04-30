@@ -11,4 +11,5 @@ export class Booking {
   username: string;
   totalDays: number;
   bookedQuantity: number
+  type: number
 }

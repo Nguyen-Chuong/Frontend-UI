@@ -14,7 +14,7 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="requestDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Date </th>
-          <td width="200" mat-cell *matCellDef="let element"> {{element.requestDate}} </td>
+          <td width="280" mat-cell *matCellDef="let element"> {{element.requestDate}} </td>
         </ng-container>
 
         <!-- Symbol Column -->
@@ -24,7 +24,7 @@
         </ng-container>
 
         <ng-container matColumnDef="request">
-          <th class="text-center" mat-header-cell *matHeaderCellDef mat-sort-header> Request </th>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 2rem;"> Request </th>
           <td  width="200" mat-cell *matCellDef="let element">
             <button *ngIf="element.status === 1" class="btn btn-outline-success" (click)="acceptHotel(element.id)">Accept</button>
             <button *ngIf="element.status === 1" class="btn btn-outline-danger " (click)="denyHotel(element.id)">Deny</button>
@@ -41,7 +41,7 @@
               </select>
           </th>
           <td width="200" mat-cell *matCellDef="let element">
-            <button class="hotels-btn-detail" (click)="openHotelDetail(element.hotel.id)">Detail>></button>
+            <button class="btn btn-outline-primary" (click)="openHotelDetail(element.hotel.id)">Detail>></button>
           </td>
         </ng-container>
 

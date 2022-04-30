@@ -57,7 +57,6 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UpdateVipComponent } from './components/update-vip/update-vip.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { ImportFileComponent } from './components/import-file/import-file.component';
-import { BookingDetailCardComponent } from './components/booking-detail/booking-detail-card/booking-detail-card.component';
 import { ImageSliderComponent } from './components/image-slider/image-slider.component';
 import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -98,7 +97,6 @@ import { EditCouponComponent } from './components/edit-coupon/edit-coupon.compon
     UpdateVipComponent,
     VipInfoComponent,
     ImportFileComponent,
-    BookingDetailCardComponent,
     ImageSliderComponent,
     ImagesCarouselComponent,
     FooterComponent,

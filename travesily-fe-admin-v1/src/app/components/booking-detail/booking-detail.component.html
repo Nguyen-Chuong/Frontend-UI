@@ -19,13 +19,6 @@
               <a>
                 <h2 class="text-primary">{{booking.hotel?.name}}</h2>
               </a>
-              <h2>
-                <span class="fa fa-star {{booking.hotel?.star>=1?'checked':''}}"></span>
-                <span class="fa fa-star {{booking.hotel?.star>=2?'checked':''}}"></span>
-                <span class="fa fa-star {{booking.hotel?.star>=3?'checked':''}}"></span>
-                <span class="fa fa-star {{booking.hotel?.star>=4?'checked':''}}"></span>
-                <span class="fa fa-star {{booking.hotel?.star>=5?'checked':''}}"></span>
-              </h2>
               <h3 class="text-blue-1">{{booking.hotel?.address}}, {{booking.hotel?.district.nameDistrict}}
                 , {{booking.hotel?.district.city.nameCity}}</h3>
             </div>
@@ -69,7 +62,7 @@
       </div>
       <div class="row">
         <div class="col-md-8 border-end">
-          <div class="card-body row border-bottom">
+          <div class="card-body row border-bottom" style="margin: 0px;">
             <div class="col-md-9">
               <h3>Total Price</h3>
             </div>
@@ -77,19 +70,17 @@
               <h3>{{booking.totalPaid | number}} đ</h3>
             </div>
           </div>
-          <div class="card-body row border-bottom">
-            <p>Payment method</p>
-
+          <div class="card-body row" style="margin: 0px;">
+            <div class="col-md-9">
+              <h3>Payment method</h3>
+            </div>
+            <div class="col-md-3">
+              <h3 *ngIf="booking.type == 2">VN Pay</h3>
+              <h3 *ngIf="booking.type == 1">COD</h3>
+            </div>
           </div>
-          <div class="card-body row">
-            <p>Earn from this trip</p>
-          </div>
-        </div>
-        <div class="col-md-4">
-
         </div>
       </div>
-
     </div>
   </div>
 </div>

@@ -11,7 +11,7 @@
 
         <!-- Position Column -->
         <ng-container matColumnDef="username">
-          <th mat-header-cell *matHeaderCellDef> manager </th>
+          <th mat-header-cell *matHeaderCellDef> Manager </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.username.slice(2)}} </td>
         </ng-container>
 
@@ -28,7 +28,7 @@
         </ng-container>
 
         <ng-container matColumnDef=" ">
-          <th mat-header-cell *matHeaderCellDef>  </th>
+          <th mat-header-cell *matHeaderCellDef style="padding-left: 1rem;"> Action </th>
           <td width="200" mat-cell *matCellDef="let element">
             <button class="btn btn-outline-danger" (click)="deleteManager(element.id)">Remove</button>
           </td>

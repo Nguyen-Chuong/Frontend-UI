@@ -9,7 +9,10 @@
     margin: 3rem auto;
   }
 }
-
 table {
   width: 100%;
+}
+.mat-row:hover{
+  background-color: rgb(196, 194, 194);
+  cursor: pointer;
 }

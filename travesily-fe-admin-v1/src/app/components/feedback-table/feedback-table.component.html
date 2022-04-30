@@ -14,12 +14,12 @@
   <!-- Weight Column -->
   <ng-container matColumnDef="senderName">
     <th mat-header-cell *matHeaderCellDef> Sender Name </th>
-    <td width="100" mat-cell *matCellDef="let element"> {{element.senderName.slice(2)}} </td>
+    <td width="200" mat-cell *matCellDef="let element"> {{element.senderName.slice(2)}} </td>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="message">
-    <th mat-header-cell *matHeaderCellDef class="text-center"> Message </th>
+    <th mat-header-cell *matHeaderCellDef > Message </th>
     <td width="400" mat-cell *matCellDef="let element"> {{element.message | slice: 0: 50}} ... </td>
   </ng-container>
 
