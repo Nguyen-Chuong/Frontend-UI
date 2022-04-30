@@ -14,7 +14,7 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="requestDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Date </th>
-          <td width="280" mat-cell *matCellDef="let element"> {{element.requestDate}} </td>
+          <td width="280" mat-cell *matCellDef="let element"> {{element.requestDate| date:'medium'}} </td>
         </ng-container>
 
         <!-- Symbol Column -->

@@ -59,6 +59,15 @@ export class ResponseComponent implements OnInit {
     this.feedbackService.sendResponse(this.response).pipe(first()).subscribe({
       next: () => {
         this.sendMailResponseFeedback(this.cryptoService.set('06052000', this.feedback.email), feedBackRequest)
+        this.feedbackService.getResponseByFeedbackId(this.feedbackId).pipe(first()).subscribe(
+          rs => {
+            this.responses = rs['data']
+            if (this.responses[0].adminId === Number(localStorage.getItem('admin-id')) || this.formGroup.value.message_response === null) {
+              this.isAdmin = true
+            }
+          }
+        )
+        this.formGroup.reset()
       },
       error: err => {
         this.notificationService.onError('Send response fail ' + err)
@@ -70,7 +79,6 @@ export class ResponseComponent implements OnInit {
     this.feedbackService.sendMailResponseFeedback(email, feedBackRequest).pipe(first()).subscribe({
       next: () => {
         this.notificationService.onSuccess('Send response successfully');
-        window.location.reload()
       },
       error: err => {
         this.notificationService.onError('Send response fail ' + err)

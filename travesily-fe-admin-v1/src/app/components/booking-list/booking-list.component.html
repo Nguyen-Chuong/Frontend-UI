@@ -40,7 +40,7 @@
           Status
         </th>
 
-        <td width="100" mat-cell *matCellDef="let element">
+        <td width="100" mat-cell *matCellDef="let element" class="{{element.status == 3 ? 'text-danger' : element.status == 1 ? 'text-primary' :  'text-success'}}">
           {{element.status == 3 ? 'Cancelled' : element.status == 1 ? 'Processing' :  'Completed'}}
         </td>
       </ng-container>

@@ -1,59 +1,7 @@
 @import "../../scss/_main";
-.response {
-  display: flex;
-  &-detail {
-    box-shadow: 20px 20px 50px 15px grey;
-    border-radius: 10px;
-    background-color: aliceblue;
-    width: 100%;
-    margin: 3rem auto;
-    text-align: center;
 
-    & form {
-      margin-left: 5rem;
-    }
-  }
-  &-list textarea {
-    height: auto;
-  }
 
-  &-button {
-    background: rgb(99, 39, 120);
-    box-shadow: none;
-    border: none;
-
-    &:hover {
-      color: #3513ca;
-      background: #ede8ee;
-      box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
-    }
-  }
-}
-.form-control:focus {
-  box-shadow: none;
-  border-color: #ba68c8;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
-
-.labels {
-  font-size: 15px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-}
-
-.message-response {
-  border-radius: 5px;
-  margin-top: 15px;
-  width: 70%;
-}
-
-.admin-response {
-  background-color: aqua;
-  float: right;
-  margin-bottom: 15px;
+.bg-admin {
+  background-color: rgba(59, 151, 225, 0.37);
 }
 

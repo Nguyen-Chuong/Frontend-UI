@@ -1,41 +1,47 @@
-<div class="response">
-  <div class="response-detail">
-    <form class="col-md-10 border-right text-center" [formGroup]="formGroup" (ngSubmit)="saveResponse()">
-      <div class="p-3 py-5">
-        <h1>Response User</h1>
-        <div class="row mt-2">
-          <div class="col-md-6"><label class="labels">Sender Name</label>
-            <input type="text" class="form-control" value={{feedback.senderName.slice(2)}} readonly>
-          </div>
-          <div class="col-md-6"><label class="labels">Type</label>
-            <input type="text" class="form-control" value={{feedback.type}} readonly>
-          </div>
-        </div>
-        <div class="col-md-12"><label class="labels">Modify Date</label>
-          <input type="text" class="form-control" value={{feedback.modifyDate}} disabled>
-        </div>
-        <div class="col-md-12"><label class="labels">Message</label>
-          <textarea rows="5" type="text" class="form-control message" value={{feedback.message}} readonly>
+<div class="card mt-5">
+  <div class="card-header">
+    <h1><strong>Response User</strong></h1>
+    <div class="row mt-2">
+      <div class="col-md-6"><h2 class="mb-0">Sender:</h2>
+        <h2 class="text-primary">{{feedback.senderName.slice(2)}}</h2>
+      </div>
+      <div class="col-md-6"><h2 class="mb-0">Feedback type</h2>
+        <h2 class="text-primary">{{feedback.type==1?'Complain':feedback.type==2?'Refund':'Others'}}</h2>
+      </div>
+    </div>
+    <div class="col-md-12"><h2 class="mb-0">Modify Date</h2>
+      <h2 class="text-primary">{{feedback.modifyDate| date:'medium'}}</h2>
+    </div>
+    <div class="col-md-12 mb-3"><h2 class="mb-0">Message</h2>
+      <textarea rows="5" type="text" class="form-control message" value={{feedback.message}} readonly>
           </textarea>
-        </div>
-        <div class="response-list" *ngFor="let response of responses">
-          <div class="col-md-12">
-            <textarea [rows]="response.message.length/60 + 1" type="text"
-              [ngClass]="{'admin-response': response.sendBy == 1}" class="form-control message-response"
-              value={{response.message}} readonly>
-            </textarea>
+    </div>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="formGroup" (ngSubmit)="saveResponse()">
+        <ul class="list-inline">
+        <li *ngFor="let res of responses">
+          <div class="col-md-10 mb-3 {{res.sendBy===1?'ms-auto':'me-auto'}}">
+            <div class="card {{res.sendBy === 2?'bg-white: ':'bg-admin'}}">
+              <div class="card-body">
+                <p class="text-secondary text-start">{{res.modifyDate | date:'short'}}</p>
+                <p class="text-start"><strong>{{res.sendBy === 1 ? 'Admin: ' : 'User: '}}</strong> {{res.message}}</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </li>
+        </ul>
         <br>
         <div class="col-md-12">
           <textarea rows="5" type="text" placeholder="Admin response" class="form-control message"
-            formControlName="message_response" required>
+                    formControlName="message_response" required>
           </textarea>
         </div>
         <div class="mt-5 text-center">
-          <button class="btn btn-primary response-button" type="submit" [disabled]="formGroup.value.message_response === '' || isAdmin">Save Response</button>
+          <button class="btn btn-primary response-button" type="submit"
+                  [disabled]="formGroup.value.message_response === '' || isAdmin">Save Response
+          </button>
         </div>
-      </div>
     </form>
   </div>
 </div>
