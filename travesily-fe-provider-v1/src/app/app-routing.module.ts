@@ -17,7 +17,7 @@ import { HotelDetailComponent } from './components/hotel-detail/hotel-detail.com
 import { NewPasswordComponent } from './components/authentication/new-password/new-password.component';
 import { OtpCheckerComponent } from './components/authentication/otp-checker/otp-checker.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 const routes: Routes = [
   {
