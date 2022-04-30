@@ -67,9 +67,7 @@ $fa-font-path: "~font-awesome/fonts";
 .menu-icon {
   transition: all 0.5s;
   list-style: none;
-  padding: 1rem 1rem 1rem 1rem;
   width: 3rem;
-  color: rgb(0, 0, 0);
   height: 3rem;
   cursor: pointer;
   border-radius: 5px;
@@ -77,8 +75,6 @@ $fa-font-path: "~font-awesome/fonts";
     width: 1.4rem;
   }
   &:hover {
-    color: #3f51b5;
-    background-color: #fff;
     box-shadow: 20px 20px 50px 15px grey;
   }
 }
