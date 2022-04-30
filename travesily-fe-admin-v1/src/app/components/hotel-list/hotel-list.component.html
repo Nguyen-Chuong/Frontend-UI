@@ -14,7 +14,7 @@
         <!-- Weight Column -->
         <ng-container matColumnDef="lowestPrice">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Lowest Price </th>
-          <td width="200" mat-cell *matCellDef="let element"> {{element.price | number:'1.0-0'}} </td>
+          <td width="200" mat-cell *matCellDef="let element"> {{element.price | number:'1.0-0'}} đ</td>
         </ng-container>
 
         <ng-container matColumnDef="address">
@@ -40,7 +40,7 @@
             </select>
           </th>
           <td width="200" mat-cell *matCellDef="let element">
-            <button class="btn btn-outline-primary" (click)="openHotelDetail(element.id)">Detail>></button>
+            <button class="btn btn-outline-primary" (click)="openHotelDetail(element.id)">Detail</button>
           </td>
         </ng-container>
 

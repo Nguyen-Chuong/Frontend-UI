@@ -35,7 +35,6 @@ export class UserDetailComponent implements OnInit {
       rs => {
         this.feedbacks = rs['data']
         if (!this.feedbacks || this.feedbacks.length === 0)
-
           this.isNoData = true
         else
           this.isNoData = false
