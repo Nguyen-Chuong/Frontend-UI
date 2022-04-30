@@ -47,6 +47,7 @@ import { MyChartComponent } from './components/my-chart/my-chart.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContactComponent } from './components/contact/contact.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +81,8 @@ import { ContactComponent } from './components/contact/contact.component';
     UpComingBookingComponent,
     FooterComponent,
     MyChartComponent,
-    ContactComponent
+    ContactComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

@@ -4,6 +4,7 @@ import {HotelService} from 'src/app/_services/hotel.service';
 import {first} from 'rxjs';
 import {ChartModel} from 'src/app/_models/chart';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import { NgxSpinnerService } from "ngx-spinner";
 
 Chart.register(...registerables);
 
@@ -22,10 +23,13 @@ export class MyChartComponent implements OnInit {
   totalRevenue: number = 0
 
   constructor(private hotelService: HotelService,
-    private fb: FormBuilder) {
+    private fb: FormBuilder, private spinner: NgxSpinnerService) {
   }
 
   ngOnInit() {
+     /** spinner starts on init */
+     this.spinner.show();
+
     this.form = this.fb.group({
       from: [this.lastWeekDate, [Validators.required]],
       to: [this.todayDate, [Validators.required]]
@@ -36,6 +40,10 @@ export class MyChartComponent implements OnInit {
         this.totalBooking = this.chart.dataBooking.reduce((a, b) => a + b) / 1000
         this.totalRevenue = this.chart.dataAmount.reduce((a, b) => a + b) * 1000
         this.drawChart()
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
   }

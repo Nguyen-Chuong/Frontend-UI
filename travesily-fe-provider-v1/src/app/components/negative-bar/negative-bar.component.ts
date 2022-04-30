@@ -21,6 +21,9 @@ export class NegativeBarComponent implements OnInit {
   ngOnInit(): void {
     this.negativeBar = [
       {
+        name: "Dashboard", url: "/dashboard", icon: "fa fa-dashboard"
+      },
+      {
         name: "My Hotel", url: "/hotel-list", icon: "fa fa-hotel"
       },
       {
