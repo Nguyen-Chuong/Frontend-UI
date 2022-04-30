@@ -41,7 +41,7 @@
         </th>
 
         <td width="100" mat-cell *matCellDef="let element">
-          {{element?.status == 0 ? 'Cancelled' : element?.status == 1 ? 'Processing' : 'Completed'}}
+          {{element.status == 3 ? 'Cancelled' : element.status == 1 ? 'Processing' :  'Completed'}}
         </td>
       </ng-container>
 

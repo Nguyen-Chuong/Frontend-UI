@@ -42,9 +42,7 @@
                         </div>
                         <div class="col-6">
                           <input type="text" formControlName="icon" class="form-control" placeholder="Facility Icon"
-                            value="" required>
-                          <span *ngIf="facility.get('icon').errors && facility.get('icon').hasError('required')" class="validation">* required</span>
-
+                            value="">
                         </div>
                         <div class="col-2">
                           <svg (click)="deleteFacility(i)"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
