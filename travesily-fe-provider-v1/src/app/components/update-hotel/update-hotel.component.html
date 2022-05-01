@@ -54,6 +54,7 @@
           </mat-form-field>
         </div>
       </div>
+      <img [src]="hotel?.avatar" class="card-img-top rounded" style="margin: 0 auto; width: 90%;" alt="Hotel Image">
       <div class="addAvatar">
         <label>Hotel avatar</label><br />
         <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)">
