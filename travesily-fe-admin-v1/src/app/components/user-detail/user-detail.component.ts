@@ -12,8 +12,8 @@ import { BookingService } from 'src/app/_services/booking.service';
   styleUrls: ['./user-detail.component.scss']
 })
 export class UserDetailComponent implements OnInit {
-  bookings: Booking[]
-  feedbacks: Feedback[]
+  bookings: Booking[] = []
+  feedbacks: Feedback[] = []
   username: string
   isNoData = false
   constructor(

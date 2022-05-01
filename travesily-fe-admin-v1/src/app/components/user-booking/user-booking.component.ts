@@ -10,7 +10,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
   styleUrls: ['./user-booking.component.scss']
 })
 export class UserBookingComponent {
-  @Input() bookings: Booking[]
+  @Input() bookings: Booking[] = []
   dataSource
   constructor(private router: Router,
     private cryptoService: CryptoService) {

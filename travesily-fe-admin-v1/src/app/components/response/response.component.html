@@ -3,17 +3,17 @@
     <h1><strong>Response User</strong></h1>
     <div class="row mt-2">
       <div class="col-md-6"><h2 class="mb-0">Sender:</h2>
-        <h2 class="text-primary">{{feedback.senderName.slice(2)}}</h2>
+        <h2 class="text-primary">{{senderName.slice(2)}}</h2>
       </div>
       <div class="col-md-6"><h2 class="mb-0">Feedback type</h2>
-        <h2 class="text-primary">{{feedback.type==1?'Complain':feedback.type==2?'Refund':'Others'}}</h2>
+        <h2 class="text-primary">{{type==1?'Complain':type==2?'Refund':'Others'}}</h2>
       </div>
     </div>
     <div class="col-md-12"><h2 class="mb-0">Modify Date</h2>
-      <h2 class="text-primary">{{feedback.modifyDate| date:'medium'}}</h2>
+      <h2 class="text-primary">{{modifyDate| date:'medium'}}</h2>
     </div>
     <div class="col-md-12 mb-3"><h2 class="mb-0">Message</h2>
-      <textarea rows="5" type="text" class="form-control message" value={{feedback.message}} readonly>
+      <textarea rows="5" type="text" class="form-control message" value={{message}} readonly>
           </textarea>
     </div>
   </div>

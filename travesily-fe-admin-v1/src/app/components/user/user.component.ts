@@ -15,7 +15,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class UserComponent {
   currentTask = "Users"
-  users: Account[]
+  users: Account[] = []
   dataSource
   pageSize: number = 0
   total: number
@@ -30,12 +30,13 @@ export class UserComponent {
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((param) => {
-      this.username = param['searchText'].slice(1, -1);
+      this.username = param['searchText'];
     })
     /** spinner starts on init */
     this.spinner.show();
     
     if (this.username) {
+      this.username.slice(1, -1)
       this.userService.searchUserByUsername(this.username).pipe(first()).subscribe(
         rs => {
           this.users = rs['data']
