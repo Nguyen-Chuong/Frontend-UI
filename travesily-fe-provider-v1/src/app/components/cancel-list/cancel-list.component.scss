@@ -1,0 +1,11 @@
+@import "../../shared/scss/main";
+* {
+  font-style: inherit;
+  font-size: 0.9rem;
+}
+table{
+  width: 100%;
+}
+.mat-row:hover{
+  cursor: pointer;
+}

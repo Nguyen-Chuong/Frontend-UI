@@ -58,4 +58,9 @@ export class HotelService {
   deleteHotel(id: number) {
     return this.http.patch(`${this.baseUrl}/ban-hotel/${id}`, '');
   }
+
+  getRoomDetailByRoomTypeId(roomTypeId: string) {
+    const params = new HttpParams().append('roomTypeId', roomTypeId);
+    return this.http.get(`${this.baseUrl}/public/room-detail`, {params: params, withCredentials: false});
+  }
 }

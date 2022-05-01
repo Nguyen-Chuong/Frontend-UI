@@ -1,9 +1,21 @@
 <div class="hotel-detail">
+  <ngx-spinner type="ball-fussion">
+    <p style="font-size: 20px; color: white;">Loading...</p>
+  </ngx-spinner>
   <div class="hotel">
     <mat-tab-group mat-align-tabs="start">
-      <mat-tab label="Bookings">
+      <mat-tab label="Completed">
         <app-booking [hotelId]="hotelId"></app-booking>
       </mat-tab>
+      
+      <mat-tab label="Up Coming">
+        <app-up-coming-booking [bookings]="upComingBookings" ></app-up-coming-booking>
+      </mat-tab>
+
+      <mat-tab label="Cancel">
+        <app-cancel-list [bookings]="cancelList" ></app-cancel-list>
+      </mat-tab>
+      
       <mat-tab label="Review">
         <div class="review-card" *ngFor="let review of reviews">
           <app-review [review]="review"></app-review>
@@ -16,9 +28,6 @@
           <span class="text-center text-danger">
             This hotel don't have any review yet!</span>
         </div>
-      </mat-tab>
-      <mat-tab label="Up Coming">
-        <app-up-coming-booking [bookings]="upComingBookings" ></app-up-coming-booking>
       </mat-tab>
     </mat-tab-group>
   </div>

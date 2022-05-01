@@ -14,6 +14,11 @@ export class RoomService {
   newRoom(room: Room) {
     return this.http.post(`${this.baseUrl}/add-room`, { ...room });
   }
+  
+  getRoomDetailByRoomTypeId(roomTypeId: string) {
+    const params = new HttpParams().append('roomTypeId', roomTypeId);
+    return this.http.get(`${this.baseUrl}/public/room-detail`, {params: params, withCredentials: false});
+  }
 
   getAllRoomOfHotel(hotelId: any) {
     const params = new HttpParams().append('hotelId', hotelId);

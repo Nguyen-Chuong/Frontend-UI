@@ -34,7 +34,7 @@ export class UpdateRoomComponent implements OnInit {
   rooms: Room[]
   room: Room = new Room
   folder = "roomType"
-
+  isSelectedRoom = false
   constructor(
     private fb: FormBuilder,
     private hotelService: HotelService,
@@ -100,6 +100,7 @@ export class UpdateRoomComponent implements OnInit {
     const encryptedId = this.cryptoService.set('06052000', hotel.id)
     this.roomService.getAllRoomOfHotel(encryptedId).pipe(first()).subscribe(res => {
       this.rooms = res['data']
+      this.isSelectedRoom = false
     })
   }
 
@@ -125,6 +126,7 @@ export class UpdateRoomComponent implements OnInit {
         })
       })
     }
+    this.isSelectedRoom = true
   }
 
   disableRoom() {

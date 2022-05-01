@@ -1,5 +1,5 @@
 
 export class City {
- id: number
- nameCity: string
+  id: number
+  nameCity: string
 }

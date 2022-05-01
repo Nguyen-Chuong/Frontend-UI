@@ -18,6 +18,7 @@ import { NewPasswordComponent } from './components/authentication/new-password/n
 import { OtpCheckerComponent } from './components/authentication/otp-checker/otp-checker.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
 
 const routes: Routes = [
   {
@@ -95,6 +96,11 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent
+  }
+  ,
+  {
+    path: 'booking-detail',
+    component: BookingDetailComponent
   }
 ];
 

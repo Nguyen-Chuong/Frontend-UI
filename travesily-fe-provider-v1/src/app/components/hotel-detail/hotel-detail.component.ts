@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingsService } from 'src/app/_services/bookings.service';
 import { PageEvent } from '@angular/material/paginator';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-hotel-detail',
@@ -20,12 +21,16 @@ export class HotelDetailComponent implements OnInit {
   bookings: Booking[]
   reviews: Review[]
   upComingBookings: Booking[]
+  cancelList: Booking[]
   criteria: number = 1
   constructor(private bookingsService: BookingsService,
     private reviewsService: ReviewsService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
     this.route.queryParams.subscribe((param) => {
       this.hotelId = param['id'].slice(1, -1);
     })
@@ -40,14 +45,21 @@ export class HotelDetailComponent implements OnInit {
     this.bookingsService.getAllBookingUpComingOfHotel(this.hotelId).pipe(first()).subscribe(
       rs => {
         this.upComingBookings = rs['data']['items']
-
       })
 
+    this.bookingsService.getAllBookingCancelOfHotel(this.hotelId).pipe(first()).subscribe(
+      rs => {
+        this.cancelList = rs['data']['items']
+      })
 
     this.reviewsService.getReviewOfHotel(this.hotelId, 0, 5, this.criteria).pipe(first()).subscribe(
       rs => {
         this.reviews = rs['data']['items']
-        this.pageSize = rs['data']['pageSize']
+        this.pageSize = rs['data']['pageSize']       
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
   }
