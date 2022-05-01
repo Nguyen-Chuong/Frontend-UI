@@ -11,7 +11,7 @@ import { BookingsService } from 'src/app/_services/bookings.service';
 export class BookingDetailComponent implements OnInit {
 
   booking: Booking = new Booking()
-
+  bookingDetails: Booking[]
   constructor(private bookingService: BookingsService,
     private activatedRoute: ActivatedRoute  ) {
   }
@@ -19,6 +19,11 @@ export class BookingDetailComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe(params => {
       const encryptedId = params['bookingId']
+      this.bookingService.getBookingDetail(encryptedId).subscribe(
+        rs => {
+          this.bookingDetails = rs['data']
+        }
+      )
       this.bookingService.getBookingById(encryptedId).subscribe(
         rs => {
           this.booking = rs['data']

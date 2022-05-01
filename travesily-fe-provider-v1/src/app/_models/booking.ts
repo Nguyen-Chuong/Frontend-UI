@@ -12,4 +12,5 @@ export class Booking {
     totalDays: number;
     bookedQuantity: number
     type: number
+    roomTypeId: number
 }

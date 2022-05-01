@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Booking} from "../../../../../../_models/booking";
 import {Router} from "@angular/router";
 import {CryptoService} from "../../../../../../_services/crypto.service";
-
 @Component({
   selector: 'app-booking-card',
   templateUrl: './booking-card.component.html',

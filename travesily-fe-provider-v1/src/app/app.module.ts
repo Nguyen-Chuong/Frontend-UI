@@ -49,6 +49,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ContactComponent } from './components/contact/contact.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
+import { CancelListComponent } from './components/cancel-list/cancel-list.component';
+import { BookingDetailCardComponent } from './components/booking-detail/booking-detail-card/booking-detail-card.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +86,9 @@ import { BookingDetailComponent } from './components/booking-detail/booking-deta
     MyChartComponent,
     ContactComponent,
     DashboardComponent,
-    BookingDetailComponent
+    BookingDetailComponent,
+    CancelListComponent,
+    BookingDetailCardComponent
   ],
   imports: [
     BrowserModule,

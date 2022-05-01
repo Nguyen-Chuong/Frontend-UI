@@ -11,19 +11,28 @@ export class BookingsService {
 
   getBookingOfHotel(hotelId: any, page: number, pageSize: number) {
     const params = new HttpParams()
-      .append('hotelId', hotelId).append('status', 0)
+      .append('hotelId', hotelId).append('status', 2)
       .append('page', page)
       .append('pageSize', pageSize);
     return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
   }
+  getBookingDetail(bookingId: string) {
+    const params = new HttpParams().append('bookingId', bookingId);
+    return this.http.get(`${this.baseUrl}/booking-detail`, { params: params });
+  }
 
   getAllBookingOfHotel(hotelId: any) {
-    const params = new HttpParams().append('hotelId', hotelId).append('status', 0);
+    const params = new HttpParams().append('hotelId', hotelId).append('status', 2);
     return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
   }
 
   getAllBookingUpComingOfHotel(hotelId: any) {
     const params = new HttpParams().append('hotelId', hotelId).append('status', 1);
+    return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
+  }
+
+  getAllBookingCancelOfHotel(hotelId: any) {
+    const params = new HttpParams().append('hotelId', hotelId).append('status', 3);
     return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
   }
 

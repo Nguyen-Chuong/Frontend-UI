@@ -20,6 +20,7 @@ export class HotelDetailComponent implements OnInit {
   bookings: Booking[]
   reviews: Review[]
   upComingBookings: Booking[]
+  cancelList: Booking[]
   criteria: number = 1
   constructor(private bookingsService: BookingsService,
     private reviewsService: ReviewsService,
@@ -43,6 +44,11 @@ export class HotelDetailComponent implements OnInit {
 
       })
 
+    this.bookingsService.getAllBookingCancelOfHotel(this.hotelId).pipe(first()).subscribe(
+      rs => {
+        this.cancelList = rs['data']['items']
+
+      })
 
     this.reviewsService.getReviewOfHotel(this.hotelId, 0, 5, this.criteria).pipe(first()).subscribe(
       rs => {
