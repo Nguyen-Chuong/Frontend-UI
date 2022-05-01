@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BookingDetail } from 'src/app/_models/booking-detail';
 import { Room } from 'src/app/_models/room';
 import { CryptoService } from 'src/app/_services/crypto.service';
@@ -19,7 +19,6 @@ export class BookingDetailCardComponent implements OnInit {
   constructor(private roomTypeService: RoomService,
     private cryptoService: CryptoService,
     config: NgbModalConfig,
-    private modalService: NgbModal,
     private spinner: NgxSpinnerService) {
     config.keyboard = false;
   }
@@ -38,12 +37,7 @@ export class BookingDetailCardComponent implements OnInit {
     }
   }
 
-  open(content) {
-    this.modalService.open(content, { size: 'lg' });
-  }
-
   filterFacility(ele) {
     return ele['name']
   }
-
 }
