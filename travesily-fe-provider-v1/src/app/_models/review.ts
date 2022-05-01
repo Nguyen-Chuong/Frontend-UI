@@ -9,7 +9,7 @@ export class Review {
   reviewTitle: string
   service: number
   reviewId: number
-  valueMoney: number
+  valueForMoney: number
   booking: Booking
   reviewDate: Date
 }

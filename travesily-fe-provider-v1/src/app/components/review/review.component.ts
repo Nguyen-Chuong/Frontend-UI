@@ -13,13 +13,15 @@ export class ReviewComponent implements OnInit {
   facilities: number
   location: number
   service: number
+  valueMoney: number
   constructor() { }
 
   ngOnInit(): void {
-    this.cleanliness = this.review.cleanliness * 10
-    this.facilities = this.review.facilities * 10
-    this.location = this.review.location * 10
-    this.service = this.review.service * 10
+    this.cleanliness = this.review.cleanliness * 20
+    this.facilities = this.review.facilities * 20
+    this.location = this.review.location * 20
+    this.service = this.review.service * 20
+    this.valueMoney = this.review.valueForMoney * 20
   }
 
 }

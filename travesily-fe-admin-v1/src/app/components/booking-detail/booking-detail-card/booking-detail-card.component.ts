@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import '@angular/localize/init';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BookingDetail } from 'src/app/_models/booking-detail';
 import { Room } from 'src/app/_models/room';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { HotelService } from 'src/app/_services/hotel.service';
+
 @Component({
   selector: 'app-booking-detail-card',
   templateUrl: './booking-detail-card.component.html',
