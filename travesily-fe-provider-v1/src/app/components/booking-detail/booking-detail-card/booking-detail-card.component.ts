@@ -1,10 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
-import '@angular/localize/init';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { BookingDetail } from 'src/app/_models/booking-detail';
 import { Room } from 'src/app/_models/room';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { RoomService } from 'src/app/_services/room.service';
+import { NgxSpinnerService } from "ngx-spinner";
+
 @Component({
   selector: 'app-booking-detail-card',
   templateUrl: './booking-detail-card.component.html',
@@ -18,7 +19,8 @@ export class BookingDetailCardComponent implements OnInit {
   constructor(private roomTypeService: RoomService,
     private cryptoService: CryptoService,
     config: NgbModalConfig,
-    private modalService: NgbModal) {
+    private modalService: NgbModal,
+    private spinner: NgxSpinnerService) {
     config.keyboard = false;
   }
 
@@ -27,6 +29,10 @@ export class BookingDetailCardComponent implements OnInit {
       this.roomTypeService.getRoomDetailByRoomTypeId(this.cryptoService.set('06052000', this.bookingDetail?.roomTypeId)).subscribe(
         rs => {
           this.roomDetail = rs['data']
+          // check if data is loaded, hide it
+          if(rs){
+            this.spinner.hide();
+          }
         }
       )
     }
