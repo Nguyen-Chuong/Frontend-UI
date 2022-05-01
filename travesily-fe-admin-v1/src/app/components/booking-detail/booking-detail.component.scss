@@ -1,5 +1,6 @@
 @import "../../scss/_main";
-
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
 .container{
   width: 100%;
   margin-top: 3rem;
