@@ -33,7 +33,9 @@ export class HotelApproveComponent implements OnInit {
     public dialog: MatDialog,
     private cryptoService: CryptoService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {
+    
+   }
 
   displayedColumns: string[] = ['hotelName', 'requestDate', 'providerName', 'request', ' '];
   ngOnInit(): void {

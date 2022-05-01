@@ -12,7 +12,7 @@ import { Account } from 'src/app/_models/account';
 export class HeaderComponent implements OnInit {
 
   account: Account = new Account;
-  username: string
+  username: string = ''
   isLogin = false
   ngOnInit(): void {
 

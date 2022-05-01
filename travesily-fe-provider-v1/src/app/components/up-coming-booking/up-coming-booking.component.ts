@@ -13,7 +13,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
 })
 export class UpComingBookingComponent{
 
-  @Input() bookings: Booking[]
+  @Input() bookings: Booking[] = []
   dataSource
   constructor(private bookingService: BookingsService,
     private notificationService: NotificationService,

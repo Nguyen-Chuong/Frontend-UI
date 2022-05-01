@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./hotel-list.component.scss']
 })
 export class HotelListComponent implements OnInit {
-  hotels: Hotel[]
+  hotels: Hotel[] = []
   dataSource
   currentTask ="My Hotel"
   constructor(private hotelService: HotelService, private router: Router,

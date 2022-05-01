@@ -34,9 +34,10 @@
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      <div *ngIf="!bookings" class="noData">
-        <span class="text-center text-danger"> No customers are booking yet</span>
-      </div>
+      
     </table>
+    <div *ngIf="bookings.length === 0" class="noData"> 
+      <span class="text-center text-danger"> No customers are booking yet</span>
+    </div>
   </div>
 </div>

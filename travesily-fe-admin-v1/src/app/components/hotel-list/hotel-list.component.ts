@@ -106,7 +106,6 @@ export class HotelListComponent {
     this.hotelsService.getAllHotelByStatus(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        console.log(this.total)
       }
     )
     this.hotelsService.getHotelByStatus(this.status, 0, 10).pipe(first()).subscribe(

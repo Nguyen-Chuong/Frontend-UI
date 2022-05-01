@@ -57,8 +57,6 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UpdateVipComponent } from './components/update-vip/update-vip.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { ImportFileComponent } from './components/import-file/import-file.component';
-import { ImageSliderComponent } from './components/image-slider/image-slider.component';
-import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AngularFireModule } from '@angular/fire/compat';
@@ -98,8 +96,6 @@ import { BookingDetailCardComponent } from './components/booking-detail/booking-
     UpdateVipComponent,
     VipInfoComponent,
     ImportFileComponent,
-    ImageSliderComponent,
-    ImagesCarouselComponent,
     FooterComponent,
     EditCouponComponent,
     BookingDetailCardComponent

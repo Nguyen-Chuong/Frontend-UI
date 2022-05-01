@@ -15,7 +15,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class RequestListComponent implements OnInit {
   currentTask= "Requests"
-  requests: Request[]
+  requests: Request[] = []
   dataSource
   checked
 
