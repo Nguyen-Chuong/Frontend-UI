@@ -1,64 +1,57 @@
-
-    <div class="card-header">
-        <h2>Room information</h2>
-    </div>
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="row p-1">
-                    <img class="room-type-img p-0" [src]="roomDetail.listImage?roomDetail.listImage[0]?.src:''" alt="" (click)="open(content)">
-                </div>
-                <ul class="list-inline">
-                    <li *ngFor="let item of roomDetail?.listFacility">
-                        <p class="text-grey-dark-1"><i class="{{item.facilities[0].icon}} me-1"></i>
-                            {{item.facilities[0].name}}</p>
-                    </li>
-                </ul>
-                <div class="room-facilities position-relative">
-                    <div class="see-all-hover">
-                        <a>
-                            <h4 class="card-text text-primary small room-facilities__button"><i
-                                    class="fa fa-plus-circle" aria-hidden="true"></i> See all
-                                room facilities</h4>
-                        </a>
-                    </div>
-                    <div class="detail-list-facility container position-absolute bg-white shadow border p-5">
-                        <div class="row">
-                            <ul class="d-flex flex-wrap">
-                                <li class="flex-list" *ngFor="let facilityType of roomDetail?.listFacility">
-                                    <p><b>{{facilityType.name}}</b></p>
-                                    <ul class="list-inline">
-                                        <li class="" *ngFor="let facility of facilityType.facilities">
-                                            <p><i class="{{facility.icon}} me-1"></i> {{facility.name}}</p>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-9">
-                <h2>{{roomDetail.name}}</h2>
-                <h3>Number of rooms: {{bookingDetail.bookedQuantity}}</h3>
-                <ul class="list-inline">
-                    <ng-container *ngFor="let benefitTypes of roomDetail.listBenefit">
-                        <li class="text-success" *ngFor="let benefit of benefitTypes.benefits"><i
-                                class="fa fa-check"></i> {{benefit.name}}</li>
-                    </ng-container>
-                </ul>
-            </div>
+<div class="card-header">
+  <h2>Room information</h2>
+</div>
+<div class="card-body">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="row p-1">
+        <img class="room-type-img p-0" [src]="roomDetail.listImage?roomDetail.listImage[0]?.src:''" alt=""
+          (click)="open(content)">
+      </div>
+      <div class="room-facilities position-relative">
+        <div class="see-all-hover">
+          <a>
+            <h4 class="card-text text-primary small room-facilities__button"><i class="fa fa-plus-circle"
+                aria-hidden="true"></i> See all room facilities</h4>
+          </a>
         </div>
+        <div class="detail-list-facility container position-absolute bg-white shadow border p-5">
+          <div class="row">
+            <ul class="d-flex flex-wrap">
+              <li class="flex-list" *ngFor="let facilityType of roomDetail?.listFacility">
+                <p><b>{{facilityType.name}}</b></p>
+                <ul class="list-inline">
+                  <li class="" *ngFor="let facility of facilityType.facilities">
+                    <p><i class="{{facility.icon}} me-1"></i> {{facility.name}}</p>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="col-md-9">
+      <h2>{{roomDetail.name}}</h2>
+      <h3>Number of rooms: {{bookingDetail.bookedQuantity}}</h3>
+      <ul class="list-inline">
+        <ng-container *ngFor="let benefitTypes of roomDetail.listBenefit">
+          <li class="text-success" *ngFor="let benefit of benefitTypes.benefits"><i class="fa fa-check"></i>
+            {{benefit.name}}</li>
+        </ng-container>
+      </ul>
+    </div>
+  </div>
+</div>
 
 <ng-template #content let-c="close" let-d="dismiss" class="w-70">
-    <div class="modal-body">
-      <ngb-carousel *ngIf="roomDetail.listImage">
-          <ng-template ngbSlide *ngFor="let image of roomDetail.listImage">
-            <div class="picsum-img-wrapper">
-              <img [src]="image.src" alt="">
-            </div>
-          </ng-template>
-      </ngb-carousel>
-    </div>
+  <div class="modal-body">
+    <ngb-carousel *ngIf="roomDetail.listImage">
+      <ng-template ngbSlide *ngFor="let image of roomDetail.listImage">
+        <div class="picsum-img-wrapper">
+          <img [src]="image.src" alt="">
+        </div>
+      </ng-template>
+    </ngb-carousel>
+  </div>
 </ng-template>

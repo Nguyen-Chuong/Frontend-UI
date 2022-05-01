@@ -16,6 +16,7 @@ export class BookingsService {
       .append('pageSize', pageSize);
     return this.http.get(`${this.baseUrl}/bookings/hotel`, { params: params });
   }
+  
   getBookingDetail(bookingId: string) {
     const params = new HttpParams().append('bookingId', bookingId);
     return this.http.get(`${this.baseUrl}/booking-detail`, { params: params });

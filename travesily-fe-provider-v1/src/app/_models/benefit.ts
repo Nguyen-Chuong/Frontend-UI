@@ -1,9 +1,9 @@
 import { BenefitType } from "./benefitType"
 
 export class Benefit {
- id: number
- name: string
- benefitType: BenefitType
- icon: string
- isChecked: false
+  id: number
+  name: string
+  benefitType: BenefitType
+  icon: string
+  isChecked: false
 }

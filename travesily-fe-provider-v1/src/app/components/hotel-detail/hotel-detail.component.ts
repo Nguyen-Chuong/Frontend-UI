@@ -31,7 +31,6 @@ export class HotelDetailComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-
     this.route.queryParams.subscribe((param) => {
       this.hotelId = param['id'].slice(1, -1);
     })
@@ -46,20 +45,17 @@ export class HotelDetailComponent implements OnInit {
     this.bookingsService.getAllBookingUpComingOfHotel(this.hotelId).pipe(first()).subscribe(
       rs => {
         this.upComingBookings = rs['data']['items']
-
       })
 
     this.bookingsService.getAllBookingCancelOfHotel(this.hotelId).pipe(first()).subscribe(
       rs => {
         this.cancelList = rs['data']['items']
-
       })
 
     this.reviewsService.getReviewOfHotel(this.hotelId, 0, 5, this.criteria).pipe(first()).subscribe(
       rs => {
         this.reviews = rs['data']['items']
-        this.pageSize = rs['data']['pageSize']
-        
+        this.pageSize = rs['data']['pageSize']       
         // check if data is loaded, hide it
         if(rs){
           this.spinner.hide();

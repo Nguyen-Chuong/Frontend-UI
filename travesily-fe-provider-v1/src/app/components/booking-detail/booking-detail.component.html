@@ -6,6 +6,7 @@
           'Completed' : 'Cancelled'}}</h3>
       </div>
     </div>
+
     <div class="card mb-3">
       <div class="card-body">
         <div class="row">
@@ -34,15 +35,16 @@
         </div>
       </div>
     </div>
-    <div class="card mb-3">
 
-    <div>
-      <ng-container *ngFor="let bookingDetail of bookingDetails">
-        <app-booking-detail-card [bookingDetail]="bookingDetail"></app-booking-detail-card>
-      </ng-container>
+    <div class="card mb-3">
+      <div>
+        <ng-container *ngFor="let bookingDetail of bookingDetails">
+          <app-booking-detail-card [bookingDetail]="bookingDetail"></app-booking-detail-card>
+        </ng-container>
+      </div>
     </div>
 
-    <div class="card mb-5">
+    <div class="card mb-3">
       <div class="card-header">
         <h2 class="text-primary">Guest Info</h2>
       </div>
@@ -55,6 +57,7 @@
         </div>
       </div>
     </div>
+
     <div class="card mb-4">
       <div class="card-header">
         <h2 class="text-primary">Payment information</h2>
