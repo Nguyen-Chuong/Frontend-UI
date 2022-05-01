@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Booking } from 'src/app/_models/booking';
+import { BookingDetail } from 'src/app/_models/booking-detail';
 import { BookingsService } from 'src/app/_services/bookings.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { BookingsService } from 'src/app/_services/bookings.service';
 export class BookingDetailComponent implements OnInit {
 
   booking: Booking = new Booking()
-  bookingDetails: Booking[]
+  bookingDetails: BookingDetail[]
   constructor(private bookingService: BookingsService,
     private activatedRoute: ActivatedRoute  ) {
   }
