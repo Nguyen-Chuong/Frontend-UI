@@ -20,6 +20,7 @@ import { RoomDetailComponent } from './components/room-detail/room-detail.compon
 import { UserComponent } from './components/user/user.component';
 import { HotelApproveComponent } from './components/hotel-approve/hotel-approve.component';
 import {EditCouponComponent} from "./components/edit-coupon/edit-coupon.component";
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
   {
     path: 'taskbar',
     component: TaskbarComponent
+  },
+  {
+    path: 'home',
+    component: HomeComponent
   },
   {
     path: 'hotel-approve',

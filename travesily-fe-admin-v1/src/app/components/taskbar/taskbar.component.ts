@@ -27,7 +27,7 @@ export class TaskbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.authService.getToken()
+
     this.negativeBar = [
       {
         name: "Approve", url: "/hotel-approve", icon: "fa fa-check"
@@ -67,7 +67,7 @@ export class TaskbarComponent implements OnInit {
 
   transaction(name) {
     if (name === 'Transaction')
-    window.open('https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm', "_blank");
+      window.open('https://sandbox.vnpayment.vn/merchantv2/Users/Login.htm?ReturnUrl=%2fmerchantv2%2fHome%2fDashboard.htm', "_blank");
     else
       this.currentTask = name
   }

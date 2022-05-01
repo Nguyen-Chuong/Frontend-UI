@@ -21,6 +21,8 @@ export class AuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
+    if(!this.authService.authToken)
+    this.authService.getToken()
     const token = this.authService.authToken;
     if (token) {
       request = request.clone({
