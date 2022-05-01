@@ -1,0 +1,22 @@
+@import "../../scss/_main";
+
+.container{
+  width: 100%;
+  margin-top: 3rem;
+}
+.btn-danger, .btn-close-modal{
+  font-size: 1.5rem;
+  font-weight: 600;
+  padding: 1rem;
+}
+
+a{
+  color: blue;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+
+.checked{
+  color: gold;
+}

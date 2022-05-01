@@ -36,4 +36,10 @@ export class BookingsService {
     const params = new HttpParams().append('email', email);
     return this.http.post(`${this.baseUrl}/mail/send-response`, { params: params });
   }
+
+  //Get Booking By id
+  getBookingById(bookingId: string) {
+    const params = new HttpParams().append('bookingId', bookingId);
+    return this.http.get(`${this.baseUrl}/booking`, { params: params });
+  }
 }
