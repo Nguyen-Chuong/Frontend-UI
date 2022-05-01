@@ -1,4 +1,7 @@
 <div class="hotel-detail">
+  <ngx-spinner type="ball-fussion">
+    <p style="font-size: 20px; color: white;">Loading...</p>
+  </ngx-spinner>
   <div class="hotel">
     <mat-tab-group mat-align-tabs="start">
       <mat-tab label="Completed">
@@ -9,7 +12,7 @@
         <app-up-coming-booking [bookings]="upComingBookings" ></app-up-coming-booking>
       </mat-tab>
 
-      <mat-tab label="Cencel">
+      <mat-tab label="Cancel">
         <app-cancel-list [bookings]="cancelList" ></app-cancel-list>
       </mat-tab>
       

@@ -36,11 +36,12 @@
     </div>
     <div class="card mb-3">
 
-    <div class="booking-detail__room-info">
+    <div>
       <ng-container *ngFor="let bookingDetail of bookingDetails">
         <app-booking-detail-card [bookingDetail]="bookingDetail"></app-booking-detail-card>
       </ng-container>
     </div>
+
     <div class="card mb-5">
       <div class="card-header">
         <h2 class="text-primary">Guest Info</h2>

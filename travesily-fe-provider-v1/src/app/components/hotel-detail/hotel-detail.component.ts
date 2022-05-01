@@ -6,6 +6,7 @@ import { first } from 'rxjs';
 import { Booking } from 'src/app/_models/booking';
 import { BookingsService } from 'src/app/_services/bookings.service';
 import { PageEvent } from '@angular/material/paginator';
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-hotel-detail',
@@ -24,9 +25,13 @@ export class HotelDetailComponent implements OnInit {
   criteria: number = 1
   constructor(private bookingsService: BookingsService,
     private reviewsService: ReviewsService,
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
+    /** spinner starts on init */
+    this.spinner.show();
+
     this.route.queryParams.subscribe((param) => {
       this.hotelId = param['id'].slice(1, -1);
     })
@@ -54,6 +59,11 @@ export class HotelDetailComponent implements OnInit {
       rs => {
         this.reviews = rs['data']['items']
         this.pageSize = rs['data']['pageSize']
+        
+        // check if data is loaded, hide it
+        if(rs){
+          this.spinner.hide();
+        }
       }
     )
   }
