@@ -13,7 +13,7 @@ import { Room } from 'src/app/_models/room';
 export class AddRoomComponent implements OnInit {
 
   form: FormGroup
-
+  isHotel = false
   constructor(
     fb: FormBuilder,
     private roomService: RoomService,
@@ -29,6 +29,9 @@ export class AddRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    if(localStorage.getItem('hotel-id')){
+      this.isHotel =true
+    }
   }
 
   submit() {

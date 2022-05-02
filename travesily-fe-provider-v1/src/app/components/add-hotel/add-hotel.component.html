@@ -76,7 +76,7 @@
     </div>
     <div class="form-submit text-center">
       <button class="mt-20 w-20  btn-outline-primary btn-lg"
-        [disabled]="form.invalid && districtControl.valid">Save</button>
+        [disabled]="form.invalid || !districtControl.valid">Save</button>
     </div>
   </form>
 </div>

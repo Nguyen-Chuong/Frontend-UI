@@ -23,8 +23,9 @@
               <input type="number" class="form-control" formControlName="price">
             </div>
           </div>
+          <small *ngIf="!isHotel" class="text-danger mt-2">You need add hotel first for add new room</small>
           <div class="mt-5 text-center">
-            <button class="mt-20 w-20  btn-outline-primary btn-lg" type="submit">Save</button>
+            <button class="mt-20 w-20  btn-outline-primary btn-lg" type="submit" [disabled]="!form.valid || !isHotel">Save</button>
           </div>
         </div>
       </form>
