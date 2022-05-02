@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/_services/auth.service';
   styleUrls: ['./change-password.component.scss']
 })
 export class ChangePasswordComponent implements OnInit {
-
   account: Account = new Account
   form: FormGroup
 

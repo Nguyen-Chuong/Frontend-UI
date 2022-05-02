@@ -70,7 +70,6 @@ export class SearchHotelListComponent implements OnInit {
         document.querySelector('#ads-start').classList.remove('trans-top')
         document.querySelector('#ads-end').classList.remove('trans-top')
       }
-
     })
   }
 

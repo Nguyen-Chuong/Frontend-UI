@@ -5,14 +5,13 @@
   <div class="row">
     <div class="col-md-3">
       <div class="row p-1">
-        <img class="room-type-img p-0" [src]="roomDetail.listImage?roomDetail.listImage[0]?.src:''" alt=""
-          (click)="open(content)">
+        <img class="room-type-img p-0" [src]="roomDetail.listImage?roomDetail.listImage[0]?.src:''" alt="">
       </div>
       <div class="room-facilities position-relative">
         <div class="see-all-hover">
           <a>
             <h4 class="card-text text-primary small room-facilities__button"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i> See all room facilities</h4>
+                aria-hidden="true"></i>See all room facilities</h4>
           </a>
         </div>
         <div class="detail-list-facility container position-absolute bg-white shadow border p-5">
@@ -43,15 +42,3 @@
     </div>
   </div>
 </div>
-
-<ng-template #content let-c="close" let-d="dismiss" class="w-70">
-  <div class="modal-body">
-    <ngb-carousel *ngIf="roomDetail.listImage">
-      <ng-template ngbSlide *ngFor="let image of roomDetail.listImage">
-        <div class="picsum-img-wrapper">
-          <img [src]="image.src" alt="">
-        </div>
-      </ng-template>
-    </ngb-carousel>
-  </div>
-</ng-template>

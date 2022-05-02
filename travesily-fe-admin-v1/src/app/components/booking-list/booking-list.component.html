@@ -3,48 +3,42 @@
     <ngx-spinner type="ball-scale-multiple">
       <p style="font-size: 20px; color: white;">Loading...</p>
     </ngx-spinner>
-    <table class="mat-elevation-z8" mat-table [dataSource]="bookings" >
+    <table class="mat-elevation-z8" mat-table [dataSource]="bookings">
       <!-- id Column -->
       <ng-container matColumnDef="id">
         <th mat-header-cell *matHeaderCellDef> ID </th>
         <td width="80" mat-cell *matCellDef="let element"> {{element.id}} </td>
       </ng-container>
-
       <!-- username Column -->
       <ng-container matColumnDef="username">
         <th mat-header-cell *matHeaderCellDef> Username </th>
         <td width="100" mat-cell *matCellDef="let element"> {{element.username}} </td>
       </ng-container>
-
       <!-- hotel Column -->
       <ng-container matColumnDef="hotel">
         <th mat-header-cell *matHeaderCellDef> Hotel </th>
         <td width="200" mat-cell *matCellDef="let element"> {{element.hotel?.name}} </td>
       </ng-container>
-
       <!-- hotel Column -->
       <ng-container matColumnDef="checkIn">
         <th mat-header-cell *matHeaderCellDef> Check In </th>
         <td width="150" mat-cell *matCellDef="let element"> {{element.checkIn| date: 'dd/MM/yyyy'}} </td>
       </ng-container>
-
       <!-- paid Column -->
       <ng-container matColumnDef="checkOut">
         <th mat-header-cell *matHeaderCellDef> Check Out </th>
         <td width="150" mat-cell *matCellDef="let element"> {{element.checkOut| date: 'dd/MM/yyyy'}}</td>
       </ng-container>
-
       <!-- status Column -->
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef>
           Status
         </th>
-
-        <td width="100" mat-cell *matCellDef="let element" class="{{element.status == 3 ? 'text-danger' : element.status == 1 ? 'text-primary' :  'text-success'}}">
-          {{element.status == 3 ? 'Cancelled' : element.status == 1 ? 'Processing' :  'Completed'}}
+        <td width="100" mat-cell *matCellDef="let element"
+          class="{{element.status == 3 ? 'text-danger' : element.status == 1 ? 'text-primary' :  'text-success'}}">
+          {{element.status == 3 ? 'Cancelled' : element.status == 1 ? 'Processing' : 'Completed'}}
         </td>
       </ng-container>
-
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openBookingDetail(row.id)"></tr>
     </table>

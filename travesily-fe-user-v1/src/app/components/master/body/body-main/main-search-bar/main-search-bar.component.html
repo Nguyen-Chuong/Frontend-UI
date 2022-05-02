@@ -1,46 +1,46 @@
 <div class="container-fluid bg-grey">
-<div class="container">
-  <form [formGroup]="hotelForm" class="hotel-form">
-  <div class="row p-3">
-    <div class="col-md-4">
-      <mat-form-field appearance="fill" class="bg-white rounded shadow">
-        <div class="d-flex align-items-center">
-          <i class="fa fa-search position-absolute text-grey"></i>
-          <input class="ps-5" placeholder="Destination" type="text" matInput
-                 [formControl]="convertToFormControl(hotelForm.controls['destination'])"
-                 [matAutocomplete]="auto" (input)="onSearchHotelChange($event)">
+  <div class="container">
+    <form [formGroup]="hotelForm" class="hotel-form">
+      <div class="row p-3">
+        <div class="col-md-4">
+          <mat-form-field appearance="fill" class="bg-white rounded shadow">
+            <div class="d-flex align-items-center">
+              <i class="fa fa-search position-absolute text-grey"></i>
+              <input class="ps-5" placeholder="Destination" type="text" matInput
+                [formControl]="convertToFormControl(hotelForm.controls['destination'])" [matAutocomplete]="auto"
+                (input)="onSearchHotelChange($event)">
+            </div>
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of results" [value]="option.resultSearch">
+                {{option.resultSearch}}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
         </div>
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of results" [value]="option.resultSearch">
-            {{option.resultSearch}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-    </div>
-    <div class="col-md-4">
-      <mat-form-field appearance="fill" class="bg-white rounded shadow p-0">
-        <mat-label>Enter a date range</mat-label>
-        <mat-date-range-input [min]="todayDate" [rangePicker]="picker1" class="border">
-          <input matStartDate formControlName="from" readonly placeholder="Start date">
-          <input class="border-start ps-3" matEndDate formControlName="to" readonly placeholder="End date">
-        </mat-date-range-input>
-        <mat-datepicker-toggle class="text-grey" matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-date-range-picker #picker1 [minRange]="1"></mat-date-range-picker>
-
-        <mat-error *ngIf="hotelForm.controls['from'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
-        <mat-error *ngIf="hotelForm.controls['to'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
-      </mat-form-field>
-    </div>
-    <div class="col-md-3">
-      <app-dropdown (guestNumberEvent)="updateGuest($event)"
-                    (roomNumberEvent)="updateRoom($event)" [inputGuestNum]="filter.guestNumber" [inputRoomNum]="filter.roomNumber"></app-dropdown>
-    </div>
-    <div class="col-md-1">
-      <button class="search-btn btn btn-primary btn-lg h-100 w-100" [disabled]="hotelForm.invalid" (click)="search()">
-        <i class="fa fa-search"></i>
-      </button>
-    </div>
+        <div class="col-md-4">
+          <mat-form-field appearance="fill" class="bg-white rounded shadow p-0">
+            <mat-label>Enter a date range</mat-label>
+            <mat-date-range-input [min]="todayDate" [rangePicker]="picker1" class="border">
+              <input matStartDate formControlName="from" readonly placeholder="Start date">
+              <input class="border-start ps-3" matEndDate formControlName="to" readonly placeholder="End date">
+            </mat-date-range-input>
+            <mat-datepicker-toggle class="text-grey" matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-date-range-picker #picker1 [minRange]="1"></mat-date-range-picker>
+            <mat-error *ngIf="hotelForm.controls['from'].hasError('matStartDateInvalid')">Invalid start date</mat-error>
+            <mat-error *ngIf="hotelForm.controls['to'].hasError('matEndDateInvalid')">Invalid end date</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-md-3">
+          <app-dropdown (guestNumberEvent)="updateGuest($event)" (roomNumberEvent)="updateRoom($event)"
+            [inputGuestNum]="filter.guestNumber" [inputRoomNum]="filter.roomNumber"></app-dropdown>
+        </div>
+        <div class="col-md-1">
+          <button class="search-btn btn btn-primary btn-lg h-100 w-100" [disabled]="hotelForm.invalid"
+            (click)="search()">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+    </form>
   </div>
-  </form>
-</div>
 </div>

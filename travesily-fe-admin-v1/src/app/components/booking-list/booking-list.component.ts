@@ -31,7 +31,6 @@ export class BookingListComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-
     this.bookingService.getAllBooking().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
@@ -61,5 +60,4 @@ export class BookingListComponent implements OnInit {
       }
     )
   }
-
 }

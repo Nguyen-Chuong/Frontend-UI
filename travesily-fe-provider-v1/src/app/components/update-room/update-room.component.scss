@@ -1,11 +1,12 @@
 @import "../../shared/scss/main";
+
 * {
   font-style: inherit;
   font-size: 1.1rem;
 }
+
 .room {
   border-radius: 10px;
-  background-color: aliceblue;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
@@ -29,7 +30,6 @@
 
     & form{
       margin: 0 auto;
-
     }
   }
 
@@ -45,19 +45,11 @@
     }
   }
 }
-.form-control:focus {
-  box-shadow: none;
-  border-color: #4e68ff;
-}
-
-.back:hover {
-  color: #682773;
-  cursor: pointer;
-}
 
 .labels {
   font-size: 1rem;
   padding-top: 0.5rem;
+  font-weight: 500;
 }
 
 .update-room {
@@ -79,7 +71,6 @@
 
 .select {
   width: 31%;
-  background-color: rgb(244, 248, 253);;
 }
 
 .form-submit {

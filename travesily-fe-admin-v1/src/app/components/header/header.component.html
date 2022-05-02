@@ -18,10 +18,10 @@
     </ng-container>
     <ng-container *ngIf="!account.avatar">
       <div class="profile-image me-3">
-        <div id="profileImage" [matMenuTriggerFor]="profile">{{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
+        <div id="profileImage" [matMenuTriggerFor]="profile">
+          {{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
       </div>
     </ng-container>
-
     <mat-menu #profile="matMenu" class="profile-menu">
       <p class="profile-menu-name">{{username}}</p>
       <button mat-menu-item (click)="openProfile()">

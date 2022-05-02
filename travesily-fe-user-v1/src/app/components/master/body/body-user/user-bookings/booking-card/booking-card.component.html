@@ -23,11 +23,12 @@
               {{this.booking?.status == 1 ? 'Upcoming' : this.booking?.status == 2 ? 'Completed' : 'Cancelled'}}
             </h4>
           </div>
-          <div class="col-md-5"><h4 class="text-grey">{{booking?.checkIn | date: 'dd MMM EEE'}}
-            | {{booking?.checkOut | date: 'dd MMM EEE'}}</h4></div>
+          <div class="col-md-5">
+            <h4 class="text-grey">{{booking?.checkIn | date: 'dd MMM EEE'}}
+              | {{booking?.checkOut | date: 'dd MMM EEE'}}</h4>
+          </div>
         </div>
         <div class="row">
-          <!--          <div class="col-md-8">{{booking.bookedQuantity}} x</div>-->
           <h1 class="text-danger text-end">đ {{booking.totalPaid | number:'1.0-0'}}</h1>
         </div>
       </div>
@@ -35,7 +36,8 @@
   </div>
   <div class="card-footer bg-white">
     <div class="d-flex justify-content-between">
-      <button *ngIf="(booking.status===2&&booking.reviewStatus===0)&&booking.checkIn.getTime()<todayDate.getTime()" class="btn-review btn-plain border-0" (click)="review()">Submit Your Review</button>
+      <button *ngIf="(booking.status===2&&booking.reviewStatus===0)&&booking.checkIn.getTime()<todayDate.getTime()"
+        class="btn-review btn-plain border-0" (click)="review()">Submit Your Review</button>
       <a class="ms-auto btn-details btn-fill" (click)="viewDetail()">View Booking Details</a>
     </div>
   </div>

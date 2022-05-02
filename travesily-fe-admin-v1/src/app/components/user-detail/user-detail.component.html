@@ -1,6 +1,6 @@
 <div class="user-detail">
   <div class="user">
-    <mat-tab-group mat-align-tabs="start" >
+    <mat-tab-group mat-align-tabs="start">
       <mat-tab label="Bookings">
         <app-user-booking [bookings]="bookings"></app-user-booking>
       </mat-tab>
@@ -8,8 +8,9 @@
         <app-feedback-table [feedbacks]="feedbacks"></app-feedback-table>
         <div *ngIf="isNoData" class="noData">
           <span class="text-center text-danger">
-           This user don't have any feedback yet!</span>
+            This user don't have any feedback yet!</span>
         </div>
       </mat-tab>
     </mat-tab-group>
   </div>
+</div>

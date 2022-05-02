@@ -12,7 +12,6 @@ import { CryptoService } from 'src/app/_services/crypto.service';
   styleUrls: ['./otp-checker.component.scss']
 })
 export class OtpCheckerComponent implements OnInit {
-
   encryptedEmail: string
   account: Account = new Account()
   isRegister: boolean = false
@@ -36,7 +35,7 @@ export class OtpCheckerComponent implements OnInit {
           this.account.password = this.cryptoService.get('06052000', rs['encryptedPassword'])
         }
         this.authService.generateOtp(this.encryptedEmail).pipe(first()).subscribe(
-          rs => {
+          () => {
             this.notificationService.onSuccess('We have sent you an email with OTP code')
           },
           error => {
@@ -62,7 +61,7 @@ export class OtpCheckerComponent implements OnInit {
                   this.authService.login(this.account.email, this.account.password)
                     .subscribe(() => {
                       this.activatedRoute.queryParams.subscribe({
-                        next: value => {
+                        next: () => {
                           this.notificationService.onSuccess('Register Successful')
                           this.router.navigate(['/login']);
                         }

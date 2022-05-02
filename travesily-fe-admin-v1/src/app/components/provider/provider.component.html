@@ -5,43 +5,36 @@
     </ngx-spinner>
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="providers" class="user-table">
-
         <!-- id -->
         <ng-container matColumnDef="id">
           <th width="100" mat-header-cell *matHeaderCellDef> ID </th>
           <td width="100" mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
-
         <!-- username -->
         <ng-container matColumnDef="username">
           <th width="100" mat-header-cell *matHeaderCellDef> Username </th>
           <td width="100" mat-cell *matCellDef="let element"> {{element.username}} </td>
         </ng-container>
-
         <!-- providerName Column -->
         <ng-container matColumnDef="providerName">
           <th width="100" mat-header-cell *matHeaderCellDef> Name </th>
           <td width="100" mat-cell *matCellDef="let element"> {{element.providerName}} </td>
         </ng-container>
-
         <!-- email Column -->
         <ng-container matColumnDef="email">
           <th width="300" mat-header-cell *matHeaderCellDef> Email </th>
           <td width="300" mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
-
         <!-- phone Column -->
         <ng-container matColumnDef="phone">
           <th width="200" mat-header-cell *matHeaderCellDef> Phone </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.phone}} </td>
         </ng-container>
-
         <!-- address Column -->
         <ng-container matColumnDef="address">
           <th width="200" mat-header-cell *matHeaderCellDef> Address </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.address}} </td>
         </ng-container>
-
         <ng-container matColumnDef=" ">
           <th width="200" mat-header-cell *matHeaderCellDef>
             <select class="form-select form-select-sm" (change)="filterProvider($event)">
@@ -49,11 +42,11 @@
               <option value="0">Banned</option>
             </select>
           </th>
-          <td  width="200" mat-cell *matCellDef="let element">
-            <button *ngIf="element.status === 1" class="btn btn-outline-danger" (click)="banProvider(element.id)">Ban</button>
+          <td width="200" mat-cell *matCellDef="let element">
+            <button *ngIf="element.status === 1" class="btn btn-outline-danger"
+              (click)="banProvider(element.id)">Ban</button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

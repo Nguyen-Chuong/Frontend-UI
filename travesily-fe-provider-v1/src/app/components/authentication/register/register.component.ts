@@ -12,7 +12,6 @@ import { UsernameValidator } from 'src/app/_validators/username.validator';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   form: FormGroup
 
   constructor(

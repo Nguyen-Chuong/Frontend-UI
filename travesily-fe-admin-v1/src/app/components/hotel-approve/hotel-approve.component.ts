@@ -33,13 +33,12 @@ export class HotelApproveComponent implements OnInit {
     public dialog: MatDialog,
     private cryptoService: CryptoService,
     private spinner: NgxSpinnerService
-  ) { }
+  ) {}
 
   displayedColumns: string[] = ['hotelName', 'requestDate', 'providerName', 'request', ' '];
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-
     this.requestsService.getAllRequest(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
@@ -78,7 +77,6 @@ export class HotelApproveComponent implements OnInit {
         isAdmin: this.isAdmin
       },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {
@@ -105,7 +103,6 @@ export class HotelApproveComponent implements OnInit {
         isAdmin: this.isAdmin
       },
     });
-
     dialogRef.afterClosed().subscribe(result => {
       this.checked = result['checked']
       if (this.checked) {

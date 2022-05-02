@@ -13,7 +13,7 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./hotel-list.component.scss']
 })
 export class HotelListComponent implements OnInit {
-  hotels: Hotel[]
+  hotels: Hotel[] = []
   dataSource
   currentTask ="My Hotel"
   constructor(private hotelService: HotelService, private router: Router,
@@ -25,7 +25,6 @@ export class HotelListComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-
     if(!localStorage.getItem('token'))
       this.router.navigate(['/login'])
     this.hotelService.getAllHotel().pipe(first()).subscribe(

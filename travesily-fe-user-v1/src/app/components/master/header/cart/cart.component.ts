@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 
 declare var $: any;
 
-
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',

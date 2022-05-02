@@ -35,7 +35,6 @@ export class ProviderComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-
     this.providerService.getAllProvider(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']

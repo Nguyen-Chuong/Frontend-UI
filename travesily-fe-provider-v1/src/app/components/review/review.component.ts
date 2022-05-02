@@ -23,5 +23,4 @@ export class ReviewComponent implements OnInit {
     this.service = this.review.service * 20
     this.valueMoney = this.review.valueForMoney * 20
   }
-
 }

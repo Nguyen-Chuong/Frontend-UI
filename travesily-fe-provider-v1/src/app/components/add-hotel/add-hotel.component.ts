@@ -17,7 +17,6 @@ import { HotelRequest } from './../../_models/hotelRequest';
   styleUrls: ['./add-hotel.component.scss']
 })
 export class AddHotelComponent implements OnInit {
-
   form: FormGroup
   cityControl: FormControl
   districtControl: FormControl
@@ -41,7 +40,6 @@ export class AddHotelComponent implements OnInit {
       descriptionTitle: ['', [Validators.required]],
       description: ['', [Validators.required]],
     })
-
     this.cityControl = new FormControl(this.city, Validators.required);
     this.districtControl = new FormControl('', Validators.required);
   }
@@ -69,7 +67,6 @@ export class AddHotelComponent implements OnInit {
           this.notificationService.onSuccess("Add Hotel Successfully")
         }, error: () => {
           this.notificationService.onError("Add Hotel Fail")
-
         }
       })
   }
@@ -103,7 +100,6 @@ export class AddHotelComponent implements OnInit {
     if (field === 'phone' && this.form.controls['phone'].hasError('pattern')) {
       return 'Your phone number is not correct format! Please re-check!';
     }
-
     return this.form.controls['email'].hasError('email') ? 'Not a valid email' : '';
   }
 

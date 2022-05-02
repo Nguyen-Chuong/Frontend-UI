@@ -11,7 +11,6 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
   form: FormGroup = this.fb.group({
     providerName: [''],
     address: [''],
@@ -23,9 +22,7 @@ export class ProfileComponent implements OnInit {
     private fb: FormBuilder,
     private authService: AuthService,
     private notificationService: NotificationService
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
     this.authService.getProfile().pipe(first()).subscribe(account => {

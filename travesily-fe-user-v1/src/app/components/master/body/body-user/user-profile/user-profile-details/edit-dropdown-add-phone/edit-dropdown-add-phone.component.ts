@@ -34,7 +34,7 @@ export class EditDropdownAddPhoneComponent implements OnInit {
           this.dropdown.emit()
           this.form.reset()
         },
-        error: err => {
+        error: () => {
           Swal.fire('Add phone failed!','','error')
         }
       })

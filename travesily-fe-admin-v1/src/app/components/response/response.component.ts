@@ -21,6 +21,10 @@ export class ResponseComponent implements OnInit {
   response: AdminResponse = new AdminResponse
   feedbackId: any
   isAdmin = false
+  senderName: string = ''
+  type: number = 0
+  modifyDate: Date = new Date()
+  message:string = ''
   constructor(
     private notificationService: NotificationService,
     private feedbackService: FeedbackService,
@@ -37,6 +41,10 @@ export class ResponseComponent implements OnInit {
     this.feedbackService.getFeedbackById(this.feedbackId).pipe(first()).subscribe(
       rs => {
         this.feedback = rs['data']
+        this.senderName = this.feedback.senderName
+        this.type = this.feedback.type
+        this.modifyDate = this.feedback.modifyDate
+        this.message = this.feedback.message
       }
     )
     this.feedbackService.getResponseByFeedbackId(this.feedbackId).pipe(first()).subscribe(

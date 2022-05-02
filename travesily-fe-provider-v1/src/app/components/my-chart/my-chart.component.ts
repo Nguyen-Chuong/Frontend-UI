@@ -28,8 +28,7 @@ export class MyChartComponent implements OnInit {
 
   ngOnInit() {
      /** spinner starts on init */
-     this.spinner.show();
-
+    this.spinner.show();
     this.form = this.fb.group({
       from: [this.lastWeekDate, [Validators.required]],
       to: [this.todayDate, [Validators.required]]

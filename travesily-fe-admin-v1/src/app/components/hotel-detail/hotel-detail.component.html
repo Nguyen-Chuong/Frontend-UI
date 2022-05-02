@@ -11,10 +11,10 @@
             <div class="about-hotel">
               <P>Hotel name: {{name}}</P>
               <P>Hotel address: {{address}} - {{nameDistrict}}</P>
-              <P>Description:</P> <div class="about-hotel-desc" [innerHTML]="description"></div>
+              <P>Description:</P>
+              <div class="about-hotel-desc" [innerHTML]="description"></div>
               <P>Provider name: {{providerName}}</P>
             </div>
-
           </mat-tab>
           <mat-tab label="Room">
             <div *ngFor="let room of rooms" class="room-detail">

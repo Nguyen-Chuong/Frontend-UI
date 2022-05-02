@@ -18,10 +18,10 @@ export class HotelDetailComponent implements OnInit {
   pageSize: number = 0
   pages: any[]
   total: number
-  bookings: Booking[]
-  reviews: Review[]
-  upComingBookings: Booking[]
-  cancelList: Booking[]
+  bookings: Booking[] = []
+  reviews: Review[] = []
+  upComingBookings: Booking[] = []
+  cancelList: Booking[] = []
   criteria: number = 1
   constructor(private bookingsService: BookingsService,
     private reviewsService: ReviewsService,

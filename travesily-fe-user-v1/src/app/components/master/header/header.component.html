@@ -4,38 +4,37 @@
       <img src="assets/img/logo.png" alt="" class="logo img-fluid">
     </a>
     <a class="navbar-brand" href="/">Travesily</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-container"
-                aria-controls="navbar-toggler-container" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar-toggler-container">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-toggler-container"
+      aria-controls="navbar-toggler-container" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar-toggler-container">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item" *ngFor="let item of navItems">
           <a class="nav-link" aria-current="page" href="/">Hotel & Home</a>
         </li>
       </ul>
-          <div class="d-flex align-items-center ms-auto me-3">
-            <a class="me-3 d-flex align-items-center text-orange-1" (click)="redirectProvider()">Go with us<span class="material-icons ms-3">handshake</span></a>
-            <button class="btn btn-primary me-3 d-flex align-items-center" (click)="contact()">Get help <span class="material-icons ms-3">call</span></button>
-            <button *ngIf="account" class="btn btn-cart btn-secondary position-relative h-75 ps-4 pe-4" type="button"
-                    data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasRight"
-                    aria-controls="offcanvasRight">
-              <i class="fa fa-shopping-cart"></i>
-              <span *ngIf="carts?.length!==0"
-                    class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-    {{carts?.length}}
-                <span class="visually-hidden">Cart items</span>
-  </span>
-            </button>
-            <app-user-login></app-user-login>
-          </div>
+      <div class="d-flex align-items-center ms-auto me-3">
+        <a class="me-3 d-flex align-items-center text-orange-1" (click)="redirectProvider()">Go with us<span
+            class="material-icons ms-3">handshake</span></a>
+        <button class="btn btn-primary me-3 d-flex align-items-center" (click)="contact()">Get help <span
+            class="material-icons ms-3">call</span></button>
+        <button *ngIf="account" class="btn btn-cart btn-secondary position-relative h-75 ps-4 pe-4" type="button"
+          data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          <i class="fa fa-shopping-cart"></i>
+          <span *ngIf="carts?.length!==0"
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {{carts?.length}}
+            <span class="visually-hidden">Cart items</span>
+          </span>
+        </button>
+        <app-user-login></app-user-login>
       </div>
-
+    </div>
   </div>
 </nav>
 <div *ngIf="account" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight"
-     aria-labelledby="offcanvasRightLabel">
+  aria-labelledby="offcanvasRightLabel">
   <div class="offcanvas-body">
     <app-cart></app-cart>
   </div>

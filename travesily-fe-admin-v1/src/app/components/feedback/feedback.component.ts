@@ -12,7 +12,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 })
 export class FeedbackComponent implements OnInit {
   currentTask = "Feedback"
-  feedbacks: Feedback[]
+  feedbacks: Feedback[] = []
   pageSize: number = 0
   total: number
 
@@ -23,7 +23,6 @@ export class FeedbackComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-    
     this.feedbackService.getAllFeedback().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']

@@ -44,8 +44,6 @@ export class BookingPaymentInformationComponent implements OnInit {
           })
         }
           //CHECK IF USER TRY TO BACKWARD AFTER COMPLETED PAYMENT
-          // if(this.bookingRequest.status !== 1)
-          //   this.router.navigateByUrl('/home')
           this.hotelService.getHotelById(this.cryptoService.set('06052000', this.bookingRequest.hotelId)).subscribe({
             next: hotel => {
               this.hotel = hotel['data']

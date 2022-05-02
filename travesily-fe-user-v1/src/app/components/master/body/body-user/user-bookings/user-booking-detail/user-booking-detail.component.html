@@ -1,18 +1,18 @@
 <div class="container">
   <div class="card p-5 shadow mb-3">
     <div class="card-header bg-dark">
-      <h3
-        class="text-white item-center m-0">{{booking.status === 1 ? 'Processing' : booking.status === 2 ? 'Completed' : 'Cancelled'}}</h3>
+      <h3 class="text-white item-center m-0">{{booking.status === 1 ? 'Processing' : booking.status === 2 ? 'Completed'
+        : 'Cancelled'}}</h3>
     </div>
     <div class="card-body text-center">
       <p class="text-primary"><strong>Booking ID: {{booking?.id}}</strong></p>
       <div class="row">
         <button *ngIf="booking.status===2" class="btn btn-fill" (click)="review()"
-                [disabled]="booking.reviewStatus !==0||booking.checkIn.getTime()>todayDate.getTime()">{{booking.reviewStatus === 0 ? 'Review your stay' : 'Reviewed'}}</button>
+          [disabled]="booking.reviewStatus !==0||booking.checkIn.getTime()>todayDate.getTime()">{{booking.reviewStatus
+          === 0 ? 'Review your stay' : 'Reviewed'}}</button>
         <button *ngIf="booking.status === 1" class="btn btn-danger" data-bs-toggle="modal"
-                data-bs-target="#cancelModal">Cancel this booking
+          data-bs-target="#cancelModal">Cancel this booking
         </button>
-
         <!-- Modal -->
         <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -29,7 +29,7 @@
               </div>
               <div class="modal-footer">
                 <button id="btnCloseModal" type="button" class="btn btn-secondary btn-close-modal"
-                        data-bs-dismiss="modal">Close
+                  data-bs-dismiss="modal">Close
                 </button>
                 <button type="button" class="btn btn-danger" (click)="cancel()">Cancel</button>
               </div>
@@ -42,14 +42,15 @@
       </div>
     </div>
   </div>
-
   <div class="card mb-3">
     <img [src]="booking.hotel?.avatar" class="card-img-top" alt="Hotel Image">
     <div class="card-body">
       <div class="row">
         <div class="col-md-9">
           <div class="row border-bottom border-end">
-            <a><h2 class="text-primary">{{booking.hotel?.name}}</h2></a>
+            <a>
+              <h2 class="text-primary">{{booking.hotel?.name}}</h2>
+            </a>
             <h2>
               <span class="fa fa-star {{booking.hotel?.star>=1?'checked':''}}"></span>
               <span class="fa fa-star {{booking.hotel?.star>=2?'checked':''}}"></span>
@@ -80,12 +81,10 @@
           <h3><strong>{{booking.hotel.email}}</strong></h3>
           <p class="text-secondary">Phone</p>
           <h3><strong>{{booking.hotel.phone}}</strong></h3>
-
         </div>
       </div>
     </div>
   </div>
-
   <div class="booking-detail__room-info">
     <ng-container *ngFor="let bookingDetail of bookingDetails">
       <app-user-booking-detail-card [bookingDetail]="bookingDetail"></app-user-booking-detail-card>
@@ -117,19 +116,19 @@
       <h2>Payment information</h2>
     </div>
     <div class="row">
-        <div class="card-body border-bottom">
-          <div class="d-flex justify-content-between p-3">
-            <h3>Total Price</h3>
-            <h3 class="text-danger"><strong>{{booking.totalPaid | number:'1.0-0'}} đ</strong></h3>
-          </div>
+      <div class="card-body border-bottom">
+        <div class="d-flex justify-content-between p-3">
+          <h3>Total Price</h3>
+          <h3 class="text-danger"><strong>{{booking.totalPaid | number:'1.0-0'}} đ</strong></h3>
         </div>
-        <div class="card-body border-bottom">
-          <div class="d-flex justify-content-between p-3">
+      </div>
+      <div class="card-body border-bottom">
+        <div class="d-flex justify-content-between p-3">
           <p>Payment method</p>
-          <h3 class="text-primary"><strong>{{booking.type==1?'Pay at hotel':booking.type==2?'VNPAY':'Undefined'}}</strong></h3>
-          </div>
+          <h3 class="text-primary"><strong>{{booking.type==1?'Pay at
+              hotel':booking.type==2?'VNPAY':'Undefined'}}</strong></h3>
         </div>
+      </div>
     </div>
-
   </div>
 </div>

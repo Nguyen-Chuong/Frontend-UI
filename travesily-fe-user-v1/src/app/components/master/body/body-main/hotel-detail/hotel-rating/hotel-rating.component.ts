@@ -24,6 +24,4 @@ export class HotelRatingComponent implements OnInit {
   calcAvgRatingReview(review: Review) {
     return (review?.service + review?.cleanliness + review?.facilities + review?.location + review?.valueForMoney) / 5 * 2
   }
-
-
 }

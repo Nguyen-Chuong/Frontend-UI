@@ -26,7 +26,8 @@ export class HotelListComponent {
   isAdmin = false
   status: number = 1
   isNoData = false
-  constructor(private hotelsService: HotelService, private router: Router,
+  constructor(private hotelsService: HotelService, 
+    private router: Router,
     private notificationService: NotificationService,
     public dialog: MatDialog,
     private cryptoService: CryptoService,
@@ -37,7 +38,6 @@ export class HotelListComponent {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-
     if (localStorage.getItem('type') === '2') {
       this.isAdmin = true
     }
@@ -106,7 +106,6 @@ export class HotelListComponent {
     this.hotelsService.getAllHotelByStatus(this.status).pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']
-        console.log(this.total)
       }
     )
     this.hotelsService.getHotelByStatus(this.status, 0, 10).pipe(first()).subscribe(

@@ -5,20 +5,18 @@
       <ng-container *ngIf="hasAvatar">
         <ng-container *ngIf="!account.avatar">
           <div class="profile-image me-3">
-            <div id="profileImage" data-bs-toggle="modal"
-                 data-bs-target="#exampleModal">{{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
+            <div id="profileImage" data-bs-toggle="modal" data-bs-target="#exampleModal">
+              {{account?.firstname?.charAt(0)}}{{account?.lastname?.charAt(0)}}</div>
           </div>
         </ng-container>
         <ng-container *ngIf="account.avatar">
-          <img class="user-avatar" [src]="account.avatar" data-bs-toggle="modal"
-               data-bs-target="#exampleModal">
+          <img class="user-avatar" [src]="account.avatar" data-bs-toggle="modal" data-bs-target="#exampleModal">
         </ng-container>
       </ng-container>
       <!-- Button trigger modal -->
-
       <!-- Modal -->
       <div class="modal fade w-100 h-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-           aria-hidden="true">
+        aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -28,11 +26,7 @@
             <div class="modal-body">
               <div class="row shadow p-5 m-5">
                 <label>
-                  <input
-                    type="file"
-                    class="text-nowrap text-truncate"
-                    (change)="selectFile($event)"
-                  />
+                  <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" />
                 </label>
               </div>
               <img id="preview-image" class="img-fluid item-center m-auto" src="#">
@@ -46,8 +40,6 @@
           </div>
         </div>
       </div>
-
-
       <div class="user-name-detail">
         <h2>{{title}}</h2>
         <label>{{detail}}</label>

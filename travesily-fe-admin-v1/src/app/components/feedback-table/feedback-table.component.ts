@@ -10,7 +10,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
   styleUrls: ['./feedback-table.component.scss']
 })
 export class FeedbackTableComponent implements OnInit {
-  @Input() feedbacks: Feedback[]
+  @Input() feedbacks: Feedback[] = []
   dataSource
   isNoData = false
   constructor(private router: Router,

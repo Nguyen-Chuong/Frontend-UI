@@ -163,10 +163,9 @@ export class RoomImageComponent implements OnInit {
       }
     })
   }
+
   open(content) {
     this.overLimit = false
-
     this.modalService.open(content);
   }
-
 }

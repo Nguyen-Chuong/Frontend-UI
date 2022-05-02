@@ -1,5 +1,5 @@
 <div class="update-facility">
-  <div class="facility mb-5">
+  <div class="facility mb-5 bg-light">
     <div class="facility-detail-infor">
       <h1>Update Facility</h1>
       <div class="group-input">
@@ -12,7 +12,6 @@
           </mat-select>
           <mat-error *ngIf="hotelControl.hasError('required')">Please choose a hotel</mat-error>
         </mat-form-field>
-
         <mat-form-field appearance="fill" class="select select-room">
           <mat-label>Room</mat-label>
           <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)">
@@ -25,12 +24,14 @@
       </div>
       <div class="facility-detail">
         <ul *ngFor="let facility of facilities">
-          <li><div class="facility-detail-item">
-            <span>{{facility.facility.name}}</span>
-            <button mat-menu-item (click)="deleteFacility(facility.id)" class="facility-detail-delete">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div></li>
+          <li>
+            <div class="facility-detail-item">
+              <span>{{facility.facility.name}}</span>
+              <button mat-menu-item (click)="deleteFacility(facility.id)" class="facility-detail-delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </li>
         </ul>
       </div>
       <div class="add-new-benefit">
@@ -38,7 +39,6 @@
           <mat-icon>add</mat-icon>
           <span>New Facility</span>
         </button>
-
         <div class="new-benefit" *ngIf="isAddFacility">
           <app-add-facilities [roomTypeId]="room.id"></app-add-facilities>
         </div>

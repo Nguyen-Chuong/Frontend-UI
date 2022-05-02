@@ -46,35 +46,12 @@
   background-color: aliceblue;
 }
 
-.form-redirection {
-  display: flex;
-  justify-content: space-between;
-}
-
-a {
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.form-header {
-  font-size: 25px;
-  font-weight: 700;
-  text-align: center;
-}
-
-.form-control{
-  background: none;
-  border: none;
-  margin: 0 auto;
-}
 
 .group{
   width: 40%;
   &-input{
     display: flex;
   }
-
 }
 .addAvatar{
   padding-left: 5%;

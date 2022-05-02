@@ -103,5 +103,4 @@ export class AddFacilitiesComponent implements OnInit {
         }
       })
   }
-
 }

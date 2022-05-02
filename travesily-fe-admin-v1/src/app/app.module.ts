@@ -32,7 +32,6 @@ import { UserComponent } from './components/user/user.component';
 import { UserDetailComponent } from './components/user-detail/user-detail.component';
 import { UserBookingComponent } from './components/user-booking/user-booking.component';
 import { BookingDetailComponent } from './components/booking-detail/booking-detail.component';
-import { UserFeedbackComponent } from './components/user-feedback/user-feedback.component';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HotelListComponent } from './components/hotel-list/hotel-list.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -57,8 +56,6 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { UpdateVipComponent } from './components/update-vip/update-vip.component';
 import { VipInfoComponent } from './components/vip-info/vip-info.component';
 import { ImportFileComponent } from './components/import-file/import-file.component';
-import { ImageSliderComponent } from './components/image-slider/image-slider.component';
-import { ImagesCarouselComponent } from './components/images-carousel/images-carousel.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { AngularFireModule } from '@angular/fire/compat';
@@ -82,7 +79,6 @@ import { BookingDetailCardComponent } from './components/booking-detail/booking-
     UserDetailComponent,
     UserBookingComponent,
     BookingDetailComponent,
-    UserFeedbackComponent,
     HotelListComponent,
     AuthenticationInputComponent,
     ProviderComponent,
@@ -98,8 +94,6 @@ import { BookingDetailCardComponent } from './components/booking-detail/booking-
     UpdateVipComponent,
     VipInfoComponent,
     ImportFileComponent,
-    ImageSliderComponent,
-    ImagesCarouselComponent,
     FooterComponent,
     EditCouponComponent,
     BookingDetailCardComponent
