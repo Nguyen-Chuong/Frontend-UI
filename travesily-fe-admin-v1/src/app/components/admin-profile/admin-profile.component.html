@@ -2,8 +2,7 @@
   <div class="profile-detail">
     <div class="profile-detail-avatar">
       <div class="d-flex flex-column align-items-right text-center">
-        <img class="profile-detail-avatar-image" src={{account.avatar}} data-bs-toggle="modal"
-          data-bs-target="#exampleModal">
+        <img class="profile-detail-avatar-image" src={{account.avatar}} (click)="open(content)">
         <span> </span>
         <h2 class="mt-2">{{username}}</h2>
         <h3>{{account.email}}</h3>
@@ -56,28 +55,23 @@
   </div>
 </div>
 
-<div class="modal fade w-100 h-100" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Image picker</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="row shadow p-5 m-5">
-          <label>
-            <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" />
-          </label>
-        </div>
-        <img id="preview-image" class="img-fluid item-center m-auto" src="#" alt="">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" (click)="upload()" data-bs-dismiss="modal">Save changes
-        </button>
-      </div>
-    </div>
+<ng-template #content let-c="close" let-d="dismiss" class="w-70">
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Image picker</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="d('Cross click')"></button>
   </div>
-</div>
+  <div class="modal-body">
+    <div class="row shadow p-5 m-5">
+      <label>
+        <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" />
+      </label>
+    </div>
+    <img id="preview-image" class="img-fluid item-center m-auto" src="#" alt="">
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="d('Cross click')">Close</button>
+    <button type="button" class="btn btn-primary" (click)="upload()" data-bs-dismiss="modal" (click)="c('Save click')">Save changes
+    </button>
+  </div>
+</ng-template>

@@ -6,7 +6,7 @@ import { FileUpload } from 'src/app/_models/file-upload';
 import { AuthServiceService } from 'src/app/_services/auth-service.service';
 import { FirebaseService } from 'src/app/_services/firebase.service';
 import { NotificationService } from 'src/app/_services/notification.service';
-
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-admin-profile',
   templateUrl: './admin-profile.component.html',
@@ -26,6 +26,7 @@ export class AdminProfileComponent implements OnInit {
   currentFileUpload: FileUpload;
   constructor(private authService: AuthServiceService,
     private notificationService: NotificationService,
+    config: NgbModalConfig, private modalService: NgbModal,
     private firebaseService: FirebaseService) {
     authService.getProfile().pipe(first()).subscribe(account => {
       this.account = account['data']
@@ -119,5 +120,9 @@ export class AdminProfileComponent implements OnInit {
   convertToFormControl(absCtrl: AbstractControl | null): FormControl {
     const ctrl = absCtrl as FormControl;
     return ctrl;
+  }
+
+  open(content) {
+    this.modalService.open(content, { size: 'lg'});
   }
 }
