@@ -77,12 +77,11 @@ export class TaskbarComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  onResize(event) {
+  onResize() {
     if (window.innerWidth <= 600) {
       this.isHidden = true
       this.isResize = true
     } else
       this.isResize = false
-
   }
 }

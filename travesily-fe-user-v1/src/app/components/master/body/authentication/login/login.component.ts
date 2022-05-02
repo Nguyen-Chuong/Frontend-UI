@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
               //'http://localhost:4300/home';
           }
         },
-        error: (error) => {
+        error: () => {
           this.form.reset();
           this.alertService.error('Please check your email and password!');
         },

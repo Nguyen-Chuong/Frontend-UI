@@ -39,5 +39,4 @@ export class BookingDetailCardComponent implements OnInit {
   filterFacility(ele) {
     return ele['name']
   }
-
 }

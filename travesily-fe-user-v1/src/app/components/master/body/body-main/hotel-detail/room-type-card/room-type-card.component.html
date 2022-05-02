@@ -16,18 +16,21 @@
             <img class="room-type-img" [src]="roomDetail.listImage?roomDetail.listImage[2]?.src:''" alt="">
           </div>
         </div>
-        <a data-bs-toggle="modal" [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id"><h4
-          class="text-primary mb-1">Room photos and details</h4></a>
+        <a data-bs-toggle="modal" [attr.data-bs-target]="'#room-type-image-modal-'+roomType.id">
+          <h4 class="text-primary mb-1">Room photos and details</h4>
+        </a>
         <ul class="list-inline d-none d-sm-none d-md-block">
           <li *ngFor="let item of roomDetail?.listFacility">
             <p class="m-0 d-flex align-items-center text-grey-dark-1"><span
-              class="material-icons me-2">{{item.facilities[0].icon}}</span> {{item.facilities[0].name}}</p>
+                class="material-icons me-2">{{item.facilities[0].icon}}</span> {{item.facilities[0].name}}</p>
           </li>
         </ul>
         <div class="room-facilities position-relative">
           <div class="see-all-hover">
-            <a><h4 class="card-text text-primary small room-facilities__button"><i class="fa fa-plus-circle"
-            aria-hidden="true"></i> See all room facilities</h4></a>
+            <a>
+              <h4 class="card-text text-primary small room-facilities__button"><i class="fa fa-plus-circle"
+                  aria-hidden="true"></i> See all room facilities</h4>
+            </a>
           </div>
           <div class="detail-list-facility container position-absolute bg-white shadow border p-5">
             <div class="row">
@@ -37,7 +40,7 @@
                   <ul class="list-inline">
                     <li class="" *ngFor="let facility of facilityType.facilities">
                       <p class="m-0 d-flex align-items-center"><span
-                        class="material-icons me-3">{{facility.icon}}</span> {{facility.name}}</p>
+                          class="material-icons me-3">{{facility.icon}}</span> {{facility.name}}</p>
                     </li>
                   </ul>
                 </li>
@@ -48,20 +51,30 @@
       </div>
       <div class="col-md-10 col-sm-10 col-10">
         <div class="row d-none d-sm-none d-md-flex">
-          <div class="col-md-4 col-sm-0"><h3 class="card-title mb-0"><b>Benefits</b></h3></div>
-          <div class="col-md-1 col-sm-3"><h3 class="card-title mb-0"><b>Sleeps</b></h3></div>
-          <div class="col-md-3 col-sm-3"><h3 class="card-title mb-0"><b>Price per night</b></h3></div>
-          <div class="col-md-1 col-sm-1"><h3 class="card-title mb-0"><b>Rooms</b></h3></div>
-          <div class="col-md-3 col-sm-3"><h3 class="card-title mb-0"><b>Most booked</b></h3></div>
+          <div class="col-md-4 col-sm-0">
+            <h3 class="card-title mb-0"><b>Benefits</b></h3>
+          </div>
+          <div class="col-md-1 col-sm-3">
+            <h3 class="card-title mb-0"><b>Sleeps</b></h3>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <h3 class="card-title mb-0"><b>Price per night</b></h3>
+          </div>
+          <div class="col-md-1 col-sm-1">
+            <h3 class="card-title mb-0"><b>Rooms</b></h3>
+          </div>
+          <div class="col-md-3 col-sm-3">
+            <h3 class="card-title mb-0"><b>Most booked</b></h3>
+          </div>
         </div>
         <div class="row bg-white p-3">
           <p *ngIf="roomDetail.listBenefit?.length>0||roomDetail.dealPercentage>0"><strong>Your price includes:</strong>
           </p>
           <div class="d-none d-sm-none d-md-block col-0 col-md-4 col-sm-0">
             <p *ngIf="roomDetail.listBenefit?.length>0" class="text-success d-flex align-items-center m-0"><span
-              class="material-icons text-success">check</span>{{roomTypeBenefits}}</p>
+                class="material-icons text-success">check</span>{{roomTypeBenefits}}</p>
             <p *ngIf="roomDetail.dealPercentage>0" class="text-success d-flex align-items-center m-0"><span
-              class="material-icons text-success">check</span>Book right now to
+                class="material-icons text-success">check</span>Book right now to
               save {{roomDetail.price * roomDetail.dealPercentage / 100 | number:'1.0-1'}}đ</p>
           </div>
           <div class="col-2 col-md-1 col-sm-2">
@@ -80,18 +93,19 @@
             <h2 class="card-title bg-light-grey p-3 item-center">{{filter.roomNumber}}</h2>
           </div>
           <div class="col-4 col-md-3 col-sm-4" *ngIf="roomType.availableRooms>=filter.roomNumber">
-            <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3" (click)="addToCart()"><strong>Add
-              to cart</strong>
+            <button type="button" class="btn btn-outline-primary d-block w-100 mb-3 p-3"
+              (click)="addToCart()"><strong>Add
+                to cart</strong>
             </button>
             <button type="button" class="btn btn-primary d-block w-100 p-3" (click)="bookNow()"><strong>Book
-              now</strong></button>
+                now</strong></button>
             <h3 *ngIf="roomType.availableRooms > 1" class="text-danger float-end"><strong>Our
-              last {{roomType.availableRooms}} rooms!</strong></h3>
+                last {{roomType.availableRooms}} rooms!</strong></h3>
             <h3 *ngIf="roomType.availableRooms === 1" class="text-danger float-end"><strong>Our last room!</strong></h3>
           </div>
           <div class="col-md-3 col-sm-3" *ngIf="roomType.availableRooms<filter.roomNumber">
             <button type="button" class="btn btn-outline-danger d-block w-100 mb-3 p-3" disabled><strong>Out of
-              rooms</strong>
+                rooms</strong>
             </button>
           </div>
         </div>
@@ -103,7 +117,7 @@
   <div class="container-fluid">
     <!-- Modal -->
     <div class="modal fade" id="room-type-image-modal-{{roomType.id}}" tabindex="-1"
-         [attr.aria-labelledby]="'room-type-image-modal-label-'+roomType.id" aria-hidden="true">
+      [attr.aria-labelledby]="'room-type-image-modal-label-'+roomType.id" aria-hidden="true">
       <div class="row bg-white bg-opacity-75">
         <div class="col-md-8">
           <div class="modal-dialog modal-xl">
@@ -113,14 +127,12 @@
                   <app-images-carousel [listImage]="roomType.listImage"></app-images-carousel>
                 </div>
                 <button class="carousel-control-prev" type="button"
-                        [attr.data-bs-target]="'#carouselImageRoomTypeControls-'+roomType.id"
-                        data-bs-slide="prev">
+                  [attr.data-bs-target]="'#carouselImageRoomTypeControls-'+roomType.id" data-bs-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Previous</span>
                 </button>
                 <button class="carousel-control-next" type="button"
-                        [attr.data-bs-target]="'#carouselImageRoomTypeControls-'+roomType.id"
-                        data-bs-slide="next">
+                  [attr.data-bs-target]="'#carouselImageRoomTypeControls-'+roomType.id" data-bs-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
@@ -132,7 +144,6 @@
           <app-hotel-rating [hotel]="hotel"></app-hotel-rating>
         </div>
       </div>
-
     </div>
   </div>
 </div>

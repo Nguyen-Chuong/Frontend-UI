@@ -19,8 +19,8 @@ export class BookingComponent implements OnInit {
   bookings: Booking[] = []
   dataSource
 
-  constructor(private bookingsService: BookingsService, private cryptoService: CryptoService, private router: Router) {
-    
+  constructor(private bookingsService: BookingsService, 
+    private cryptoService: CryptoService, private router: Router) {
     this.dataSource = new MatTableDataSource<Booking>(this.bookings);
   }
   ngOnInit(): void {

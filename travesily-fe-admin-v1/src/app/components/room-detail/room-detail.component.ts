@@ -2,6 +2,7 @@ import { Image } from './../../_models/image';
 import { Component, Input, OnInit } from '@angular/core';
 import { Room } from 'src/app/_models/room';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-room-detail',
   templateUrl: './room-detail.component.html',
@@ -13,11 +14,12 @@ export class RoomDetailComponent implements OnInit {
   images: Image[]
   imageSrc: string
   modal = ''
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(config: NgbModalConfig, 
+    private modalService: NgbModal) {
     config.keyboard = false;
   }
-  ngOnInit(): void {
 
+  ngOnInit(): void {
     this.images = this.room.listImage
     if (this.images.length === 0) {
       this.imageSrc = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQt1R-elWRjhm7X8oDey-GQJeZa9fiPCT_QkA&usqp=CAU'
@@ -25,6 +27,7 @@ export class RoomDetailComponent implements OnInit {
       this.imageSrc = this.images[0].src
     }
   }
+  
   open(content) {
     this.modalService.open(content, { size: 'lg'});
   }

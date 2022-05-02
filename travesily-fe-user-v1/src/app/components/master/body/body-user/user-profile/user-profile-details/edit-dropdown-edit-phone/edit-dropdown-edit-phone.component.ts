@@ -34,7 +34,7 @@ export class EditDropdownEditPhoneComponent implements OnInit {
           this.dropdown.emit()
           this.form.reset()
         },
-        error: err => {
+        error: () => {
           Swal.fire('Update phone failed!','','error')
         }
       })
@@ -52,5 +52,4 @@ export class EditDropdownEditPhoneComponent implements OnInit {
     const ctrl = absCtrl as FormControl;
     return ctrl;
   }
-
 }

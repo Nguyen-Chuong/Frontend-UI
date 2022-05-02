@@ -34,7 +34,6 @@ export class UserComponent {
     })
     /** spinner starts on init */
     this.spinner.show();
-    
     if (this.username) {
       this.username.slice(1, -1)
       this.userService.searchUserByUsername(this.username).pipe(first()).subscribe(

@@ -19,5 +19,4 @@ export class UserVipVipDataComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

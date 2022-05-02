@@ -4,47 +4,44 @@
       <p style="font-size: 20px; color: white;">Loading...</p>
     </ngx-spinner>
     <div class="mat-elevation-z8">
-      <table mat-table [dataSource]="requests"  class="full-width-table" mat-sort>
+      <table mat-table [dataSource]="requests" class="full-width-table" mat-sort>
         <!-- Name Column -->
         <ng-container matColumnDef="hotelName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Hotel </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.hotel.name}} </td>
         </ng-container>
-
         <!-- Weight Column -->
         <ng-container matColumnDef="requestDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Request Date </th>
           <td width="280" mat-cell *matCellDef="let element"> {{element.requestDate| date:'medium'}} </td>
         </ng-container>
-
         <!-- Symbol Column -->
         <ng-container matColumnDef="providerName">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Provider </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.provider.username}} </td>
         </ng-container>
-
         <ng-container matColumnDef="request">
           <th mat-header-cell *matHeaderCellDef mat-sort-header style="padding-left: 2rem;"> Request </th>
-          <td  width="200" mat-cell *matCellDef="let element">
-            <button *ngIf="element.status === 1" class="btn btn-outline-success" (click)="acceptHotel(element.id)">Accept</button>
-            <button *ngIf="element.status === 1" class="btn btn-outline-danger " (click)="denyHotel(element.id)">Deny</button>
+          <td width="200" mat-cell *matCellDef="let element">
+            <button *ngIf="element.status === 1" class="btn btn-outline-success"
+              (click)="acceptHotel(element.id)">Accept</button>
+            <button *ngIf="element.status === 1" class="btn btn-outline-danger "
+              (click)="denyHotel(element.id)">Deny</button>
           </td>
         </ng-container>
-
         <ng-container matColumnDef=" ">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
-              <select class="form-select form-select-sm" (change)="filterHotel($event)">
-                <option selected value="1">Pending</option>
-                <option value="2">Accepted</option>
-                <option value="3">Denied</option>
-                <option value="4">Cancel</option>
-              </select>
+            <select class="form-select form-select-sm" (change)="filterHotel($event)">
+              <option selected value="1">Pending</option>
+              <option value="2">Accepted</option>
+              <option value="3">Denied</option>
+              <option value="4">Cancel</option>
+            </select>
           </th>
           <td width="200" mat-cell *matCellDef="let element">
             <button class="btn btn-outline-primary" (click)="openHotelDetail(element.hotel.id)">Detail</button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

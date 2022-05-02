@@ -23,7 +23,6 @@ export class FeedbackComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-    
     this.feedbackService.getAllFeedback().pipe(first()).subscribe(
       rs => {
         this.total = rs['data']['total']

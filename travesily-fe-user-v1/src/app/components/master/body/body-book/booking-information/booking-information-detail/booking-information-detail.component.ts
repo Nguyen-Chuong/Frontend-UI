@@ -6,7 +6,6 @@ import {BookingInformationDetail} from "../../../../../../_models/booking-inform
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {PaymentService} from "../../../../../../_services/payment.service";
 import Swal from "sweetalert2";
-import {StorageService} from "../../../../../../_services/storage.service";
 
 @Component({
   selector: 'app-booking-information-detail',

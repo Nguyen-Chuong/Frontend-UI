@@ -51,7 +51,7 @@ export class NewPasswordComponent implements OnInit {
   onSave() {
     if (this.form.value.newPass && this.form.value.confirmNewPass) {
       this.authService.resetPassword(this.encryptedEmail, this.form.value.newPass).subscribe({
-          next: rs => {
+          next: () => {
             this.router.navigateByUrl('/authentication/login').then(() => {
               Swal.fire('Change password successfully', '', 'success')
             })

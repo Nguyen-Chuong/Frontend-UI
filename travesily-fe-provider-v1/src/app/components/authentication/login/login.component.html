@@ -1,23 +1,24 @@
-
 <div class="login item-center m-auto">
   <form class="form-body" [formGroup]="form" (ngSubmit)="onSubmit()">
     <h2 class="form-header">Sign in</h2>
     <div class="row mb-3">
       <mat-form-field appearance="outline">
         <mat-label class="text-secondary">Enter your email</mat-label>
-        <input matInput placeholder="Enter your email" type="email" [formControl]="convertToFormControl(form?.controls['email'])" required>
+        <input matInput placeholder="Enter your email" type="email"
+          [formControl]="convertToFormControl(form?.controls['email'])" required>
         <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
       </mat-form-field>
     </div>
     <div class="row mb-3">
       <mat-form-field appearance="outline">
         <mat-label class="text-secondary">Enter your password</mat-label>
-        <input matInput placeholder="Enter your password" type="password" [formControl]="convertToFormControl(form?.controls['password'])" required>
+        <input matInput placeholder="Enter your password" type="password"
+          [formControl]="convertToFormControl(form?.controls['password'])" required>
         <mat-error *ngIf="form?.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
       </mat-form-field>
     </div>
     <div class="form-submit">
-      <button  class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">
+      <button class="btn-blue btn-fill item-fullwidth" [disabled]="form.invalid">
         Login
       </button>
     </div>
@@ -26,5 +27,4 @@
       <a routerLink="../forgot-password" class="forgot">Forgot Password?</a>
     </div>
   </form>
-
 </div>

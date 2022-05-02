@@ -43,7 +43,6 @@
     transform: rotateY(0);
   }
 
-
   // FRONT SIDE STYLING
   &__picture {
     background-size: cover;
@@ -53,7 +52,6 @@
     clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-
   }
 
   &__heading {
@@ -124,8 +122,6 @@
     font-size: 3rem;
     font-weight: 100;
   }
-
-
 }
 
 .checked{

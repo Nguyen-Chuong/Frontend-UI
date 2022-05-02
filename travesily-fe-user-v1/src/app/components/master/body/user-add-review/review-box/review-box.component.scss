@@ -22,10 +22,6 @@ textarea{
   display: none;
 }
 
-/* - - - - - RATE */
-//#rate {
-//  top: -65px;
-//}
 .rating-clean {
   #rateClean:not(:checked) > .clean-label {
     cursor: pointer;
@@ -33,9 +29,7 @@ textarea{
     width: 5rem;
     height: 5rem;
     display: block;
-
     color: rgb(142, 143, 143);
-    //line-height: 3.3rem;
     text-align: center;
   }
 
@@ -66,7 +60,6 @@ textarea{
     display: block;
 
     color: rgb(142, 143, 143);
-    //line-height: 3.3rem;
     text-align: center;
   }
 
@@ -97,7 +90,6 @@ textarea{
     display: block;
 
     color: rgb(142, 143, 143);
-    //line-height: 3.3rem;
     text-align: center;
   }
 
@@ -127,7 +119,6 @@ textarea{
     display: block;
 
     color: rgb(142, 143, 143);
-    //line-height: 3.3rem;
     text-align: center;
   }
 
@@ -157,7 +148,6 @@ textarea{
     display: block;
 
     color: rgb(142, 143, 143);
-    //line-height: 3.3rem;
     text-align: center;
   }
 

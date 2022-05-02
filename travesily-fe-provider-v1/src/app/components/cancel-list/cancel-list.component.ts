@@ -10,7 +10,6 @@ import { CryptoService } from 'src/app/_services/crypto.service';
   styleUrls: ['./cancel-list.component.scss']
 })
 export class CancelListComponent{
-
   @Input() bookings: Booking[]
   dataSource
   constructor(private cryptoService: CryptoService, private router: Router) {

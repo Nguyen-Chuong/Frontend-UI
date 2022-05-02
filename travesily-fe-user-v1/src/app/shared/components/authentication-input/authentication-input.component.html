@@ -1,9 +1,8 @@
 <div class="field border-0">
   <div class="mb-4">
     <label for="input" class="col-form-label">{{label}}</label>
-
     <input [type]="type" [formControl]="control" class="form-control" [placeholder]="placeholder??''"
-             [ngClass]="{'is-invalid': control.errors}" id="input">
+      [ngClass]="{'is-invalid': control.errors}" id="input">
   </div>
   <ng-container *ngIf="control.dirty&&control.touched">
     <div class="control-error text-danger" *ngIf="control.errors?.required">

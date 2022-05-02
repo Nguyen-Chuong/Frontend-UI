@@ -11,7 +11,6 @@ import { Room } from 'src/app/_models/room';
   styleUrls: ['./add-room.component.scss']
 })
 export class AddRoomComponent implements OnInit {
-
   form: FormGroup
   isHotel = false
   constructor(
@@ -54,5 +53,4 @@ export class AddRoomComponent implements OnInit {
         }
       })
   }
-
 }

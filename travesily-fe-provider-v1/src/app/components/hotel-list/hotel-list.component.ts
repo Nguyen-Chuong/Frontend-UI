@@ -25,7 +25,6 @@ export class HotelListComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-
     if(!localStorage.getItem('token'))
       this.router.navigate(['/login'])
     this.hotelService.getAllHotel().pipe(first()).subscribe(

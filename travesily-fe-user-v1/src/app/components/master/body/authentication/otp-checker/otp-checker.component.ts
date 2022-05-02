@@ -34,7 +34,7 @@ export class OtpCheckerComponent implements OnInit, OnDestroy {
           this.account.lastname = rs['lastname']
         }
         this.authService.generateOtp(this.encryptedEmail).pipe(first()).subscribe(
-          rs => {
+          () => {
             this.alertService.success('We have sent you an email with OTP code')
           },
           error => this.alertService.error(error)

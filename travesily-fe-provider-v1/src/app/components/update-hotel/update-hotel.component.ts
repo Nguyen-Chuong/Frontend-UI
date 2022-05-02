@@ -69,7 +69,6 @@ export class UpdateHotelComponent implements OnInit {
         description: [this.hotel.description],
       })
       this.encryptedHotelId = this.cryptoService.set('06052000', this.hotel.id)
-
     }
     )
   }

@@ -4,32 +4,26 @@
     <th mat-header-cell *matHeaderCellDef> ID </th>
     <td width="100" mat-cell *matCellDef="let element"> {{element.id}} </td>
   </ng-container>
-
   <!-- Name Column -->
   <ng-container matColumnDef="type">
     <th mat-header-cell *matHeaderCellDef> Type </th>
     <td width="100" mat-cell *matCellDef="let element"> {{element.type}} </td>
   </ng-container>
-
   <!-- Weight Column -->
   <ng-container matColumnDef="senderName">
     <th mat-header-cell *matHeaderCellDef> Sender Name </th>
     <td width="200" mat-cell *matCellDef="let element"> {{element.senderName.slice(2)}} </td>
   </ng-container>
-
   <!-- Weight Column -->
   <ng-container matColumnDef="message">
-    <th mat-header-cell *matHeaderCellDef > Message </th>
+    <th mat-header-cell *matHeaderCellDef> Message </th>
     <td width="400" mat-cell *matCellDef="let element"> {{element.message | slice: 0: 50}} ... </td>
   </ng-container>
-
   <!-- Symbol Column -->
   <ng-container matColumnDef="modifyDate">
     <th mat-header-cell *matHeaderCellDef> ModifyDate </th>
     <td width="300" mat-cell *matCellDef="let element"> {{element.modifyDate | date: 'dd/MM/yyyy'}} </td>
   </ng-container>
-
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openResponse(row.id)"></tr>
 </table>
-

@@ -5,7 +5,6 @@ import {Router} from "@angular/router";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import * as _moment from 'moment';
-// tslint:disable-next-line:no-duplicate-imports
 import * as _rollupMoment from 'moment';
 import {ResultSearch} from "../../../../../_models/result-search";
 import {LocationService} from "../../../../../_services/location.service";

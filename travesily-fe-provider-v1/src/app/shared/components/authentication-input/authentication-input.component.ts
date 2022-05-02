@@ -20,5 +20,4 @@ export class AuthenticationInputComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

@@ -7,21 +7,19 @@
       <mat-tab label="Completed">
         <app-booking [hotelId]="hotelId"></app-booking>
       </mat-tab>
-      
       <mat-tab label="Up Coming">
-        <app-up-coming-booking [bookings]="upComingBookings" ></app-up-coming-booking>
+        <app-up-coming-booking [bookings]="upComingBookings"></app-up-coming-booking>
       </mat-tab>
-
       <mat-tab label="Cancel">
-        <app-cancel-list [bookings]="cancelList" ></app-cancel-list>
+        <app-cancel-list [bookings]="cancelList"></app-cancel-list>
       </mat-tab>
-      
       <mat-tab label="Review">
         <div class="review-card" *ngFor="let review of reviews">
           <app-review [review]="review"></app-review>
         </div>
         <div *ngIf="reviews.length > 0" class="m-auto">
-          <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)" aria-label="Select page">
+          <mat-paginator [length]="total" [pageSize]="pageSize" (page)="getPaginatorData($event)"
+            aria-label="Select page">
           </mat-paginator>
         </div>
         <div *ngIf="reviews.length === 0" class="noData">

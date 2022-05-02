@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
 import { NotificationService } from 'src/app/_services/notification.service';
 
@@ -11,7 +10,6 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./new-password.component.scss']
 })
 export class NewPasswordComponent implements OnInit {
-
   encryptedEmail: string
   form: FormGroup
 

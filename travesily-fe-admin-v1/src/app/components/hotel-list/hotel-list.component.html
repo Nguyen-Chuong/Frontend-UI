@@ -1,6 +1,6 @@
 <div class="hotels">
   <div class="hotel">
-    <div class="mat-elevation-z8" >
+    <div class="mat-elevation-z8">
       <ngx-spinner type="ball-scale-multiple">
         <p style="font-size: 20px; color: white;">Loading...</p>
       </ngx-spinner>
@@ -10,25 +10,22 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Hotel </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
-
         <!-- Weight Column -->
         <ng-container matColumnDef="lowestPrice">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Lowest Price </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.price | number:'1.0-0'}} đ</td>
         </ng-container>
-
         <ng-container matColumnDef="address">
           <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.address}} </td>
         </ng-container>
-
         <ng-container matColumnDef=" ">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
           <td width="200" mat-cell *matCellDef="let element">
-            <button *ngIf="element.status === 1" class="btn btn-outline-danger" (click)="deleteHotel(element.id)">Ban</button>
+            <button *ngIf="element.status === 1" class="btn btn-outline-danger"
+              (click)="deleteHotel(element.id)">Ban</button>
           </td>
         </ng-container>
-
         <ng-container matColumnDef="detail">
           <th mat-header-cell *matHeaderCellDef>
             <select class="form-select form-select-sm" (change)="filterHotel($event)">
@@ -43,7 +40,6 @@
             <button class="btn btn-outline-primary" (click)="openHotelDetail(element.id)">Detail</button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>

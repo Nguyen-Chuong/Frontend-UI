@@ -1,4 +1,3 @@
-
 <div class="card">
   <div class="card-header">
     <h2 class="text-primary"><strong>Thread no: {{decryptedFeedbackId}}</strong></h2>
@@ -14,17 +13,17 @@
       </ul>
     </div>
   </div>
-    <div class="card-footer">
+  <div class="card-footer">
     <form [formGroup]="messageForm">
-    <div class="row">
-      <div class="col-md-10">
-        <input type="text" class="form-control form-control-lg" formControlName="message" placeholder="Message">
+      <div class="row">
+        <div class="col-md-10">
+          <input type="text" class="form-control form-control-lg" formControlName="message" placeholder="Message">
+        </div>
+        <div class="col-md-1">
+          <button [disabled]="responses.length === 0" class="btn btn-lg btn-primary"
+            (click)="sendMessage()">Send</button>
+        </div>
       </div>
-      <div class="col-md-1">
-        <button [disabled]="responses.length === 0" class="btn btn-lg btn-primary" (click)="sendMessage()">Send</button>
-      </div>
-    </div>
     </form>
-
   </div>
 </div>

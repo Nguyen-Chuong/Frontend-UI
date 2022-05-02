@@ -10,7 +10,6 @@ import {
 } from "@angular/material/datepicker";
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from "@angular/material/core";
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
-// tslint:disable-next-line:no-duplicate-imports
 import {SearchFilter} from "../../../../../../_models/search-filter";
 import {ResultSearch} from "../../../../../../_models/result-search";
 import {StorageService} from "../../../../../../_services/storage.service";
@@ -147,7 +146,6 @@ export class HotelHomeComponent implements OnInit {
   results: ResultSearch[]
   todayDate: Date = new Date();
   tomorrowDate: Date = new Date(new Date().setDate(this.todayDate.getDate() + 1))
-  // someDate: Date = new Date(anydate);
 
   hotelForm = new FormGroup({
     destination: new FormControl('', [Validators.required]),

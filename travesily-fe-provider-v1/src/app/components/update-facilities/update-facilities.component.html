@@ -12,7 +12,6 @@
           </mat-select>
           <mat-error *ngIf="hotelControl.hasError('required')">Please choose a hotel</mat-error>
         </mat-form-field>
-
         <mat-form-field appearance="fill" class="select select-room">
           <mat-label>Room</mat-label>
           <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)">
@@ -40,7 +39,6 @@
           <mat-icon>add</mat-icon>
           <span>New Facility</span>
         </button>
-
         <div class="new-benefit" *ngIf="isAddFacility">
           <app-add-facilities [roomTypeId]="room.id"></app-add-facilities>
         </div>

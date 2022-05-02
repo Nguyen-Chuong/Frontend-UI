@@ -12,7 +12,6 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./booking-detail-card.component.scss']
 })
 export class BookingDetailCardComponent implements OnInit {
-
   @Input() bookingDetail: BookingDetail = new BookingDetail()
   roomDetail: Room = new Room()
 

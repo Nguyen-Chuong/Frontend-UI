@@ -46,7 +46,6 @@ export class ForgotPasswordComponent implements OnInit {
         this.notificationService.onError(error)
       }
     )
-
   }
 
   getErrorMessage(field: string) {

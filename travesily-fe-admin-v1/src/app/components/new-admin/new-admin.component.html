@@ -1,42 +1,42 @@
-    <div class="new-admin">
-      <form *ngIf="isAdmin" class="form-body" [formGroup]="form" (ngSubmit)="addAdmin()">
-        <h2 class="form-header p-3">NEW MANAGER</h2>
-          <div class="row mb-1">
-            <mat-form-field appearance="outline">
-              <mat-label class="text-secondary">Enter your username</mat-label>
-              <input matInput placeholder="Enter your username" type="text"
-                [formControl]="convertToFormControl(form?.controls['username'])" required>
-              <mat-error *ngIf="form?.controls['username'].invalid">{{getErrorMessage('username')}}</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="row mb-1">
-            <mat-form-field appearance="outline">
-              <mat-label class="text-secondary">Enter your email</mat-label>
-              <input matInput placeholder="Enter your email" type="email"
-                [formControl]="convertToFormControl(form?.controls['email'])" required>
-              <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="row mb-1">
-            <mat-form-field appearance="outline">
-              <mat-label class="text-secondary">Enter your password</mat-label>
-              <input matInput placeholder="Enter your password" type="password"
-                [formControl]="convertToFormControl(form?.controls['password'])" required>
-              <mat-error *ngIf="form?.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
-            </mat-form-field>
-          </div>
-          <div class="row mb-1">
-            <mat-form-field appearance="outline">
-              <mat-label class="text-secondary">Confirm your password</mat-label>
-              <input matInput placeholder="Confirm your password" type="password"
-                [formControl]="convertToFormControl(form?.controls['confirmPassword'])" required>
-              <mat-error *ngIf="form?.controls['confirmPassword'].invalid">{{getErrorMessage('confirmPassword')}}
-              </mat-error>
-            </mat-form-field>
-          </div>
-          <div class="form-submit">
-            <button class="btn btn-outline-success" [disabled]="form.invalid">Save</button>
-          </div>
-      </form>
-      <div *ngIf="isManager">you are not authorized to add manager</div>
+<div class="new-admin">
+  <form *ngIf="isAdmin" class="form-body" [formGroup]="form" (ngSubmit)="addAdmin()">
+    <h2 class="form-header p-3">NEW MANAGER</h2>
+    <div class="row mb-1">
+      <mat-form-field appearance="outline">
+        <mat-label class="text-secondary">Enter your username</mat-label>
+        <input matInput placeholder="Enter your username" type="text"
+          [formControl]="convertToFormControl(form?.controls['username'])" required>
+        <mat-error *ngIf="form?.controls['username'].invalid">{{getErrorMessage('username')}}</mat-error>
+      </mat-form-field>
     </div>
+    <div class="row mb-1">
+      <mat-form-field appearance="outline">
+        <mat-label class="text-secondary">Enter your email</mat-label>
+        <input matInput placeholder="Enter your email" type="email"
+          [formControl]="convertToFormControl(form?.controls['email'])" required>
+        <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row mb-1">
+      <mat-form-field appearance="outline">
+        <mat-label class="text-secondary">Enter your password</mat-label>
+        <input matInput placeholder="Enter your password" type="password"
+          [formControl]="convertToFormControl(form?.controls['password'])" required>
+        <mat-error *ngIf="form?.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="row mb-1">
+      <mat-form-field appearance="outline">
+        <mat-label class="text-secondary">Confirm your password</mat-label>
+        <input matInput placeholder="Confirm your password" type="password"
+          [formControl]="convertToFormControl(form?.controls['confirmPassword'])" required>
+        <mat-error *ngIf="form?.controls['confirmPassword'].invalid">{{getErrorMessage('confirmPassword')}}
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="form-submit">
+      <button class="btn btn-outline-success" [disabled]="form.invalid">Save</button>
+    </div>
+  </form>
+  <div *ngIf="isManager">you are not authorized to add manager</div>
+</div>

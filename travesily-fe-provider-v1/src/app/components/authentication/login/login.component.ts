@@ -11,7 +11,6 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-
   form!: FormGroup;
 
   constructor(

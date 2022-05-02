@@ -8,9 +8,9 @@
         <div class="col-md-8">
           <h2 class="card-title m-0">{{hotel.name}}</h2>
           <h2><span class="fa fa-star {{hotel.star>=1?'checked':''}}"></span> <span
-            class="fa fa-star {{hotel.star>=2?'checked':''}}"></span> <span
-            class="fa fa-star {{hotel.star>=3?'checked':''}}"></span> <span
-            class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
+              class="fa fa-star {{hotel.star>=2?'checked':''}}"></span> <span
+              class="fa fa-star {{hotel.star>=3?'checked':''}}"></span> <span
+              class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
             <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
           </h2>
           <h4>{{hotel.address}}, {{hotel.district?.nameDistrict}}, {{hotel.district?.city?.nameCity}}</h4>
@@ -28,10 +28,13 @@
             <h3><b>{{bookingInformationDetails[i].dateIn | date}} - {{bookingInformationDetails[i].dateOut | date}}</b>
             </h3>
           </div>
-          <div class="col-md-3"><h3>
-            <b>{{bookingInformationDetails[i].dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[i].dateIn?.getTime() / (1000 * 3600 * 24)}}
-              nights</b>
-          </h3></div>
+          <div class="col-md-3">
+            <h3>
+              <b>{{bookingInformationDetails[i].dateOut?.getTime() / (1000 * 3600 * 24) -
+                bookingInformationDetails[i].dateIn?.getTime() / (1000 * 3600 * 24)}}
+                nights</b>
+            </h3>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-9">
@@ -49,8 +52,9 @@
             </h4>
             <h4 class="card-text text-grey"><i class="fa fa-male"></i> {{roomDetail.numberOfPeople}} adults</h4>
             <ul class="list-inline">
-              <li class="text-success" *ngFor="let benefitType of roomDetail.listBenefit"><h4><i
-                class="fa fa-check"></i> {{benefitType.benefits[0].name}}</h4></li>
+              <li class="text-success" *ngFor="let benefitType of roomDetail.listBenefit">
+                <h4><i class="fa fa-check"></i> {{benefitType.benefits[0].name}}</h4>
+              </li>
             </ul>
           </div>
         </div>
@@ -73,42 +77,53 @@
   <div class="card">
     <div class="card-body">
       <div *ngIf="roomDetails[0]?.dealPercentage > 0 || roomDetails[1]?.dealPercentage > 0"
-           class="d-flex justify-content-between">
+        class="d-flex justify-content-between">
         <h4>Original price ({{bookingInformationDetails[0]?.quantity + bookingInformationDetails[1]?.quantity}}
-          room<span
-            *ngIf="(bookingInformationDetails[0]?.quantity+bookingInformationDetails[1]?.quantity) > 1">s</span>
-          x {{bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)}}
+          room<span *ngIf="(bookingInformationDetails[0]?.quantity+bookingInformationDetails[1]?.quantity) > 1">s</span>
+          x {{bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) -
+          bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)}}
           night<span
             *ngIf="(bookingInformationDetails[0]?.dateOut?.getTime()/ (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime()/ (1000 * 3600 * 24)) > 1">s</span>):
         </h4>
         <h4 class="text-danger">
-          <s>{{(roomDetails[0]?.price * bookingInformationDetails[0]?.quantity + roomDetails[1]?.price * bookingInformationDetails[1]?.quantity) * (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) | number}}
-            đ</s></h4>
+          <s>{{(roomDetails[0]?.price * bookingInformationDetails[0]?.quantity + roomDetails[1]?.price *
+            bookingInformationDetails[1]?.quantity) * (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 *
+            24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) | number}}
+            đ</s>
+        </h4>
       </div>
       <div class="d-flex justify-content-between">
         <h4>Our price ({{bookingInformationDetails[0]?.quantity + bookingInformationDetails[1]?.quantity}} room<span
-          *ngIf="(bookingInformationDetails[0]?.quantity+bookingInformationDetails[1]?.quantity) > 1">s</span>
-          x {{bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)}}
+            *ngIf="(bookingInformationDetails[0]?.quantity+bookingInformationDetails[1]?.quantity) > 1">s</span>
+          x {{bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) -
+          bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)}}
           night<span
             *ngIf="(bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24)- bookingInformationDetails[0]?.dateIn?.getTime()/ (1000 * 3600 * 24)) > 1">s</span>):
         </h4>
-        <h4
-          class="text-success">{{((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100) * bookingInformationDetails[0]?.quantity + (roomDetails[1]?.price * bookingInformationDetails[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) * (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) | number}}
+        <h4 class="text-success">{{((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage /
+          100) * bookingInformationDetails[0]?.quantity + (roomDetails[1]?.price *
+          bookingInformationDetails[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) *
+          (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) -
+          bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) | number}}
           đ</h4>
       </div>
-
       <div class="d-flex justify-content-between">
         <h4>Booking fees</h4>
         <h4 class="text-primary">FREE</h4>
       </div>
-
     </div>
     <div class="card-footer p-4">
       <div class="d-flex justify-content-between">
         <h3><b>Price</b></h3>
         <h3>
-          <b>{{(((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100) * bookingInformationDetails[0]?.quantity + (roomDetails[1]?.price * bookingInformationDetails[1]?.quantity - roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) * (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) - bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) - discount) * (100 - account.vip?.discount) / 100 * (100 + hotel.taxPercentage) / 100 | number}}
-            đ</b></h3>
+          <b>{{(((roomDetails[0]?.price - roomDetails[0]?.price * roomDetails[0]?.dealPercentage / 100) *
+            bookingInformationDetails[0]?.quantity + (roomDetails[1]?.price * bookingInformationDetails[1]?.quantity -
+            roomDetails[1]?.price * roomDetails[1]?.dealPercentage / 100)) *
+            (bookingInformationDetails[0]?.dateOut?.getTime() / (1000 * 3600 * 24) -
+            bookingInformationDetails[0]?.dateIn?.getTime() / (1000 * 3600 * 24)) - discount) * (100 -
+            account.vip?.discount) / 100 * (100 + hotel.taxPercentage) / 100 | number}}
+            đ</b>
+        </h3>
       </div>
       <h5><b>Discounts: </b>VIP discount {{account.vip?.discount}}% {{code?'| Coupon applied: ':''}} {{code}}</h5>
       <h5><b>Applied fees: </b>Tax {{hotel.taxPercentage}}%</h5>

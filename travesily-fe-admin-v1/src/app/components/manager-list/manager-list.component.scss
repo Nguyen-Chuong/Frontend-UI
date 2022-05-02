@@ -1,4 +1,5 @@
 @import "../../scss/_main";
+
 .manager-list{
   display: flex;
 }
@@ -16,7 +17,6 @@
     &-remove{
       background-color: rgb(211, 34, 34);
       padding: 5px;
-
     }
   }
 }

@@ -10,12 +10,11 @@ import { Account } from 'src/app/_models/account';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-
   account: Account = new Account;
   username: string = ''
   isLogin = false
-  ngOnInit(): void {
 
+  ngOnInit(): void {
   }
 
   constructor(private authService: AuthService,
@@ -46,6 +45,5 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/login').then(() => {
       window.location.reload()
     });
-
   }
 }

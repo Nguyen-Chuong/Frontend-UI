@@ -11,7 +11,6 @@ import { NgxSpinnerService } from "ngx-spinner";
   styleUrls: ['./booking-detail.component.scss']
 })
 export class BookingDetailComponent implements OnInit {
-
   booking: Booking = new Booking()
   bookingDetails: BookingDetail[]
   constructor(private bookingService: BookingsService,
@@ -22,7 +21,6 @@ export class BookingDetailComponent implements OnInit {
   ngOnInit(): void {
     /** spinner starts on init */
     this.spinner.show();
-    
     this.activatedRoute.queryParams.subscribe(params => {
       const encryptedId = params['bookingId']
       this.bookingService.getBookingDetail(encryptedId).subscribe(
@@ -40,5 +38,4 @@ export class BookingDetailComponent implements OnInit {
       )
     })
   }
-
 }

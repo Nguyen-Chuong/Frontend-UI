@@ -2,40 +2,34 @@
   <div class="manager">
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="managers" class="manager-table">
-
-         <!-- Position Column -->
-         <ng-container matColumnDef="id">
+        <!-- Position Column -->
+        <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef> ID </th>
           <td width="100" mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
-
         <!-- Position Column -->
         <ng-container matColumnDef="username">
           <th mat-header-cell *matHeaderCellDef> Manager </th>
           <td width="200" mat-cell *matCellDef="let element"> {{element.username.slice(2)}} </td>
         </ng-container>
-
         <!-- Name Column -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef> Email </th>
           <td width="300" mat-cell *matCellDef="let element"> {{element.email}} </td>
         </ng-container>
-
         <!-- Weight Column -->
         <ng-container matColumnDef="phone">
           <th mat-header-cell *matHeaderCellDef> Phone </th>
           <td width="300" mat-cell *matCellDef="let element"> {{element.phone}} </td>
         </ng-container>
-
         <ng-container matColumnDef=" ">
           <th mat-header-cell *matHeaderCellDef style="padding-left: 1rem;"> Action </th>
           <td width="200" mat-cell *matCellDef="let element">
             <button class="btn btn-outline-danger" (click)="deleteManager(element.id)">Remove</button>
           </td>
         </ng-container>
-
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
   </div>

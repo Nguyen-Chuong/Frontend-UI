@@ -17,14 +17,16 @@
             <div class="row mb-1 name">
               <mat-form-field appearance="outline">
                 <mat-label class="text-secondary">First name</mat-label>
-                <input matInput placeholder="First name" type="text" [formControl]="convertToFormControl(formGroup?.controls['firstname'])" required>
+                <input matInput placeholder="First name" type="text"
+                  [formControl]="convertToFormControl(formGroup?.controls['firstname'])" required>
                 <mat-error *ngIf="formGroup?.controls['firstname'].invalid">{{getErrorMessage('firstname')}}</mat-error>
               </mat-form-field>
             </div>
             <div class="row mb-1 name">
               <mat-form-field appearance="outline">
                 <mat-label class="text-secondary">Last name</mat-label>
-                <input matInput placeholder="Last name" type="text" [formControl]="convertToFormControl(formGroup?.controls['lastname'])" required>
+                <input matInput placeholder="Last name" type="text"
+                  [formControl]="convertToFormControl(formGroup?.controls['lastname'])" required>
                 <mat-error *ngIf="formGroup?.controls['lastname'].invalid">{{getErrorMessage('lastname')}}</mat-error>
               </mat-form-field>
             </div>
@@ -32,19 +34,22 @@
           <div class="row mb-1">
             <mat-form-field appearance="outline">
               <mat-label class="text-secondary">Address</mat-label>
-              <input matInput placeholder="Enter your address" type="text" [formControl]="convertToFormControl(formGroup?.controls['address'])" required>
+              <input matInput placeholder="Enter your address" type="text"
+                [formControl]="convertToFormControl(formGroup?.controls['address'])" required>
               <mat-error *ngIf="formGroup?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
             </mat-form-field>
           </div>
           <div class="row mb-1">
             <mat-form-field appearance="outline">
               <mat-label class="text-secondary">Phone number</mat-label>
-              <input matInput placeholder="Enter your phone number" type="text" [formControl]="convertToFormControl(formGroup?.controls['phone'])" required>
+              <input matInput placeholder="Enter your phone number" type="text"
+                [formControl]="convertToFormControl(formGroup?.controls['phone'])" required>
               <mat-error *ngIf="formGroup?.controls['phone'].invalid">{{getErrorMessage('phone')}}</mat-error>
             </mat-form-field>
           </div>
           <div class="mt-5 text-center">
-            <button class="btn btn-primary profile-button" [disabled]="!formGroup.valid" type="submit">Save Profile</button>
+            <button class="btn btn-primary profile-button" [disabled]="!formGroup.valid" type="submit">Save
+              Profile</button>
           </div>
         </div>
       </form>
@@ -54,11 +59,11 @@
     </div>
   </div>
 </div>
-
 <ng-template #content let-c="close" let-d="dismiss" class="w-70">
   <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Image picker</h5>
-    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="d('Cross click')"></button>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+      (click)="d('Cross click')"></button>
   </div>
   <div class="modal-body">
     <div class="row shadow p-5 m-5">
@@ -67,11 +72,11 @@
       </label>
     </div>
     <img id="preview-image" class="img-fluid item-center m-auto" src="#" alt="">
-
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="d('Cross click')">Close</button>
-    <button type="button" class="btn btn-primary" (click)="upload()" data-bs-dismiss="modal" (click)="c('Save click')">Save changes
+    <button type="button" class="btn btn-primary" (click)="upload()" data-bs-dismiss="modal"
+      (click)="c('Save click')">Save changes
     </button>
   </div>
 </ng-template>

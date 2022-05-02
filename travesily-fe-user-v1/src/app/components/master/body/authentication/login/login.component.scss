@@ -1,4 +1,5 @@
 @import "main";
+
 *{
   font-style: inherit;
   font-size: 1.5rem;
@@ -9,14 +10,6 @@ a{
     text-decoration: underline;
   }
 }
-
-//.mat-form-field-appearance-outline .mat-form-field-outline {
-//  color: black!important;
-//}
-/* Font color */
-//input.mat-input-element {
-//  color: white;
-//}
 
 /* default and hover color */
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
