@@ -14,24 +14,21 @@
     <ul class="checkbox-items">
       <li *ngFor="let facility of facilities" class="facility-item">
         <span>
-          <input type="checkbox" name="facility"
-        (change)="onCheckboxChange(facility, $event)"> {{facility.name}}
+          <input type="checkbox" name="facility" (change)="onCheckboxChange(facility, $event)"> {{facility.name}}
         </span>
       </li>
     </ul>
   </div>
 
   <form *ngIf="isOtherType" class="col-md-10 border-right" [formGroup]="form" (ngSubmit)="addFacilityOtherType()">
-    <div class="p-3 py-5 row mt-2">
-      <div class="col-md-12"><label class="labels">Other Facility</label>
+    <div class="p-0 py-5 row mt-2">
+      <div class="col-md-10"><label class="labels">Other Facility</label>
         <input type="text" class="form-control" formControlName="name">
       </div>
       <div class="col-md-12">
-        <button  class="btn btn-outline-success mt-2" type="submit" [disabled]="!form.valid">Add</button>
+        <button class="btn btn-outline-success mt-2" type="submit" [disabled]="!form.valid">Add</button>
       </div>
     </div>
-
   </form>
-
   <button class="btn btn-outline-primary" type="submit" (click)="submit()">Save</button>
 </div>

@@ -5,7 +5,7 @@
       <div class="group">
         <div class="row mb-0">
           <mat-form-field class="mb-0 col-md-12" appearance="outline">
-            <mat-label class="text-secondary">Hotel name</mat-label>
+            <mat-label class="text-dark">Hotel name</mat-label>
             <input matInput placeholder="Enter your hotel name" type="text"
               [formControl]="convertToFormControl(form?.controls['hotelName'])" required>
             <mat-error *ngIf="form?.controls['hotelName'].invalid">{{getErrorMessage('hotelName')}}</mat-error>
@@ -13,25 +13,25 @@
         </div>
         <div class="row mb-0">
           <mat-form-field class="mb-0 col-md-12" appearance="outline">
-            <mat-label class="text-secondary">Email</mat-label>
+            <mat-label class="text-dark">Email</mat-label>
             <input matInput placeholder="Enter your email" type="email"
               [formControl]="convertToFormControl(form?.controls['email'])" required>
             <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
           </mat-form-field>
         </div>
       </div>
-      <div class=" group">
-        <div class="row mb-1">
-          <mat-form-field class=" mb-1 col-md-12" appearance="outline">
-            <mat-label class="text-secondary">Phone number</mat-label>
+      <div class="group">
+        <div class="row mb-0">
+          <mat-form-field class="mb-0 col-md-12" appearance="outline">
+            <mat-label class="text-dark">Phone number</mat-label>
             <input matInput placeholder="Enter your phone" type="text"
               [formControl]="convertToFormControl(form?.controls['phone'])" required>
             <mat-error *ngIf="form?.controls['phone'].invalid">{{getErrorMessage('phone')}}</mat-error>
           </mat-form-field>
         </div>
-        <div class="row mb-1">
-          <mat-form-field appearance="outline" class="col-md-12">
-            <mat-label class="text-secondary">Address</mat-label>
+        <div class="row mb-0">
+          <mat-form-field appearance="outline" class="mb-0 col-md-12">
+            <mat-label class="text-dark">Address</mat-label>
             <input matInput placeholder="Enter your address" type="text"
               [formControl]="convertToFormControl(form?.controls['address'])" required>
             <mat-error *ngIf="form?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
@@ -63,7 +63,7 @@
 
     <div>
       <mat-form-field appearance="outline" class="description-title">
-        <mat-label class="text-secondary">Description title</mat-label>
+        <mat-label class="text-dark">Description title</mat-label>
         <input matInput placeholder="Enter hotel description title" type="text"
           [formControl]="convertToFormControl(form?.controls['descriptionTitle'])" required>
         <mat-error *ngIf="form?.controls['descriptionTitle'].invalid">{{getErrorMessage('descriptionTitle')}}
@@ -71,8 +71,8 @@
       </mat-form-field>
     </div>
     <div class="description">
-      <label style="font-size: 1.2rem;">Description</label> <br><br>
-      <textarea name="description" style="width: 90%; height: 10rem;" formControlName="description"></textarea>
+      <label style="font-size: 1.2rem; font-weight: 500;">Description</label> <br />
+      <textarea name="description" style="width: 90%; height: 8rem;" formControlName="description"></textarea>
     </div>
     <div class="form-submit text-center">
       <button class="mt-20 w-20  btn-outline-primary btn-lg"

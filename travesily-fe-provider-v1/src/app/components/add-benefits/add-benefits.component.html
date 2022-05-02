@@ -20,15 +20,14 @@
     </ul>
   </div>
   <form *ngIf="isOtherType" class="col-md-10 border-right" [formGroup]="form" (ngSubmit)="addBenefitOtherType()">
-    <div class="p-3 py-5 row mt-2">
-      <div class="col-md-12"><label class="labels">Other Benefit</label>
+    <div class="p-0 py-5 row mt-2">
+      <div class="col-md-10"><label class="labels">Other Benefit</label>
         <input type="text" class="form-control" formControlName="name">
       </div>
       <div class="col-md-12">
-        <button  class="btn btn-outline-success mt-2" type="submit" [disabled]="!form.valid">Add</button>
+        <button class="btn btn-outline-success mt-2" type="submit" [disabled]="!form.valid">Add</button>
       </div>
     </div>
-
   </form>
   <button class="btn btn-primary room-button" type="submit" (click)="submit()">Save</button>
 </div>

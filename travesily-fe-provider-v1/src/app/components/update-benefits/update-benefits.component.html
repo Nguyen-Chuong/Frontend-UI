@@ -1,5 +1,5 @@
 <div class="update-benefit">
-  <div class="benefit mb-3">
+  <div class="benefit mb-3 bg-light">
     <div class="benefit-detail-infor">
       <h1>Update Benefit</h1>
       <div class="group-input">
@@ -25,12 +25,14 @@
       </div>
       <div class="benefit-detail">
         <ul *ngFor="let benefit of benefits">
-          <li><div class="benefit-detail-item">
-            <span>{{benefit.benefit.name}}</span>
-            <button mat-menu-item (click)="deleteBenefit(benefit.id)" class="benefit-detail-delete">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </div></li>
+          <li>
+            <div class="benefit-detail-item">
+              <span>{{benefit.benefit.name}}</span>
+              <button mat-menu-item (click)="deleteBenefit(benefit.id)" class="benefit-detail-delete">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </li>
         </ul>
       </div>
       <div class="add-new-benefit">
@@ -38,7 +40,6 @@
           <mat-icon>add</mat-icon>
           <span>New Benefit</span>
         </button>
-
         <div class="new-benefit" *ngIf="isAddBenefit">
           <app-add-benefits [roomTypeId]="room.id"></app-add-benefits>
         </div>

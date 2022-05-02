@@ -4,22 +4,21 @@
 }
 
 .room{
+  & h2 {
+    font-size: 1.5rem;
+  }
+
   &-detail{
-    border: 1px solid rgb(7, 7, 7);
-    width: 100%;
-    margin-top: 3rem;
+    border: 0.2rem solid rgb(160, 160, 160);
+    width: 85%;
+    margin: 0 auto;
+    margin-bottom: 2rem;
     border-radius: 10px;
-    background-color: rgb(244, 248, 253);
+    background-color: rgb(255, 255, 255);
 
-    &-infor{
-      padding-left: 10px;
-      width: 100%;
-
-      & form{
-        margin: 0 auto;
-      }
+    & form{
+      margin: 0 auto;
     }
-
   }
 }
 
@@ -28,13 +27,9 @@
   border-color: #000000
 }
 
-.back:hover {
-  color: #000000;
-  cursor: pointer
-}
-
 .labels {
   font-size: 15px;
-  padding-top: 10px;
-  padding-bottom: 5px;
+  font-weight: 500;
+  padding-top: 1rem;
+  padding-bottom: 0,5rem;
 }

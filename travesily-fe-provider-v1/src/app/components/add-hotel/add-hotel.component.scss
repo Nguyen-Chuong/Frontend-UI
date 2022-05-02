@@ -16,32 +16,19 @@
 
 .hotel {
   &-detail {
-    border: 1px solid rgb(7, 7, 7);
-    width: 100%;
-    margin-top: 3rem;
+    border: 0.2rem solid rgb(160, 160, 160);
+    width: 90%;
+    margin: 0 auto;
+    margin-bottom: 1rem;
     border-radius: 10px;
-    background-color: rgb(244, 248, 253);
+    background-color: rgb(255, 255, 255);
     padding: 1rem;
     text-align: center;
     & form {
       margin: 0 auto;
     }
-
-
   }
 }
-
-// .form-body {
-//   min-width: 30rem;
-//   display: grid;
-//   grid-row-gap: 0.5rem;
-//   width: 100%;
-//   margin: 0 auto;
-//   border: 1px solid rgb(2, 2, 2);
-//   border-radius: 5px;
-//   padding: 20px;
-//   background-color: rgb(244, 248, 253);
-// }
 
 .form-redirection {
   display: flex;
@@ -71,7 +58,6 @@ a {
   &-input {
     display: flex;
     justify-content: space-around;
-
   }
 }
 
@@ -86,10 +72,11 @@ a {
   width: 100%;
   & textarea {
     border-radius: 0.5rem;
+    border: 1px solid rgb(199, 199, 199);
   }
 
   &-title {
-    margin-top: 2rem;
+    margin-top: 1rem;
     width: 90%;
     text-align: center;
   }
@@ -103,7 +90,6 @@ a {
 .row {
   align-items: center;
 }
-
 
 @media (max-width: 40rem) {
   .input-group {

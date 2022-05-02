@@ -7,7 +7,6 @@
   box-shadow: 20px 20px 50px 15px grey;
   border-radius: 10px;
   padding: 10px;
-  background-color: aliceblue;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
@@ -72,16 +71,6 @@
     margin-left: 10px;
     margin-right: 10px;
     border-radius: 5px;
-
-    &-save {
-      background-color: rgb(13, 55, 243);
-    }
-    &-enable {
-      background-color: rgb(13, 196, 44);
-    }
-    &-disable {
-      background-color: rgb(230, 34, 8);
-    }
   }
 }
 
@@ -92,7 +81,6 @@
 
 .select {
   width: 31%;
-  background-color: rgb(244, 248, 253);;
 }
 
 .form-submit {

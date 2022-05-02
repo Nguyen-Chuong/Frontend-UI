@@ -1,5 +1,5 @@
 <div class="update-room">
-  <div class="room mb-5">
+  <div class="room mb-5 bg-light">
     <div class="room-detail-infor">
       <h1>Update Room Images</h1>
       <div class="group-input">
@@ -26,11 +26,14 @@
     </div>
     <div class="room-list-image">
       <div class="group-input">
-        <button (click)="open(content)" class="m-auto btn btn-outline-success" [disabled]="!isRoom || !canAdd">Add Images</button>
-        <button class="m-auto btn btn-outline-danger" (click)="deleteListImageForRoomType()" [disabled]="!isRoom || !canDelete">Delete Images</button>
+        <button (click)="open(content)" class="m-auto btn btn-outline-success" [disabled]="!isRoom || !canAdd">Add
+          Images</button>
+        <button class="m-auto btn btn-outline-danger" (click)="deleteListImageForRoomType()"
+          [disabled]="!isRoom || !canDelete">Delete Images</button>
       </div>
       <br>
-      <small class="text-danger d-inline-block p-5">*You should upload photos with 16:9 resolution for best quality</small>
+      <small class="text-danger d-inline-block p-5">*You should upload photos with 16:9 resolution for best
+        quality</small>
       <br>
       <div class="list-image">
         <div class="room-image" *ngFor="let image of roomType.listImage">
@@ -49,7 +52,8 @@
     <div class="row shadow p-5 m-5">
       <label>
         <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)" multiple="multiple" />
-        <small *ngIf="overLimit" class="text-danger">This hotel has over limited images,you must add at least 6 images and maximum is 10 images!</small>
+        <small *ngIf="overLimit" class="text-danger">This hotel has over limited images,you must add at least 6 images
+          and maximum is 10 images!</small>
       </label>
     </div>
 
@@ -58,7 +62,7 @@
     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="d('Cross click')">Close</button>
     <button type="button" class="btn btn-primary" (click)="upload()" [disabled]="!isSelected">Upload
     </button>
-    <button type="button" class="btn btn-primary m-3"  (click)="addListImageForRoomType()" (click)="c('Save click')"
+    <button type="button" class="btn btn-primary m-3" (click)="addListImageForRoomType()" (click)="c('Save click')"
       data-bs-dismiss="modal" [disabled]="!isUploaded">Save changes
     </button>
   </div>

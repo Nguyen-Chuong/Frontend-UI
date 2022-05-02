@@ -3,9 +3,9 @@
   font-style: inherit;
   font-size: 1.1rem;
 }
+
 .room {
   border-radius: 10px;
-  background-color: aliceblue;
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
@@ -29,7 +29,6 @@
 
     & form{
       margin: 0 auto;
-
     }
   }
 
@@ -58,6 +57,7 @@
 .labels {
   font-size: 1rem;
   padding-top: 0.5rem;
+  font-weight: 500;
 }
 
 .update-room {
@@ -79,7 +79,6 @@
 
 .select {
   width: 31%;
-  background-color: rgb(244, 248, 253);;
 }
 
 .form-submit {

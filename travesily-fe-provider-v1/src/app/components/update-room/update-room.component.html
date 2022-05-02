@@ -1,5 +1,5 @@
 <div class="update-room">
-  <div class="room mb-5">
+  <div class="room mb-5 bg-light">
     <div class="room-detail-infor">
       <h1>Update Room</h1>
       <div class="group-input">
@@ -12,9 +12,11 @@
           </mat-select>
           <mat-error *ngIf="hotelControl.hasError('required')">Please choose a hotel</mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill" class="select select-room" >
+
+        <mat-form-field appearance="fill" class="select select-room">
           <mat-label>Room</mat-label>
-          <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)"[disabled]="!hotelId">
+          <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)"
+            [disabled]="!hotelId">
             <mat-option *ngFor="let room of rooms" [value]="room">
               {{room.name}}
             </mat-option>
@@ -26,37 +28,39 @@
       <div class="room-detail">
         <form class="col-md-10 border-right" [formGroup]="form" aria-readonly="true">
           <div class="p-2 py-1">
-            <div class="col-md-12"><label class="labels">Room name</label>
+            <div class="col-md-12 input-group-lg"><label class="labels">Room name</label>
               <input type="text" class="form-control" formControlName="name">
             </div>
             <div class="row mt-2">
-              <div class="col-md-6"><label class="labels">Quantity room</label>
+              <div class="col-md-6 input-group-lg"><label class="labels">Quantity room</label>
                 <input type="number" class="form-control" formControlName="quantity">
               </div>
-              <div class="col-md-6"><label class="labels">Available Room</label>
+              <div class="col-md-6 input-group-lg"><label class="labels">Available Room</label>
                 <input type="number" class="form-control" formControlName="availableRooms">
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-md-6"><label class="labels">Number of People</label>
+              <div class="col-md-6 input-group-lg"><label class="labels">Number of People</label>
                 <input type="number" class="form-control" formControlName="numberOfPeople">
               </div>
-              <div class="col-md-6"><label class="labels">Price</label>
+              <div class="col-md-6 input-group-lg"><label class="labels">Price</label>
                 <input type="number" class="form-control" formControlName="price">
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-md-6"><label class="labels">Deal Percentage</label>
+              <div class="col-md-6 input-group-lg"><label class="labels">Deal Percentage</label>
                 <input type="number" class="form-control" formControlName="dealPercentage">
               </div>
-              <div class="col-md-6"><label class="labels">Deal Expire</label>
-                <input type="date" class="form-control" [value]="room.dealExpire | date: 'yyyy-MM-dd'" formControlName="dealExpire">
+              <div class="col-md-6 input-group-lg"><label class="labels">Deal Expire</label>
+                <input type="date" class="form-control" [value]="room.dealExpire | date: 'yyyy-MM-dd'"
+                  formControlName="dealExpire">
               </div>
             </div>
-            <div class="mt-5 text-center">
+            <div class="mt-4 text-center">
               <button class="update-room-btn btn-outline-success" [disabled]="isEnable"
                 (click)="enableRoom()">Enable</button>
-              <button class="update-room-btn btn-outline-primary" type="submit" (click)="submit()" [disabled]="!form.valid || !isSelectedRoom">Save</button>
+              <button class="update-room-btn btn-outline-primary" type="submit" (click)="submit()"
+                [disabled]="!form.valid || !isSelectedRoom">Save</button>
               <button class="update-room-btn btn-outline-danger" [disabled]="isDisable"
                 (click)="disableRoom()">Disable</button>
             </div>
