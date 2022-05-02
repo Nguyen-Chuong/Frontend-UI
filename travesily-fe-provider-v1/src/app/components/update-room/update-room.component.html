@@ -50,7 +50,7 @@
                 <input type="number" class="form-control" formControlName="dealPercentage">
               </div>
               <div class="col-md-6"><label class="labels">Deal Expire</label>
-                <input type="date" class="form-control" value={{room.dealExpire}} formControlName="dealExpire">
+                <input type="date" class="form-control" [value]="room.dealExpire | date: 'yyyy-MM-dd'" formControlName="dealExpire">
               </div>
             </div>
             <div class="mt-5 text-center">
