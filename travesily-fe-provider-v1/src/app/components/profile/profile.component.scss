@@ -42,27 +42,6 @@
   padding: 20px;
 }
 
-.form-redirection {
-  display: flex;
-  justify-content: space-between;
-}
-
-a {
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
-.form-header {
-  font-size: 2rem;
-  font-weight: 700;
-  text-align: center;
-}
-
-.form-control{
-  background-color: aliceblue;
-  border: none;
-}
 @media (max-width: 40rem) {
   .profile {
     flex-direction: column;

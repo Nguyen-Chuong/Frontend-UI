@@ -55,12 +55,6 @@
   flex-wrap: wrap;
 }
 
-.labels {
-  font-size: 15px;
-  padding-top: 10px;
-  padding-bottom: 5px;
-}
-
 .update-room {
   display: flex;
   height: auto;
@@ -81,10 +75,6 @@
 
 .select {
   width: 31%;
-}
-
-.form-submit {
-  text-align: center;
 }
 
 @media (max-width: 40rem) {
