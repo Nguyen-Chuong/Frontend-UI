@@ -32,6 +32,7 @@ export class UserComponent {
     this.route.queryParams.subscribe((param) => {
       this.username = param['searchText'];
     })
+    
     /** spinner starts on init */
     this.spinner.show();
     if (this.username) {
