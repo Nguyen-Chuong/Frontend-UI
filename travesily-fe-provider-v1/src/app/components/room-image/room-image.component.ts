@@ -123,7 +123,7 @@ export class RoomImageComponent implements OnInit {
 
   selectFile(event): void {
     this.selectedFiles = event.target.files;
-    const totalImage = this.roomType.listImage.length
+    const totalImage = this.selectedFiles.length
     if (totalImage > 10 || totalImage < 6) {
       this.overLimit = true
       this.isSelected = false
@@ -131,7 +131,6 @@ export class RoomImageComponent implements OnInit {
       this.overLimit = false
       this.isSelected = true
     }
-    event.clear()
   }
 
   addListImageForRoomType() {
