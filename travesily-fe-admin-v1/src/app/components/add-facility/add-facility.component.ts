@@ -55,7 +55,7 @@ export class AddFacilityComponent implements OnInit {
     const listFacilityRequest = []
     for (const facility of val.facilities) {
       const facilityRequest = new FacilityRequest()
-      if (facility.icon === null) {
+      if (!facility.icon) {
         facilityRequest.icon = 'check'
       } else {
         facilityRequest.icon = facility.icon.match(/[A-Z][a-z]+|[0-9]+/g).join("_").toLowerCase()
