@@ -3,6 +3,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 import { first } from 'rxjs';
 import { City } from 'src/app/_models/city';
 import { District } from 'src/app/_models/district';
+import { Hotel } from 'src/app/_models/hotel';
 import { AuthService } from 'src/app/_services/auth.service';
 import { CitiesService } from 'src/app/_services/cities.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
@@ -23,7 +24,7 @@ export class AddHotelComponent implements OnInit {
   cities: City[]
   districts: District[]
   city: City
-
+  hotel: Hotel = new Hotel()
   constructor(
     fb: FormBuilder,
     private hotelService: HotelService,
@@ -32,14 +33,29 @@ export class AddHotelComponent implements OnInit {
     private cryptoService: CryptoService,
     private citiesService: CitiesService
   ) {
-    this.form = fb.group({
-      hotelName: ['', [Validators.required]],
-      email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-      phone: ['', [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
-      address: ['', [Validators.required]],
-      descriptionTitle: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-    })
+    if (localStorage.getItem('hotel-id')) {
+      const hotelId = this.cryptoService.set('06052000', Number(localStorage.getItem('hotel-id')))
+      this.hotelService.getHotelById(hotelId).pipe(first()).subscribe(res => {
+        this.hotel = res['data']
+        this.form = fb.group({
+          hotelName: [this.hotel.name, [Validators.required]],
+          email: [this.hotel.email, [Validators.required, Validators.email], [EmailValidator(this.authService)]],
+          phone: [this.hotel.phone, [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+          address: [this.hotel.address, [Validators.required]],
+          descriptionTitle: ['', [Validators.required]],
+          description: [this.hotel.description, [Validators.required]],
+        })
+      })
+    } else {
+      this.form = fb.group({
+        hotelName: ['', [Validators.required]],
+        email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
+        phone: ['', [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+        address: ['', [Validators.required]],
+        descriptionTitle: ['', [Validators.required]],
+        description: ['', [Validators.required]],
+      })
+    }
     this.cityControl = new FormControl(this.city, Validators.required);
     this.districtControl = new FormControl('', Validators.required);
   }
@@ -106,5 +122,9 @@ export class AddHotelComponent implements OnInit {
   convertToFormControl(absCtrl: AbstractControl | null): FormControl {
     const ctrl = absCtrl as FormControl;
     return ctrl;
+  }
+
+  clear(){
+    this.form.reset()
   }
 }

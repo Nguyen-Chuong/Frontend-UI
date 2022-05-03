@@ -32,22 +32,22 @@
             </div>
             <div class="row mt-2">
               <div class="col-md-6 input-group-lg"><label class="labels">Quantity room</label>
-                <input type="number" class="form-control" formControlName="quantity">
+                <input type="number" class="form-control" formControlName="quantity" min="1">
               </div>
               <div class="col-md-6 input-group-lg"><label class="labels">Available Room</label>
-                <input type="number" class="form-control" formControlName="availableRooms">
+                <input type="number" class="form-control" formControlName="availableRooms" min="1">
               </div>
             </div>
             <div class="row mt-2">
               <div class="col-md-6 input-group-lg"><label class="labels">Number of People</label>
-                <input type="number" class="form-control" formControlName="numberOfPeople">
+                <input type="number" class="form-control" formControlName="numberOfPeople" min="1">
               </div>
               <div class="col-md-6 input-group-lg"><label class="labels">Price</label>
-                <input type="number" class="form-control" formControlName="price">
+                <input type="number" class="form-control" formControlName="price" min="1">
               </div>
             </div>
             <div class="row mt-2">
-              <div class="col-md-6 input-group-lg"><label class="labels">Deal Percentage</label>
+              <div class="col-md-6 input-group-lg"><label class="labels" min="0">Deal Percentage</label>
                 <input type="number" class="form-control" formControlName="dealPercentage">
               </div>
               <div class="col-md-6 input-group-lg"><label class="labels">Deal Expire</label>

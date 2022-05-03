@@ -1,6 +1,6 @@
 <div class="hotel">
   <h2>New Hotel</h2>
-  <form class="hotel-detail col-md-10" [formGroup]="form" (ngSubmit)="submit()">
+  <form class="hotel-detail col-md-10" [formGroup]="form" >
     <div class="input-group">
       <div class="group">
         <div class="row mb-0">
@@ -74,7 +74,8 @@
     </div>
     <div class="form-submit text-center">
       <button class="mt-20 w-20  btn-outline-primary btn-lg"
-        [disabled]="form.invalid || !districtControl.valid">Save</button>
+        [disabled]="form.invalid || !districtControl.valid" (click)="submit()">Save</button>
+      <button class="mt-20 w-20 btn-outline-warning btn-lg" (click)="clear()">Clear</button>
     </div>
   </form>
 </div>

@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { Room } from 'src/app/_models/room';
+import { CryptoService } from 'src/app/_services/crypto.service';
 
 @Component({
   selector: 'app-add-room',
@@ -13,11 +14,26 @@ import { Room } from 'src/app/_models/room';
 export class AddRoomComponent implements OnInit {
   form: FormGroup
   isHotel = false
+  room: Room = new Room()
   constructor(
     fb: FormBuilder,
     private roomService: RoomService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private cryptoService: CryptoService
   ) {
+    if(localStorage.getItem('room-id')){
+      const encryptedRoomId = this.cryptoService.set('06052000', Number(localStorage.getItem('room-id')))
+      this.roomService.getRoomDetail(encryptedRoomId).pipe(first()).subscribe(res => {
+        this.room = res['data']
+        this.form = fb.group({
+          name: [this.room.name, [Validators.required]],
+          quantity: [this.room.quantity, [Validators.required]],
+          availableRoom: [this.room.availableRooms, [Validators.required]],
+          numberOfPeople: [this.room.numberOfPeople, [Validators.required]],
+          price: [this.room.price, [Validators.required]],
+        })
+      })
+    }
     this.form = fb.group({
       name: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
@@ -28,9 +44,11 @@ export class AddRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(localStorage.getItem('hotel-id')){
-      this.isHotel =true
-    }
+    
+  }
+
+  clear(){
+    this.form.reset()
   }
 
   submit() {
@@ -42,7 +60,8 @@ export class AddRoomComponent implements OnInit {
     room.numberOfPeople = val.numberOfPeople
     room.price = val.price
     room.hotelId = Number(localStorage.getItem('hotel-id'))
-    this.roomService.newRoom(room)
+    if(localStorage.getItem('hotel-id')){
+      this.roomService.newRoom(room)
       .pipe(first())
       .subscribe({
         next: (res) => {
@@ -52,5 +71,8 @@ export class AddRoomComponent implements OnInit {
           this.notificationService.onError("Add room Fail")
         }
       })
+    }else
+    this.notificationService.onError("You need to add hotel before add new room")
+    
   }
 }
