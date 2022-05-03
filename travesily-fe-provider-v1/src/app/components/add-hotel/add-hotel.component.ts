@@ -26,41 +26,43 @@ export class AddHotelComponent implements OnInit {
   city: City
   hotel: Hotel = new Hotel()
   constructor(
-    fb: FormBuilder,
+    private fb: FormBuilder,
     private hotelService: HotelService,
     private authService: AuthService,
     private notificationService: NotificationService,
     private cryptoService: CryptoService,
     private citiesService: CitiesService
   ) {
-    if (localStorage.getItem('hotel-id')) {
-      const hotelId = this.cryptoService.set('06052000', Number(localStorage.getItem('hotel-id')))
-      this.hotelService.getHotelById(hotelId).pipe(first()).subscribe(res => {
-        this.hotel = res['data']
-        this.form = fb.group({
-          hotelName: [this.hotel.name, [Validators.required]],
-          email: [this.hotel.email, [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-          phone: [this.hotel.phone, [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
-          address: [this.hotel.address, [Validators.required]],
-          descriptionTitle: ['', [Validators.required]],
-          description: [this.hotel.description, [Validators.required]],
-        })
-      })
-    } else {
-      this.form = fb.group({
-        hotelName: ['', [Validators.required]],
-        email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
-        phone: ['', [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
-        address: ['', [Validators.required]],
-        descriptionTitle: ['', [Validators.required]],
-        description: ['', [Validators.required]],
-      })
-    }
+
     this.cityControl = new FormControl(this.city, Validators.required);
     this.districtControl = new FormControl('', Validators.required);
   }
 
   ngOnInit(): void {
+    this.form = this.fb.group({
+      hotelName: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email], [EmailValidator(this.authService)]],
+      phone: ['', [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
+      address: ['', [Validators.required]],
+      descriptionTitle: ['', [Validators.required]],
+      star: ['', [Validators.required, Validators.min(1), Validators.max(5)]],
+      description: ['', [Validators.required]],
+    })
+    if (localStorage.getItem('hotel-id')) {
+      const hotelId = this.cryptoService.set('06052000', Number(localStorage.getItem('hotel-id')))
+      this.hotelService.getHotelById(hotelId).pipe(first()).subscribe(res => {
+        this.hotel = res['data']
+        this.form.setValue({
+          hotelName: this.hotel.name,
+          email: this.hotel.email,
+          phone: this.hotel.phone,
+          address: this.hotel.address,
+          descriptionTitle: '',
+          star: this.hotel.star,
+          description: this.hotel.description
+        })
+      })
+    }
     this.citiesService.getAllCities().pipe(first()).subscribe(res => {
       this.cities = res['data']
     })
@@ -73,6 +75,7 @@ export class AddHotelComponent implements OnInit {
     hotel.address = val.address
     hotel.email = val.email
     hotel.phone = val.phone
+    hotel.star = val.star
     hotel.description = "<strong> " + val.descriptionTitle + "</strong> <br/>" + val.description
     hotel.districtId = this.districtControl.value.id
     this.hotelService.newHotel(hotel)
@@ -113,6 +116,15 @@ export class AddHotelComponent implements OnInit {
     if (field === 'descriptionTitle' && this.form.controls['descriptionTitle'].hasError('required')) {
       return 'You must enter a value';
     }
+    if (field === 'star' && this.form.controls['star'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'star' && this.form.controls['star'].hasError('min')) {
+      return 'Min star is 1';
+    }
+    if (field === 'star' && this.form.controls['star'].hasError('max')) {
+      return 'Max star is 5';
+    }
     if (field === 'phone' && this.form.controls['phone'].hasError('pattern')) {
       return 'Your phone number is not correct format! Please re-check!';
     }
@@ -124,7 +136,7 @@ export class AddHotelComponent implements OnInit {
     return ctrl;
   }
 
-  clear(){
+  clear() {
     this.form.reset()
   }
 }

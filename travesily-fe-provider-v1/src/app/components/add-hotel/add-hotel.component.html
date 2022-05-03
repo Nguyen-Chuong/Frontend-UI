@@ -19,6 +19,15 @@
             <mat-error *ngIf="form?.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
           </mat-form-field>
         </div>
+        <div class="row mb-0">
+          <mat-form-field appearance="outline" >
+            <mat-label class="text-dark">Description title</mat-label>
+            <input matInput placeholder="Enter hotel description title" type="text"
+              [formControl]="convertToFormControl(form?.controls['descriptionTitle'])" required>
+            <mat-error *ngIf="form?.controls['descriptionTitle'].invalid">{{getErrorMessage('descriptionTitle')}}
+            </mat-error>
+          </mat-form-field>
+        </div>
       </div>
       <div class="group">
         <div class="row mb-0">
@@ -35,6 +44,14 @@
             <input matInput placeholder="Enter your address" type="text"
               [formControl]="convertToFormControl(form?.controls['address'])" required>
             <mat-error *ngIf="form?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="row mb-0">
+          <mat-form-field appearance="outline" >
+            <mat-label class="text-dark">Star</mat-label>
+            <input matInput placeholder="Enter your hotel star" type="text"
+              [formControl]="convertToFormControl(form?.controls['star'])" required>
+            <mat-error *ngIf="form?.controls['star'].invalid">{{getErrorMessage('star')}}</mat-error>
           </mat-form-field>
         </div>
       </div>
@@ -59,15 +76,7 @@
         <mat-error *ngIf="districtControl.hasError('required')">Please choose a district</mat-error>
       </mat-form-field>
     </div>
-    <div>
-      <mat-form-field appearance="outline" class="description-title">
-        <mat-label class="text-dark">Description title</mat-label>
-        <input matInput placeholder="Enter hotel description title" type="text"
-          [formControl]="convertToFormControl(form?.controls['descriptionTitle'])" required>
-        <mat-error *ngIf="form?.controls['descriptionTitle'].invalid">{{getErrorMessage('descriptionTitle')}}
-        </mat-error>
-      </mat-form-field>
-    </div>
+    
     <div class="description">
       <label style="font-size: 1.2rem; font-weight: 500;">Description</label> <br />
       <textarea name="description" style="width: 90%; height: 8rem;" formControlName="description"></textarea>

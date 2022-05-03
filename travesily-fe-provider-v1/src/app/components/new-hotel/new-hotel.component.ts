@@ -30,4 +30,9 @@ export class NewHotelComponent implements OnInit {
       fourthCtrl: ['', Validators.required],
     });
   }
+
+  updateRoomId(event){
+    console.log(event)
+    this.roomId = event
+  }
 }

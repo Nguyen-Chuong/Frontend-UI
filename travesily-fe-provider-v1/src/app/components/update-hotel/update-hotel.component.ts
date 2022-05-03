@@ -66,6 +66,7 @@ export class UpdateHotelComponent implements OnInit {
         email: [this.hotel.email, [Validators.required, Validators.email], [EmailValidator(this.authService)]],
         phone: [this.hotel.phone, [Validators.pattern(/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im)]],
         address: [this.hotel.address],
+        star: [this.hotel.star, [Validators.required, Validators.min(1), Validators.max(5)]],
         description: [this.hotel.description],
       })
       this.encryptedHotelId = this.cryptoService.set('06052000', this.hotel.id)
@@ -82,7 +83,7 @@ export class UpdateHotelComponent implements OnInit {
     hotelRequest.phone = val.phone
     hotelRequest.address = val.address
     hotelRequest.description = val.description
-    hotelRequest.star = this.hotel.star
+    hotelRequest.star = val.star
     hotelRequest.taxPercentage = this.hotel.taxPercentage
     hotelRequest.avatar = this.hotel.avatar
     this.hotelService.updateHotel(hotelRequest).pipe(first()).subscribe({
@@ -190,6 +191,15 @@ export class UpdateHotelComponent implements OnInit {
     }
     if (field === 'address' && this.form.controls['address'].hasError('required')) {
       return 'You must enter a value';
+    }
+    if (field === 'star' && this.form.controls['star'].hasError('required')) {
+      return 'You must enter a value';
+    }
+    if (field === 'star' && this.form.controls['star'].hasError('min')) {
+      return 'Min star is 1';
+    }
+    if (field === 'star' && this.form.controls['star'].hasError('max')) {
+      return 'Max star is 5';
     }
     if (field === 'phone' && this.form.controls['phone'].hasError('required')) {
       return 'You must enter a value';

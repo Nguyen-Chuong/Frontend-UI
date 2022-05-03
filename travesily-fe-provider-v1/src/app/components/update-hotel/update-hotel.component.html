@@ -38,6 +38,14 @@
               <mat-error *ngIf="form?.controls['address'].invalid">{{getErrorMessage('address')}}</mat-error>
             </mat-form-field>
           </div>
+          <div class="row mb-0">
+            <mat-form-field appearance="outline" >
+              <mat-label class="text-dark">Star</mat-label>
+              <input matInput placeholder="Enter your hotel star" type="text"
+                [formControl]="convertToFormControl(form?.controls['star'])" required>
+              <mat-error *ngIf="form?.controls['star'].invalid">{{getErrorMessage('star')}}</mat-error>
+            </mat-form-field>
+          </div>
         </div>
       </div>
       <div class="update-hotel-infor">
@@ -54,11 +62,13 @@
           </mat-form-field>
         </div>
       </div>
+      
       <img [src]="hotel?.avatar" class="card-img-top rounded" style="margin: 0 auto; width: 90%;" alt="Hotel Image">
       <div class="addAvatar">
         <label>Hotel avatar</label><br />
         <input type="file" class="text-nowrap text-truncate" (change)="selectFile($event)">
       </div>
+      
       <div class="description ">
         <label>Description</label> <br><br>
         <textarea name="description" style="width: 90%; height: 10rem;" formControlName="description"></textarea>

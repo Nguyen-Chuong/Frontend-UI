@@ -92,6 +92,7 @@ export class AddBenefitsComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.roomTypeId)
     if (this.roomTypeId) {
       const benefitRequest = new BenefitRequest
       benefitRequest.roomTypeId = this.roomTypeId

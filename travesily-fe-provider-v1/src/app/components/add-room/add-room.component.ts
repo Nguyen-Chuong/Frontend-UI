@@ -1,5 +1,5 @@
 import { RoomService } from './../../_services/room.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -12,6 +12,7 @@ import { CryptoService } from 'src/app/_services/crypto.service';
   styleUrls: ['./add-room.component.scss']
 })
 export class AddRoomComponent implements OnInit {
+  @Output() updateRoomId: EventEmitter<number> = new EventEmitter()
   form: FormGroup
   isHotel = false
   room: Room = new Room()
@@ -67,6 +68,7 @@ export class AddRoomComponent implements OnInit {
         next: (res) => {
           localStorage.setItem('room-id', res['data'])
           this.notificationService.onSuccess("Add room Successfully")
+          this.updateRoomId.emit(res['data'])
         }, error: () => {
           this.notificationService.onError("Add room Fail")
         }
