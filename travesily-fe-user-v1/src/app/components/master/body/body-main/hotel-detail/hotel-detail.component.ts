@@ -168,4 +168,9 @@ export class HotelDetailComponent implements OnInit, OnDestroy {
       }
     })
   }
+
+  redirectLocation() {
+    // window.open('http://www.google.com/maps/search/?api=1&query=21.0398002,105.7640714')
+    window.open(`http://www.google.com/maps/place/${this.hotel.address},${this.hotel.district?.nameDistrict},${this.hotel?.district.city.nameCity}`)
+  }
 }

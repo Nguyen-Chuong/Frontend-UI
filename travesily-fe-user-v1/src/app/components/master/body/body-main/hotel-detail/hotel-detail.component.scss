@@ -65,3 +65,9 @@ mat-paginator {
 .benefit-type{
   font-weight: 600;
 }
+
+.btn-see-map{
+  &:hover{
+    text-decoration: underline;
+  }
+}
