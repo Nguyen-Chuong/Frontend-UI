@@ -34,9 +34,9 @@
       <small class="text-danger d-inline-block p-5">*You should upload photos with 16:9 resolution for best
         quality</small>
       <br>
-      <div class="list-image">
-        <div class="room-image" *ngFor="let image of roomType.listImage">
-          <img src={{image.src}} alt="">
+      <div class="row">
+        <div class="col-md-6 mb-3" *ngFor="let image of roomType.listImage">
+          <img class="img-fluid rounded" src={{image.src}} alt="">
         </div>
       </div>
     </div>

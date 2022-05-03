@@ -142,6 +142,8 @@ export class RoomImageComponent implements OnInit {
             this.roomType = res['data']
           }})
           this.isUploaded = false
+          this.canDelete = true
+          this.canAdd = false
           this.notificationService.onSuccess("Add images for room Successfully")
         }, error: error => {
           this.notificationService.onError("Add images for room Fail")
@@ -156,6 +158,8 @@ export class RoomImageComponent implements OnInit {
       next: () => {
         this.notificationService.onSuccess('Delete successfully');
         this.roomType = new RoomType
+        this.canDelete = false
+        this.canAdd = true
       },
       error: () => {
         this.notificationService.onError('Delete fail')
