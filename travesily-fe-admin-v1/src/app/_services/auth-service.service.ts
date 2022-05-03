@@ -33,7 +33,7 @@ export class AuthServiceService {
       .append('oldPass', oldPass)
       .append('newPass', newPass);
     return this.http
-      .patch(`${this.baseUrl}/change-password`, undefined, { params: params })
+      .patch(`${this.baseUrl}/change-password/user`, undefined, { params: params })
       .pipe(
         first(),
         tap((rs) => {
