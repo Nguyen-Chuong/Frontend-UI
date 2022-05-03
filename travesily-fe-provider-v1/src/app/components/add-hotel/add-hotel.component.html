@@ -59,7 +59,7 @@
     <div class="input-group">
       <mat-form-field appearance="fill" class="select">
         <mat-label>City</mat-label>
-        <mat-select [formControl]="cityControl" required (selectionChange)="changeCityID($event.value)">
+        <mat-select [formControl]="cityControl" [compareWith]="compareCity" required (selectionChange)="changeCityID($event.value)">
           <mat-option *ngFor="let city of cities" [value]="city">
             {{city.nameCity}}
           </mat-option>
@@ -68,7 +68,7 @@
       </mat-form-field>
       <mat-form-field appearance="fill" class="select district">
         <mat-label>District</mat-label>
-        <mat-select [formControl]="districtControl" required>
+        <mat-select [formControl]="districtControl" [compareWith]="compareDistrict" required>
           <mat-option *ngFor="let district of districts" [value]="district">
             {{district.nameDistrict}}
           </mat-option>
@@ -76,7 +76,7 @@
         <mat-error *ngIf="districtControl.hasError('required')">Please choose a district</mat-error>
       </mat-form-field>
     </div>
-    
+
     <div class="description">
       <label style="font-size: 1.2rem; font-weight: 500;">Description</label> <br />
       <textarea name="description" style="width: 90%; height: 8rem;" formControlName="description"></textarea>

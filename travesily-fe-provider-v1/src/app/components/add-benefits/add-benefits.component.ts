@@ -3,7 +3,7 @@ import { BenefitRequest } from './../../_models/benefitRequest';
 import { NotificationService } from 'src/app/_services/notification.service';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { BenefitsService } from './../../_services/benefits.service';
-import { Component, Input, OnInit } from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { BenefitType } from 'src/app/_models/benefitType';
 import { first } from 'rxjs';
@@ -15,7 +15,7 @@ import {RoomBenefit} from "../../_models/roomBenefit";
   templateUrl: './add-benefits.component.html',
   styleUrls: ['./add-benefits.component.scss']
 })
-export class AddBenefitsComponent implements OnInit {
+export class AddBenefitsComponent implements OnInit, OnChanges {
   @Input() isShow: boolean = false
   @Input() roomTypeId: number
   form: FormGroup
@@ -44,6 +44,14 @@ export class AddBenefitsComponent implements OnInit {
     })
     this.benefitsService.getBenefitType().pipe(first()).subscribe(res => {
       this.benefitTypes = res['data']
+    })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.roomTypeId = changes['roomTypeId']['currentValue']
+    const encryptedId = this.cryptoService.set('06052000', this.roomTypeId!)
+    this.benefitsService.getBenefitOfRoom(encryptedId).pipe(first()).subscribe(res => {
+      this.listBenefits = res['data']
     })
   }
 
@@ -92,7 +100,6 @@ export class AddBenefitsComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.roomTypeId)
     if (this.roomTypeId) {
       const benefitRequest = new BenefitRequest
       benefitRequest.roomTypeId = this.roomTypeId

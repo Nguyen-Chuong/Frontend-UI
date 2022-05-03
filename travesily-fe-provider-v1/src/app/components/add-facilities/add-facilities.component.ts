@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {first} from 'rxjs';
 import {Facility} from 'src/app/_models/facility';
@@ -15,7 +15,7 @@ import {NotificationService} from 'src/app/_services/notification.service';
   templateUrl: './add-facilities.component.html',
   styleUrls: ['./add-facilities.component.scss']
 })
-export class AddFacilitiesComponent implements OnInit {
+export class AddFacilitiesComponent implements OnInit, OnChanges {
   @Input() roomTypeId: number
   @Input() isShow: boolean = false
   facilityTypes: FacilityType[]
@@ -45,6 +45,14 @@ export class AddFacilitiesComponent implements OnInit {
     })
     this.facilitiesService.getFacilitiesType().pipe(first()).subscribe(res => {
       this.facilityTypes = res['data']
+    })
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.roomTypeId = changes['roomTypeId']['currentValue']
+    const encryptedId = this.cryptoService.set('06052000', this.roomTypeId!)
+    this.facilitiesService.getFacilitiesOfRoom(encryptedId).pipe(first()).subscribe(res => {
+      this.listFacilities = res['data']
     })
   }
 

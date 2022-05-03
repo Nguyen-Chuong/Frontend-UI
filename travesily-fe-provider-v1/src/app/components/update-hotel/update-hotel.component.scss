@@ -1,95 +1,20 @@
-@import "src/app/shared/scss/main";
 
 *{
   font-style: inherit;
   font-size: .9rem;
 }
 
-.update-hotel{
-  display: flex;
-
-  &-btn{
-    text-align: center;
-    padding: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-  }
-  &-infor{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-  }
-}
-
-.hotel {
-  flex-wrap: wrap;
-  justify-content: center;
+.mat-form-field{
   width: 100%;
-  margin: 3rem auto;
-
-  & h1 {
-    text-align: center;
-    font-size: 1.5rem;
-  }
-  
 }
 
-.form-body {
-  display: grid;
-  grid-row-gap: 1rem;
+textarea{
+  min-height: 10rem;
   width: 100%;
-  margin: 0 auto;
-  box-shadow: 20px 20px 50px 15px grey;
-  border-radius: 10px;
-  padding: 10px;
-  background-color: aliceblue;
 }
 
-
-.group{
-  width: 40%;
-  &-input{
-    display: flex;
-  }
-}
-.addAvatar{
-  padding-left: 5%;
-}
-
-.description{
-  display: inline-block;
-  width: 100%;
-  text-align: center;
-  & textarea{
-    border-radius: 0.5rem;
-    
-  }
-}
-
-.select{
-  width:40%;
-  border: 1px solid rgb(196, 194, 194);
-  padding-bottom: .3rem;
-}
-
-.form-submit{
-  text-align: center;
-}
-@media (max-width: 40rem) {
-  .update-hotel-infor {
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  .group {
-    width: 90%;
-  }
-
-  .select{
-    width: 90%;
-    margin-bottom: 2rem;
-  }
+.btn{
+  font-size: 1.2rem;
+  font-weight: 500;
+  width: 10rem;
 }

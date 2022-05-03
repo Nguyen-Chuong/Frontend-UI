@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs';
-import { City } from 'src/app/_models/city';
-import { District } from 'src/app/_models/district';
-import { Hotel } from 'src/app/_models/hotel';
-import { AuthService } from 'src/app/_services/auth.service';
-import { CitiesService } from 'src/app/_services/cities.service';
-import { CryptoService } from 'src/app/_services/crypto.service';
-import { HotelService } from 'src/app/_services/hotel.service';
-import { NotificationService } from 'src/app/_services/notification.service';
-import { EmailValidator } from 'src/app/_validators/email.validator';
-import { HotelRequest } from './../../_models/hotelRequest';
+import {Component, OnInit} from '@angular/core';
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {first} from 'rxjs';
+import {City} from 'src/app/_models/city';
+import {District} from 'src/app/_models/district';
+import {Hotel} from 'src/app/_models/hotel';
+import {AuthService} from 'src/app/_services/auth.service';
+import {CitiesService} from 'src/app/_services/cities.service';
+import {CryptoService} from 'src/app/_services/crypto.service';
+import {HotelService} from 'src/app/_services/hotel.service';
+import {NotificationService} from 'src/app/_services/notification.service';
+import {EmailValidator} from 'src/app/_validators/email.validator';
+import {HotelRequest} from './../../_models/hotelRequest';
 
 @Component({
   selector: 'app-add-hotel',
@@ -23,8 +23,8 @@ export class AddHotelComponent implements OnInit {
   districtControl: FormControl
   cities: City[]
   districts: District[]
-  city: City
   hotel: Hotel = new Hotel()
+
   constructor(
     private fb: FormBuilder,
     private hotelService: HotelService,
@@ -33,8 +33,7 @@ export class AddHotelComponent implements OnInit {
     private cryptoService: CryptoService,
     private citiesService: CitiesService
   ) {
-
-    this.cityControl = new FormControl(this.city, Validators.required);
+    this.cityControl = new FormControl('', Validators.required);
     this.districtControl = new FormControl('', Validators.required);
   }
 
@@ -59,8 +58,11 @@ export class AddHotelComponent implements OnInit {
           address: this.hotel.address,
           descriptionTitle: '',
           star: this.hotel.star,
-          description: this.hotel.description
+          description: this.hotel.description,
         })
+        this.cityControl.setValue(this.hotel.district.city)
+        this.changeCityID(this.cityControl.value)
+        this.districtControl.setValue(this.hotel.district)
       })
     }
     this.citiesService.getAllCities().pipe(first()).subscribe(res => {
@@ -139,4 +141,14 @@ export class AddHotelComponent implements OnInit {
   clear() {
     this.form.reset()
   }
+
+  compareCity(city1: City, city2: City): boolean {
+    return city1 && city2 ? city1.id === city2.id : city1 === city2
+  }
+
+  compareDistrict(district1: District, district2: District): boolean {
+    return district1 && district2 ? district1.id === district2.id : district1 === district2
+  }
+
+
 }

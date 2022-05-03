@@ -32,7 +32,6 @@ export class NewHotelComponent implements OnInit {
   }
 
   updateRoomId(event){
-    console.log(event)
     this.roomId = event
   }
 }
