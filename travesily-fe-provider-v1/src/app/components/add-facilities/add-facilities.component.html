@@ -1,4 +1,13 @@
 <div class="add-facility">
+  <div *ngIf="isShow" class="facility-detail">
+    <ul *ngFor="let facility of listFacilities">
+      <li>
+        <div class="facility-detail-item">
+          <span>{{facility.facility.name}}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
   <div class="facility-type">
     <mat-form-field appearance="fill" class="select">
       <mat-label>Facility Type</mat-label>

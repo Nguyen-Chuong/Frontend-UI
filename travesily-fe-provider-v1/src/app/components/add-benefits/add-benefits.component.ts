@@ -91,16 +91,19 @@ export class AddBenefitsComponent implements OnInit {
     } else {
       roomTypeId = Number(localStorage.getItem('room-id'))
     }
-    const benefitRequest = new BenefitRequest
-    benefitRequest.roomTypeId = roomTypeId
-    benefitRequest.benefitIds = this.checkedList
-    this.benefitsService.addListBenefit(benefitRequest).pipe(first())
-      .subscribe({
-        next: () => {
-          this.notificationService.onSuccess("Add Benefit Successfully")
-        }, error: () => {
-          this.notificationService.onError('Some benefit has exist in this room, please try again!')
-        }
-      })
+    if (roomTypeId) {
+      const benefitRequest = new BenefitRequest
+      benefitRequest.roomTypeId = roomTypeId
+      benefitRequest.benefitIds = this.checkedList
+      this.benefitsService.addListBenefit(benefitRequest).pipe(first())
+        .subscribe({
+          next: () => {
+            this.notificationService.onSuccess("Add Benefit Successfully")
+          }, error: () => {
+            this.notificationService.onError('Some benefit has exist in this room, please try again!')
+          }
+        })
+    } else
+      this.notificationService.onError('You must add room first')
   }
 }

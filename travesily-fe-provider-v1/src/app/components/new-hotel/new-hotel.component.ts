@@ -12,10 +12,11 @@ export class NewHotelComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourthFormGroup: FormGroup;
-
+  roomId: number
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    this.roomId = +window.localStorage.getItem('room-id')
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.required],
     });

@@ -11,7 +11,7 @@
         <app-add-benefits></app-add-benefits>
       </mat-step>
       <mat-step [stepControl]="fourthFormGroup" label="Add Facility">
-        <app-add-facilities></app-add-facilities>
+        <app-add-facilities [roomTypeId]="roomId" [isShow]="true"></app-add-facilities>
       </mat-step>
     </mat-stepper>
   </div>

@@ -5,6 +5,7 @@ import { Facility } from 'src/app/_models/facility';
 import { FacilityRequest } from 'src/app/_models/facilityRequest';
 import { FacilityType } from 'src/app/_models/facilityType';
 import { OtherFacilityRequest } from 'src/app/_models/other-facility-request';
+import { RoomFacility } from 'src/app/_models/roomFacility';
 import { CryptoService } from 'src/app/_services/crypto.service';
 import { FacilitiesService } from 'src/app/_services/facilities.service';
 import { NotificationService } from 'src/app/_services/notification.service';
@@ -15,8 +16,8 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./add-facilities.component.scss']
 })
 export class AddFacilitiesComponent implements OnInit {
-
-  @Input() roomTypeId: number
+  @Input() roomTypeId: number = 0
+  @Input() isShow = false
   facilityTypes: FacilityType[]
   facilityTypeControl: FormControl
   facilities: Facility[]
@@ -24,11 +25,22 @@ export class AddFacilitiesComponent implements OnInit {
   checkedList = [];
   isOtherType = false
   form: FormGroup
+  listFacilities: RoomFacility[]
+
+
   constructor(private facilitiesService: FacilitiesService,
     private cryptoService: CryptoService,
     private notificationService: NotificationService,
     fb: FormBuilder
   ) {
+
+    const encryptedId = this.cryptoService.set('06052000', this.roomTypeId)
+    console.log(encryptedId)
+    console.log( this.roomTypeId)
+    this.facilitiesService.getFacilitiesOfRoom(encryptedId).pipe(first()).subscribe(res => {
+      this.listFacilities = res['data']
+    })
+
     this.facilityTypeControl = new FormControl('', Validators.required);
     this.form = fb.group({
       name: ['', [Validators.required]]
@@ -85,22 +97,19 @@ export class AddFacilitiesComponent implements OnInit {
   }
 
   submit() {
-    let roomTypeId
-    if (this.roomTypeId) {
-      roomTypeId = this.roomTypeId
-    } else {
-      roomTypeId = Number(localStorage.getItem('room-id'))
-    }
-    const facilityRequest = new FacilityRequest
-    facilityRequest.roomTypeId = roomTypeId
-    facilityRequest.facilityIds = this.checkedList
-    this.facilitiesService.addListFacilities(facilityRequest).pipe(first())
-      .subscribe({
-        next: () => {
-          this.notificationService.onSuccess("Add Facility Successfully")
-        }, error: () => {
-          this.notificationService.onError('Some facility has exist in this room, please try again!')
-        }
-      })
+    if (this.roomTypeId && this.roomTypeId != 0) {
+      const facilityRequest = new FacilityRequest
+      facilityRequest.roomTypeId = this.roomTypeId
+      facilityRequest.facilityIds = this.checkedList
+      this.facilitiesService.addListFacilities(facilityRequest).pipe(first())
+        .subscribe({
+          next: () => {
+            this.notificationService.onSuccess("Add Facility Successfully")
+          }, error: () => {
+            this.notificationService.onError('Some facility has exist in this room, please try again!')
+          }
+        })
+    } else
+      this.notificationService.onError('You must add room first')
   }
 }
