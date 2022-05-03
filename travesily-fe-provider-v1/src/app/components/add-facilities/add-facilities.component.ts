@@ -1,14 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs';
-import { Facility } from 'src/app/_models/facility';
-import { FacilityRequest } from 'src/app/_models/facilityRequest';
-import { FacilityType } from 'src/app/_models/facilityType';
-import { OtherFacilityRequest } from 'src/app/_models/other-facility-request';
-import { RoomFacility } from 'src/app/_models/roomFacility';
-import { CryptoService } from 'src/app/_services/crypto.service';
-import { FacilitiesService } from 'src/app/_services/facilities.service';
-import { NotificationService } from 'src/app/_services/notification.service';
+import {Component, Input, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {first} from 'rxjs';
+import {Facility} from 'src/app/_models/facility';
+import {FacilityRequest} from 'src/app/_models/facilityRequest';
+import {FacilityType} from 'src/app/_models/facilityType';
+import {OtherFacilityRequest} from 'src/app/_models/other-facility-request';
+import {RoomFacility} from 'src/app/_models/roomFacility';
+import {CryptoService} from 'src/app/_services/crypto.service';
+import {FacilitiesService} from 'src/app/_services/facilities.service';
+import {NotificationService} from 'src/app/_services/notification.service';
 
 @Component({
   selector: 'app-add-facilities',
@@ -16,8 +16,8 @@ import { NotificationService } from 'src/app/_services/notification.service';
   styleUrls: ['./add-facilities.component.scss']
 })
 export class AddFacilitiesComponent implements OnInit {
-  @Input() roomTypeId: number = 0
-  @Input() isShow = false
+  @Input() roomTypeId: number
+  @Input() isShow: boolean = false
   facilityTypes: FacilityType[]
   facilityTypeControl: FormControl
   facilities: Facility[]
@@ -27,20 +27,11 @@ export class AddFacilitiesComponent implements OnInit {
   form: FormGroup
   listFacilities: RoomFacility[]
 
-
   constructor(private facilitiesService: FacilitiesService,
-    private cryptoService: CryptoService,
-    private notificationService: NotificationService,
-    fb: FormBuilder
+              private cryptoService: CryptoService,
+              private notificationService: NotificationService,
+              private fb: FormBuilder
   ) {
-
-    const encryptedId = this.cryptoService.set('06052000', this.roomTypeId)
-    console.log(encryptedId)
-    console.log( this.roomTypeId)
-    this.facilitiesService.getFacilitiesOfRoom(encryptedId).pipe(first()).subscribe(res => {
-      this.listFacilities = res['data']
-    })
-
     this.facilityTypeControl = new FormControl('', Validators.required);
     this.form = fb.group({
       name: ['', [Validators.required]]
@@ -48,6 +39,10 @@ export class AddFacilitiesComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const encryptedId = this.cryptoService.set('06052000', this.roomTypeId!)
+    this.facilitiesService.getFacilitiesOfRoom(encryptedId).pipe(first()).subscribe(res => {
+      this.listFacilities = res['data']
+    })
     this.facilitiesService.getFacilitiesType().pipe(first()).subscribe(res => {
       this.facilityTypes = res['data']
     })
@@ -65,6 +60,7 @@ export class AddFacilitiesComponent implements OnInit {
     })
     this.checkedList.length = 0
   }
+
   onCheckboxChange(facility: Facility, event) {
     if (event.target.checked) {
       this.checkedList.push(facility.id);
@@ -97,7 +93,7 @@ export class AddFacilitiesComponent implements OnInit {
   }
 
   submit() {
-    if (this.roomTypeId && this.roomTypeId != 0) {
+    if (this.roomTypeId) {
       const facilityRequest = new FacilityRequest
       facilityRequest.roomTypeId = this.roomTypeId
       facilityRequest.facilityIds = this.checkedList

@@ -4,73 +4,7 @@
   font-style: inherit;
   font-size: 1.1rem;
 }
-.benefit {
-  box-shadow: 20px 20px 50px 15px grey;
-  border-radius: 10px;
-  padding: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
+
+.mat-form-field{
   width: 100%;
-  margin: 3rem auto;
-
-  & h1 {
-    text-align: center;
-    font-size: 1.5rem;
-    padding-bottom: 1rem;
-  }
-
-  &-detail-infor {
-    width: 100%;
-    padding-top: 20px;
-  }
-
-  &-button {
-    background: rgb(99, 39, 120);
-    box-shadow: none;
-    border: none;
-
-    &:hover {
-      color: #3513ca;
-      background: #ede8ee;
-      box-shadow: 4px 3px 11px 6px rgb(200 152 44 / 46%);
-    }
-  }
-
-  &-detail {
-    &-item {
-      display: inline-flex;
-      justify-content: space-between;
-      width: 90%;
-      padding-left: 6rem;
-    }
-
-    &-delete{
-      width: 30px;
-      margin-right: 30px;
-      padding-right: 30px;
-    }
-  }
-}
-
-.update-benefit {
-  &-btn {
-    text-align: center;
-    padding: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
-  }
-}
-
-.group-input {
-  display: flex;
-  justify-content: space-around;
-}
-
-.select {
-  width: 31%;
-}
-
-.form-submit {
-  text-align: center;
 }

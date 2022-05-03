@@ -1,47 +1,51 @@
-<div class="update-benefit">
-  <div class="benefit mb-3 bg-light">
-    <div class="benefit-detail-infor">
-      <h1>Update Benefit</h1>
-      <div class="group-input">
-        <mat-form-field appearance="fill" class="select">
-          <mat-label>Hotel</mat-label>
-          <mat-select [formControl]="hotelControl" required (selectionChange)="changeHotel($event.value)">
-            <mat-option *ngFor="let hotel of hotels" [value]="hotel">
-              {{hotel.name}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="hotelControl.hasError('required')">Please choose a hotel</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="fill" class="select select-room">
-          <mat-label>Room</mat-label>
-          <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)">
-            <mat-option *ngFor="let room of rooms" [value]="room">
-              {{room.name}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="roomControl.hasError('required')">Please choose a room</mat-error>
-        </mat-form-field>
+<div class="card mt-5">
+  <div class="card-body p-5 pt-3">
+    <h1 class="text-center">Update Benefit</h1>
+    <div class="row">
+      <div class="col-md-6">
+      <mat-form-field appearance="fill" class="select">
+        <mat-label>Hotel</mat-label>
+        <mat-select [formControl]="hotelControl" required (selectionChange)="changeHotel($event.value)">
+          <mat-option *ngFor="let hotel of hotels" [value]="hotel">
+            {{hotel.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="hotelControl.hasError('required')">Please choose a hotel</mat-error>
+      </mat-form-field>
       </div>
-      <div class="benefit-detail">
-        <ul *ngFor="let benefit of benefits">
-          <li>
-            <div class="benefit-detail-item">
-              <span>{{benefit.benefit.name}}</span>
-              <button mat-menu-item (click)="deleteBenefit(benefit.id)" class="benefit-detail-delete">
-                <mat-icon>delete</mat-icon>
-              </button>
+      <div class="col-md-6">
+      <mat-form-field appearance="fill" class="select select-room">
+        <mat-label>Room</mat-label>
+        <mat-select [formControl]="roomControl" required (selectionChange)="changeRoom($event.value)">
+          <mat-option *ngFor="let room of rooms" [value]="room">
+            {{room.name}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="roomControl.hasError('required')">Please choose a room</mat-error>
+      </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <ul class="list-inline" *ngFor="let benefit of benefits">
+        <li>
+          <div class="d-flex justify-content-between">
+            <span>{{benefit.benefit.name}}</span>
+            <div>
+            <button mat-menu-item (click)="deleteBenefit(benefit.id)" class="benefit-detail-delete">
+              <mat-icon>delete</mat-icon>
+            </button>
             </div>
-          </li>
-        </ul>
-      </div>
-      <div class="add-new-benefit">
-        <button mat-menu-item (click)="openAddBenefit()" [disabled]="!room">
-          <mat-icon>add</mat-icon>
-          <span>New Benefit</span>
-        </button>
-        <div class="new-benefit" *ngIf="isAddBenefit">
-          <app-add-benefits [roomTypeId]="room.id"></app-add-benefits>
-        </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="add-new-benefit">
+      <button mat-menu-item (click)="openAddBenefit()" [disabled]="!room">
+        <mat-icon>add</mat-icon>
+        <span>New Benefit</span>
+      </button>
+      <div class="new-benefit" *ngIf="isAddBenefit">
+        <app-add-benefits [roomTypeId]="room.id"></app-add-benefits>
       </div>
     </div>
   </div>

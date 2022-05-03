@@ -8,6 +8,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { BenefitType } from 'src/app/_models/benefitType';
 import { first } from 'rxjs';
 import { Benefit } from 'src/app/_models/benefit';
+import {RoomBenefit} from "../../_models/roomBenefit";
 
 @Component({
   selector: 'app-add-benefits',
@@ -15,6 +16,7 @@ import { Benefit } from 'src/app/_models/benefit';
   styleUrls: ['./add-benefits.component.scss']
 })
 export class AddBenefitsComponent implements OnInit {
+  @Input() isShow: boolean = false
   @Input() roomTypeId: number
   form: FormGroup
   benefitTypes: BenefitType[]
@@ -22,11 +24,12 @@ export class AddBenefitsComponent implements OnInit {
   benefits: Benefit[]
   selectedItemsList = [];
   checkedList = [];
+  listBenefits: RoomBenefit[] = []
   isOtherType = false
   constructor(private benefitsService: BenefitsService,
     private cryptoService: CryptoService,
     private notificationService: NotificationService,
-    fb: FormBuilder
+    private fb: FormBuilder
   ) {
     this.benefitTypeControl = new FormControl('', Validators.required);
     this.form = fb.group({
@@ -35,6 +38,10 @@ export class AddBenefitsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const encryptedId = this.cryptoService.set('06052000', this.roomTypeId!)
+    this.benefitsService.getBenefitOfRoom(encryptedId).pipe(first()).subscribe(res => {
+      this.listBenefits = res['data']
+    })
     this.benefitsService.getBenefitType().pipe(first()).subscribe(res => {
       this.benefitTypes = res['data']
     })
@@ -85,15 +92,9 @@ export class AddBenefitsComponent implements OnInit {
   }
 
   submit() {
-    let roomTypeId
     if (this.roomTypeId) {
-      roomTypeId = this.roomTypeId
-    } else {
-      roomTypeId = Number(localStorage.getItem('room-id'))
-    }
-    if (roomTypeId) {
       const benefitRequest = new BenefitRequest
-      benefitRequest.roomTypeId = roomTypeId
+      benefitRequest.roomTypeId = this.roomTypeId
       benefitRequest.benefitIds = this.checkedList
       this.benefitsService.addListBenefit(benefitRequest).pipe(first())
         .subscribe({

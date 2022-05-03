@@ -1,4 +1,13 @@
 <div class="add-benefit">
+  <div *ngIf="isShow!" class="facility-detail">
+    <ul *ngFor="let benefit of listBenefits">
+      <li>
+        <div class="facility-detail-item">
+          <span>{{benefit.benefit.name}}</span>
+        </div>
+      </li>
+    </ul>
+  </div>
   <div class="benefit-type">
     <mat-form-field appearance="fill" class="select">
       <mat-label>Benefit Type</mat-label>

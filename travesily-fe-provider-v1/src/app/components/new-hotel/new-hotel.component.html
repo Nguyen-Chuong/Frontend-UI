@@ -8,7 +8,7 @@
         <app-add-room></app-add-room>
       </mat-step>
       <mat-step [stepControl]="thirdFormGroup" label="Add Benefit">
-        <app-add-benefits></app-add-benefits>
+        <app-add-benefits [roomTypeId]="roomId" [isShow]="true"></app-add-benefits>
       </mat-step>
       <mat-step [stepControl]="fourthFormGroup" label="Add Facility">
         <app-add-facilities [roomTypeId]="roomId" [isShow]="true"></app-add-facilities>
