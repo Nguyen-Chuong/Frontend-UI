@@ -86,7 +86,7 @@
                 <span class="fa fa-star {{hotel.star>=4?'checked':''}}"></span>
                 <span class="fa fa-star {{hotel.star>=5?'checked':''}}"></span>
               </h4>
-              <h3>{{hotel.address}}, {{hotel.district?.nameDistrict}}, {{hotel.district?.city.nameCity}}</h3>
+              <button class="p-0 m-0 border-0 bg-white btn-see-map" (click)="redirectLocation()"><h3>{{hotel.address}}, {{hotel.district?.nameDistrict}}, {{hotel.district?.city.nameCity}} <strong class="text-primary">- SEE MAP</strong></h3></button>
             </div>
           </div>
         </div>
