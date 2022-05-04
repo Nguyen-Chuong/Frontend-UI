@@ -13,4 +13,5 @@ export class Booking {
   bookedQuantity: number
   type: number
   roomTypeId: number
+  otherRequirement: string
 }
